@@ -1,0 +1,437 @@
+access control
+account assignment
+account assignment distribution
+Accounting
+activity
+activity type
+administrator
+admission
+alert
+allocation
+application help
+application log
+apply
+approval
+approver
+assembly
+assessment
+asset
+asset type
+assignment
+association
+attachment
+attribute
+audit
+authentication
+authorization
+authorization number
+availability control
+available capacity
+base value
+bill
+blocked
+branch
+bucket
+business content
+business context
+business document
+business entity
+business name
+business object
+business partner grouping
+business partner role
+business role
+business unit
+business user
+Business Users
+calculation type
+callback
+canvas
+central contract
+change log
+characteristic
+charge
+check
+checkout
+claim
+class
+classification
+classification type
+clearing
+clearing item
+client
+cohort
+collection
+communication type
+compliance
+compliance requirement
+condition
+confirmation
+consolidation chart of accounts
+constraint
+consumption model
+container
+content
+contract
+contract account
+contract amount
+contract creation
+contract item
+control
+controller
+conversion rule
+cost type
+credentials
+credit profile
+data binding
+data collector
+data provider
+data source
+data staging
+data subject
+data warehouse
+deadline
+deal
+default
+default value
+delete
+deleted
+demand management
+deploy
+deployment
+design
+destination
+discard
+display
+distribution
+document
+document category
+document type
+domain
+download
+drill down
+due date
+duplicate
+dynamic modification
+edit
+end date
+end time
+endpoint
+enter
+entitlement
+entry
+Environment, Health and Safety
+evaluation
+event type
+exception
+exit
+expand
+expected value
+expiration
+expiration date
+expired
+extension
+facility
+feature
+fee
+feedback
+finished
+flow
+following
+form
+format
+general settings
+get
+graph
+graphical view
+Group
+grouping
+header
+historical data
+history
+home page
+icon
+ID
+ID type
+identifier
+image
+impact
+in process
+in-house production
+inactive
+incident
+indicator
+Information Lifecycle Management
+input
+insert
+inspection
+installment plan category
+instance
+instructor
+intercompany
+interest calculation
+interface
+inventory
+issue
+item
+item type
+JIT call
+job
+joint venture accounting
+key mapping
+Knowledge Base
+label
+launchpad
+layer
+learner type
+limit
+line of business
+line type
+link
+list view
+load
+local repository
+lock
+log
+loop
+lot
+Machine Learning
+maintain
+manager
+mapping
+mapping template
+mark
+marker
+mass processing
+match
+material group
+Material Groups
+measure
+membership
+message
+module
+monitor
+monitoring
+multiple
+Network
+note
+note type
+notes
+notice
+notification
+object category
+object type
+offset
+open
+open item
+opening balance
+operation
+order
+outbound
+output
+output type
+overhead allocation
+pack
+package
+page
+page type
+pane
+panel
+parallel processing
+part
+partner
+password
+pattern
+pause
+payment terms
+percentage
+performance
+period
+permission
+personal data
+Personal Information
+popup
+port
+position
+preferences
+prepayment
+pricing date
+print
+procedure
+process
+process step
+processing
+processing rule
+product
+product type
+production order
+production process
+production version
+Professional Services
+profit center
+project
+project ID
+project manager
+property
+provided
+provider
+public
+publish
+purchase order
+purchase requisition item type
+purpose
+query
+queue
+quota
+range
+ranking
+rate
+rating
+read
+reclassification
+record
+record type
+recurrence
+reference
+regeneration
+reject
+relationship
+release
+remove
+renewal
+repair
+replaced
+replication
+report
+report category
+reporting
+reporting period
+request
+requested
+requirement
+reset
+residence period
+restart
+restriction
+result type
+resume
+retention period
+retrieval
+return
+revenue recognition
+review
+reviewer
+revision
+rework
+role
+role template
+root
+run
+run type
+safety instruction
+sales order
+SAP support
+save
+save as
+scales
+scenario
+schedule
+scheduled
+scheduling
+scope
+score
+section
+security
+select
+selection
+sequence
+service
+service confirmation
+service provider
+set
+settlement
+severity
+share
+shared object
+sharing
+shipment
+side panel
+simulation run
+single document
+site
+situation
+slot
+sort
+sorting
+source
+source assignment
+source document
+source document category
+space
+split
+stage
+standard available capacity
+start
+start time
+state
+statement
+step
+storage
+storage type
+stored procedure
+string
+subgroup
+subscription
+substitution
+supplement
+support
+system administration
+tab
+Table
+target
+target attribute
+target costs
+task list
+task log
+tax category
+tax exemption
+tax rate
+team member
+template
+tenant
+term
+termination
+theme
+thread
+tile
+time
+timeframe
+topic
+trace
+transaction
+transaction currency
+transaction type
+transfer
+transport
+trigger
+type
+union
+update
+upload
+usage type
+use
+use case
+user
+user ID
+user interface
+user status
+utilization
+valid-from date
+validity period
+vendor
+vendor account
+wizard
+work center
+workflow
+worklist
+write off

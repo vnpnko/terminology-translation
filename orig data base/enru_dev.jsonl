@@ -1,0 +1,500 @@
+{"en": "Indicates if a configuration item or configuration step is specific to a localized solution version.\n", "ru": "", "proper_terms": {"item": ""}, "random_terms": {"localized": ""}}
+{"en": "You run allocation cycles in the Run Allocations app.\n", "ru": "", "proper_terms": {"run": ""}, "random_terms": {"cycles": ""}}
+{"en": "Depending on your use case, you can choose between the following types of allocations:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"choose": ""}}
+{"en": "You can only display and use this Planned Count Date Interval field when you use the date selection type Relative.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Count": ""}}
+{"en": "If you want to remove a bookmark, again click the bookmark icon on the corresponding data provider or data product page.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"corresponding": ""}}
+{"en": "The performance of the model version is evaluated using two main indicators.\n", "ru": "", "proper_terms": {"performance": ""}, "random_terms": {"version": ""}}
+{"en": "You can personalize various preferences relating to which notifications you want to receive, and how and where they are displayed.\n", "ru": "", "proper_terms": {"preferences": ""}, "random_terms": {"displayed": ""}}
+{"en": "Click the New Fact Model tile to open the wizard, specify a name for your model, and click Step 2.\n", "ru": "", "proper_terms": {"wizard": ""}, "random_terms": {"click": ""}}
+{"en": "The existing draft version is set to Replaced status and changes are saved as a new draft version.\n", "ru": "", "proper_terms": {"replaced": ""}, "random_terms": {"version": ""}}
+{"en": "The applications where the group is used, for example, for an activity type group, the Edit Overhead Allocation Cycles app or the Define Splitting Structure configuration activity can be listed.\n", "ru": "", "proper_terms": {"activity": ""}, "random_terms": {"Splitting": ""}}
+{"en": "You can see these items on the To Be Written Off  tab and verify that they're non-billable by looking at the Billing Control Category column.\n", "ru": "", "proper_terms": {"category": ""}, "random_terms": {"verify": ""}}
+{"en": "Using this app, you can define different clause types in various languages.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"clause": ""}}
+{"en": "There are two procedure types for an automated reprocessing rule.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"reprocessing": ""}}
+{"en": "Edit a communication system and activate it by saving it.\n", "ru": "", "proper_terms": {"activate": ""}, "random_terms": {"communication": ""}}
+{"en": "The clause types that you define here, are used in other apps.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"types": ""}}
+{"en": "You can find the project ID in the json key file that you need for the credentials.\n", "ru": "", "proper_terms": {"project ID": ""}, "random_terms": {"file": "", "json": ""}}
+{"en": "Select the Union operator from the toolbar and drop it in the canvas and then connect two sources or other nodes to it as inputs.\n", "ru": "", "proper_terms": {"input": "", "union": ""}, "random_terms": {"operator": "", "sources": ""}}
+{"en": "The period of time between the end of business and the end of purpose (EoP) for a data set during which the data remains in the database and can be used in case of subsequent processes related to the original purpose.\n", "ru": "", "proper_terms": {"purpose": ""}, "random_terms": {"time": ""}}
+{"en": "This page is an overview of the data provider and the products they sell.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"overview": ""}}
+{"en": "In a purchase contract, you define the potential set of services, that may be required, for example, for the maintenance and repair of a particular machine.\n", "ru": "", "proper_terms": {"repair": ""}, "random_terms": {"may": ""}}
+{"en": "You can’t see the validity period in edit mode, you have to switch back to display mode.\n", "ru": "", "proper_terms": {"validity period": ""}, "random_terms": {"mode": "", "switch": ""}}
+{"en": "Once a data provider or a data product has been set as as a bookmark, you can retrieve them in this area.You can then open your entries and navigate to the corresponding data provider or data product.\n", "ru": "", "proper_terms": {"data provider": ""}, "random_terms": {"open": "", "area.You": ""}}
+{"en": "According to the status, you can perform different actions such as Edit, Delete, Archive, Export to Word, etc on the template or text block.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"text": ""}}
+{"en": "If you use predictive accounting for different types of source documents, use this field to filter the documents by type in the Standard view.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"predictive": ""}}
+{"en": "If you select this item type, you have to add Demand Management for each item.\n", "ru": "", "proper_terms": {"demand management": "", "type": ""}, "random_terms": {"select": "", "add": "", "item": ""}}
+{"en": "The issue location in the item is displayed in the production order as a default.\n", "ru": "", "proper_terms": {"issue": ""}, "random_terms": {"displayed": ""}}
+{"en": "Some data providers offer free sample data in json format.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"data": ""}}
+{"en": "It can be used for searching and filtering the clause types within the app.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"used": ""}}
+{"en": "Change existing print queue.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"existing": ""}}
+{"en": "On the right-hand screen area, you can edit or request detailed information about the HUs and products.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"area": ""}}
+{"en": "The union output columns are based on the first source, and the columns of subsequent inputs are mapped, where possible, based on their names.\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"columns": ""}}
+{"en": "Currently, only one space can connect to data lake.\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"Currently": ""}}
+{"en": "When a new delivery is made available by the provider, the Status of your data product is outdated.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"product": ""}}
+{"en": "From the Replication Schedule button, you can:\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Replication": ""}}
+{"en": "Either the currency of the outgoing side or the currency of the incoming side is one of the selected transaction currencies.\n", "ru": "", "proper_terms": {"transaction currency": ""}, "random_terms": {"side": "", "one": ""}}
+{"en": "Load a new snapshot of data to start the partitioning immediately, or alternatively create a schedule to load new snapshot later (or wait until you next schedule run will occur).\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"partitioning": ""}}
+{"en": "The Impacted Object column shows warnings for objects that will overwrite content on your system.\n", "ru": "", "proper_terms": {"content": ""}, "random_terms": {"column": ""}}
+{"en": "Fact Source Attribute Mapping/Fact Source Attribute\n", "ru": "", "proper_terms": {"mapping": ""}, "random_terms": {"Fact": ""}}
+{"en": "For instance, those that provide different perspectives of an object, such as a contract, contract consumption, and contract history.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"consumption": ""}}
+{"en": "On the Review and export page, review the overview of your package.\n", "ru": "", "proper_terms": {"review": ""}, "random_terms": {"export": ""}}
+{"en": "When you apply your data access control to a view, you must map each output column to an appropriate column in the view.\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"column": ""}}
+{"en": "In the Hierarchy View, you can drill down the selected FSV structure to a specific G/L account.\n", "ru": "", "proper_terms": {"drill down": ""}, "random_terms": {"specific": "", "FSV": ""}}
+{"en": "In addition to the use of placeholders, you can also enter text manually and change the formatting.\n", "ru": "", "proper_terms": {"enter": ""}, "random_terms": {"text": ""}}
+{"en": "You can change this schedule defining your own criteria or decide to take immediate deletion actions.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"immediate": ""}}
+{"en": "Data updates can be delivered by the data provider.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"delivered": ""}}
+{"en": "Based on the reference data you create here, you can copy a simulation plan to create multiple simulations with the same reference plan to compare them in the Process pMRP Simulations app.\n", "ru": "", "proper_terms": {"process": ""}, "random_terms": {"Simulations": ""}}
+{"en": "When a shared object is added to the code, it's added in the form \"spaceName\".\"objectName\" and can directly be accessed, avoiding the need to duplicate the object in your space.\n", "ru": "", "proper_terms": {"shared object": ""}, "random_terms": {"form": "", "``": ""}}
+{"en": "You will receive a warning once your space has run out of storage and 1 hour to act before it's locked.\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"'s": ""}}
+{"en": "The data provider has entered some details about the product:\n", "ru": "", "proper_terms": {"data provider": ""}, "random_terms": {"product": "", "details": ""}}
+{"en": "Pause real-time replication to enable editing connection properties.\n", "ru": "", "proper_terms": {"pause": ""}, "random_terms": {"editing": ""}}
+{"en": "Use the Yes/ No switch to change the version to active or inactive respectively.\n", "ru": "", "proper_terms": {"inactive": ""}, "random_terms": {"active": ""}}
+{"en": "As a prerequisite to proceed to the next step in the wizard, your browser needs to be enabled to store cookies.\n", "ru": "", "proper_terms": {"wizard": ""}, "random_terms": {"enabled": ""}}
+{"en": "Inspection Active Regardless of Supplier Certification\n", "ru": "", "proper_terms": {"inspection": ""}, "random_terms": {"Certification": ""}}
+{"en": "This function is only available, if you are authorized for the Process IR Derivatives - Collective Processing app.\n", "ru": "", "proper_terms": {"process": ""}, "random_terms": {"Processing": ""}}
+{"en": "Specifies the purpose for which the document is used in a legal transaction, for example, License Agreement.\n", "ru": "", "proper_terms": {"purpose": ""}, "random_terms": {"example": ""}}
+{"en": "You also specify the validity period for the template.\n", "ru": "", "proper_terms": {"validity period": ""}, "random_terms": {"template": "", "also": ""}}
+{"en": "Based on that and make the change to capacity and see if the capacity situation improves.\n", "ru": "", "proper_terms": {"situation": "", "change": ""}, "random_terms": {"see": "", "improves": ""}}
+{"en": "When you use an Overtime Category for a service order item or service confirmation item, the price of the service increases.\n", "ru": "", "proper_terms": {"service confirmation": "", "category": ""}, "random_terms": {"Overtime": "", "order": "", "item": ""}}
+{"en": "Easily integrate third-party data to your dataset, purchasing analytical data from data providers.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"integrate": ""}}
+{"en": "This varies depending on how the data provider offers their products.\n", "ru": "", "proper_terms": {"data provider": ""}, "random_terms": {"products": "", "varies": ""}}
+{"en": "You can change description, print user, and retention period of the selected print queue.\n", "ru": "", "proper_terms": {"retention period": ""}, "random_terms": {"change": "", "print": ""}}
+{"en": "Displays the data provider page as consumers would see it in the Data Marketplace.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"would": ""}}
+{"en": "Note that specifying a thread limit can lower performances.\n", "ru": "", "proper_terms": {"thread": "", "limit": ""}, "random_terms": {"specifying": "", "Note": ""}}
+{"en": "It must be unique for the clause type in each language.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"must": ""}}
+{"en": "Here, you can define what action the automated reprocessing rule should take if its procedure type is that of a two-step posting.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"action": ""}}
+{"en": "If you want to cancel a service confirmation that doesn't contain any items, you must define the confirmation as Completed before you can cancel the confirmation.\n", "ru": "", "proper_terms": {"service confirmation": ""}, "random_terms": {"Completed": "", "cancel": ""}}
+{"en": "A method of restricting access to data for which the primary business purpose has ended.\n", "ru": "", "proper_terms": {"purpose": ""}, "random_terms": {"method": ""}}
+{"en": "A payment clearing group is an attribute with which you can categorize your suppliers and customers into groups.\n", "ru": "", "proper_terms": {"clearing": ""}, "random_terms": {"payment": ""}}
+{"en": "You want to engage a service provider to repair a machine, but you do not yet know which services are required in detail.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"want": ""}}
+{"en": "Otherwise, it is released on the Valid From date.\n", "ru": "", "proper_terms": {"valid-from date": ""}, "random_terms": {"released": "", "Valid": ""}}
+{"en": "If you need to, for example, order a specific tool in the context of your sourcing project, you can select this item type to place a one-off order with little effort.\n", "ru": "", "proper_terms": {"item type": ""}, "random_terms": {"example": "", "tool": ""}}
+{"en": "Either select Data Products or Providers from the dropdown list next to the search input field.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"search": ""}}
+{"en": "You can also maintain tax details (such as Country, Tax Category, and Tax Classification) and Partner Functions (Partner Role, Number and Description).\n", "ru": "", "proper_terms": {"tax category": ""}, "random_terms": {"Description": "", "also": ""}}
+{"en": "Click Capacity Plan Simulation to see and edit the capacity of the corresponding work center.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"capacity": ""}}
+{"en": "A business entity can have more than one key and you can define a key with multiple members.\n", "ru": "", "proper_terms": {"business entity": ""}, "random_terms": {"multiple": "", "define": ""}}
+{"en": "Use the expanded view to see more detailed information.\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"view": ""}}
+{"en": "After registering the activation key, they can perform all data provider tasks.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"data": ""}}
+{"en": "Change the risk level for alternatives\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"level": ""}}
+{"en": "To view the source text block and number of available variants for a text block, choose a text block within a template or in the text block library, and open the Properties pane on the left side of the screen.\n", "ru": "", "proper_terms": {"pane": ""}, "random_terms": {"source": ""}}
+{"en": "A deposit at notice is an investment or borrowing without defined due dates.\n", "ru": "", "proper_terms": {"due date": ""}, "random_terms": {"notice": "", "without": ""}}
+{"en": "List all incident-related tasks in the Environment, Health, and Safety system.\n", "ru": "", "proper_terms": {"Environment, Health and Safety": ""}, "random_terms": {"tasks": "", "List": "", "incident-related": "", "system": ""}}
+{"en": "The Create Vendor:\n", "ru": "", "proper_terms": {"vendor": ""}, "random_terms": {"Create": ""}}
+{"en": "All data products which have a different contract type, for example License Key, are set to hidden in the search result list.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"data": ""}}
+{"en": "Contract for Limit\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Limit": ""}}
+{"en": "Before you can use an SAP S/4HANA Cloud connection, an administrator has prepared the following:\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"S/4HANA": ""}}
+{"en": "In the Import Users dialog, choose Import to upload your CSV file according to the defined mapping.\n", "ru": "", "proper_terms": {"mapping": ""}, "random_terms": {"CSV": ""}}
+{"en": "Retrieve your favorite data providers and data products.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"data": ""}}
+{"en": "The Contract for Limit specifies the number of the contract from which you select the items of the performed services in the service entry sheet.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"select": ""}}
+{"en": "In the Manage Cash Pools (Version 2) app, the following service provider is supported:\n", "ru": "", "proper_terms": {"service provider": ""}, "random_terms": {"Manage": "", "2": ""}}
+{"en": "An additional filter is set and the Maintenance Order Operations tab opens, showing a list of operations for the selected orders.\n", "ru": "", "proper_terms": {"tab": ""}, "random_terms": {"operations": ""}}
+{"en": "Define Recurrence Pattern\n", "ru": "", "proper_terms": {"pattern": ""}, "random_terms": {"Recurrence": ""}}
+{"en": "A contract liability is your company’s obligation to transfer goods or services to a customer for which your company has received consideration from the customer (or the payment is due) but the transfer has not yet been completed.\n", "ru": "", "proper_terms": {"contract": "", "transfer": ""}, "random_terms": {"customer": "", "goods": ""}}
+{"en": "In the Switch Data Provider dialog:\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"Data": ""}}
+{"en": "Displays data for allocation periods in which allocation consumption is below 20%.\n", "ru": "", "proper_terms": {"consumption": ""}, "random_terms": {"data": ""}}
+{"en": "As a data provider, you decide on the pricing model for a data products: a data product can be either free of charge or require the purchase of a license at a certain cost.\n", "ru": "", "proper_terms": {"data provider": ""}, "random_terms": {"decide": "", "cost": ""}}
+{"en": "On a specific tab, choose Edit Prompts at the right corner, and .\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"specific": ""}}
+{"en": "To see the total number of instances, remove this grouping under SettingsGroupRemove Grouping Criterion.\n", "ru": "", "proper_terms": {"grouping": ""}, "random_terms": {"Criterion": ""}}
+{"en": "This helps in determing the revenue recognition method for the project, which allows us to maintain planned costs and revenue.\n", "ru": "", "proper_terms": {"maintain": ""}, "random_terms": {"costs": ""}}
+{"en": "You can delete the monitored data for this situation type here by choosing one of the following options:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"monitored": ""}}
+{"en": "The Data Sharing Cockpit is the tool you use as a the data provider.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"Cockpit": ""}}
+{"en": "The text ID defines the various types of texts relating to a text object.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"various": ""}}
+{"en": "Add messages by choosing 0 Enabled for a run type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"messages": ""}}
+{"en": "To expose and, therefore, allow consumption by other tools, please see Data Consumption.\n", "ru": "", "proper_terms": {"consumption": ""}, "random_terms": {"see": ""}}
+{"en": "Under Storage Consumption, you monitor how much spaces task logs consume in your tenant.\n", "ru": "", "proper_terms": {"consumption": ""}, "random_terms": {"tenant": ""}}
+{"en": "If you want to publish a sourcing project with at least one item of type Project Item, you have to add at least one procurement project and the related information in the section Project Details.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"one": ""}}
+{"en": "If the new work center has order operations that have already been dispatched or are in process and that overlap with the target week, these are added automatically to your schedule.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"already": ""}}
+{"en": "Under Schedule Task Log Deletion, you define criteria to schedule regular task log deletions that are automatically triggered by SAP Analytics Cloud.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"task": ""}}
+{"en": "You can choose an Overtime Category to capture the time invested by service technicians in addition to their planned working time.\n", "ru": "", "proper_terms": {"category": ""}, "random_terms": {"invested": ""}}
+{"en": "To see all available activity types, open the Activity Type input help in the filter area and choose Go.\n", "ru": "", "proper_terms": {"activity type": ""}, "random_terms": {"filter": "", "Go": ""}}
+{"en": "Access SAP HANA Deployment Infrastructure containers through  and use your data in the Data Builder or gain access to your space data from your HDI container.\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"gain": ""}}
+{"en": "Pause and restart real-time replication\n", "ru": "", "proper_terms": {"restart": "", "pause": ""}, "random_terms": {"real-time": "", "replication": ""}}
+{"en": "Use Real-Time Replication\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"Real-Time": ""}}
+{"en": "Delete audit logs and free up disk space.\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"disk": ""}}
+{"en": "Click Save to move to the next connection creation wizard step in .\n", "ru": "", "proper_terms": {"wizard": ""}, "random_terms": {"step": ""}}
+{"en": "Some data products are available as one-time shipments, for other data products regularly updates are released by the data provider.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"products": ""}}
+{"en": "[read-only] The semantic usage of the output of an intelligent lookup is always set to Relational Dataset.\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"usage": ""}}
+{"en": "There are six types of messages:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"messages": ""}}
+{"en": "To manually map input columns to union output columns, drag a column from the left list and drop it onto a column in the right list.\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"right": ""}}
+{"en": "You can update the user email addresses used for logon.\n", "ru": "", "proper_terms": {"update": ""}, "random_terms": {"addresses": ""}}
+{"en": "Total available capacity of the work center\n", "ru": "", "proper_terms": {"available capacity": ""}, "random_terms": {"work": "", "center": ""}}
+{"en": "The expected value cannot be higher than overall limit.\n", "ru": "", "proper_terms": {"limit": ""}, "random_terms": {"higher": ""}}
+{"en": "Organizational Unit Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Organizational": ""}}
+{"en": "Version History Tab\n", "ru": "", "proper_terms": {"tab": ""}, "random_terms": {"History": ""}}
+{"en": "Change role assignment\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"assignment": ""}}
+{"en": "When looking for suitable resources or resource requests, you can specify whether skills matching is based exclusively on the resource's skills (that is, the skills entered in the employee fact sheet) or whether to include the skills required in other requests to which the resource was or is assigned.\n", "ru": "", "proper_terms": {"request": ""}, "random_terms": {"skills": ""}}
+{"en": "Using the Process Payment Service Providers app (job template Import Payment Advice Note Data from Digital Payments Add-On)you periodically query the payment advice notes from SAP Digital Payments Add-On .\n", "ru": "", "proper_terms": {"process": ""}, "random_terms": {"Data": ""}}
+{"en": "Complete the Business Purpose section to let others know what your view is about.\n", "ru": "", "proper_terms": {"purpose": ""}, "random_terms": {"Complete": ""}}
+{"en": "Is displayed when a production version exists without a specified production line.\n", "ru": "", "proper_terms": {"production version": ""}, "random_terms": {"exists": "", "displayed": ""}}
+{"en": "Enter the SAP ABAP system client number.\n", "ru": "", "proper_terms": {"client": ""}, "random_terms": {"number": ""}}
+{"en": "You can use the Cancel button to cancel a service confirmation that has been set to completed.\n", "ru": "", "proper_terms": {"cancel": ""}, "random_terms": {"button": ""}}
+{"en": "Choose the result type.\n", "ru": "", "proper_terms": {"result type": ""}, "random_terms": {"Choose": ""}}
+{"en": "Overhead Allocation (New)\n", "ru": "", "proper_terms": {"allocation": ""}, "random_terms": {"New": ""}}
+{"en": "Add Sales Order\n", "ru": "", "proper_terms": {"sales order": ""}, "random_terms": {"Add": ""}}
+{"en": "Choose Define Recurrence Pattern.\n", "ru": "", "proper_terms": {"pattern": ""}, "random_terms": {"Choose": ""}}
+{"en": "You can only display and use these two Planned Count Date From - To fields, when you use the date selection type Static.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"use": ""}}
+{"en": "Documents - Action Required\n", "ru": "", "proper_terms": {"action": ""}, "random_terms": {"Documents": ""}}
+{"en": "The Data Provider profile provides additional information about other products or product groups.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"Data": ""}}
+{"en": "If the template offers the option, you can choose Capture Data Context for this situation type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Capture": ""}}
+{"en": "Edit Service Contracts\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Edit": ""}}
+{"en": "Using the Process Payment Service Providers app (job template Settlement of Payment Service Providers) you then process the received payment advice notes.\n", "ru": "", "proper_terms": {"process": ""}, "random_terms": {"Providers": ""}}
+{"en": "Delivery Type Code\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Delivery": ""}}
+{"en": "Select your dedicated space from the drop-down menu.\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"dedicated": ""}}
+{"en": "[read-only] The output of an intelligent lookup cannot be exposed for consumption.\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"intelligent": ""}}
+{"en": "BOM Usage Type\n", "ru": "", "proper_terms": {"usage type": ""}, "random_terms": {"BOM": ""}}
+{"en": "Check Expiration Date\n", "ru": "", "proper_terms": {"check": ""}, "random_terms": {"Date": ""}}
+{"en": "Storage Type Data\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Data": ""}}
+{"en": "Transfer Clarification Cases\n", "ru": "", "proper_terms": {"transfer": ""}, "random_terms": {"Clarification": ""}}
+{"en": "Actual Overhead Allocation:\n", "ru": "", "proper_terms": {"allocation": ""}, "random_terms": {"Actual": ""}}
+{"en": "Get User Name\n", "ru": "", "proper_terms": {"get": ""}, "random_terms": {"Name": ""}}
+{"en": "Contract Item Information:\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Item": ""}}
+{"en": "See the next run if a schedule is set for the remote table.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"set": ""}}
+{"en": "You can compare the BOMs as follows:\n", "ru": "", "proper_terms": {"compare": ""}, "random_terms": {"BOMs": ""}}
+{"en": "The following work item types are available:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"types": ""}}
+{"en": "Download the mappings to a .CSV file.\n", "ru": "", "proper_terms": {"download": ""}, "random_terms": {"mappings": ""}}
+{"en": "Per default, the user who creates a schedule is the owner of the schedule.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Per": ""}}
+{"en": "Go to Data Builder, choose the dedicated space → New Graphical View → Sources → DWC_AUDIT_READER (schema) → drag and drop the view DDP_AUDIT_LOG onto the canvas.\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"drag": ""}}
+{"en": "New Purchase Order\n", "ru": "", "proper_terms": {"purchase order": "", "Purchase Order": ""}, "random_terms": {"New": ""}}
+{"en": "If you do not specify an end date, the schedule runs indefinitely.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"runs": ""}}
+{"en": "Click Toggle Preview Changes to display the data provider page as consumers would see it in the Data Marketplace.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"Click": ""}}
+{"en": "The following visualization types are available:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"available": ""}}
+{"en": "This is why  has a log deletion schedule activated by default.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"log": ""}}
+{"en": "Business Partner Rating\n", "ru": "", "proper_terms": {"rating": ""}, "random_terms": {"Partner": ""}}
+{"en": "Budget Availability Control\n", "ru": "", "proper_terms": {"availability control": ""}, "random_terms": {"Budget": ""}}
+{"en": "For an overview of all available outputs, see .\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"outputs": ""}}
+{"en": "Storage Type Data.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Storage": ""}}
+{"en": "Click Share Schedule.\n", "ru": "", "proper_terms": {"share": ""}, "random_terms": {"Click": ""}}
+{"en": "Confirmation Date Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Confirmation": ""}}
+{"en": "Change Billing Documents\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"Documents": ""}}
+{"en": "Choose the Confirmation type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Choose": ""}}
+{"en": "For more information, see the action list.\n", "ru": "", "proper_terms": {"action list": ""}, "random_terms": {"see": "", "information": ""}}
+{"en": "A feedback item can have the following statuses:\n", "ru": "", "proper_terms": {"item": ""}, "random_terms": {"statuses": ""}}
+{"en": "View Purchase Order\n", "ru": "", "proper_terms": {"purchase order": "", "Purchase Order": ""}, "random_terms": {"View": ""}}
+{"en": "Product Sourcing Projects\n", "ru": "", "proper_terms": {"product": ""}, "random_terms": {"Projects": ""}}
+{"en": "Item Note Type\n", "ru": "", "proper_terms": {"note type": ""}, "random_terms": {"Item": ""}}
+{"en": "Generic Report Category\n", "ru": "", "proper_terms": {"report category": ""}, "random_terms": {"Generic": ""}}
+{"en": "Use Case Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Use": ""}}
+{"en": "You can download a list of configuration items and configuration steps.\n", "ru": "", "proper_terms": {"download": ""}, "random_terms": {"configuration": ""}}
+{"en": "Expiration of Central Purchase Contract\n", "ru": "", "proper_terms": {"expiration": ""}, "random_terms": {"Purchase": ""}}
+{"en": "The Custom Code Migration app helps you to decide whether you want to add or remove a package to/from the scope.\n", "ru": "", "proper_terms": {"scope": ""}, "random_terms": {"decide": ""}}
+{"en": "Allows you to release the maintenance order.\n", "ru": "", "proper_terms": {"release": ""}, "random_terms": {"Allows": ""}}
+{"en": "Space Management Overview\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"Management": ""}}
+{"en": "Update sales contracts:\n", "ru": "", "proper_terms": {"update": ""}, "random_terms": {"sales": ""}}
+{"en": "Bank Account Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Account": ""}}
+{"en": "You can use one of the following types of input datasets:\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"one": ""}}
+{"en": "You can choose to reference the following types of FS items:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"types": ""}}
+{"en": "Check Job Status\n", "ru": "", "proper_terms": {"check": ""}, "random_terms": {"Job": ""}}
+{"en": "Providing Input Parameters\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"Providing": ""}}
+{"en": "Business Partner Grouping\n", "ru": "", "proper_terms": {"business partner grouping": ""}, "random_terms": {}}
+{"en": "For each input entity record, if it is matched with no lookup entity record with a score above this threshold, then the input entity record is assigned to the Unmatched results category.\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"record": ""}}
+{"en": "Specifies the recurrence pattern of the supplier invoice.\n", "ru": "", "proper_terms": {"pattern": ""}, "random_terms": {"invoice": ""}}
+{"en": "You can select a checklist type and perform the following actions:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"following": ""}}
+{"en": "With this service, you can process the following:\n", "ru": "", "proper_terms": {"process": ""}, "random_terms": {"service": ""}}
+{"en": "These records are not pushed to the output of your intelligant lookup unless you select the Include Unmatched Records option.\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"pushed": ""}}
+{"en": "Source Assignment 1\n", "ru": "", "proper_terms": {"source assignment": ""}, "random_terms": {"1": ""}}
+{"en": "There are two status types:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"status": ""}}
+{"en": "use input parameters\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"input": ""}}
+{"en": "Schedule Output for Central Purchase Contracts\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Central": ""}}
+{"en": "You can filter results based on the Work Center Group Type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Work": ""}}
+{"en": "Update the email address a user logs on with\n", "ru": "", "proper_terms": {"update": ""}, "random_terms": {"logs": ""}}
+{"en": "The details are provided under the following tabs:\n", "ru": "", "proper_terms": {"tab": ""}, "random_terms": {"tabs": ""}}
+{"en": "Editing a Service Provider\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"Editing": ""}}
+{"en": "Interest calculation type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"calculation": ""}}
+{"en": "The output can have one of the following statuses:\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"following": ""}}
+{"en": "You can change the content using the following ways:\n", "ru": "", "proper_terms": {"content": ""}, "random_terms": {"change": ""}}
+{"en": "For this item type you can switch from Material to Service and vice versa.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"switch": ""}}
+{"en": "Purchase Order Shipped\n", "ru": "", "proper_terms": {"purchase order": "", "Purchase Order": ""}, "random_terms": {"Shipped": ""}}
+{"en": "Choose the content form type.\n", "ru": "", "proper_terms": {"content": "", "type": ""}, "random_terms": {"form": "", "Choose": ""}}
+{"en": "This is the standard user status.\n", "ru": "", "proper_terms": {"user status": ""}, "random_terms": {"standard": ""}}
+{"en": "Impact on the Schedule\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Impact": ""}}
+{"en": "Get Page Dimensions\n", "ru": "", "proper_terms": {"get": ""}, "random_terms": {"Dimensions": ""}}
+{"en": "Enhanced Simulation Run\n", "ru": "", "proper_terms": {"simulation run": ""}, "random_terms": {"Enhanced": ""}}
+{"en": "Choose this button to verify whether the G/L account numbers that you want to use have already been used in the delivered chart of accounts.You can see the result of the check under G/L Accounts in the Validation Info column.\n", "ru": "", "proper_terms": {"check": ""}, "random_terms": {"Validation": ""}}
+{"en": "For more information, see Response Type above.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Response": ""}}
+{"en": "Following object types are available:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"available": ""}}
+{"en": "The system provides the following start date types:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"date": ""}}
+{"en": "Define the recurrence pattern of your job and click Step 3.\n", "ru": "", "proper_terms": {"pattern": ""}, "random_terms": {"click": ""}}
+{"en": "Term and KPI Status\n", "ru": "", "proper_terms": {"term": ""}, "random_terms": {"Status": ""}}
+{"en": "Schedule Remote Table Replication\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Remote": ""}}
+{"en": "You can enter the following activity types as filters:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"filters": ""}}
+{"en": "You can receive notifications for the following document types:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"receive": ""}}
+{"en": "Select the Edit Vehicle Data button.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"Select": ""}}
+{"en": "You can change the logging settings for extended statistics per migration object.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"settings": ""}}
+{"en": "Change to Input Parameter\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"Input": ""}}
+{"en": "Use Input Parameters in the Data Builder\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"Data": ""}}
+{"en": "Change Reconciliation Key\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"Key": ""}}
+{"en": "Contingent Worker Characteristics\n", "ru": "", "proper_terms": {"characteristic": ""}, "random_terms": {"Characteristics": ""}}
+{"en": "Update Purchase Requisition (Status:\n", "ru": "", "proper_terms": {"update": ""}, "random_terms": {"Status": ""}}
+{"en": "Click Create and Edit.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"Create": ""}}
+{"en": "Importing Service Providers\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"Importing": ""}}
+{"en": "Service Confirmation Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Service": ""}}
+{"en": "Reporting - Variants\n", "ru": "", "proper_terms": {"reporting": ""}, "random_terms": {"Variants": ""}}
+{"en": "- Contact Data Provider\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"Contact": ""}}
+{"en": "Create and delete spaces\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"spaces": ""}}
+{"en": "Service Confirmation (SVC2)\n", "ru": "", "proper_terms": {"service confirmation": ""}, "random_terms": {"SVC2": ""}}
+{"en": "This permission is optional.\n", "ru": "", "proper_terms": {"permission": ""}, "random_terms": {"optional": ""}}
+{"en": "You can unlock the space to free up some storage.\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"free": ""}}
+{"en": "Release DCD cases\n", "ru": "", "proper_terms": {"release": ""}, "random_terms": {"DCD": ""}}
+{"en": "Your contract includes a total number of available capacity units per month which you can allocate as you wish to the resources (within the permitted ratio) in the dedicated Tenant Configuration page of the Configuration area.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"permitted": ""}}
+{"en": "You can store the following attachment types:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"following": ""}}
+{"en": "Specify the validity period of the tax exemption letter.\n", "ru": "", "proper_terms": {"validity period": "", "tax exemption": ""}, "random_terms": {"Specify": "", "letter": ""}}
+{"en": "Create an FSM Client\n", "ru": "", "proper_terms": {"client": ""}, "random_terms": {"FSM": ""}}
+{"en": "Integration Use Case\n", "ru": "", "proper_terms": {"use case": ""}, "random_terms": {"Integration": ""}}
+{"en": "Utilization is calculated as follows:\n", "ru": "", "proper_terms": {"utilization": ""}, "random_terms": {"calculated": ""}}
+{"en": "Allows you to cancel a maintenance plan schedule.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Allows": ""}}
+{"en": "Restriction Type ID\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"ID": ""}}
+{"en": "Available capacity on resource level\n", "ru": "", "proper_terms": {"available capacity": ""}, "random_terms": {"level": "", "resource": ""}}
+{"en": "The Personal Information page opens.\n", "ru": "", "proper_terms": {"Personal Information": ""}, "random_terms": {"page": "", "opens": ""}}
+{"en": "The Print labels page opens.\n", "ru": "", "proper_terms": {"print": ""}, "random_terms": {"page": ""}}
+{"en": "You can find the description supplement in three places:\n", "ru": "", "proper_terms": {"supplement": ""}, "random_terms": {"description": ""}}
+{"en": "The credit profile contains the following data:\n", "ru": "", "proper_terms": {"credit profile": ""}, "random_terms": {"contains": "", "data": ""}}
+{"en": "Supported Allocation Types\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Types": ""}}
+{"en": "Procurement project types\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"types": ""}}
+{"en": "Working with your Space\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"Working": ""}}
+{"en": "Journal Entry Type:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Journal": ""}}
+{"en": "Specifies the customer for the contract.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Specifies": ""}}
+{"en": "The following entry areas are available when you create a contract:\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"following": ""}}
+{"en": "Select a team type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Select": ""}}
+{"en": "The base value from which depreciation is calculated.\n", "ru": "", "proper_terms": {"base value": ""}, "random_terms": {"calculated": "", "depreciation": ""}}
+{"en": "SAP BTP Subaccount\n", "ru": "", "proper_terms": {"account": ""}, "random_terms": {"Subaccount": ""}}
+{"en": "It provides a consolidation view along the respective hierarchy by populating the Consolidation Unit Eliminated, Profit Center Eliminated, and/or Segment Eliminated reporting dimensions.\n", "ru": "", "proper_terms": {"profit center": ""}, "random_terms": {"consolidation": "", "provides": ""}}
+{"en": "For more information on the settings, see General Settings.\n", "ru": "", "proper_terms": {"general settings": ""}, "random_terms": {"see": "", "information": ""}}
+{"en": "Creating a contract that references a purchase requisition.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Creating": ""}}
+{"en": "Income Classification Type\n", "ru": "", "proper_terms": {"classification type": ""}, "random_terms": {"Income": ""}}
+{"en": "Ledger Run Types\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Ledger": ""}}
+{"en": "Opens selected cycles in Run Allocations app.\n", "ru": "", "proper_terms": {"run": ""}, "random_terms": {"app": ""}}
+{"en": "You can filter the data shown in the cards.\n", "ru": "", "proper_terms": {"card": ""}, "random_terms": {"shown": ""}}
+{"en": "Characteristic 20 Value\n", "ru": "", "proper_terms": {"characteristic": ""}, "random_terms": {"Value": ""}}
+{"en": "Standard Texts in Purchase Order Outputs\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"Standard": ""}}
+{"en": "Displays periods with allocation quantity consumption of 80-100%.\n", "ru": "", "proper_terms": {"consumption": ""}, "random_terms": {"80-100": ""}}
+{"en": "Contract request types\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Contract": ""}}
+{"en": "Filter by Contract Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Contract": ""}}
+{"en": "For more information for data providers, see .\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"data": ""}}
+{"en": "IDOC Integration tab\n", "ru": "", "proper_terms": {"tab": ""}, "random_terms": {"Integration": ""}}
+{"en": "Topic: you can configure the following settings:\n", "ru": "", "proper_terms": {"topic": ""}, "random_terms": {"settings": ""}}
+{"en": "SAP Content for Compliance Requirements\n", "ru": "", "proper_terms": {"content": ""}, "random_terms": {"Requirements": ""}}
+{"en": "Change to Account Currency\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"Account": ""}}
+{"en": "Defines if data controllers can be assigned to the business partner.\n", "ru": "", "proper_terms": {"controller": ""}, "random_terms": {"assigned": ""}}
+{"en": "Available capacity is calculated as follows:\n", "ru": "", "proper_terms": {"available capacity": ""}, "random_terms": {"calculated": "", "follows": ""}}
+{"en": "Character value allocation\n", "ru": "", "proper_terms": {"allocation": ""}, "random_terms": {"value": ""}}
+{"en": "Equipment Type ID\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"ID": ""}}
+{"en": "The aggregation wizard opens.\n", "ru": "", "proper_terms": {"wizard": ""}, "random_terms": {"aggregation": ""}}
+{"en": "The Logistics tab of a document.\n", "ru": "", "proper_terms": {"tab": ""}, "random_terms": {"document": ""}}
+{"en": "Select the release type by selecting the corresponding radio button.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"corresponding": ""}}
+{"en": "Displays the visual inspection type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"visual": ""}}
+{"en": "Change the settings of a text block\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"block": ""}}
+{"en": "Check Approval Request\n", "ru": "", "proper_terms": {"check": ""}, "random_terms": {"Request": ""}}
+{"en": "Product type mapping\n", "ru": "", "proper_terms": {"mapping": "", "type": ""}, "random_terms": {"Product": ""}}
+{"en": "Select a content object and click (More).\n", "ru": "", "proper_terms": {"content": ""}, "random_terms": {"Select": ""}}
+{"en": "Data Analysis Tab\n", "ru": "", "proper_terms": {"tab": ""}, "random_terms": {"Analysis": ""}}
+{"en": "Vendor account for the operator in SAP FI Accounts Payable (A/P)\n", "ru": "", "proper_terms": {"vendor account": ""}, "random_terms": {"SAP": "", "Accounts": ""}}
+{"en": "When you want to transfer asset subnumbers, you need to consider the following:\n", "ru": "", "proper_terms": {"transfer": ""}, "random_terms": {"following": ""}}
+{"en": "Schedule MRP Rescheduling Checks\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"MRP": ""}}
+{"en": "Evaluation of Selection Criteria\n", "ru": "", "proper_terms": {"evaluation": ""}, "random_terms": {"Criteria": ""}}
+{"en": "Pause Email Notifications\n", "ru": "", "proper_terms": {"pause": ""}, "random_terms": {"Email": ""}}
+{"en": "Managing Data Lake Instances in the SAP HANA Cloud documentation.\n", "ru": "", "proper_terms": {"instance": ""}, "random_terms": {"Lake": ""}}
+{"en": "Once you set the implementation status, you cannot change it back.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"status": ""}}
+{"en": "You can edit multiple parameters in the following sections:\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"parameters": ""}}
+{"en": "Permissions on Forms\n", "ru": "", "proper_terms": {"form": ""}, "random_terms": {"Permissions": ""}}
+{"en": "These are the preferences:\n", "ru": "", "proper_terms": {"preferences": ""}, "random_terms": {}}
+{"en": "Manual Journal Entry\n", "ru": "", "proper_terms": {"entry": ""}, "random_terms": {"Manual": ""}}
+{"en": "Process Compliance Request\n", "ru": "", "proper_terms": {"process": ""}, "random_terms": {"Request": ""}}
+{"en": "JVA Cost Calculation\n", "ru": "", "proper_terms": {"calculation": ""}, "random_terms": {"Cost": ""}}
+{"en": "Display output items\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"Display": ""}}
+{"en": "Schedule production orders\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"orders": ""}}
+{"en": "Global Account Type\n", "ru": "", "proper_terms": {"account": ""}, "random_terms": {"Global": ""}}
+{"en": "Unavailable Team Member\n", "ru": "", "proper_terms": {"team member": ""}, "random_terms": {"Unavailable": ""}}
+{"en": "Rework not Required\n", "ru": "", "proper_terms": {"rework": ""}, "random_terms": {"Required": ""}}
+{"en": "Check Amount Limit\n", "ru": "", "proper_terms": {"check": "", "limit": ""}, "random_terms": {"Amount": ""}}
+{"en": "Change Type Determination\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Change": ""}}
+{"en": "The mapping required varies, depending on the type of data source.\n", "ru": "", "proper_terms": {"mapping": ""}, "random_terms": {"type": ""}}
+{"en": "For more information, see Workload Classes and Admission Control in the SAP HANA Cloud, SAP HANA Database Administration Guide.\n", "ru": "", "proper_terms": {"admission": ""}, "random_terms": {"SAP": ""}}
+{"en": "It indicates the Record Type.\n", "ru": "", "proper_terms": {"record type": ""}, "random_terms": {"indicates": ""}}
+{"en": "Input Parameter Properties\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"Properties": ""}}
+{"en": "The following mapping is required:\n", "ru": "", "proper_terms": {"mapping": ""}, "random_terms": {"following": ""}}
+{"en": "The Resume Rank can change in the following situations:\n", "ru": "", "proper_terms": {"resume": ""}, "random_terms": {"situations": ""}}
+{"en": "Select Activity Type\n", "ru": "", "proper_terms": {"activity type": ""}, "random_terms": {"Select": ""}}
+{"en": "Click Exception button.\n", "ru": "", "proper_terms": {"exception": ""}, "random_terms": {"Click": ""}}
+{"en": "Displays the ID of the respective data provider.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"respective": ""}}
+{"en": "You can bookmark your favorite data providers and data products to quickly retrieve them.\n", "ru": "", "proper_terms": {"provider": ""}, "random_terms": {"bookmark": ""}}
+{"en": "Create SLOC order.\n", "ru": "", "proper_terms": {"order": ""}, "random_terms": {"Create": ""}}
+{"en": "Check New Document\n", "ru": "", "proper_terms": {"check": ""}, "random_terms": {"New": ""}}
+{"en": "Data Staging Service\n", "ru": "", "proper_terms": {"data staging": ""}, "random_terms": {"Service": ""}}
+{"en": "Once you have released the order, you can no longer change the estimated costs.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"released": ""}}
+{"en": "For more information, see Mapping Template in Concepts.\n", "ru": "", "proper_terms": {"mapping template": ""}, "random_terms": {"see": "", "Concepts": ""}}
+{"en": "Navigate to the Change Material app.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"Navigate": ""}}
+{"en": "Activate Despite Inspection Stock\n", "ru": "", "proper_terms": {"activate": ""}, "random_terms": {"Stock": ""}}
+{"en": "Change or unassign sources of supply\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"sources": ""}}
+{"en": "Process Service Confirmations\n", "ru": "", "proper_terms": {"service confirmation": ""}, "random_terms": {"Confirmations": "", "Process": ""}}
+{"en": "You can edit only KPIs created by customers.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"KPIs": ""}}
+{"en": "The are two types of packing instructions:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"two": ""}}
+{"en": "You can specify one of the following possible time range validities:\n", "ru": "", "proper_terms": {"range": ""}, "random_terms": {"time": ""}}
+{"en": "IoT event type\n", "ru": "", "proper_terms": {"event type": ""}, "random_terms": {"IoT": ""}}
+{"en": "You can add multiple destinations.\n", "ru": "", "proper_terms": {"destination": ""}, "random_terms": {"destinations": ""}}
+{"en": "The following exception occurred:\n", "ru": "", "proper_terms": {"exception": ""}, "random_terms": {"following": ""}}
+{"en": "Enter a key in the Lot field and choose Create.\n", "ru": "", "proper_terms": {"lot": ""}, "random_terms": {"Create": ""}}
+{"en": "Creating Action Types\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Creating": ""}}
+{"en": "You can now sort and group the task list by column content.\n", "ru": "", "proper_terms": {"task list": ""}, "random_terms": {"content": "", "group": ""}}
+{"en": "Copy Model Configuration\n", "ru": "", "proper_terms": {"copy": ""}, "random_terms": {"Model": ""}}
+{"en": "Available capacity on resource level v2\n", "ru": "", "proper_terms": {"available capacity": ""}, "random_terms": {"resource": "", "v2": ""}}
+{"en": "You can use this app to schedule application jobs for the following tasks:\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"app": ""}}
+{"en": "There are two types of tax regulations in India:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"two": ""}}
+{"en": "Enter the user ID of the person who is responsible for the profit center.\n", "ru": "", "proper_terms": {"user ID": ""}, "random_terms": {"responsible": "", "profit": ""}}
+{"en": "Release all Classifications\n", "ru": "", "proper_terms": {"release": ""}, "random_terms": {"Classifications": ""}}
+{"en": "Edit Service Confirmations\n", "ru": "", "proper_terms": {"service confirmation": ""}, "random_terms": {"Confirmations": "", "Edit": ""}}
+{"en": "You can suppress the following error types:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"suppress": ""}}
+{"en": "The destination contains the following property:\n", "ru": "", "proper_terms": {"destination": ""}, "random_terms": {"contains": ""}}
+{"en": "Using the Process Payment Service Provider app and the job template Request Payment of Credit Memos, you reclaim credit memos granted.\n", "ru": "", "proper_terms": {"request": ""}, "random_terms": {"Provider": ""}}
+{"en": "There are two types of service contract.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"contract": ""}}
+{"en": "Proposed Contract Amount\n", "ru": "", "proper_terms": {"contract amount": ""}, "random_terms": {"Proposed": ""}}
+{"en": "Find or filter all tasks in Environment, Health, and Safety.\n", "ru": "", "proper_terms": {"Environment, Health and Safety": ""}, "random_terms": {"tasks": "", "Find": "", "filter": "", "Environment": ""}}
+{"en": "Copy Purchase Contract\n", "ru": "", "proper_terms": {"copy": ""}, "random_terms": {"Contract": ""}}
+{"en": "Track and Trace Purchase Orders\n", "ru": "", "proper_terms": {"trace": ""}, "random_terms": {"Purchase": ""}}
+{"en": "Elimination Target Attribute\n", "ru": "", "proper_terms": {"target attribute": ""}, "random_terms": {"Elimination": ""}}
+{"en": "Data Change Types\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Change": ""}}
+{"en": "Have an SAP Analytics Cloud tenant.\n", "ru": "", "proper_terms": {"tenant": ""}, "random_terms": {"SAP": ""}}
+{"en": "Create and Change Assignment\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"Create": ""}}
+{"en": "Information Lifecycle Management\n", "ru": "", "proper_terms": {"Information Lifecycle Management": ""}, "random_terms": {}}
+{"en": "To ingest data from a third-party SQL client, select the first checkbox Enable Data Ingestion.\n", "ru": "", "proper_terms": {"client": ""}, "random_terms": {"select": ""}}
+{"en": "Process Compliance Requests\n", "ru": "", "proper_terms": {"process": ""}, "random_terms": {"Requests": ""}}
+{"en": "Copy in Item View\n", "ru": "", "proper_terms": {"copy": ""}, "random_terms": {"View": ""}}
+{"en": "You need to ensure that the contract type is provided.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"ensure": ""}}
+{"en": "You can also maintain your own team types.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"also": ""}}
+{"en": "Contracts with no expiration date.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Contracts": ""}}
+{"en": "For more information, see How to update your company profile.\n", "ru": "", "proper_terms": {"update": ""}, "random_terms": {"see": ""}}
+{"en": "Analytical Datasets must be set for consumption first in .\n", "ru": "", "proper_terms": {"set": ""}, "random_terms": {"Datasets": ""}}
+{"en": "For more information, seeManaging Quota and Entitlements\n", "ru": "", "proper_terms": {"quota": ""}, "random_terms": {"Entitlements": ""}}
+{"en": "The To Do task workflow includes the following steps:\n", "ru": "", "proper_terms": {"workflow": ""}, "random_terms": {"following": ""}}
+{"en": "Change date and amount\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"amount": ""}}
+{"en": "Condition Calculation Type\n", "ru": "", "proper_terms": {"calculation type": ""}, "random_terms": {"Condition": ""}}
+{"en": "Choose Delete Content.\n", "ru": "", "proper_terms": {"content": ""}, "random_terms": {"Delete": ""}}
+{"en": "Use SAP BW Bridge Content\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"BW": ""}}
+{"en": "You can cancel the selected returns.\n", "ru": "", "proper_terms": {"cancel": ""}, "random_terms": {"returns": ""}}
+{"en": "But you can add and delete attachments only if you edit the service entry sheet (that means the service entry sheet must be in status In Process).\n", "ru": "", "proper_terms": {"in process": ""}, "random_terms": {"service": "", "must": ""}}
+{"en": "Standalone selling price (optional) for recurring charges:\n", "ru": "", "proper_terms": {"charge": ""}, "random_terms": {"price": ""}}
+{"en": "Click Pack Items.\n", "ru": "", "proper_terms": {"pack": ""}, "random_terms": {"Items": ""}}
+{"en": "Cannot update or delete invoices\n", "ru": "", "proper_terms": {"update": ""}, "random_terms": {"invoices": ""}}
+{"en": "Fore more information, see Individual Usage Rating.\n", "ru": "", "proper_terms": {"rating": ""}, "random_terms": {"Usage": ""}}
+{"en": "By default, the branch is master.\n", "ru": "", "proper_terms": {"branch": ""}, "random_terms": {"default": ""}}
+{"en": "Once you have completed your editing, exit edit mode by clicking Close at the bottom of the page or choosing Exit Edit Mode in the user actions menu.\n", "ru": "", "proper_terms": {"exit": ""}, "random_terms": {"page": ""}}
+{"en": "You can release service confirmations that have status completed for billing.After you have released a service confirmation, the system creates the required billing document requests.\n", "ru": "", "proper_terms": {"service confirmation": ""}, "random_terms": {"requests": "", "status": ""}}
+{"en": "The sales rate changes\n", "ru": "", "proper_terms": {"rate": ""}, "random_terms": {"sales": ""}}
+{"en": "Production Version Group\n", "ru": "", "proper_terms": {"production version": ""}, "random_terms": {"Group": ""}}
+{"en": "Distribution and Collection\n", "ru": "", "proper_terms": {"distribution": "", "collection": ""}, "random_terms": {}}
+{"en": "Restriction Type Settings\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Settings": ""}}
+{"en": "Contract Price Renegotiation\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Renegotiation": ""}}
+{"en": "This view displays released service orders for which no service confirmations have been created.\n", "ru": "", "proper_terms": {"service confirmation": ""}, "random_terms": {"confirmations": "", "released": ""}}
+{"en": "Mark questions as Mandatory or Optional\n", "ru": "", "proper_terms": {"mark": ""}, "random_terms": {"questions": ""}}
+{"en": "Click Save to save the new close schedule.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Click": ""}}
+{"en": "You can also set the start time manually.\n", "ru": "", "proper_terms": {"start time": ""}, "random_terms": {"set": "", "manually": ""}}
+{"en": "You can upload and download multiple attchments at a time.\n", "ru": "", "proper_terms": {"download": ""}, "random_terms": {"attchments": ""}}
+{"en": "Click Create to open the connection creation wizard.\n", "ru": "", "proper_terms": {"wizard": ""}, "random_terms": {"open": ""}}
+{"en": "Select Contract Template\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Select": ""}}
+{"en": "Storage type and bin\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Storage": ""}}
+{"en": "REVE Transaction Reversed\n", "ru": "", "proper_terms": {"transaction": ""}, "random_terms": {"REVE": ""}}
+{"en": "Indicates the type of attachment.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Indicates": ""}}
+{"en": "You have the following version types available:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"following": ""}}
+{"en": "Choose the Edit Rule button.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"Rule": ""}}
+{"en": "Display all contacts of the selected account.\n", "ru": "", "proper_terms": {"account": ""}, "random_terms": {"contacts": ""}}
+{"en": "Spaces and Pages\n", "ru": "", "proper_terms": {"space": ""}, "random_terms": {"Spaces": ""}}
+{"en": "Use Task Chain Notifications\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"Notifications": ""}}
+{"en": "For some connection types that use a Data Provisioning agent to connect to the source, for example SAP ABAP, SAP HANA, or Microsoft SQL Server, you can define advanced properties in an additional wizard step to provide you more control over your connectivity setup.\n", "ru": "", "proper_terms": {"control": ""}, "random_terms": {"properties": ""}}
+{"en": "There are three types of pricing tree components:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"three": ""}}
+{"en": "Displays whether a message is enabled for a run type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"enabled": ""}}
+{"en": "Indicates the type of decomposition.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Indicates": ""}}
+{"en": "Choose the relevant notification.\n", "ru": "", "proper_terms": {"notification": ""}, "random_terms": {"Choose": ""}}
+{"en": "Release Pending Batches\n", "ru": "", "proper_terms": {"release": ""}, "random_terms": {"Batches": ""}}
+{"en": "You can also review historical data in the following sections:\n", "ru": "", "proper_terms": {"historical data": ""}, "random_terms": {"review": "", "sections": ""}}
+{"en": "For more information on service contract determination, see .\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"see": ""}}
+{"en": "Click the  button to access the Range view.\n", "ru": "", "proper_terms": {"access": ""}, "random_terms": {"Range": ""}}
+{"en": "Define the recipient/sender types for correspondence.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"recipient/sender": ""}}
+{"en": "Email Notification Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Notification": ""}}
+{"en": "You can create a follow-up activity.\n", "ru": "", "proper_terms": {"activity": ""}, "random_terms": {"follow-up": ""}}
+{"en": "Resulting Pricing Date\n", "ru": "", "proper_terms": {"pricing date": ""}, "random_terms": {"Resulting": ""}}
+{"en": "Use value driver trees for simulations\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"simulations": ""}}
+{"en": "Download value group data to a spreadsheet or .csv file\n", "ru": "", "proper_terms": {"download": ""}, "random_terms": {"data": ""}}
+{"en": "Choose an impact level from the Impact drop down menu.\n", "ru": "", "proper_terms": {"impact": ""}, "random_terms": {"level": ""}}
+{"en": "Monitor the persistent views:\n", "ru": "", "proper_terms": {"monitor": ""}, "random_terms": {"persistent": ""}}
+{"en": "You can close the application, the tab remains.\n", "ru": "", "proper_terms": {"tab": ""}, "random_terms": {"close": ""}}
+{"en": "name, category, ID and description.\n", "ru": "", "proper_terms": {"category": ""}, "random_terms": {"ID": ""}}
+{"en": "You can display a condition contract.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"display": ""}}
+{"en": "These records are automatically pushed to the output of your intelligant lookup.\n", "ru": "", "proper_terms": {"output": ""}, "random_terms": {"pushed": ""}}
+{"en": "Release Purchase Requisition or Send Purchase Order to Vendor\n", "ru": "", "proper_terms": {"release": ""}, "random_terms": {"Order": ""}}
+{"en": "Record SuccessFactors Application\n", "ru": "", "proper_terms": {"record": ""}, "random_terms": {"SuccessFactors": ""}}
+{"en": "Credit Memo Payment Terms\n", "ru": "", "proper_terms": {"payment terms": ""}, "random_terms": {"Memo": "", "Credit": ""}}
+{"en": "Display Item Details\n", "ru": "", "proper_terms": {"display": ""}, "random_terms": {"Details": ""}}
+{"en": "Get Project Version\n", "ru": "", "proper_terms": {"get": ""}, "random_terms": {"Version": ""}}
+{"en": "Monitor user activities\n", "ru": "", "proper_terms": {"monitor": ""}, "random_terms": {"activities": ""}}
+{"en": "Working with Forms\n", "ru": "", "proper_terms": {"form": ""}, "random_terms": {"Working": ""}}
+{"en": "Choose Edit and make your changes.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"Choose": ""}}
+{"en": "Cost Object Assignment:\n", "ru": "", "proper_terms": {"assignment": ""}, "random_terms": {"Cost": ""}}
+{"en": "The invoice is referenced to a purchase order.\n", "ru": "", "proper_terms": {"purchase order": "", "Purchase Order": ""}, "random_terms": {"invoice": "", "referenced": ""}}
+{"en": "Copy a Service Asset\n", "ru": "", "proper_terms": {"copy": ""}, "random_terms": {"Service": ""}}
+{"en": "Component purchase order\n", "ru": "", "proper_terms": {"purchase order": "", "Purchase Order": ""}, "random_terms": {"Component": ""}}
+{"en": "The order operation is included in your schedule.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"included": ""}}
+{"en": "The Transaction Type is a mandatory field.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Transaction": ""}}
+{"en": "This view has no input parameters.\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"parameters": ""}}
+{"en": "Single data provider:\n", "ru": "", "proper_terms": {"data provider": ""}, "random_terms": {"Single": ""}}
+{"en": "Choose Create and Edit.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"Create": ""}}
+{"en": "Single User Connection\n", "ru": "", "proper_terms": {"connection": ""}, "random_terms": {"User": ""}}
+{"en": "Record Ariba Application\n", "ru": "", "proper_terms": {"record": ""}, "random_terms": {"Ariba": ""}}
+{"en": "Authorization Number ()\n", "ru": "", "proper_terms": {"authorization number": ""}, "random_terms": {}}
+{"en": "Reuse object properties\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"Reuse": ""}}
+{"en": "Cash Call Reclassification:\n", "ru": "", "proper_terms": {"reclassification": ""}, "random_terms": {"Call": ""}}
+{"en": "Creation end time\n", "ru": "", "proper_terms": {"end time": ""}, "random_terms": {"Creation": ""}}
+{"en": "Invoice Label Displayed\n", "ru": "", "proper_terms": {"label": ""}, "random_terms": {"Displayed": ""}}
+{"en": "Asset Balances (Deprecated)\n", "ru": "", "proper_terms": {"balance": ""}, "random_terms": {"Balances": ""}}
+{"en": "Edit the scope status of the selected company codes.\n", "ru": "", "proper_terms": {"scope": ""}, "random_terms": {"Edit": ""}}
+{"en": "For more information, see Support for displaying contract information.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"displaying": ""}}
+{"en": "Define the format output type\n", "ru": "", "proper_terms": {"output type": ""}, "random_terms": {"Define": "", "format": ""}}
+{"en": "Quality notification type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"notification": ""}}
+{"en": "Choose the Home icon to go to the Home page.\n", "ru": "", "proper_terms": {"home page": ""}, "random_terms": {"icon": "", "go": ""}}
+{"en": "Substitution Using App\n", "ru": "", "proper_terms": {"substitution": ""}, "random_terms": {"Using": ""}}
+{"en": "How to use the configuration step/app\n", "ru": "", "proper_terms": {"use": ""}, "random_terms": {"step/app": ""}}
+{"en": "Integrations and Reporting\n", "ru": "", "proper_terms": {"reporting": ""}, "random_terms": {"Integrations": ""}}
+{"en": "Instance time (Schedule)\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"time": ""}}
+{"en": "Publish Event Notification\n", "ru": "", "proper_terms": {"notification": ""}, "random_terms": {"Publish": ""}}
+{"en": "The DDR heuristic uses the following input:\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"following": ""}}
+{"en": "To access the lists, choose Recent Activity or Frequently Used in the user actions menu.\n", "ru": "", "proper_terms": {"activity": ""}, "random_terms": {"Frequently": ""}}
+{"en": "The transport can contain the following content:\n", "ru": "", "proper_terms": {"content": ""}, "random_terms": {"contain": ""}}
+{"en": "The forecasted work center utilization is shown in the Schedule Maintenance Order Operations app.\n", "ru": "", "proper_terms": {"schedule": ""}, "random_terms": {"Operations": ""}}
+{"en": "The Start Checkout dialog box appears.\n", "ru": "", "proper_terms": {"checkout": ""}, "random_terms": {"appears": ""}}
+{"en": "Enter the date on which the service provider performed the service.\n", "ru": "", "proper_terms": {"service provider": ""}, "random_terms": {"performed": "", "Enter": ""}}
+{"en": "Communication Type Selected\n", "ru": "", "proper_terms": {"communication type": ""}, "random_terms": {"Selected": ""}}
+{"en": "View the transport data\n", "ru": "", "proper_terms": {"transport": ""}, "random_terms": {"View": ""}}
+{"en": "Choose a subscription type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Choose": ""}}
+{"en": "For more information on the legal transactions, see the Legal Transactions app.\n", "ru": "", "proper_terms": {"transaction": ""}, "random_terms": {"Transactions": ""}}
+{"en": "This is the date the contract was signed.\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"date": ""}}
+{"en": "The revenue recognition is updated in the following cases:\n", "ru": "", "proper_terms": {"revenue recognition": ""}, "random_terms": {"updated": "", "following": ""}}
+{"en": "In this stage, you can edit or delete the price.\n", "ru": "", "proper_terms": {"edit": ""}, "random_terms": {"delete": ""}}
+{"en": "A conversion step has one or more conversion rules.\n", "ru": "", "proper_terms": {"conversion rule": ""}, "random_terms": {"step": "", "one": ""}}
+{"en": "You can also apply multiple range filters at once.\n", "ru": "", "proper_terms": {"apply": ""}, "random_terms": {"range": ""}}
+{"en": "Terms for Account Management\n", "ru": "", "proper_terms": {"account": ""}, "random_terms": {"Terms": ""}}
+{"en": "You can create or change a long text for the master inspection characteristic.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"master": ""}}
+{"en": "In Process (Regeneration):\n", "ru": "", "proper_terms": {"regeneration": ""}, "random_terms": {"Process": ""}}
+{"en": "Specify Contract Determination Option for Transaction Types\n", "ru": "", "proper_terms": {"contract": ""}, "random_terms": {"Types": ""}}
+{"en": "Payment approval category\n", "ru": "", "proper_terms": {"category": ""}, "random_terms": {"Payment": ""}}
+{"en": "You can define these settings as needed:\n", "ru": "", "proper_terms": {"set": ""}, "random_terms": {"define": ""}}
+{"en": "The dates that are available for selection are any date-related characteristics maintained for the catalog use type Backorder Processing in the  app.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"dates": ""}}
+{"en": "Specify the details for the shift note type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"shift": ""}}
+{"en": "Change the status of bank statement items.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"statement": ""}}
+{"en": "Email Infrastructure Change\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"Infrastructure": ""}}
+{"en": "A settlement partner type can have the following values:\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"values": ""}}
+{"en": "Syntax per Characteristic Type\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Syntax": ""}}
+{"en": "For more information on the processing type, see further below.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"see": ""}}
+{"en": "Consider the following use cases:\n", "ru": "", "proper_terms": {"use case": ""}, "random_terms": {"cases": "", "Consider": ""}}
+{"en": "For example, change the release type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"change": ""}}
+{"en": "Blocking and Deletion of Personal Data in Settlement Management\n", "ru": "", "proper_terms": {"settlement": ""}, "random_terms": {"Data": ""}}
+{"en": "For more information, see Enable Carriers to Self-Book Appointments.\n", "ru": "", "proper_terms": {"carrier": ""}, "random_terms": {"Self-Book": ""}}
+{"en": "Indicates the severity of the alert.\n", "ru": "", "proper_terms": {"severity": ""}, "random_terms": {"Indicates": ""}}
+{"en": "JIT Call Delivery\n", "ru": "", "proper_terms": {"JIT call": ""}, "random_terms": {"Delivery": ""}}
+{"en": "Select Page as the Item Type.\n", "ru": "", "proper_terms": {"item type": ""}, "random_terms": {"Page": "", "Select": ""}}
+{"en": "Email Type Code\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"Email": ""}}
+{"en": "You can now check the connection.\n", "ru": "", "proper_terms": {"connection": ""}, "random_terms": {"check": ""}}
+{"en": "Track and Trace Outbound Deliveries\n", "ru": "", "proper_terms": {"trace": ""}, "random_terms": {"Deliveries": ""}}
+{"en": "Change the approval status of the selected drafts to Rejected.\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"approval": ""}}
+{"en": "The document information is fetched based on the document Type.\n", "ru": "", "proper_terms": {"type": ""}, "random_terms": {"information": ""}}
+{"en": "A combination of relevant input parameters\n", "ru": "", "proper_terms": {"input": ""}, "random_terms": {"relevant": ""}}
+{"en": "Create and change planning levels\n", "ru": "", "proper_terms": {"change": ""}, "random_terms": {"levels": ""}}
+{"en": "The Duplicate Attendees dialog opens.\n", "ru": "", "proper_terms": {"duplicate": ""}, "random_terms": {"Attendees": ""}}
+{"en": "For more information about BP data controller authorization, refer to .\n", "ru": "", "proper_terms": {"controller": ""}, "random_terms": {"refer": ""}}

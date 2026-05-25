@@ -1,0 +1,500 @@
+{"en": "Why would you need to access HDI containers?", "terms": {"containers": "containers"}}
+{"en": "Decide if you want to use parallel processing for this job:", "terms": {"want": "desea", "Decide": "Decida", "use": "utilizar"}}
+{"en": "Displays in the list report billing elements with or without planned prepayments.", "terms": {"Displays": "Visualiza"}}
+{"en": "The KPI shows the average age in days of assets under construction, and individual items are listed below.", "terms": {"age": "edad"}}
+{"en": "Once exported, an item stays in the software collection for its entire lifecycle.", "terms": {"lifecycle": "ciclo de vida"}}
+{"en": "If it's an assembly, the explosion continues to the lowest level.", "terms": {"lowest": "inferior"}}
+{"en": "Add a New OAuth Client (Non-SAP Data Center)", "terms": {"Center": "centro"}}
+{"en": "Each compute block provides a certain number of vCPUs and a range of 60 to 64 GB of RAM, depending on the hyperscaler.", "terms": {"GB": "GB"}}
+{"en": "Source systems connected to an SAP LT Replication Server are supported down to:", "terms": {"systems": "sistemas"}}
+{"en": "After you create a new template, you will be directed to the template page, to add text blocks to the template.", "terms": {"create": "crear"}}
+{"en": "Data is accessed directly from the source (federation) and read from the virtual table.", "terms": {"federation": "federación"}}
+{"en": "Edit Default Waste Generator", "terms": {"Generator": "productor"}}
+{"en": "Resets the filters.", "terms": {"filters": "filtros"}}
+{"en": "You can copy existing items or item sets to add new ones to the sourcing project.", "terms": {"existing": "existentes"}}
+{"en": "Access of this category is not based on individual support cases or incidents.", "terms": {"category": "categoría"}}
+{"en": "Use the dropdown list in the upper left corner of the dialog box to select the search template you want to use.", "terms": {"dialog": "ventana"}}
+{"en": "To save and deploy your ER model to SAP HANA, choose Deploy.", "terms": {"choose": "seleccione"}}
+{"en": "Confirm the write-off action and verify that the selected items have moved from the To Be Billed tab to the To Be Written Off tab.", "terms": {"Written": "ignorar", "Confirm": "Confirme", "Billed": "facturar"}}
+{"en": "You create an installment plan, if there are one or more open items in the contract account of a business partner and the business partner cannot fulfill the payment obligation within the scope of the usual payment rules.", "terms": {"business": "comercial", "usual": "habituales"}}
+{"en": "Defines when the valuation takes place and whether it is reset.", "terms": {"valuation": "valoración"}}
+{"en": "Choose Service Part Items as the item category from the Show dropdown list.", "terms": {"Choose": "Seleccione"}}
+{"en": "To filter for order operations that are included in a specific schedule, add the Included in Schedule filter to the filter bar.", "terms": {"add": "añada"}}
+{"en": "You can only edit headers for Inactive units.", "terms": {"Inactive": "inactivas"}}
+{"en": "This overview contains all repair objects that have not been completed yet.", "terms": {"repair": "reparación"}}
+{"en": "Pause real-time replication to enable editing connection properties.", "terms": {"properties": "propiedades"}}
+{"en": "Save your business entity to make it available for use in fact models and consumption models.", "terms": {"fact": "hecho"}}
+{"en": "This means that the work center change is only visible in your schedule and is not yet saved in the maintenance order.", "terms": {"order": "orden"}}
+{"en": "To delete an activation key, click the first column of the corresponding row and then Delete.", "terms": {"key": "clave"}}
+{"en": "Modify your order schedules to prioritize overdue or late orders.", "terms": {"orders": "pedidos"}}
+{"en": "Reviewers do not require any work center assignment.", "terms": {"require": "requieren", "Reviewers": "revisores"}}
+{"en": "For correspondence with the customer/supplier", "terms": {"correspondence": "correspondencia"}}
+{"en": "Within a time range", "terms": {"time": "tiempo"}}
+{"en": "Only one data delivery is provided without any additional corrections or updates.", "terms": {"one": "una"}}
+{"en": "If the credit memos are processed successfully, the system posts a document during the processing of the payment advice note by means of the amount credited and, if necessary, charges are posted.", "terms": {"payment": "pago"}}
+{"en": "Post-upgrade test processes", "terms": {"Post-upgrade": "tras el upgrade"}}
+{"en": "You can see these items on the To Be Written Off  tab and verify that they're non-billable by looking at the Billing Control Category column.", "terms": {"'re": "sean"}}
+{"en": "Define Recurrence Pattern", "terms": {"Define": "Definir"}}
+{"en": "To directly consume data in data flows, the Oracle database must be available on the public internet.", "terms": {"flows": "flujos"}}
+{"en": "Shows that the object will be activated automatically during the next scheduled data aging run for this object and the aging run is not scheduled for the selected data aging object.", "terms": {"selected": "seleccionado"}}
+{"en": "Please note that date and time are not included when you save a filter variant.", "terms": {"filter": "filtro"}}
+{"en": "The attribute can be used to identify bank accounts that belong to the same defaultable counterparty.", "terms": {"defaultable": "predefinirse"}}
+{"en": "Reset Availability Data", "terms": {"Availability": "disponibilidad"}}
+{"en": "The signal for replenishment is issued by an indicator, that is sent by a demand source (consumer) to the supply source (supplier).", "terms": {"source": "fuente"}}
+{"en": "Check the objects on the Business Builder and Data Builder tabs.", "terms": {"Builder": "Generador"}}
+{"en": "You can create a new template by specifying the content type, governing law, and language.", "terms": {"create": "crear"}}
+{"en": "You can define one or more preconditions that must be met before the credit memo request workflow can be processed.", "terms": {"memo": "abono"}}
+{"en": "To change scheduled jobs", "terms": {"scheduled": "programados"}}
+{"en": "Define the recurrence pattern, such as daily or weekly", "terms": {"weekly": "semanalmente", "daily": "diaria"}}
+{"en": "Use the tabs in the Data Preview panel to review and process the results.", "terms": {"Use": "Utilice"}}
+{"en": "When you're displaying service confirmations assigned to a standard service order, you can use this button to release service confirmations that have status Completed for billing.", "terms": {"standard": "estándar"}}
+{"en": "It provides a consolidation view along this segment hierarchy by populating the Segment Eliminated reporting dimension.", "terms": {"consolidation": "consolidación"}}
+{"en": "Save As New Version:(Available for templates and text blocks)", "terms": {"New": "nueva", "blocks": "bloques"}}
+{"en": "You can use this field to filter your search results for the latest bank statements that you have received from your house bank accounts.", "terms": {"results": "resultados", "latest": "últimos"}}
+{"en": "A schedule task is defined for this data flow.", "terms": {"flow": "flujo"}}
+{"en": "To change scheduled jobs, do the following:", "terms": {"following": "siguiente"}}
+{"en": "Customer/supplier branch number", "terms": {"branch": "sucursal"}}
+{"en": "Define the recurrence pattern of the job.", "terms": {"Define": "Defina", "job": "job"}}
+{"en": "Define your personal settings for email notifications and substitutes.", "terms": {"substitutes": "suplentes"}}
+{"en": "Set fuzzy match scores to decide when to place input records in the Matched and Review results categories.", "terms": {"scores": "puntuaciones"}}
+{"en": "Find further information on the Extended Statistics feature in the product assistance.", "terms": {"Find": "Encontrará"}}
+{"en": "As a search criterion for items in the customer/supplier account", "terms": {"items": "partidas"}}
+{"en": "The variables are different for the different data source called to for the charts of a tab.", "terms": {"called": "llamadas", "charts": "gráficos"}}
+{"en": "Required Permissions for Oracle Trigger-Based Replication in the SAP HANA Smart Data Integration and SAP HANA Smart Data Quality Installation and Configuration Guide", "terms": {"Quality": "calidad"}}
+{"en": "If you lock a release which is not the latest release, all releases which have been published after the release of the locked release are also set to locked.", "terms": {"latest": "más reciente"}}
+{"en": "You need to re-deploy your intelligent lookup each time your make a change to it.", "terms": {"re-deploy": "volver a desplegar"}}
+{"en": "Delete an Activation Key", "terms": {"Activation": "activación"}}
+{"en": "Click the Edit button to add or delete buttons or change column names and data types.", "terms": {"Edit": "Editar"}}
+{"en": "You specify a defaultable business partner for banks when using bank reconciliation accounts in G/L account assignment.", "terms": {"defaultable": "predefinirse", "using": "utilizan", "G/L": "cuenta de mayor", "bank": "bancos"}}
+{"en": "On the To Be Billed tab, select one or more items as required and choose Write Off.", "terms": {"Billed": "facturar", "one": "una"}}
+{"en": "Select a type of measure and define the properties.", "terms": {"properties": "propiedades"}}
+{"en": "Transaction number under which a controversial transaction is managed at the customer/supplier", "terms": {"customer/supplier": "deudor/acreedor", "controversial": "conflictiva"}}
+{"en": "The RECORD COUNT type is a table-wide statistic.", "terms": {"statistic": "estadística"}}
+{"en": "Click the column header in the table area.", "terms": {"column": "columna"}}
+{"en": "At the performance obligation level they are calculated as follows:", "terms": {"level": "nivel"}}
+{"en": "Adds a selected settlement date with the settlement status Open, Due, Due Today, or Overdue to a scheduling worklist to schedule the settlement of the selected settlement date.", "terms": {"schedule": "programación"}}
+{"en": "If you want the automated reprocessing rule to post your bank statement items in only one step, select 001 (One-Step Posting) as the value of the Procedure Type field.", "terms": {"Posting": "Contabilización"}}
+{"en": "In the pane on the right, check the objects on the Business Builder and Data Builder tabs:", "terms": {"Data": "datos"}}
+{"en": "If the operation is included in one schedule, the schedule opens directly.", "terms": {"directly": "directamente"}}
+{"en": "The new Manage Fixed Assets card replaces the Asset Master Worklist card from previous versions.", "terms": {"versions": "versiones"}}
+{"en": "Add or remove columns to the overview", "terms": {"columns": "columnas"}}
+{"en": "Use this function to download a preformatted CSV file template that you can use to create new allocation cycles and segments or edit existing ones.", "terms": {"CSV": "CSV"}}
+{"en": "The data provider profile page provides additional information about the data provider and other products or product groups.", "terms": {"products": "productos", "provider": "proveedor"}}
+{"en": "You can only use it with the cost center and profit center allocation contexts.", "terms": {"contexts": "contextos"}}
+{"en": "You can maintain Sales Area Details, Sales Taxes, and Partner Functions.", "terms": {"Taxes": "impuestos"}}
+{"en": "The incident ID is empty for SAP support user access with the Operations access category.", "terms": {"SAP": "SAP"}}
+{"en": "Displays data for allocation periods in which allocation consumption is below 20%.", "terms": {"20": "20", "Displays": "Muestra"}}
+{"en": "The Information icon appears if any or all of following exists for an assembly:", "terms": {"following": "siguiente", "Information": "Información"}}
+{"en": "To delete a mapping, click the link and then click the Delete tool.", "terms": {"mapping": "asignación"}}
+{"en": "Using filters, search, or sorting, you can quickly find the connection type.", "terms": {"search": "búsqueda"}}
+{"en": "The Number of Jobs and Package Size fields are deactivated and not relevant for this job.", "terms": {"Package": "paquete"}}
+{"en": "Enter the system client number.", "terms": {"Enter": "introduzca"}}
+{"en": "If you choose No, the system will exclude from the list report all billing elements with prepayment items.", "terms": {"list": "list"}}
+{"en": "If you change the ID, a background job will be created.", "terms": {"ID": "ID"}}
+{"en": "The update of the persistency has to be triggered again.", "terms": {"triggered": "iniciar"}}
+{"en": "For Process industry type:", "terms": {"industry": "sector"}}
+{"en": "The advantage of this attribute is that you can refer to certain business partners in one condition by using the correct payment clearing group.", "terms": {"advantage": "ventaja"}}
+{"en": "The default value is true.", "terms": {"true": "true"}}
+{"en": "In the table you can use the inspector to solve the capacity issues.", "terms": {"capacity": "capacidad"}}
+{"en": "Every month, you pay the defined monthly fee.", "terms": {"month": "mes"}}
+{"en": "Cancel a service confirmation.", "terms": {"Cancel": "Cancelar"}}
+{"en": "On the Description sheet within the file, you can only use those values which are relevant to the context and universal allocation.", "terms": {"universal": "universal"}}
+{"en": "Enter the customer/supplier details which you need for subsequent processing according to your individual company's regulations.", "terms": {"details": "detalles"}}
+{"en": "Indicates if an item or a step is specific to a localized version", "terms": {"step": "paso"}}
+{"en": "For the Heath Check Support  access category, the incident ID references SAP internal incidents raised by automatic health checks.", "terms": {"category": "categoría"}}
+{"en": "In the value help of the new filter, all search results are restricted to the employees responsible for service contracts, excluding those with the business partner role Employment.", "terms": {"new": "nuevo"}}
+{"en": "In the purchase order item, you create a limit item with product type group Service.", "terms": {"item": "posición", "limit": "límite", "purchase": "pedido"}}
+{"en": "You can find all shared rules on the Shared Rules tab.", "terms": {"Rules": "Reglas"}}
+{"en": "Please note that for manual bank statements, the system uses the transaction type entered in the manual bank statement.", "terms": {"manual": "manual", "statements": "extractos"}}
+{"en": "Choose Restrict and verify that the selected items have moved from the To Be Billed tab to the To Be Postponed tab.", "terms": {"items": "posiciones"}}
+{"en": "Check, if this mitigates the capacity issue and click Shift Top-Level Demand.", "terms": {"Demand": "demanda"}}
+{"en": "This function enables you to get required output from the left or right formula.", "terms": {"left": "izquierda"}}
+{"en": "You can save a text block as a new variant, to reuse it in different business scenarios.", "terms": {"new": "nueva"}}
+{"en": "For a bank account that has been marked as deleted, you can choose the Unmark as Deleted button to reactivate it for use.", "terms": {"button": "botón"}}
+{"en": "To get data on a tab, you need to define the variables for the tabs.", "terms": {"need": "debe"}}
+{"en": "Request a checkup to perform a health diagnostic and better analyze what was wrong with your data flow.", "terms": {"analyze": "analizar"}}
+{"en": "That way, if one subsidiary only creates purchase orders for 20% of the total value or quantity agreed in the central contract, the other subsidiary would have the flexibility to order up to 80% if they need to.", "terms": {"order": "ordenar", "flexibility": "flexibilidad"}}
+{"en": "Capacity consumed by the work center to dispatch the order", "terms": {"dispatch": "planificar", "consumed": "consumida"}}
+{"en": "Custom communication users are created in the Maintain Communication Users app and are assigned to systems for inbound and outbound communication.", "terms": {"Communication": "Comunicación"}}
+{"en": "Although you can activate individual features, you can use them only if the corresponding parent scope items are also enabled.", "terms": {"parent": "principal", "also": "también"}}
+{"en": "On the To Be Billed tab, select one or more items as required and choose Restrict Date.", "terms": {"choose": "elija"}}
+{"en": "You can select an allocation type when creating an allocation cycle in the Manage Allocations app.", "terms": {"cycle": "ciclo"}}
+{"en": "Provide and Sell Data Products with the Data Sharing Cockpit", "terms": {"Products": "productos"}}
+{"en": "The projected plant stock can be calculated from the current stock- or requirements situation for the start date of the reference object.", "terms": {"start": "inicio"}}
+{"en": "Specifies the level on which you want to share the template.", "terms": {"want": "desea"}}
+{"en": "Choose this button if you want to download G/L account mappings into a spreadsheet.", "terms": {"account": "cuentas"}}
+{"en": "Yes, to allow resources to post time only if they are staffed or assigned to a project.", "terms": {"project": "proyecto"}}
+{"en": "To unshare the schedule, just remove the name of the person whose access you want to revoke.", "terms": {"unshare": "dejar de compartir"}}
+{"en": "If the panel is not visible, click the Source Browser button in the toolbar to show it.", "terms": {"Browser": "Navegador"}}
+{"en": "The system enables the Usage and Availability button only if there's plant information.", "terms": {"information": "información"}}
+{"en": "Based on the Semantic Usage of your entity, review and modify its Columns, Attributes, and/or Measures:", "terms": {"Measures": "indicadores"}}
+{"en": "You can change the work center for order operations that have the processing status Due.", "terms": {"Due": "vencido", "operations": "operaciones"}}
+{"en": "You can even set the corresponding value for these file types while using the Assembly Automation Levels during the creation of virtual documents.", "terms": {"Levels": "Niveles"}}
+{"en": "Specify measures, if appropriate, and other aspects of your output structure in the output node.", "terms": {"structure": "estructura"}}
+{"en": "Displays the conditions-related information for a template.", "terms": {"Displays": "Muestra"}}
+{"en": "You can then save your current progress even if there are errors due to incomplete entry fields.", "terms": {"even": "incluso", "errors": "errores"}}
+{"en": "By default, you see your object’s business name.", "terms": {"default": "defecto", "object": "objeto"}}
+{"en": "You can check the amount of planned prepayments by choosing the Prepayment Details in the billing element column.", "terms": {"Details": "Detalles"}}
+{"en": "Replace an existing process step", "terms": {"Replace": "Reemplazar", "existing": "existente"}}
+{"en": "Reviewers have read-only access to the schedule and cannot see the utilization forecast shown when the schedule is in Scoping or Refinement.", "terms": {"read-only": "solo lectura"}}
+{"en": "The selection criteria is configured using a condition statement defined in the Requirement Filter.", "terms": {"criteria": "criterios"}}
+{"en": "You can assign a currency or unit to your measure.", "terms": {"currency": "moneda"}}
+{"en": "Checking Delivery Details", "terms": {"Checking": "Verificar"}}
+{"en": "In general, you should consider whether it is useful to select the Supplement auto. posting option in the master record of the G/L account at all.", "terms": {"whether": "si"}}
+{"en": "You can use parallel processing if you want to make changes to a large number of Business partners.", "terms": {"large": "gran", "number": "cantidad", "want": "desea"}}
+{"en": "The amounts displayed are calculated at the revenue contract level and are the sum of the amounts of all performance obligations.", "terms": {"level": "nivel"}}
+{"en": "You run allocation cycles in the Run Allocations app.", "terms": {"Allocations": "imputaciones"}}
+{"en": "Select one or multiple purchase requisition items and from the Add to Document drop-down list choose Add to Sourcing Project.", "terms": {"Select": "Seleccione"}}
+{"en": "Check the syntax of the system variable for validity by using the Check syntax of system variable for validity button next to the Value field.", "terms": {"using": "utilizando"}}
+{"en": "You do not have to actively check the data before importing it.", "terms": {"actively": "de forma activa"}}
+{"en": "Add to Scheduling Worklist", "terms": {"Add": "Añadir"}}
+{"en": "Joint Venture Partner", "terms": {"Venture": "venture"}}
+{"en": "Furthermore, any advertisements or other content hosted on these platforms (for example, suggested videos or by navigating to other videos hosted on the same site), are not within the control or responsibility of SAP.", "terms": {"example": "p. ej."}}
+{"en": "Select the corresponding checkbox for demand-driven MRP components and/or top-level materials.", "terms": {"materials": "materiales"}}
+{"en": "If the action is optional, its execution status does not affect the process step status.", "terms": {"action": "acción", "affect": "afecta"}}
+{"en": "SAP and other SAP products and services mentioned herein as well as their respective logos are trademarks or registered trademarks of SAP SE (or an SAP affiliate company) in Germany and other countries.", "terms": {"respective": "respectivos", "mentioned": "mencionados"}}
+{"en": "Click to open the Columns popup in which you can do the following:", "terms": {"open": "abrir"}}
+{"en": "Use the Search field in the popup to search for all business partners or you can use the list available.", "terms": {"business": "comerciales"}}
+{"en": "You can add items of different types to your sourcing projects.", "terms": {"sourcing": "licitación"}}
+{"en": "To delete a relationship or to add, edit, or delete an offset for a relationship, right-click the relationship in the chart and select the relevant entry from the context menu.", "terms": {"chart": "gráfico"}}
+{"en": "If you choose a business partner in the Issuing Authority field, this value will be copied into the Issuing Organization field.", "terms": {"field": "campo"}}
+{"en": "Before blocking or deleting of personal data, you must define the residence time and retention periods in SAP Information Lifecycle Management (ILM) for the corresponding ILM objects.", "terms": {"ILM": "ILM"}}
+{"en": "Download and upload template for cycle and segment definitions.", "terms": {"Download": "Descargar"}}
+{"en": "Cycle ID, Allocation Context, Ledger, Valid From.", "terms": {"Cycle": "ciclo"}}
+{"en": "Allocation types are a summary of the processes that can take place during allocation.", "terms": {"processes": "procesos"}}
+{"en": "You can predefine the renewal and termination clauses for legal transactions at the context level.", "terms": {"renewal": "renovación"}}
+{"en": "Spaces are environments that bring data models, connections, compute and storage resources together for a specific line of business or use-case.", "terms": {"specific": "específica", "line": "línea"}}
+{"en": "Then you can simply delete it from this menu.", "terms": {"menu": "menú"}}
+{"en": "In the Import Users dialog, choose Select Source File to upload your CSV file.", "terms": {"Users": "usuarios"}}
+{"en": "Specify a data range, which is the time period for the data.", "terms": {"time": "tiempo"}}
+{"en": "After verifying the business process step execution manually and finding it compatible, you can set the status to Verified by User.", "terms": {"execution": "ejecución", "status": "estado"}}
+{"en": "By default, Yes is selected for this field, which means that cash flows whose actual liquidity item are different from the ones proposed by the machine learning service are displayed.", "terms": {"flows": "flujos"}}
+{"en": "If you copy an item set, all subordinate items are copied as well.", "terms": {"copy": "copia", "items": "posiciones"}}
+{"en": "On choosing the Summarized Explosion tab, the table provides the following details:", "terms": {"provides": "proporciona", "following": "siguientes"}}
+{"en": "Choose Add to Scheduling Worklist to add a settlement date to a scheduling worklist.", "terms": {"date": "fecha"}}
+{"en": "You can then decide to choose an existing scheduling worklist or create a new one.", "terms": {"new": "nueva"}}
+{"en": "The personal data used to complete the process is predefined in a purpose, which is defined by the data controller.", "terms": {"purpose": "objetivo", "personal": "personales"}}
+{"en": "If you are using OAuth 2.0 you must provide the following information to your client application:", "terms": {"must": "debe", "using": "utilizando"}}
+{"en": "The lower-level bars visible in expanded view always show assignment information, regardless of the view type you set for the top-level bars.", "terms": {"bars": "barras", "always": "siempre"}}
+{"en": "If needed, you can change a team's global ID before you save a team's definition.", "terms": {"definition": "definición"}}
+{"en": "Activate this field to run this job in online mode.", "terms": {"mode": "modo"}}
+{"en": "You need to select a measure type.", "terms": {"need": "debe"}}
+{"en": "Read the messages to understand if there are any errors or warnings, if the actions you performed on the template were successful, if further action is required from you, and so on.", "terms": {"understand": "saber"}}
+{"en": "Summary of processes that take place during allocation.", "terms": {"processes": "procesos"}}
+{"en": "The JOA has different development stages, such as engineering and design, construction, and production.", "terms": {"engineering": "ingeniería"}}
+{"en": "Select this checkbox to allocate costs in the original posted transaction currency during an allocation run.", "terms": {"checkbox": "casilla"}}
+{"en": "Choose either one of the scheduling controls to realign your work center schedules:", "terms": {"realign": "reorganizar", "one": "uno"}}
+{"en": "Add other operators to remove or create columns and filter or aggregate data.", "terms": {"columns": "columnas", "operators": "operadores"}}
+{"en": "The period of time between the end of the last business activity involving a specific object (for example, a business partner) and the deletion of the corresponding data, subject to applicable laws.", "terms": {"period": "período", "corresponding": "correspondientes"}}
+{"en": "Adding a control characteristic", "terms": {"Adding": "Agregar"}}
+{"en": "You assign billable costs to the appropriate partners.", "terms": {"assign": "asignan"}}
+{"en": "Shows acquisition and retirement information.", "terms": {"retirement": "baja"}}
+{"en": "A condition contains expressions and resulting actions defined for a text block used in a template.", "terms": {"contains": "contiene"}}
+{"en": "However, there may be exceptions,for instance, when you create a dependency to an item in a different software collection.", "terms": {"dependency": "dependencia"}}
+{"en": "You can create different kinds of bonds by defining class data and the conditions accordingly:", "terms": {"data": "datos"}}
+{"en": "Value changes are posted to the balance sheet account in inventory accounting", "terms": {"posted": "contabilizan"}}
+{"en": "On a specific tab, choose Edit Prompts at the right corner, and .", "terms": {"Edit": "Editar"}}
+{"en": "The categories Text Type, Number Type, and Data Time Type help to validate that the expression matches the chosen data type.", "terms": {"expression": "expresión", "Type": "Tipo"}}
+{"en": "Secure Text is sent only through secure communication channels such as the SAP Fiori launchpad.", "terms": {"secure": "seguros"}}
+{"en": "You need to fix the error to be able to complete the persistent view creation or update.", "terms": {"fix": "corregir"}}
+{"en": "When choosing to edit, the requisition or item moves out of the Rejected status and enables resubmission.", "terms": {"choosing": "seleccionar"}}
+{"en": "In this popup you can select different periods and change the available capacity of the work center.", "terms": {"periods": "períodos", "available": "disponible"}}
+{"en": "You can keep the default waste generator or choose the value help in the mandatory Waste Generator field and a dialog box will appear.", "terms": {"dialog": "ventana"}}
+{"en": "Click Save to active the log access.", "terms": {"log": "log"}}
+{"en": "Add run types by choosing Add and selecting run types from the list.", "terms": {"selecting": "seleccionando"}}
+{"en": "The Data Sharing Cockpit is the tool you use as a the data provider.", "terms": {"Data": "datos"}}
+{"en": "An alternative text block is a released version of a text block that is assigned as a possible replacement for another text block used in the template.", "terms": {"possible": "posible"}}
+{"en": "Save as Tile", "terms": {"Tile": "mosaico"}}
+{"en": "Click (Show or hide data preview) to open the Data Preview panel and select any table or view on the editor panel or in the Repository tab of the sources browser.", "terms": {"table": "tabla"}}
+{"en": "If you lock a release that is not the latest release, all releases which have been published after the release of the marked release are also set to locked.", "terms": {"locked": "bloqueadas"}}
+{"en": "If you want to change the role template that your new custom role will be based on, select  (Select Template), and choose a role.", "terms": {"want": "desea", "choose": "elija"}}
+{"en": "If you want to use a different template instead, click on the X to deselect the default template.", "terms": {"X": "X"}}
+{"en": "If you want to publish a sourcing project with at least one item of type Project Item, you have to add at least one procurement project and the related information in the section Project Details.", "terms": {"least": "al menos", "one": "una"}}
+{"en": "This is done to prevent over usage of the space.", "terms": {"prevent": "evitar"}}
+{"en": "AWS region in your Amazon Athena regional endpoint that you use to make your requests.", "terms": {"use": "sirve"}}
+{"en": "In the side navigation area, click  and then click the My Content folder to display the list of packages that you have exported and those from other systems that you have permission to edit or delete.", "terms": {"area": "área"}}
+{"en": "The information retrieval framework (IRF) supports you to comply with the relevant legal requirements for data protection by allowing you to search for and retrieve all personal data of a specified data subject.", "terms": {"requirements": "requisitos"}}
+{"en": "Service Organization ID", "terms": {"ID": "ID"}}
+{"en": "Item set is a collection of items.", "terms": {"items": "posiciones"}}
+{"en": "Click in the Create Transform bar, select Filter, and complete the formula ().", "terms": {"complete": "complete"}}
+{"en": "If a schedule is set for the data flow, see by when the next run is scheduled.", "terms": {"run": "ejecución"}}
+{"en": "This is now the default setting.", "terms": {"setting": "parametrización"}}
+{"en": "Select a task template.", "terms": {"Select": "Seleccione"}}
+{"en": "The union operator combines two data sets that share the same schema definition.", "terms": {"sets": "conjuntos"}}
+{"en": "When you create or edit a situation type, you can define the run type settings:", "terms": {"edit": "editar", "situation": "situación"}}
+{"en": "Define a recurrence pattern for the job.", "terms": {"job": "job", "Define": "defina"}}
+{"en": "[if Create Statement-level Insert Triggers = true] Create Statement-level Update Triggers", "terms": {"Statement-level": "a nivel de declaración"}}
+{"en": "This Feature Scope Description", "terms": {"Description": "Descripción"}}
+{"en": "Billing indicators are assigned to billable postings and identify the type of posting involved, including cash call, normal expenditure, and audit adjustment to a particular partner account.", "terms": {"expenditure": "gastos"}}
+{"en": "To save your table in the local repository, choose Save.", "terms": {"table": "tabla", "choose": "seleccione"}}
+{"en": "In the connections list of your space, select the new connection and click  (Validate Connection) to check if you can use the connection or if it contains any errors.", "terms": {"list": "lista"}}
+{"en": "Displays the current status of the statement.", "terms": {"Displays": "Muestra"}}
+{"en": "Displays data for allocation periods in which allocation consumption exceeds 100%.", "terms": {"100": "100", "data": "datos"}}
+{"en": "For more information, see Microsoft SQL Server Trigger-Based Replication in the SAP HANA Smart Data Integration and SAP HANA Smart Data Quality Installation and Configuration Guide.", "terms": {"information": "información"}}
+{"en": "No Approval Required:", "terms": {}}
+{"en": "In the Manage Your Solution app under Configure Your Solution make system settings under FinanceContract AccountingPosting and DocumentsDefine Short Assignment for Transfer Postings.", "terms": {"settings": "opciones"}}
+{"en": "Go to the Parameters tab.", "terms": {"Go": "Vaya"}}
+{"en": "The Production Version:", "terms": {}}
+{"en": "Choose Publish to finalize the exclusion of fields, or the removal of excluded tables and fields before replication to the target SAP Cloud Platform system.", "terms": {"finalize": "finalizar"}}
+{"en": "Set Document Status", "terms": {"Document": "documento"}}
+{"en": "It provides a consolidation view along this profit center hierarchy by populating the Profit Center Eliminated reporting dimension.", "terms": {"provides": "proporciona"}}
+{"en": "The authentication type to be used:", "terms": {"type": "tipo"}}
+{"en": "The Save Model dialog opens.", "terms": {"Model": "modelo"}}
+{"en": "For implementaiton steps, you will see Go to App button instead of the Configure button.", "terms": {"button": "botón"}}
+{"en": "Complete the Business Purpose section to let others know what your view is about.", "terms": {"know": "sepan"}}
+{"en": "Quantity Contract (MK)", "terms": {"MK": "MK"}}
+{"en": "You can use the Cancel button to cancel a service confirmation that has been set to completed.", "terms": {"cancel": "Cancelar"}}
+{"en": "Task Template Status", "terms": {"Status": "Estado"}}
+{"en": "Approval Process Flow", "terms": {"Flow": "Flujo", "Process": "proceso"}}
+{"en": "Fiscal Year and Fiscal Period of issue", "terms": {"Year": "Ejercicio"}}
+{"en": "You can use this report to:", "terms": {"use": "utilizar"}}
+{"en": "You can perform the following actions on this tab:", "terms": {"actions": "acciones"}}
+{"en": "Withholding Tax tab.", "terms": {"Withholding": "Retención"}}
+{"en": "Business Partner's IBAN", "terms": {"Business": "comercial"}}
+{"en": "Enter the network number.", "terms": {"Enter": "Indique"}}
+{"en": "Business Partner name", "terms": {"name": "nombre"}}
+{"en": "Edit Service Contracts", "terms": {"Service": "servicios"}}
+{"en": "Select a template and click Delete.", "terms": {"Select": "Seleccione", "click": "haga clic"}}
+{"en": "About Goods Issue", "terms": {"Goods": "mercancías"}}
+{"en": "Business Partner Name", "terms": {"Name": "Nombre"}}
+{"en": "Business Partner Role", "terms": {"Business": "comercial"}}
+{"en": "Enter a description for the template in the Description field.", "terms": {"description": "descripción"}}
+{"en": "SI Performance Management (SF)", "terms": {"SF": "SF", "SI": "SI"}}
+{"en": "Contract Account Check", "terms": {"Check": "Verificación"}}
+{"en": "Save User Settings", "terms": {"Settings": "opciones"}}
+{"en": "Delivery Type Code", "terms": {"Delivery": "entrega"}}
+{"en": "You can edit the following UDQs:", "terms": {"UDQs": "UDQs"}}
+{"en": "Contains one or more expressions and resulting actions defined for a text block present in a template.", "terms": {"actions": "acciones"}}
+{"en": "Description of the tax type.", "terms": {"Description": "Descripción"}}
+{"en": "Add Usage Data", "terms": {"Data": "datos"}}
+{"en": "Approval in Progress", "terms": {"Progress": "curso"}}
+{"en": "Business Content Hub", "terms": {"Hub": "Hub"}}
+{"en": "Asset Mass Processing", "terms": {"Asset": "activos"}}
+{"en": "Your role determines what you can do with a schedule.", "terms": {"role": "rol"}}
+{"en": "specify a limit to avoid excessive concurrent processing due to too many jobs.", "terms": {"jobs": "tareas"}}
+{"en": "Navigate to other targets", "terms": {"Navigate": "Navegar"}}
+{"en": "Select a role template.", "terms": {"Select": "Seleccione"}}
+{"en": "Schedule Tax Jobs", "terms": {"Jobs": "jobs"}}
+{"en": "About Purchase Order", "terms": {"Order": "sobre"}}
+{"en": "Business Partner Event", "terms": {"Event": "Evento"}}
+{"en": "An item set can contain both standard items of types Material and Service and project items.", "terms": {"items": "posiciones", "Service": "Servicio"}}
+{"en": "Code List tab", "terms": {"Code": "código"}}
+{"en": "Displays the current status of the deployment.", "terms": {"Displays": "Muestra"}}
+{"en": "Pause and Restart Real-Time Replication", "terms": {"Restart": "reiniciar"}}
+{"en": "The system copies substances from the composition of the unpackaged product that is also part of the most recently activated Health and Safety Management regulation whose lists are assigned to the Safety Data Sheet Management regulation used for the compliance assessment.", "terms": {"Management": "gestión"}}
+{"en": "The package contains the following iFlows:", "terms": {"following": "siguientes"}}
+{"en": "Aggregate Notifications shows whether the notifications to be sent are aggregated (Yes) or separate for each situation instance (No).", "terms": {"notifications": "notificaciones"}}
+{"en": "In the Data Access Controls section, you can add one or more data access controls to apply row-based security and control access to individual rows based on various criteria.", "terms": {"Controls": "Controles"}}
+{"en": "Billed Transaction Type", "terms": {"Billed": "facturada"}}
+{"en": "Click Save and Publish.", "terms": {"Click": "Haga clic"}}
+{"en": "Together with other layout settings, you can save board settings as variants by using the My Views dropdown at the top left of the Kanban Board.", "terms": {"settings": "opciones", "Views": "vistas"}}
+{"en": "Select one of the following the shipment types:", "terms": {"following": "siguientes"}}
+{"en": "Choose Add Role.", "terms": {"Add": "Añadir"}}
+{"en": "New Order Type", "terms": {"New": "Nuevo"}}
+{"en": "Remove an Item", "terms": {"Remove": "Eliminación"}}
+{"en": "There are two templates:", "terms": {"templates": "plantillas"}}
+{"en": "Choose Template Structure.", "terms": {"Choose": "Seleccione"}}
+{"en": "This endpoint is optional.", "terms": {"optional": "opcional"}}
+{"en": "Sharing a Schedule", "terms": {"Sharing": "Compartir"}}
+{"en": "Number of Grids", "terms": {"Number": "Cantidad"}}
+{"en": "Adding these roles has the following effects:", "terms": {"following": "siguientes"}}
+{"en": "The goods receipt processing time is two days.", "terms": {"two": "dos", "days": "días"}}
+{"en": "Choose Connect Step.", "terms": {"Choose": "Seleccione"}}
+{"en": "Select one of the following shipment types:", "terms": {"Select": "Seleccione", "types": "tipos"}}
+{"en": "Configure Condition Type", "terms": {"Condition": "condición"}}
+{"en": "Choose Realign Schedules.", "terms": {"Schedules": "programaciones"}}
+{"en": "Select the Keys tab.", "terms": {"Select": "Seleccione"}}
+{"en": "Business Partner Rating", "terms": {"Business": "comercial"}}
+{"en": "A recovery indicator (RI) is assigned to the cost object to indicate whether expenses posted using the cost object are billable to Joint Venture partners.", "terms": {"RI": "RI"}}
+{"en": "The utilization of a facility is called a drawing.", "terms": {"utilization": "utilización"}}
+{"en": "Delete a user", "terms": {"user": "usuario"}}
+{"en": "Central Business Partner", "terms": {"Business": "comercial"}}
+{"en": "For more information, see Deletion of Bill Items.", "terms": {"information": "información"}}
+{"en": "Check the forecasted work center utilization at week level", "terms": {"Check": "Verificar", "forecasted": "previsto"}}
+{"en": "The Service Margins tab contains the following detail tabs where you can review the data:", "terms": {"following": "siguientes"}}
+{"en": "Report Contact Person", "terms": {"Contact": "contacto"}}
+{"en": "The tool includes the following tabs:", "terms": {"tabs": "pestañas"}}
+{"en": "Edit an application", "terms": {"application": "aplicación"}}
+{"en": "Business partner name", "terms": {"Business": "socio"}}
+{"en": "Contract Account Partner", "terms": {"Contract": "contrato"}}
+{"en": "Bank Business Partner", "terms": {"Bank": "banco"}}
+{"en": "Display Contract Account", "terms": {"Account": "cuenta"}}
+{"en": "Business partner item", "terms": {"item": "posición"}}
+{"en": "The goods receipt processing time is one day.", "terms": {"one": "un", "day": "día"}}
+{"en": "Situation Monitoring - MST Tab", "terms": {"Monitoring": "Supervisión"}}
+{"en": "The following flow logic applies:", "terms": {"logic": "lógica"}}
+{"en": "You can select and deselect individual objects, or types of objects (for example, Models or Stories).", "terms": {"example": "ejemplo"}}
+{"en": "If you update and redeploy an existing persistent view, the persistency is deleted and the data access is changed back to virtual.", "terms": {"changed": "volverá"}}
+{"en": "Icon on the tab indicates the following:", "terms": {"indicates": "indica"}}
+{"en": "Characteristic Value Combination per Requirement", "terms": {"per": "por"}}
+{"en": "Lists all quotas that match your filter criteria.", "terms": {"criteria": "criterios"}}
+{"en": "Click to add a constraint.", "terms": {"Click": "Haga clic"}}
+{"en": "The query provides the following measures:", "terms": {"measures": "medidas"}}
+{"en": "Error Logs Tab", "terms": {"Error": "errores"}}
+{"en": "Delete a Story", "terms": {"Story": "historia"}}
+{"en": "Business Partner Address", "terms": {"Address": "Dirección"}}
+{"en": "Editing a Card", "terms": {"Editing": "Tratar"}}
+{"en": "Click Add Condition.", "terms": {"Click": "Haga clic"}}
+{"en": "Cash Pool Type", "terms": {"Cash": "cash"}}
+{"en": "Create a group using the Add button", "terms": {"Add": "Añadir"}}
+{"en": "Business Partner, Trader", "terms": {"Business": "comercial"}}
+{"en": "Predefined Reporting Activities", "terms": {"Activities": "Actividades"}}
+{"en": "To use this report, proceed as follows:", "terms": {"follows": "siguiente"}}
+{"en": "For more information, see Key User Extension.", "terms": {"information": "información"}}
+{"en": "Display User Operations", "terms": {"Operations": "operaciones"}}
+{"en": "Delete a Scope", "terms": {"Scope": "alcance"}}
+{"en": "Mass Processing - Start", "terms": {"Start": "Inicio"}}
+{"en": "Business Unit Key.", "terms": {"Key": "Clave"}}
+{"en": "To define additional measures:", "terms": {"define": "definir"}}
+{"en": "The Maintenance Order Operations tab shows operations and suboperations that are included in the filtered orders, even if the performing work centers is a different one.", "terms": {"filtered": "filtradas"}}
+{"en": "You can use the Reset Cleared Items app to do the following:", "terms": {"use": "utilizar"}}
+{"en": "It is not possible to change a completed business document that contains a blocked business partner.", "terms": {"contains": "contenga"}}
+{"en": "Expiration of Central Purchase Contract", "terms": {"Central": "central", "Purchase": "pedido"}}
+{"en": "Provides additional information about the metering of usage.", "terms": {"information": "información"}}
+{"en": "Move an order operation to another date", "terms": {"date": "fecha"}}
+{"en": "Use this for supplying materials in the production area itself.", "terms": {"production": "producción"}}
+{"en": "Transfer Step Description", "terms": {"Transfer": "transferencia"}}
+{"en": "Supplier Approval Process", "terms": {"Process": "Proceso", "Supplier": "proveedores"}}
+{"en": "Use of Payment Advices", "terms": {"Payment": "pago"}}
+{"en": "Then choose Delete.", "terms": {"choose": "seleccione"}}
+{"en": "ID Business location", "terms": {"ID": "ID"}}
+{"en": "About Journal Entries", "terms": {"Journal": "asientos"}}
+{"en": "On this tab you can check the status of your data deliveries.", "terms": {"data": "datos"}}
+{"en": "Run the report.", "terms": {"Run": "Ejecute"}}
+{"en": "Default value for", "terms": {"value": "valor"}}
+{"en": "Creating the Job", "terms": {"Creating": "Crear"}}
+{"en": "Creating a Scope", "terms": {"Creating": "Creación"}}
+{"en": "Edit the business and/or technical names as appropriate and click Save.", "terms": {"Edit": "Edite"}}
+{"en": "You can use this report for the following purposes:", "terms": {"following": "siguientes"}}
+{"en": "Click Add to save your comments.", "terms": {"Click": "Haga clic", "comments": "comentarios"}}
+{"en": "You can also choose to run the job immediately.", "terms": {"immediately": "inmediatamente"}}
+{"en": "Show configuration steps", "terms": {"steps": "pasos"}}
+{"en": "Reuse Data Model", "terms": {"Reuse": "Reutilizar"}}
+{"en": "Choose Save to save the edited chart.", "terms": {"Choose": "Seleccione"}}
+{"en": "If you want to save for future subscriptions you can use the bookmark feature contained in Data Marketplace.", "terms": {"bookmark": "marcador"}}
+{"en": "Enter a name and description for the line item.", "terms": {"line": "línea"}}
+{"en": "Deployment and Activation", "terms": {"Activation": "activación"}}
+{"en": "Facts need least one measure.", "terms": {"need": "necesitan"}}
+{"en": "Administration in Spaces", "terms": {"Spaces": "espacios"}}
+{"en": "Business Partner Approach", "terms": {"Approach": "Enfoque"}}
+{"en": "Business Partner Position", "terms": {"Position": "Posición"}}
+{"en": "Business Partner Overview", "terms": {"Business": "socio"}}
+{"en": "ADU = Average daily usage", "terms": {"usage": "utilización"}}
+{"en": "Business Partner Category", "terms": {"Category": "Tipo"}}
+{"en": "For measures, proceed as follows:", "terms": {"follows": "siguiente"}}
+{"en": "Data Warehouse Data Access Control", "terms": {"Control": "Control", "Access": "acceso"}}
+{"en": "Data Collection Status", "terms": {"Status": "Estado"}}
+{"en": "Duplicate an Item", "terms": {"Duplicate": "Duplicar"}}
+{"en": "Remove an Account", "terms": {"Account": "cuenta"}}
+{"en": "Choose the Rating.", "terms": {"Choose": "Haga clic"}}
+{"en": "Choose (Remove) at the top right corner of the tile.", "terms": {"corner": "esquina"}}
+{"en": "The default value here is DEFAULT.", "terms": {"value": "valor"}}
+{"en": "What are the event qualifiers?", "terms": {"event": "evento"}}
+{"en": "Select the key and click on Delete.", "terms": {"Select": "Seleccione"}}
+{"en": "The following options are available on the Advanced tab :", "terms": {"Advanced": "Avanzado"}}
+{"en": "You need the DW Administrator role to create a database user group.", "terms": {"database": "base de datos"}}
+{"en": "Total Business Partners:", "terms": {"Partners": "socios"}}
+{"en": "Edit purchase orders", "terms": {"purchase": "compra"}}
+{"en": "You use the UI Section tab to do the following:", "terms": {"UI": "IU"}}
+{"en": "For more information, refer to the related links.", "terms": {"links": "enlaces"}}
+{"en": "Mapping Source Value", "terms": {"Value": "Valor"}}
+{"en": "The following document types are currently not supported in version 2:", "terms": {"version": "versión"}}
+{"en": "Which fields are required for using the FS item in performing consolidation tasks, for example, the field Partner Unit is required for receivable and payable items to perform the elimination of interunit payables and receivables.", "terms": {"using": "utilización"}}
+{"en": "The system creates these links automatically.", "terms": {"system": "sistema"}}
+{"en": "Input Parameters for the Data Sources of the Dashboard Tabs", "terms": {"Parameters": "Parámetros", "Input": "entrada"}}
+{"en": "Business Partner Integration", "terms": {"Business": "socio"}}
+{"en": "You can then set the following parameters:", "terms": {"parameters": "parámetros"}}
+{"en": "You can executed the report manually.", "terms": {"manually": "manualmente"}}
+{"en": "This provides the following benefits:", "terms": {"following": "siguientes"}}
+{"en": "Creation of data controller - Using the self-service configuration app -The business Rule ID should be unique.", "terms": {"Using": "Utilizando", "-The": "El"}}
+{"en": "You can restrict the selection by entering specific business partners.", "terms": {"business": "comerciales"}}
+{"en": "The worklist area contains the following tabs:", "terms": {"contains": "contiene"}}
+{"en": "Choose Add Inside.", "terms": {"Choose": "Seleccione"}}
+{"en": "Partner End Point", "terms": {"Point": "Punto"}}
+{"en": "Ready for Issue:", "terms": {"Ready": "Listo"}}
+{"en": "Identifies the type of the business partner.", "terms": {"Identifies": "Identifica", "business": "comercial"}}
+{"en": "These tabs are described in the the following table.", "terms": {"table": "tabla"}}
+{"en": "Business partner number", "terms": {"number": "número"}}
+{"en": "Business partner master", "terms": {"master": "Maestro"}}
+{"en": "BOM explosion rule", "terms": {"BOM": "LMat"}}
+{"en": "Business Purpose Completed", "terms": {"Business": "comercial"}}
+{"en": "Enter company role.", "terms": {"Enter": "Introduzca"}}
+{"en": "Selected Business Partners:", "terms": {"Business": "comerciales"}}
+{"en": "Address Communication Usage", "terms": {"Address": "dirección"}}
+{"en": "Create a new transaction template", "terms": {"Create": "Crear"}}
+{"en": "The new enhancements include the following:", "terms": {"enhancements": "mejoras"}}
+{"en": "It represents the difference between actual cost and target cost.", "terms": {"difference": "diferencia"}}
+{"en": "By default, the start date of the Period Range selection takes the current date.", "terms": {"takes": "adopta"}}
+{"en": "It is the name of the workflow.", "terms": {"name": "nombre"}}
+{"en": "Select a process template", "terms": {"Select": "Seleccione"}}
+{"en": "Benefits of SAP Analytics Cloud", "terms": {"Cloud": "Cloud"}}
+{"en": "Create rate tables", "terms": {"Create": "Crear"}}
+{"en": "Review the schedule.", "terms": {"Review": "Revise"}}
+{"en": "Delete a Term", "terms": {"Term": "término"}}
+{"en": "Business entity (site)", "terms": {}}
+{"en": "Purchase order history.", "terms": {"history": "histórico", "order": "pedido"}}
+{"en": "The following approval statuses are possible for tasks:", "terms": {"tasks": "tareas", "following": "siguientes", "possible": "posibles"}}
+{"en": "This returns the job status, which can be one of the following:", "terms": {"returns": "devuelve"}}
+{"en": "Use Case Types", "terms": {"Types": "Tipos"}}
+{"en": "Impact on the Schedule", "terms": {"Impact": "Repercusiones"}}
+{"en": "Enter the term.", "terms": {"Enter": "Introduzca"}}
+{"en": "Describes the reason for a particular association of partners.", "terms": {"reason": "motivo"}}
+{"en": "The template and text block are in Draft status.", "terms": {"Draft": "Borrador"}}
+{"en": "Choose Save to save the docking location as a draft.", "terms": {"draft": "borrador"}}
+{"en": "Pause Real-Time Replication for a Connection", "terms": {"Connection": "conexión"}}
+{"en": "Description of Start Date Type", "terms": {"Description": "Denominación", "Start": "inicio"}}
+{"en": "Assign organizational units to the reporting entity:", "terms": {"organizational": "organizativas"}}
+{"en": "Business Partner, Currency", "terms": {"Currency": "moneda"}}
+{"en": "Select the job type", "terms": {"Select": "Seleccione"}}
+{"en": "Business Partner Core View", "terms": {"Business": "socio"}}
+{"en": "Specifies the type of checklist assessment.", "terms": {"Specifies": "Indica", "checklist": "lista de verificación"}}
+{"en": "Reprocess Dunning Notices", "terms": {"Reprocess": "Reprocesar", "Notices": "avisos"}}
+{"en": "Displays the time of the training duration.", "terms": {"training": "formación"}}
+{"en": "Delete a Template", "terms": {"Delete": "Borrar"}}
+{"en": "Save the template.", "terms": {"Save": "Guarde"}}
+{"en": "An account member:", "terms": {"account": "cuenta"}}
+{"en": "Select the template type from the Type drop-down list.", "terms": {"drop-down": "desplegable", "list": "lista"}}
+{"en": "Product name change", "terms": {"Product": "producto"}}
+{"en": "Select an attribute to add.", "terms": {"attribute": "atributo"}}
+{"en": "This is the default.", "terms": {}}
+{"en": "For more information, see Viewing User Feedback Charts.", "terms": {"Viewing": "Visualizar"}}
+{"en": "Mass Processing of Assets", "terms": {"Assets": "activos"}}
+{"en": "Create Rule from Template", "terms": {"Rule": "regla"}}
+{"en": "Confirm Production Order", "terms": {"Confirm": "Confirmar"}}
+{"en": "Working with Items", "terms": {"Working": "Trabajar"}}
+{"en": "Locking a Release", "terms": {"Release": "liberación"}}
+{"en": "Running a Where-Used List", "terms": {"Running": "Ejecutar"}}
+{"en": "Description of Business Location", "terms": {"Description": "Descripción"}}
+{"en": "For more information, refer to Run in the SAP Activate Roadmap.", "terms": {"information": "información"}}
+{"en": "This is the file ID for which you need to schedule the job.", "terms": {"ID": "ID"}}
+{"en": "Select the respective tab.", "terms": {"Select": "Seleccione"}}
+{"en": "Choose Save and Activate.", "terms": {"Choose": "Seleccione"}}
+{"en": "In the Teams table, locate the team that you want to delete.", "terms": {"locate": "localice"}}
+{"en": "You can click Add Constraint and select from the following options:", "terms": {"options": "opciones"}}
+{"en": "First Fixing Date", "terms": {"First": "Primera"}}
+{"en": "Click the Open Picklist button.", "terms": {"Open": "Abrir"}}
+{"en": "See Attachment B", "terms": {"B": "B"}}
+{"en": "See Attachment A", "terms": {"See": "Véase"}}
+{"en": "Examples of use", "terms": {"Examples": "Ejemplos"}}
+{"en": "See sample code:", "terms": {"See": "Véase"}}
+{"en": "You can search for a text block and insert it from the library into a template.", "terms": {"library": "biblioteca"}}
+{"en": "Go to the Exposed Dimension Sources tab.", "terms": {"Dimension": "dimensión"}}
+{"en": "Remove the selected operations from the schedule.", "terms": {"Remove": "Elimine"}}
+{"en": "You can perform the following actions in the Local Members tab:", "terms": {"Local": "locales"}}
+{"en": "Group Management Tab", "terms": {"Group": "Grupo"}}
+{"en": "What is the income of a business partner (person)?", "terms": {"income": "ingresos"}}
+{"en": "Sub Agent Assignment", "terms": {"Assignment": "Asignación"}}
+{"en": "Select Document Type", "terms": {"Select": "Seleccionar"}}
+{"en": "Purchase Contract Type", "terms": {"Contract": "contrato"}}
+{"en": "Start date of the business partner role.", "terms": {"date": "fecha", "Start": "inicio"}}
+{"en": "There are a two types of authorization groups:", "terms": {"types": "tipos", "groups": "grupos"}}
+{"en": "Run Overhead Calculation", "terms": {"Overhead": "gastos generales"}}
+{"en": "Then, choose Add or Delete.", "terms": {"Add": "Añadir"}}
+{"en": "Paid by Business Partner", "terms": {"Business": "comercial"}}
+{"en": "Payment Approval Processing", "terms": {"Processing": "Procesamiento", "Payment": "pagos"}}
+{"en": "You can delete a connection.", "terms": {"connection": "conexión"}}
+{"en": "Service Confirmation (SVC2)", "terms": {"SVC2": "SVC2"}}
+{"en": "With this app, you can schedule the following job templates:", "terms": {"templates": "plantillas"}}
+{"en": "Click  Save to save your import.", "terms": {"Click": "Haga clic"}}
+{"en": "International Business Partners", "terms": {"Business": "comerciales"}}
+{"en": "Choose the required layout section.", "terms": {"required": "necesaria"}}

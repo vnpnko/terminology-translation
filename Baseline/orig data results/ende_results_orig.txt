@@ -1,0 +1,85 @@
+=== File: /content/drive/MyDrive/Colab Notebooks/track 1/orig vs syntetic data test /ende_data_orig.jsonl
+=== Translation direction: English → German
+=== Samples: 500
+=== MAX_SAMPLES: None
+=== Model: openai/gpt-4o-mini
+
+--- Mode: no_term ---
+ende_data_orig - no_term: 100%|██████████| 500/500 [08:41<00:00,  1.04s/it]
+Saved predictions to: /content/drive/MyDrive/Colab Notebooks/track 1/orig vs syntetic data test /openrouter_outputs/ende_data_orig_no_term_predictions.jsonl
+BLEU: 40.16
+chrF2++: 66.08
+Terminology accuracy ratio %: N/A
+Terminology terms counted: 0
+Macro-avg consistency: N/A
+Weighted-avg consistency: N/A
+Top terminology accuracy terms: N/A
+Top terminology consistency terms: N/A
+Sample previews:
+  [1] EN: This service describes the deployed (run-time) state of SAP HANA database artifacts, for example: tables, views, or procedures, which have been created or adjusted by the SAP Integrated Development Environment (WebIDE) editors as a family of consistent design-time artifacts for all key SAP HANA platform database features.
+      PRED: <deu> Dieser Dienst beschreibt den bereitgestellten (Laufzeit-)Zustand von SAP HANA-Datenbankartefakten, zum Beispiel: Tabellen, Ansichten oder Prozeduren, die von den Editoren der SAP Integrated Development Environment (WebIDE) als eine Familie konsistenter Entwurfsartefakte für alle wichtigen Datenbankfunktionen der SAP HANA-Plattform erstellt oder angepasst wurden. </deu>
+      REF : Dieser Service beschreibt den implementierten Zustand (Laufzeitzustand) von SAP-HANA-Datenbankartefakten, z. B. Tabellen, Views oder Prozeduren, die von den SAP-Integrated-Development-Environment-Editoren (WebIDE-Editoren) als eine Familie konsistenter Entwurfszeit-Artefakte für alle wichtigen SAP-HANA-Plattform-Datenbankfunktionen erstellt oder angepasst wurden.
+  [2] EN: Request a checkup to perform a health diagnostic and better analyze what was wrong with your data flow.
+      PRED: <deu> Fordern Sie eine Untersuchung an, um eine Gesundheitsdiagnose durchzuführen und besser zu analysieren, was mit Ihrem Datenfluss nicht stimmte. </deu>
+      REF : Fordern Sie eine Kontrolle an, um eine Fehlerdiagnose durchzuführen und besser zu analysieren, was mit Ihrem Datenfluss falsch war.
+
+--- Mode: proper_term ---
+ende_data_orig - proper_term: 100%|██████████| 500/500 [08:37<00:00,  1.03s/it]
+Saved predictions to: /content/drive/MyDrive/Colab Notebooks/track 1/orig vs syntetic data test /openrouter_outputs/ende_data_orig_proper_term_predictions.jsonl
+BLEU: 46.38
+chrF2++: 72.51
+Terminology accuracy ratio %: 65.17
+Terminology terms counted: 557
+Macro-avg consistency: 0.90
+Weighted-avg consistency: 0.82
+Top terminology accuracy terms:
+  - Account: ratio=1.00
+  - Accounting: ratio=1.00
+  - Action: ratio=1.00
+  - Business Users: ratio=0.00
+  - Group: ratio=0.00
+Top terminology consistency terms:
+  - create: occ=47, pseudo_ref=erstellen, consistency=0.87
+  - space: occ=35, pseudo_ref=Space, consistency=0.89
+  - data provider: occ=22, pseudo_ref=Datenprovider, consistency=0.91
+  - type: occ=19, pseudo_ref=Art, consistency=0.53
+  - schedule: occ=15, pseudo_ref=Terminplan, consistency=0.67
+Sample previews:
+  [1] EN: This service describes the deployed (run-time) state of SAP HANA database artifacts, for example: tables, views, or procedures, which have been created or adjusted by the SAP Integrated Development Environment (WebIDE) editors as a family of consistent design-time artifacts for all key SAP HANA platform database features.
+      PRED: <deu> Dieser Dienst beschreibt den bereitgestellten (Laufzeit-)Zustand von SAP HANA-Datenbankartefakten, zum Beispiel: Tabellen, Ansichten oder Prozeduren, die von den Editoren der SAP Integrated Development Environment (WebIDE) als eine Familie konsistenter Entwurfsartefakte für alle wichtigen Funktionen der SAP HANA-Plattformdatenbank erstellt oder angepasst wurden. </deu>
+      REF : Dieser Service beschreibt den implementierten Zustand (Laufzeitzustand) von SAP-HANA-Datenbankartefakten, z. B. Tabellen, Views oder Prozeduren, die von den SAP-Integrated-Development-Environment-Editoren (WebIDE-Editoren) als eine Familie konsistenter Entwurfszeit-Artefakte für alle wichtigen SAP-HANA-Plattform-Datenbankfunktionen erstellt oder angepasst wurden.
+  [2] EN: Request a checkup to perform a health diagnostic and better analyze what was wrong with your data flow.
+      PRED: <deu> Fordern Sie eine Kontrolle an, um eine Gesundheitsdiagnose durchzuführen und besser zu analysieren, was mit Ihrem Datenfluss nicht stimmte. </deu>
+      REF : Fordern Sie eine Kontrolle an, um eine Fehlerdiagnose durchzuführen und besser zu analysieren, was mit Ihrem Datenfluss falsch war.
+
+--- Mode: random_term ---
+ende_data_orig - random_term: 100%|██████████| 500/500 [08:36<00:00,  1.03s/it]
+Saved predictions to: /content/drive/MyDrive/Colab Notebooks/track 1/orig vs syntetic data test /openrouter_outputs/ende_data_orig_random_term_predictions.jsonl
+BLEU: 41.79
+chrF2++: 68.62
+Terminology accuracy ratio %: 83.83
+Terminology terms counted: 627
+Macro-avg consistency: 0.95
+Weighted-avg consistency: 0.88
+Top terminology accuracy terms:
+  - 're: ratio=1.00
+  - 's: ratio=1.00
+  - 01: ratio=1.00
+  - 2: ratio=1.00
+  - AROs: ratio=1.00
+Top terminology consistency terms:
+  - following: occ=17, pseudo_ref=folgende, consistency=0.35
+  - Select: occ=15, pseudo_ref=Wählen, consistency=1.00
+  - work: occ=9, pseudo_ref=arbeiten, consistency=0.56
+  - Choose: occ=8, pseudo_ref=Wählen, consistency=1.00
+  - data: occ=7, pseudo_ref=Daten, consistency=1.00
+Sample previews:
+  [1] EN: This service describes the deployed (run-time) state of SAP HANA database artifacts, for example: tables, views, or procedures, which have been created or adjusted by the SAP Integrated Development Environment (WebIDE) editors as a family of consistent design-time artifacts for all key SAP HANA platform database features.
+      PRED: <deu> Dieser Dienst beschreibt den bereitgestellten (Laufzeit-)Zustand der SAP HANA-Datenbank-Artefakten, zum Beispiel: Tabellen, Ansichten oder Prozeduren, die von den Editoren der SAP Integrated Development Environment (WebIDE) als eine Familie konsistenter Designzeit-Artefakte für alle wichtigen Funktionen der SAP HANA-Plattform-Datenbank erstellt oder angepasst wurden. </deu>
+      REF : Dieser Service beschreibt den implementierten Zustand (Laufzeitzustand) von SAP-HANA-Datenbankartefakten, z. B. Tabellen, Views oder Prozeduren, die von den SAP-Integrated-Development-Environment-Editoren (WebIDE-Editoren) als eine Familie konsistenter Entwurfszeit-Artefakte für alle wichtigen SAP-HANA-Plattform-Datenbankfunktionen erstellt oder angepasst wurden.
+  [2] EN: Request a checkup to perform a health diagnostic and better analyze what was wrong with your data flow.
+      PRED: <deu> Fordern Sie eine Untersuchung an, um eine Gesundheitsdiagnose durchzuführen und besser zu analysieren, was mit Ihrem Datenfluss falsch war. </deu>
+      REF : Fordern Sie eine Kontrolle an, um eine Fehlerdiagnose durchzuführen und besser zu analysieren, was mit Ihrem Datenfluss falsch war.
+
+Evaluation finished.
+Saved metrics summary to: /content/drive/MyDrive/Colab Notebooks/track 1/orig vs syntetic data test /openrouter_outputs/ende_data_orig_metrics_summary.json

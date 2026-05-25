@@ -1,0 +1,500 @@
+{"en": "The status of each individual space can be seen from the color code on the upper left corner."}
+{"en": "Your contract includes a total number of available capacity units per month which you can allocate as you wish to the compute and storage resources."}
+{"en": "share the URL link to other users with the proper editing rights"}
+{"en": "Once you remove the constraint for the successor operation, the operation can be rescheduled automatically."}
+{"en": "As long as you have not configured the tenant, you can use only administration features of SAP Data Warehouse Cloud (but you cannot create spaces in the Space Management page)."}
+{"en": "All resources in your area of responsibility will be displayed."}
+{"en": "Required Permissions for Oracle Trigger-Based Replication in the SAP HANA Smart Data Integration and SAP HANA Smart Data Quality Installation and Configuration Guide"}
+{"en": "Integrate an account with your space to be able to create connections for connector instances and use the connections for data flows."}
+{"en": "A payment clearing group is an attribute with which you can categorize your suppliers and customers into groups."}
+{"en": "Select the corresponding checkbox for demand-driven MRP components and/or top-level materials."}
+{"en": "Click Create License to create a license for one or multiple of your data products and generate activation keys that you can share with consumers to allow them to use the licensed scope of data products."}
+{"en": "Control your union in the Mappings section of its side panel:"}
+{"en": "The performance of the model version is evaluated using two main indicators."}
+{"en": "The database then has to decide which job or query has to be dealt with first."}
+{"en": "Address, e-mail, phone number, etc of the provider"}
+{"en": "The name should be unique within a space."}
+{"en": "Display the IDs of intercompany customer invoices, customer invoices, and intercompany supplier invoices"}
+{"en": "To lock a specific release of a data product, open the release history of the selected product, select the release you want to lock and select the checkbox Locked."}
+{"en": "This varies depending on how the data provider offers their products."}
+{"en": "Create a data access control to filter data in views and business layer objects by one or more criteria."}
+{"en": "Retrieve your favorite data providers and data products."}
+{"en": "Choose Fuzzy Match to display the Match Thresholds section."}
+{"en": "You can see which products were last released by the provider."}
+{"en": "It’s maintained by the provider and the information might differs from one provider to another."}
+{"en": "To lock all the releases of a data product, select the product and select the checkbox Locked."}
+{"en": "The Product Allocation Order Items card displays only those order items with confirmation quantity assigned to a characteristic value combination containing the specified characteristic or values."}
+{"en": "This space is close to exceeding it's storage quota."}
+{"en": "Older period includes data older than the last year."}
+{"en": "Create or Edit a Data Provider Profile"}
+{"en": "In the Switch Data Provider dialog:"}
+{"en": "Select your Space"}
+{"en": "Thanks to the product page created by the data provider you get detailed information on the data product and eventually access to sample data, if available."}
+{"en": "To guarantee a smooth roll-out of updates to any object without immediately affecting or even breaking fact models, consumption models, or perspectives, you can derive versions of objects."}
+{"en": "You can display the reference quantity and the simulation quantity side by side."}
+{"en": "The inspector detects issues for each top-level material per time period."}
+{"en": "Any path used with this connection will be prefixed with this root path."}
+{"en": "It must be unique for the clause type in each language."}
+{"en": "Enables you to indicate if the acceptance of an ordered item is to take place at the point of origin."}
+{"en": "Enter a name for your space."}
+{"en": "Changes within the same version are saved as new revisions."}
+{"en": "You can search and purchase analytical data from data providers."}
+{"en": "The projected plant stock can be calculated from the current stock- or requirements situation for the start date of the reference object."}
+{"en": "Provide all the mandatory details such as the Pricing Date, Currency, and Quantity, and choose Simulate."}
+{"en": "Data Layer Object Properties - Shared Content Between WA and HP"}
+{"en": "Select Create Filter and add your filter conditions:"}
+{"en": "Create a new space."}
+{"en": "In each condition record where you define a scale value, you can further specify the scale type."}
+{"en": "This is the summary of your schedule."}
+{"en": "Select the Space you would like to work in."}
+{"en": "The following reporting periods are not available in this app:"}
+{"en": "You can define measures for your consumption model."}
+{"en": "[if Enable Statement-level Triggers = true] Create Statement-level Insert Triggers"}
+{"en": "The Work Center column lists the resource of the corresponding order."}
+{"en": "Make your view visible to analytical clients."}
+{"en": "Defines a relative time interval for which you want to determine the creation of the necessary physical inventory documents for your cycle counting process."}
+{"en": "see the storage status of your space"}
+{"en": "If you wish to create a role without extending a predefined standard role, choose the blank template."}
+{"en": "You access these detailed task logs by navigating to the Data Integration Monitor - Details screen of the relevant task."}
+{"en": "When a new delivery is made available by the provider, the Status of your data product is outdated."}
+{"en": "Cloud Connectors that you want to use for data flows only don't require an entry in this list."}
+{"en": "To publish the release at a later point in time, click Save."}
+{"en": "These skills are specified in the resource request."}
+{"en": "The provider has removed the data product from the available data product list."}
+{"en": "To activate a data provider profile for which you’ve received an activation key, click Activate, enter the key, and click Activate."}
+{"en": "Rename a column by clicking MenuChange Business Name"}
+{"en": "Dynamic Memory Allocation for Data Flows"}
+{"en": "To manage your products and licenses, to publish new releases, and to maintain your data provider profile page, the Data Sharing Cockpit offers you tailored apps for each task and workflow."}
+{"en": "Save or publish a release."}
+{"en": "Read the messages to understand if there are any errors or warnings, if the actions you performed on the template were successful, if further action is required from you, and so on."}
+{"en": "Resolve the memory issues by deleting unecessary data in your space or by assigning more memory to your space."}
+{"en": "Choose the Go to App button to open the end user app."}
+{"en": "Enter an email address for the internal communication between you as the data provider and SAP."}
+{"en": "You can now switch to the data provider profile."}
+{"en": "Create Local Tables"}
+{"en": "If the required connection is not available for selection, you or an administrator need to create the tunnel connection before you can create the SAP BW/4HANA Model Transfer connection."}
+{"en": "Set your space priority."}
+{"en": "Click the consumption model name in the shell bar breadcrumbs to return to it, and then click the  Perspectives tab."}
+{"en": "You can edit the predefined email and then send it to the provider who then gets in touch with you."}
+{"en": "For the Heath Check Support  access category, the incident ID references SAP internal incidents raised by automatic health checks."}
+{"en": "Modify the properties of objects, including providing business names for them to make them easier to identify and use for non-technical users."}
+{"en": "You can view all top-level materials of the work center."}
+{"en": "The residence period is part of the overall retention period."}
+{"en": "[if Enable Compound Triggers = true] Flush Threshold of Compound Triggers"}
+{"en": "If such a column does not exist, you may choose to create a calculated column and concatenate values from other columns into it to provide unique identifier values."}
+{"en": "If no period range is defined, the start date of the Period Range selection defaults to the current date."}
+{"en": "If switched on, it indicates that each data record of the currently opened business entity finds a match in the selected target business entity with the configured key mapping."}
+{"en": "If you want to restrict the data to include in the release, select a view from the Items table and enter or paste your data queries in the Data Selection section."}
+{"en": "Set the minimum score needed to match an input record with a lookup record and place it in the Review results category."}
+{"en": "Control your join in the Mappings section of its side panel:"}
+{"en": "data related to spaces,"}
+{"en": "You could also allow your space data to be consumed in your HDI containers."}
+{"en": "Set the minimum score needed to match an input record with a lookup record and place it in the Matched results category."}
+{"en": "Possible quick actions are:"}
+{"en": "The advantage of this attribute is that you can refer to certain business partners in one condition by using the correct payment clearing group."}
+{"en": "Specifies the Valid To date for compliance requirements."}
+{"en": "The data provider has entered some details about the product:"}
+{"en": "Information on the contained data, which is entered in the Create Release wizard."}
+{"en": "In the Permissions page individual permissions assigned to privilege types are displayed"}
+{"en": "Note that Cloud Connectors that you want to use for data flows only don't require an entry in this list."}
+{"en": "The space that was selected to store the data product."}
+{"en": "This means that the work center change is only visible in your schedule and is not yet saved in the maintenance order."}
+{"en": "New records that have the same pairing column value as an existing pairing group are automatically placed in the appropriate results category for that pairing group."}
+{"en": "SAP and other SAP products and services mentioned herein as well as their respective logos are trademarks or registered trademarks of SAP SE (or an SAP affiliate company) in Germany and other countries."}
+{"en": "To be able to use the data product, the data provider will send an activation key via email that provides authorization to access one or multiple data products."}
+{"en": "It might make sense to delete unnecessary data in your space or to extend the assigned storage."}
+{"en": "There are many ways to collect and combine data to create business insights:"}
+{"en": "You can create a text block inside the text block library."}
+{"en": "This space is no longer active."}
+{"en": "Allocate your capacity units to compute and storage resources."}
+{"en": "Generate keys that you can share with consumers to allow them to use the licensed scope of data products."}
+{"en": "The release is highlighted on the landing page with the flag “Not published yet”."}
+{"en": "For each business entity used as data restriction, you need to map each key member to the data access control's output column."}
+{"en": "Create a schedule to load new snapshot of data asynchronously and recurrently in the background according to the defined settings."}
+{"en": "The interfaces you have subscribed to for monitoring, including the status of the individual messages."}
+{"en": "A pop up informs you about the source updates before you can go with deployment."}
+{"en": "To edit an existing data provider profile, click ."}
+{"en": "In this app, you can create the reference data that are used for the simulations."}
+{"en": "Note that after a redeployment, the persistency is deleted and the data access is changed back to virtual."}
+{"en": "Specify date and text information for the release."}
+{"en": "You can search and browse for data products and data providers."}
+{"en": "saving is available but deployment is blocked"}
+{"en": "You can donwload it to get a data update."}
+{"en": "Skills with a check mark are provided by the resource."}
+{"en": "This provides you feedback on how many entries within the current business entity there are and how many of them match to entries of the target business entity."}
+{"en": "The data provider profile page provides additional information about the data provider and other products or product groups."}
+{"en": "insert privilege is removed from the Space Manager"}
+{"en": "Remote Table Monitor - short descriptions"}
+{"en": "First Steps to Create Insights"}
+{"en": "[read-only] Displays the deployment and error status of the object."}
+{"en": "Keeping an overloaded space active can impact running jobs."}
+{"en": "Personal data concerning insurances and bank or credit card accounts"}
+{"en": "Reviewers do not require any work center assignment."}
+{"en": "You can create clauses and signature blocks with this option."}
+{"en": "Enter a text briefly describing the data contained in the release, and enter a comment."}
+{"en": "Create users so you can assign them to a space."}
+{"en": "This allows for multiple associations between the same business entities (in different contexts) and provides additional business meaning to the association."}
+{"en": "The associated business entities will be available as dimensions when you create a consumption model."}
+{"en": "Click an issue."}
+{"en": "They allow data to flow into the Business Builder and are combined together to produce fact models and consumption models."}
+{"en": "Plant stock at start date of reference"}
+{"en": "Enable ABAP Manageable Trigger Namespace"}
+{"en": "If the view uses other views that were not changed, these views are not touched by the deployment and therefore the persistency is still available."}
+{"en": "Using the Time From and Time To fields, you can filter for jobs that have been created between these two points in time."}
+{"en": "Select a space from the drop-down menu."}
+{"en": "A database user lets you ingest data from third-party SQL tools and also allows you to expose your space data to third-party SQL tools."}
+{"en": "In this popup you can select different periods and change the available capacity of the work center."}
+{"en": "For example, while creating a contract, if you need to exit the contract creation process to double-check and clarify certain details, you can select Contract in Preparation."}
+{"en": "All Dates:You can see all the dates that are auto-generated when the renewal and termination clauses are either defined in the legal transaction or predefined in the context."}
+{"en": "The Data Sharing Cockpit is the tool you use as a the data provider."}
+{"en": "The business catalog gives you an overview of all the models you can use, across all the Spaces you are authorized for."}
+{"en": "Check how much spaces the task logs are using on a tenant, and define criteria to manually or automatically delete them."}
+{"en": "With connection type Open Connectors you can now create connections to the third-party data sources available as connector instances with your  account."}
+{"en": "Based on implicit data restrictions, every user has access to the relevant data according to his or her role."}
+{"en": "Transfer staffing assignments according to your selection criteria."}
+{"en": "All Dates:You can see all the dates that are auto-generated when renewal and termination clauses are predefined."}
+{"en": "Create a fact model to group associated analytical data sets and dimensions together for use in multiple consumption models."}
+{"en": "This is done to prevent over usage of the space."}
+{"en": "Table Services - Enable the In-Memory Storage option to store the table data directly in memory (see )."}
+{"en": "Attributes in consumption models can either reference attributes from the included fact or dimension sources or be calculated from other attributes of the current consumption model."}
+{"en": "A configuration (or implementation) item may contain implementation steps which are executed in end user apps."}
+{"en": "Access SAP HANA Deployment Infrastructure containers through  and use your data in the Data Builder or gain access to your space data from your HDI container."}
+{"en": "Because the implementation step is executed in an end user app, the changes are not transportable from the Q system to P system."}
+{"en": "The BI Content Creator creates and changes stories."}
+{"en": "Click the New Graphical View tile to enter the builder."}
+{"en": "Click a colored cell or the entire row to view more details about the issues and their category in the Issues panel."}
+{"en": "The quantities are displayed per month or week (bucket)."}
+{"en": "SQLScript (Table Function) - Use SQL Script with support for  statements, loops, and other more complex structures."}
+{"en": "No updates are made on your system."}
+{"en": "There are six types of messages:"}
+{"en": "The Business Catalog gives an overview of all the models the business user can use, across all the Spaces they are authorized for."}
+{"en": "For more information, see Oracle Trigger-Based Replication in the SAP HANA Smart Data Integration and SAP HANA Smart Data Quality Installation and Configuration Guide."}
+{"en": "Complete or consult other side panel sections as appropriate:"}
+{"en": "Choose an appropriate data entity to provide data to your business entity and click Create to open the editor."}
+{"en": "Choose from the following types:"}
+{"en": "The messages are grouped in the following categories:"}
+{"en": "Narrow down the list of orders based on their main work center."}
+{"en": "Once the incident has been processed, you can create the  bridge instance in the dedicated page SAP BW Bridge of the Configuration area with the size you’ve allocated (see )."}
+{"en": "Select a session."}
+{"en": "Create a schedule:"}
+{"en": "Document - Action Required"}
+{"en": "In the Share Schedule dialog, just remove the name of the person whose access you want to revoke."}
+{"en": "You can change the start date and time of order operations by dragging them one at a time to the desired date in the chart."}
+{"en": "Release Restriction Note"}
+{"en": "You can only display and use these two Planned Count Date From - To fields, when you use the date selection type Static."}
+{"en": "Documents - Action Required"}
+{"en": "Restoring an Older Version or Revision of a Text Block"}
+{"en": "The Data Provider profile provides additional information about other products or product groups."}
+{"en": "Notification Sent Date"}
+{"en": "Check and Transfer Staffing Assignments"}
+{"en": "You can also create your own scenarios."}
+{"en": "Select your homepage from the dropdown menu."}
+{"en": "The following restrictions are applicable:"}
+{"en": "About Approval Process"}
+{"en": "Once you have selected a category, you must select a subcategory, such as Tasks by Status or Tasks by Status and Compliance Requirement, to refine your analysis results further."}
+{"en": "You can perform the following actions in table view:"}
+{"en": "Routing Information Retrieval"}
+{"en": "You can filter by schema or by storage type."}
+{"en": "Expose your data in lightweight, closely-focused perspectives to SAP Analytics Cloud and other analytics clients."}
+{"en": "Enterprise Edition check:"}
+{"en": "You can add more specific measures to your consumption model."}
+{"en": "Reviewers are not allowed to make any changes to the schedule and they do not see the utilization forecast shown when the schedule is in Scoping and Refinement."}
+{"en": "In the side navigation area, click , select the space you want to work in, and click Remote Query Monitor to open the monitor."}
+{"en": "Enter your key, accept the terms of use and select a space where the data should be stored."}
+{"en": "Save the assignment."}
+{"en": "Change queue assignments."}
+{"en": "The following project44 add-ons are available:"}
+{"en": "Create new Work Package"}
+{"en": "The following work item types are available:"}
+{"en": "To create a new item, choose one of the following options:"}
+{"en": "This column shows you if quick actions are available."}
+{"en": "Included in Schedule (Filter)"}
+{"en": "Click Create Needs."}
+{"en": "Check Intercompany Transactions"}
+{"en": "Provides additional information about metering of usage."}
+{"en": "The Production Order:"}
+{"en": "Document Status - Text"}
+{"en": "To create a dock appointment, proceed as follows:"}
+{"en": "Limitation of a locked space:"}
+{"en": "Select one of the following shipment types:"}
+{"en": "You have the following position:"}
+{"en": "Highloaded Periods Card"}
+{"en": "The following troubleshooting modes are available:"}
+{"en": "When a data access control is applied to a data layer view or a business layer object, the rows of data contained in the object are filtered based on the specified criteria."}
+{"en": "Reset not required"}
+{"en": "Pause Real-Time Replication for an Agent"}
+{"en": "Enables you to refresh purchase requisitions."}
+{"en": "Then choose Accept."}
+{"en": "Item expiration Date"}
+{"en": "Accept Legal Disclosure."}
+{"en": "You can edit the predefined email and then send it to the provider."}
+{"en": "This task is optional."}
+{"en": "Released for Processing"}
+{"en": "Enter the name and the description of your role collection."}
+{"en": "Icon on the tab indicates the following:"}
+{"en": "By default the check box is unchecked."}
+{"en": "In the sales and delivery processes, the placeholders are resolved in the languages in which the document is printed."}
+{"en": "P Paste Assignment"}
+{"en": "FICA document will be displayed."}
+{"en": "Payment Method Text"}
+{"en": "Create, edit and display a single order fulfillment responsibility for a specific split criterion (for example, plant or material group) or a combination of multiple split criteria."}
+{"en": "Personal Data Report"}
+{"en": "Choose Add Check."}
+{"en": "Choose View Compliance Requirements."}
+{"en": "Score Output Type"}
+{"en": "Display the segments in which the sequence is used."}
+{"en": "Click Create Schedule."}
+{"en": "Choose Cancel Dispatch."}
+{"en": "Differences between target costs and actual costs that cannot be attributed to any above mentioned category."}
+{"en": "The following routing methods are supported:"}
+{"en": "via Notifications or"}
+{"en": "Controls the verification of the host name field of the server certificate:"}
+{"en": "Perform one of the following actions:"}
+{"en": "Upload Field Fuel"}
+{"en": "Maintenance planners can modify, share, or delete the schedule."}
+{"en": "For example, you can specify which availability match percentage to use for the calculation of the total suitability match."}
+{"en": "The Product Allocation Order Items card displays only those order items which have product allocation confirmation quantity assigned to characteristic value combinations which belong to the selected product allocation object."}
+{"en": "Unreleased Compliance Requirements"}
+{"en": "By selecting the search button in the field, you are taken to the Define Conditions:the characteristics displayed here are the standard characteristic values that can be used when, for example, you configure product allocation objects."}
+{"en": "Create Analytic Applications"}
+{"en": "History Retention Period:"}
+{"en": "Setup of Retention Period"}
+{"en": "Go to Items Completed."}
+{"en": "Create New Options"}
+{"en": "Manage Payment Advices"}
+{"en": "You have entered the following data:"}
+{"en": "Select Dialog Text."}
+{"en": "No Valid Contract"}
+{"en": "Enter the title for your report:"}
+{"en": "Save Data Points"}
+{"en": "In the side panel, do the following:"}
+{"en": "Delete audit log entries by space."}
+{"en": "To calculate the match percentage, the app sums up the free hours per month for the entire request time frame.The result is then divided by total number of required hours."}
+{"en": "Select the Stores tab page."}
+{"en": "Deployment and Activation"}
+{"en": "You need the DW Administrator role to create database user groups."}
+{"en": "Select the test plan type from the dropdown list."}
+{"en": "Administration in Spaces"}
+{"en": "Select the association(s) to copy and click Create."}
+{"en": "Choose a space from the drop-down list."}
+{"en": "Choose Create Connection."}
+{"en": "There are two kinds of assets:"}
+{"en": "You can reset the clearing of line items as well as reverse the clearing entry."}
+{"en": "Create New Regulation"}
+{"en": "Type of Change Document"}
+{"en": "Create a conditional"}
+{"en": "Compliance Requirement Country"}
+{"en": "You must choose at least one category."}
+{"en": "The column containing users ids must be selected as the Principal Name Column in your data access control."}
+{"en": "List of Notifications"}
+{"en": "Click AddCreate User."}
+{"en": "Save your space."}
+{"en": "Documents - Communication Status"}
+{"en": "Click Submit Request."}
+{"en": "You can trigger the creation of new grouping rules, search for existing grouping rules, and delete grouping rules that are no longer required."}
+{"en": "Check the status before you execute changes."}
+{"en": "Navigate from Asset Depreciation Values."}
+{"en": "You have the following options to show assignment changes:"}
+{"en": "Create a Custom Requirement"}
+{"en": "Click to add file comment"}
+{"en": "This procedure provides the option to create SAP HANA virtual tables in the open SQL schema that refer to objects in data lake."}
+{"en": "Enter the name of the cost component in the Name field."}
+{"en": "Create an issue:"}
+{"en": "Save the query."}
+{"en": "Create Workflow for Sourcing Projects"}
+{"en": "Delete a scope."}
+{"en": "Save the space."}
+{"en": "URL of the SuccessFactors Employee Central tenant"}
+{"en": "Indicates the current status of a master data record."}
+{"en": "Navigate to Stages."}
+{"en": "Activation of Data Source:"}
+{"en": "Packaging levels are used for the following purposes:"}
+{"en": "Create a Target Table in Data Flow"}
+{"en": "Enter an optional description for the mapping."}
+{"en": "Specify the locations for the following options:"}
+{"en": "· Select Classification"}
+{"en": "To specify the document type as scheduling agreement."}
+{"en": "Enter the term."}
+{"en": "Go to the Filter tab Select Create filter and define your filter conditions:"}
+{"en": "Review the schedule."}
+{"en": "Edit a Release"}
+{"en": "For clearing, the lower of the limit defined for your user and the limit defined for your business partner applies.You can also define amount limits for your Financial Accounting users."}
+{"en": "For more information, see Service Group Publishing."}
+{"en": "Format for Income Classification"}
+{"en": "You must select one or more columns containing filter criteria as Output Columns in your data access control."}
+{"en": "Name of the space the product belongs to."}
+{"en": "Restrictions on Capture:"}
+{"en": "Long descriptions are available for the following items:"}
+{"en": "Save the schedule."}
+{"en": "Click Select Owner."}
+{"en": "Clear as Sequence"}
+{"en": "Setting up Joint Venture Accounting Cost Objects:"}
+{"en": "Download the following files:"}
+{"en": "For more information about creating an equipment template, see ."}
+{"en": "On the SAP Easy Access menu, choose  Joint venture accounting  Actual posting  Cash call batch ses."}
+{"en": "Profile types include the following:"}
+{"en": "It allows you to create an assignment exactly as requested by the project manager.This action is available if the project manager requested a specific resource and no resource has been assigned to the request yet."}
+{"en": "The characteristic value columns list the values that have been maintained for the characteristics defined for the document class.You can select the characteristic value by entering the value manually (possible entries are then suggested by the app) or, alternatively, by choosing the value in the subsequent characteristic dialog screen."}
+{"en": "This column shows you if quick actions are available for a resource request.If a quick action is available, a link is shown."}
+{"en": "Indicates whether the MRS item is obsolete."}
+{"en": "Locking a Release"}
+{"en": "Audit log missing detailed information"}
+{"en": "<description of the transaction>"}
+{"en": "Click Apply to save your new tile."}
+{"en": "The following views are made available in this space:"}
+{"en": "In the Trusted Origins section, choose between the following options:"}
+{"en": "The dependencies are assigned to the operation."}
+{"en": "Doc.Template Name in Structure"}
+{"en": "Primary Contact Indicator"}
+{"en": "These messages are enabled by default."}
+{"en": "Open Check and Transfer of Staffing Assignments."}
+{"en": "Tasks are created in the compliance requirement."}
+{"en": "Run In Simulation"}
+{"en": "Cash Pool Minimum Transfer Amount"}
+{"en": "This class is used to convert a quantity from one unit of measurement to another."}
+{"en": "If a resource has been requested and the request has not yet been staffed, you'll see a Quick Assignment link in the Actions column.This allows you to create the assignment exactly as requested by the project manager."}
+{"en": "Under Connectivity, choose Destinations."}
+{"en": "Open port in Cloud Foundry environments"}
+{"en": "Choose Create new contract from the dropdown list."}
+{"en": "You can decide how important your space is compared to other spaces."}
+{"en": "To add a business user, proceed as follows:"}
+{"en": "Select a location."}
+{"en": "You can choose one of the following options for managing payment details:"}
+{"en": "The exposed dimension sources can the be used in your consumption models."}
+{"en": "Specifies the revision date of the document."}
+{"en": "Create and delete teams."}
+{"en": "You can also enter your own mass transfer ID."}
+{"en": "Go to Scope Builder."}
+{"en": "Choose the relative date type."}
+{"en": "Enter Additional Property Information"}
+{"en": "Build a schedule by adding and removing order operations"}
+{"en": "The end date and time for the query."}
+{"en": "Associations between entities"}
+{"en": "You can perform batch postings for the activities."}
+{"en": "The history displays information such as:"}
+{"en": "Click on the reporting task you want to process."}
+{"en": "Dimensions are used to group data whose content is logicallyBy default, you see your object’s business name."}
+{"en": "Create and manage requisitions using Microsoft Excel"}
+{"en": "Create a Service Key"}
+{"en": "Select the Store Audit tab page."}
+{"en": "Intelligent Scenarios Name"}
+{"en": "Select the item you want to change."}
+{"en": "173 Display Phantom Hierarchy"}
+{"en": "Change the document type."}
+{"en": "The report does not display any data."}
+{"en": "You can define the following which applies to the packages:"}
+{"en": "For a simple step-by-step guide see Accessing your HDI container ."}
+{"en": "Origin of Rule"}
+{"en": "Search for forecast."}
+{"en": "Navigate to the superior asset."}
+{"en": "There are two types of busy indicator:"}
+{"en": "Handling of reference Characteristics."}
+{"en": "the document tab is clicked,"}
+{"en": "A work package combines the following information:"}
+{"en": "You just need to create a Data Provider Profile."}
+{"en": "To add an item, select the item from the Items list."}
+{"en": "You can define a time frame in the following ways:"}
+{"en": "If the Source Browser panel is not visible on the left of the screen, click Source Browser in the toolbar to show it."}
+{"en": "Provides general information about the facility."}
+{"en": "Select the attribute type from the following options:"}
+{"en": "Displays the consumption data for the entitlement."}
+{"en": "Displays the available item value on this layer."}
+{"en": "Check the state of the connectors:"}
+{"en": "The package contents are displayed."}
+{"en": "The X-Message is no longer raised."}
+{"en": "A system messageconfirming that the changes have been saved appears."}
+{"en": "Process Additional information data"}
+{"en": "Order Fulfillment Cockpit"}
+{"en": "This is a monitoring list."}
+{"en": "Limitations and Restrictions"}
+{"en": "You can create the following two types of hierarchies:"}
+{"en": "If you flag the Execute ABC checkbox, the alternative control is active and will be used productively when you click Save."}
+{"en": "Check the compliance assessments of the raw material."}
+{"en": "BDT - Intrastat Processing"}
+{"en": "Search for Interactions"}
+{"en": "Release to Production"}
+{"en": "Enter a description for your vendor invoice."}
+{"en": "Display the Intercompany transactions"}
+{"en": "To create a Forms by Adobe print template, proceed as follows:"}
+{"en": "BAdI, personal data,"}
+{"en": "Relationships for other SAP applications"}
+{"en": "Click Table view."}
+{"en": "Issues with importing compliance requirements"}
+{"en": "Description and Notes"}
+{"en": "Click Apply to close."}
+{"en": "Select an agent."}
+{"en": "Suspending and Removing Projects, Partners, and Equity Groups from Suspense"}
+{"en": "The following allocation steps are included:"}
+{"en": "The following applies to this type of attachment:"}
+{"en": "The Order Card displays the following details:"}
+{"en": "You can now edit the following details of subscription items:"}
+{"en": "Creating a contract that references a purchase requisition."}
+{"en": "In the area Classification"}
+{"en": "In Customer Business Planning,"}
+{"en": "Has the following characteristics:"}
+{"en": "Terminate the scheduled jobs"}
+{"en": "The level is now selected."}
+{"en": "Currently, only one space can be assigned to access and use the data lake."}
+{"en": "Displays the type of the selected algorithm."}
+{"en": "It indicates if a schedule is defined for the data flow:"}
+{"en": "A new version of a format mapping can be created in one of the following ways:"}
+{"en": "Application Operations Guide"}
+{"en": "The Suppliers panel includes the following elements:"}
+{"en": "Retention Period Unit = Year"}
+{"en": "Mapping for Company Code"}
+{"en": "Select any requirement"}
+{"en": "Select the notification."}
+{"en": "Select the queries you want to refresh."}
+{"en": "Calculation Step Description"}
+{"en": "Contacting Data Provider"}
+{"en": "Remove the selected operations from this week's schedule."}
+{"en": "Application in the side panel:"}
+{"en": "This is the default rule type."}
+{"en": "Repeat to Check Other Intercompany Transactions"}
+{"en": "The system displays the following evaluation types:"}
+{"en": "The total price of the fixed order has not changed."}
+{"en": "Status of the subscription."}
+{"en": "Select the objects that you want to change"}
+{"en": "The Create Question dialog opens."}
+{"en": "gCTS assumes default values for the following entities:"}
+{"en": "Number of the item."}
+{"en": "Enter the Report:"}
+{"en": "Overlapping in Lot Sizing Procedure"}
+{"en": "Notifications for Tasks"}
+{"en": "The mapping files contain the following changes:"}
+{"en": "Feature Scope Description for SAP Product Configuration"}
+{"en": "If you choose the Total Hours rule or the Daily Hours rule, you can change the time period as required, for example, if you want to break the overall assignment down into different segments using different distribution rules."}
+{"en": "Enables you to assign a Kanban process to an item in a purchase contract."}
+{"en": "Feature Scope Description for SAP S4HANA Banking for complex loans"}
+{"en": "Create a dimension to consume a data entity containing master data, identify attributes and keys, and produce a business entity for use in fact and consumption models."}
+{"en": "You cannot approve or reject this request."}
+{"en": "Click the Manage Substitution tile."}
+{"en": "You need this Compliance Requirement to"}
+{"en": "Financial Statement - Ukraine"}
+{"en": "For more information on invoice summary role, see ."}
+{"en": "Credential Charset Name"}
+{"en": "aATP, ABC, plant substitution"}
+{"en": "Deprecation of Report:"}
+{"en": "For more information on how to create custom roles, see Creating Custom Roles."}
+{"en": "The following substitutions are created:"}
+{"en": "Select Alert Reports from the dropdown."}
+{"en": "You can find this file in note attachment"}
+{"en": "Customer via IDOC"}
+{"en": "The following tasks are still necessary:"}
+{"en": "The following is a sample query:"}
+{"en": "Find the purchase order by:"}
+{"en": "In the Team Members tab, do the following:"}
+{"en": "Editing facility information"}
+{"en": "Change Tracker Log"}
+{"en": "Message Change Log"}
+{"en": "Choose a level."}
+{"en": "For the following Messages no long texts are available:"}
+{"en": "Either of the following mappings:"}
+{"en": "The repair object is set to status Completed."}
+{"en": "Create column table."}
+{"en": "Create a constraint."}
+{"en": "Specifies the number of the requirements."}
+{"en": "View rejected items."}
+{"en": "Setup and Administration:"}
+{"en": "In the filter settings, you can specify that the monthly distribution of required hours and free hours is used instead.By default, the app uses this match percentage to calculate the total suitability match."}
+{"en": "In this section, you can find information about the security features of , freight collaboration option."}

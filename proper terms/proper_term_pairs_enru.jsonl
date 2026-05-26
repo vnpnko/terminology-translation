@@ -1,0 +1,1266 @@
+{"en": "0 Assigned", "ru": "Присвоено 0"}
+{"en": "ABAP CDS Pipeline", "ru": "пайплайна ABAP CDS"}
+{"en": "ABAP packages", "ru": "пакетах ABAP"}
+{"en": "acceptance", "ru": "приемки"}
+{"en": "access", "ru": "переход"}
+{"en": "access level", "ru": "уровня доступа"}
+{"en": "access token", "ru": "маркера доступа"}
+{"en": "account", "ru": "учетная запись"}
+{"en": "account assignment", "ru": "контировке"}
+{"en": "accounting period", "ru": "отчетного периода"}
+{"en": "Accounts Payable", "ru": "бухгалтерия кредиторов"}
+{"en": "accrual", "ru": "разграничение"}
+{"en": "accruals", "ru": "разграничений"}
+{"en": "Acquisitions", "ru": "поступления"}
+{"en": "action", "ru": "операция"}
+{"en": "action list", "ru": "список операций"}
+{"en": "Action Priority", "ru": "Приоритет операции"}
+{"en": "actions", "ru": "операции"}
+{"en": "activate", "ru": "активация"}
+{"en": "Activate Account", "ru": "Активировать учетную запись"}
+{"en": "activation key", "ru": "ключ активации"}
+{"en": "activation keys", "ru": "ключи активации"}
+{"en": "Activities", "ru": "Операции"}
+{"en": "activity", "ru": "активность"}
+{"en": "activity type", "ru": "тип операции"}
+{"en": "activity type groups", "ru": "групп видов работ"}
+{"en": "adapters", "ru": "адаптеры"}
+{"en": "Add to Scheduling Worklist", "ru": "Добавить в рабочий список календарного планирования"}
+{"en": "add-on", "ru": "дополнение"}
+{"en": "adjustment item", "ru": "корректировочной позиции"}
+{"en": "adjustment reason", "ru": "причину корректировки"}
+{"en": "Administration Guide", "ru": "Руководство по администрированию"}
+{"en": "admission", "ru": "допуск"}
+{"en": "Adverity", "ru": "Adverity"}
+{"en": "Adverity UI", "ru": "пользовательский интерфейс Adverity"}
+{"en": "agent", "ru": "агент"}
+{"en": "agent adapter framework", "ru": "фреймворка адаптеров агента"}
+{"en": "aggregate", "ru": "агрегировать"}
+{"en": "aging status", "ru": "статуса старения"}
+{"en": "alert", "ru": "сигнал"}
+{"en": "allocate", "ru": "присвоить"}
+{"en": "allocation", "ru": "распределение"}
+{"en": "Allocation Context", "ru": "Контекст перерасчета"}
+{"en": "allocation cycle", "ru": "цикл перерасчета"}
+{"en": "allocation cycles", "ru": "Циклы перерасчета"}
+{"en": "allocation results", "ru": "результатов перерасчета"}
+{"en": "allocation run result", "ru": "результате прогона перерасчета"}
+{"en": "allowlist", "ru": "список разрешенных"}
+{"en": "alternative control", "ru": "альтернативного контроля"}
+{"en": "Amazon Athena", "ru": "Amazon Athena"}
+{"en": "amount", "ru": "сумма"}
+{"en": "analysis step", "ru": "шага анализа"}
+{"en": "analytical clients", "ru": "клиентов аналитики"}
+{"en": "analytics chart", "ru": "аналитическая диаграмма"}
+{"en": "Analytics Specialist", "ru": "Специалист по аналитике"}
+{"en": "anchor", "ru": "якорный"}
+{"en": "API endpoint", "ru": "конечную точку API"}
+{"en": "app", "ru": "приложении"}
+{"en": "Application Logs", "ru": "Журналы приложения"}
+{"en": "applications", "ru": "приложений"}
+{"en": "apply", "ru": "применять"}
+{"en": "Approval Details", "ru": "подробным данным утверждения"}
+{"en": "apps", "ru": "приложения"}
+{"en": "Assemblies", "ru": "Узлы"}
+{"en": "assembly", "ru": "сборка"}
+{"en": "asset", "ru": "Основное средство"}
+{"en": "asset balance", "ru": "Сальдо основных средств"}
+{"en": "assets", "ru": "активы"}
+{"en": "Assign Plant", "ru": "Присвоить завод"}
+{"en": "assigned", "ru": "присвоенный"}
+{"en": "assignment", "ru": "присвоение"}
+{"en": "Assignment Board", "ru": "Assignment Board"}
+{"en": "assignment view", "ru": "Ракурс присвоения"}
+{"en": "assignments", "ru": "присвоения"}
+{"en": "association", "ru": "связь"}
+{"en": "association context", "ru": "контекст связей"}
+{"en": "asynchronous upload", "ru": "асинхронной загрузки"}
+{"en": "ATP", "ru": "ATP"}
+{"en": "ATP check", "ru": "проверки ATP"}
+{"en": "ATP Document", "ru": "документа ATP"}
+{"en": "attach", "ru": "вложить"}
+{"en": "attachment", "ru": "вложение"}
+{"en": "Attachments", "ru": "Вложения"}
+{"en": "attribute", "ru": "атрибута"}
+{"en": "attribute value assignment", "ru": "присвоений значений атрибутов"}
+{"en": "attribute values", "ru": "значения атрибутов"}
+{"en": "Attributes", "ru": "Атрибуты"}
+{"en": "Audit logs", "ru": "Журналы аудита"}
+{"en": "Audit Status", "ru": "Статус аудита"}
+{"en": "authorization number", "ru": "номер полномочий"}
+{"en": "authorization scenarios", "ru": "сценарии полномочий"}
+{"en": "authorizations", "ru": "полномочия"}
+{"en": "automatic expiration date", "ru": "автоматической датой прекращения действия"}
+{"en": "Auxiliary Measure", "ru": "вспомогательным"}
+{"en": "availability", "ru": "доступность"}
+{"en": "availability control", "ru": "контроль наличия"}
+{"en": "availability match percentage", "ru": "процент соответствия доступности"}
+{"en": "Availability to Promise (ATP)", "ru": "доступного количества (ATP)"}
+{"en": "available capacity", "ru": "доступная мощность"}
+{"en": "average value", "ru": "среднего значения"}
+{"en": "balance", "ru": "сальдо"}
+{"en": "bank", "ru": "Банк"}
+{"en": "bank account", "ru": "банковские счета"}
+{"en": "bank accounts", "ru": "банковских счетов"}
+{"en": "bank fees", "ru": "банковских сборов"}
+{"en": "bank reconciliation accounts", "ru": "счетов банковской выверки"}
+{"en": "bank statement items", "ru": "позиции выписки по счету"}
+{"en": "bank statements", "ru": "выписки по счету"}
+{"en": "Bank Subaccount", "ru": "Банковский субсчет"}
+{"en": "Base Currency", "ru": "Базовая валюта"}
+{"en": "base value", "ru": "ссылочное значение"}
+{"en": "basic finish date", "ru": "базисного срока конца"}
+{"en": "Before and After Images", "ru": "Before- и After-Image"}
+{"en": "bill of material", "ru": "спецификации"}
+{"en": "billing", "ru": "фактурирования"}
+{"en": "billing data", "ru": "биллинговые данные"}
+{"en": "billing document", "ru": "документ расчета"}
+{"en": "billing element", "ru": "элемента фактурирования"}
+{"en": "billing elements", "ru": "элементы фактурирования"}
+{"en": "billing plan item", "ru": "позиции плана фактурирования"}
+{"en": "Blob Storage", "ru": "хранилище BLOB-объектов"}
+{"en": "block indicator", "ru": "индикатор блокировки"}
+{"en": "blocked data", "ru": "заблокированные данные"}
+{"en": "blocked stock", "ru": "блокированного при поступлении материала запаса"}
+{"en": "Blocking", "ru": "блокировка"}
+{"en": "BOM", "ru": "спецификация"}
+{"en": "BOM Application", "ru": "приложения спецификации"}
+{"en": "BOM components", "ru": "компоненты спецификации"}
+{"en": "BOM item", "ru": "позицию спецификации"}
+{"en": "BOM structure", "ru": "структуры спецификации"}
+{"en": "bookmarks", "ru": "закладки"}
+{"en": "branch", "ru": "ветвь"}
+{"en": "bulk material", "ru": "расходный"}
+{"en": "bulk material indicator", "ru": "индикатор расходного материала"}
+{"en": "business activity", "ru": "бизнес-операции"}
+{"en": "business app", "ru": "бизнес-приложения"}
+{"en": "Business Builder", "ru": "Построитель бизнеса"}
+{"en": "business case", "ru": "бизнес‑задаче"}
+{"en": "business context", "ru": "бизнес-контекста"}
+{"en": "business document class", "ru": "класса бизнес-документов"}
+{"en": "business documents", "ru": "бизнес-документов"}
+{"en": "business entities", "ru": "бизнес-сущностей"}
+{"en": "business entity", "ru": "бизнес-сущности"}
+{"en": "Business Layer", "ru": "бизнес-уровня"}
+{"en": "business object", "ru": "бизнес-объект"}
+{"en": "business page", "ru": "бизнес-страница"}
+{"en": "business partner", "ru": "делового партнера"}
+{"en": "business partner group", "ru": "группировка деловых партнеров"}
+{"en": "business partner grouping", "ru": "группировка деловых партнеров"}
+{"en": "business partners", "ru": "деловых партнеров"}
+{"en": "business process", "ru": "бизнес-процесс"}
+{"en": "business questions", "ru": "деловые вопросы"}
+{"en": "business role", "ru": "бизнес-роли"}
+{"en": "business role ID", "ru": "Ид. бизнес-роли"}
+{"en": "Business User Level 1", "ru": "Бизнес-пользователь, уровень 1"}
+{"en": "Business User Level 2", "ru": "Бизнес-пользователь, уровень 2"}
+{"en": "Business User Level 3", "ru": "Бизнес-пользователь, уровень 3"}
+{"en": "button", "ru": "кнопка"}
+{"en": "calculated attribute", "ru": "Вычисляемый показатель"}
+{"en": "Calculated Column", "ru": "Вычисляемый столбец"}
+{"en": "calculated risk class", "ru": "рассчитанный класс риска"}
+{"en": "calculation", "ru": "расчет"}
+{"en": "calculation type", "ru": "вид расчета"}
+{"en": "CamelJdbcAdapter", "ru": "CamelJdbcAdapter"}
+{"en": "cancel", "ru": "сторнировать"}
+{"en": "cancel replication task", "ru": "задача отмены тиражирования"}
+{"en": "canvas", "ru": "рабочую область"}
+{"en": "capacities", "ru": "мощности"}
+{"en": "Capacity", "ru": "Мощность"}
+{"en": "capacity consumption", "ru": "потребляемой мощности"}
+{"en": "capacity issue", "ru": "проблему мощности"}
+{"en": "capacity situation", "ru": "ситуации мощностей"}
+{"en": "capacity units", "ru": "единиц мощности"}
+{"en": "card", "ru": "карта"}
+{"en": "card header", "ru": "заголовок карточки"}
+{"en": "carrier", "ru": "перевозчик"}
+{"en": "cash flow", "ru": "денежного потока"}
+{"en": "categories", "ru": "категорий"}
+{"en": "category", "ru": "категория"}
+{"en": "CDS Views", "ru": "ракурсов CDS"}
+{"en": "cell-reference", "ru": "ссылка на ячейки"}
+{"en": "certificate", "ru": "сертификата"}
+{"en": "change", "ru": "изменение"}
+{"en": "Change Sales Orders - VA02", "ru": "Изменить заказы клиентов - VA02"}
+{"en": "characteristic", "ru": "характеристика"}
+{"en": "characteristic value combination", "ru": "комбинации значений признаков"}
+{"en": "characteristic values", "ru": "значения признаков"}
+{"en": "charge", "ru": "сбор"}
+{"en": "Charge Off indicator", "ru": "индикатор СписРазн"}
+{"en": "check", "ru": "проверка"}
+{"en": "Check Cash Flow Items", "ru": "Проверить позиции денежного потока"}
+{"en": "checkbox", "ru": "флажок"}
+{"en": "checkout", "ru": "чек-аут"}
+{"en": "Choose", "ru": "Выберите"}
+{"en": "claim", "ru": "страховой случай"}
+{"en": "clarification account", "ru": "промежуточный счет"}
+{"en": "classification requests", "ru": "запросы классификации"}
+{"en": "classification type", "ru": "вид классификации"}
+{"en": "clause", "ru": "положения"}
+{"en": "clearing", "ru": "перерасчет"}
+{"en": "clearing document", "ru": "документа выравнивания"}
+{"en": "clearing entry", "ru": "проводка выравнивания"}
+{"en": "clearing house", "ru": "расчетный центр"}
+{"en": "clearing item", "ru": "перерасчетная позиция"}
+{"en": "client", "ru": "мандант"}
+{"en": "close", "ru": "закрыть"}
+{"en": "Cloud Connector", "ru": "облачного коннектора"}
+{"en": "code", "ru": "кода"}
+{"en": "collection", "ru": "коллекция"}
+{"en": "collection agency", "ru": "коллекторское агентство"}
+{"en": "collection segment", "ru": "сегменте взыскания"}
+{"en": "collection specialist", "ru": "бухгалтера по дебиторской задолженности"}
+{"en": "collective allocations", "ru": "групповых контингентирований"}
+{"en": "color-coded", "ru": "цветовой кодировкой"}
+{"en": "column", "ru": "столбец"}
+{"en": "column header", "ru": "заголовка столбца"}
+{"en": "column names", "ru": "именам столбцов"}
+{"en": "column width", "ru": "ширины столбцов"}
+{"en": "Columns", "ru": "Столбцы"}
+{"en": "communication arrangement", "ru": "коммуникационное соглашение"}
+{"en": "communication type", "ru": "вид коммуникации"}
+{"en": "company", "ru": "компании"}
+{"en": "company code", "ru": "балансовая единица"}
+{"en": "Company Code Currency", "ru": "Валюта балансовой единицы"}
+{"en": "company codes", "ru": "балансовых единиц"}
+{"en": "compare", "ru": "сравнивать"}
+{"en": "compensation", "ru": "возмещение"}
+{"en": "compliance", "ru": "соответствие"}
+{"en": "compliance purposes", "ru": "назначения соответствия"}
+{"en": "compliance requirement", "ru": "требования соответствия"}
+{"en": "Compliance requirements", "ru": "Требования соответствия"}
+{"en": "components", "ru": "компоненты"}
+{"en": "Components tab", "ru": "вкладке Компоненты"}
+{"en": "Compound Triggers", "ru": "составные триггеры"}
+{"en": "compute and storage resources", "ru": "вычислительным и складским ресурсам"}
+{"en": "compute block", "ru": "блок вычислений"}
+{"en": "compute blocks", "ru": "блоки вычислений"}
+{"en": "Condition Library", "ru": "библиотеки условий"}
+{"en": "condition record", "ru": "записи условия"}
+{"en": "condition supplements", "ru": "дополнительные условия"}
+{"en": "Conditions", "ru": "Условия"}
+{"en": "Conditions page", "ru": "Страница Условия"}
+{"en": "Configuration", "ru": "конфигурации"}
+{"en": "Configure partner settings", "ru": "Конфигурация параметров настройки партнера"}
+{"en": "confirmation control key", "ru": "управляющий ключ подтверждения"}
+{"en": "connection", "ru": "подключение"}
+{"en": "connection overview", "ru": "обзоре соединений"}
+{"en": "connection properties", "ru": "свойства соединения"}
+{"en": "connections", "ru": "соединений"}
+{"en": "Connectivity", "ru": "соединения"}
+{"en": "connector instances", "ru": "экземпляров коннектора"}
+{"en": "consent", "ru": "согласие"}
+{"en": "consolidated balance sheet", "ru": "консолидированный баланс"}
+{"en": "consolidation group", "ru": "ГКК"}
+{"en": "consolidation groups", "ru": "ГКК"}
+{"en": "consolidation unit", "ru": "единице консолидации"}
+{"en": "consolidation view", "ru": "ракурс консолидации"}
+{"en": "consumed data", "ru": "используемых объемов данных"}
+{"en": "consuming apps", "ru": "приложениями-потребителями"}
+{"en": "consumption", "ru": "потребление"}
+{"en": "consumption model", "ru": "модель потребления"}
+{"en": "Consumption models", "ru": "Модели потребления"}
+{"en": "container status", "ru": "статуса контейнера"}
+{"en": "content", "ru": "контент"}
+{"en": "contract", "ru": "контракт"}
+{"en": "contract accruals", "ru": "резервного отчисления по договору"}
+{"en": "contract amount", "ru": "сумма контракта"}
+{"en": "contract liabilities", "ru": "обязательств по договору"}
+{"en": "control", "ru": "контролировать"}
+{"en": "controller", "ru": "оператор"}
+{"en": "Convergent Invoicing", "ru": "конвергентное фактурирование"}
+{"en": "conversion rule", "ru": "правило пересчета"}
+{"en": "converter", "ru": "конвертер"}
+{"en": "copy", "ru": "скопировать"}
+{"en": "cost calculations", "ru": "расчета затрат"}
+{"en": "cost components", "ru": "элементами затрат"}
+{"en": "cost rates", "ru": "норм затрат"}
+{"en": "counter", "ru": "счетчик"}
+{"en": "counterparty", "ru": "Контрагент"}
+{"en": "Create data variant", "ru": "Создать вариант данных"}
+{"en": "Create Joint Operating Agreement Basic Screen", "ru": "основной экран создания соглашения о совместной деятельности"}
+{"en": "Create License", "ru": "Создать лицензию"}
+{"en": "Create Negotiation", "ru": "Создать переговоры"}
+{"en": "Create Transform", "ru": "Создать преобразование"}
+{"en": "Creation Dialog", "ru": "диалоговое окно создания"}
+{"en": "credit exposure", "ru": "кредитный риск"}
+{"en": "credit exposures", "ru": "кредитные риски"}
+{"en": "credit limit utilization", "ru": "использование кредитного лимита"}
+{"en": "credit line items", "ru": "позиции кредитования"}
+{"en": "credit memo request", "ru": "Требование кредитового авизо"}
+{"en": "Credit memos", "ru": "Кредитовые авизо"}
+{"en": "credit profile", "ru": "профиль кредита"}
+{"en": "credit rating", "ru": "оценки кредитоспособности"}
+{"en": "CSN File", "ru": "файла CSN"}
+{"en": "CSV file", "ru": "файла CSV"}
+{"en": "CSV file template", "ru": "шаблона файла CSV"}
+{"en": "Currency", "ru": "Валюта"}
+{"en": "Currency Conversion", "ru": "Пересчет валют"}
+{"en": "current month", "ru": "Текущий месяц"}
+{"en": "Current week", "ru": "Текущая неделя"}
+{"en": "custom code", "ru": "пользовательского кода"}
+{"en": "custom field", "ru": "пользовательское поле"}
+{"en": "custom fields", "ru": "пользовательских полей"}
+{"en": "customer balances", "ru": "сальдо клиентов"}
+{"en": "customer service management", "ru": "управлении сервисным обслуживанием клиента"}
+{"en": "Customer Support", "ru": "Поддержка клиентов"}
+{"en": "customer/supplier account", "ru": "счету клиента/поставщика"}
+{"en": "customers", "ru": "клиентов"}
+{"en": "dangerous good regulation", "ru": "предписания по опасным материалам"}
+{"en": "dangerous goods", "ru": "опасных материалов"}
+{"en": "data", "ru": "данных"}
+{"en": "Data Access Control", "ru": "Контроль доступа к данным"}
+{"en": "Data access controls", "ru": "Контроли доступа к данным"}
+{"en": "data aging object", "ru": "объекты старения данных"}
+{"en": "Data Analysis", "ru": "Анализ данных"}
+{"en": "Data Builder", "ru": "построителе данных"}
+{"en": "data categories", "ru": "категорий данных"}
+{"en": "Data Category", "ru": "категории данных"}
+{"en": "data deletion", "ru": "удаление данных"}
+{"en": "data entry", "ru": "ввода данных"}
+{"en": "Data Flow", "ru": "потока данных"}
+{"en": "Data Flow Builder", "ru": "построителе потоков данных"}
+{"en": "data flows", "ru": "потоков данных"}
+{"en": "Data Ingestion", "ru": "Прием данных"}
+{"en": "data lake", "ru": "Озеро данных"}
+{"en": "data lake IQ", "ru": "озеро данных IQ"}
+{"en": "Data Layer", "ru": "уровня данных"}
+{"en": "data layer object", "ru": "объекта уровня данных"}
+{"en": "Data Layer Object Properties", "ru": "Свойства объекта уровня данных"}
+{"en": "Data Manipulation Language", "ru": "Data Manipulation Language"}
+{"en": "Data Marketplace", "ru": "Витрине данных"}
+{"en": "Data Preview", "ru": "предпросмотра данных"}
+{"en": "data product", "ru": "продукт данных"}
+{"en": "data products", "ru": "продуктов данных"}
+{"en": "data protection compliance", "ru": "соответствие требованиям к защите данных"}
+{"en": "data provider", "ru": "провайдер данных"}
+{"en": "data provider profile", "ru": "профиль провайдера данных"}
+{"en": "Data Provisioning", "ru": "Data Provisioning"}
+{"en": "Data Provisioning Agent", "ru": "агент Data Provisioning"}
+{"en": "data range", "ru": "диапазон данных"}
+{"en": "data records", "ru": "записей данных"}
+{"en": "data replication", "ru": "репликация данных"}
+{"en": "Data Selection", "ru": "разделе Выбор данных"}
+{"en": "data server", "ru": "сервером данных"}
+{"en": "data source", "ru": "источник данных"}
+{"en": "data staging", "ru": "предоставление данных"}
+{"en": "data statistics object", "ru": "объект статистики данных"}
+{"en": "Database Name", "ru": "Имя базы данных"}
+{"en": "datastream", "ru": "поток данных"}
+{"en": "Date From - To", "ru": "Дата с - по"}
+{"en": "date range", "ru": "диапазону дат"}
+{"en": "debit line items", "ru": "позиции дебетования"}
+{"en": "decision reason", "ru": "причина решения"}
+{"en": "default", "ru": "По умолчанию"}
+{"en": "default setting", "ru": "по умолчанию"}
+{"en": "default view", "ru": "ракурса по умолчанию"}
+{"en": "Defaultable Business Partner", "ru": "Деловой партнер с риском дефолта"}
+{"en": "Define Recurrence Pattern", "ru": "Опр. шаблон повтор."}
+{"en": "Define Splitting Structures", "ru": "определении схем разделения"}
+{"en": "delete", "ru": "удалить"}
+{"en": "Deleting", "ru": "удаление"}
+{"en": "Deletion", "ru": "удаление"}
+{"en": "deliveries", "ru": "поставки"}
+{"en": "delivery address", "ru": "адреса поставки"}
+{"en": "delta", "ru": "дельту"}
+{"en": "demand", "ru": "потребности"}
+{"en": "demand management", "ru": "управление спросом"}
+{"en": "Demand Plan Simulation", "ru": "Моделирование плана потребности"}
+{"en": "demand quantities", "ru": "количества потребности"}
+{"en": "demand quantity", "ru": "количество потребности"}
+{"en": "demand-driven", "ru": "на основе потребности"}
+{"en": "Deprecation of HTTP Basic Authentication", "ru": "Прекращение поддержки базовой аутентификации HTTP"}
+{"en": "description", "ru": "описания"}
+{"en": "design time", "ru": "среда дизайна"}
+{"en": "destination", "ru": "адрес"}
+{"en": "detailed log", "ru": "подробный журнал"}
+{"en": "details screen", "ru": "экран «Сведения»"}
+{"en": "development system", "ru": "систему разработок"}
+{"en": "diagram", "ru": "диаграмме"}
+{"en": "dialog box", "ru": "диалоговом окне"}
+{"en": "difference amount", "ru": "сумму разницы"}
+{"en": "dimension", "ru": "измерение"}
+{"en": "disabled", "ru": "деактивировано"}
+{"en": "discrete values", "ru": "дискретные значения"}
+{"en": "disk memory", "ru": "дисковой памяти"}
+{"en": "dispatch", "ru": "отправки"}
+{"en": "display", "ru": "показать"}
+{"en": "Display Automation Errors", "ru": "Просмотреть ошибки автоматизации"}
+{"en": "distribution", "ru": "распространение"}
+{"en": "distribution method", "ru": "Методом распределения"}
+{"en": "document", "ru": "документ"}
+{"en": "document header fields", "ru": "поля заголовка документа"}
+{"en": "document type", "ru": "вид документа"}
+{"en": "download", "ru": "выгрузка"}
+{"en": "download history", "ru": "истории выгрузки"}
+{"en": "downstream", "ru": "последующего"}
+{"en": "Draft", "ru": "Черновик"}
+{"en": "drill down", "ru": "выполнить развертку"}
+{"en": "Dropdown", "ru": "Раскрывающийся список"}
+{"en": "dropdown field", "ru": "раскрывающийся список"}
+{"en": "dropdown list", "ru": "раскрывающемся списке"}
+{"en": "due date", "ru": "срок"}
+{"en": "duplicate", "ru": "дубликат"}
+{"en": "Dynamic Memory Allocation", "ru": "Динамическое присвоение памяти"}
+{"en": "dynamic modification", "ru": "Динамизацию"}
+{"en": "edit", "ru": "редактировать"}
+{"en": "Edit Header", "ru": "Изменить заголовок"}
+{"en": "effect", "ru": "действия"}
+{"en": "email address", "ru": "адресом электронной почты"}
+{"en": "Employee Master Data", "ru": "Основные данные сотрудника"}
+{"en": "end date", "ru": "дата окончания"}
+{"en": "end time", "ru": "время окончания"}
+{"en": "enter", "ru": "вводить"}
+{"en": "enterprise contract", "ru": "корпоративному контракту"}
+{"en": "Entity Relationship Model", "ru": "модели связей сущностей"}
+{"en": "Entity-Relationship Diagrams", "ru": "диаграмм связей сущностей"}
+{"en": "entity-relationship model", "ru": "модели связей сущностей"}
+{"en": "entry", "ru": "ввод"}
+{"en": "entry points", "ru": "Точки входа"}
+{"en": "entry sheet", "ru": "ведомость учета услуг"}
+{"en": "Environment, Health and Safety", "ru": "управление данными по охране здоровья и защите окружающей среды"}
+{"en": "environmental limit", "ru": "экологический норматив"}
+{"en": "equity groups", "ru": "группы участия"}
+{"en": "equity type", "ru": "Вид участия"}
+{"en": "equity types", "ru": "видов участия"}
+{"en": "ER model", "ru": "модель связей сущностей"}
+{"en": "error messages", "ru": "сообщения об ошибках"}
+{"en": "errors", "ru": "ошибками"}
+{"en": "Errors pane", "ru": "панели Ошибки"}
+{"en": "evaluation", "ru": "оценка"}
+{"en": "evaluation date", "ru": "Дата анализа"}
+{"en": "event type", "ru": "тип события"}
+{"en": "excel attachment", "ru": "вложения Excel"}
+{"en": "exception", "ru": "особая ситуация"}
+{"en": "exit", "ru": "выйти"}
+{"en": "expanded view", "ru": "Развернутый ракурс"}
+{"en": "Expected Value", "ru": "Ожидаемая стоимость"}
+{"en": "Expenses", "ru": "расходов"}
+{"en": "Experimental features", "ru": "Экспериментальные функции"}
+{"en": "expiration", "ru": "истечение"}
+{"en": "expiration date", "ru": "дате истечения срока"}
+{"en": "Expired status", "ru": "статус Истекло"}
+{"en": "explosion", "ru": "разузлование"}
+{"en": "Extended Statistics", "ru": "Расширенная статистика"}
+{"en": "extension number", "ru": "добавочный номер"}
+{"en": "facet", "ru": "фасете"}
+{"en": "fact model", "ru": "модели фактов"}
+{"en": "Fact models", "ru": "Модели фактов"}
+{"en": "Fact Source Attribute", "ru": "Атрибутом источника фактов"}
+{"en": "Fact sources", "ru": "Источники фактов"}
+{"en": "failed", "ru": "Ошибка"}
+{"en": "features", "ru": "функций"}
+{"en": "federated query", "ru": "федеративных запросов"}
+{"en": "Female", "ru": "Женский"}
+{"en": "field", "ru": "поле"}
+{"en": "field lengths", "ru": "длина полей"}
+{"en": "filter", "ru": "фильтр"}
+{"en": "filter area", "ru": "области фильтра"}
+{"en": "filter bar", "ru": "панели фильтров"}
+{"en": "filter variant", "ru": "варианта фильтра"}
+{"en": "filters", "ru": "фильтров"}
+{"en": "Finance", "ru": "Финансов"}
+{"en": "financial closing tasks", "ru": "задачами во время вашего отсутствия"}
+{"en": "financial statement version hierarchies", "ru": "иерархию версий баланса"}
+{"en": "Find Slot", "ru": "Найти промежуток"}
+{"en": "fiscal year", "ru": "финансового года"}
+{"en": "Fiscal Year Period", "ru": "Период финансового года"}
+{"en": "Fixed Price Co-Product Amount Settlement", "ru": "расчет суммы совместно производимого продукта с твердой ценой"}
+{"en": "fixed price service orders", "ru": "с фиксированными ценами"}
+{"en": "flow", "ru": "поток"}
+{"en": "Flow Builder Plus", "ru": "Flow Builder Plus"}
+{"en": "FMEA", "ru": "FMEA"}
+{"en": "following", "ru": "подписки"}
+{"en": "Force Inline Substitution", "ru": "замещение подключения"}
+{"en": "Force Update", "ru": "принудительного обновления"}
+{"en": "Forecast Delivery Duration", "ru": "Прогнозная продолжительность поставки"}
+{"en": "form", "ru": "форма"}
+{"en": "frequently used", "ru": "Часто используемые"}
+{"en": "full screen mode", "ru": "полноэкранном режиме"}
+{"en": "function", "ru": "функцию"}
+{"en": "functional currency", "ru": "Функциональная валюта"}
+{"en": "Functions", "ru": "Функции"}
+{"en": "G/L account", "ru": "основного счета"}
+{"en": "G/L account mappings", "ru": "присвоения основных счетов"}
+{"en": "Gantt chart", "ru": "диаграмме Ганта"}
+{"en": "gap", "ru": "пропуск"}
+{"en": "GB", "ru": "ГБ"}
+{"en": "gender", "ru": "пол"}
+{"en": "general settings", "ru": "общие настройки"}
+{"en": "get", "ru": "получить"}
+{"en": "Get Certified", "ru": "сертификация"}
+{"en": "Global Accounting Hierarchies", "ru": "глобальными иерархиями учета"}
+{"en": "global currency", "ru": "валюта отчетности"}
+{"en": "global ID", "ru": "Глобальный идентификатор группы"}
+{"en": "go to", "ru": "переход"}
+{"en": "goods receipt", "ru": "поступления материала"}
+{"en": "Google Cloud Storage", "ru": "Google Cloud Storage"}
+{"en": "grant type", "ru": "тип гранта"}
+{"en": "group", "ru": "группа"}
+{"en": "group ID", "ru": "идентификатор группы"}
+{"en": "group IDs", "ru": "групп"}
+{"en": "group journal entries", "ru": "записей журнала концерна"}
+{"en": "group values", "ru": "значений в группе"}
+{"en": "grouping", "ru": "группирование"}
+{"en": "groups", "ru": "групп"}
+{"en": "Guided Mode", "ru": "Управляемый режим"}
+{"en": "guides", "ru": "руководства"}
+{"en": "Handover Date", "ru": "Дата передачи"}
+{"en": "Having", "ru": "Имеет"}
+{"en": "HDI", "ru": "HDI"}
+{"en": "HDI clients", "ru": "клиентов HDI"}
+{"en": "HDI container", "ru": "контейнер HDI"}
+{"en": "header", "ru": "заголовка"}
+{"en": "headers", "ru": "заголовков"}
+{"en": "Heath Check Support", "ru": "Поддержка проверок состояния"}
+{"en": "hedges", "ru": "хеджи"}
+{"en": "hierarchy", "ru": "иерархия"}
+{"en": "high contrast theme", "ru": "высококонтрастной темы SAP"}
+{"en": "historical data", "ru": "данные за прошлый период"}
+{"en": "home page", "ru": "первая страница"}
+{"en": "homepage URL", "ru": "URL домашней страницы"}
+{"en": "ID", "ru": "идентификатор"}
+{"en": "identifier", "ru": "Идентификатор"}
+{"en": "IDs", "ru": "идентификаторы"}
+{"en": "IFRS", "ru": "IFRS"}
+{"en": "impact", "ru": "влияние"}
+{"en": "Import", "ru": "Импорт"}
+{"en": "Import Documents", "ru": "Импорт документов"}
+{"en": "imported", "ru": "импорта"}
+{"en": "in preparation", "ru": "на стадии подготовки"}
+{"en": "in process", "ru": "в обработке"}
+{"en": "in review", "ru": "в проверке"}
+{"en": "in-house materials", "ru": "собственные материалы"}
+{"en": "in-memory", "ru": "in-memory"}
+{"en": "inactive", "ru": "неактивно"}
+{"en": "Inactive units", "ru": "неактивных единиц"}
+{"en": "incident ID", "ru": "ид. инцидента"}
+{"en": "incomplete data", "ru": "неполные данные"}
+{"en": "incomplete services orders", "ru": "незавершенных заказов"}
+{"en": "incompletion log", "ru": "журнал неполных данных"}
+{"en": "independent requirements", "ru": "первичные потребности"}
+{"en": "indicator", "ru": "индикатор"}
+{"en": "Information Lifecycle Management", "ru": "Information Lifecycle Management"}
+{"en": "initialization task", "ru": "задачи инициализации"}
+{"en": "input", "ru": "ввод"}
+{"en": "input fields", "ru": "поля ввода"}
+{"en": "Input Parameter", "ru": "параметр ввода"}
+{"en": "Input Parameters", "ru": "Параметры ввода"}
+{"en": "insert privilege", "ru": "Привилегия на вставку"}
+{"en": "inspection", "ru": "проверка"}
+{"en": "inspection lot", "ru": "контрольной партии"}
+{"en": "inspection plans", "ru": "планам контроля"}
+{"en": "inspector", "ru": "Инспектор"}
+{"en": "installment plan", "ru": "план погашения"}
+{"en": "installments", "ru": "взносы"}
+{"en": "instance", "ru": "инстанция"}
+{"en": "instance activities", "ru": "операций инстанции"}
+{"en": "integration", "ru": "интеграция"}
+{"en": "intelligent lookup", "ru": "интеллектуального поиска"}
+{"en": "interactive tiles", "ru": "Интерактивные плитки"}
+{"en": "intercompany sales orders", "ru": "внутренних заказов клиентов"}
+{"en": "interest calculation", "ru": "начисление процентов"}
+{"en": "interface", "ru": "интерфейс"}
+{"en": "interfaces", "ru": "интерфейсы"}
+{"en": "inventories", "ru": "запасах"}
+{"en": "invoicing request", "ru": "поручения на фактурирование"}
+{"en": "IP address", "ru": "IP-адрес"}
+{"en": "IP allowlist", "ru": "список разрешенных IP"}
+{"en": "IR swap", "ru": "процентного свопа"}
+{"en": "issue", "ru": "отпуск"}
+{"en": "Issues panel", "ru": "панели Проблемы"}
+{"en": "Issuing Authority", "ru": "Выдавшее ведомство"}
+{"en": "Issuing Organization", "ru": "Выпускающая организация"}
+{"en": "it", "ru": "ит"}
+{"en": "item", "ru": "позиция"}
+{"en": "item amount", "ru": "суммы позиции"}
+{"en": "item type", "ru": "вид позиции"}
+{"en": "itemize", "ru": "детализировать"}
+{"en": "items", "ru": "позиции"}
+{"en": "Items table", "ru": "таблице Элементы"}
+{"en": "JIT call", "ru": "отзыв из производства"}
+{"en": "JOA", "ru": "JOA"}
+{"en": "job", "ru": "задание"}
+{"en": "jobs", "ru": "задания"}
+{"en": "join", "ru": "соединение"}
+{"en": "Joint Oper", "ru": "Соглашение о совместной деятельности"}
+{"en": "joint operation", "ru": "совместной деятельности"}
+{"en": "Joint Venture Partner", "ru": "Участник совместного предприятия"}
+{"en": "Joint ventures", "ru": "совместные предприятия"}
+{"en": "journal entries", "ru": "записей журнала"}
+{"en": "journal entry", "ru": "запись журнала"}
+{"en": "Journal Entry Type", "ru": "Вид записи журнала"}
+{"en": "JVA", "ru": "СП"}
+{"en": "kanban containers", "ru": "контейнеров Канбана"}
+{"en": "key", "ru": "Ключ"}
+{"en": "key figure group", "ru": "Группа показателей"}
+{"en": "key figures", "ru": "показателей"}
+{"en": "KPI", "ru": "KPI"}
+{"en": "label", "ru": "метка"}
+{"en": "labeling", "ru": "этикеток"}
+{"en": "labels", "ru": "этикетки"}
+{"en": "language dependent", "ru": "зависимого от языка"}
+{"en": "language dependent texts", "ru": "зависимых от языка текстов"}
+{"en": "latest version", "ru": "последняя версия"}
+{"en": "launchpad", "ru": "панели запуска"}
+{"en": "Learn", "ru": "Обучение"}
+{"en": "legal document", "ru": "юридического документа"}
+{"en": "licenses", "ru": "лицензии"}
+{"en": "limit", "ru": "предел"}
+{"en": "line", "ru": "строке"}
+{"en": "liquidity items", "ru": "позиции ликвидности"}
+{"en": "load", "ru": "загрузке"}
+{"en": "local repository", "ru": "локальном репозитарии"}
+{"en": "local time", "ru": "местному времени"}
+{"en": "localized solution version", "ru": "локализованной версии решения"}
+{"en": "location structure", "ru": "структура местоположений"}
+{"en": "Locked", "ru": "Блокировано"}
+{"en": "locked space", "ru": "заблокировано"}
+{"en": "log", "ru": "журнал"}
+{"en": "log entries", "ru": "записям журнала"}
+{"en": "logging", "ru": "запись в журнал"}
+{"en": "logon email", "ru": "данными для входа в систему"}
+{"en": "logs", "ru": "журналах"}
+{"en": "lot", "ru": "пакет"}
+{"en": "machine learning libraries", "ru": "библиотек машинного обучения"}
+{"en": "MAIN", "ru": "основные мероприятия ремонта"}
+{"en": "maintain", "ru": "выполнять ведение"}
+{"en": "Maintain Installment Plan app", "ru": "приложение Ведение плана погашения"}
+{"en": "Maintenance Backlog Card", "ru": "Карта отставания ТОРО"}
+{"en": "maintenance order", "ru": "заказе ТОРО"}
+{"en": "Maintenance Order Operations", "ru": "вкладке Операции заказа ТОРО"}
+{"en": "maintenance orders", "ru": "Заказы ТОРО"}
+{"en": "maintenance planners", "ru": "плановиков ТОРО"}
+{"en": "Manage Assignments", "ru": "Управление присвоениями"}
+{"en": "Manage Contexts app", "ru": "Управление контекстами"}
+{"en": "Manage Data Validation Tasks", "ru": "Управление мероприятиями проверки данных"}
+{"en": "Manage Date Functions", "ru": "Управление функциями даты"}
+{"en": "Manage G/L Account Master Data", "ru": "Управление основными данными основного счета"}
+{"en": "Manage Multiple Audit Status", "ru": "Управление статусом аудита для нескольких записей"}
+{"en": "Manage Negotiations", "ru": "Управление переговорами"}
+{"en": "Manage Resource Utilization", "ru": "Управление загрузкой ресурсов"}
+{"en": "Manage Sales Orders", "ru": "Управление заказами клиентов"}
+{"en": "mapping", "ru": "сопоставление"}
+{"en": "mapping commands", "ru": "команды сопоставления"}
+{"en": "mapping template", "ru": "шаблон сопоставления"}
+{"en": "mapping values", "ru": "значений мэппинга"}
+{"en": "Mappings", "ru": "Сопоставления"}
+{"en": "mark", "ru": "метка"}
+{"en": "market risk key figures", "ru": "показатели рыночных рисков"}
+{"en": "marking", "ru": "маркировки"}
+{"en": "markings", "ru": "маркировки"}
+{"en": "Mass Assign Records", "ru": "Массово присвоить записи"}
+{"en": "mass-edit", "ru": "массового редактирования"}
+{"en": "match", "ru": "сверить"}
+{"en": "match candidates", "ru": "предлагаемых совпадений"}
+{"en": "match percentage", "ru": "процент соответствия"}
+{"en": "Matched category", "ru": "категории Совпадают"}
+{"en": "material", "ru": "материала"}
+{"en": "Material Master", "ru": "Основные данные материала"}
+{"en": "material master record", "ru": "основной записи материала"}
+{"en": "material requirements", "ru": "потребность в материалах"}
+{"en": "materials", "ru": "материалы"}
+{"en": "measure", "ru": "показатель"}
+{"en": "measures", "ru": "показатели"}
+{"en": "memory", "ru": "памяти"}
+{"en": "merge", "ru": "объединить"}
+{"en": "Merge feature", "ru": "Функция \"Объединить\""}
+{"en": "Message Preview", "ru": "Предварительный просмотр сообщения"}
+{"en": "message-based situation type", "ru": "типа ситуации на основе сообщения"}
+{"en": "metadata", "ru": "метаданных"}
+{"en": "Microsoft Azure", "ru": "Microsoft Azure"}
+{"en": "Migration", "ru": "миграции"}
+{"en": "Model Import Connection", "ru": "соединения для импорта моделей"}
+{"en": "modification rule", "ru": "Правило модификации"}
+{"en": "monitor", "ru": "отслеживать"}
+{"en": "Monitor Bank Fees", "ru": "Монитор банковских сборов"}
+{"en": "Monitoring Views", "ru": "ракурсам мониторинга"}
+{"en": "movement type", "ru": "вида движения"}
+{"en": "MRP data", "ru": "данных ППМ"}
+{"en": "MS Azure Blob Storage", "ru": "хранилище BLOB-объектов MS Azure"}
+{"en": "Multi-Level Material Simulation", "ru": "Многоуровневое моделирование материалов"}
+{"en": "Multiple category", "ru": "Несколько"}
+{"en": "Must start on constraint", "ru": "Требуемая дата начала"}
+{"en": "negotiation", "ru": "переговоров"}
+{"en": "network graph", "ru": "сетевой графике"}
+{"en": "Network Graph view", "ru": "ракурс Сетевая графика"}
+{"en": "New", "ru": "Новое"}
+{"en": "New Consumption Model", "ru": "Новая модель потребления"}
+{"en": "new rule", "ru": "новое правило"}
+{"en": "Next Phase", "ru": "Следующая фаза"}
+{"en": "node", "ru": "узел"}
+{"en": "non compatible", "ru": "несовместимый"}
+{"en": "note type", "ru": "вид примечания"}
+{"en": "notification", "ru": "уведомление"}
+{"en": "notification types", "ru": "виды уведомлений"}
+{"en": "notifications", "ru": "уведомлений"}
+{"en": "November", "ru": "ноябрь"}
+{"en": "number of rows", "ru": "число строк"}
+{"en": "numeric", "ru": "числовой"}
+{"en": "OAuth client", "ru": "клиента OAuth"}
+{"en": "OAuth2 Client Application", "ru": "клиентского приложения OAuth2"}
+{"en": "object", "ru": "объект"}
+{"en": "object category", "ru": "тип объекта"}
+{"en": "object page", "ru": "странице объекта"}
+{"en": "objects", "ru": "объекты"}
+{"en": "objects/subobjects", "ru": "объектов/подобъектов"}
+{"en": "obligations", "ru": "обязательства"}
+{"en": "occupational exposure limits", "ru": "гигиеническими нормативами условий труда"}
+{"en": "OData", "ru": "OData"}
+{"en": "offset value", "ru": "значение смещения"}
+{"en": "OK", "ru": "ОК"}
+{"en": "on-premise", "ru": "локальным"}
+{"en": "open", "ru": "открыто"}
+{"en": "Open Authorization", "ru": "протокол OAuth"}
+{"en": "Open Connectors", "ru": "Open Connectors"}
+{"en": "open SQL schemas", "ru": "схем Open SQL"}
+{"en": "opening stock", "ru": "начальный запас"}
+{"en": "operation", "ru": "операция"}
+{"en": "operations", "ru": "операций"}
+{"en": "operator", "ru": "оператором"}
+{"en": "Or", "ru": "Или"}
+{"en": "order", "ru": "поручение"}
+{"en": "order operations", "ru": "операций заказа"}
+{"en": "order schedules", "ru": "графиков заказов"}
+{"en": "ordered item", "ru": "заказанной позиции"}
+{"en": "orders", "ru": "заказов"}
+{"en": "organization", "ru": "организацию"}
+{"en": "organizational unit", "ru": "организационной единицы"}
+{"en": "organizational units", "ru": "организационных единиц"}
+{"en": "output", "ru": "вывод"}
+{"en": "output type", "ru": "вид вывода"}
+{"en": "Overall Limit", "ru": "Общий лимит"}
+{"en": "overdue", "ru": "просроченных"}
+{"en": "Overdue Service Orders Analysis", "ru": "Анализ просроченных сервисных заказов"}
+{"en": "overhead allocation", "ru": "распределении косвенных затрат"}
+{"en": "overhead allocation accounts", "ru": "счета распределения косвенных затрат"}
+{"en": "overtime", "ru": "сверхурочных"}
+{"en": "overtime category", "ru": "категории сверхурочной работы"}
+{"en": "overview settings", "ru": "параметров настройки для обзора"}
+{"en": "owner", "ru": "владельца"}
+{"en": "pack", "ru": "упаковать"}
+{"en": "package", "ru": "пакет"}
+{"en": "pane", "ru": "область"}
+{"en": "parallel processing", "ru": "параллельную обработку"}
+{"en": "parameters", "ru": "параметры"}
+{"en": "parent values", "ru": "вышестоящими значениями"}
+{"en": "Parked Invoice", "ru": "предварительно зарегистрированного счета"}
+{"en": "part", "ru": "деталь"}
+{"en": "partial allocation", "ru": "частичного присвоения"}
+{"en": "partition", "ru": "раздел"}
+{"en": "partitions", "ru": "разделов"}
+{"en": "pattern", "ru": "шаблон"}
+{"en": "pause", "ru": "приостановка"}
+{"en": "payment", "ru": "платеж"}
+{"en": "payment card", "ru": "платежная карта"}
+{"en": "Payment Card Processing", "ru": "Обработка платежных карт"}
+{"en": "payment data", "ru": "данных платежа"}
+{"en": "payment terms", "ru": "условия платежа"}
+{"en": "PAYMENTADVICE", "ru": "платежном авизо"}
+{"en": "payments", "ru": "платежи"}
+{"en": "PDF Export Settings", "ru": "Настройки экспорта PDF"}
+{"en": "Pending", "ru": "В ожидании"}
+{"en": "Percentage", "ru": "процентная ставка"}
+{"en": "Percentage rules", "ru": "Правила процентных ставок"}
+{"en": "performance", "ru": "эффективность"}
+{"en": "performance obligation", "ru": "обязательства исполнения"}
+{"en": "performance problems", "ru": "проблем с производительностью"}
+{"en": "Periods to Show", "ru": "Периоды для просмотра"}
+{"en": "permission", "ru": "разрешение"}
+{"en": "Permissions", "ru": "полномочия"}
+{"en": "persisted view", "ru": "сохраненным ракурсом"}
+{"en": "Persisted View List", "ru": "Список сохраненных ракурсов"}
+{"en": "persistency tasks", "ru": "задачи устойчивости"}
+{"en": "Personal Data", "ru": "Личные данные"}
+{"en": "Personal Information", "ru": "персональные данные"}
+{"en": "Perspectives", "ru": "Перспективы"}
+{"en": "PIRs", "ru": "ППП"}
+{"en": "placarding", "ru": "предупредительных надписей"}
+{"en": "plan category", "ru": "категории плана"}
+{"en": "planned independent requirements", "ru": "плановые первичные потребности"}
+{"en": "planned revenue", "ru": "плановую выручку"}
+{"en": "planning strategy", "ru": "Стратегия планирования"}
+{"en": "Plant", "ru": "Завод"}
+{"en": "plant level", "ru": "уровне завода"}
+{"en": "port", "ru": "порт"}
+{"en": "Postable", "ru": "с возможностью проводки"}
+{"en": "posting", "ru": "проводке"}
+{"en": "posting level", "ru": "уровень проводки"}
+{"en": "posting period", "ru": "периода проводки"}
+{"en": "Posting Rule", "ru": "Правило проводки"}
+{"en": "posting rules", "ru": "правил проводки"}
+{"en": "posting status", "ru": "статус проводки"}
+{"en": "postings", "ru": "проводок"}
+{"en": "postponed", "ru": "отсрочено"}
+{"en": "PRE", "ru": "подготовительные мероприятия"}
+{"en": "Precog", "ru": "Precog"}
+{"en": "predefined amount", "ru": "предварительно определенную сумму"}
+{"en": "predefined page variants", "ru": "предварительно определенных вариантов страницы"}
+{"en": "preferences", "ru": "настройки"}
+{"en": "Prepayment Details", "ru": "Сведения предоплаты"}
+{"en": "prepayment items", "ru": "позиции предоплаты"}
+{"en": "Price Control Indicator", "ru": "Код управления ценой"}
+{"en": "pricing date", "ru": "дата цены"}
+{"en": "pricing procedure", "ru": "схема калькуляции"}
+{"en": "Primary Group", "ru": "Первичная группа"}
+{"en": "print", "ru": "печатать"}
+{"en": "priority", "ru": "приоритет"}
+{"en": "Privacy", "ru": "Конфиденциальность"}
+{"en": "Privacy Filter", "ru": "Фильтр конфиденциальности"}
+{"en": "privilege", "ru": "Полномочия"}
+{"en": "procedure", "ru": "схема"}
+{"en": "Procedure Type", "ru": "Вид процедуры"}
+{"en": "process", "ru": "обработать"}
+{"en": "process flow", "ru": "процесса"}
+{"en": "process step", "ru": "шага процесса"}
+{"en": "process type", "ru": "вид процесса"}
+{"en": "processing status", "ru": "статус обработки"}
+{"en": "processing update", "ru": "обновлением обработки"}
+{"en": "procurement", "ru": "заготовка"}
+{"en": "product", "ru": "товар"}
+{"en": "Product Allocation Order Items", "ru": "Карта Позиции заказов контингентирования"}
+{"en": "product compliance", "ru": "соответствия продукта"}
+{"en": "Product Cost Collector", "ru": "коллектора затрат на продукт"}
+{"en": "product details", "ru": "Подробную информацию о продукте"}
+{"en": "Product Name", "ru": "имени продукта"}
+{"en": "product page", "ru": "страницу продукта"}
+{"en": "production request", "ru": "производственной заявки"}
+{"en": "production version", "ru": "вариант изготовления"}
+{"en": "products", "ru": "продуктов"}
+{"en": "profit center", "ru": "МВП"}
+{"en": "project ID", "ru": "идентификатор проекта"}
+{"en": "project role", "ru": "роль проекта"}
+{"en": "project type", "ru": "тип проекта"}
+{"en": "projects", "ru": "проектов"}
+{"en": "proprietary software components", "ru": "запатентованные программные компоненты"}
+{"en": "protocol", "ru": "протокол"}
+{"en": "provider", "ru": "провайдер"}
+{"en": "public", "ru": "общедоступный"}
+{"en": "publish", "ru": "опубликовать"}
+{"en": "Publishing", "ru": "Публикация"}
+{"en": "purchase contract", "ru": "контракта на закупку"}
+{"en": "purchase order", "ru": "заказ на поставку"}
+{"en": "purchase requisition", "ru": "заявки"}
+{"en": "purchase requisition item", "ru": "позиция заявки"}
+{"en": "purchase scheduling agreement", "ru": "соглашении о поставках"}
+{"en": "purchasing document", "ru": "документа закупки"}
+{"en": "Purchasing Group", "ru": "группу закупок"}
+{"en": "purpose", "ru": "назначение"}
+{"en": "quick actions", "ru": "быстрые операции"}
+{"en": "quota", "ru": "квота"}
+{"en": "range", "ru": "интервал"}
+{"en": "ranking adjustments", "ru": "корректировок ранжирования"}
+{"en": "rate", "ru": "курс"}
+{"en": "rating", "ru": "оценка"}
+{"en": "raw materials", "ru": "сырья"}
+{"en": "real-time", "ru": "реальном времени"}
+{"en": "real-time replication", "ru": "тиражирования в реальном времени"}
+{"en": "reason code", "ru": "причину"}
+{"en": "Reassign Purchasing Group", "ru": "Переприсвоить группу закупок"}
+{"en": "Receivable", "ru": "дебиторская задолженность"}
+{"en": "Receivers", "ru": "получателей"}
+{"en": "Recent Activities", "ru": "Последние операции"}
+{"en": "reclassification", "ru": "реклассификация"}
+{"en": "reconcile", "ru": "выполнить выверку"}
+{"en": "record", "ru": "запись"}
+{"en": "record type", "ru": "вид записи"}
+{"en": "records", "ru": "записей"}
+{"en": "Recovery", "ru": "расчета"}
+{"en": "recurrence", "ru": "повторение"}
+{"en": "reference data", "ru": "ссылочных данных"}
+{"en": "reference plan", "ru": "ссылочного плана"}
+{"en": "reference quantity", "ru": "Ссылочное количество"}
+{"en": "Referential Integrity", "ru": "Целостность ссылочных данных"}
+{"en": "regeneration", "ru": "перегенерация"}
+{"en": "regulation", "ru": "предписание"}
+{"en": "Rejection Status", "ru": "Статус отклонения"}
+{"en": "relationship", "ru": "связь"}
+{"en": "Relative Basic Finish Date", "ru": "относительный базисный срок окончания"}
+{"en": "release", "ru": "деблокирование"}
+{"en": "Release Data Step", "ru": "Данные версии"}
+{"en": "release date", "ru": "дата ее деблокирования"}
+{"en": "released", "ru": "деблокирование"}
+{"en": "releases", "ru": "версии"}
+{"en": "Remainder handling", "ru": "Обработка остатка"}
+{"en": "remote source", "ru": "дистанционного источника"}
+{"en": "remote table", "ru": "дистанционной таблицы"}
+{"en": "Remote Table Monitor", "ru": "Монитор дистанционных таблиц"}
+{"en": "remote tables", "ru": "дистанционных таблиц"}
+{"en": "repair", "ru": "ремонт"}
+{"en": "repair objects", "ru": "объекты ремонта"}
+{"en": "repair order", "ru": "заказ на ремонт"}
+{"en": "repair quotation", "ru": "предложение по ремонту"}
+{"en": "replaced", "ru": "заменено"}
+{"en": "replication", "ru": "тиражирования"}
+{"en": "report category", "ru": "категория отчета"}
+{"en": "report file", "ru": "файла отчета"}
+{"en": "reporting", "ru": "отчеты"}
+{"en": "Reporting Period", "ru": "Отчетный период"}
+{"en": "reporting periods", "ru": "отчетные периоды"}
+{"en": "Repository tab", "ru": "вкладке Репозитарий"}
+{"en": "reprocessing rule", "ru": "Правило повторной обработки"}
+{"en": "reprocessing rules", "ru": "правил повторной обработки"}
+{"en": "request", "ru": "заявка"}
+{"en": "request details", "ru": "сведения заявки"}
+{"en": "required fields", "ru": "обязательные поля"}
+{"en": "residence period", "ru": "период активного хранения"}
+{"en": "resource", "ru": "ресурсом"}
+{"en": "resource-related", "ru": "на основе затрат"}
+{"en": "resources", "ru": "ресурсов"}
+{"en": "restart", "ru": "перезапуск"}
+{"en": "restatement", "ru": "повторное представление"}
+{"en": "Restore", "ru": "Восстановить"}
+{"en": "restricted", "ru": "с ограничением"}
+{"en": "Restrictions details", "ru": "Сведения об ограничениях"}
+{"en": "result type", "ru": "тип результата"}
+{"en": "resume", "ru": "резюме"}
+{"en": "retention period", "ru": "период хранения"}
+{"en": "retention time", "ru": "срок хранения"}
+{"en": "Retrieve Bank Accounts", "ru": "Вызвать банковские счета"}
+{"en": "Reusable Steps", "ru": "повторно используемые шаги"}
+{"en": "revenue", "ru": "выручка"}
+{"en": "revenue distribution", "ru": "распределение поступлений"}
+{"en": "revenue recognition", "ru": "признание выручки"}
+{"en": "Reversal", "ru": "Сторнирование"}
+{"en": "Reversal Reference Number", "ru": "Ссылочный номер сторно"}
+{"en": "review", "ru": "проверка"}
+{"en": "Review Agent Logs", "ru": "Проверить журналы агента"}
+{"en": "revision", "ru": "редакции"}
+{"en": "rework", "ru": "доработка"}
+{"en": "risk class", "ru": "Класс риска"}
+{"en": "Role", "ru": "Роль"}
+{"en": "Rolling Interval", "ru": "цикличного интервала"}
+{"en": "root path", "ru": "корневого пути"}
+{"en": "row-level security", "ru": "безопасность объектов на уровне строк"}
+{"en": "rules", "ru": "правил"}
+{"en": "run", "ru": "выполнить"}
+{"en": "run type", "ru": "тип прогона"}
+{"en": "run type settings", "ru": "настройки типа прогона"}
+{"en": "runs", "ru": "прогонов"}
+{"en": "Sales", "ru": "сбытом"}
+{"en": "Sales and Distribution", "ru": "Сбыта"}
+{"en": "sales order", "ru": "заказ клиента"}
+{"en": "sales orders", "ru": "заказов клиентов"}
+{"en": "SAML Bearer", "ru": "носителя SAML"}
+{"en": "SAP", "ru": "SAP"}
+{"en": "SAP Analytics Cloud", "ru": "SAP Analytics Cloud"}
+{"en": "SAP App Center", "ru": "SAP App Center"}
+{"en": "SAP Application", "ru": "SAP‑приложении"}
+{"en": "SAP Applications", "ru": "SAP‑приложений"}
+{"en": "SAP Community", "ru": "SAP Community"}
+{"en": "SAP Data Warehouse Cloud", "ru": "SAP Data Warehouse Cloud"}
+{"en": "SAP Digital Payments Add-On", "ru": "дополнении SAP для цифровых платежей"}
+{"en": "SAP HANA", "ru": "SAP HANA"}
+{"en": "SAP HANA Cloud", "ru": "SAP HANA Cloud"}
+{"en": "SAP HANA Cloud Deployment Infrastructure", "ru": "инфраструктуры развертывания SAP HANA Cloud"}
+{"en": "SAP HANA Cockpit", "ru": "пульте управления SAP HANA"}
+{"en": "SAP HANA Smart Data Access", "ru": "SAP HANA Smart Data Access"}
+{"en": "SAP HANA Smart Data Integration", "ru": "SAP HANA Smart Data Integration"}
+{"en": "SAP Landscape Transformation Replication Server", "ru": "SAP Landscape Transformation Replication Server"}
+{"en": "SAP LT Replication Server", "ru": "сервером тиражирования SAP LT"}
+{"en": "SAP SuccessFactors", "ru": "SAP SuccessFactors"}
+{"en": "SAP system", "ru": "системе SAP"}
+{"en": "SAP ticket", "ru": "сервисного запроса SAP"}
+{"en": "Save", "ru": "Сохранить"}
+{"en": "Save As", "ru": "Сохранить как"}
+{"en": "schedule", "ru": "планирование"}
+{"en": "Scheduled", "ru": "Запланировано"}
+{"en": "scheduled jobs", "ru": "запланированные задания"}
+{"en": "scheduled run", "ru": "запланированного прогона"}
+{"en": "scheduled task", "ru": "запланированной задачи"}
+{"en": "schedules", "ru": "планирований"}
+{"en": "Scheduling information dialog", "ru": "диалоговом окне информации Календарное планирование"}
+{"en": "scheduling options", "ru": "параметры планирования"}
+{"en": "scope", "ru": "объем"}
+{"en": "scope information", "ru": "Информация объема"}
+{"en": "score", "ru": "рейтинговой оценки"}
+{"en": "screen", "ru": "экран"}
+{"en": "Search app", "ru": "приложении Поиск"}
+{"en": "Search box", "ru": "поле Поиск"}
+{"en": "search criterion", "ru": "критерия поиска"}
+{"en": "Search field", "ru": "поле Поиск"}
+{"en": "search options", "ru": "опций поиска"}
+{"en": "Security Assertion Markup Language", "ru": "Security Assertion Markup Language (SAML)"}
+{"en": "security class", "ru": "категории ценных бумаг"}
+{"en": "security features", "ru": "функции безопасности"}
+{"en": "Segment Eliminated", "ru": "Сегмент перерассчитан"}
+{"en": "Select Sourcing Project Type", "ru": "Выбрать тип проекта выбора поставщика"}
+{"en": "selected column", "ru": "выбранному столбцу"}
+{"en": "semantic object", "ru": "семантического объекта"}
+{"en": "Senders", "ru": "отправителей"}
+{"en": "Sensitive personal data", "ru": "Конфиденциальные личные (персональные) данные"}
+{"en": "server", "ru": "сервер"}
+{"en": "service", "ru": "услуга"}
+{"en": "service confirmation", "ru": "подтверждение сервиса"}
+{"en": "service date", "ru": "даты услуги"}
+{"en": "service entry sheet", "ru": "ведомость учета услуг"}
+{"en": "service limit", "ru": "лимита услуг"}
+{"en": "Service Name", "ru": "Имя сервиса"}
+{"en": "service order", "ru": "сервисному заказу"}
+{"en": "Service Orders", "ru": "сервисных заказов"}
+{"en": "Service Orders Analysis app", "ru": "Анализ сервисных заказов"}
+{"en": "service organization", "ru": "сервисной организации"}
+{"en": "Service Part Items", "ru": "Позиции запасных частей"}
+{"en": "service provider", "ru": "поставщик услуг"}
+{"en": "set", "ru": "настроить"}
+{"en": "Set package properties", "ru": "Задайте свойства пакета"}
+{"en": "Settings", "ru": "Настройки"}
+{"en": "Settings icon", "ru": "значок Параметры настройки"}
+{"en": "settlement", "ru": "расчет"}
+{"en": "settlement date", "ru": "дату расчета"}
+{"en": "severity", "ru": "степень серьезности"}
+{"en": "share", "ru": "поделиться"}
+{"en": "share rule", "ru": "Поделиться правилом"}
+{"en": "Shared Content", "ru": "общий контент"}
+{"en": "shared object", "ru": "общий объект"}
+{"en": "Shared Properties", "ru": "общие свойства"}
+{"en": "Shift Top-Level Demand", "ru": "Смещение потребности верхнего уровня"}
+{"en": "shipping duration chart", "ru": "Диаграмма длительности перевозки"}
+{"en": "Show Clarification Case", "ru": "Показать случай выяснения"}
+{"en": "Show Details", "ru": "Показать сведения"}
+{"en": "Side Navigation", "ru": "Боковая область навигации"}
+{"en": "simulated quantity", "ru": "смоделированное количество"}
+{"en": "simulation", "ru": "моделирования"}
+{"en": "simulation quantity", "ru": "количество моделирования"}
+{"en": "simulation run", "ru": "прогон моделирования"}
+{"en": "simulations", "ru": "моделирований"}
+{"en": "single account assignment", "ru": "простая контировка"}
+{"en": "situation", "ru": "ситуация"}
+{"en": "situation instance", "ru": "инстанции ситуации"}
+{"en": "situation instances", "ru": "инстанций ситуации"}
+{"en": "situation message", "ru": "сообщения ситуации"}
+{"en": "situation template", "ru": "шаблона ситуации"}
+{"en": "situation type", "ru": "типа ситуации"}
+{"en": "situation type ID", "ru": "Идентификатор типа ситуации"}
+{"en": "size configuration", "ru": "конфигурацию размера"}
+{"en": "sizes", "ru": "размеры"}
+{"en": "skills", "ru": "квалификации"}
+{"en": "Slow-Moving Indicator", "ru": "Индикатор неходовых материалов"}
+{"en": "snapshot replication", "ru": "тиражирования мгновенного снимка"}
+{"en": "software products", "ru": "программные продукты"}
+{"en": "Sort", "ru": "Сортировать"}
+{"en": "source", "ru": "источника"}
+{"en": "source assignment", "ru": "присвоение происхождения"}
+{"en": "Source Browser", "ru": "Браузер источников"}
+{"en": "source document", "ru": "исходный документ"}
+{"en": "source model", "ru": "исходной модели"}
+{"en": "source of supply", "ru": "источник поставки"}
+{"en": "source system", "ru": "исходной системы"}
+{"en": "sources", "ru": "источники"}
+{"en": "sourcing project", "ru": "проекта выбора поставщика"}
+{"en": "sourcing project lifecycle", "ru": "жизненного цикла проекта выбора поставщика"}
+{"en": "Sourcing Project Type", "ru": "Тип проекта выбора поставщика"}
+{"en": "space", "ru": "пространство"}
+{"en": "Space Manager", "ru": "менеджера пространств"}
+{"en": "Space Objects", "ru": "объектов пространства"}
+{"en": "Special Distribution Method", "ru": "Метод особого распределения"}
+{"en": "Split Components", "ru": "Компоненты разделения"}
+{"en": "spreadsheet", "ru": "электронную таблицу"}
+{"en": "SQL", "ru": "SQL"}
+{"en": "SQL Code", "ru": "кода SQL"}
+{"en": "SQL expression", "ru": "выражение SQL"}
+{"en": "SQL Server", "ru": "SQL Server"}
+{"en": "SSL", "ru": "шифрование SSL"}
+{"en": "Standalone Selling Price", "ru": "Единичная продажная цена"}
+{"en": "Standard Marketing Edition", "ru": "Стандартный маркетинговый выпуск"}
+{"en": "standard percentage", "ru": "стандартного метода процентного значения"}
+{"en": "start time", "ru": "время начала"}
+{"en": "statement", "ru": "инструкции"}
+{"en": "statistics", "ru": "Статистика"}
+{"en": "status", "ru": "статус"}
+{"en": "Status 1", "ru": "Статус 1"}
+{"en": "step", "ru": "шаги"}
+{"en": "Stock Quantity", "ru": "Объем запаса"}
+{"en": "stock transfer", "ru": "перемещение запаса"}
+{"en": "stop", "ru": "остановка"}
+{"en": "stopped forecast delivery schedule", "ru": "приостановленный прогнозный график поставок"}
+{"en": "storage", "ru": "память"}
+{"en": "storage location", "ru": "место хранения"}
+{"en": "storage options", "ru": "способы хранения"}
+{"en": "story", "ru": "журнал"}
+{"en": "strategy", "ru": "стратегия"}
+{"en": "subcontractor", "ru": "подрядчику"}
+{"en": "subscription", "ru": "подписка"}
+{"en": "substitution", "ru": "замена"}
+{"en": "subtype", "ru": "подвид"}
+{"en": "success", "ru": "успешном выполнении"}
+{"en": "successor", "ru": "преемник"}
+{"en": "summary", "ru": "сводка"}
+{"en": "supplement", "ru": "дополнение"}
+{"en": "Supplement auto. posting", "ru": "Доп. контировка"}
+{"en": "Supplement auto. postings", "ru": "Доп. контировка при автом. проводках"}
+{"en": "supplier", "ru": "поставщика"}
+{"en": "supplier ID", "ru": "идентификатор поставщика"}
+{"en": "Supplier Invoices", "ru": "счетами поставщиков"}
+{"en": "supplier list", "ru": "списка поставщиков"}
+{"en": "supplier quotations", "ru": "предложений поставщика"}
+{"en": "suppliers", "ru": "поставщиков"}
+{"en": "Supply", "ru": "Снабжение"}
+{"en": "suspense", "ru": "приостановления"}
+{"en": "suspension", "ru": "приостановление"}
+{"en": "system", "ru": "системы"}
+{"en": "System Status 2", "ru": "Системный статус 2"}
+{"en": "system variables", "ru": "системные переменные"}
+{"en": "tab", "ru": "вкладка"}
+{"en": "table", "ru": "таблице"}
+{"en": "Table Replication", "ru": "Тиражирование таблицы"}
+{"en": "table view", "ru": "ракурс таблицы"}
+{"en": "tables", "ru": "таблицы"}
+{"en": "tag", "ru": "отметить"}
+{"en": "target attribute", "ru": "атрибут цели"}
+{"en": "target business entity", "ru": "целевой бизнес-единицы"}
+{"en": "target release", "ru": "целевой версии"}
+{"en": "task list", "ru": "список задач"}
+{"en": "Tax", "ru": "Налог"}
+{"en": "Tax Calculated by Partner", "ru": "налог, рассчитанный партнером"}
+{"en": "tax category", "ru": "тип налога"}
+{"en": "tax exemption", "ru": "освобождение от уплаты налога"}
+{"en": "tax rates", "ru": "налоговых ставок"}
+{"en": "team member", "ru": "участник группы"}
+{"en": "technical changes", "ru": "технические изменения"}
+{"en": "technical name", "ru": "техническим именем"}
+{"en": "Telephone number", "ru": "Номер телефона"}
+{"en": "template", "ru": "шаблон"}
+{"en": "tenant", "ru": "арендатор"}
+{"en": "Tenant Configuration", "ru": "конфигурацией арендатора"}
+{"en": "term", "ru": "термин"}
+{"en": "test plan", "ru": "плана тестирования"}
+{"en": "test process", "ru": "процесса тестирования"}
+{"en": "test processes", "ru": "процессов тестирования"}
+{"en": "text block", "ru": "текстовый блок"}
+{"en": "text block library", "ru": "библиотеки текстовых блоков"}
+{"en": "text block object", "ru": "Объект"}
+{"en": "text blocks", "ru": "текстовыми блоками"}
+{"en": "text elements", "ru": "текстовых элементов"}
+{"en": "text elements library", "ru": "Библиотека текстовых элементов"}
+{"en": "thread", "ru": "тред"}
+{"en": "threshold", "ru": "пороговое значение"}
+{"en": "Time and Expenses", "ru": "Время и расходы"}
+{"en": "Time entries", "ru": "Записи времени"}
+{"en": "time frame", "ru": "временного интервала"}
+{"en": "Time Period", "ru": "период времени"}
+{"en": "time-based adjustment", "ru": "корректировки суммы"}
+{"en": "timeframe", "ru": "период времени"}
+{"en": "timeline", "ru": "временной линии"}
+{"en": "TLS", "ru": "TLS"}
+{"en": "To Be Billed", "ru": "Подлежит фактурированию"}
+{"en": "To Be Billed tab", "ru": "вкладки Подлежит фактурированию"}
+{"en": "To be Verified by User", "ru": "Требуется проверка пользователем"}
+{"en": "toggle button", "ru": "переключатель"}
+{"en": "tolerance percentage", "ru": "процент допуска"}
+{"en": "tolerance value", "ru": "значение допуска"}
+{"en": "toolbar", "ru": "панели инструментов"}
+{"en": "tooltip", "ru": "всплывающая подсказка"}
+{"en": "top-level bar", "ru": "полосы верхнего уровня"}
+{"en": "top-level material", "ru": "материала верхнего уровня"}
+{"en": "Top-Level View", "ru": "Ракурс верхнего уровня"}
+{"en": "topic", "ru": "раздел"}
+{"en": "total", "ru": "сумма"}
+{"en": "trace", "ru": "трассировка"}
+{"en": "trace log", "ru": "файлов журнала трассировки"}
+{"en": "Track my recent activity", "ru": "Отслеживать мои приложения"}
+{"en": "trademarks", "ru": "товарными знаками"}
+{"en": "transaction", "ru": "сделка"}
+{"en": "transaction currency", "ru": "валюта сделки"}
+{"en": "transaction type", "ru": "вид движения"}
+{"en": "transactions", "ru": "операций"}
+{"en": "transfer", "ru": "перенести"}
+{"en": "Transfer Stock - Cross Plant", "ru": "Перемещение запаса - между заводами"}
+{"en": "transformation", "ru": "Преобразования"}
+{"en": "transport", "ru": "транспорт"}
+{"en": "transport type", "ru": "вид транспортировки"}
+{"en": "trigger", "ru": "триггер"}
+{"en": "type", "ru": "тип"}
+{"en": "Unbilled Receivable", "ru": "Нефактурированная дебиторская задолженность"}
+{"en": "unconfirmed operation", "ru": "неподтвержденную операцию"}
+{"en": "Underloaded Periods Card", "ru": "Карта периодов недозагрузки"}
+{"en": "undo", "ru": "отмена"}
+{"en": "union", "ru": "объединение"}
+{"en": "Unit", "ru": "единицы"}
+{"en": "unpublished changes", "ru": "неопубликованных изменений"}
+{"en": "update", "ru": "обновление"}
+{"en": "update mode", "ru": "режим обновления"}
+{"en": "upstream", "ru": "предшествующего"}
+{"en": "URL", "ru": "URL-адрес"}
+{"en": "URL link", "ru": "ссылку URL"}
+{"en": "usage category", "ru": "категория использования"}
+{"en": "usage type", "ru": "тип использования"}
+{"en": "use", "ru": "использование"}
+{"en": "use case", "ru": "случай использования"}
+{"en": "user", "ru": "пользователя"}
+{"en": "user group", "ru": "группу пользователей"}
+{"en": "user ID", "ru": "идентификатор пользователя"}
+{"en": "user interface", "ru": "интерфейсе пользователя"}
+{"en": "User Level", "ru": "уровень пользователя"}
+{"en": "user name", "ru": "имя пользователя"}
+{"en": "user settings", "ru": "пользовательских параметрах настройки"}
+{"en": "user status", "ru": "статус пользователя"}
+{"en": "User Substitutes", "ru": "Заместители пользователя"}
+{"en": "username@companyID", "ru": "username@companyID"}
+{"en": "Users", "ru": "Пользователи"}
+{"en": "UTC", "ru": "UTC"}
+{"en": "utilization", "ru": "загрузка"}
+{"en": "utilization forecast", "ru": "прогноз загрузки"}
+{"en": "utilization view", "ru": "Ракурс загрузки"}
+{"en": "Valid From", "ru": "Действительно с."}
+{"en": "Valid Supplier", "ru": "действительного поставщика"}
+{"en": "valid-from date", "ru": "Действительно с"}
+{"en": "valid-to date", "ru": "даты окончания действия"}
+{"en": "validation", "ru": "проверка"}
+{"en": "Validity date", "ru": "срок действия версии"}
+{"en": "validity period", "ru": "период действия"}
+{"en": "validity start date", "ru": "начало срока действия"}
+{"en": "value", "ru": "стоимость"}
+{"en": "value assignments", "ru": "присвоения значений"}
+{"en": "Value field", "ru": "поле Значение"}
+{"en": "value group", "ru": "группа"}
+{"en": "value help", "ru": "справке по вводу"}
+{"en": "variables", "ru": "переменных"}
+{"en": "Variance in Percent", "ru": "Отклонение в процентах"}
+{"en": "variants", "ru": "варианты"}
+{"en": "vCPUs", "ru": "vCPU"}
+{"en": "vendor", "ru": "поставщик"}
+{"en": "vendor account", "ru": "счет кредитора"}
+{"en": "Vendor Accounts", "ru": "счетов поставщиков"}
+{"en": "version", "ru": "версия"}
+{"en": "Version History", "ru": "Истории версий"}
+{"en": "versions", "ru": "версии"}
+{"en": "view", "ru": "ракурс"}
+{"en": "view persistency", "ru": "устойчивость ракурса"}
+{"en": "View Persistency Task", "ru": "задачи устойчивости ракурса"}
+{"en": "views", "ru": "ракурсы"}
+{"en": "virtual document", "ru": "виртуальный документ"}
+{"en": "warehouse tasks", "ru": "складских задач"}
+{"en": "warning icon", "ru": "значок предупреждения"}
+{"en": "warning messages", "ru": "предупреждающих сообщений"}
+{"en": "warranties", "ru": "Гарантии"}
+{"en": "wasbs", "ru": "wasbs"}
+{"en": "Waste Codes", "ru": "Коды отходов"}
+{"en": "Waste Generator", "ru": "Генератор отходов"}
+{"en": "Waste Generators", "ru": "производители отходов"}
+{"en": "WebSocket RFC", "ru": "WebSocket RFC"}
+{"en": "where-used check", "ru": "Проверка использования"}
+{"en": "where-used list", "ru": "журнал использования"}
+{"en": "width", "ru": "ширину"}
+{"en": "withholding tax", "ru": "налог на источники дохода"}
+{"en": "wizard", "ru": "ассистент"}
+{"en": "work breakdown structure (WBS)", "ru": "структурного плана проекта (СПП)"}
+{"en": "work center", "ru": "рабочего места"}
+{"en": "work centers", "ru": "рабочих местах"}
+{"en": "work item", "ru": "ЭПО"}
+{"en": "work item groups", "ru": "группы ЭПО"}
+{"en": "work items", "ru": "элементы потока операций"}
+{"en": "work package", "ru": "рабочий пакет"}
+{"en": "workflow", "ru": "процесс"}
+{"en": "workflow scenario", "ru": "сценария потока операций"}
+{"en": "workflow scenarios", "ru": "сценариев ПО"}
+{"en": "workgroup", "ru": "Рабочая группа"}
+{"en": "working time", "ru": "рабочему времени"}
+{"en": "wrangling", "ru": "очистка и преобразование данных"}
+{"en": "Write API", "ru": "API записи"}
+{"en": "Write Off", "ru": "Списать"}
+{"en": "write-off", "ru": "списания"}
+{"en": "X-axis", "ru": "Ось X"}
+{"en": "Y-axis", "ru": "ось Y"}
+{"en": "year-end closing", "ru": "закрытии финансового года"}
+{"en": "Zero-hour time entries", "ru": "Записи времени с нулевым значением в часах"}

@@ -1,0 +1,1204 @@
+{"en": "<section>", "de": "<section>"}
+{"en": "<sectiondiv>", "de": "<sectiondiv>"}
+{"en": "ABAP Manageable Trigger Namespace", "de": "Namensraum für handhabbaren ABAP-Trigger"}
+{"en": "about", "de": "über"}
+{"en": "accept", "de": "annehmen"}
+{"en": "acceptance", "de": "Abnahme"}
+{"en": "access", "de": "Zugriff"}
+{"en": "access control", "de": "Zugriffskontrolle"}
+{"en": "access token", "de": "Zugriffstoken"}
+{"en": "account", "de": "Account"}
+{"en": "account assignment distribution", "de": "Kontierungsaufteilung"}
+{"en": "Accounting", "de": "Accounting"}
+{"en": "accounts", "de": "Konten"}
+{"en": "action", "de": "Aktion"}
+{"en": "actions", "de": "Aktionen"}
+{"en": "Actions table", "de": "Tabelle Aktionen"}
+{"en": "Activate Account", "de": "Konto aktivieren"}
+{"en": "activation key", "de": "Aktivierungsschlüssel"}
+{"en": "active business", "de": "aktiven Geschäfts"}
+{"en": "active model version", "de": "aktive Modellversion"}
+{"en": "activities", "de": "Aktivitäten"}
+{"en": "Adapt Filters", "de": "Filter anpassen"}
+{"en": "adapters", "de": "Adapter"}
+{"en": "Add button", "de": "Schaltfläche Hinzufügen"}
+{"en": "Add to Favorites", "de": "Zu Favoriten hinzufügen"}
+{"en": "Add to Sourcing Project", "de": "Zum Ausschreibungsprojekt hinzufügen"}
+{"en": "Additional Feature", "de": "zusätzlicher Funktion"}
+{"en": "administration", "de": "Verwaltung"}
+{"en": "Advanced Intercompany Sales", "de": "Erweiterter buchungskreisübergreifender Verkauf"}
+{"en": "Advanced Intercompany Stock Transfer", "de": "Erweiterte buchungskreisübergreifende Umlagerung"}
+{"en": "Adverity Account Manager", "de": "Adverity Account Manager"}
+{"en": "Adverity server", "de": "Adverity-Server"}
+{"en": "Adverity Support", "de": "Adverity-Support-Team"}
+{"en": "Adverity UI", "de": "Adverity-UI"}
+{"en": "Adverity workspace", "de": "Adverity-Arbeitsbereich"}
+{"en": "agent", "de": "Agent"}
+{"en": "agent adapter framework", "de": "Agent-Adapter-Framework"}
+{"en": "aggregatable field", "de": "aggregierbares Feld"}
+{"en": "Aggregation", "de": "Aggregation"}
+{"en": "alert", "de": "Alarm"}
+{"en": "allocation", "de": "Zuordnung"}
+{"en": "allow", "de": "erlauben"}
+{"en": "Allowed Settings", "de": "Erlaubte Einstellungen"}
+{"en": "allowlist", "de": "Erlaubtliste"}
+{"en": "alternative control", "de": "Alternativensteuerung"}
+{"en": "Amazon Athena", "de": "Amazon Athena"}
+{"en": "analysis step", "de": "Analyseschritt"}
+{"en": "analytical dataset", "de": "analytisches Datenset"}
+{"en": "analytical queries", "de": "Analyseabfragen"}
+{"en": "analytical query", "de": "Analyseabfrage"}
+{"en": "analyze", "de": "analysieren"}
+{"en": "API endpoint", "de": "API-Endpunkt"}
+{"en": "APL", "de": "APL"}
+{"en": "app", "de": "App"}
+{"en": "application help", "de": "Anwendungshilfe"}
+{"en": "application log", "de": "Anwendungsprotokoll"}
+{"en": "apply", "de": "anwenden"}
+{"en": "appointment", "de": "Torbelegung"}
+{"en": "approver", "de": "Genehmigender"}
+{"en": "apps", "de": "Apps"}
+{"en": "Archived status", "de": "Status Archiviert"}
+{"en": "area of responsibility", "de": "Zuständigkeitsbereich"}
+{"en": "arithmetic", "de": "Grundrechenarten"}
+{"en": "As Requested", "de": "Wie angefordert"}
+{"en": "As Requested rule", "de": "Regel Wie angefordert"}
+{"en": "assembly", "de": "Zusammenstellung"}
+{"en": "assessment", "de": "Bewertung"}
+{"en": "asset", "de": "Anlage"}
+{"en": "asset type", "de": "Anlagenart"}
+{"en": "assigned", "de": "zugewiesen"}
+{"en": "assignment", "de": "Einsatz"}
+{"en": "assignment view", "de": "Zuordnungssicht"}
+{"en": "assignments", "de": "Einsätze"}
+{"en": "association", "de": "Assoziation"}
+{"en": "Association Context", "de": "Assoziationskontext"}
+{"en": "associations", "de": "Assoziationen"}
+{"en": "asynchronous upload", "de": "asynchronen Upload"}
+{"en": "attachment", "de": "Anlage"}
+{"en": "attribute", "de": "Attribut"}
+{"en": "attribute type", "de": "Attributstyp"}
+{"en": "attributes", "de": "Attribute"}
+{"en": "audit", "de": "Audit"}
+{"en": "audit log", "de": "Audit-Protokoll"}
+{"en": "audit logs", "de": "Audit-Protokolle"}
+{"en": "authorization", "de": "Autorisierung"}
+{"en": "authorization scenario", "de": "Berechtigungsszenario"}
+{"en": "authorization scenarios", "de": "Berechtigungsszenarios"}
+{"en": "authorizations", "de": "Berechtigungen"}
+{"en": "auto-complete", "de": "automatischen Vervollständigung"}
+{"en": "Auxiliary Measure", "de": "Hilfskennzahl"}
+{"en": "Availability", "de": "Verfügbarkeit"}
+{"en": "available", "de": "verfügbar"}
+{"en": "available capacity", "de": "verfügbare Kapazität"}
+{"en": "background job", "de": "Hintergrundjob"}
+{"en": "backorder processing", "de": "Rückstandsbearbeitung"}
+{"en": "bank account", "de": "Bankkonto"}
+{"en": "bar", "de": "Balken"}
+{"en": "bar chart", "de": "Balkendiagramm"}
+{"en": "batch", "de": "Batch"}
+{"en": "best match", "de": "größten Übereinstimmung"}
+{"en": "bill of material", "de": "Stückliste"}
+{"en": "blocked", "de": "gesperrt"}
+{"en": "BOM", "de": "Stückliste"}
+{"en": "BOM components", "de": "Stücklistenkomponenten"}
+{"en": "breadcrumb", "de": "Klickpfad"}
+{"en": "bucket", "de": "Periode"}
+{"en": "business", "de": "geschäftlich"}
+{"en": "business activity", "de": "Geschäftsaktivität"}
+{"en": "Business Builder", "de": "Business Builder"}
+{"en": "Business Builder objects", "de": "Business-Builder-Objekte"}
+{"en": "Business Catalog", "de": "Business-Katalog"}
+{"en": "business context", "de": "Geschäftskontext"}
+{"en": "business document class", "de": "Geschäftsdokumentklasse"}
+{"en": "business entities", "de": "Geschäftsentitäten"}
+{"en": "business entity", "de": "Geschäftsentität"}
+{"en": "business name", "de": "betriebswirtschaftlicher Name"}
+{"en": "business operations", "de": "Geschäftsvorgänge"}
+{"en": "business partner", "de": "Geschäftspartner"}
+{"en": "business partners", "de": "Geschäftspartner"}
+{"en": "business processes", "de": "Geschäftsprozesse"}
+{"en": "business role", "de": "Benutzerrolle"}
+{"en": "business user", "de": "Geschäftsbenutzer"}
+{"en": "Business Users", "de": "Anwender"}
+{"en": "button", "de": "Schaltfläche"}
+{"en": "ca", "de": "CA"}
+{"en": "calculated attribute", "de": "berechnetes Attribut"}
+{"en": "Calculated Column", "de": "Berechnete Spalte"}
+{"en": "calculated measure", "de": "berechnete Kennzahl"}
+{"en": "calculation", "de": "Berechnung"}
+{"en": "call", "de": "Call"}
+{"en": "callback", "de": "Callback"}
+{"en": "CamelJdbcAdapter", "de": "Camel-JDBC-Adapter"}
+{"en": "cancel", "de": "zurücknehmen"}
+{"en": "canvas", "de": "Grafikbereich"}
+{"en": "capacity consumption", "de": "Kapazitätsverbrauch"}
+{"en": "capacity demand", "de": "Kapazitätsbedarf"}
+{"en": "capacity issue", "de": "Kapazitätsproblem"}
+{"en": "capacity issues", "de": "Kapazitätsprobleme"}
+{"en": "capacity overload", "de": "Kapazitätsüberlastung"}
+{"en": "Capacity Plan Simulation", "de": "Kapazitätsplansimulation"}
+{"en": "capacity units", "de": "Kapazitätseinheiten"}
+{"en": "categories", "de": "Kategorien"}
+{"en": "category", "de": "Kategorie"}
+{"en": "CDI", "de": "CDI"}
+{"en": "cell", "de": "Zelle"}
+{"en": "cell-reference", "de": "Zellenreferenz"}
+{"en": "cells", "de": "Zellen"}
+{"en": "Central Purchase Contract", "de": "zentralem Einkaufskontrakt"}
+{"en": "central purchase contract hierarchy", "de": "Hierarchie des zentralen Einkaufskontrakts"}
+{"en": "Central Purchasing Group", "de": "zentrale Einkäufergruppe"}
+{"en": "Central Purchasing Organization", "de": "zentrale Einkaufsorganisation"}
+{"en": "certificate", "de": "Zertifikat"}
+{"en": "certificate authority", "de": "Zertifizierungsstelle"}
+{"en": "Certified", "de": "Zertifizierung"}
+{"en": "change", "de": "ändern"}
+{"en": "change document", "de": "Änderungsdokument"}
+{"en": "change log", "de": "Änderungsprotokoll"}
+{"en": "change of name", "de": "Änderung des Namens"}
+{"en": "changes", "de": "Änderungen"}
+{"en": "characteristic", "de": "Merkmal"}
+{"en": "Characteristic Value Combinations", "de": "Merkmalswertekombinationen"}
+{"en": "chart", "de": "Diagramm"}
+{"en": "check", "de": "Kontrolle"}
+{"en": "checkbox", "de": "Ankreuzfeld"}
+{"en": "claim", "de": "Schaden-/Leistungsfall"}
+{"en": "class", "de": "Kurseinheit"}
+{"en": "classification", "de": "Klassifikation"}
+{"en": "classification requests", "de": "Klassifizierungsanfragen"}
+{"en": "Classify Dangerous Good - Packaged Product", "de": "Gefahrgut klassifizieren - Verpacktes Produkt"}
+{"en": "clause types", "de": "Klauselarten"}
+{"en": "Clear", "de": "Zurücksetzen"}
+{"en": "clearing entry", "de": "Ausgleichsbeleg"}
+{"en": "Click", "de": "Klicken Sie auf"}
+{"en": "client", "de": "Client"}
+{"en": "client application", "de": "Client-Anwendung"}
+{"en": "Close", "de": "Schließen"}
+{"en": "Cloud Connector IP", "de": "Cloud-Connector-IPs"}
+{"en": "CN", "de": "CN"}
+{"en": "cohort", "de": "Lerngruppe"}
+{"en": "collaboration", "de": "Kooperation"}
+{"en": "collection", "de": "Collection"}
+{"en": "collector", "de": "Sammler"}
+{"en": "column", "de": "Spalte"}
+{"en": "column names", "de": "Spaltennamen"}
+{"en": "columns", "de": "Spalten"}
+{"en": "comment", "de": "Comment"}
+{"en": "communication arrangement", "de": "Kommunikationsvereinbarung"}
+{"en": "Compact Mode", "de": "kompakten Modus"}
+{"en": "company address", "de": "Unternehmensadresse"}
+{"en": "companyID", "de": "unternehmensID"}
+{"en": "completed", "de": "Abgeschlossen"}
+{"en": "compliance", "de": "Compliance"}
+{"en": "compliance requirement", "de": "Compliance-Anforderung"}
+{"en": "Compliance Requirement Tasks", "de": "Compliance-Anforderungsaufgaben"}
+{"en": "Compliance requirements", "de": "Compliance-Anforderungen"}
+{"en": "component", "de": "Komponente"}
+{"en": "components", "de": "Komponenten"}
+{"en": "Components tab", "de": "Registerkarte Komponenten"}
+{"en": "compute blocks", "de": "Rechenleistungsblöcke"}
+{"en": "condition", "de": "Bedingung"}
+{"en": "Condition Library", "de": "Bedingungsbibliothek"}
+{"en": "condition records", "de": "Konditionssätze"}
+{"en": "condition type", "de": "Konditionsart"}
+{"en": "Conditions", "de": "Bedingungen"}
+{"en": "Conditions page", "de": "Seite Bedingungen"}
+{"en": "Configuration", "de": "Konfiguration"}
+{"en": "configuration item", "de": "Konfigurationselement"}
+{"en": "configuration step", "de": "Konfigurationsschritt"}
+{"en": "configurations", "de": "Konfigurationen"}
+{"en": "confirmation", "de": "Bestätigung"}
+{"en": "connected systems", "de": "angebundenen Systeme"}
+{"en": "connection", "de": "Verbindung"}
+{"en": "connection properties", "de": "Verbindungseigenschaften"}
+{"en": "connection type", "de": "Verbindungstyp"}
+{"en": "connections", "de": "Verbindungen"}
+{"en": "connectivity", "de": "Connectivity"}
+{"en": "connector", "de": "Konnektor"}
+{"en": "constraint", "de": "Einschränkung"}
+{"en": "consume", "de": "Verbrauch"}
+{"en": "consumed amounts", "de": "verbrauchte Speicherplatz"}
+{"en": "consumption model", "de": "Verbrauchsmodell"}
+{"en": "Consumption models", "de": "Verbrauchsmodelle"}
+{"en": "contact", "de": "Ansprechpartner"}
+{"en": "Content Network", "de": "Content-Netzwerk"}
+{"en": "context button", "de": "Kontextschaltfläche"}
+{"en": "Context buttons", "de": "Kontextschaltflächen"}
+{"en": "continuous", "de": "kontinuierliche"}
+{"en": "contract", "de": "Kontrakt"}
+{"en": "Contract Type", "de": "Vertragsart"}
+{"en": "control", "de": "Kontrolle"}
+{"en": "converter", "de": "Zeitumrechnung"}
+{"en": "Copy To", "de": "Kopieren nach"}
+{"en": "cost component", "de": "Kostenkomponente"}
+{"en": "countries", "de": "Ländern"}
+{"en": "create", "de": "erstellen"}
+{"en": "Create Transform", "de": "Transformation erstellen"}
+{"en": "creator", "de": "Creator"}
+{"en": "credentials", "de": "Anmeldeinformationen"}
+{"en": "CSN File", "de": "CSN-Datei"}
+{"en": "csv", "de": ".csv"}
+{"en": "CSV File", "de": "CSV-Datei"}
+{"en": "Currencies", "de": "Währungen"}
+{"en": "currency", "de": "Währung"}
+{"en": "Currency Conversion", "de": "Währungsumrechnung"}
+{"en": "current month", "de": "aktuellen Monats"}
+{"en": "Current year", "de": "aktuellen Jahr"}
+{"en": "custom", "de": "frei definierbar"}
+{"en": "custom role", "de": "benutzerdefinierte Rolle"}
+{"en": "customer", "de": "Debitor"}
+{"en": "customer dimension", "de": "Kundendimension"}
+{"en": "customer hierarchy", "de": "Kundenhierarchie"}
+{"en": "customers", "de": "Kunden"}
+{"en": "CVCs", "de": "Merkmalswertekombinationen"}
+{"en": "DACs", "de": "Datenzugriffskontrollen"}
+{"en": "dangerous goods assessment list", "de": "Gefahrgutbewertungsliste"}
+{"en": "data", "de": "Daten"}
+{"en": "data access control", "de": "Datenzugriffskontrolle"}
+{"en": "Data access controls", "de": "Datenzugriffskontrollen"}
+{"en": "Data Builder", "de": "Data Builder"}
+{"en": "Data Center", "de": "Rechenzentrum"}
+{"en": "data collector", "de": "Datensammler"}
+{"en": "data controller", "de": "Verantwortlichen"}
+{"en": "data flow", "de": "Datenfluss"}
+{"en": "data flows", "de": "Datenflüssen"}
+{"en": "data inconsistencies", "de": "Dateninkonsistenzen"}
+{"en": "Data Ingestion", "de": "Datenaufnahme"}
+{"en": "Data Integration Monitor", "de": "Datenintegrationsmonitor"}
+{"en": "data lake", "de": "Data Lake"}
+{"en": "data lake compute", "de": "Data-Lake-Rechenleistung"}
+{"en": "data lake Files", "de": "Data-Lake-Dateien-Standardkomponente"}
+{"en": "data lake IQ", "de": "Data-Lake-IQ-Komponente"}
+{"en": "Data lake storage", "de": "Data-Lake-Speicher"}
+{"en": "data layer", "de": "Datenschicht"}
+{"en": "Data Marketplace", "de": "Data Marketplace"}
+{"en": "data offerings", "de": "Datenangebote"}
+{"en": "data point", "de": "Datenpunkt"}
+{"en": "data preview", "de": "Datenvorschau"}
+{"en": "data privacy legislation", "de": "Datenschutzgesetze"}
+{"en": "data product", "de": "Datenprodukt"}
+{"en": "data products", "de": "Datenprodukte"}
+{"en": "data protection", "de": "Datenschutz"}
+{"en": "data provider", "de": "Datenprovider"}
+{"en": "data provider page", "de": "Datenprovider-Seite"}
+{"en": "data provisioning", "de": "Datenbereitstellung"}
+{"en": "Data Provisioning adapters", "de": "Datenbereitstellungs-Adapter"}
+{"en": "Data Provisioning Agent", "de": "Datenbereitstellungs-Agent"}
+{"en": "data range", "de": "Datenbereich"}
+{"en": "data selection", "de": "Datenauswahl"}
+{"en": "data set", "de": "Daten"}
+{"en": "data source", "de": "Datenquelle"}
+{"en": "data statistics object", "de": "Datenstatistikobjekt"}
+{"en": "data subject", "de": "betroffenen Person"}
+{"en": "data types", "de": "Datentyp"}
+{"en": "data updates", "de": "Datenaktualisierungen"}
+{"en": "data volumes", "de": "Datenmengen"}
+{"en": "database", "de": "Datenbank"}
+{"en": "database tenant", "de": "Datenbank-Tenant"}
+{"en": "database user", "de": "Datenbankbenutzer"}
+{"en": "database user name", "de": "Datenbankbenutzername"}
+{"en": "dataset", "de": "Datenset"}
+{"en": "datastream", "de": "Datenstrom"}
+{"en": "Date", "de": "Datum"}
+{"en": "date format", "de": "Datumsformat"}
+{"en": "date function", "de": "Datumsfunktion"}
+{"en": "deal", "de": "Geschäft"}
+{"en": "default", "de": "Voreinstellung"}
+{"en": "default value", "de": "Standardwert"}
+{"en": "Defense and Security", "de": "Verteidigung und Sicherheit"}
+{"en": "Define Mapping", "de": "Zuordnung definieren"}
+{"en": "Delete Selected Rows", "de": "Ausgewählte Zeilen löschen"}
+{"en": "Delete tool", "de": "Tool Löschen"}
+{"en": "delivery", "de": "Lieferung"}
+{"en": "delivery mode", "de": "Liefermodus"}
+{"en": "Delivery Tracking", "de": "Nachverfolgung der Lieferungen"}
+{"en": "Demand Plan Simulation", "de": "Bedarfsplansimulation"}
+{"en": "demand quantities", "de": "Bedarfsmengen"}
+{"en": "demand quantity", "de": "Bedarfsmenge"}
+{"en": "demand-driven", "de": "bedarfsorientiert"}
+{"en": "dependent objects", "de": "abhängigen Objekte"}
+{"en": "deploy", "de": "übernehmen"}
+{"en": "deployment", "de": "Implementierung"}
+{"en": "derived measure", "de": "abgeleitete Kennzahl"}
+{"en": "description", "de": "Beschreibung"}
+{"en": "design", "de": "Entwurf"}
+{"en": "detail information", "de": "detaillierte Informationen"}
+{"en": "detailed log", "de": "detaillierte Protokoll"}
+{"en": "detailed logs", "de": "detaillierten Protokolle"}
+{"en": "Details", "de": "Details"}
+{"en": "details screen", "de": "Detailbild"}
+{"en": "diagram", "de": "Diagramm"}
+{"en": "dialog", "de": "Dialogfeld"}
+{"en": "dialog text", "de": "Text im Dialog"}
+{"en": "difference", "de": "Abweichung"}
+{"en": "dimension", "de": "Dimension"}
+{"en": "dimension sources", "de": "Dimensionsquellen"}
+{"en": "Dimensions", "de": "Dimensionen"}
+{"en": "disclosure", "de": "Auskunft"}
+{"en": "disk", "de": "Festplatte"}
+{"en": "display", "de": "Anzeige"}
+{"en": "Display button", "de": "Drucktaste Anzeigen"}
+{"en": "distribution", "de": "Aufteilung"}
+{"en": "DN field", "de": "DN-Feld"}
+{"en": "document", "de": "Dokument"}
+{"en": "document class", "de": "Belegklasse"}
+{"en": "document status", "de": "Dokumentstatus"}
+{"en": "document type", "de": "Dokumentart"}
+{"en": "domain", "de": "Domain"}
+{"en": "download", "de": "Download"}
+{"en": "Download file", "de": "Download-Datei"}
+{"en": "draft", "de": "Entwurf"}
+{"en": "Draft status", "de": "Status \"Entwurf\""}
+{"en": "draft version", "de": "Entwurfsversion"}
+{"en": "driver", "de": "Treiber"}
+{"en": "drop-down", "de": "Dropdown-Liste"}
+{"en": "Dropdown", "de": "Dropdown"}
+{"en": "Due", "de": "Fällig"}
+{"en": "E-Mail Template", "de": "E-Mail-Vorlage"}
+{"en": "ecotoxicity assessment", "de": "Ökotoxizität"}
+{"en": "Edit Details", "de": "Details bearbeiten"}
+{"en": "editor", "de": "Editor"}
+{"en": "Education", "de": "Weiterbildung"}
+{"en": "email address", "de": "E-Mail-Adresse"}
+{"en": "email template", "de": "E-Mail-Vorlage"}
+{"en": "employee", "de": "Mitarbeiter"}
+{"en": "end date", "de": "Enddatum"}
+{"en": "end user", "de": "Endbenutzer"}
+{"en": "end-user actions", "de": "Endbenutzeraktionen"}
+{"en": "entities", "de": "Entitäten"}
+{"en": "entitlement", "de": "Anrecht"}
+{"en": "entity", "de": "Entität"}
+{"en": "entity relationship model", "de": "Entity-Relationship-Modell"}
+{"en": "entity-relationship diagrams", "de": "Entity-Relationship-Diagrammen"}
+{"en": "entity-relationship model", "de": "Entity-Relationship-Modell"}
+{"en": "entries", "de": "Einträge"}
+{"en": "Environment, Health, and Safety system", "de": "Environment, Health and Safety-System"}
+{"en": "EoP", "de": "EoP"}
+{"en": "ER model", "de": "ER-Modell"}
+{"en": "error", "de": "Fehler"}
+{"en": "error messages", "de": "Fehlermeldungen"}
+{"en": "errors", "de": "Fehler"}
+{"en": "evaluation", "de": "Bewertung"}
+{"en": "evaluation type", "de": "Bewertungsart"}
+{"en": "excel attachment", "de": "Excel-Anlage"}
+{"en": "execute", "de": "ausführen"}
+{"en": "expand", "de": "aufklappen"}
+{"en": "expensive statements view", "de": "View der aufwendigen Anweisungen"}
+{"en": "Experimental features", "de": "Experimentelle Funktionen"}
+{"en": "expiration date", "de": "Auslaufdatum"}
+{"en": "expired", "de": "ausgelaufen"}
+{"en": "Expired status", "de": "Status Abgelaufen"}
+{"en": "Export", "de": "Exportieren"}
+{"en": "extension", "de": "Durchwahl"}
+{"en": "facet", "de": "Facette"}
+{"en": "facility", "de": "Objekt"}
+{"en": "fact model", "de": "Faktenmodell"}
+{"en": "Fact models", "de": "Faktenmodelle"}
+{"en": "fact sources", "de": "Faktenquellen"}
+{"en": "failed", "de": "Fehlgeschlagen"}
+{"en": "Favorites", "de": "Favoriten"}
+{"en": "feature", "de": "Merkmal"}
+{"en": "features", "de": "Funktionen"}
+{"en": "features and functions", "de": "Merkmale und Funktionen"}
+{"en": "fee", "de": "Vergütung"}
+{"en": "feedback", "de": "Feedback"}
+{"en": "field", "de": "Feld"}
+{"en": "File adapter", "de": "Datei-Adapter"}
+{"en": "File adapter access token", "de": "Zugriffstoken des Datei-Adapters"}
+{"en": "file data", "de": "Dateidaten"}
+{"en": "file system", "de": "Dateisystem"}
+{"en": "file type", "de": "Dateityp"}
+{"en": "FileAdapter Password", "de": "FileAdapter-Kennwort"}
+{"en": "filter", "de": "Filter"}
+{"en": "filter bar", "de": "Filterleiste"}
+{"en": "filter conditions", "de": "Filterbedingungen"}
+{"en": "filter criteria", "de": "Filterkriterien"}
+{"en": "filter function", "de": "Filterfunktion"}
+{"en": "filter settings", "de": "Filtereinstellungen"}
+{"en": "FilterObject Type", "de": "FilterObjekttyp"}
+{"en": "Filters", "de": "Filter"}
+{"en": "financial statements", "de": "Finanzberichte"}
+{"en": "Find Slot", "de": "Lücke suchen"}
+{"en": "finished", "de": "beendet"}
+{"en": "fixed", "de": "fest"}
+{"en": "flag", "de": "markieren"}
+{"en": "flow", "de": "Flow"}
+{"en": "flow diagram", "de": "Flussdiagramm"}
+{"en": "following", "de": "Following"}
+{"en": "forecast", "de": "Forecast"}
+{"en": "format", "de": "Format"}
+{"en": "formatting", "de": "Formatierung"}
+{"en": "frame", "de": "Rahmen"}
+{"en": "Free Text", "de": "Freitext"}
+{"en": "frequency", "de": "Häufigkeit"}
+{"en": "frequently used", "de": "häufig verwendet"}
+{"en": "frequently used apps", "de": "häufig verwendete Apps"}
+{"en": "From-scale", "de": "Ab-Staffel"}
+{"en": "functionality", "de": "Funktion"}
+{"en": "Functions", "de": "Funktionen"}
+{"en": "Gantt chart", "de": "Gantt-Diagramm"}
+{"en": "Generic OData", "de": "Generic OData"}
+{"en": "Geo-Coordinates Column", "de": "Geokoordinaten"}
+{"en": "get", "de": "abrufen"}
+{"en": "Google Big Query", "de": "Google BigQuery"}
+{"en": "graph", "de": "Diagramm"}
+{"en": "graphical representations", "de": "grafischen Darstellungen"}
+{"en": "graphical view", "de": "grafischer View"}
+{"en": "graphical views", "de": "grafische Views"}
+{"en": "Group", "de": "Group"}
+{"en": "grouping rule", "de": "Gruppierungsregel"}
+{"en": "Having", "de": "Having"}
+{"en": "HDI", "de": "HDI"}
+{"en": "HDI clients", "de": "HDI-Clients"}
+{"en": "HDI container", "de": "HDI-Container"}
+{"en": "HDI containers", "de": "HDI-Container"}
+{"en": "header", "de": "Überschrift"}
+{"en": "headers", "de": "Köpfe"}
+{"en": "hierarchy", "de": "Hierarchie"}
+{"en": "history", "de": "Verlauf"}
+{"en": "host name", "de": "Hostname"}
+{"en": "hours", "de": "Stunden"}
+{"en": "HTTP Basic Authentication", "de": "HTTP-Standardauthentifizierung"}
+{"en": "icon", "de": "Symbol"}
+{"en": "ID", "de": "ID"}
+{"en": "ID type", "de": "ID-Art"}
+{"en": "identifier", "de": "Identifikator"}
+{"en": "identity provider", "de": "Identity-Provider"}
+{"en": "identity providers", "de": "Identity-Provider"}
+{"en": "If expression block", "de": "IF-Ausdruckblock"}
+{"en": "image", "de": "Bild"}
+{"en": "Import", "de": "Importieren"}
+{"en": "Import log", "de": "Importprotokoll"}
+{"en": "Import Permissions", "de": "ImportBerechtigungen"}
+{"en": "Import Users", "de": "Benutzer importieren"}
+{"en": "in-memory storage", "de": "In-Memory-Speicher"}
+{"en": "Inactive units", "de": "inaktive Einheiten"}
+{"en": "incident", "de": "Meldung"}
+{"en": "incident ID", "de": "Meldungs-ID"}
+{"en": "incident-related tasks", "de": "ereignisbezogenen Aufgaben"}
+{"en": "Include Unmatched Records", "de": "Nicht übereinstimmende Datensätze einschließen"}
+{"en": "income", "de": "Einnahmen"}
+{"en": "independent requirements", "de": "Planprimärbedarfe"}
+{"en": "indicator", "de": "Indikator"}
+{"en": "industries", "de": "Branchen"}
+{"en": "information", "de": "Informationen"}
+{"en": "information lifecycle management process", "de": "Information-Lifecycle-Management-Prozess"}
+{"en": "initialization task", "de": "Initialisierungsaufgabe"}
+{"en": "input", "de": "Eingabe"}
+{"en": "input column", "de": "Eingabespalte"}
+{"en": "input fields", "de": "Eingabefelder"}
+{"en": "input format", "de": "Eingabeformat"}
+{"en": "Input Parameters", "de": "Eingabeparameter"}
+{"en": "input record", "de": "Eingabedatensatz"}
+{"en": "input records", "de": "Eingabedatensätze"}
+{"en": "insert", "de": "einfügen"}
+{"en": "insert privilege", "de": "Berechtigung zum Einfügen"}
+{"en": "insight", "de": "Analysen"}
+{"en": "inspector", "de": "Inspektor"}
+{"en": "install", "de": "Installation"}
+{"en": "Installation", "de": "Installation"}
+{"en": "installment plan category", "de": "Ratenplantyp"}
+{"en": "instructor", "de": "Kursleiter"}
+{"en": "Integrating Data", "de": "Integrieren von Daten"}
+{"en": "intelligent lookup", "de": "intelligente Suche"}
+{"en": "interaction", "de": "Kontakt"}
+{"en": "intercompany", "de": "buchungskreisübergreifend"}
+{"en": "intercompany sales orders", "de": "buchungskreisübergreifenden Kundenaufträgen"}
+{"en": "interest calculation", "de": "Zinsrechnung"}
+{"en": "interface", "de": "Schnittstelle"}
+{"en": "interval", "de": "Intervall"}
+{"en": "IP", "de": "IP-Adresse"}
+{"en": "IP address", "de": "IP-Adresse"}
+{"en": "IP restrictions", "de": "IP-Einschränkungen"}
+{"en": "IQ server", "de": "IQ-Server"}
+{"en": "issue", "de": "Problem"}
+{"en": "issue category", "de": "Problemkategorie"}
+{"en": "Issues", "de": "Probleme"}
+{"en": "IT department", "de": "IT-Abteilung"}
+{"en": "IT environments", "de": "IT-Umgebungen"}
+{"en": "item", "de": "Artikel"}
+{"en": "item details", "de": "Positionsdetails"}
+{"en": "iteration details", "de": "Iterationsdetails"}
+{"en": "JDBC libraries", "de": "JDBC-Bibliotheken"}
+{"en": "job", "de": "Job"}
+{"en": "Job Start", "de": "Jobstart"}
+{"en": "Join", "de": "Joins"}
+{"en": "join definition", "de": "Join-Definition"}
+{"en": "Join operator", "de": "Join-Operator"}
+{"en": "joins", "de": "Joins"}
+{"en": "joint venture accounting", "de": "Joint Venture Accounting"}
+{"en": "Keep Selected Rows", "de": "Ausgewählte Zeilen beibehalten"}
+{"en": "key", "de": "Schlüssel"}
+{"en": "key definition", "de": "Schlüsseldefinition"}
+{"en": "key mapping", "de": "Schlüsselzuordnung"}
+{"en": "Keys", "de": "Schlüssel"}
+{"en": "keywords", "de": "Schlüsselwörter"}
+{"en": "Knowledge Base", "de": "Knowledge Base"}
+{"en": "label", "de": "Label"}
+{"en": "Labeling", "de": "Etikettieren"}
+{"en": "labels", "de": "Etiketten"}
+{"en": "landing page", "de": "Landing-Page"}
+{"en": "language dependent text", "de": "sprachabhängigen Text"}
+{"en": "launchpad", "de": "Launchpad"}
+{"en": "layer", "de": "Schicht"}
+{"en": "Learn", "de": "Lernen"}
+{"en": "learner type", "de": "Lerntyp"}
+{"en": "legal document", "de": "Rechtsdokument"}
+{"en": "legal document object", "de": "Rechtsdokumentobjekt"}
+{"en": "level", "de": "Stufe"}
+{"en": "level-based", "de": "Ebenenhierarchien"}
+{"en": "license", "de": "Lizenz"}
+{"en": "license validity", "de": "Lizenzgültigkeit"}
+{"en": "lifecycle status", "de": "Lebenszyklusstatus"}
+{"en": "limit", "de": "Grenzwert"}
+{"en": "line of business", "de": "Geschäftsbereich"}
+{"en": "Line Separator", "de": "Zeilentrennzeichen"}
+{"en": "line type", "de": "Zeilenart"}
+{"en": "lineage view", "de": "Herkunftsansicht"}
+{"en": "link", "de": "Zuordnung"}
+{"en": "list columns", "de": "Listenspalten"}
+{"en": "list view", "de": "Listensicht"}
+{"en": "live operating environment", "de": "produktiven Betriebsumgebung"}
+{"en": "load", "de": "Load"}
+{"en": "LOB Values", "de": "LOB-Werte"}
+{"en": "localized version", "de": "lokalisierte Version"}
+{"en": "location", "de": "Ort"}
+{"en": "locked state", "de": "gesperrt"}
+{"en": "log", "de": "Log"}
+{"en": "log deletion schedule", "de": "Zeitplan zum Löschen von Protokollen"}
+{"en": "log entries", "de": "Protokolleinträge"}
+{"en": "log information", "de": "Protokollinformationen"}
+{"en": "logon email", "de": "E-Mail für die Anmeldung"}
+{"en": "logon information", "de": "Anmeldeinformationen"}
+{"en": "logon language", "de": "anmeldesprache"}
+{"en": "logs", "de": "Protokolle"}
+{"en": "lookup entity", "de": "Lookup-Entität"}
+{"en": "lookup record", "de": "Lookup-Datensatz"}
+{"en": "Machine Learning", "de": "Machine Learning"}
+{"en": "maintenance backlogs", "de": "Instandhaltungsarbeitsvorrat"}
+{"en": "Maintenance Order Operations", "de": "Instandhaltungsauftragsvorgänge"}
+{"en": "Maintenance Orders", "de": "Instandhaltungsaufträge"}
+{"en": "maintenance plan", "de": "Instandhaltungsplan"}
+{"en": "Maintenance Planner", "de": "Instandhaltungsplaner"}
+{"en": "Manage Bank Statement Reprocessing Rules app", "de": "App \"Nachbearbeitungsregeln für Kontoauszüge verwalten\""}
+{"en": "Manage Contexts", "de": "Kontexte verwalten"}
+{"en": "Manage Purchase Orders Centrally", "de": "Bestellungen zentral verwalten"}
+{"en": "Managing Spaces", "de": "Verwalten von Spaces"}
+{"en": "map", "de": "Zuordnung"}
+{"en": "mapping", "de": "Zuordnung"}
+{"en": "mapping commands", "de": "Zuordnungsbefehle"}
+{"en": "mappings", "de": "Zuordnungen"}
+{"en": "marker", "de": "Markierung"}
+{"en": "Marking", "de": "Kennzeichnen"}
+{"en": "markings", "de": "Kennzeichnungen"}
+{"en": "master data", "de": "Stammdaten"}
+{"en": "match", "de": "abgleichen"}
+{"en": "match candidates", "de": "Übereinstimmungskandidaten"}
+{"en": "match percentage", "de": "Übereinstimmungsprozentsatz"}
+{"en": "Matched category", "de": "Kategorie Mit Übereinstimmung"}
+{"en": "material", "de": "Material"}
+{"en": "material BOM", "de": "Materialstückliste"}
+{"en": "material group", "de": "Materialgruppe"}
+{"en": "Material Groups", "de": "Materialgruppen"}
+{"en": "Materials", "de": "Materialien"}
+{"en": "Materials perspective", "de": "Perspektive Materialien"}
+{"en": "maximum character length", "de": "maximale Zeichenlänge"}
+{"en": "MB", "de": "MB"}
+{"en": "measure", "de": "Kennzahl"}
+{"en": "measure type", "de": "Kennzahltyp"}
+{"en": "measures", "de": "Kennzahlen"}
+{"en": "membership", "de": "Zugehörigkeit"}
+{"en": "memory", "de": "Speicherplatz"}
+{"en": "memory limit", "de": "Grenze für den Speicher"}
+{"en": "memory size", "de": "Speichergröße"}
+{"en": "Menu", "de": "Menü"}
+{"en": "menu item", "de": "Menüeintrag"}
+{"en": "message", "de": "Nachricht"}
+{"en": "Messages processing", "de": "Nachrichtenverarbeitung"}
+{"en": "metadata", "de": "Metadaten"}
+{"en": "Microsoft SQL Server", "de": "Microsoft SQL Server"}
+{"en": "minimum score", "de": "Mindest-Score"}
+{"en": "model", "de": "Modell"}
+{"en": "modeling world", "de": "Modellierungsumgebung"}
+{"en": "models", "de": "Modelle"}
+{"en": "module", "de": "Modul"}
+{"en": "monitor", "de": "überwachen"}
+{"en": "Monitor Compatibility of Central Procurement Operations app", "de": "App Kompatibilität der Vorgänge in zentr. Beschaffung überwachen"}
+{"en": "monitoring", "de": "Überwachung"}
+{"en": "monitoring views", "de": "Überwachungs-Views"}
+{"en": "move", "de": "verschieben"}
+{"en": "MS ADL Gen2", "de": "MS ADL Gen2"}
+{"en": "MS Azure Blob Storage", "de": "MS Azure Blob Storage"}
+{"en": "Multi-Level Material Simulation", "de": "Mehrstufige Materialsimulation"}
+{"en": "My Folder", "de": "Mein Ordner"}
+{"en": "MySubfolder", "de": "MeinUnterordner"}
+{"en": "Name", "de": "Name"}
+{"en": "namespace", "de": "Namespace"}
+{"en": "navigation path", "de": "Navigationspfad"}
+{"en": "navigation targets", "de": "Navigationsziele"}
+{"en": "Network", "de": "Network"}
+{"en": "Network security", "de": "Netzwerksicherheit"}
+{"en": "New Consumption Model", "de": "Neues Verbrauchsmodell"}
+{"en": "new rule", "de": "neue Regel"}
+{"en": "next runs", "de": "nächsten Ausführungen"}
+{"en": "node", "de": "Knoten"}
+{"en": "non compatible", "de": "nicht kompatibel"}
+{"en": "note", "de": "Hinweis"}
+{"en": "notes", "de": "Anmerkungen"}
+{"en": "Notes pane", "de": "Bereich Notizen"}
+{"en": "notification", "de": "Benachrichtigung"}
+{"en": "notification preferences", "de": "Benachrichtigungseinstellungen"}
+{"en": "notification type", "de": "Benachrichtigungsart"}
+{"en": "notifications", "de": "Benachrichtigungen"}
+{"en": "NULL", "de": "NULL"}
+{"en": "numeric value", "de": "numerischen Wertes"}
+{"en": "OAuth 2.0", "de": "OAuth 2.0"}
+{"en": "OAuth client", "de": "OAuth-Client"}
+{"en": "OAuth2 Client Application", "de": "OAuth2 Client Application"}
+{"en": "object", "de": "Objekt"}
+{"en": "objects", "de": "Objekte"}
+{"en": "obligation", "de": "Verpflichtung"}
+{"en": "obligation details", "de": "Details zur Verpflichtung"}
+{"en": "obsolete", "de": "obsolet"}
+{"en": "occurrences", "de": "Vorkommen"}
+{"en": "officially delivered scope", "de": "offiziell ausgelieferten Umfang"}
+{"en": "offset", "de": "Offset"}
+{"en": "offset time period", "de": "Offset-Zeitraum"}
+{"en": "offset value", "de": "Offset-Wert"}
+{"en": "OK", "de": "OK"}
+{"en": "On-Premise", "de": "On-Premise"}
+{"en": "open", "de": "offen"}
+{"en": "Open Connectors", "de": "Open Connectors"}
+{"en": "open item", "de": "offene Position"}
+{"en": "operation", "de": "Vorgang"}
+{"en": "operations", "de": "Betrieb"}
+{"en": "operators", "de": "Operatoren"}
+{"en": "Operators Reference", "de": "Operators Reference"}
+{"en": "options", "de": "Optionen"}
+{"en": "Oracle database", "de": "Oracle-Datenbank"}
+{"en": "order", "de": "Auftrag"}
+{"en": "order filter", "de": "Auftragsfilter"}
+{"en": "order operation", "de": "Auftragsvorgang"}
+{"en": "order operation status", "de": "Auftragsvorgangsstatus"}
+{"en": "order schedules", "de": "Auftragspläne"}
+{"en": "orders", "de": "Aufträge"}
+{"en": "organizational unit", "de": "Organisationseinheit"}
+{"en": "organizational units", "de": "Organisationseinheiten"}
+{"en": "origin", "de": "Ursprung"}
+{"en": "outgoing statement", "de": "ausgehenden Anweisung"}
+{"en": "output", "de": "Ausgabe"}
+{"en": "output column", "de": "Ausgabespalte"}
+{"en": "Output columns", "de": "Ausgabespalten"}
+{"en": "Output Properties", "de": "Eigenschaften der Ausgabe"}
+{"en": "output structure", "de": "Ausgabestruktur"}
+{"en": "output view", "de": "Ausgabe-View"}
+{"en": "overdue", "de": "überfällige"}
+{"en": "overhead allocation", "de": "Gemeinkostenverrechnung"}
+{"en": "overview", "de": "Übersicht"}
+{"en": "owner", "de": "Eigentümer"}
+{"en": "package", "de": "Paket"}
+{"en": "page", "de": "Page"}
+{"en": "page type", "de": "Seitenart"}
+{"en": "pairing groups", "de": "Pairing-Gruppen"}
+{"en": "PAL", "de": "PAL"}
+{"en": "panel", "de": "Bereich"}
+{"en": "Parallel condition", "de": "Bedingung \"parallel\""}
+{"en": "parameter", "de": "Parameter"}
+{"en": "parameter values", "de": "Parameterwerte"}
+{"en": "parent-child", "de": "über- und untergeordneten Elementen"}
+{"en": "part", "de": "Part"}
+{"en": "partition", "de": "Partition"}
+{"en": "Partitioning", "de": "Partitionierung"}
+{"en": "partitioning column", "de": "Partitionierungsspalte"}
+{"en": "partitions", "de": "Partitionen"}
+{"en": "partner", "de": "Partner"}
+{"en": "partner tool", "de": "Partner-Tool"}
+{"en": "partner tools", "de": "Partner-Tools"}
+{"en": "partner UI", "de": "Partner-UI"}
+{"en": "password", "de": "Kennwort"}
+{"en": "pause", "de": "pausieren"}
+{"en": "payment advice", "de": "Avis"}
+{"en": "payment clearing groups", "de": "Zahlungsverrechnungsgruppen"}
+{"en": "payment details", "de": "Zahlungsdetails"}
+{"en": "payment method", "de": "Zahlweg"}
+{"en": "pending changes", "de": "ausstehende Änderungen"}
+{"en": "pending state", "de": "Ausstehend"}
+{"en": "percentage", "de": "prozentual"}
+{"en": "performance", "de": "Performance"}
+{"en": "performance optimizations", "de": "Optimierung der Performance"}
+{"en": "period", "de": "Zeitraum"}
+{"en": "permission level", "de": "Berechtigungsebene"}
+{"en": "permissions", "de": "Berechtigungen"}
+{"en": "persisted data", "de": "persistierten Daten"}
+{"en": "persisted table", "de": "persistierte Tabelle"}
+{"en": "persisted view", "de": "persistierten View"}
+{"en": "Persisted View List", "de": "Liste Persistierte Views"}
+{"en": "persisted views", "de": "persistierten Views"}
+{"en": "persistency", "de": "Persistenz"}
+{"en": "Persistency Task", "de": "Persistenz-Aufgabe"}
+{"en": "personal data", "de": "personenbezogene Daten"}
+{"en": "personal information", "de": "persönliche Informationen"}
+{"en": "perspective", "de": "Perspektive"}
+{"en": "perspectives", "de": "Perspektiven"}
+{"en": "phase", "de": "Phase"}
+{"en": "PIR version", "de": "Planprimärbedarfs"}
+{"en": "PIRs", "de": "Planprimärbedarfe"}
+{"en": "placeholders", "de": "Platzhaltern"}
+{"en": "planned independent requirements", "de": "Planprimärbedarfe"}
+{"en": "planning", "de": "Planung"}
+{"en": "planning data", "de": "Planungsdaten"}
+{"en": "planning strategies", "de": "Planungsstrategien"}
+{"en": "plant", "de": "Werk"}
+{"en": "pMRP Data", "de": "pMRP-Daten"}
+{"en": "position", "de": "Bestand"}
+{"en": "preview", "de": "Vorschau"}
+{"en": "Preview Data", "de": "Datenvorschau"}
+{"en": "preview mode", "de": "Vorschaumodus"}
+{"en": "Price Simulation", "de": "Preissimulation"}
+{"en": "pricing date", "de": "Preisfindungsdatum"}
+{"en": "pricing model", "de": "Preismodelle"}
+{"en": "pricing scale", "de": "Preisstaffel"}
+{"en": "primary contact", "de": "Hauptansprechpartner"}
+{"en": "prioritizing", "de": "Priorisierung"}
+{"en": "priority", "de": "Priorität"}
+{"en": "Privacy Filter", "de": "Datenschutzfilter"}
+{"en": "procedure", "de": "Vorgehensweise"}
+{"en": "process", "de": "Vorgang"}
+{"en": "Process industry", "de": "Prozessindustrie"}
+{"en": "process step", "de": "Prozessschritt"}
+{"en": "process step status", "de": "Prozessschrittstatus"}
+{"en": "processing", "de": "Verarbeitung"}
+{"en": "processing status", "de": "Bearbeitungsstatus"}
+{"en": "procurement", "de": "Beschaffung"}
+{"en": "product", "de": "Produkt"}
+{"en": "product allocation check", "de": "Kontingentprüfung"}
+{"en": "product allocation object", "de": "Kontingentierungsobjekt"}
+{"en": "Product Availability Matrix", "de": "Product Availability Matrix"}
+{"en": "product compliance", "de": "Produktkonformität"}
+{"en": "product data", "de": "Produktdaten"}
+{"en": "product delivery", "de": "Produktlieferung"}
+{"en": "product details", "de": "Produktdetails"}
+{"en": "product records", "de": "Produktdatensätze"}
+{"en": "production line", "de": "Fertigungslinie"}
+{"en": "Production Order", "de": "Produktionsauftrag"}
+{"en": "production version", "de": "Fertigungsversion"}
+{"en": "products", "de": "Produkte"}
+{"en": "profile page", "de": "Profilseite"}
+{"en": "project", "de": "Project"}
+{"en": "project manager", "de": "Projektmanager"}
+{"en": "properties", "de": "Eigenschaften"}
+{"en": "properties panel", "de": "Bereich Eigenschaften"}
+{"en": "property", "de": "Eigenschaft"}
+{"en": "property panel", "de": "Eigenschaftsbereich"}
+{"en": "protocol", "de": "Protokoll"}
+{"en": "provided", "de": "angegeben"}
+{"en": "provider", "de": "Provider"}
+{"en": "Provider Name", "de": "Providername"}
+{"en": "Providers", "de": "Anbieter"}
+{"en": "provisioning", "de": "bereitstellung"}
+{"en": "Public Data Access", "de": "öffentlichen Datenzugriff"}
+{"en": "public internet IP", "de": "öffentliche Internet-IP-Adresse"}
+{"en": "publish", "de": "veröffentlichen"}
+{"en": "purchase order number", "de": "Bestellnummer"}
+{"en": "Purchase Orders", "de": "Bestellungen"}
+{"en": "purchase requisition", "de": "Bestellanforderung"}
+{"en": "purchase requisition item type", "de": "Bestellanforderungs-Positionsart"}
+{"en": "purchase requisition items", "de": "Bestellanforderungspositionen"}
+{"en": "Purchase Requisitions", "de": "Bestellanforderungen"}
+{"en": "Python script", "de": "Python-Skript"}
+{"en": "quantity", "de": "mengen"}
+{"en": "query", "de": "Abfrage"}
+{"en": "query optimizer", "de": "Abfrageoptimierer"}
+{"en": "queue", "de": "Warteschlange"}
+{"en": "Quick Edit mode", "de": "Modus Schnellbearbeitung"}
+{"en": "range", "de": "Bereich"}
+{"en": "ranges", "de": "Bereiche"}
+{"en": "ranking", "de": "Ranking"}
+{"en": "raw material", "de": "Rohmaterial"}
+{"en": "real-time replication", "de": "Echtzeitreplikation"}
+{"en": "real-time replication status", "de": "Echtzeitreplikationsstatus"}
+{"en": "Recent Activities", "de": "Letzte Aktivitäten"}
+{"en": "record", "de": "Datensatz"}
+{"en": "RECORD COUNT", "de": "ANZAHL DATENSÄTZE"}
+{"en": "record type", "de": "Satztyp"}
+{"en": "records", "de": "Datensätze"}
+{"en": "recurrence", "de": "Wiederholung"}
+{"en": "recurrence pattern", "de": "Wiederholungsmuster"}
+{"en": "Redirect URI", "de": "Weiterleitungs-URI"}
+{"en": "refbody", "de": "refbody-Tag"}
+{"en": "refbodydiv", "de": "refbodydiv-Tag"}
+{"en": "reference", "de": "Verweis"}
+{"en": "reference characteristic", "de": "Bezugsmerkmal"}
+{"en": "reference data", "de": "Referenzdaten"}
+{"en": "reference plan", "de": "Referenzplan"}
+{"en": "reference quantity", "de": "Referenzmenge"}
+{"en": "reference source column", "de": "Referenzquellspalte"}
+{"en": "Referential Integrity", "de": "Referenzielle Integrität"}
+{"en": "refresh", "de": "aktualisieren"}
+{"en": "regulation", "de": "Vorschrift"}
+{"en": "regulations", "de": "Vorschriften"}
+{"en": "reject", "de": "ablehnen"}
+{"en": "relation", "de": "Relation"}
+{"en": "relationship", "de": "Verknüpfung"}
+{"en": "Relative Basic Finish Date", "de": "Relativen Eckendtermin"}
+{"en": "release", "de": "Release"}
+{"en": "Released", "de": "Freigegeben"}
+{"en": "releases", "de": "Releases"}
+{"en": "remote connected source system", "de": "verbundene Remote-Quellsystem"}
+{"en": "Remote Query Monitor", "de": "Remote-Abfrage-Monitor"}
+{"en": "remote table", "de": "Remote-Tabelle"}
+{"en": "Remote Table Monitor", "de": "Remote-Tabellen-Monitor"}
+{"en": "remote tables", "de": "Remote-Tabellen"}
+{"en": "Remove from Favorites", "de": "Aus Favoriten entfernen"}
+{"en": "renewal", "de": "Erneuerung"}
+{"en": "replica data", "de": "Replikationsdaten"}
+{"en": "replica table", "de": "Replikatstabelle"}
+{"en": "replication", "de": "Replikation"}
+{"en": "replication runs", "de": "Replikationsläufe"}
+{"en": "Replication Schedule", "de": "Replikationszeitplan"}
+{"en": "report", "de": "Report"}
+{"en": "report file", "de": "Berichtsdatei"}
+{"en": "report generation", "de": "Berichtsgenerierung"}
+{"en": "report status", "de": "Berichtsstatus"}
+{"en": "reporting period", "de": "Berichtsperiode"}
+{"en": "reporting periods", "de": "Berichtsperioden"}
+{"en": "repository", "de": "Repository"}
+{"en": "Repository Explorer", "de": "Repository-Explorer"}
+{"en": "request", "de": "anfragen"}
+{"en": "request details", "de": "Anfragedetails"}
+{"en": "requested", "de": "angefragt"}
+{"en": "requirement", "de": "Bedarf"}
+{"en": "Requirement Filter", "de": "Bedarfsfilter"}
+{"en": "requisition item type", "de": "Bestellanforderungs-Positionsart"}
+{"en": "reset", "de": "zurücksetzen"}
+{"en": "residence period", "de": "Residenzzeit"}
+{"en": "resource", "de": "Ressource"}
+{"en": "resource management", "de": "Ressourcenmanagement"}
+{"en": "resources", "de": "Ressourcengruppe"}
+{"en": "responsibility", "de": "Zuständigkeit"}
+{"en": "Restore", "de": "Wiederherstellen"}
+{"en": "restriction", "de": "Einschränkung"}
+{"en": "retention period", "de": "Aufbewahrungszeitraum"}
+{"en": "retention periods", "de": "Aufbewahrungszeiträumen"}
+{"en": "retention time", "de": "Aufbewahrungszeit"}
+{"en": "Retry button", "de": "Schaltfläche Wiederholen"}
+{"en": "return", "de": "Meldung"}
+{"en": "review", "de": "Prüfung"}
+{"en": "Review Agent Logs", "de": "Agent-Protokolle prüfen"}
+{"en": "Review and export page", "de": "Seite Überprüfen und exportieren"}
+{"en": "Review category", "de": "Kategorie Zur Prüfung"}
+{"en": "reviewer", "de": "Prüfer"}
+{"en": "revision", "de": "überarbeitete Version"}
+{"en": "risk class", "de": "Risikoklasse"}
+{"en": "Risk type", "de": "Risikoart"}
+{"en": "Role", "de": "Rolle"}
+{"en": "roles", "de": "Rollen"}
+{"en": "Rolling Interval", "de": "roll. Intervall"}
+{"en": "root", "de": "Stamm"}
+{"en": "routing", "de": "Weiterleitung"}
+{"en": "row", "de": "Zeile"}
+{"en": "row-level security", "de": "Sicherheit auf Zeilenebene"}
+{"en": "rules", "de": "Regeln"}
+{"en": "run", "de": "Lauf"}
+{"en": "safety instruction", "de": "Betriebsanweisung"}
+{"en": "sales", "de": "Verkauf"}
+{"en": "sales order", "de": "Kundenauftrag"}
+{"en": "sales orders", "de": "Kundenaufträge"}
+{"en": "SAML Bearer Assertion", "de": "SAML-Inhaber-Assertion"}
+{"en": "SAP", "de": "SAP"}
+{"en": "SAP applications", "de": "SAP-Anwendungen"}
+{"en": "SAP BW bridge", "de": "SAP-BW-Bridge"}
+{"en": "SAP BW/4HANA", "de": "SAP BW/4HANA"}
+{"en": "SAP BW/4HANA connection", "de": "SAP-BW/4HANA-Verbindung"}
+{"en": "SAP Cloud Platform SDK", "de": "SAP Cloud Platform SDK"}
+{"en": "SAP Community", "de": "SAP Community"}
+{"en": "SAP Data Warehouse Cloud", "de": "SAP Data Warehouse Cloud"}
+{"en": "SAP HANA", "de": "SAP HANA"}
+{"en": "SAP HANA Automated Predictive Library", "de": "SAP HANA Automated Predictive Library"}
+{"en": "SAP HANA Cloud", "de": "SAP HANA Cloud"}
+{"en": "SAP HANA Cloud Deployment Infrastructure", "de": "SAP HANA Cloud Deployment Infrastructure"}
+{"en": "SAP HANA Cloud, Data Lake", "de": "SAP HANA Cloud, Data Lake"}
+{"en": "SAP HANA Cockpit", "de": "SAP HANA Cockpit"}
+{"en": "SAP HANA Predictive Analysis Library", "de": "SAP HANA Predictive Analysis Library"}
+{"en": "SAP HANA Smart Data Integration", "de": "SAP HANA Smart Data Integration"}
+{"en": "SAP HANA SQL Functions Reference", "de": "SAP HANA SQL Functions Reference"}
+{"en": "SAP Information Lifecycle Management", "de": "SAP Information Lifecycle Management"}
+{"en": "SAP Landscape Transformation Replication Server", "de": "SAP Landscape Transformation Replication Server"}
+{"en": "SAP LT Replication Server", "de": "SAP LT Replication Server"}
+{"en": "SAP NetWeaver", "de": "SAP-NetWeaver"}
+{"en": "SAP product", "de": "SAP-Produkt"}
+{"en": "SAP products", "de": "SAP-Produkte"}
+{"en": "SAP S/4HANA", "de": "SAP-S/4HANA"}
+{"en": "SAP S/4HANA Cloud", "de": "SAP S/4HANA Cloud"}
+{"en": "SAP S/4HANA Cloud connection", "de": "SAP-S/4HANA-Cloud-Verbindung"}
+{"en": "SAP SE", "de": "SAP SE"}
+{"en": "SAP SuccessFactors", "de": "SAP-SuccessFactors-System"}
+{"en": "SAP SuccessFactors company ID", "de": "SAP-SuccessFactors-Firmen-ID"}
+{"en": "SAP support user", "de": "SAP-Support-Benutzer"}
+{"en": "Save", "de": "Speichern"}
+{"en": "Save As Function", "de": "Funktion Sichern unter"}
+{"en": "Save New", "de": "Neue Version speichern"}
+{"en": "scale", "de": "Staffel"}
+{"en": "scales", "de": "Staffel"}
+{"en": "scenario", "de": "Scenario"}
+{"en": "schedule", "de": "Terminplan"}
+{"en": "schedule task", "de": "eingeplante Aufgabe"}
+{"en": "scheduled", "de": "terminiert"}
+{"en": "scheduled task", "de": "Einplanen von Aufgaben"}
+{"en": "scheduling", "de": "Terminierung"}
+{"en": "scheduling options", "de": "Einplanungsoptionen"}
+{"en": "scope", "de": "Umfang"}
+{"en": "score", "de": "Punktzahl"}
+{"en": "script", "de": "Skript"}
+{"en": "search results", "de": "Suchergebnisse"}
+{"en": "section", "de": "Abschnitt"}
+{"en": "Security", "de": "Sicherheit"}
+{"en": "Security Assertion Markup Language", "de": "Security-Assertion-Markup-Language"}
+{"en": "select", "de": "auswählen"}
+{"en": "Select Source File", "de": "Quelldatei auswählen"}
+{"en": "Select Sourcing Project Type", "de": "Ausschreibungsprojektart auswählen"}
+{"en": "selection", "de": "Selektion"}
+{"en": "selection criteria", "de": "Selektionskriterien"}
+{"en": "sequence", "de": "Sequenz"}
+{"en": "sequential phases", "de": "sequenzielle Phasen"}
+{"en": "server certificate", "de": "Serverzertifikat"}
+{"en": "service", "de": "Service"}
+{"en": "service provider", "de": "Serviceanbieter"}
+{"en": "Services", "de": "Dienste"}
+{"en": "session", "de": "Sitzung"}
+{"en": "set", "de": "Set"}
+{"en": "Settings", "de": "Einstellungen"}
+{"en": "share", "de": "teilen"}
+{"en": "shared access signature", "de": "Shared Access Signatur"}
+{"en": "Shared key", "de": "gemeinsam verwendete Schlüssel"}
+{"en": "shared object", "de": "gemeinsam genutztes Objekt"}
+{"en": "Shared Properties", "de": "freigegebene Eigenschaften"}
+{"en": "Shift Top-Level Demand", "de": "Obersten Bedarf verschieben"}
+{"en": "shortdesc", "de": "shortdesc"}
+{"en": "Show All Filters", "de": "Alle Filter anzeigen"}
+{"en": "side panel", "de": "Seitenbereich"}
+{"en": "signing certificate", "de": "Unterschriftszertifikat"}
+{"en": "Simulate Variant", "de": "Variante simulieren"}
+{"en": "simulated quantity", "de": "simulierte Menge"}
+{"en": "simulations", "de": "Simulationen"}
+{"en": "single document", "de": "Einzelbeleg"}
+{"en": "size", "de": "Größe"}
+{"en": "size configuration", "de": "Größenkonfiguration"}
+{"en": "skill", "de": "Qualifikation"}
+{"en": "skills", "de": "Qualifikationen"}
+{"en": "slash", "de": "Schrägstrich"}
+{"en": "Slow-Moving Indicator", "de": "Lagerhüter-Kennzeichen"}
+{"en": "Smart Data Access", "de": "intelligenter Datenzugriff"}
+{"en": "snapshot", "de": "Snapshot"}
+{"en": "snapshot replication", "de": "Snapshot-Replikation"}
+{"en": "software products", "de": "Softwareprodukte"}
+{"en": "solution version", "de": "Lösungversion"}
+{"en": "sorting criteria", "de": "Sortierkriterien"}
+{"en": "source", "de": "Quelle"}
+{"en": "Source Browser", "de": "Quellbrowser"}
+{"en": "source of supply", "de": "Bezugsquelle"}
+{"en": "source system", "de": "Quellsystem"}
+{"en": "sourcing project", "de": "Ausschreibungsprojekt"}
+{"en": "Sourcing Project Type", "de": "Ausschreibungsprojektart"}
+{"en": "space", "de": "Space"}
+{"en": "Space administrator", "de": "Space-Administrator"}
+{"en": "Space Management", "de": "Space-Management"}
+{"en": "Spaces", "de": "Spaces"}
+{"en": "split criterion", "de": "Splitkriterium"}
+{"en": "SQL access", "de": "SQL-Zugriff"}
+{"en": "SQL Code", "de": "SQL-Code"}
+{"en": "SQL expression", "de": "SQL-Ausdruck"}
+{"en": "SQL queries", "de": "SQL-Abfragen"}
+{"en": "SQL schema", "de": "Open-SQL-Schema"}
+{"en": "SQL script", "de": "SQL-Skript"}
+{"en": "SQL statement", "de": "SQL-Anweisung"}
+{"en": "SQL users", "de": "Open-SQL-Benutzer"}
+{"en": "SQLScript Views", "de": "SQLScript-Views"}
+{"en": "SSL certificate", "de": "SSL-Zertifikat"}
+{"en": "SSL encryption", "de": "SSL-Verschlüsselung"}
+{"en": "staffed", "de": "Person zugeordnet"}
+{"en": "stage", "de": "Stufe"}
+{"en": "stage of execution", "de": "Ausführungsstadium"}
+{"en": "standard available capacity", "de": "Standardkapazitätsangebot"}
+{"en": "Standard Marketing Edition", "de": "Standard Marketing Edition"}
+{"en": "standard role", "de": "Standardrolle"}
+{"en": "standard roles", "de": "Standardrollen"}
+{"en": "start", "de": "Start"}
+{"en": "start date", "de": "Startdatum"}
+{"en": "state", "de": "Zustand"}
+{"en": "Statement-level Triggers", "de": "Trigger auf Anweisungsebene"}
+{"en": "statistics", "de": "Statistiken"}
+{"en": "status", "de": "Status"}
+{"en": "Status 1", "de": "Status 1"}
+{"en": "step", "de": "Schritt"}
+{"en": "Stock Quantity", "de": "Bestandsmenge"}
+{"en": "storage", "de": "Speicher"}
+{"en": "storage options", "de": "Speicheroptionen"}
+{"en": "storage size", "de": "Speicherplatz"}
+{"en": "storage sizes", "de": "Speichergröße"}
+{"en": "storage type", "de": "Speichertyp"}
+{"en": "store", "de": "Filiale"}
+{"en": "stored procedure", "de": "gespeicherte Prozedur"}
+{"en": "Story", "de": "Story"}
+{"en": "Story Builder", "de": "Story Builder"}
+{"en": "Strategies", "de": "Strategien"}
+{"en": "strategy", "de": "Strategie"}
+{"en": "string", "de": "Zeichenfolge"}
+{"en": "subgroup", "de": "Teilkonzern"}
+{"en": "subscreen", "de": "Subscreen"}
+{"en": "subscription", "de": "Subskription"}
+{"en": "subscription item", "de": "Abonnementposition"}
+{"en": "substitution", "de": "Ersetzung"}
+{"en": "substitution strategy", "de": "Ersetzungsstrategie"}
+{"en": "successor", "de": "Nachfolger"}
+{"en": "summary", "de": "Übersicht"}
+{"en": "supplier", "de": "Kreditor"}
+{"en": "Supplier Invoices", "de": "Lieferantenrechnungen"}
+{"en": "suppliers", "de": "Lieferanten"}
+{"en": "support", "de": "Unterstützung"}
+{"en": "surplus stock", "de": "überschüssiger Bestand"}
+{"en": "suspend", "de": "aussetzen"}
+{"en": "system", "de": "System"}
+{"en": "system landscape", "de": "Systemlandschaft"}
+{"en": "System Status 1", "de": "Systemstatus 1"}
+{"en": "System Status 2", "de": "Systemstatus 2"}
+{"en": "system variable", "de": "Systemvariable"}
+{"en": "tab", "de": "Tab"}
+{"en": "table", "de": "Tabelle"}
+{"en": "table replication", "de": "Tabellenreplikation"}
+{"en": "table row", "de": "Tabellenzeile"}
+{"en": "table view", "de": "Tabellenansicht"}
+{"en": "tables", "de": "Tabellen"}
+{"en": "tags", "de": "Tags"}
+{"en": "Target", "de": "Ziel"}
+{"en": "target costs", "de": "Zielkosten"}
+{"en": "target key field", "de": "Zielschlüsselfeld"}
+{"en": "task", "de": "Aufgabe"}
+{"en": "task log", "de": "Aufgabenprotokoll"}
+{"en": "task log data", "de": "Aufgabenprotokolldaten"}
+{"en": "task logs", "de": "Aufgabenprotokolle"}
+{"en": "task status", "de": "Aufgabenstatus"}
+{"en": "team member", "de": "Team-Mitglied"}
+{"en": "technical details", "de": "technischen Details"}
+{"en": "technical name", "de": "technischen Namen"}
+{"en": "technical names", "de": "technische Namen"}
+{"en": "telephone number", "de": "Telefonnummer"}
+{"en": "template", "de": "Vorlage"}
+{"en": "templates", "de": "Vorlagen"}
+{"en": "tenant", "de": "Tenant"}
+{"en": "term", "de": "Term"}
+{"en": "terminate", "de": "beenden"}
+{"en": "termination", "de": "Kündigung"}
+{"en": "test plan", "de": "Testplan"}
+{"en": "test process", "de": "Testprozess"}
+{"en": "Test Processes", "de": "Testprozesse"}
+{"en": "Test Results", "de": "Testergebnisse"}
+{"en": "text attribute", "de": "Textattribut"}
+{"en": "text block", "de": "Textblock"}
+{"en": "text block object", "de": "Textblockobjekt"}
+{"en": "Text block version", "de": "Textblockversion"}
+{"en": "text blocks", "de": "Textblöcke"}
+{"en": "Text Elements", "de": "Textelemente"}
+{"en": "text elements library", "de": "Textelementbibliothek"}
+{"en": "theme", "de": "Motiv"}
+{"en": "third-party application server", "de": "Drittanbieter-Anwendungsserver"}
+{"en": "third-party data", "de": "Daten von Drittanbietern"}
+{"en": "thread limit", "de": "Grenze für Threads"}
+{"en": "threads", "de": "Threads"}
+{"en": "tile", "de": "Kachel"}
+{"en": "tiles", "de": "Kacheln"}
+{"en": "time entries", "de": "Zeiteinträge"}
+{"en": "time frame", "de": "Zeitraum"}
+{"en": "time interval", "de": "Zeitintervall"}
+{"en": "time options", "de": "Zeitoptionen"}
+{"en": "time period", "de": "Zeitraum"}
+{"en": "time zone", "de": "Zeitzone"}
+{"en": "timeframe", "de": "Zeitrahmen"}
+{"en": "Toggle Preview Changes", "de": "Vorschau der Änderungen umschalten"}
+{"en": "TOMs", "de": "technische und organisatorische Maßnahmen"}
+{"en": "toolbar", "de": "Symbolleiste"}
+{"en": "toolbar button", "de": "Schaltfläche in der Symbolleiste"}
+{"en": "tooltip", "de": "Quick-Info"}
+{"en": "top-level material", "de": "oberste Material"}
+{"en": "total storage", "de": "Gesamtspeicherplatz"}
+{"en": "trace log", "de": "Trace-Protokolldateien"}
+{"en": "Training", "de": "Schulungen"}
+{"en": "transaction", "de": "Vorgang"}
+{"en": "transfer", "de": "übertragen"}
+{"en": "transfer amount", "de": "Überweisungsbetrag"}
+{"en": "Transfer Stock - Cross Plant app", "de": "App Bestand umbuchen - werksübergreifend"}
+{"en": "transformation", "de": "Transformation"}
+{"en": "transformations", "de": "Transformationen"}
+{"en": "Transport", "de": "Transportieren"}
+{"en": "trigger", "de": "Auslöser"}
+{"en": "Triggers", "de": "Löst"}
+{"en": "troubleshooting", "de": "Fehlerbehebung"}
+{"en": "type", "de": "Typ"}
+{"en": "ul", "de": "ul"}
+{"en": "union", "de": "Union"}
+{"en": "Union operator", "de": "Union-Operator"}
+{"en": "union output columns", "de": "Union-Ausgabespalten"}
+{"en": "unit", "de": "Einheit"}
+{"en": "unit of measure", "de": "Mengeneinheit"}
+{"en": "United Arab Emirates", "de": "Vereinigte Arabische Emirate"}
+{"en": "Unmatched", "de": "Ohne Übereinstimmung"}
+{"en": "Unmatched Record", "de": "Nicht übereinstimmender Datensatz"}
+{"en": "update", "de": "Aktualisierung"}
+{"en": "Upgrade", "de": "Upgrade"}
+{"en": "upload", "de": "Upload"}
+{"en": "Upsert Shadow Tables", "de": "Upsert Schattentabellen"}
+{"en": "URL link", "de": "URL-Link"}
+{"en": "usage", "de": "Nutzung"}
+{"en": "use", "de": "Nutzung"}
+{"en": "use-case", "de": "Anwendungsfall"}
+{"en": "user", "de": "Benutzer"}
+{"en": "user activity", "de": "Benutzeraktivität"}
+{"en": "User Email Addresses", "de": "Benutzer-E-Mail-Adressen"}
+{"en": "user group", "de": "Benutzergruppe"}
+{"en": "user ID", "de": "Benutzer-ID"}
+{"en": "user interface", "de": "Benutzeroberfläche"}
+{"en": "user management", "de": "Benutzerverwaltung"}
+{"en": "user name", "de": "Benutzername"}
+{"en": "user settings", "de": "Benutzereinstellungen"}
+{"en": "users", "de": "Benutzer"}
+{"en": "Users management table", "de": "Benutzer-Verwaltungstabelle"}
+{"en": "utilization forecast", "de": "Auslastungsprognose"}
+{"en": "Valid From", "de": "Gültig-von"}
+{"en": "valid from date", "de": "Gültig-ab-Datum"}
+{"en": "valid-from date", "de": "Gültig-ab-Datum"}
+{"en": "valid-to date", "de": "Gültig-bis-Datum"}
+{"en": "Validate", "de": "Validieren"}
+{"en": "validation area", "de": "Validierungsbereich"}
+{"en": "Validation Messages", "de": "Validierungsmeldungen"}
+{"en": "validity period", "de": "Gültigkeitszeitraum"}
+{"en": "valuation", "de": "Bewertung"}
+{"en": "value", "de": "Wert"}
+{"en": "Value field", "de": "Feld Wert"}
+{"en": "value group", "de": "Wertegruppe"}
+{"en": "value help", "de": "Eingabehilfe"}
+{"en": "variables", "de": "Variablen"}
+{"en": "variant", "de": "Variante"}
+{"en": "vCPUs", "de": "vCPUs"}
+{"en": "vendor", "de": "Lieferant"}
+{"en": "vendor invoice", "de": "Kreditorenrechnung"}
+{"en": "verification", "de": "Verifizierung"}
+{"en": "version", "de": "Version"}
+{"en": "Version History", "de": "Versionshistorie"}
+{"en": "version number", "de": "Versionsnummer"}
+{"en": "version-specific", "de": "versionsspezifisch"}
+{"en": "Videos", "de": "Videos"}
+{"en": "view", "de": "View"}
+{"en": "view data", "de": "View-Daten"}
+{"en": "view persistency", "de": "View-Persistenz"}
+{"en": "View Persistency Actions", "de": "View-Persistenz-Aktionen"}
+{"en": "views", "de": "Views"}
+{"en": "warranties", "de": "Garantien"}
+{"en": "Wizard step", "de": "Wizard-Schritt"}
+{"en": "work center", "de": "Arbeitsplatz"}
+{"en": "work centers", "de": "Arbeitsplätze"}
+{"en": "work package", "de": "Work-Package"}
+{"en": "workflow", "de": "Workflow"}
+{"en": "workgroup", "de": "arbeitsgruppe"}
+{"en": "worklist", "de": "Arbeitsliste"}
+{"en": "workspace", "de": "Arbeitsbereich"}
+{"en": "wrangling", "de": "Wrangling"}

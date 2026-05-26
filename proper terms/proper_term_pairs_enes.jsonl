@@ -1,0 +1,1341 @@
+{"en": "about", "es": "info"}
+{"en": "accepted", "es": "aceptada"}
+{"en": "access level", "es": "nivel de acceso"}
+{"en": "access levels", "es": "niveles de acceso"}
+{"en": "access token", "es": "token de acceso"}
+{"en": "account", "es": "cuenta"}
+{"en": "account assignment", "es": "asignación de cuentas"}
+{"en": "account assignments", "es": "imputaciones"}
+{"en": "Account Determination", "es": "determinación de cuentas"}
+{"en": "accounting", "es": "contabilidad"}
+{"en": "accounts payable", "es": "contabilidad de acreedores"}
+{"en": "accruals", "es": "periodificaciones"}
+{"en": "acquisition", "es": "alta"}
+{"en": "acquisition date", "es": "fecha de alta"}
+{"en": "Acquisitions", "es": "altas"}
+{"en": "action priority", "es": "prioridad de acción"}
+{"en": "Action Priority (AP)", "es": "Prioridad de acción (AP)"}
+{"en": "Actions", "es": "acciones"}
+{"en": "Actions button", "es": "botón Acciones"}
+{"en": "activation key", "es": "clave de activación"}
+{"en": "active model version", "es": "versión de modelo activa"}
+{"en": "add", "es": "añadir"}
+{"en": "Add to Favorites", "es": "Añadir a favoritos"}
+{"en": "address", "es": "dirección"}
+{"en": "Adjust Item", "es": "Corregir posición"}
+{"en": "adjustment", "es": "Ajuste"}
+{"en": "adjustment item", "es": "posición de corrección"}
+{"en": "administration", "es": "administración"}
+{"en": "administrator", "es": "responsable"}
+{"en": "Adverity Support team", "es": "equipo de soporte técnico de Adverity"}
+{"en": "agent", "es": "agente"}
+{"en": "agent adapter framework", "es": "Adapter Framework del agente"}
+{"en": "aggregate", "es": "agregar"}
+{"en": "Aging Report", "es": "Informe de antigüedad"}
+{"en": "aging run", "es": "ejecución de Aging"}
+{"en": "Agr field", "es": "conjuntas"}
+{"en": "allocation", "es": "imputación"}
+{"en": "allocation cycle", "es": "ciclo de imputación"}
+{"en": "allocation cycles", "es": "ciclos de imputación"}
+{"en": "allocations", "es": "clases de asignación"}
+{"en": "Allowlist", "es": "lista de elementos autorizados"}
+{"en": "Alternative BOM", "es": "Lista de materiales alternativa"}
+{"en": "alternative control", "es": "control alternativo"}
+{"en": "alternatives", "es": "alternativas"}
+{"en": "Amazon Athena", "es": "Amazon Athena"}
+{"en": "Amount Consumed", "es": "Importe consumido"}
+{"en": "analysis item", "es": "posición de análisis"}
+{"en": "analytical queries", "es": "consultas de análisis"}
+{"en": "analytical query", "es": "consulta de análisis"}
+{"en": "anonymous suppliers", "es": "proveedores anónimos"}
+{"en": "API", "es": "API"}
+{"en": "API endpoint", "es": "punto final de API"}
+{"en": "APL", "es": "APL"}
+{"en": "app", "es": "aplicación"}
+{"en": "Application Logs", "es": "logs de aplicación"}
+{"en": "applications", "es": "aplicaciones"}
+{"en": "Apply Rule", "es": "Aplicar regla"}
+{"en": "approval", "es": "autorización"}
+{"en": "approval status", "es": "estado de autorización"}
+{"en": "approve", "es": "aprobar"}
+{"en": "assembly", "es": "conjunto"}
+{"en": "assessment", "es": "evaluación"}
+{"en": "asset balance", "es": "inventario de activos fijos"}
+{"en": "Asset Class", "es": "clase de activo fijo"}
+{"en": "assignment data", "es": "datos de contingentación"}
+{"en": "assignment information", "es": "información de asignación"}
+{"en": "assignment period", "es": "período de asignación"}
+{"en": "assignments", "es": "asignaciones"}
+{"en": "association", "es": "asociación"}
+{"en": "Association Context", "es": "Contexto de asociación"}
+{"en": "associations", "es": "asociaciones"}
+{"en": "asynchronous upload", "es": "carga asincrónica"}
+{"en": "Asynchronous Upload Status", "es": "Estado de carga asincrónica"}
+{"en": "attachment", "es": "adjunto"}
+{"en": "attachments", "es": "anexos"}
+{"en": "attributes", "es": "atributos"}
+{"en": "audit logs", "es": "logs de auditoría"}
+{"en": "Audit Status", "es": "estado de auditoría"}
+{"en": "authentication", "es": "autenticación"}
+{"en": "authentication type", "es": "tipo de autenticación"}
+{"en": "Authority", "es": "autoridad"}
+{"en": "authorization", "es": "autorización"}
+{"en": "authorization concept", "es": "concepto de autorizaciones"}
+{"en": "authorization group", "es": "grupo de autorizaciones"}
+{"en": "authorizations", "es": "autorizaciones"}
+{"en": "auto-complete", "es": "autocompletar"}
+{"en": "Automatic Posting Scenario", "es": "Escenario de contabilización automática"}
+{"en": "automation errors", "es": "errores de automatización"}
+{"en": "Availability", "es": "Disponibilidad"}
+{"en": "availability control", "es": "control de disponibilidad"}
+{"en": "availability match percentage", "es": "porcentaje de coincidencia de disponibilidad"}
+{"en": "Availability to Promise (ATP)", "es": "verificación ATP"}
+{"en": "available quantity", "es": "cantidad disponible"}
+{"en": "AVC reporting", "es": "gestión de informes AVC"}
+{"en": "average", "es": "media"}
+{"en": "back button", "es": "botón Atrás"}
+{"en": "backlogs", "es": "listas de trabajo"}
+{"en": "balance", "es": "balance"}
+{"en": "bank", "es": "banco"}
+{"en": "bank account", "es": "cuenta bancaria"}
+{"en": "bank chains", "es": "vías bancarias"}
+{"en": "bank reconciliation accounts", "es": "cuentas de reconciliación bancaria"}
+{"en": "Bank Statement", "es": "Estado de cuenta bancaria"}
+{"en": "Bank Subaccount", "es": "Cuenta transitoria bancaria"}
+{"en": "bar", "es": "barra"}
+{"en": "Base Currency", "es": "Moneda base"}
+{"en": "benefits", "es": "ventajas"}
+{"en": "best match", "es": "mejor coincidencia"}
+{"en": "bill", "es": "facturar"}
+{"en": "bill of material", "es": "lista de materiales"}
+{"en": "billing amounts", "es": "importes de facturación"}
+{"en": "billing date", "es": "fecha de facturación"}
+{"en": "billing element", "es": "elemento de facturación"}
+{"en": "billing plan", "es": "plan de facturación"}
+{"en": "billing plan item", "es": "posición de plan de facturación"}
+{"en": "block", "es": "bloque"}
+{"en": "blocked data", "es": "datos bloqueados"}
+{"en": "blocking period", "es": "período de bloqueo"}
+{"en": "BOM", "es": "lista de materiales"}
+{"en": "BOM item", "es": "posición de la lista de materiales"}
+{"en": "bonds", "es": "bonos"}
+{"en": "bookmarks", "es": "marcadores"}
+{"en": "budgetary setting", "es": "opción presupuestaria"}
+{"en": "buffer zone", "es": "zona de reserva"}
+{"en": "bulk material", "es": "material a granel"}
+{"en": "bulk material indicator", "es": "indicador de material a granel"}
+{"en": "business", "es": "empresa"}
+{"en": "business activity", "es": "actividad empresarial"}
+{"en": "business benefits", "es": "beneficios empresariales"}
+{"en": "Business Builder", "es": "Generador empresarial"}
+{"en": "Business Catalog", "es": "catálogo empresarial"}
+{"en": "business content", "es": "contenido empresarial"}
+{"en": "business context", "es": "contexto empresarial"}
+{"en": "business document", "es": "documento comercial"}
+{"en": "business document class", "es": "clase de documento empresarial"}
+{"en": "business entities", "es": "entidades empresariales"}
+{"en": "business entity", "es": "entidad empresarial"}
+{"en": "business insights", "es": "datos adicionales"}
+{"en": "business location", "es": "ubicación"}
+{"en": "business name", "es": "nombre empresarial"}
+{"en": "business object", "es": "business object"}
+{"en": "business partner data", "es": "datos de socios comerciales"}
+{"en": "business partner role", "es": "rol de socio comercial"}
+{"en": "business processes", "es": "procesos empresariales"}
+{"en": "business purpose", "es": "objetivo empresarial"}
+{"en": "business role", "es": "rol empresarial"}
+{"en": "business role ID", "es": "ID de rol empresarial"}
+{"en": "business rule", "es": "regla empresarial"}
+{"en": "business situation", "es": "situación empresarial"}
+{"en": "business unit", "es": "unidad empresarial"}
+{"en": "Business User Level 3", "es": "Nivel de usuario empresarial 3"}
+{"en": "button", "es": "pulsador"}
+{"en": "buttons", "es": "pulsadores"}
+{"en": "calendar", "es": "calendario"}
+{"en": "call", "es": "llamada"}
+{"en": "capacity", "es": "capacidad"}
+{"en": "capacity demand", "es": "demanda de capacidad"}
+{"en": "capacity issue", "es": "problema de capacidad"}
+{"en": "Capacity Plan Simulation", "es": "simulación de planes de capacidad"}
+{"en": "capacity units", "es": "unidades de capacidad"}
+{"en": "Card", "es": "tarjeta"}
+{"en": "card header", "es": "cabecera de la tarjeta"}
+{"en": "cards", "es": "tarjetas"}
+{"en": "case", "es": "caso"}
+{"en": "cash pool", "es": "Cash Pool"}
+{"en": "cash pools", "es": "cash pools"}
+{"en": "category", "es": "categoría"}
+{"en": "cell", "es": "celda"}
+{"en": "cells", "es": "celdas"}
+{"en": "central contract", "es": "pedido abierto central"}
+{"en": "central purchase contract item", "es": "posición de contrato de compra central"}
+{"en": "certificate receipt", "es": "entrada de certificado"}
+{"en": "certificate record", "es": "registro de certificados"}
+{"en": "change", "es": "modificación"}
+{"en": "change log", "es": "log"}
+{"en": "change log settings", "es": "opciones"}
+{"en": "change logging", "es": "Grabación en log de modificaciones"}
+{"en": "characteristic value combination", "es": "combinación de valores de característica"}
+{"en": "characteristic value combinations", "es": "combinaciones de valores de característica"}
+{"en": "charge", "es": "cargo"}
+{"en": "Charge Off indicator", "es": "indicador Compensar"}
+{"en": "Chart", "es": "gráfico"}
+{"en": "Chart of Accounts View", "es": "vistas Plan de cuentas"}
+{"en": "charts", "es": "gráficos"}
+{"en": "check", "es": "verificación"}
+{"en": "checkbox", "es": "casilla de selección"}
+{"en": "Choose content page", "es": "página Seleccionar contenido"}
+{"en": "CIDR suffix", "es": "sufijo CIDR"}
+{"en": "clarification case", "es": "caso de clarificación"}
+{"en": "class", "es": "clase"}
+{"en": "Classify Dangerous Good - Packaged Product app", "es": "Clasificación de mercancías peligrosas - Producto embalado"}
+{"en": "clearing entry", "es": "asiento de compensación"}
+{"en": "clearing item", "es": "partida de compensación"}
+{"en": "Click", "es": "haga clic en"}
+{"en": "client", "es": "cliente"}
+{"en": "client application", "es": "aplicación cliente"}
+{"en": "cloud application", "es": "aplicación Cloud"}
+{"en": "Cloud Connector", "es": "Conector de la nube"}
+{"en": "Cloud Connectors", "es": "conectores en la nube"}
+{"en": "CN", "es": "CN"}
+{"en": "collection", "es": "recopilación"}
+{"en": "collection segment", "es": "segmento de cobros"}
+{"en": "Collection Specialist", "es": "especialista en cobros"}
+{"en": "column", "es": "columna"}
+{"en": "column groups", "es": "grupos de columnas"}
+{"en": "column width", "es": "ancho de columna"}
+{"en": "columns", "es": "columnas"}
+{"en": "common name", "es": "nombre común"}
+{"en": "communication arrangement", "es": "acuerdo de comunicación"}
+{"en": "communication scenario", "es": "escenario de comunicación"}
+{"en": "communication system", "es": "sistema de comunicación"}
+{"en": "communication systems", "es": "sistemas de comunicación"}
+{"en": "Communication users", "es": "usuarios de comunicación"}
+{"en": "Compact Mode", "es": "modo compacto"}
+{"en": "company code", "es": "sociedad"}
+{"en": "company role", "es": "rol de empresa"}
+{"en": "Comparison operators", "es": "operadores de comparación"}
+{"en": "complete", "es": "concluido"}
+{"en": "completed", "es": "concluido"}
+{"en": "completeness status", "es": "estado de la integridad"}
+{"en": "compliance requirement", "es": "requisito de conformidad"}
+{"en": "compliance status", "es": "estado de conformidad"}
+{"en": "component", "es": "componente"}
+{"en": "components", "es": "componentes"}
+{"en": "Compound Triggers", "es": "desencadenadores compuestos"}
+{"en": "compute", "es": "cálculo"}
+{"en": "compute blocks", "es": "bloques de cálculo"}
+{"en": "condition", "es": "condición"}
+{"en": "condition record", "es": "registro de condición"}
+{"en": "condition records", "es": "registros de condición"}
+{"en": "condition supplement", "es": "condición adicional"}
+{"en": "condition type", "es": "clase de condición"}
+{"en": "Conditions", "es": "Condiciones"}
+{"en": "Conditions page", "es": "página Condiciones"}
+{"en": "configuration", "es": "configuración"}
+{"en": "configuration items", "es": "elementos de configuración"}
+{"en": "configuration steps", "es": "pasos de configuración"}
+{"en": "Configure Clause Types", "es": "Configurar tipos de cláusula"}
+{"en": "Configured Clients", "es": "Clientes configurados"}
+{"en": "confirmation", "es": "confirmación"}
+{"en": "confirmation tab", "es": "pestaña de confirmación"}
+{"en": "connection", "es": "conexión"}
+{"en": "connection creation wizard", "es": "asistente para la creación de conexiones"}
+{"en": "connection properties", "es": "propiedades de conexión"}
+{"en": "Connectivity", "es": "conectividad"}
+{"en": "connectivity destination", "es": "destino de conectividad"}
+{"en": "consent functionality", "es": "funcionalidad de consentimiento"}
+{"en": "consideration", "es": "contraprestación"}
+{"en": "consolidated balance sheet", "es": "balance de grupo"}
+{"en": "consolidation chart of accounts", "es": "plan de posiciones"}
+{"en": "consolidation COA", "es": "plan de posiciones"}
+{"en": "consolidation group", "es": "grupo de consolidación"}
+{"en": "consolidation groups", "es": "grupos de consolidación"}
+{"en": "consolidation version", "es": "versión de consolidación"}
+{"en": "consuming apps", "es": "aplicaciones de consumo"}
+{"en": "consumption", "es": "compensación"}
+{"en": "consumption model", "es": "modelo de consumo"}
+{"en": "Consumption models", "es": "modelos de consumo"}
+{"en": "contact", "es": "contacto"}
+{"en": "container", "es": "contenedor"}
+{"en": "container status", "es": "estado del contenedor"}
+{"en": "content type", "es": "tipo de contenido"}
+{"en": "contract", "es": "contrato"}
+{"en": "contract account", "es": "cuenta del contrato"}
+{"en": "contract creation", "es": "creación de pedido abierto"}
+{"en": "Contract for Limit", "es": "Contrato para límite"}
+{"en": "contract item", "es": "posición de contrato"}
+{"en": "contract liability", "es": "pasivo contractual"}
+{"en": "contract type", "es": "tipo de contrato"}
+{"en": "control characteristic", "es": "características de control"}
+{"en": "controller", "es": "responsable del tratamiento"}
+{"en": "controlling area", "es": "sociedad CO"}
+{"en": "Convergent Invoicing", "es": "facturación convergente"}
+{"en": "converter", "es": "conversor"}
+{"en": "Copy", "es": "Copiar"}
+{"en": "Copy To", "es": "Copiar a"}
+{"en": "cost centers", "es": "centros de coste"}
+{"en": "cost components", "es": "elementos de coste"}
+{"en": "cost rates", "es": "tasas de coste"}
+{"en": "cost type", "es": "tipo de coste"}
+{"en": "counter", "es": "contador"}
+{"en": "counting variance", "es": "desviación de recuento"}
+{"en": "coverage", "es": "cobertura"}
+{"en": "Create", "es": "Crear"}
+{"en": "Create data variant", "es": "Crear variantes de datos"}
+{"en": "Create License", "es": "Crear licencia"}
+{"en": "Create Release", "es": "Crear liberación"}
+{"en": "Create Transform", "es": "Crear transformación"}
+{"en": "credentials", "es": "credenciales"}
+{"en": "credit exposure", "es": "comprometido"}
+{"en": "credit limit utilization", "es": "utilización de límite de crédito"}
+{"en": "credit memo", "es": "abono"}
+{"en": "Credit Memos", "es": "abonos"}
+{"en": "cross-team collaboration", "es": "colaboración entre equipos"}
+{"en": "CSN File", "es": "archivo CSN"}
+{"en": "CSV file", "es": "archivo CSV"}
+{"en": "curly bracket", "es": "llave"}
+{"en": "currency", "es": "moneda"}
+{"en": "currency conversion", "es": "conversión de moneda"}
+{"en": "current month", "es": "mes actual"}
+{"en": "Current year", "es": "Año en curso"}
+{"en": "custom code", "es": "código personalizado"}
+{"en": "Custom Code Migration app", "es": "aplicación Migración de código personalizado"}
+{"en": "custom code objects", "es": "objetos de código personalizado"}
+{"en": "custom fields", "es": "campos personalizados"}
+{"en": "customer", "es": "deudor"}
+{"en": "customer code", "es": "código de cliente"}
+{"en": "Customer Support", "es": "Soporte al cliente"}
+{"en": "customer support cases", "es": "casos de soporte al cliente"}
+{"en": "customized filter settings", "es": "opciones de filtro personalizadas"}
+{"en": "customizing settings", "es": "opciones de Customizing"}
+{"en": "CVCs", "es": "combinaciones de valores de característica"}
+{"en": "Dangerous Goods Specialist", "es": "Especialista en mercancías peligrosas"}
+{"en": "dashboard", "es": "dashboard"}
+{"en": "data", "es": "datos"}
+{"en": "data access", "es": "acceso a los datos"}
+{"en": "data access control", "es": "control de acceso a datos"}
+{"en": "data aging object", "es": "objeto Data Aging"}
+{"en": "data binding", "es": "vínculación de datos"}
+{"en": "Data Builder", "es": "Generador de datos"}
+{"en": "Data Category", "es": "Categoría de datos"}
+{"en": "data changes", "es": "modificaciones de datos"}
+{"en": "data context", "es": "contexto de datos"}
+{"en": "data controller", "es": "responsable del tratamiento"}
+{"en": "data elements", "es": "elementos de datos"}
+{"en": "data entry", "es": "entrada de datos"}
+{"en": "data flow", "es": "flujo de datos"}
+{"en": "data flow builder", "es": "generador de flujos de datos"}
+{"en": "data flows", "es": "flujos de datos"}
+{"en": "data inconsistencies", "es": "inconsistencias de datos"}
+{"en": "Data Ingestion", "es": "Ingesta de datos"}
+{"en": "Data Integration Monitor", "es": "Monitor de integración de datos"}
+{"en": "data lake", "es": "data lake"}
+{"en": "data lake IQ", "es": "data lake IQ"}
+{"en": "Data Manipulation Language", "es": "lenguaje de tratamiento de datos"}
+{"en": "Data Marketplace", "es": "Data Marketplace"}
+{"en": "data preparation transformations", "es": "transformaciones de preparación de datos"}
+{"en": "data preview", "es": "vista previa de datos"}
+{"en": "data product", "es": "producto de datos"}
+{"en": "data products", "es": "productos de datos"}
+{"en": "data protection", "es": "protección de datos"}
+{"en": "data protection laws", "es": "leyes de protección de datos"}
+{"en": "data provider", "es": "proveedor de datos"}
+{"en": "data provider profile", "es": "perfil de proveedor de datos"}
+{"en": "data providers", "es": "proveedores de datos"}
+{"en": "data provisioning", "es": "aprovisionamiento de datos"}
+{"en": "Data Provisioning agent", "es": "agente de aprovisionamiento de datos"}
+{"en": "Data records", "es": "registros de datos"}
+{"en": "data set", "es": "conjunto de datos"}
+{"en": "data source", "es": "fuente de datos"}
+{"en": "Data Sources", "es": "fuentes de datos"}
+{"en": "data statistics object", "es": "objeto de estadísticas de datos"}
+{"en": "data subject", "es": "sujeto de datos"}
+{"en": "data update", "es": "actualización de datos"}
+{"en": "data values", "es": "valores de datos"}
+{"en": "data volumes", "es": "volúmenes de datos"}
+{"en": "data warehouse", "es": "data warehouse"}
+{"en": "data-type", "es": "tipo de datos"}
+{"en": "database", "es": "base de datos"}
+{"en": "database user group", "es": "grupo de usuarios de base de datos"}
+{"en": "database users", "es": "usuarios de base de datos"}
+{"en": "date", "es": "fecha"}
+{"en": "date period", "es": "fecha especificada"}
+{"en": "date type", "es": "tipo de fecha"}
+{"en": "deadline", "es": "plazo"}
+{"en": "debit line items", "es": "partidas individuales del Debe"}
+{"en": "dedicated space", "es": "espacio dedicado"}
+{"en": "default", "es": "estándar"}
+{"en": "default address", "es": "dirección generada por defecto"}
+{"en": "default settings", "es": "opciones estándar"}
+{"en": "Define Recurrence Pattern", "es": "Definir patrón de periodicidad"}
+{"en": "delete", "es": "eliminar"}
+{"en": "deleted", "es": "borrado"}
+{"en": "Deleting", "es": "Eliminación"}
+{"en": "Deleting Users", "es": "Eliminar usuarios"}
+{"en": "deletion", "es": "borrado"}
+{"en": "deletion actions", "es": "acciones de eliminación"}
+{"en": "Deletion tasks", "es": "tareas de eliminación"}
+{"en": "deliveries", "es": "entregas"}
+{"en": "delivery", "es": "entrega"}
+{"en": "delivery address", "es": "dirección de entrega"}
+{"en": "delivery organization", "es": "organización de entrega"}
+{"en": "Delivery Tracking", "es": "Seguimiento de entrega"}
+{"en": "demand", "es": "demanda"}
+{"en": "Demand Plan", "es": "planes de demanda"}
+{"en": "Demand Plan Simulation", "es": "Simulación de planes de demanda"}
+{"en": "demand-driven", "es": "orientado a necesidad"}
+{"en": "deployment", "es": "despliegue"}
+{"en": "deposit at notice", "es": "depósito con preaviso"}
+{"en": "depreciation", "es": "amortización"}
+{"en": "description", "es": "descripción"}
+{"en": "deselect", "es": "anular la selección"}
+{"en": "Design", "es": "diseñar"}
+{"en": "Details", "es": "detalles"}
+{"en": "development system", "es": "sistema de desarrollo"}
+{"en": "dialing code", "es": "código de marcación"}
+{"en": "Difference", "es": "diferencia"}
+{"en": "dimension", "es": "dimensión"}
+{"en": "discard", "es": "rechazar"}
+{"en": "disk", "es": "disco"}
+{"en": "disk space", "es": "espacio en disco"}
+{"en": "disk storage", "es": "almacenamiento en disco"}
+{"en": "display", "es": "visualización"}
+{"en": "display mode", "es": "modo de visualización"}
+{"en": "distribution", "es": "distribución"}
+{"en": "Distribution of Charges and Interest", "es": "Distribución de gastos e intereses"}
+{"en": "distribution percentage", "es": "distribución porcentual"}
+{"en": "document", "es": "documento"}
+{"en": "document category", "es": "categoría de documento"}
+{"en": "document type", "es": "clase de documento"}
+{"en": "Don’t overwrite objects", "es": "No sobrescribir objetos"}
+{"en": "download", "es": "descarga"}
+{"en": "drawing", "es": "sorteo"}
+{"en": "driver", "es": "driver"}
+{"en": "drop-down list", "es": "lista desplegable"}
+{"en": "dropdown field", "es": "campo desplegable"}
+{"en": "Due (Draft)", "es": "Vencido (borrador)"}
+{"en": "due date", "es": "fecha de vencimiento"}
+{"en": "due dates", "es": "fechas de vencimiento"}
+{"en": "dunning", "es": "reclamación"}
+{"en": "duration", "es": "duración"}
+{"en": "dynamic modification", "es": "modificación dinámica"}
+{"en": "Dynamic ports", "es": "puertos dinámicos"}
+{"en": "E/R model", "es": "modelo E/R"}
+{"en": "edit", "es": "editar"}
+{"en": "Edit Chart Prompts", "es": "Editar peticiones de gráfico"}
+{"en": "Edit mode", "es": "modo Edición"}
+{"en": "editor", "es": "editor"}
+{"en": "editor panel", "es": "panel del editor"}
+{"en": "elimination", "es": "compensación"}
+{"en": "email address", "es": "dirección de correo electrónico"}
+{"en": "end of purpose", "es": "fin del objetivo"}
+{"en": "end user app", "es": "aplicación de usuario final"}
+{"en": "endpoint", "es": "punto de acceso"}
+{"en": "endpoint suffix", "es": "sufijo de punto final"}
+{"en": "enhancement", "es": "mejora"}
+{"en": "enter", "es": "indicar"}
+{"en": "Entities", "es": "entidades"}
+{"en": "entity relationship model", "es": "modelo entidad-relación"}
+{"en": "Entity-Relationship Diagrams", "es": "diagramas entidad-relación"}
+{"en": "entry points", "es": "puntos de entrada"}
+{"en": "Environment Management - Manage Material Data app", "es": "aplicación Medio ambiente, Salud y Seguridad: Gestionar datos de material"}
+{"en": "Environment, Health, and Safety system", "es": "sistema Medio ambiente, Salud y Seguridad"}
+{"en": "EoP", "es": "EoP"}
+{"en": "equity group", "es": "grupo de participación"}
+{"en": "error", "es": "error"}
+{"en": "error messages", "es": "mensajes de error"}
+{"en": "errors", "es": "errores"}
+{"en": "evaluation date", "es": "fecha de evaluación"}
+{"en": "Everything Rejected", "es": "Todo rechazado"}
+{"en": "Exclude Column", "es": "Excluir columna"}
+{"en": "Execution phase", "es": "fase Ejecución"}
+{"en": "expand", "es": "Desplegar"}
+{"en": "expanded and collapsed view", "es": "vista desplegada y plegada"}
+{"en": "expected value", "es": "valor previsto"}
+{"en": "Expense", "es": "Gastos"}
+{"en": "Expenses", "es": "Gastos"}
+{"en": "experimental features", "es": "funciones experimentales"}
+{"en": "expiration", "es": "expiración"}
+{"en": "expiration date", "es": "fecha de expiración"}
+{"en": "expired", "es": "vencido"}
+{"en": "explosion", "es": "desglose"}
+{"en": "Export CSN.json", "es": "Export CSN.json"}
+{"en": "Exposure", "es": "exposición"}
+{"en": "expressions", "es": "expresiones"}
+{"en": "extension", "es": "extensión"}
+{"en": "external operations", "es": "operaciones externas"}
+{"en": "facet", "es": "faceta"}
+{"en": "Fact models", "es": "modelos de hechos"}
+{"en": "fact source", "es": "fuente de hechos"}
+{"en": "feature", "es": "característica"}
+{"en": "Feature Scope", "es": "Función de descripción del alcance"}
+{"en": "features", "es": "funciones"}
+{"en": "fee", "es": "tarifa"}
+{"en": "feedback", "es": "comentarios"}
+{"en": "field", "es": "campo"}
+{"en": "file", "es": "archivo"}
+{"en": "File adapter", "es": "adaptador de archivos"}
+{"en": "file data", "es": "datos de archivo"}
+{"en": "filling level", "es": "nivel de llenado"}
+{"en": "filter", "es": "filtro"}
+{"en": "filter area", "es": "área de filtro"}
+{"en": "filter attribute", "es": "atributo de filtro"}
+{"en": "filter bar", "es": "barra de filtros"}
+{"en": "filter criteria", "es": "criterios de filtro"}
+{"en": "filter settings", "es": "opciones de filtro"}
+{"en": "filters", "es": "filtros"}
+{"en": "Finance", "es": "Finanzas"}
+{"en": "Financial Accounting", "es": "Gestión financiera"}
+{"en": "financial closing notifications service", "es": "servicio de notificaciones de cierre financiero"}
+{"en": "financial closing tasks", "es": "tareas de cierre financiero"}
+{"en": "financial statement", "es": "balance contable"}
+{"en": "financial statement (FS)", "es": "posiciones de balance/PyG"}
+{"en": "financial statement version hierarchies", "es": "jerarquías de versión de estructura de balance/PyG"}
+{"en": "Find Slot", "es": "Buscar intervalo"}
+{"en": "findings", "es": "resultados"}
+{"en": "fixed-term deposit", "es": "depósito a plazo fijo"}
+{"en": "fixing", "es": "fijación"}
+{"en": "flat list", "es": "lista plana"}
+{"en": "Flexible Mode", "es": "modo flexible"}
+{"en": "flow", "es": "flujo"}
+{"en": "FMEA", "es": "FMEA"}
+{"en": "follow-up document", "es": "documento de seguimiento"}
+{"en": "Force Inline Substitution", "es": "Forzar sustitución inline"}
+{"en": "Force Update", "es": "Forzar actualización"}
+{"en": "formatting", "es": "formato"}
+{"en": "Formula", "es": "fórmula"}
+{"en": "Formula Name", "es": "Nombre de la fórmula"}
+{"en": "frequently used", "es": "Utilizadas con frecuencia"}
+{"en": "From-scale", "es": "escala Desde"}
+{"en": "FSV structure", "es": "estructura de balance/PyG"}
+{"en": "Full mode", "es": "modo Completa"}
+{"en": "Fully Available", "es": "totalmente disponible"}
+{"en": "function", "es": "función"}
+{"en": "functional currency", "es": "moneda funcional"}
+{"en": "Functions", "es": "Funciones"}
+{"en": "G/L account", "es": "cuenta de mayor"}
+{"en": "G/L account IDs", "es": "ID de cuenta de mayor"}
+{"en": "G/L accounts", "es": "cuentas de mayor"}
+{"en": "GB", "es": "GB"}
+{"en": "General Information", "es": "Información general"}
+{"en": "Generic OData", "es": "OData genérico"}
+{"en": "Global Accounting Hierarchies", "es": "jerarquías de contabilidad global"}
+{"en": "Global Currency", "es": "Moneda global"}
+{"en": "global ID", "es": "ID global"}
+{"en": "Go to App button", "es": "botón Ir a la aplicación"}
+{"en": "goods receipt processing time", "es": "tiempo de procesamiento de entradas de mercancías"}
+{"en": "governing law", "es": "legislación aplicable"}
+{"en": "graphic", "es": "gráfico"}
+{"en": "graphical representations", "es": "representaciones gráficas"}
+{"en": "graphical view builder", "es": "Generador de vistas gráficas"}
+{"en": "Green", "es": "Verde"}
+{"en": "grid", "es": "cuadrícula"}
+{"en": "group", "es": "grupo"}
+{"en": "group journal entries", "es": "asientos contables de grupo"}
+{"en": "grouping", "es": "agrupación"}
+{"en": "Guided Mode", "es": "modo guiado"}
+{"en": "handling units", "es": "unidades de manipulación"}
+{"en": "handover date", "es": "fecha de transferencia"}
+{"en": "Has Open Main Work", "es": "Tiene trabajo principal abierto"}
+{"en": "Having", "es": "Que tiene"}
+{"en": "HDI", "es": "HDI"}
+{"en": "HDI clients", "es": "clientes HDI"}
+{"en": "HDI containers", "es": "contenedores HDI"}
+{"en": "header", "es": "cabecera"}
+{"en": "header data", "es": "datos de cabecera"}
+{"en": "hierarchically structured list", "es": "lista con una estructura jerárquica"}
+{"en": "hierarchies", "es": "jerarquías"}
+{"en": "hierarchy", "es": "jerarquía"}
+{"en": "hierarchy list", "es": "lista de jerarquías"}
+{"en": "Hierarchy View", "es": "Vista de jerarquía"}
+{"en": "Host", "es": "Host"}
+{"en": "host name", "es": "nombre de host"}
+{"en": "hours", "es": "horas"}
+{"en": "house bank account", "es": "cuenta de banco propio"}
+{"en": "HTTP Basic Authentication", "es": "autenticación básica HTTP"}
+{"en": "HU", "es": "UMp"}
+{"en": "HUs", "es": "UMp"}
+{"en": "icon", "es": "icono"}
+{"en": "ID", "es": "ID"}
+{"en": "IDBS", "es": "IDBS"}
+{"en": "If and Else If expression blocks", "es": "Bloques de expresión If y Else"}
+{"en": "If expression block", "es": "bloque de expresión \"If\""}
+{"en": "Import", "es": "Importar"}
+{"en": "Import from Connection", "es": "Importar de conexión"}
+{"en": "In Scope", "es": "Dentro del alcance"}
+{"en": "In-App Situation Message", "es": "Mensaje de situación en la aplicación"}
+{"en": "in-house materials", "es": "materiales propios"}
+{"en": "in-house production", "es": "fabricación propia"}
+{"en": "in-memory", "es": "memoria interna"}
+{"en": "inbound", "es": "entrada"}
+{"en": "incident", "es": "incidencia"}
+{"en": "incident ID", "es": "ID de incidente"}
+{"en": "Include Unmatched Records", "es": "Incluir registros no coincidentes"}
+{"en": "indicator", "es": "indicador"}
+{"en": "indicators", "es": "indicadores"}
+{"en": "industries", "es": "sectores"}
+{"en": "industry-specific legislation", "es": "legislación específica del sector"}
+{"en": "initial posting document", "es": "documento de contabilización inicial"}
+{"en": "initialization task", "es": "tarea de inicialización"}
+{"en": "Input control", "es": "Control de entrada"}
+{"en": "input field", "es": "campo de entrada"}
+{"en": "Input Parameters", "es": "Parámetros de entrada"}
+{"en": "input record", "es": "registro de entrada"}
+{"en": "insert privilege", "es": "privilegio de inserción"}
+{"en": "Insights", "es": "datos adicionales"}
+{"en": "inspector", "es": "inspector"}
+{"en": "installment", "es": "plazo"}
+{"en": "installment interval", "es": "intervalo de plazos"}
+{"en": "installment plan", "es": "plan de pago a plazos"}
+{"en": "installment plan category", "es": "categoría de plan de pago a plazos"}
+{"en": "instance", "es": "instancia"}
+{"en": "instance activities", "es": "actividades de instancias"}
+{"en": "insurances", "es": "seguros"}
+{"en": "integrated cards", "es": "tarjetas integradas"}
+{"en": "integrated system", "es": "sistema integrado"}
+{"en": "Integrating Data", "es": "Integración de datos"}
+{"en": "intelligent lookup", "es": "búsqueda inteligente"}
+{"en": "interactive tiles", "es": "mosaicos interactivos"}
+{"en": "intercompany customer invoices", "es": "facturas de cliente internas"}
+{"en": "intercompany sales orders", "es": "pedidos de cliente internos"}
+{"en": "intercompany supplier invoices", "es": "facturas de proveedor internas"}
+{"en": "interface", "es": "interfase"}
+{"en": "intermediary bank", "es": "banco intermediario"}
+{"en": "internal operations", "es": "operaciones internas"}
+{"en": "intraday bank statements", "es": "extractos de cuenta intradía"}
+{"en": "inventory", "es": "inventario"}
+{"en": "Invoice Reference field", "es": "campo Referencia de factura"}
+{"en": "invoicing request", "es": "solicitud de facturación"}
+{"en": "IP addresses", "es": "direcciones IP"}
+{"en": "IP allowlist", "es": "lista de elementos autorizados de IP"}
+{"en": "IPv4 address ranges", "es": "rangos de direcciones IPv4"}
+{"en": "IR swap", "es": "swap de tipo de interés"}
+{"en": "IR Swaps", "es": "swaps del tipo de interés"}
+{"en": "issue", "es": "problema"}
+{"en": "item", "es": "elemento"}
+{"en": "item amount", "es": "importe de la posición"}
+{"en": "item details", "es": "detalles de la posición"}
+{"en": "Item Payment Block", "es": "Bloqueo de pago de la posición"}
+{"en": "item set", "es": "conjunto de posiciones"}
+{"en": "items", "es": "posiciones"}
+{"en": "JOA", "es": "JOA"}
+{"en": "JOA codes", "es": "códigos JOA"}
+{"en": "job", "es": "tarea"}
+{"en": "job template", "es": "modelo de job"}
+{"en": "jobs", "es": "jobs"}
+{"en": "join operator", "es": "operador de unión"}
+{"en": "Joint Operating Agreement", "es": "Acuerdo de operaciones conjuntas"}
+{"en": "joint operation", "es": "operación conjunta"}
+{"en": "Joint Venture Accounting", "es": "Contabilidad joint venture"}
+{"en": "journal entries", "es": "asientos contables"}
+{"en": "Journal Entry", "es": "asiento contable"}
+{"en": "Journal Entry Type", "es": "Tipo de asiento contable"}
+{"en": "json key file", "es": "archivo de clave JSON"}
+{"en": "Kanban", "es": "Kanban"}
+{"en": "kanban containers", "es": "contenedores kanban"}
+{"en": "key date", "es": "fecha clave"}
+{"en": "Key Date filter", "es": "campo de filtro Fecha clave"}
+{"en": "keywords", "es": "palabras clave"}
+{"en": "KPI", "es": "KPI"}
+{"en": "labels", "es": "etiquetas"}
+{"en": "Last week", "es": "Última semana"}
+{"en": "launchpad", "es": "plataforma de lanzamiento"}
+{"en": "layout", "es": "disposición"}
+{"en": "legal basis", "es": "normativa legal"}
+{"en": "legal document", "es": "documento legal"}
+{"en": "level-based", "es": "de niveles"}
+{"en": "license key", "es": "clave de licencia"}
+{"en": "licenses", "es": "licencias"}
+{"en": "lifecycle status", "es": "estado de ciclo de vida"}
+{"en": "line-item level", "es": "nivel de artículo en línea"}
+{"en": "lineage view", "es": "vista de linaje"}
+{"en": "link", "es": "enlace"}
+{"en": "List Page", "es": "página de lista"}
+{"en": "live operating environment", "es": "entorno operativo activo"}
+{"en": "local repository", "es": "repositorio local"}
+{"en": "local tables", "es": "tablas locales"}
+{"en": "location", "es": "ubicación"}
+{"en": "lock", "es": "bloquear"}
+{"en": "locked space", "es": "espacio bloqueado"}
+{"en": "log", "es": "log"}
+{"en": "log deletion schedule", "es": "programación de eliminación de logs"}
+{"en": "log entries", "es": "entradas de log"}
+{"en": "logging functionality", "es": "funcionalidad de la grabación en log"}
+{"en": "lookup records", "es": "registros de búsqueda"}
+{"en": "loop", "es": "bucle"}
+{"en": "Main", "es": "MAIN"}
+{"en": "Maintain Bill of Material", "es": "Actualizar lista de materiales"}
+{"en": "maintenance backlogs", "es": "listas de trabajo de mantenimiento"}
+{"en": "Maintenance Orders", "es": "órdenes de mantenimiento"}
+{"en": "maintenance planners", "es": "planificadores de mantenimiento"}
+{"en": "Manage Allocations app", "es": "aplicación Gestionar imputaciones"}
+{"en": "Manage Assignments", "es": "Gestionar asignaciones"}
+{"en": "Manage Cash Pools", "es": "Gestión de cash pools"}
+{"en": "Manage Legal Document", "es": "Gestionar documento legal"}
+{"en": "Manage My Timesheet", "es": "Gestionar mi registro de tiempos"}
+{"en": "Manage Negotiations", "es": "Gestionar las negociaciones"}
+{"en": "Manage Sales Orders", "es": "Gestionar pedidos de cliente"}
+{"en": "Manage User", "es": "Gestionar usuario"}
+{"en": "manager", "es": "responsable"}
+{"en": "Manage Maintenance Notifications and Orders app", "es": "aplicación Gestionar avisos y órdenes de mantenimiento"}
+{"en": "Managing Spaces", "es": "gestión de espacios"}
+{"en": "mapping values", "es": "valores de asignación"}
+{"en": "Mappings", "es": "Asignaciones"}
+{"en": "margin analysis", "es": "análisis de márgenes"}
+{"en": "Mark as Deleted", "es": "Marcar como borrado"}
+{"en": "market data", "es": "datos de mercado"}
+{"en": "markings", "es": "marcas"}
+{"en": "mass processing", "es": "procesamiento en masa"}
+{"en": "master data", "es": "datos maestros"}
+{"en": "match candidates", "es": "candidatos coincidentes"}
+{"en": "Matched category", "es": "categoría Coincidencia"}
+{"en": "material", "es": "material"}
+{"en": "Material Availability Check", "es": "Verificación de disponibilidad de material"}
+{"en": "material consumption", "es": "consumo de material"}
+{"en": "material master record", "es": "registro maestro de materiales"}
+{"en": "Material-Plant Assignments", "es": "Asignaciones material-centro"}
+{"en": "measure", "es": "indicador"}
+{"en": "Measures", "es": "Indicadores"}
+{"en": "member", "es": "miembro"}
+{"en": "memory", "es": "memoria"}
+{"en": "memory limit", "es": "límite de memoria"}
+{"en": "memory usage", "es": "uso de memoria"}
+{"en": "Menu", "es": "Menú"}
+{"en": "Message processing", "es": "procesamiento de mensajes"}
+{"en": "message severity", "es": "gravedad del mensaje"}
+{"en": "Messages processing", "es": "procesamiento de mensajes"}
+{"en": "migration", "es": "migración"}
+{"en": "model", "es": "modelo"}
+{"en": "Model Import Connection", "es": "conexión de importación de modelos"}
+{"en": "model version", "es": "versión de modelo"}
+{"en": "models", "es": "modelos"}
+{"en": "monitor", "es": "supervisar"}
+{"en": "Monitor button", "es": "botón Supervisar"}
+{"en": "Monitor Compatibility of Central Procurement Operations app", "es": "Supervisar compatibilidad de operaciones de aprovisionamiento central"}
+{"en": "Monitoring Views", "es": "vistas de supervisión"}
+{"en": "More Actions", "es": "Más acciones"}
+{"en": "move", "es": "mover"}
+{"en": "Move Items feature", "es": "función Mover elementos"}
+{"en": "MRP data", "es": "datos de planificación de necesidades"}
+{"en": "MRP procedure", "es": "método de planificación de necesidades de material"}
+{"en": "MRP type", "es": "característica de planificación de necesidades"}
+{"en": "Multi-Level Material Simulation", "es": "Simulación de material de varios niveles"}
+{"en": "multiple", "es": "múltiple"}
+{"en": "Multiple category", "es": "categoría Múltiple"}
+{"en": "Must start on constraint", "es": "restricción Debe empezar el"}
+{"en": "My Situations - Extended app", "es": "aplicación Mis situaciones - Ampliado"}
+{"en": "MyFileSystem", "es": "MiSistemaDeArchivos"}
+{"en": "MyFolder", "es": "MiCarpeta"}
+{"en": "name", "es": "nombre"}
+{"en": "Name field", "es": "campo Nombre"}
+{"en": "navigation targets", "es": "destinos de navegación"}
+{"en": "network", "es": "red"}
+{"en": "Network security", "es": "seguridad de la red"}
+{"en": "New Entity-Relationship Model", "es": "Modelo entidad-relación nuevo"}
+{"en": "New Value", "es": "Valor nuevo"}
+{"en": "Next", "es": "Siguiente"}
+{"en": "Next Phase", "es": "Fase siguiente"}
+{"en": "non-aggregated columns", "es": "columnas no agregadas"}
+{"en": "Non-billable items", "es": "posiciones no facturables"}
+{"en": "non-operating partners", "es": "socios no operativos"}
+{"en": "notice", "es": "aviso"}
+{"en": "notification", "es": "Notificación"}
+{"en": "Notification Preview", "es": "Presentación preliminar de notificación"}
+{"en": "notifications", "es": "notificaciones"}
+{"en": "numeric columns", "es": "columnas numéricas"}
+{"en": "OAuth Client", "es": "cliente OAuth"}
+{"en": "OAuth scope", "es": "alcance de OAuth"}
+{"en": "OAuth2 client", "es": "cliente OAuth2"}
+{"en": "object", "es": "objeto"}
+{"en": "object category", "es": "categoría del objeto"}
+{"en": "object list", "es": "lista de objetos"}
+{"en": "object type", "es": "clase de objeto"}
+{"en": "objects", "es": "objetos"}
+{"en": "obligation", "es": "obligación"}
+{"en": "obligations", "es": "obligaciones"}
+{"en": "occupational exposure limits", "es": "valores límite de exposición en el puesto de trabajo"}
+{"en": "OData endpoint", "es": "punto final OData"}
+{"en": "offset", "es": "desplazamiento"}
+{"en": "offset value", "es": "valor de desplazamiento"}
+{"en": "open", "es": "abierta"}
+{"en": "Open Connectors", "es": "Open Connectors"}
+{"en": "open item", "es": "partida abierta"}
+{"en": "open items", "es": "partidas abiertas"}
+{"en": "open SQL", "es": "open SQL"}
+{"en": "open SQL schemas", "es": "esquemas Open SQL"}
+{"en": "opening balance", "es": "saldo inicial"}
+{"en": "opening stock", "es": "stock inicial"}
+{"en": "operation", "es": "operación"}
+{"en": "operation data", "es": "datos de operación"}
+{"en": "operations", "es": "operaciones"}
+{"en": "Operators Reference", "es": "Referencia de operadores"}
+{"en": "Optimization", "es": "Optimización"}
+{"en": "Order Costs Outstanding (%)", "es": "costes de orden pendientes (%)"}
+{"en": "order filter", "es": "filtro de orden"}
+{"en": "order operation status", "es": "estado de la operación de orden"}
+{"en": "order operations", "es": "operaciones de orden"}
+{"en": "orders", "es": "órdenes"}
+{"en": "original account", "es": "cuenta original"}
+{"en": "original cost element", "es": "clase de coste original"}
+{"en": "outbound", "es": "salida"}
+{"en": "output", "es": "resultado"}
+{"en": "output structure", "es": "estructura de salida"}
+{"en": "overhead allocation", "es": "asignación de gastos generales"}
+{"en": "Overwrite data only", "es": "Sobrescribir solo datos"}
+{"en": "owner", "es": "propietario"}
+{"en": "package", "es": "paquete"}
+{"en": "Packing screen", "es": "pantalla Embalaje"}
+{"en": "pages", "es": "páginas"}
+{"en": "PAL", "es": "PAL"}
+{"en": "Parallel condition", "es": "condición paralela"}
+{"en": "parallel processing", "es": "procesamiento paralelo"}
+{"en": "parameter", "es": "parámetro"}
+{"en": "parameters", "es": "parámetros"}
+{"en": "parent", "es": "superior"}
+{"en": "parent-child", "es": "superior-inferior"}
+{"en": "partition bounds", "es": "límites de partición"}
+{"en": "partitions", "es": "particiones"}
+{"en": "partner", "es": "socio"}
+{"en": "password", "es": "contraseña"}
+{"en": "pattern", "es": "modelo"}
+{"en": "pause", "es": "interrumpir"}
+{"en": "Payment", "es": "Pago"}
+{"en": "payment advice", "es": "aviso de pago"}
+{"en": "payment advice notes", "es": "notas de aviso de pago"}
+{"en": "Payment Advice Number", "es": "Número del aviso de pago"}
+{"en": "payment service provider", "es": "proveedor de servicios de pago"}
+{"en": "PDF Export Settings", "es": "Opciones de exportación a PDF"}
+{"en": "Pending", "es": "pendiente"}
+{"en": "percentage variance", "es": "desviación porcentual"}
+{"en": "performance", "es": "rendimiento"}
+{"en": "performance management", "es": "gestión del rendimiento"}
+{"en": "period", "es": "Período"}
+{"en": "permission information", "es": "información sobre permisos"}
+{"en": "permission page", "es": "página de permisos"}
+{"en": "Persisted View List", "es": "lista de vistas guardadas de forma persistente"}
+{"en": "persistency", "es": "persistencia"}
+{"en": "personal data", "es": "datos personales"}
+{"en": "personalized settings", "es": "opciones personalizadas"}
+{"en": "Perspective Fields", "es": "Campos de perspectiva"}
+{"en": "physical inventory process", "es": "proceso de inventario"}
+{"en": "picklist", "es": "lista de selección"}
+{"en": "placarding", "es": "colocaciones"}
+{"en": "placeholder", "es": "reserva-espacio"}
+{"en": "placeholders", "es": "reserva-espacio"}
+{"en": "Plan As", "es": "Planificar como"}
+{"en": "planners", "es": "planificadores"}
+{"en": "Planning", "es": "Planificar"}
+{"en": "planning data", "es": "datos de planificación"}
+{"en": "plant", "es": "centro"}
+{"en": "Plant stock", "es": "Stock de centro"}
+{"en": "popup", "es": "popup"}
+{"en": "port", "es": "puerta"}
+{"en": "posting", "es": "contabilización"}
+{"en": "posting period variant", "es": "variante de período contable"}
+{"en": "posting step", "es": "paso de contabilización"}
+{"en": "Precog", "es": "Precog"}
+{"en": "preconditions", "es": "condiciones previas"}
+{"en": "Prepare Billing", "es": "Preparar facturación"}
+{"en": "prepayment", "es": "pago adelantado"}
+{"en": "Preview Data", "es": "Vista previa de datos"}
+{"en": "Price Simulation", "es": "Simulación de precios"}
+{"en": "pricing model", "es": "modelo de determinación de precios"}
+{"en": "primary data server", "es": "servidor de datos primario"}
+{"en": "Primary Group", "es": "Grupo principal"}
+{"en": "Primary Keys", "es": "claves principales"}
+{"en": "print queue", "es": "cola de impresión"}
+{"en": "privacy", "es": "privacidad"}
+{"en": "Privacy Filter", "es": "Filtro de privacidad"}
+{"en": "Privileges", "es": "autorizaciones"}
+{"en": "process", "es": "procesar"}
+{"en": "process step", "es": "paso del proceso"}
+{"en": "process template", "es": "modelo de proceso"}
+{"en": "processes", "es": "procesos"}
+{"en": "processing", "es": "procesamiento"}
+{"en": "processing purpose", "es": "objetivo de procesamiento"}
+{"en": "processing rule", "es": "regla de procesamiento"}
+{"en": "processing time", "es": "tiempo de procesamiento"}
+{"en": "processing type", "es": "tipo de procesamiento"}
+{"en": "procurement processes", "es": "procesos de aprovisionamiento"}
+{"en": "product", "es": "producto"}
+{"en": "Product Allocation Order Items", "es": "Posiciones de pedido de contingentación"}
+{"en": "Product Artifacts", "es": "artefactos de productos"}
+{"en": "product assessment", "es": "valoración de producto"}
+{"en": "Product details", "es": "detalles del producto"}
+{"en": "product records", "es": "registros de producto"}
+{"en": "product specifications", "es": "especificaciones de producto"}
+{"en": "product type", "es": "clase de producto"}
+{"en": "product type group", "es": "grupo de clases de producto"}
+{"en": "production", "es": "producción"}
+{"en": "production order", "es": "orden de producción"}
+{"en": "production process", "es": "proceso de fabricación"}
+{"en": "production request", "es": "orden de fabricación"}
+{"en": "production system", "es": "sistema productivo"}
+{"en": "production version", "es": "versión de fabricación"}
+{"en": "products", "es": "productos"}
+{"en": "Professional Services", "es": "Servicios profesionales"}
+{"en": "profile page", "es": "página del perfil"}
+{"en": "profitability segments", "es": "objetos PA"}
+{"en": "project", "es": "proyecto"}
+{"en": "project ID", "es": "ID de proyecto"}
+{"en": "projects", "es": "proyectos"}
+{"en": "properties", "es": "propiedades"}
+{"en": "protocol", "es": "protocolo"}
+{"en": "Providers", "es": "Proveedores"}
+{"en": "public", "es": "pública"}
+{"en": "Publishing", "es": "Publicación"}
+{"en": "publishing status", "es": "estado de publicación"}
+{"en": "purchase contract", "es": "contrato de compra"}
+{"en": "purchase order", "es": "pedido"}
+{"en": "Purchase Orders", "es": "pedidos"}
+{"en": "purchase requisition", "es": "solicitud de pedido"}
+{"en": "purchase requisition item", "es": "posición de solicitud de pedido"}
+{"en": "purchase requisition items", "es": "posiciones de solicitud de pedido"}
+{"en": "purchase requisitions", "es": "solicitudes de pedido"}
+{"en": "purchasing document items", "es": "posiciones de documentos de compras"}
+{"en": "purchasing group", "es": "grupo de compras"}
+{"en": "purpose", "es": "objetivo"}
+{"en": "qualifier", "es": "cualificador"}
+{"en": "quantity contract", "es": "contrato por cantidad"}
+{"en": "queries", "es": "consultas"}
+{"en": "query access", "es": "acceso a las consultas"}
+{"en": "query optimizer", "es": "optimizador de consultas"}
+{"en": "Quick Edit mode", "es": "modo Edición rápida"}
+{"en": "quota", "es": "cuota"}
+{"en": "range", "es": "intervalo"}
+{"en": "ranking adjustments", "es": "ajustes de clasificación"}
+{"en": "rate", "es": "tarifa"}
+{"en": "rating", "es": "calificación"}
+{"en": "rating profile", "es": "perfil de valoración"}
+{"en": "raw materials", "es": "materias primas"}
+{"en": "read", "es": "leer"}
+{"en": "Read access", "es": "acceso de lectura"}
+{"en": "real-time", "es": "tiempo real"}
+{"en": "Real-Time Replication", "es": "replicación en tiempo real"}
+{"en": "real-time replication status", "es": "estado de replicación en tiempo real"}
+{"en": "reason code", "es": "código de motivo"}
+{"en": "Receivables Management", "es": "gestión de crédito"}
+{"en": "receiver objects", "es": "objetos receptores"}
+{"en": "Receivers", "es": "Receptores"}
+{"en": "Recipients", "es": "Destinatarios"}
+{"en": "Reconcile GR/IR Accounts", "es": "Reconciliar cuentas de EM/RF"}
+{"en": "Reconcile GR/IR Accounts app", "es": "aplicación Reconciliar cuentas EM/RF"}
+{"en": "Reconciliation Balances", "es": "Saldos de reconciliación"}
+{"en": "Reconciliation Balances report", "es": "informe Saldos de reconciliación"}
+{"en": "record", "es": "registro"}
+{"en": "Records", "es": "registros"}
+{"en": "recurrence", "es": "repetición"}
+{"en": "recurrence pattern", "es": "patrón de repetición"}
+{"en": "reference data", "es": "datos de referencia"}
+{"en": "referenced data", "es": "datos referenciados"}
+{"en": "Refinement", "es": "Refinamiento"}
+{"en": "Refresh", "es": "Actualizar"}
+{"en": "regulation", "es": "normativa"}
+{"en": "reject", "es": "rechazar"}
+{"en": "Rejection Status", "es": "Estado de rechazo"}
+{"en": "Relative Basic Finish Date", "es": "Fecha fin extrema relativa"}
+{"en": "release", "es": "liberación"}
+{"en": "release information", "es": "información de la liberación"}
+{"en": "Released", "es": "Liberado"}
+{"en": "Released status", "es": "Estado liberado"}
+{"en": "releases", "es": "liberaciones"}
+{"en": "Remaining Amount", "es": "Importe restante"}
+{"en": "remote source systems", "es": "sistemas fuente remotos"}
+{"en": "remote system", "es": "sistema remoto"}
+{"en": "remote table", "es": "tabla remota"}
+{"en": "remote tables", "es": "tablas remotas"}
+{"en": "remove", "es": "quitar"}
+{"en": "renewal", "es": "renovación"}
+{"en": "Repair Objects", "es": "Reparar objetos"}
+{"en": "replenishment", "es": "reaprovisionamiento"}
+{"en": "replica table", "es": "tabla de replicación"}
+{"en": "replication", "es": "reproducción"}
+{"en": "replication runs", "es": "ejecuciones de replicación"}
+{"en": "report", "es": "informe"}
+{"en": "reporting", "es": "informes"}
+{"en": "reporting period", "es": "período del informe"}
+{"en": "repository", "es": "repositorio"}
+{"en": "Reprocess Bank Statement Items", "es": "Reprocesar posiciones de extracto bancario"}
+{"en": "reprocessing rule", "es": "regla de procesamiento posterior"}
+{"en": "request entry point", "es": "punto de entrada de solicitud"}
+{"en": "requirement", "es": "requisitos"}
+{"en": "requirements date", "es": "fecha de necesidades"}
+{"en": "reset", "es": "restablecer"}
+{"en": "residence time", "es": "tiempo de permanencia"}
+{"en": "resource", "es": "recurso"}
+{"en": "Resource Consumption", "es": "consumo de recursos"}
+{"en": "Resource employments", "es": "ocupaciones de recursos"}
+{"en": "resource request", "es": "solicitud de recurso"}
+{"en": "resources", "es": "recursos"}
+{"en": "responsibility definition", "es": "definición de responsabilidad"}
+{"en": "Responsible Employee", "es": "Empleado responsable"}
+{"en": "Restrictions details", "es": "detalles de restricción"}
+{"en": "retention period", "es": "plazo de conservación"}
+{"en": "retrieval", "es": "recuperación"}
+{"en": "Retry button", "es": "botón Reintentar"}
+{"en": "Reversal Reference Number", "es": "Número de referencia de anulación"}
+{"en": "Reversed", "es": "Anulado"}
+{"en": "reversing entry", "es": "asiento de anulación"}
+{"en": "review", "es": "revisión"}
+{"en": "Review Agent Logs", "es": "Revisar logs de agente"}
+{"en": "Review and export page", "es": "página Revisar y exportar"}
+{"en": "Reviewer", "es": "revisor"}
+{"en": "reviewers", "es": "revisores"}
+{"en": "revision", "es": "revisión"}
+{"en": "revisions", "es": "revisiones"}
+{"en": "risk class", "es": "clase de riesgo"}
+{"en": "Risk type", "es": "Tipo de riesgo"}
+{"en": "role", "es": "rol"}
+{"en": "role template", "es": "plantilla de rol"}
+{"en": "role tile", "es": "mosaico de roles"}
+{"en": "roles", "es": "roles"}
+{"en": "root cause", "es": "causa principal"}
+{"en": "root path", "es": "ruta raíz"}
+{"en": "row", "es": "línea"}
+{"en": "ROWID Pseudo Column", "es": "pseudocolumna ROWID"}
+{"en": "rows", "es": "filas"}
+{"en": "rule", "es": "regla"}
+{"en": "rules", "es": "reglas"}
+{"en": "run", "es": "ejecutar"}
+{"en": "Run Allocations app", "es": "aplicación Ejecutar imputaciones"}
+{"en": "Run Ledger", "es": "Ejecutar ledger"}
+{"en": "run type", "es": "clase de ejecución"}
+{"en": "run types", "es": "tipos de ejecución"}
+{"en": "sales", "es": "ventas"}
+{"en": "Sales and Distribution", "es": "Comercial"}
+{"en": "sales order", "es": "Pedido de cliente"}
+{"en": "sales orders", "es": "pedidos de cliente"}
+{"en": "sample code", "es": "código de muestra"}
+{"en": "sample configurations", "es": "ejemplos de configuración"}
+{"en": "SAP", "es": "SAP"}
+{"en": "SAP affiliate", "es": "filial de SAP"}
+{"en": "SAP Analytics Cloud", "es": "SAP Analytics Cloud"}
+{"en": "SAP App Center", "es": "SAP App Center"}
+{"en": "SAP Application", "es": "Aplicación SAP"}
+{"en": "SAP Applications", "es": "aplicaciones SAP"}
+{"en": "SAP BW bridge", "es": "puente de SAP BW"}
+{"en": "SAP BW/4HANA", "es": "SAP BW/4HANA"}
+{"en": "SAP Data Warehouse Cloud", "es": "SAP Data Warehouse Cloud"}
+{"en": "SAP Digital Payments Add-On", "es": "Add-On de pagos digitales de SAP"}
+{"en": "SAP HANA", "es": "SAP HANA"}
+{"en": "SAP HANA Automated Predictive Library", "es": "Biblioteca predictiva automatizada de SAP HANA"}
+{"en": "SAP HANA Cloud", "es": "SAP HANA Cloud"}
+{"en": "SAP HANA Cloud Deployment Infrastructure", "es": "SAP HANA Cloud Deployment Infrastructure"}
+{"en": "SAP HANA Cockpit", "es": "cockpit de SAP HANA"}
+{"en": "SAP HANA Database", "es": "Base de datos de SAP HANA"}
+{"en": "SAP HANA Predictive Analysis Library", "es": "Biblioteca de análisis predictivos de SAP HANA"}
+{"en": "SAP HANA Smart Data Access", "es": "SAP HANA, acceso a datos inteligentes"}
+{"en": "SAP HANA SQL Functions Reference", "es": "Referencia de funciones SQL de SAP HANA"}
+{"en": "SAP HDI Containers", "es": "contenedores de SAP HDI"}
+{"en": "SAP JVA", "es": "SAP JVA"}
+{"en": "SAP product", "es": "producto de SAP"}
+{"en": "SAP products", "es": "productos de SAP"}
+{"en": "SAP SE", "es": "SAP SE"}
+{"en": "SAP SuccessFactors", "es": "SAP SuccessFactors"}
+{"en": "SAP support", "es": "SAP Support"}
+{"en": "SAP system", "es": "sistema SAP"}
+{"en": "SAP technical user", "es": "usuario técnico de SAP"}
+{"en": "save", "es": "guardar"}
+{"en": "save as", "es": "guardar como"}
+{"en": "Save button", "es": "botón Guardar"}
+{"en": "saving", "es": "guardar"}
+{"en": "scale type", "es": "clase de escala"}
+{"en": "schedule", "es": "programación"}
+{"en": "scheduled", "es": "programado"}
+{"en": "Scheduled Open Period", "es": "Período abierto programado"}
+{"en": "schedules", "es": "programaciones"}
+{"en": "Scheduling information dialog", "es": "diálogo de información Programación"}
+{"en": "scope", "es": "alcance"}
+{"en": "scope items", "es": "posiciones de alcance"}
+{"en": "Scoping", "es": "Definición del alcance"}
+{"en": "score", "es": "puntuación"}
+{"en": "screen", "es": "pantalla"}
+{"en": "script server", "es": "servidor de scripts"}
+{"en": "SDS", "es": "HDS"}
+{"en": "Search app", "es": "aplicación Buscar"}
+{"en": "search function", "es": "función de búsqueda"}
+{"en": "search result", "es": "resultado del proceso de búsqueda"}
+{"en": "search results", "es": "resultados de la búsqueda"}
+{"en": "secure text", "es": "texto seguro"}
+{"en": "security", "es": "títulos"}
+{"en": "Security Assertion Markup Language (SAML)", "es": "Security Assertion Markup Language (SAML)"}
+{"en": "security note implementation", "es": "implementación de notas de seguridad"}
+{"en": "select", "es": "seleccione"}
+{"en": "Select Categories", "es": "Seleccionar categorías"}
+{"en": "Select Role", "es": "Seleccionar función"}
+{"en": "Select Target Week", "es": "Seleccionar semana de destino"}
+{"en": "sender objects", "es": "objetos emisores"}
+{"en": "Senders", "es": "Emisores"}
+{"en": "Sensitive personal data", "es": "Datos personales confidenciales"}
+{"en": "sequential phases", "es": "fases secuenciales"}
+{"en": "serial numbers", "es": "números de serie"}
+{"en": "server certificate", "es": "certificado de servidor"}
+{"en": "server time", "es": "hora del servidor"}
+{"en": "server time zone", "es": "huso horario del servidor"}
+{"en": "service confirmation", "es": "confirmación de servicio"}
+{"en": "service confirmations", "es": "confirmación de servicio"}
+{"en": "service date", "es": "fecha de servicio"}
+{"en": "Service Details", "es": "Detalles de servicio"}
+{"en": "service items", "es": "posiciones de servicios"}
+{"en": "service orders", "es": "órdenes de servicio"}
+{"en": "service organization", "es": "organización de prestación de servicio"}
+{"en": "service provider", "es": "proveedor de servicios"}
+{"en": "services rendered date", "es": "fecha de prestación de servicios"}
+{"en": "set", "es": "definir"}
+{"en": "set groups", "es": "grupos de conjuntos"}
+{"en": "Set Variables", "es": "Definir variables"}
+{"en": "Settings", "es": "opciones"}
+{"en": "settlement", "es": "liquidación"}
+{"en": "shared access signature", "es": "firma de acceso compartido"}
+{"en": "Shared key", "es": "clave compartida"}
+{"en": "shared object", "es": "objeto compartido"}
+{"en": "Shared Properties", "es": "propiedades compartidas"}
+{"en": "sharing", "es": "compartición"}
+{"en": "shipment", "es": "envío"}
+{"en": "show", "es": "mostrar"}
+{"en": "Show Clarification Case", "es": "Mostrar caso de clarificación"}
+{"en": "Show Details", "es": "Mostrar detalles"}
+{"en": "side panel", "es": "panel lateral"}
+{"en": "simulation", "es": "simulación"}
+{"en": "simulation mode", "es": "modo de simulación"}
+{"en": "simulations", "es": "simulaciones"}
+{"en": "Single Week", "es": "Semana individual"}
+{"en": "site", "es": "centro"}
+{"en": "situation instance", "es": "instancia de situación"}
+{"en": "situation instances", "es": "instancias de situación"}
+{"en": "situation message", "es": "mensaje de situación"}
+{"en": "situation type ID", "es": "ID de tipo de situación"}
+{"en": "size configuration", "es": "configuración del tamaño"}
+{"en": "skills", "es": "cualificaciones"}
+{"en": "slot", "es": "slot"}
+{"en": "Slow-Moving Indicator", "es": "Indicador de baja rotación"}
+{"en": "Small Business Edition", "es": "Edición para pequeñas empresas"}
+{"en": "Smart Data Access", "es": "acceso a datos inteligentes"}
+{"en": "snapshot replication", "es": "replicación de instantánea"}
+{"en": "software collection", "es": "colección de software"}
+{"en": "solution packages", "es": "paquetes de soluciones"}
+{"en": "sort", "es": "clasificar"}
+{"en": "sorting", "es": "orden"}
+{"en": "source", "es": "fuente"}
+{"en": "Source Browser", "es": "navegador de fuentes"}
+{"en": "source document", "es": "documento de origen"}
+{"en": "source document category", "es": "tipo de documento de origen"}
+{"en": "source of supply", "es": "fuente de aprovisionamiento"}
+{"en": "Source Panel", "es": "Panel de origen"}
+{"en": "source system", "es": "sistema fuente"}
+{"en": "sourcing project", "es": "proyecto de licitación"}
+{"en": "sourcing project lifecycle", "es": "ciclo de vida del proyecto de licitación"}
+{"en": "space", "es": "espacio"}
+{"en": "space data", "es": "datos del espacio"}
+{"en": "Space Management", "es": "Gestión de espacios"}
+{"en": "spaceName", "es": "nombreEspacio"}
+{"en": "spaces", "es": "espacios"}
+{"en": "split", "es": "partición"}
+{"en": "spreadsheet", "es": "hoja de cálculo"}
+{"en": "SQL Code", "es": "código SQL"}
+{"en": "SQL expression", "es": "expresión SQL"}
+{"en": "SQL schema", "es": "esquema Open SQL"}
+{"en": "SSL encryption", "es": "cifrado SSL"}
+{"en": "stacked bar chart", "es": "gráfico de barras apiladas"}
+{"en": "stage", "es": "fase"}
+{"en": "standard behavior", "es": "comportamiento predeterminado"}
+{"en": "start date", "es": "fecha de inicio"}
+{"en": "start time", "es": "hora de inicio"}
+{"en": "statement", "es": "declaración"}
+{"en": "Statement-level Insert Triggers", "es": "desencadenadores de inserción a nivel de declaración"}
+{"en": "Statement-level Triggers", "es": "desencadenadores a nivel de declaración"}
+{"en": "Statistics", "es": "estadísticas"}
+{"en": "Statistics dialog box", "es": "ventana de diálogo Estadísticas"}
+{"en": "status", "es": "estado"}
+{"en": "Status 1", "es": "Estado 1"}
+{"en": "status field", "es": "campo de estado"}
+{"en": "statuses", "es": "estados"}
+{"en": "step", "es": "paso"}
+{"en": "stock buffer", "es": "memoria intermedia de stock"}
+{"en": "Stock Quantity", "es": "Cantidad de stock"}
+{"en": "stock transfer", "es": "traslado"}
+{"en": "storage", "es": "almacén"}
+{"en": "Storage Size", "es": "tamaño del almacén"}
+{"en": "storage type", "es": "tipo de almacenamiento"}
+{"en": "Story", "es": "historia"}
+{"en": "Story Builder", "es": "Generador de historias"}
+{"en": "string", "es": "string"}
+{"en": "sub teams", "es": "equipos inferiores"}
+{"en": "subcontractor", "es": "subcontratista"}
+{"en": "subnode", "es": "subnodo"}
+{"en": "subordinate assembly", "es": "conjunto subordinado"}
+{"en": "subscription", "es": "suscripción"}
+{"en": "substitute", "es": "suplente"}
+{"en": "suitability match", "es": "coincidencias de aptitud"}
+{"en": "supplement", "es": "postimputar"}
+{"en": "Supplementary Account Assignment", "es": "postimputación"}
+{"en": "supplier", "es": "proveedor"}
+{"en": "supplier invoice", "es": "factura de proveedor"}
+{"en": "supplier list", "es": "lista de proveedores"}
+{"en": "supplier list version", "es": "versión de una lista de proveedores"}
+{"en": "supply", "es": "suministrar"}
+{"en": "support process", "es": "proceso de soporte"}
+{"en": "surplus stock", "es": "exceso de stock"}
+{"en": "Switch Data Provider", "es": "Cambiar de proveedor de datos"}
+{"en": "synonym", "es": "sinónimo"}
+{"en": "system", "es": "sistema"}
+{"en": "system administration", "es": "administración del sistema"}
+{"en": "system landscape", "es": "infraestructura del sistema"}
+{"en": "System Status 1", "es": "Estado de sistema 1"}
+{"en": "System Status 2", "es": "Estado de sistema 2"}
+{"en": "system upgrade", "es": "actualización del sistema"}
+{"en": "tab", "es": "pestaña"}
+{"en": "table", "es": "tabla"}
+{"en": "tables", "es": "tablas"}
+{"en": "tables and views", "es": "tablas y vistas"}
+{"en": "target", "es": "objetivo"}
+{"en": "target accounts", "es": "cuentas de destino"}
+{"en": "target key field", "es": "campo clave de destino"}
+{"en": "Target Panel", "es": "Panel de destino"}
+{"en": "target release", "es": "versión de destino"}
+{"en": "task logs", "es": "logs de tareas"}
+{"en": "task template set", "es": "conjunto de modelos de tareas"}
+{"en": "Tax Calculated by Partner", "es": "impuesto calculado por el socio"}
+{"en": "tax countries", "es": "residencias fiscales"}
+{"en": "tax country", "es": "residencia fiscal"}
+{"en": "tax departure countries", "es": "países de salida"}
+{"en": "tax rate", "es": "tipo impositivo"}
+{"en": "tax rates", "es": "tipos impositivos"}
+{"en": "tax type", "es": "tipo de impuesto"}
+{"en": "team", "es": "equipo"}
+{"en": "team global ID", "es": "ID global del equipo"}
+{"en": "team internal ID", "es": "ID interno del equipo"}
+{"en": "technical changes", "es": "modificaciones técnicas"}
+{"en": "technical shipment", "es": "envío técnico"}
+{"en": "technical users", "es": "usuarios técnicos"}
+{"en": "Telephone number", "es": "Número de teléfono"}
+{"en": "template", "es": "plantilla"}
+{"en": "template structure", "es": "estructura de plantilla"}
+{"en": "template type", "es": "tipo de modelo"}
+{"en": "tenant", "es": "arrendatario"}
+{"en": "term", "es": "término"}
+{"en": "term start date", "es": "fecha de inicio de período de validez"}
+{"en": "termination", "es": "rescisión"}
+{"en": "test process type", "es": "tipo de proceso de test"}
+{"en": "Test Results page", "es": "página Resultados del test"}
+{"en": "Test Your Processes", "es": "Probar sus procesos"}
+{"en": "text block", "es": "bloque de texto"}
+{"en": "text block library", "es": "biblioteca de bloques de texto"}
+{"en": "text blocks", "es": "bloques de texto"}
+{"en": "text parameters", "es": "parámetros de texto"}
+{"en": "text table", "es": "tabla de textos"}
+{"en": "thread limit", "es": "límite de threads"}
+{"en": "threads", "es": "threads"}
+{"en": "Threshold CPU Time", "es": "Tiempo CPU de umbral"}
+{"en": "Threshold Duration", "es": "Duración de umbral"}
+{"en": "threshold execution time", "es": "tiempo de ejecución umbral"}
+{"en": "threshold range", "es": "rango de valor umbral"}
+{"en": "tile", "es": "mosaico"}
+{"en": "time", "es": "tiempo"}
+{"en": "Time and Expenses", "es": "Tiempo y gastos"}
+{"en": "Time and Expenses items", "es": "posiciones Tiempo y gastos"}
+{"en": "time entries", "es": "entradas de tiempo"}
+{"en": "time period", "es": "período de tiempo"}
+{"en": "time posting", "es": "contabilización de tiempos"}
+{"en": "time range", "es": "intervalo de tiempo"}
+{"en": "time-based adjustment", "es": "corrección temporal"}
+{"en": "timeline", "es": "línea de tiempo"}
+{"en": "TLS", "es": "TLS"}
+{"en": "TLS-encrypted access", "es": "acceso cifrado TLS"}
+{"en": "To Be Billed", "es": "Para facturar"}
+{"en": "Tolerance", "es": "tolerancia"}
+{"en": "tolerance percentage", "es": "porcentaje de tolerancia"}
+{"en": "tolerance value", "es": "valor de tolerancia"}
+{"en": "tool", "es": "herramienta"}
+{"en": "toolbar", "es": "barra de herramientas"}
+{"en": "top-level cash pool", "es": "Cash Pool de nivel superior"}
+{"en": "Top-Level View", "es": "Vista de nivel superior"}
+{"en": "total cost", "es": "coste total"}
+{"en": "Total Hours", "es": "horas totales"}
+{"en": "trace", "es": "seguimiento"}
+{"en": "trace log", "es": "archivos de log de trace"}
+{"en": "Track my recent activity", "es": "Realizar seguimiento de mis aplicaciones utilizado por última vez"}
+{"en": "transaction", "es": "transacción"}
+{"en": "Transaction Currency", "es": "Moneda de transacción"}
+{"en": "transaction date", "es": "fecha de la última transacción"}
+{"en": "transaction type", "es": "tipo de operación"}
+{"en": "transfer", "es": "transferencia"}
+{"en": "Transform Log", "es": "Log de transformación"}
+{"en": "transport requests", "es": "órdenes de transporte"}
+{"en": "Transporters tab", "es": "pestaña Transportistas"}
+{"en": "trigger", "es": "iniciar"}
+{"en": "Triggers", "es": "desencadena"}
+{"en": "type", "es": "clase"}
+{"en": "Underloaded Periods Card", "es": "Tarjeta Períodos infrautilizados"}
+{"en": "union", "es": "unión"}
+{"en": "Union operator", "es": "operador Unión"}
+{"en": "unpaid invoices", "es": "facturas no pagadas"}
+{"en": "unplanned services", "es": "servicios no planificados"}
+{"en": "update", "es": "actualizar"}
+{"en": "Updating User Email Addresses", "es": "Actualizar direcciones de correo electrónico de usuario"}
+{"en": "upgrade", "es": "upgrade"}
+{"en": "uploaded data", "es": "datos cargados"}
+{"en": "Upsert Shadow Tables", "es": "tablas muestra de upsert"}
+{"en": "URL Access", "es": "acceso de URL"}
+{"en": "usage", "es": "utilización"}
+{"en": "usage data", "es": "datos de utilización"}
+{"en": "use", "es": "utilizar"}
+{"en": "use case", "es": "caso de utilización"}
+{"en": "user", "es": "usuario"}
+{"en": "user group", "es": "grupo de usuarios"}
+{"en": "user interface", "es": "interfase de usuario"}
+{"en": "User Settings", "es": "Opciones de usuario"}
+{"en": "User Substitutes", "es": "Suplentes de usuario"}
+{"en": "users", "es": "usuarios"}
+{"en": "UTC", "es": "UTC"}
+{"en": "utilization view", "es": "vista de utilización"}
+{"en": "Valid on date", "es": "Fecha de validez"}
+{"en": "validation area", "es": "área de validación"}
+{"en": "validations", "es": "validaciones"}
+{"en": "valuation method", "es": "método de valoración"}
+{"en": "value", "es": "valor"}
+{"en": "value group", "es": "grupo de valores"}
+{"en": "value help", "es": "Ayuda para entradas"}
+{"en": "values", "es": "valores"}
+{"en": "variables", "es": "variables"}
+{"en": "Variance in Percent", "es": "Desviación en porcentaje"}
+{"en": "vCPUs", "es": "vCPUs"}
+{"en": "vendor", "es": "acreedor"}
+{"en": "venture partners", "es": "socios de la venture"}
+{"en": "version", "es": "versión"}
+{"en": "version history", "es": "historial de versiones"}
+{"en": "view", "es": "vista"}
+{"en": "view persistency", "es": "persistencia de vista"}
+{"en": "View Persistency Actions", "es": "Ver acciones de persistencia"}
+{"en": "View Persistency Task", "es": "tarea de persistencia de vista"}
+{"en": "view type", "es": "clase de vista"}
+{"en": "views", "es": "vistas"}
+{"en": "virtual access", "es": "acceso virtual"}
+{"en": "virtual document", "es": "documento virtual"}
+{"en": "warning", "es": "advertencia"}
+{"en": "warning message", "es": "mensaje de advertencia"}
+{"en": "warranty", "es": "garantía"}
+{"en": "Waste codes", "es": "claves de residuos"}
+{"en": "waste generator", "es": "productor de residuos"}
+{"en": "Waste Management - Transporters and Disposers app", "es": "aplicación Gestión de residuos: Transportistas y eliminadores de residuos"}
+{"en": "waste stream", "es": "flujo de residuos"}
+{"en": "week number", "es": "número de semana"}
+{"en": "wizard", "es": "asistente"}
+{"en": "work center", "es": "puesto de trabajo"}
+{"en": "work item", "es": "work item"}
+{"en": "work item group", "es": "grupo de work items"}
+{"en": "work loads", "es": "cargas de trabajo"}
+{"en": "work pack", "es": "paquete de trabajo"}
+{"en": "Workflow", "es": "Workflow"}
+{"en": "workflow scenario", "es": "escenario de workflow"}
+{"en": "workgroups", "es": "grupos de trabajo"}
+{"en": "worklist", "es": "lista de trabajo"}
+{"en": "workpackages", "es": "paquetes de trabajo"}
+{"en": "wrangling users", "es": "usuarios de disputas"}
+{"en": "Write API", "es": "API de escritura"}
+{"en": "write off", "es": "ignorar"}
+{"en": "X-axis", "es": "eje X"}
+{"en": "X.509 certificate", "es": "certificado X.509"}
+{"en": "Y-axis", "es": "eje Y"}
+{"en": "zoom slider", "es": "control deslizante de zoom"}

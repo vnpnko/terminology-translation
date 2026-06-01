@@ -31,7 +31,7 @@ from scripts.core import (  # noqa: E402
 
 MODEL_NAME = "Qwen/Qwen2.5-Coder-3B-Instruct"
 DEFAULT_MODES = ["no_term", "proper_term", "random_term"]
-OUTPUT_DIR = REPO_ROOT / "baselines" / "qwen_outputs"
+OUTPUT_DIR = REPO_ROOT / "outputs" / "qwen"
 SYSTEM_MESSAGE = "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
 
 

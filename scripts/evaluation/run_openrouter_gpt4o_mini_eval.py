@@ -35,7 +35,7 @@ OPENAI_MODEL = "openai/gpt-4o-mini"
 DEFAULT_MODES = ["no_term", "proper_term", "random_term"]
 TARGET_LANG = "German"
 REF_FIELD = "de"
-OUTPUT_DIR = REPO_ROOT / "baselines" / "openrouter_outputs"
+OUTPUT_DIR = REPO_ROOT / "outputs" / "openrouter"
 ENV_FILE = REPO_ROOT / "scripts" / ".env"
 
 _print_lock = threading.Lock()
@@ -203,7 +203,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--data-file",
         type=Path,
-        default=REPO_ROOT / "baselines" / "ende_dev_v2.sample.jsonl",
+        default=REPO_ROOT / "data" / "sap_dev" / "ende_dev_v1.jsonl",
     )
     parser.add_argument("--modes", nargs="+", default=DEFAULT_MODES)
     parser.add_argument("--api-key", default=os.environ.get("OPENROUTER_API_KEY", ""))

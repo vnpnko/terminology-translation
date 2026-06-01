@@ -12,7 +12,6 @@ Each JSONL record has an English source sentence, a target-language reference, d
 
 ```text
 terminology-translation/
-├── baselines/
 ├── scripts/
 │   ├── core.py
 │   ├── evaluation/
@@ -21,6 +20,7 @@ terminology-translation/
 │   ├── sap_dev/
 │   └── term_pairs/
 └── reference/
+    ├── baselines/
     ├── shared_task_docs/
     ├── shared_task_track1/
     └── shared_task_track2/
@@ -28,13 +28,13 @@ terminology-translation/
 
 ## What To Run
 
-For the OpenRouter/GPT baseline:
+For the OpenRouter/GPT evaluation:
 
 ```bash
-python scripts/evaluation/run_openrouter_gpt4o_mini_eval.py --data-file baselines/ende_dev_v2.sample.jsonl
+python scripts/evaluation/run_openrouter_gpt4o_mini_eval.py --data-file data/sap_dev/ende_dev_v1.jsonl
 ```
 
-For the local Qwen baseline:
+For the local Qwen evaluation:
 
 ```bash
 python scripts/evaluation/run_local_qwen_eval.py --data-dir data/sap_dev
@@ -71,9 +71,9 @@ python scripts/evaluation/run_local_qwen_eval.py --data-dir data/sap_dev
 
 | Folder | Purpose |
 |---|---|
-| `baselines/` | Baseline notebooks plus the small German sample JSONL used by the OpenRouter runner. |
 | `data/sap_dev/` | Original SAP/ASAP development JSONL files. |
 | `data/term_pairs/` | Extracted proper-term pair lists used by data-preparation scripts. |
+| `reference/baselines/` | Historical baseline notebooks and sample JSONL, kept for reference. |
 | `reference/shared_task_docs/` | WMT/shared-task reference documents. |
 | `reference/shared_task_track1/` | Track 1 shared-task JSONL files. |
 | `reference/shared_task_track2/` | Track 2 shared-task JSONL files. |

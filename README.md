@@ -1,149 +1,92 @@
 # Terminology Translation
 
-Experiments on terminology-constrained machine translation for WMT-style sentence-level data. Each example contains an English source sentence, a target-language reference, domain terminology, and random control terminology.
+Experiments on terminology-constrained machine translation for WMT-style sentence-level data.
 
-## Data Format
-
-One JSON object per line:
+Each JSONL record has an English source sentence, a target-language reference, domain terminology, and random control terminology:
 
 ```json
-{
-  "en": "In such cases you may use the Move Items or Merge feature.\n",
-  "de": "In solchen Fällen können Sie die Funktion Elemente verschieben oder Zusammenführen verwenden.\n",
-  "proper_terms": {
-    "item": "Element"
-  },
-  "random_terms": {
-    "Move": "Verschieben"
-  }
-}
+{"en": "...", "de": "...", "proper_terms": {"term": "translation"}, "random_terms": {"word": "translation"}}
 ```
-
-| Field | Description |
-|---|---|
-| `en` | English source sentence. |
-| `de` / `es` / `ru` | Target-language reference translation. |
-| `proper_terms` | `{english_term: target_translation}` for domain/SAP/IT terminology. |
-| `random_terms` | `{english_word: target_translation}` for ordinary control vocabulary. |
-
-The JSONL format is unchanged across all evaluators and data-preparation scripts.
-
-## Translation Modes
-
-| Mode | Prompt terminology | Measures |
-|---|---|---|
-| `no_term` | No terminology block. | Unconstrained baseline MT quality. |
-| `proper_term` | Uses `proper_terms`. | Domain terminology-constrained MT. |
-| `random_term` | Uses `random_terms` after removing keys that overlap `proper_terms`. | Control condition for non-domain glossary hints. |
 
 ## Project Layout
 
 ```text
 terminology-translation/
-├── src/
-│   └── mt_eval/
-│       ├── __init__.py
-│       └── core.py
+├── baselines/
 ├── scripts/
-│   ├── Ivan/
-│   │   ├── run_eval.py
-│   │   ├── fill_proper_terms.py
-│   │   ├── fill_random_terms.py
-│   │   └── fill_translations.py
-│   └── Robin/
-│       ├── run_eval.py
-│       └── build_term_jsonl.py
-├── Baseline/
-│   ├── ende_dev_v2.jsonl
-│   └── openrouter_outputs/
-├── data/
-└── README.md
+│   ├── core.py
+│   ├── evaluation/
+│   └── data_preparation/
+├── data/sap_dev/
+└── resources/
+    ├── term_pairs/
+    ├── shared_task_docs/
+    ├── shared_task_track1/
+    └── shared_task_track2/
 ```
 
-Shared loading, prompt construction, mode handling, BLEU, chrF, terminology accuracy, and terminology consistency live in `src/mt_eval/core.py`.
+## What To Run
 
-## Install
+For the OpenRouter/GPT baseline:
+
+```bash
+python scripts/evaluation/run_openrouter_gpt4o_mini_eval.py --data-file baselines/ende_dev_v2.sample.jsonl
+```
+
+For the local Qwen baseline:
+
+```bash
+python scripts/evaluation/run_local_qwen_eval.py --data-dir data/sap_dev
+```
+
+## Script Guide
+
+| Script | Purpose |
+|---|---|
+| `scripts/evaluation/run_openrouter_gpt4o_mini_eval.py` | Runs OpenRouter `openai/gpt-4o-mini` translation evaluation over `no_term`, `proper_term`, and `random_term` modes. |
+| `scripts/evaluation/run_local_qwen_eval.py` | Runs a local Hugging Face Qwen model evaluation with the same modes and metrics. |
+| `scripts/data_preparation/annotate_proper_terms_openrouter.py` | Adds `proper_terms` to sentence pairs using an OpenRouter LLM. |
+| `scripts/data_preparation/annotate_random_terms_openrouter.py` | Adds non-domain `random_terms` after `proper_terms` exist. |
+| `scripts/data_preparation/fill_missing_translations_openrouter.py` | Fills missing target sentences and term translations from English records. |
+| `scripts/data_preparation/collect_term_pairs_from_jsonl.py` | Extracts merged EN→target proper-term pairs from JSONL datasets. |
+| `scripts/data_preparation/extract_english_proper_term_list.py` | Extracts English proper-term keys into a plain text list. |
+| `scripts/data_preparation/filter_english_term_list.py` | Filters an English term list using stopwords, blocklists, and optional frequency filtering. |
+| `scripts/data_preparation/strip_target_translations.py` | Clears target translations while keeping English and term keys. |
+| `scripts/data_preparation/convert_term_postedits_to_jsonl.py` | Converts raw ASAP `term_postedits` flat files into this repo's JSONL format. |
+
+## Shared Evaluation Code
+
+`scripts/core.py` contains the reusable evaluation pieces:
+
+- JSONL loading/saving
+- prompt construction
+- terminology mode selection
+- output-tag stripping
+- BLEU and chrF
+- terminology accuracy
+- terminology consistency
+
+## Data And Resources
+
+| Folder | Purpose |
+|---|---|
+| `baselines/` | Baseline notebooks plus the small German sample JSONL used by the OpenRouter runner. |
+| `data/sap_dev/` | Original SAP/ASAP development JSONL files. |
+| `resources/term_pairs/` | Extracted proper-term pair lists. |
+| `resources/shared_task_docs/` | WMT/shared-task reference documents. |
+| `resources/shared_task_track1/` | Track 1 shared-task JSONL files. |
+| `resources/shared_task_track2/` | Track 2 shared-task JSONL files. |
+
+## Dependencies
+
+OpenRouter evaluator:
 
 ```bash
 pip install openai sacrebleu tqdm
 ```
 
-For Robin's local Qwen evaluator:
+Local Qwen evaluator:
 
 ```bash
 pip install transformers accelerate torch sacrebleu tqdm
 ```
-
-## Ivan Evaluator: OpenRouter / GPT-4o-mini
-
-Set `OPENROUTER_API_KEY` in `scripts/.env` or pass `--api-key`.
-
-```bash
-python scripts/Ivan/run_eval.py --data-file Baseline/ende_dev_v2.jsonl
-```
-
-Optional mode selection:
-
-```bash
-python scripts/Ivan/run_eval.py \
-  --data-file Baseline/ende_dev_v2.jsonl \
-  --modes no_term proper_term random_term
-```
-
-Outputs keep the existing names and structure:
-
-```text
-Baseline/openrouter_outputs/<data_stem>_<mode>_predictions.jsonl
-Baseline/openrouter_outputs/<data_stem>_metrics_summary.json
-```
-
-## Robin Evaluator: Local Qwen
-
-The runner loads `Qwen/Qwen2.5-Coder-3B-Instruct` with Hugging Face Transformers.
-
-```bash
-python scripts/Robin/run_eval.py --data-dir data/
-```
-
-Optional mode selection:
-
-```bash
-python scripts/Robin/run_eval.py \
-  --data-dir data/ \
-  --modes no_term proper_term random_term
-```
-
-Robin's evaluator scans `data/*.jsonl` and keeps files ending in `_dev.jsonl`. It writes structured prediction and metrics files using the same schema as Ivan's runner.
-
-## Metrics
-
-The shared evaluator preserves the existing metric behavior:
-
-- `compute_bleu_chrf(hyps, refs)` calls `sacrebleu.corpus_bleu(hyps, [refs])` and `sacrebleu.corpus_chrf(hyps, [refs])` with default settings.
-- `terminology_accuracy_advanced(samples, predictions, mode)` computes the existing source-count to target-count ratio per term.
-- `terminology_consistency_advanced(samples, predictions, mode)` computes the existing pseudo-reference consistency scores.
-
-The metrics JSON keys are unchanged.
-
-## Adding A New Model
-
-Create or copy a runner and replace only its `translate_sample()` function. Keep the runner calling shared helpers from `src/mt_eval/core.py`:
-
-- `build_translation_prompt(source_text, target_lang, terminology)`
-- `terminology_for_mode(sample, mode)`
-- `strip_output_tags(text)`
-- `compute_bleu_chrf(hyps, refs)`
-- `terminology_accuracy_advanced(samples, predictions, mode)`
-- `terminology_consistency_advanced(samples, predictions, mode)`
-
-## Data Preparation
-
-Existing data-preparation scripts remain unchanged:
-
-```bash
-python scripts/Ivan/fill_proper_terms.py -t de -i input.jsonl -o output.jsonl
-python scripts/Ivan/fill_random_terms.py -t de -i input.jsonl -o output.jsonl
-python scripts/Ivan/fill_translations.py ende_dev_1.jsonl
-python scripts/Robin/build_term_jsonl.py -t de --data-dir "data/asap data v2/orig data/ende"
-```
-

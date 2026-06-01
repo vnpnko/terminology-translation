@@ -17,7 +17,7 @@ Supported target languages (``-t`` / ``--target-lang``):
 Usage::
 
     python collect_proper_terms.py -t de
-    python collect_proper_terms.py -t es -o ../../resources/term_pairs/enes_pairs.jsonl
+    python collect_proper_terms.py -t es -o ../../data/term_pairs/enes_pairs.jsonl
     python collect_proper_terms.py --all
     python collect_proper_terms.py -t ru --include-count
 """
@@ -70,7 +70,7 @@ LANGS: dict[str, LangConfig] = {
 
 V1_DIR = REPO_ROOT / "data" / "sap_dev"
 V2_DIR = REPO_ROOT / "data" / "sap_v2_with_terms"
-DEFAULT_OUT_DIR = REPO_ROOT / "resources" / "term_pairs"
+DEFAULT_OUT_DIR = REPO_ROOT / "data" / "term_pairs"
 
 
 def default_paths(lang: LangConfig) -> tuple[Path, Path]:
@@ -215,7 +215,7 @@ def main() -> None:
         "--output",
         type=Path,
         default=None,
-        help="Output JSONL (default: resources/term_pairs/<pair>_proper_term_pairs.jsonl)",
+        help="Output JSONL (default: data/term_pairs/<pair>_proper_term_pairs.jsonl)",
     )
     parser.add_argument(
         "--include-count",

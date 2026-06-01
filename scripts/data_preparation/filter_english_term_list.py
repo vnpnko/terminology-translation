@@ -27,8 +27,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS_DIR = Path(__file__).resolve().parent
-DEFAULT_INPUT = REPO_ROOT / "resources" / "term_pairs" / "all_eng_proper_terms.txt"
-DEFAULT_OUTPUT = REPO_ROOT / "resources" / "term_pairs" / "filtered_eng_proper_terms.txt"
+DEFAULT_INPUT = REPO_ROOT / "data" / "term_pairs" / "all_eng_proper_terms.txt"
+DEFAULT_OUTPUT = REPO_ROOT / "data" / "term_pairs" / "filtered_eng_proper_terms.txt"
 DEFAULT_BLOCKLIST = SCRIPTS_DIR / "data" / "proper_term_blocklist.txt"
 DEFAULT_ALLOWLIST = SCRIPTS_DIR / "data" / "proper_term_allowlist.txt"
 

@@ -13,7 +13,7 @@ DEFAULT_INPUTS = sorted(
     REPO_ROOT / "data" / "sap_dev" / name
     for name in ("ende_dev_v1.jsonl", "enes_dev_v1.jsonl", "enru_dev_v1.jsonl")
 )
-DEFAULT_OUTPUT = REPO_ROOT / "resources" / "term_pairs" / "all_eng_proper_terms.txt"
+DEFAULT_OUTPUT = REPO_ROOT / "data" / "term_pairs" / "all_eng_proper_terms.txt"
 
 
 def collect_proper_terms(jsonl_path: Path) -> Counter[str]:

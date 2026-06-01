@@ -17,9 +17,10 @@ terminology-translation/
 │   ├── core.py
 │   ├── evaluation/
 │   └── data_preparation/
-├── data/sap_dev/
-└── resources/
-    ├── term_pairs/
+├── data/
+│   ├── sap_dev/
+│   └── term_pairs/
+└── reference/
     ├── shared_task_docs/
     ├── shared_task_track1/
     └── shared_task_track2/
@@ -66,16 +67,16 @@ python scripts/evaluation/run_local_qwen_eval.py --data-dir data/sap_dev
 - terminology accuracy
 - terminology consistency
 
-## Data And Resources
+## Data And Reference
 
 | Folder | Purpose |
 |---|---|
 | `baselines/` | Baseline notebooks plus the small German sample JSONL used by the OpenRouter runner. |
 | `data/sap_dev/` | Original SAP/ASAP development JSONL files. |
-| `resources/term_pairs/` | Extracted proper-term pair lists. |
-| `resources/shared_task_docs/` | WMT/shared-task reference documents. |
-| `resources/shared_task_track1/` | Track 1 shared-task JSONL files. |
-| `resources/shared_task_track2/` | Track 2 shared-task JSONL files. |
+| `data/term_pairs/` | Extracted proper-term pair lists used by data-preparation scripts. |
+| `reference/shared_task_docs/` | WMT/shared-task reference documents. |
+| `reference/shared_task_track1/` | Track 1 shared-task JSONL files. |
+| `reference/shared_task_track2/` | Track 2 shared-task JSONL files. |
 
 ## Dependencies
 

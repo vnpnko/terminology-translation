@@ -2,3 +2,8 @@ scripts/.env
 .env
 __pycache__/
 *.py[cod]
+
+.DS_Store
+**/.DS_Store
+logs/
+*.out

@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """
-Expand proper_terms in EN-DE SAP JSONL data using OpenRouter GPT-4o-mini.
+Expand proper_terms in JSONL dev files using OpenRouter GPT-4o-mini.
 
 The source sentence, target sentence, and random_terms are preserved. Only new
-validated EN->DE term pairs are appended to proper_terms.
+validated EN->target term pairs are appended to proper_terms.
+
+Usage::
+
+    python expand_terms.py -i ../../data/dev_v1/original/ende_dev_v1.jsonl
+    python expand_terms.py -i ../../data/dev_v1/original/enes_dev_v1.jsonl
 """
 
 from __future__ import annotations
@@ -12,29 +17,62 @@ import argparse
 import json
 import os
 import re
-import sys
 import time
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.core import load_jsonl, save_jsonl
-
-ENV_FILE = REPO_ROOT / "scripts" / ".env"
-DEFAULT_INPUT = REPO_ROOT / "data" / "sap_dev" / "ende_dev_v1.jsonl"
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "data" / "sap_data_expanded"
+ENV_FILE = REPO_ROOT / ".env"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 
+VALID_INPUT_RE = re.compile(r"^(ende|enes|enru)_dev_v\d+$")
+REJECTED_STEM_MARKERS = ("_expand", "_cleaned", ".expand", ".cleaned")
+
+
+@dataclass(frozen=True)
+class LangPair:
+    prefix: str
+    tgt_code: str
+    tgt_name: str
+    direction: str
+
+
+LANG_PAIRS: dict[str, LangPair] = {
+    "ende": LangPair("ende", "de", "German", "EN→DE"),
+    "enes": LangPair("enes", "es", "Spanish", "EN→ES"),
+    "enru": LangPair("enru", "ru", "Russian", "EN→RU"),
+}
+
+
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    with path.open(encoding="utf-8-sig") as f:
+        for line_no, line in enumerate(f, start=1):
+            raw = line.strip()
+            if not raw:
+                continue
+            record = json.loads(raw)
+            if not isinstance(record, dict):
+                raise ValueError(f"{path}:{line_no}: expected a JSON object per line")
+            records.append(record)
+    return records
+
+
+def save_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        for record in records:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
 
 def load_dotenv(path: Path = ENV_FILE) -> None:
-    """Load KEY=VALUE lines from scripts/.env without overriding env vars."""
+    """Load KEY=VALUE lines from the repo-root .env without overriding env vars."""
     if not path.is_file():
         return
     for line in path.read_text(encoding="utf-8-sig").splitlines():
@@ -54,8 +92,32 @@ def load_dotenv(path: Path = ENV_FILE) -> None:
             os.environ[key] = value
 
 
-def output_path_for(input_path: Path, output_dir: Path) -> Path:
-    return output_dir / f"{input_path.stem}_expand{input_path.suffix}"
+def resolve_lang_pair(input_path: Path) -> LangPair:
+    stem = input_path.stem
+    for marker in REJECTED_STEM_MARKERS:
+        if marker in stem:
+            raise SystemExit(
+                f"Refusing to process files that already have a pipeline suffix "
+                f"({marker!r}): {input_path.name}"
+            )
+    if not VALID_INPUT_RE.match(stem):
+        raise SystemExit(
+            "Input filename must match <pair>_dev_v<N>.jsonl "
+            f"(e.g. ende_dev_v1.jsonl), got: {input_path.name}"
+        )
+    pair_prefix = stem.split("_dev_", 1)[0]
+    lang_pair = LANG_PAIRS.get(pair_prefix)
+    if lang_pair is None:
+        raise SystemExit(
+            f"Unsupported language pair prefix {pair_prefix!r} in {input_path.name}. "
+            f"Expected one of: {', '.join(sorted(LANG_PAIRS))}."
+        )
+    return lang_pair
+
+
+def output_path_for(input_path: Path) -> Path:
+    stem = input_path.stem
+    return input_path.parent / f"{stem}_expand{input_path.suffix}"
 
 
 def parse_model_json(content: str) -> dict[str, Any]:
@@ -118,14 +180,18 @@ def openrouter_chat(
         raise RuntimeError(f"Unexpected OpenRouter response: {payload}") from exc
 
 
-def build_batch_prompt(batch: list[tuple[int, dict[str, Any]]]) -> str:
+def build_batch_prompt(
+    batch: list[tuple[int, dict[str, Any]]],
+    *,
+    lang_pair: LangPair,
+) -> str:
     rows = []
     for idx, record in batch:
         rows.append(
             {
                 "id": idx,
                 "en": record.get("en", ""),
-                "de": record.get("de", ""),
+                lang_pair.tgt_code: record.get(lang_pair.tgt_code, ""),
                 "proper_terms": record.get("proper_terms") or {},
                 "random_terms": record.get("random_terms") or {},
             }
@@ -135,8 +201,8 @@ def build_batch_prompt(batch: list[tuple[int, dict[str, Any]]]) -> str:
 
 Task:
 For each row, find as many domain-relevant proper terms as possible in that
-row's English sentence and align each to the exact German surface text used in
-that same row's German translation.
+row's English sentence and align each to the exact {lang_pair.tgt_name} surface
+text used in that same row's {lang_pair.tgt_name} translation.
 
 Proper terms include:
 - SAP, enterprise software, IT, database, platform, data-model, workflow, UI,
@@ -147,14 +213,14 @@ Proper terms include:
 Do NOT include:
 - Generic function words or ordinary adjectives/verbs unless part of a domain term.
 - Terms already present in that row's existing proper_terms or random_terms.
-- A term if either the English surface or German surface is not copied verbatim
-  from that same row's provided sentences.
+- A term if either the English surface or {lang_pair.tgt_name} surface is not
+  copied verbatim from that same row's provided sentences.
 - Terms from another row. Rows are independent; never borrow terminology across
   row IDs.
 
 Return JSON only in this exact shape:
 {{"rows": [
-  {{"id": 0, "proper_terms": {{"<exact English surface>": "<exact German surface>"}}}},
+  {{"id": 0, "proper_terms": {{"<exact English surface>": "<exact {lang_pair.tgt_name} surface>"}}}},
   {{"id": 1, "proper_terms": {{}}}}
 ]}}
 
@@ -187,12 +253,13 @@ def parse_batch_terms(parsed: dict[str, Any]) -> dict[int, dict[str, str]]:
 def extract_batch_candidates(
     batch: list[tuple[int, dict[str, Any]]],
     *,
+    lang_pair: LangPair,
     api_key: str,
     model: str,
     temperature: float,
     timeout: float,
     max_retries: int,
-) -> dict[str, str]:
+) -> dict[int, dict[str, str]]:
     messages = [
         {
             "role": "system",
@@ -201,7 +268,7 @@ def extract_batch_candidates(
                 "Return valid JSON only. Treat every row ID independently."
             ),
         },
-        {"role": "user", "content": build_batch_prompt(batch)},
+        {"role": "user", "content": build_batch_prompt(batch, lang_pair=lang_pair)},
     ]
 
     for attempt in range(max_retries):
@@ -224,9 +291,11 @@ def extract_batch_candidates(
 def validated_new_terms(
     record: dict[str, Any],
     candidates: dict[str, str],
+    *,
+    tgt_code: str,
 ) -> dict[str, str]:
     en = str(record.get("en", ""))
-    de = str(record.get("de", ""))
+    tgt = str(record.get(tgt_code, ""))
     proper_terms = record.get("proper_terms") or {}
     random_terms = record.get("random_terms") or {}
 
@@ -241,7 +310,7 @@ def validated_new_terms(
     additions: dict[str, str] = {}
     for src_raw, tgt_raw in candidates.items():
         src_span = locate_substring(src_raw, en)
-        tgt_span = locate_substring(tgt_raw, de)
+        tgt_span = locate_substring(tgt_raw, tgt)
         if src_span is None or tgt_span is None:
             continue
 
@@ -259,6 +328,7 @@ def validated_new_terms(
 def expand_batch(
     batch: list[tuple[int, dict[str, Any]]],
     *,
+    lang_pair: LangPair,
     api_key: str,
     model: str,
     temperature: float,
@@ -267,6 +337,7 @@ def expand_batch(
 ) -> list[tuple[int, dict[str, Any], int]]:
     candidates_by_idx = extract_batch_candidates(
         batch,
+        lang_pair=lang_pair,
         api_key=api_key,
         model=model,
         temperature=temperature,
@@ -276,7 +347,11 @@ def expand_batch(
 
     results: list[tuple[int, dict[str, Any], int]] = []
     for idx, record in batch:
-        additions = validated_new_terms(record, candidates_by_idx.get(idx, {}))
+        additions = validated_new_terms(
+            record,
+            candidates_by_idx.get(idx, {}),
+            tgt_code=lang_pair.tgt_code,
+        )
         out = dict(record)
         proper_terms = dict(record.get("proper_terms") or {})
         proper_terms.update(additions)
@@ -296,6 +371,7 @@ def expand_file(
     input_path: Path,
     output_path: Path,
     *,
+    lang_pair: LangPair,
     api_key: str,
     model: str,
     temperature: float,
@@ -312,14 +388,18 @@ def expand_file(
 
     indexed_rows: list[tuple[int, dict[str, Any]]] = []
     for idx, record in enumerate(rows_to_process):
-        if "en" not in record or "de" not in record:
-            raise ValueError(f"{input_path}:{idx + 1}: expected 'en' and 'de' fields")
+        if "en" not in record or lang_pair.tgt_code not in record:
+            raise ValueError(
+                f"{input_path}:{idx + 1}: expected 'en' and "
+                f"'{lang_pair.tgt_code}' fields"
+            )
         indexed_rows.append((idx, record))
 
     batches = make_batches(indexed_rows, batch_size)
     print(
-        f"Processing {len(indexed_rows)} row(s) as {len(batches)} batch(es) "
-        f"with {workers} worker(s), batch_size={batch_size}"
+        f"Processing {len(indexed_rows)} row(s) ({lang_pair.direction}) as "
+        f"{len(batches)} batch(es) with {workers} worker(s), "
+        f"batch_size={batch_size}"
     )
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -327,6 +407,7 @@ def expand_file(
             pool.submit(
                 expand_batch,
                 batch,
+                lang_pair=lang_pair,
                 api_key=api_key,
                 model=model,
                 temperature=temperature,
@@ -354,21 +435,17 @@ def expand_file(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Increase EN-DE proper_terms coverage using OpenRouter GPT-4o-mini."
+        description=(
+            "Increase proper_terms coverage using OpenRouter GPT-4o-mini. "
+            "Writes <input_stem>_expand.jsonl next to the input file."
+        )
     )
     parser.add_argument(
         "-i",
         "--input",
         type=Path,
-        default=DEFAULT_INPUT,
-        help=f"Input EN-DE JSONL (default: {DEFAULT_INPUT.relative_to(REPO_ROOT)})",
-    )
-    parser.add_argument(
-        "-o",
-        "--output",
-        type=Path,
-        default=None,
-        help="Output JSONL (default: data/sap_data_expanded/<input_stem>_expand.jsonl)",
+        required=True,
+        help="Input JSONL path (e.g. data/dev_v1/original/ende_dev_v1.jsonl)",
     )
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--api-key", default=None)
@@ -393,11 +470,10 @@ def main() -> None:
     if args.batch_size < 1:
         raise SystemExit("--batch-size must be >= 1")
 
-    output_path = (
-        args.output.resolve()
-        if args.output
-        else output_path_for(input_path, DEFAULT_OUTPUT_DIR).resolve()
-    )
+    lang_pair = resolve_lang_pair(input_path)
+    output_path = output_path_for(input_path)
+    if output_path.exists():
+        raise SystemExit(f"Output file already exists: {output_path}")
 
     api_key = args.api_key or os.environ.get("OPENROUTER_API_KEY", "")
     if not api_key:
@@ -409,6 +485,7 @@ def main() -> None:
     expand_file(
         input_path,
         output_path,
+        lang_pair=lang_pair,
         api_key=api_key,
         model=args.model,
         temperature=args.temperature,

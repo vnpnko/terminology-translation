@@ -5,89 +5,34 @@ Experiments on terminology-constrained machine translation for WMT-style sentenc
 Each JSONL record has an English source sentence, a target-language reference, domain terminology, and random control terminology:
 
 ```json
-{"en": "...", "de": "...", "proper_terms": {"term": "translation"}, "random_terms": {"word": "translation"}}
+{
+  "en": "...",
+  "de": "...",
+  "proper_terms": [{ "term": "translation" }],
+  "random_terms": [{ "word": "translation" }]
+}
 ```
 
-## Project Layout
+## Scripts
 
-```text
-terminology-translation/
-├── scripts/
-│   ├── core.py
-│   ├── evaluation/
-│   └── data_preparation/
-├── data/
-│   ├── sap_dev/
-│   └── term_pairs/
-└── reference/
-    ├── baselines/
-    ├── shared_task_docs/
-    ├── shared_task_track1/
-    └── shared_task_track2/
-```
+All scripts live in `scripts/data_preparation/`. Typical pipeline order:
 
-## What To Run
+| Script                                    | Purpose                                                                      |
+| ----------------------------------------- | ---------------------------------------------------------------------------- |
+| `convert_term_postedits_to_jsonl.py`      | Converts raw ASAP `term_postedits` flat files into JSONL mt-task format.     |
+| `fill_missing_translations_openrouter.py` | Fills missing target sentences and term translations via OpenRouter.         |
+| `annotate_proper_terms_openrouter.py`     | Adds domain `proper_terms` (1–2 IT terms per sentence) via OpenRouter.       |
+| `annotate_random_terms_openrouter.py`     | Adds control `random_terms` (non-domain word pairs) after `proper_terms`.    |
+| `clean_poor_proper_terms.py`              | Removes weak or generic entries from `proper_terms`.                         |
+| `expand_terms.py`                         | Appends additional validated EN→DE term pairs to `proper_terms`.             |
+| `collect_term_pairs_from_jsonl.py`        | Aggregates `proper_terms` from v1/v2 dev files into unique term-pair JSONL.  |
+| `strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
 
-For the OpenRouter/GPT evaluation:
+## Data
 
-```bash
-python scripts/evaluation/run_openrouter_gpt4o_mini_eval.py --data-file data/sap_dev/ende_dev_v1.jsonl
-```
-
-For the local Qwen evaluation:
-
-```bash
-python scripts/evaluation/run_local_qwen_eval.py --data-dir data/sap_dev
-```
-
-## Script Guide
-
-| Script | Purpose |
-|---|---|
-| `scripts/evaluation/run_openrouter_gpt4o_mini_eval.py` | Runs OpenRouter `openai/gpt-4o-mini` translation evaluation over `no_term`, `proper_term`, and `random_term` modes. |
-| `scripts/evaluation/run_local_qwen_eval.py` | Runs a local Hugging Face Qwen model evaluation with the same modes and metrics. |
-| `scripts/data_preparation/annotate_proper_terms_openrouter.py` | Adds `proper_terms` to sentence pairs using an OpenRouter LLM. |
-| `scripts/data_preparation/annotate_random_terms_openrouter.py` | Adds non-domain `random_terms` after `proper_terms` exist. |
-| `scripts/data_preparation/fill_missing_translations_openrouter.py` | Fills missing target sentences and term translations from English records. |
-| `scripts/data_preparation/collect_term_pairs_from_jsonl.py` | Extracts merged EN→target proper-term pairs from JSONL datasets. |
-| `scripts/data_preparation/extract_english_proper_term_list.py` | Extracts English proper-term keys into a plain text list. |
-| `scripts/data_preparation/filter_english_term_list.py` | Filters an English term list using stopwords, blocklists, and optional frequency filtering. |
-| `scripts/data_preparation/strip_target_translations.py` | Clears target translations while keeping English and term keys. |
-| `scripts/data_preparation/convert_term_postedits_to_jsonl.py` | Converts raw ASAP `term_postedits` flat files into this repo's JSONL format. |
-
-## Shared Evaluation Code
-
-`scripts/core.py` contains the reusable evaluation pieces:
-
-- JSONL loading/saving
-- prompt construction
-- terminology mode selection
-- output-tag stripping
-- BLEU and chrF
-- terminology accuracy
-- terminology consistency
-
-## Data And Reference
-
-| Folder | Purpose |
-|---|---|
-| `data/sap_dev/` | Original SAP/ASAP development JSONL files. |
-| `data/term_pairs/` | Extracted proper-term pair lists used by data-preparation scripts. |
-| `reference/baselines/` | Historical baseline notebooks and sample JSONL, kept for reference. |
-| `reference/shared_task_docs/` | WMT/shared-task reference documents. |
-| `reference/shared_task_track1/` | Track 1 shared-task JSONL files. |
-| `reference/shared_task_track2/` | Track 2 shared-task JSONL files. |
-
-## Dependencies
-
-OpenRouter evaluator:
-
-```bash
-pip install openai sacrebleu tqdm
-```
-
-Local Qwen evaluator:
-
-```bash
-pip install transformers accelerate torch sacrebleu tqdm
-```
+| Path               | Description                                                                                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `dev_v1/original/` | Original course dev set.                                                                                                                                           |
+| `dev_v1/expand/`   | Expanded version of `original/` with additional `proper_terms`.                                                                                                    |
+| `dev_v1/cleaned/`  | Cleaned version of `expand/` with terminology-poor `proper_terms` removed.                                                                                         |
+| `dev_v2/`          | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus. |

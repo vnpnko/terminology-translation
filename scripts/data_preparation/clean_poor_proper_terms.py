@@ -2,10 +2,12 @@
 """
 Remove weak/generic entries from `proper_terms` in JSONL records.
 
-Example:
-    python scripts/data_preparation/clean_poor_proper_terms.py \
-      --input data/sap_dev/ende_dev_v1.jsonl \
-      --output data/sap_dev/ende_dev_v1.cleaned.jsonl
+Writes ``<pair>_dev_v<N>_cleaned.jsonl`` next to the input file.
+
+Usage::
+
+    python clean_poor_proper_terms.py -i ../../data/dev_v1/expand/ende_dev_v1_expand.jsonl
+    python clean_poor_proper_terms.py -i ../../data/dev_v1/original/ende_dev_v1.jsonl
 """
 
 from __future__ import annotations
@@ -17,7 +19,10 @@ import re
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 DEFAULT_DROP_TERMS = frozenset(
     {
@@ -39,10 +44,27 @@ DEFAULT_DROP_TERMS = frozenset(
 )
 OPENAI_URL = "https://api.openai.com/v1/chat/completions"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-SCRIPT_DIR = Path(__file__).resolve().parent
-SCRIPTS_DIR = SCRIPT_DIR.parent
-ENV_FILE = SCRIPTS_DIR / ".env"
-DEFAULT_OPENAI_MODEL = "gpt-4o-mini"
+REPO_ROOT = Path(__file__).resolve().parents[2]
+ENV_FILE = REPO_ROOT / ".env"
+DEFAULT_MODEL = "gpt-4o-mini"
+
+VALID_INPUT_RE = re.compile(r"^(ende|enes|enru)_dev_v\d+(_expand)?$")
+REJECTED_STEM_MARKERS = ("_cleaned", ".cleaned")
+
+
+@dataclass(frozen=True)
+class LangPair:
+    prefix: str
+    tgt_code: str
+    tgt_name: str
+    direction: str
+
+
+LANG_PAIRS: dict[str, LangPair] = {
+    "ende": LangPair("ende", "de", "German", "EN→DE"),
+    "enes": LangPair("enes", "es", "Spanish", "EN→ES"),
+    "enru": LangPair("enru", "ru", "Russian", "EN→RU"),
+}
 
 # Generic context hints that suggest topic-specific/technical usage.
 DEFAULT_CONTEXT_HINTS = frozenset(
@@ -80,7 +102,62 @@ def normalize_term(term: str) -> str:
     return term.strip().casefold()
 
 
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    with path.open(encoding="utf-8-sig") as f:
+        for line_no, line in enumerate(f, start=1):
+            raw = line.strip()
+            if not raw:
+                continue
+            record = json.loads(raw)
+            if not isinstance(record, dict):
+                raise ValueError(f"{path}:{line_no}: expected a JSON object per line")
+            records.append(record)
+    return records
+
+
+def save_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        for record in records:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def resolve_lang_pair(input_path: Path) -> LangPair:
+    stem = input_path.stem
+    for marker in REJECTED_STEM_MARKERS:
+        if marker in stem:
+            raise SystemExit(
+                f"Refusing to process files that already have a pipeline suffix "
+                f"({marker!r}): {input_path.name}"
+            )
+    if not VALID_INPUT_RE.match(stem):
+        raise SystemExit(
+            "Input filename must match <pair>_dev_v<N>.jsonl or "
+            f"<pair>_dev_v<N>_expand.jsonl, got: {input_path.name}"
+        )
+    pair_prefix = stem.split("_dev_", 1)[0]
+    lang_pair = LANG_PAIRS.get(pair_prefix)
+    if lang_pair is None:
+        raise SystemExit(
+            f"Unsupported language pair prefix {pair_prefix!r} in {input_path.name}. "
+            f"Expected one of: {', '.join(sorted(LANG_PAIRS))}."
+        )
+    return lang_pair
+
+
+def cleaned_stem_from(input_stem: str) -> str:
+    if input_stem.endswith("_expand"):
+        return f"{input_stem[: -len('_expand')]}_cleaned"
+    return f"{input_stem}_cleaned"
+
+
+def output_path_for(input_path: Path) -> Path:
+    return input_path.parent / f"{cleaned_stem_from(input_path.stem)}{input_path.suffix}"
+
+
 def load_dotenv(path: Path = ENV_FILE) -> None:
+    """Load KEY=VALUE lines from the repo-root .env without overriding env vars."""
     if not path.is_file():
         return
     for line in path.read_text(encoding="utf-8-sig").splitlines():
@@ -338,21 +415,141 @@ def clean_record(
     return record, removed
 
 
+def make_batches(
+    items: list[tuple[int, dict[str, Any]]],
+    batch_size: int,
+) -> list[list[tuple[int, dict[str, Any]]]]:
+    return [items[i : i + batch_size] for i in range(0, len(items), batch_size)]
+
+
+def clean_batch(
+    batch: list[tuple[int, dict[str, Any]]],
+    *,
+    drop_terms: frozenset[str],
+    context_hints: frozenset[str],
+    strict_drop: bool,
+    use_openai: bool,
+    api_key: str,
+    model: str,
+    timeout: float,
+    max_retries: int,
+    explanation: str,
+    examples: list[str],
+    provider: str,
+) -> list[tuple[int, dict[str, Any], int]]:
+    results: list[tuple[int, dict[str, Any], int]] = []
+    for idx, record in batch:
+        cleaned_record, removed = clean_record(
+            record,
+            drop_terms,
+            context_hints,
+            strict_drop,
+            use_openai=use_openai,
+            api_key=api_key,
+            model=model,
+            timeout=timeout,
+            max_retries=max_retries,
+            explanation=explanation,
+            examples=examples,
+            provider=provider,
+        )
+        results.append((idx, cleaned_record, removed))
+    return results
+
+
+def clean_file(
+    input_path: Path,
+    output_path: Path,
+    *,
+    lang_pair: LangPair,
+    drop_terms: frozenset[str],
+    context_hints: frozenset[str],
+    strict_drop: bool,
+    use_openai: bool,
+    api_key: str,
+    model: str,
+    timeout: float,
+    max_retries: int,
+    explanation: str,
+    examples: list[str],
+    provider: str,
+    limit: int | None,
+    workers: int,
+    batch_size: int,
+) -> None:
+    records = load_jsonl(input_path)
+    cleaned_records = list(records)
+    total_removed = 0
+    rows_to_process = records if limit is None else records[:limit]
+
+    indexed_rows: list[tuple[int, dict[str, Any]]] = []
+    for idx, record in enumerate(rows_to_process):
+        if "en" not in record or lang_pair.tgt_code not in record:
+            raise ValueError(
+                f"{input_path}:{idx + 1}: expected 'en' and "
+                f"'{lang_pair.tgt_code}' fields"
+            )
+        indexed_rows.append((idx, record))
+
+    batches = make_batches(indexed_rows, batch_size)
+    print(
+        f"Processing {len(indexed_rows)} row(s) ({lang_pair.direction}) as "
+        f"{len(batches)} batch(es) with {workers} worker(s), "
+        f"batch_size={batch_size}"
+    )
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [
+            pool.submit(
+                clean_batch,
+                batch,
+                drop_terms=drop_terms,
+                context_hints=context_hints,
+                strict_drop=strict_drop,
+                use_openai=use_openai,
+                api_key=api_key,
+                model=model,
+                timeout=timeout,
+                max_retries=max_retries,
+                explanation=explanation,
+                examples=examples,
+                provider=provider,
+            )
+            for batch in batches
+        ]
+        for done, future in enumerate(as_completed(futures), start=1):
+            batch_results = future.result()
+            batch_removed = 0
+            for idx, new_record, removed in batch_results:
+                cleaned_records[idx] = new_record
+                total_removed += removed
+                batch_removed += removed
+            print(
+                f"[batch {done}/{len(batches)}] "
+                f"rows={len(batch_results)}, removed={batch_removed}"
+            )
+
+    save_jsonl(output_path, cleaned_records)
+    print(f"Wrote {len(cleaned_records)} rows to {output_path}")
+    print(f"Total poor proper terms removed: {total_removed}")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Remove poor terminology from JSONL proper_terms."
+        description=(
+            "Remove poor terminology from JSONL proper_terms. "
+            "Writes <pair>_dev_v<N>_cleaned.jsonl next to the input file."
+        )
     )
     parser.add_argument(
+        "-i",
         "--input",
         type=Path,
         required=True,
-        help="Input JSONL file with an `en` field and `proper_terms` object.",
-    )
-    parser.add_argument(
-        "--output",
-        type=Path,
-        required=True,
-        help="Output JSONL path.",
+        help=(
+            "Input JSONL path (e.g. data/dev_v1/expand/ende_dev_v1_expand.jsonl "
+            "or data/dev_v1/original/ende_dev_v1.jsonl)"
+        ),
     )
     parser.add_argument(
         "--drop-term",
@@ -385,10 +582,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Deprecated alias; OpenAI is already the default mode.",
     )
+    parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument(
         "--openai-model",
-        default=DEFAULT_OPENAI_MODEL,
-        help=f"OpenAI model for --use-openai (default: {DEFAULT_OPENAI_MODEL})",
+        default=None,
+        help="Deprecated alias for --model.",
     )
     parser.add_argument(
         "--provider",
@@ -396,10 +594,11 @@ def parse_args() -> argparse.Namespace:
         default="auto",
         help="LLM provider for openai mode (default: auto).",
     )
+    parser.add_argument("--api-key", default=None)
     parser.add_argument(
         "--openai-api-key",
-        default="",
-        help="OpenAI API key (or set OPENAI_API_KEY in scripts/.env).",
+        default=None,
+        help="Deprecated alias for --api-key.",
     )
     parser.add_argument(
         "--timeout",
@@ -407,12 +606,10 @@ def parse_args() -> argparse.Namespace:
         default=120.0,
         help="HTTP timeout in seconds for API calls.",
     )
-    parser.add_argument(
-        "--max-retries",
-        type=int,
-        default=3,
-        help="Max retries for API errors/invalid JSON.",
-    )
+    parser.add_argument("--max-retries", type=int, default=3)
+    parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--workers", type=int, default=5)
+    parser.add_argument("--batch-size", type=int, default=5)
     parser.add_argument(
         "--explanation",
         default=(
@@ -436,10 +633,21 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     load_dotenv()
     args = parse_args()
-    if not args.input.is_file():
-        raise FileNotFoundError(args.input)
+
+    input_path = args.input.resolve()
+    if not input_path.is_file():
+        raise SystemExit(f"Input file not found: {input_path}")
+    if args.workers < 1:
+        raise SystemExit("--workers must be >= 1")
+    if args.batch_size < 1:
+        raise SystemExit("--batch-size must be >= 1")
     if args.max_retries < 1:
-        raise ValueError("--max-retries must be >= 1")
+        raise SystemExit("--max-retries must be >= 1")
+
+    lang_pair = resolve_lang_pair(input_path)
+    output_path = output_path_for(input_path)
+    if output_path.exists():
+        raise SystemExit(f"Output file already exists: {output_path}")
 
     drop_terms = set(DEFAULT_DROP_TERMS)
     drop_terms.update(normalize_term(t) for t in args.drop_term if t.strip())
@@ -448,63 +656,40 @@ def main() -> None:
     context_hints.update(normalize_term(t) for t in args.context_hint if t.strip())
     context_hints_frozen = frozenset(context_hints)
     use_openai = args.mode == "openai" or args.use_openai
-    openai_api_key = (
-        args.openai_api_key
-        or os.environ.get("OPENAI_API_KEY", "")
+    model = args.openai_model or args.model
+    api_key = (
+        args.api_key
+        or args.openai_api_key
         or os.environ.get("OPENROUTER_API_KEY", "")
+        or os.environ.get("OPENAI_API_KEY", "")
     )
-    if use_openai and not openai_api_key:
+    if use_openai and not api_key:
         raise SystemExit(
-            f"Missing API key. Set OPENAI_API_KEY or OPENROUTER_API_KEY in {ENV_FILE}, "
-            "or pass --openai-api-key."
+            f"Missing API key. Set OPENROUTER_API_KEY or OPENAI_API_KEY in {ENV_FILE} "
+            "or pass --api-key."
         )
     provider = args.provider
     if provider == "auto":
-        provider = "openrouter" if openai_api_key.startswith("sk-or-v1-") else "openai"
+        provider = "openrouter" if api_key.startswith("sk-or-v1-") else "openai"
 
-    total_lines = 0
-    total_removed = 0
-
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    with args.input.open("r", encoding="utf-8") as fin, args.output.open(
-        "w", encoding="utf-8"
-    ) as fout:
-        for line_no, line in enumerate(fin, start=1):
-            raw = line.strip()
-            if not raw:
-                continue
-            try:
-                record = json.loads(raw)
-            except json.JSONDecodeError as exc:
-                raise ValueError(
-                    f"Invalid JSON on line {line_no} of {args.input}"
-                ) from exc
-
-            cleaned_record, removed = clean_record(
-                record,
-                drop_terms_frozen,
-                context_hints_frozen,
-                args.strict_drop,
-                use_openai=use_openai,
-                api_key=openai_api_key,
-                model=args.openai_model,
-                timeout=args.timeout,
-                max_retries=args.max_retries,
-                explanation=args.explanation,
-                examples=args.example,
-                provider=provider,
-            )
-            fout.write(json.dumps(cleaned_record, ensure_ascii=False) + "\n")
-            total_lines += 1
-            total_removed += removed
-            if use_openai and total_lines % 25 == 0:
-                print(f"Processed {total_lines} lines...")
-
-    print(
-        f"Processed {total_lines} lines from {args.input}\n"
-        f"Removed {total_removed} poor proper_terms\n"
-        f"Wrote cleaned data to {args.output}\n"
-        f"Mode: {'openai' if use_openai else 'rule-based'}"
+    clean_file(
+        input_path,
+        output_path,
+        lang_pair=lang_pair,
+        drop_terms=drop_terms_frozen,
+        context_hints=context_hints_frozen,
+        strict_drop=args.strict_drop,
+        use_openai=use_openai,
+        api_key=api_key,
+        model=model,
+        timeout=args.timeout,
+        max_retries=args.max_retries,
+        explanation=args.explanation,
+        examples=args.example,
+        provider=provider,
+        limit=args.limit,
+        workers=args.workers,
+        batch_size=args.batch_size,
     )
 
 

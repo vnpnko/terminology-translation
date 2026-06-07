@@ -15,7 +15,7 @@ Each JSONL record has an English source sentence, a target-language reference, d
 
 ## Scripts
 
-All scripts live in `scripts/data_preparation/`. Typical pipeline order:
+All scripts live in `scripts/data_preparation/`
 
 | Script                                    | Purpose                                                                      |
 | ----------------------------------------- | ---------------------------------------------------------------------------- |
@@ -24,11 +24,13 @@ All scripts live in `scripts/data_preparation/`. Typical pipeline order:
 | `annotate_proper_terms_openrouter.py`     | Adds domain `proper_terms` (1–2 IT terms per sentence) via OpenRouter.       |
 | `annotate_random_terms_openrouter.py`     | Adds control `random_terms` (non-domain word pairs) after `proper_terms`.    |
 | `clean_poor_proper_terms.py`              | Removes weak or generic entries from `proper_terms`.                         |
-| `expand_terms.py`                         | Appends additional validated EN→DE term pairs to `proper_terms`.             |
+| `expand_terms.py`                         | Appends additional term pairs to `proper_terms`.                             |
 | `collect_term_pairs_from_jsonl.py`        | Aggregates `proper_terms` from v1/v2 dev files into unique term-pair JSONL.  |
 | `strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
 
 ## Data
+
+All data lives in `data/`
 
 | Path               | Description                                                                                                                                                        |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

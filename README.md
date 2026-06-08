@@ -28,6 +28,17 @@ All scripts live in `scripts/data_preparation/`
 | `collect_term_pairs_from_jsonl.py`        | Aggregates `proper_terms` from v1/v2 dev files into unique term-pair JSONL.  |
 | `strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
 
+## Results
+
+All results live in `results/`
+
+Each `gpt/` and `qwen/` results directory contains a `metrics_summary.json` file. This file reports key evaluation metrics for the translations, including:
+
+- `bleu`: BLEU score
+- `chrf`: ChrF score
+- `terminology_accuracy`: Metrics for accuracy of required terminology usage
+- `terminology_consistency`: Metrics for consistency of terminology use
+
 ## Data
 
 All data lives in `data/`

@@ -40,7 +40,7 @@ Scripts live in `scripts/`.
 
 All results live in `results/`
 
-Each `gpt/` and `qwen/` results directory contains a `metrics_summary.json` file.
+Each `gpt/`, `qwen_3b/` and `qwen_7b/` results directory contains a `metrics_summary.json` file.
 
 ## Report
 

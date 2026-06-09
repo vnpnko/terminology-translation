@@ -114,8 +114,8 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
 
     rows: list[dict[str, object]] = []
 
-    for lang in LANG_ORDER:
-        for mode in MODE_ORDER:
+    for mode in MODE_ORDER:
+        for lang in LANG_ORDER:
             baseline_metrics = {
                 baseline_dir: summaries[baseline_dir].get((lang, mode))
                 for baseline_dir in BASELINE_DIRS
@@ -123,7 +123,7 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
             if all(metrics is None for metrics in baseline_metrics.values()):
                 continue
 
-            row: dict[str, object] = {"language": lang, "mode": mode}
+            row: dict[str, object] = {"mode": mode, "language": lang}
 
             for column, _, _ in METRICS:
                 labeled_values: dict[str, float | None] = {}
@@ -137,7 +137,7 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
 
             rows.append(row)
 
-    columns = ["language", "mode"]
+    columns = ["mode", "language"]
     for column, _, _ in METRICS:
         columns.extend([f"{baseline_dir}_{column}" for baseline_dir in BASELINE_DIRS])
         columns.append(f"best_{column}")
@@ -174,7 +174,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     ws = wb.active
     ws.title = "metrics"
 
-    fixed_headers = ("language", "mode")
+    fixed_headers = ("mode", "language")
     value_subheaders = tuple(BASELINE_LABELS[baseline_dir] for baseline_dir in BASELINE_DIRS) + ("best",)
     cols_per_metric = len(value_subheaders)
 
@@ -196,14 +196,19 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
             sub_cell = ws.cell(row=2, column=start_col + offset, value=subheader)
             apply_cell_style(sub_cell, bold=True, fill=HEADER_FILL)
 
-    for row_offset, record in enumerate(df.to_dict(orient="records"), start=3):
-        thick_bottom = record["mode"] == "random_term"
+    records = df.to_dict(orient="records")
+    for row_offset, record in enumerate(records, start=3):
+        thick_bottom = record["language"] == "enes"
 
-        lang_cell = ws.cell(row=row_offset, column=1, value=record["language"])
-        apply_cell_style(lang_cell, thick_bottom=thick_bottom)
-
-        mode_cell = ws.cell(row=row_offset, column=2, value=record["mode"])
+        mode_cell = ws.cell(
+            row=row_offset,
+            column=1,
+            value=record["mode"] if record["language"] == LANG_ORDER[0] else None,
+        )
         apply_cell_style(mode_cell, thick_bottom=thick_bottom)
+
+        lang_cell = ws.cell(row=row_offset, column=2, value=record["language"])
+        apply_cell_style(lang_cell, thick_bottom=thick_bottom)
 
         for metric_idx, (column, _, _) in enumerate(METRICS):
             start_col = metric_start_col + metric_idx * cols_per_metric
@@ -219,8 +224,17 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
                 )
                 apply_cell_style(cell, fill=fill, thick_bottom=thick_bottom)
 
-    ws.column_dimensions["A"].width = 12
-    ws.column_dimensions["B"].width = 14
+    for mode_idx in range(len(MODE_ORDER)):
+        start_row = 3 + mode_idx * len(LANG_ORDER)
+        end_row = start_row + len(LANG_ORDER) - 1
+        ws.merge_cells(start_row=start_row, start_column=1, end_row=end_row, end_column=1)
+        ws.cell(row=start_row, column=1).alignment = Alignment(
+            horizontal="center",
+            vertical="center",
+        )
+
+    ws.column_dimensions["A"].width = 14
+    ws.column_dimensions["B"].width = 12
     for col_idx in range(metric_start_col, metric_start_col + len(METRICS) * cols_per_metric):
         ws.column_dimensions[get_column_letter(col_idx)].width = 16
 
@@ -270,7 +284,7 @@ def main() -> None:
     df = build_comparison(dataset_dir)
     write_styled_excel(df, output_path)
 
-    print(f"Wrote {len(df)} rows to {output_path}")
+    print(f"Wrote {len(df)} rows ({len(MODE_ORDER)} modes x {len(LANG_ORDER)} languages) to {output_path}")
 
 
 if __name__ == "__main__":

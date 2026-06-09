@@ -1,9 +1,9 @@
-"""Compare GPT and Qwen baseline metrics_summary.json files into one Excel sheet.
+"""Compare GPT, Qwen 3B, and Qwen 7B baseline metrics_summary.json files into one Excel sheet.
 
-    python scripts/analysis/compare_metrics_to_excel.py results/dev_v1/original
-    python scripts/analysis/compare_metrics_to_excel.py results/dev_v1/expand
-    python scripts/analysis/compare_metrics_to_excel.py results/dev_v1/cleaned
-    python scripts/analysis/compare_metrics_to_excel.py results/dev_v2
+    python scripts/analysis/compare_models_to_excel.py results/dev_v1/original
+    python scripts/analysis/compare_models_to_excel.py results/dev_v1/expand
+    python scripts/analysis/compare_models_to_excel.py results/dev_v1/cleaned
+    python scripts/analysis/compare_models_to_excel.py results/dev_v2
 """
 
 from __future__ import annotations
@@ -20,7 +20,12 @@ from openpyxl.utils import get_column_letter
 
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
-BASELINE_DIRS = ("gpt", "qwen")
+BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
+BASELINE_LABELS = {
+    "gpt": "GPT",
+    "qwen_3b": "Qwen 3B",
+    "qwen_7b": "Qwen 7B",
+}
 
 METRICS = (
     ("bleu", "bleu", "BLEU"),
@@ -37,7 +42,8 @@ METRICS = (
 HEADER_FILL = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
 BEST_FILLS = {
     "GPT": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
-    "Qwen": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
+    "Qwen 3B": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
+    "Qwen 7B": PatternFill(start_color="F8CBAD", end_color="F8CBAD", fill_type="solid"),
     "tie": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),
 }
 
@@ -85,16 +91,16 @@ def extract_mode_metrics(summary: dict) -> dict[tuple[str, str], dict[str, float
     return by_lang_mode
 
 
-def best_baseline(gpt_val: float | None, qwen_val: float | None) -> str | None:
-    if gpt_val is None and qwen_val is None:
+def best_baseline(values: dict[str, float | None]) -> str | None:
+    present = {label: value for label, value in values.items() if value is not None}
+    if not present:
         return None
-    if gpt_val is None:
-        return "Qwen"
-    if qwen_val is None:
-        return "GPT"
-    if abs(gpt_val - qwen_val) < 1e-9:
+
+    max_val = max(present.values())
+    winners = [label for label, value in present.items() if abs(value - max_val) < 1e-9]
+    if len(winners) > 1:
         return "tie"
-    return "GPT" if gpt_val > qwen_val else "Qwen"
+    return winners[0]
 
 
 def build_comparison(dataset_dir: Path) -> pd.DataFrame:
@@ -110,25 +116,31 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
 
     for lang in LANG_ORDER:
         for mode in MODE_ORDER:
-            gpt_metrics = summaries["gpt"].get((lang, mode))
-            qwen_metrics = summaries["qwen"].get((lang, mode))
-            if gpt_metrics is None and qwen_metrics is None:
+            baseline_metrics = {
+                baseline_dir: summaries[baseline_dir].get((lang, mode))
+                for baseline_dir in BASELINE_DIRS
+            }
+            if all(metrics is None for metrics in baseline_metrics.values()):
                 continue
 
             row: dict[str, object] = {"language": lang, "mode": mode}
 
             for column, _, _ in METRICS:
-                gpt_val = gpt_metrics.get(column) if gpt_metrics else None
-                qwen_val = qwen_metrics.get(column) if qwen_metrics else None
-                row[f"gpt_{column}"] = gpt_val
-                row[f"qwen_{column}"] = qwen_val
-                row[f"best_{column}"] = best_baseline(gpt_val, qwen_val)
+                labeled_values: dict[str, float | None] = {}
+                for baseline_dir in BASELINE_DIRS:
+                    metrics = baseline_metrics[baseline_dir]
+                    value = metrics.get(column) if metrics else None
+                    row[f"{baseline_dir}_{column}"] = value
+                    labeled_values[BASELINE_LABELS[baseline_dir]] = value
+
+                row[f"best_{column}"] = best_baseline(labeled_values)
 
             rows.append(row)
 
     columns = ["language", "mode"]
     for column, _, _ in METRICS:
-        columns.extend([f"gpt_{column}", f"qwen_{column}", f"best_{column}"])
+        columns.extend([f"{baseline_dir}_{column}" for baseline_dir in BASELINE_DIRS])
+        columns.append(f"best_{column}")
 
     return pd.DataFrame(rows, columns=columns)
 
@@ -163,6 +175,8 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     ws.title = "metrics"
 
     fixed_headers = ("language", "mode")
+    value_subheaders = tuple(BASELINE_LABELS[baseline_dir] for baseline_dir in BASELINE_DIRS) + ("best",)
+    cols_per_metric = len(value_subheaders)
 
     for col_idx, header in enumerate(fixed_headers, start=1):
         cell = ws.cell(row=1, column=col_idx, value=header)
@@ -171,14 +185,14 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 
     metric_start_col = len(fixed_headers) + 1
     for metric_idx, (_, _, title) in enumerate(METRICS):
-        start_col = metric_start_col + metric_idx * 3
-        end_col = start_col + 2
+        start_col = metric_start_col + metric_idx * cols_per_metric
+        end_col = start_col + cols_per_metric - 1
 
         title_cell = ws.cell(row=1, column=start_col, value=title)
         apply_cell_style(title_cell, bold=True, fill=HEADER_FILL)
         ws.merge_cells(start_row=1, start_column=start_col, end_row=1, end_column=end_col)
 
-        for offset, subheader in enumerate(("gpt", "qwen", "best")):
+        for offset, subheader in enumerate(value_subheaders):
             sub_cell = ws.cell(row=2, column=start_col + offset, value=subheader)
             apply_cell_style(sub_cell, bold=True, fill=HEADER_FILL)
 
@@ -192,21 +206,22 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
         apply_cell_style(mode_cell, thick_bottom=thick_bottom)
 
         for metric_idx, (column, _, _) in enumerate(METRICS):
-            start_col = metric_start_col + metric_idx * 3
-            values = (
-                record[f"gpt_{column}"],
-                record[f"qwen_{column}"],
-                record[f"best_{column}"],
-            )
+            start_col = metric_start_col + metric_idx * cols_per_metric
+            values = [record[f"{baseline_dir}_{column}"] for baseline_dir in BASELINE_DIRS]
+            values.append(record[f"best_{column}"])
 
             for offset, value in enumerate(values):
                 cell = ws.cell(row=row_offset, column=start_col + offset, value=value)
-                fill = BEST_FILLS.get(value) if offset == 2 and isinstance(value, str) else None
+                fill = (
+                    BEST_FILLS.get(value)
+                    if offset == cols_per_metric - 1 and isinstance(value, str)
+                    else None
+                )
                 apply_cell_style(cell, fill=fill, thick_bottom=thick_bottom)
 
     ws.column_dimensions["A"].width = 12
     ws.column_dimensions["B"].width = 14
-    for col_idx in range(metric_start_col, metric_start_col + len(METRICS) * 3):
+    for col_idx in range(metric_start_col, metric_start_col + len(METRICS) * cols_per_metric):
         ws.column_dimensions[get_column_letter(col_idx)].width = 16
 
     wb.save(output_path)
@@ -215,7 +230,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
     relative = dataset_dir.relative_to(dataset_dir.parents[1])
     slug = str(relative).replace("/", "_").replace("\\", "_")
-    return report_dir / f"{slug}_baseline_comparison.xlsx"
+    return report_dir / "models" / f"{slug}_model_comparison.xlsx"
 
 
 def main() -> None:
@@ -223,13 +238,13 @@ def main() -> None:
     parser.add_argument(
         "dataset_dir",
         type=Path,
-        help="Results directory containing gpt/ and qwen/ subfolders",
+        help="Results directory containing gpt/, qwen_3b/, and qwen_7b/ subfolders",
     )
     parser.add_argument(
         "--output",
         type=Path,
         default=None,
-        help="Output .xlsx path (default: report/<dataset>_baseline_comparison.xlsx)",
+        help="Output .xlsx path (default: report/models/<dataset>_model_comparison.xlsx)",
     )
     parser.add_argument(
         "--report-dir",

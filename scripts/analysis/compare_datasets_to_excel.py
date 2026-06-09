@@ -1,9 +1,11 @@
-"""Compare GPT, Qwen 3B, and Qwen 7B baseline metrics_summary.json files into one Excel sheet.
+"""Compare dev_v1/original vs dev_v2 metrics for one baseline model.
 
-    python scripts/analysis/compare_models_to_excel.py results/dev_v1/original
-    python scripts/analysis/compare_models_to_excel.py results/dev_v1/expand
-    python scripts/analysis/compare_models_to_excel.py results/dev_v1/cleaned
-    python scripts/analysis/compare_models_to_excel.py results/dev_v2
+Writes one Excel file with 9 data rows (language x mode). Each metric block has
+dev_v1_original, dev_v2, and best columns.
+
+    python scripts/analysis/compare_datasets_to_excel.py --baseline gpt
+    python scripts/analysis/compare_datasets_to_excel.py --baseline qwen_3b
+    python scripts/analysis/compare_datasets_to_excel.py --baseline qwen_7b
 """
 
 from __future__ import annotations
@@ -21,10 +23,10 @@ from openpyxl.utils import get_column_letter
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
 BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
-BASELINE_LABELS = {
-    "gpt": "GPT",
-    "qwen_3b": "Qwen 3B",
-    "qwen_7b": "Qwen 7B",
+DATASET_ORDER = ("dev_v1_original", "dev_v2")
+DATASET_PATHS = {
+    "dev_v1_original": Path("dev_v1/original"),
+    "dev_v2": Path("dev_v2"),
 }
 
 METRICS = (
@@ -41,9 +43,8 @@ METRICS = (
 
 HEADER_FILL = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
 BEST_FILLS = {
-    "GPT": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
-    "Qwen 3B": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
-    "Qwen 7B": PatternFill(start_color="F8CBAD", end_color="F8CBAD", fill_type="solid"),
+    "dev_v1_original": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
+    "dev_v2": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
     "tie": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),
 }
 
@@ -91,7 +92,7 @@ def extract_mode_metrics(summary: dict) -> dict[tuple[str, str], dict[str, float
     return by_lang_mode
 
 
-def best_baseline(values: dict[str, float | None]) -> str | None:
+def best_dataset(values: dict[str, float | None]) -> str | None:
     present = {label: value for label, value in values.items() if value is not None}
     if not present:
         return None
@@ -103,43 +104,52 @@ def best_baseline(values: dict[str, float | None]) -> str | None:
     return winners[0]
 
 
-def build_comparison(dataset_dir: Path) -> pd.DataFrame:
+def validate_all_baselines(results_root: Path) -> None:
+    for dataset_label, dataset_path in DATASET_PATHS.items():
+        resolved = (results_root / dataset_path).resolve()
+        for baseline_dir in BASELINE_DIRS:
+            summary_path = resolved / baseline_dir / "metrics_summary.json"
+            if not summary_path.exists():
+                raise FileNotFoundError(
+                    f"Missing metrics file for {dataset_label}: {summary_path}"
+                )
+
+
+def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
     summaries: dict[str, dict[tuple[str, str], dict[str, float | None]]] = {}
 
-    for baseline_dir in BASELINE_DIRS:
-        summary_path = dataset_dir / baseline_dir / "metrics_summary.json"
-        if not summary_path.exists():
-            raise FileNotFoundError(f"Missing metrics file: {summary_path}")
-        summaries[baseline_dir] = extract_mode_metrics(load_summary(summary_path))
+    for dataset_label, dataset_path in DATASET_PATHS.items():
+        summary_path = (results_root / dataset_path / baseline / "metrics_summary.json").resolve()
+        summaries[dataset_label] = extract_mode_metrics(load_summary(summary_path))
 
     rows: list[dict[str, object]] = []
 
     for lang in LANG_ORDER:
         for mode in MODE_ORDER:
-            baseline_metrics = {
-                baseline_dir: summaries[baseline_dir].get((lang, mode))
-                for baseline_dir in BASELINE_DIRS
+            dataset_metrics = {
+                dataset_label: summaries[dataset_label].get((lang, mode))
+                for dataset_label in DATASET_ORDER
             }
-            if all(metrics is None for metrics in baseline_metrics.values()):
+            if all(metrics is None for metrics in dataset_metrics.values()):
                 continue
 
             row: dict[str, object] = {"language": lang, "mode": mode}
 
             for column, _, _ in METRICS:
                 labeled_values: dict[str, float | None] = {}
-                for baseline_dir in BASELINE_DIRS:
-                    metrics = baseline_metrics[baseline_dir]
+                for dataset_label in DATASET_ORDER:
+                    metrics = dataset_metrics[dataset_label]
                     value = metrics.get(column) if metrics else None
-                    row[f"{baseline_dir}_{column}"] = value
-                    labeled_values[BASELINE_LABELS[baseline_dir]] = value
+                    row[f"{dataset_label}_{column}"] = value
+                    labeled_values[dataset_label] = value
 
-                row[f"best_{column}"] = best_baseline(labeled_values)
+                row[f"best_{column}"] = best_dataset(labeled_values)
 
             rows.append(row)
 
     columns = ["language", "mode"]
     for column, _, _ in METRICS:
-        columns.extend([f"{baseline_dir}_{column}" for baseline_dir in BASELINE_DIRS])
+        columns.extend([f"{dataset_label}_{column}" for dataset_label in DATASET_ORDER])
         columns.append(f"best_{column}")
 
     return pd.DataFrame(rows, columns=columns)
@@ -172,10 +182,10 @@ def apply_cell_style(
 def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb = Workbook()
     ws = wb.active
-    ws.title = "metrics"
+    ws.title = "datasets"
 
     fixed_headers = ("language", "mode")
-    value_subheaders = tuple(BASELINE_LABELS[baseline_dir] for baseline_dir in BASELINE_DIRS) + ("best",)
+    value_subheaders = DATASET_ORDER + ("best",)
     cols_per_metric = len(value_subheaders)
 
     for col_idx, header in enumerate(fixed_headers, start=1):
@@ -207,7 +217,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 
         for metric_idx, (column, _, _) in enumerate(METRICS):
             start_col = metric_start_col + metric_idx * cols_per_metric
-            values = [record[f"{baseline_dir}_{column}"] for baseline_dir in BASELINE_DIRS]
+            values = [record[f"{dataset_label}_{column}"] for dataset_label in DATASET_ORDER]
             values.append(record[f"best_{column}"])
 
             for offset, value in enumerate(values):
@@ -227,29 +237,32 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb.save(output_path)
 
 
-def dataset_slug(dataset_dir: Path) -> str:
-    parts = list(dataset_dir.resolve().parts)
-    if "results" in parts:
-        parts = parts[parts.index("results") + 1 :]
-    return "_".join(parts)
-
-
-def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
-    return report_dir / "models" / f"{dataset_slug(dataset_dir)}_model_comparison.xlsx"
+def default_output_path(baseline: str, report_dir: Path) -> Path:
+    return report_dir / "datasets" / f"dev_v1_original_vs_dev_v2_{baseline}_dataset_comparison.xlsx"
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "dataset_dir",
+        "--baseline",
+        required=True,
+        choices=BASELINE_DIRS,
+        help="Which baseline model to compare datasets for",
+    )
+    parser.add_argument(
+        "--results-root",
         type=Path,
-        help="Results directory containing gpt/, qwen_3b/, and qwen_7b/ subfolders",
+        default=Path("results"),
+        help="Root directory containing dev_v1/original and dev_v2 result folders",
     )
     parser.add_argument(
         "--output",
         type=Path,
         default=None,
-        help="Output .xlsx path (default: report/models/<dataset>_model_comparison.xlsx)",
+        help=(
+            "Output .xlsx path "
+            "(default: report/datasets/dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx)"
+        ),
     )
     parser.add_argument(
         "--report-dir",
@@ -259,17 +272,20 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    dataset_dir = args.dataset_dir.resolve()
+    results_root = args.results_root.resolve()
+    validate_all_baselines(results_root)
+
     output_path = (
         args.output.resolve()
         if args.output
-        else default_output_path(dataset_dir, args.report_dir.resolve())
+        else default_output_path(args.baseline, args.report_dir.resolve())
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    df = build_comparison(dataset_dir)
+    df = build_comparison(results_root, args.baseline)
     write_styled_excel(df, output_path)
 
+    print(f"Baseline: {args.baseline}")
     print(f"Wrote {len(df)} rows to {output_path}")
 
 

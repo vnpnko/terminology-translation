@@ -246,10 +246,15 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb.save(output_path)
 
 
+def dataset_slug(dataset_dir: Path) -> str:
+    parts = list(dataset_dir.resolve().parts)
+    if "results" in parts:
+        parts = parts[parts.index("results") + 1 :]
+    return "_".join(parts)
+
+
 def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
-    relative = dataset_dir.relative_to(dataset_dir.parents[1])
-    slug = str(relative).replace("/", "_").replace("\\", "_")
-    return report_dir / "modes" / f"{slug}_mode_comparison.xlsx"
+    return report_dir / "modes" / f"{dataset_slug(dataset_dir)}_mode_comparison.xlsx"
 
 
 def main() -> None:

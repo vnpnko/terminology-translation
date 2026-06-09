@@ -32,9 +32,15 @@ Scripts live in `scripts/`.
 
 ### Analysis
 
-| Script                                 | Purpose                                                                                                                          |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `analysis/compare_metrics_to_excel.py` | Compares GPT and Qwen `metrics_summary.json` files into a formatted Excel baseline comparison. Requires `pandas` and `openpyxl`. |
+All analysis scripts require `pandas` and `openpyxl`.
+
+| Script                                  | Purpose                                                                      |
+| --------------------------------------- | ---------------------------------------------------------------------------- |
+| `analysis/compare_models_to_excel.py`   | Compares GPT, Qwen 3B, and Qwen 7B. Rows grouped by mode.                    |
+| `analysis/compare_modes_to_excel.py`    | Compares `no_term`, `proper_term`, and `random_term`. Rows grouped by model. |
+| `analysis/compare_datasets_to_excel.py` | Compares `dev_v1/original` vs `dev_v2`. Rows grouped by mode.                |
+
+Example commands:
 
 ## Results
 
@@ -44,7 +50,13 @@ Each `gpt/`, `qwen_3b/` and `qwen_7b/` results directory contains a `metrics_sum
 
 ## Report
 
-Generated baseline comparison Excel files are written to `report/`.
+Generated comparison Excel files are written under `report/`:
+
+| Directory          | Produced by                    | Naming pattern                                                                   |
+| ------------------ | ------------------------------ | -------------------------------------------------------------------------------- |
+| `report/models/`   | `compare_models_to_excel.py`   | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
+| `report/modes/`    | `compare_modes_to_excel.py`    | `<dataset>_mode_comparison.xlsx`                                                 |
+| `report/datasets/` | `compare_datasets_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`                      |
 
 ## Data
 

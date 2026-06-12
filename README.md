@@ -28,6 +28,8 @@ Scripts live in `scripts/`.
 | `data_preparation/clean_poor_proper_terms.py`              | Removes weak or generic entries from `proper_terms`.                         |
 | `data_preparation/expand_terms.py`                         | Appends additional term pairs to `proper_terms`.                             |
 | `data_preparation/collect_term_pairs_from_jsonl.py`        | Aggregates `proper_terms` from v1/v2 dev files into unique term-pair JSONL.  |
+| `data_preparation/build_term_dictionary.py`                | Builds provenance-aware term dictionary from dev_v2 (GPT via OpenRouter).    |
+| `data_preparation/apply_dictionary_to_dev_v1.py`             | Applies dictionary to dev_v1 into `dev_v1/dictionary/` (optional, new files).  |
 | `data_preparation/strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
 
 ### Analysis
@@ -67,4 +69,24 @@ All data lives in `data/`
 | `dev_v1/original/` | Original course dev set.                                                                                                                                           |
 | `dev_v1/expand/`   | Expanded version of `original/` with additional `proper_terms`.                                                                                                    |
 | `dev_v1/cleaned/`  | Cleaned version of `expand/` with terminology-poor `proper_terms` removed.                                                                                         |
+| `dev_v1/dictionary/` | dev_v1 enriched from term dictionary (optional output of `apply_dictionary_to_dev_v1.py`).                                                                         |
 | `dev_v2/`          | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus. |
+| `term_dictionary/` | Term dictionary built from dev_v2 with line IDs, lemmas, and observed inflections.                                                                                  |
+| `term_pairs/`      | Flat aggregated EN→target term-pair lists from v1/v2.                                                                                                              |
+
+### Term dictionary pipeline
+
+```bash
+conda activate terminology-translation
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm de_core_news_sm es_core_news_sm
+
+# Build dictionary from dev_v2 (dry run)
+python scripts/data_preparation/build_term_dictionary.py --all --limit 50
+
+# Full build (requires OPENROUTER_API_KEY in .env)
+python scripts/data_preparation/build_term_dictionary.py --all
+
+# Optional: apply to dev_v1 (writes new files only)
+python scripts/data_preparation/apply_dictionary_to_dev_v1.py --all
+```

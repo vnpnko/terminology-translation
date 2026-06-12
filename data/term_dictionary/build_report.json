@@ -1,0 +1,44 @@
+{
+  "ende": {
+    "lang_pair": "ende",
+    "total_attestations": 2454,
+    "invalid_filtered": 0,
+    "unique_lemma_pairs": 1302,
+    "by_source": {
+      "human_proper_terms": 1062,
+      "llm_extract": 1392
+    },
+    "by_line_range": {
+      "1-1000": 1616,
+      "1001-2000": 838
+    }
+  },
+  "enes": {
+    "lang_pair": "enes",
+    "total_attestations": 2481,
+    "invalid_filtered": 0,
+    "unique_lemma_pairs": 1407,
+    "by_source": {
+      "human_proper_terms": 1029,
+      "llm_extract": 1452
+    },
+    "by_line_range": {
+      "1-1000": 1710,
+      "1001-2000": 771
+    }
+  },
+  "enru": {
+    "lang_pair": "enru",
+    "total_attestations": 2045,
+    "invalid_filtered": 0,
+    "unique_lemma_pairs": 1132,
+    "by_source": {
+      "human_proper_terms": 983,
+      "llm_extract": 1062
+    },
+    "by_line_range": {
+      "1-1000": 1453,
+      "1001-2000": 592
+    }
+  }
+}

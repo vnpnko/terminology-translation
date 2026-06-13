@@ -1,8 +1,8 @@
 {
   "ende": {
     "lang_pair": "ende",
-    "input": "/mnt/d/OneDrive - TUM/Master/S26/NLP&LLM/terminology-translation/data/dev_v1/original/ende_dev_v1.jsonl",
-    "output": "/mnt/d/OneDrive - TUM/Master/S26/NLP&LLM/terminology-translation/data/dev_v1/dictionary/ende_dev_v1_dictionary.jsonl",
+    "input": "data/dev_v1/original/ende_dev_v1.jsonl",
+    "output": "data/dev_v1/dictionary/ende_dev_v1_dictionary.jsonl",
     "records": 500,
     "terms_added_total": 794,
     "avg_terms_added": 1.588,
@@ -10,8 +10,8 @@
   },
   "enes": {
     "lang_pair": "enes",
-    "input": "/mnt/d/OneDrive - TUM/Master/S26/NLP&LLM/terminology-translation/data/dev_v1/original/enes_dev_v1.jsonl",
-    "output": "/mnt/d/OneDrive - TUM/Master/S26/NLP&LLM/terminology-translation/data/dev_v1/dictionary/enes_dev_v1_dictionary.jsonl",
+    "input": "data/dev_v1/original/enes_dev_v1.jsonl",
+    "output": "data/dev_v1/dictionary/enes_dev_v1_dictionary.jsonl",
     "records": 500,
     "terms_added_total": 779,
     "avg_terms_added": 1.558,
@@ -19,8 +19,8 @@
   },
   "enru": {
     "lang_pair": "enru",
-    "input": "/mnt/d/OneDrive - TUM/Master/S26/NLP&LLM/terminology-translation/data/dev_v1/original/enru_dev_v1.jsonl",
-    "output": "/mnt/d/OneDrive - TUM/Master/S26/NLP&LLM/terminology-translation/data/dev_v1/dictionary/enru_dev_v1_dictionary.jsonl",
+    "input": "data/dev_v1/original/enru_dev_v1.jsonl",
+    "output": "data/dev_v1/dictionary/enru_dev_v1_dictionary.jsonl",
     "records": 500,
     "terms_added_total": 569,
     "avg_terms_added": 1.138,

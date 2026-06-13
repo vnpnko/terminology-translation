@@ -41,6 +41,7 @@ from term_utils import (
     locate_substring,
     normalize_key,
     refuse_if_exists,
+    repo_rel_path,
     save_json,
     save_jsonl,
 )
@@ -256,8 +257,8 @@ def apply_for_pair(
 
     report = {
         "lang_pair": lang_pair.prefix,
-        "input": str(input_path),
-        "output": str(output_path),
+        "input": repo_rel_path(input_path),
+        "output": repo_rel_path(output_path),
         "records": len(enriched),
         "terms_added_total": sum(added_counts),
         "avg_terms_added": round(sum(added_counts) / max(len(added_counts), 1), 3),

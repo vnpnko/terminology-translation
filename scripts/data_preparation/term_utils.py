@@ -15,6 +15,15 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 ENV_FILE = REPO_ROOT / ".env"
+
+
+def repo_rel_path(path: Path | str, *, base: Path = REPO_ROOT) -> str:
+    """Return a repo-root-relative path string for portable JSON reports."""
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(base.resolve()).as_posix()
+    except ValueError:
+        return resolved.as_posix()
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 

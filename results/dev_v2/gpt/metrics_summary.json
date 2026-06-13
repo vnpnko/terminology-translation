@@ -1,7 +1,7 @@
 {
   "data_version": "v2",
   "data_variant": null,
-  "data_dir": "c:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai",
+  "data_dir": "data/dev_v2",
   "prompt_examples_per_lang": {
     "ende": 3,
     "enru": 3,
@@ -13,14 +13,14 @@
   "max_samples": null,
   "languages": {
     "ende": {
-      "data_file": "c:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\ende_dev_v2.jsonl",
+      "data_file": "data/dev_v2/ende_dev_v2.jsonl",
       "sample_count": 2000,
       "ref_field": "de",
       "target_lang": "German",
       "output_tag": "de",
       "modes": {
         "no_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\ende\\ende_dev_v2_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/ende/ende_dev_v2_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 45.40050597539662,
             "chrf": 69.75888894755627,
@@ -37,7 +37,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\ende\\ende_dev_v2_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/ende/ende_dev_v2_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 51.69980757375094,
             "chrf": 75.90388265109446,
@@ -9128,7 +9128,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\ende\\ende_dev_v2_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/ende/ende_dev_v2_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 47.40435687245185,
             "chrf": 72.13599682231188,
@@ -17220,14 +17220,14 @@
       }
     },
     "enru": {
-      "data_file": "c:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\enru_dev_v2.jsonl",
+      "data_file": "data/dev_v2/enru_dev_v2.jsonl",
       "sample_count": 2000,
       "ref_field": "ru",
       "target_lang": "Russian",
       "output_tag": "ru",
       "modes": {
         "no_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\enru\\enru_dev_v2_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/enru/enru_dev_v2_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 30.947764722115885,
             "chrf": 60.84477609028281,
@@ -17244,7 +17244,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\enru\\enru_dev_v2_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/enru/enru_dev_v2_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 41.18582530013011,
             "chrf": 69.72337905462703,
@@ -26510,7 +26510,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\enru\\enru_dev_v2_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/enru/enru_dev_v2_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 35.50499261674413,
             "chrf": 65.62814509898632,
@@ -36835,14 +36835,14 @@
       }
     },
     "enes": {
-      "data_file": "c:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\enes_dev_v2.jsonl",
+      "data_file": "data/dev_v2/enes_dev_v2.jsonl",
       "sample_count": 2000,
       "ref_field": "es",
       "target_lang": "Spanish",
       "output_tag": "es",
       "modes": {
         "no_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\enes\\enes_dev_v2_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/enes/enes_dev_v2_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 50.168616381569194,
             "chrf": 70.44425755596352,
@@ -36859,7 +36859,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\enes\\enes_dev_v2_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/enes/enes_dev_v2_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 60.603283799691226,
             "chrf": 78.55723644325373,
@@ -46678,7 +46678,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\for now\\for openai\\openai_translation\\v2\\enes\\enes_dev_v2_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/gpt/enes/enes_dev_v2_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 53.853113741109475,
             "chrf": 74.37205031940162,

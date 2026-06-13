@@ -1,7 +1,7 @@
 {
   "data_version": "v1",
   "data_variant": "cleaned",
-  "data_dir": "/dss/dsshome1/0E/go35bit2",
+  "data_dir": "data/dev_v1/cleaned",
   "prompt_examples_per_lang": {
     "ende": 3,
     "enru": 3,
@@ -11,14 +11,14 @@
   "max_samples": null,
   "languages": {
     "ende": {
-      "data_file": "/dss/dsshome1/0E/go35bit2/ende_dev_v1_cleaned.jsonl",
+      "data_file": "data/dev_v1/cleaned/ende_dev_v1_cleaned.jsonl",
       "sample_count": 500,
       "ref_field": "de",
       "target_lang": "German",
       "output_tag": "de",
       "modes": {
         "no_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/ende/ende_dev_v1_cleaned_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/ende/ende_dev_v1_cleaned_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 31.59257412109848,
             "chrf": 59.48184524489769,
@@ -35,7 +35,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/ende/ende_dev_v1_cleaned_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/ende/ende_dev_v1_cleaned_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 36.2882873129007,
             "chrf": 67.48956991652733,
@@ -2294,7 +2294,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/ende/ende_dev_v1_cleaned_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/ende/ende_dev_v1_cleaned_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 33.35560009041871,
             "chrf": 62.70730490788958,
@@ -5388,14 +5388,14 @@
       }
     },
     "enru": {
-      "data_file": "/dss/dsshome1/0E/go35bit2/enru_dev_v1_cleaned.jsonl",
+      "data_file": "data/dev_v1/cleaned/enru_dev_v1_cleaned.jsonl",
       "sample_count": 500,
       "ref_field": "ru",
       "target_lang": "Russian",
       "output_tag": "ru",
       "modes": {
         "no_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/enru/enru_dev_v1_cleaned_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/enru/enru_dev_v1_cleaned_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 24.89269829150201,
             "chrf": 52.62708718834202,
@@ -5412,7 +5412,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/enru/enru_dev_v1_cleaned_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/enru/enru_dev_v1_cleaned_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 34.153327663625596,
             "chrf": 62.69327996652142,
@@ -7370,7 +7370,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/enru/enru_dev_v1_cleaned_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/enru/enru_dev_v1_cleaned_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 26.64800305258266,
             "chrf": 56.409278386533714,
@@ -10310,14 +10310,14 @@
       }
     },
     "enes": {
-      "data_file": "/dss/dsshome1/0E/go35bit2/enes_dev_v1_cleaned.jsonl",
+      "data_file": "data/dev_v1/cleaned/enes_dev_v1_cleaned.jsonl",
       "sample_count": 500,
       "ref_field": "es",
       "target_lang": "Spanish",
       "output_tag": "es",
       "modes": {
         "no_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/enes/enes_dev_v1_cleaned_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/enes/enes_dev_v1_cleaned_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 42.173724229205696,
             "chrf": 65.85136486380246,
@@ -10334,7 +10334,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/enes/enes_dev_v1_cleaned_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/enes/enes_dev_v1_cleaned_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 56.11348123756358,
             "chrf": 76.02376874031519,
@@ -12824,7 +12824,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/qwen_translation/7b/cleaned/enes/enes_dev_v1_cleaned_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/qwen_7b/enes/enes_dev_v1_cleaned_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 44.91161062464971,
             "chrf": 68.64749797557563,

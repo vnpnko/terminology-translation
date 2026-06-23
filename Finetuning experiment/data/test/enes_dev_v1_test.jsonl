@@ -1,0 +1,75 @@
+{"en": "A text block can be assigned as an alternative to only one text block in a template\n", "es": "Un bloque de texto se puede asignar como alternativa a solo un bloque de texto en una plantilla\n", "proper_terms": {"template": "plantilla"}, "random_terms": {"block": "bloque"}}
+{"en": "Submits for approval\n", "es": "Se envía para su autorización\n", "proper_terms": {"approval": "autorización", "Approval": "Autorización"}, "random_terms": {"Submits": "Se envía"}}
+{"en": "Clearing Item Completed\n", "es": "Partida de compensación completada\n", "proper_terms": {"clearing item": "partida de compensación"}, "random_terms": {"Completed": "completada"}}
+{"en": "The SQL port number of the remote SAP HANA server (master index server).\n", "es": "El número de puerta SQL del servidor SAP HANA remoto (servidor de índice maestro).\n", "proper_terms": {"port": "puerta"}, "random_terms": {"index": "índice"}}
+{"en": "You can switch to Edit mode to do the following:\n", "es": "Puede cambiar al modo Tratar para hacer lo siguiente:\n", "proper_terms": {"edit": "tratar"}, "random_terms": {"mode": "modo"}}
+{"en": "In the Bills\n", "es": "En las Cuentas\n", "proper_terms": {"bill": "cuenta"}, "random_terms": {"Bills": "Cuentas"}}
+{"en": "You can edit the following item details:\n", "es": "Puede editar los siguientes detalles de elemento:\n", "proper_terms": {"item": "elemento"}, "random_terms": {"edit": "editar"}}
+{"en": "Fulfillment Site ID\n", "es": "ID de centro de cumplimiento\n", "proper_terms": {"site": "centro"}, "random_terms": {"Fulfillment": "cumplimiento"}}
+{"en": "To specify the document type as scheduling agreement.\n", "es": "Para especificar el tipo de documento como un plan de entregas.\n", "proper_terms": {"document type": "tipo de documento"}, "random_terms": {"scheduling": "plan", "specify": "especificar"}}
+{"en": "Item Information page\n", "es": "Página de información del artículo\n", "proper_terms": {"item": "artículo"}, "random_terms": {"page": "página"}}
+{"en": "This is now the default behavior.\n", "es": "Este es el comportamiento por defecto actual.\n", "proper_terms": {"default": "por defecto"}, "random_terms": {"behavior": "comportamiento"}}
+{"en": "SD - Sales contract\n", "es": "SD: Contrato de ventas\n", "proper_terms": {"contract": "contrato"}, "random_terms": {"SD": "SD"}}
+{"en": "Work Center Classification\n", "es": "Clasificación de puesto de trabajo\n", "proper_terms": {"work center": "puesto de trabajo"}, "random_terms": {"Classification": "Clasificación"}}
+{"en": "Define data binding.\n", "es": "Defina una vinculación de datos.\n", "proper_terms": {"data binding": "vínculación de datos"}, "random_terms": {"Define": "Defina"}}
+{"en": "Choose this button to verify whether the G/L account numbers that you want to use have already been used in the delivered chart of accounts.You can see the result of the check under G/L Accounts in the Validation Info column.\n", "es": "Seleccione este pulsador para verificar si los números de cuenta de mayor que desea utilizar ya se han utilizado en los planes de cuentas facilitados.Puede ver el resultado de la verificación en Cuentas de mayor, en la columna Info de validación.\n", "proper_terms": {"button": "pulsador"}, "random_terms": {"Validation": "validación"}}
+{"en": "This tab displays the structure of the selected template.\n", "es": "Esta pestaña muestra la estructura de la plantilla seleccionada.\n", "proper_terms": {"tab": "pestaña"}, "random_terms": {"template": "plantilla"}}
+{"en": "The following rule types and line types are available:\n", "es": "Están disponibles los siguientes tipos de reglas y de líneas:\n", "proper_terms": {"type": "tipo"}, "random_terms": {"types": "tipos"}}
+{"en": "Schedule is created for the data flow.\n", "es": "Se crea la programación para el flujo de datos.\n", "proper_terms": {"schedule": "programación"}, "random_terms": {"data": "datos"}}
+{"en": "Receivers in Intercompany Allocation\n", "es": "Receptores en imputación multisociedad\n", "proper_terms": {"allocation": "imputación"}, "random_terms": {"Receivers": "Receptores"}}
+{"en": "Click Save to save your import.\n", "es": "Haga clic en Guardar para guardar su importación.\n", "proper_terms": {"save": "guardar"}, "random_terms": {"import": "importación"}}
+{"en": "Restoring an Older Version or Revision of a Template\n", "es": "Restauración de una versión anterior o revisión de un modelo\n", "proper_terms": {"template": "modelo"}, "random_terms": {"Version": "versión"}}
+{"en": "Inventory Opening Balances\n", "es": "Saldos iniciales de inventario\n", "proper_terms": {"inventory": "inventario"}, "random_terms": {"Balances": "Saldos"}}
+{"en": "Inventory Opening Balance:\n", "es": "Saldo inicial de inventario:\n", "proper_terms": {"opening balance": "saldo inicial"}, "random_terms": {"Inventory": "inventario"}}
+{"en": "You must save your entries.\n", "es": "Debe guardar sus entradas.\n", "proper_terms": {"save": "guardar"}, "random_terms": {"must": "debe"}}
+{"en": "Creating a Run Template\n", "es": "Creación de un modelo de ejecución\n", "proper_terms": {"template": "modelo"}, "random_terms": {"Run": "ejecución"}}
+{"en": "Find Slot cannot be used if your offset value is in the past.\n", "es": "Buscar slot no se puede utilizar si su valor de desplazamiento se encuentra en el pasado.\n", "proper_terms": {"offset": "desplazamiento", "slot": "slot"}, "random_terms": {"used": "utilizar", "value": "valor"}}
+{"en": "SAP HANA Cloud Deployment Infrastructure (HDI) Container\n", "es": "Contenedor SAP HANA Cloud Deployment Infrastructure (HDI)\n", "proper_terms": {"container": "contenedor"}, "random_terms": {"Cloud": "Cloud"}}
+{"en": "Document Type ID\n", "es": "ID de clase de documento\n", "proper_terms": {"document type": "clase de documento"}, "random_terms": {"ID": "ID"}}
+{"en": "To save a filter, proceed as follows:\n", "es": "Para guardar un filtro, proceda como sigue:\n", "proper_terms": {"save": "guardar"}, "random_terms": {"filter": "filtro"}}
+{"en": "Displays the current overall status of the shipment.\n", "es": "Muestra el estado global actual del envío.\n", "proper_terms": {"shipment": "envío"}, "random_terms": {"status": "estado"}}
+{"en": "Cost Type Mapping\n", "es": "Asignación de tipo de coste\n", "proper_terms": {"cost type": "tipo de coste"}, "random_terms": {"Mapping": "Asignación"}}
+{"en": "Account Manager Name\n", "es": "Nombre del administrador de cuentas\n", "proper_terms": {"manager": "administrador"}, "random_terms": {"Account": "administrador"}}
+{"en": "Select the order type you want to convert the element to.\n", "es": "Seleccione el tipo de orden al que desea convertir el elemento.\n", "proper_terms": {"type": "tipo"}, "random_terms": {"want": "desea"}}
+{"en": "The Save filter dialog appears.\n", "es": "Aparece el diálogo Guardar filtro.\n", "proper_terms": {"save": "guardar"}, "random_terms": {"appears": "aparece"}}
+{"en": "With the workflow feature, you can:\n", "es": "Con la función de flujo de trabajo puede:\n", "proper_terms": {"flow": "flujo"}, "random_terms": {"workflow": "flujo de trabajo"}}
+{"en": "Accepted by Customer\n", "es": "aceptada por el cliente\n", "proper_terms": {"accepted": "aceptada"}, "random_terms": {"Customer": "cliente"}}
+{"en": "ODO Document Type\n", "es": "Tipo de documento ODO\n", "proper_terms": {"document type": "tipo de documento"}, "random_terms": {"ODO": "ODO"}}
+{"en": "Reset Transaction Data\n", "es": "Reinicializar datos de transacción\n", "proper_terms": {"transaction": "transacción"}, "random_terms": {"Reset": "Reinicializar"}}
+{"en": "String Multiple Select\n", "es": "Selección múltiple de strings\n", "proper_terms": {"string": "string"}, "random_terms": {"Multiple": "Múltiple"}}
+{"en": "HANA Use SSL\n", "es": "Utilizar SSL de HANA\n", "proper_terms": {"use": "utilizar"}, "random_terms": {"HANA": "HANA"}}
+{"en": "SAP Jam Term\n", "es": "Término de SAP Jam\n", "proper_terms": {"term": "término"}, "random_terms": {"Jam": "Jam"}}
+{"en": "Set the repair object to the status Completed.\n", "es": "Fijar el objeto de reparación en el estado Concluido.\n", "proper_terms": {"completed": "concluido"}, "random_terms": {"status": "estado"}}
+{"en": "Data Warehouse Authorisation Scenario\n", "es": "Escenario de autorización de Data Warehouse\n", "proper_terms": {"data warehouse": "data warehouse"}, "random_terms": {"Authorisation": "autorización", "Scenario": "escenario"}}
+{"en": "Migrate Production Version\n", "es": "Migrar versión de fabricación\n", "proper_terms": {"production version": "versión de fabricación"}, "random_terms": {"Migrate": "Migrar"}}
+{"en": "Business Partner Bank Details\n", "es": "Datos bancarios de socio comercial\n", "proper_terms": {"partner": "socio"}, "random_terms": {"Business": "comercial"}}
+{"en": "System Administration Notes\n", "es": "Notas de administración del sistema\n", "proper_terms": {"system administration": "administración del sistema"}, "random_terms": {"Notes": "Notas"}}
+{"en": "The following predefined standard activity types are available:\n", "es": "Están disponibles los siguientes tipos de actividad estándar predefinidos:\n", "proper_terms": {"type": "tipo"}, "random_terms": {"activity": "actividad"}}
+{"en": "The Duplicate button enables you to send an output item again.\n", "es": "El botón Duplicar le permite volver a enviar un elemento de salida.\n", "proper_terms": {"item": "elemento"}, "random_terms": {"button": "botón"}}
+{"en": "Choose Save As.\n", "es": "Seleccione Guardar como.\n", "proper_terms": {"save as": "guardar como"}, "random_terms": {"Choose": "Seleccione"}}
+{"en": "Click  Save to save your model.\n", "es": "Haga clic en  Guardar para guardar su modelo.\n", "proper_terms": {"save": "guardar"}, "random_terms": {"Click": "Haga clic"}}
+{"en": "Work center type\n", "es": "Clase de centro de trabajo\n", "proper_terms": {"work center": "centro de trabajo"}, "random_terms": {"type": "Clase"}}
+{"en": "Select the Edit Purpose button.\n", "es": "Seleccione el botón Editar objetivo.\n", "proper_terms": {"purpose": "objetivo"}, "random_terms": {"Select": "Seleccione"}}
+{"en": "Work center data\n", "es": "Datos del centro de trabajo\n", "proper_terms": {"work center": "centro de trabajo"}, "random_terms": {"data": "datos"}}
+{"en": "Enter the certificate’s password\n", "es": "Escribe la contraseña del certificado\n", "proper_terms": {"password": "contraseña"}, "random_terms": {"Enter": "Escribe"}}
+{"en": "On the Receiver tab, the following options are available:\n", "es": "En la pestaña Receptor, están disponibles las siguientes opciones:\n", "proper_terms": {"tab": "pestaña"}, "random_terms": {"options": "opciones"}}
+{"en": "Object Type - Replication Configuration\n", "es": "Clase de objeto - Configuración de replicación\n", "proper_terms": {"object type": "clase de objeto"}, "random_terms": {"Configuration": "Configuración", "Replication": "replicación"}}
+{"en": "The following statuses for an index adjustment are possible:\n", "es": "Para un ajuste de índice son posibles los siguientes estados:\n", "proper_terms": {"adjustment": "Ajuste"}, "random_terms": {"index": "índice"}}
+{"en": "Last Processing Info\n", "es": "Información del último procesamiento\n", "proper_terms": {"processing": "procesamiento"}, "random_terms": {"Info": "Información"}}
+{"en": "Delete audit areas\n", "es": "Eliminar áreas de auditoría\n", "proper_terms": {"delete": "eliminar"}, "random_terms": {"audit": "auditoría"}}
+{"en": "Multiple use cases\n", "es": "Varios casos de uso\n", "proper_terms": {"multiple": "varios"}, "random_terms": {"use": "uso"}}
+{"en": "Personal Data Blocking\n", "es": "Bloquear datos personales\n", "proper_terms": {"lock": "bloquear"}, "random_terms": {"Data": "datos"}}
+{"en": "Select Schedule Type\n", "es": "Seleccionar tipo de planificación\n", "proper_terms": {"schedule": "planificación"}, "random_terms": {"Select": "Seleccionar"}}
+{"en": "Accruals that have been successfully reviewed display on the Review Finished tab page.The following accruals can be of status Review Finished:\n", "es": "Las periodificaciones que se han revisado con éxito se visualizan en la etiqueta Revisión finalizada.Las periodificaciones siguientes pueden tener el estado Revisión finalizada:\n", "proper_terms": {"review": "revisión"}, "random_terms": {"following": "siguientes"}}
+{"en": "The Current Inventory is calculated as follows:\n", "es": "El stock actual se calcula de la siguiente manera:\n", "proper_terms": {"inventory": "stock"}, "random_terms": {"Current": "actual"}}
+{"en": "Create a new source list\n", "es": "Crear una nueva lista de fuentes\n", "proper_terms": {"source": "fuente"}, "random_terms": {"Create": "Crear"}}
+{"en": "Choose the Object Type\n", "es": "Seleccionar la clase de objeto\n", "proper_terms": {"object type": "clase de objeto"}, "random_terms": {"Choose": "Seleccionar"}}
+{"en": "Available Transaction Types\n", "es": "Tipos de operación disponibles\n", "proper_terms": {"transaction": "operación"}, "random_terms": {"Types": "tipos"}}
+{"en": "Business partner (payer)\n", "es": "Socio comercial (pagador)\n", "proper_terms": {"partner": "socio"}, "random_terms": {"Business": "Comercial"}}
+{"en": "It is not possible to change a completed business document that contains a blocked business partner or location.\n", "es": "No es posible modificar un documento comercial concluido que contenga un socio comercial o ubicación bloqueados.\n", "proper_terms": {"partner": "socio"}, "random_terms": {"location": "ubicación"}}
+{"en": "<Title of the business role>\n", "es": "<Título del rol empresarial>\n", "proper_terms": {"business role": "rol empresarial"}, "random_terms": {"Title": "Título"}}
+{"en": "Service Confirmation (SVC1)\n", "es": "Confirmación de servicio (SVC1)\n", "proper_terms": {"service confirmation": "confirmación de servicio"}, "random_terms": {"SVC1": "SVC1"}}
+{"en": "Defining Activity Types\n", "es": "Definición de tipos de actividad\n", "proper_terms": {"type": "tipo"}, "random_terms": {"Defining": "Definición"}}
+{"en": "Operations on business partner\n", "es": "Operaciones en socio comercial\n", "proper_terms": {"partner": "socio"}, "random_terms": {"Operations": "Operaciones"}}
+{"en": "Standard Service Confirmation\n", "es": "Confirmación de servicio estándar\n", "proper_terms": {"service confirmation": "confirmación de servicio"}, "random_terms": {"Standard": "estándar"}}
+{"en": "Cancel repair confirmations with the status Completed.\n", "es": "Cancelar confirmaciones de reparación que tienen el estado Concluido.\n", "proper_terms": {"completed": "concluido"}, "random_terms": {"status": "estado"}}

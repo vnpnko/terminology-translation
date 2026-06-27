@@ -348,3 +348,53 @@
 {"en": "You can also see and edit the following folder information:\n", "es": "También puede ver y tratar la siguiente información de carpeta:\n", "proper_terms": {"edit": "tratar"}, "random_terms": {"following": "siguiente"}}
 {"en": "When creating and editing hierarchies, you can select Use in Compatible Set Group.Using cost center hierarchies in compatible set groups simplifies your allocations by aggregating them into a central allocation based on the universal journal.\n", "es": "Al crear y editar las jerarquías, puede seleccionar Utilizar en grupo de conjuntos compatibles.El uso de jerarquías de centros de coste en grupos de conjuntos compatibles simplifica sus asignaciones agregándolos en una asignación central basada en el diario.\n", "proper_terms": {"set": "conjunto"}, "random_terms": {"editing": "editar"}}
 {"en": "User Name, Password and Authentication.\n", "es": "Nombre de usuario, Contraseña y Autenticación.\n", "proper_terms": {"authentication": "autenticación"}, "random_terms": {"Password": "Contraseña"}}
+{"en": "This tab displays the following details:\n", "es": "En esta pestaña se muestra la siguiente información:\n", "proper_terms": {"tab": "pestaña"}, "random_terms": {"details": "información"}}
+{"en": "All the template names must be unique.\n", "es": "Todos los nombres de modelo deben ser únicos.\n", "proper_terms": {"template": "modelo"}, "random_terms": {"must": "deben"}}
+{"en": "In the Edit menu, the following functions are available:\n", "es": "En el menú Editar, están disponibles las siguientes funciones:\n", "proper_terms": {"edit": "editar"}, "random_terms": {"menu": "menú"}}
+{"en": "Final Confirmation Type\n", "es": "Clase de confirmación final\n", "proper_terms": {"type": "clase"}, "random_terms": {"Confirmation": "confirmación"}}
+{"en": "Enter a description for the application template.\n", "es": "Introduzca una descripción para la plantilla de solicitud.\n", "proper_terms": {"template": "plantilla"}, "random_terms": {"description": "descripción"}}
+{"en": "Delete persistent view:\n", "es": "Eliminar una vista persistente:\n", "proper_terms": {"delete": "eliminar"}, "random_terms": {"persistent": "persistente"}}
+{"en": "The prorated charges are calculated as follows:\n", "es": "Los cargos prorrateados se calculan de la siguiente manera:\n", "proper_terms": {"charge": "cargo"}, "random_terms": {"prorated": "prorrateados"}}
+{"en": "An Administrator can:\n", "es": "Un responsable puede:\n", "proper_terms": {"administrator": "responsable"}, "random_terms": {}}
+{"en": "'Asset Balances' Cards\n", "es": "Tarjetas de \"Balances de activos\"\n", "proper_terms": {"balance": "balance"}, "random_terms": {"Balances": "Balances"}}
+{"en": "Create Target Plans\n", "es": "Crear planes de objetivos\n", "proper_terms": {"target": "objetivo"}, "random_terms": {"Create": "Crear"}}
+{"en": "The system shows you all available measures.\n", "es": "El sistema muestra todos los indicadores disponibles.\n", "proper_terms": {"measure": "indicador"}, "random_terms": {"available": "disponibles"}}
+{"en": "Storage Type System\n", "es": "Tipo de almacenamiento Sistema\n", "proper_terms": {"storage type": "tipo de almacenamiento"}, "random_terms": {"System": "Sistema"}}
+{"en": "Special Uses Cases\n", "es": "Casos de utilización especiales\n", "proper_terms": {"use": "utilización"}, "random_terms": {"Special": "especiales"}}
+{"en": "Restrictions on Use\n", "es": "Restricciones de utilización\n", "proper_terms": {"use": "utilización"}, "random_terms": {"Restrictions": "Restricciones"}}
+{"en": "Indicates the status of the job\n", "es": "Indica el estado de la tarea.\n", "proper_terms": {"job": "tarea"}, "random_terms": {"status": "estado"}}
+{"en": "This template is now deprecated.\n", "es": "Este modelo ha quedado obsoleto.\n", "proper_terms": {"template": "modelo"}, "random_terms": {"deprecated": "obsoleto"}}
+{"en": "Define the measures of your business entity.\n", "es": "Defina las medidas de su entidad empresarial.\n", "proper_terms": {"business entity": "entidad empresarial"}, "random_terms": {"Define": "Defina", "measures": "medidas"}}
+{"en": "For more information about creating a Run Template, see\n", "es": "Para obtener más información sobre la creación de un Modelo de ejecución, consulte .\n", "proper_terms": {"template": "modelo"}, "random_terms": {"creating": "creación"}}
+{"en": "To go back to the preview, choose the Back button in the browser.\n", "es": "Para volver a la vista previa, seleccione el pulsador Atrás en el navegador.\n", "proper_terms": {"button": "pulsador"}, "random_terms": {"go": "volver"}}
+{"en": "Configure partner settings\n", "es": "Configurar opciones de socio\n", "proper_terms": {"partner": "socio"}, "random_terms": {"Configure": "Configurar"}}
+{"en": "Resetting the availability data\n", "es": "Restablecer los datos de disponibilidad\n", "proper_terms": {"reset": "restablecer"}, "random_terms": {"Resetting": "Restablecer"}}
+{"en": "Select the relevant source type\n", "es": "Seleccione el tipo de origen relevante\n", "proper_terms": {"source": "origen"}, "random_terms": {"relevant": "relevante"}}
+{"en": "Life Cycle Stage\n", "es": "Fase del ciclo de vida\n", "proper_terms": {"stage": "fase"}, "random_terms": {"Life": "vida"}}
+{"en": "You can add once or more precondition that must be met before the workflow is triggered.\n", "es": "Puede añadir una vez o más la condición previa que se debe cumplir antes de iniciar el flujo de trabajo.\n", "proper_terms": {"flow": "flujo"}, "random_terms": {"met": "cumplir"}}
+{"en": "Deleting a Business Unit\n", "es": "Eliminar una unidad empresarial\n", "proper_terms": {"business unit": "unidad empresarial"}, "random_terms": {"Deleting": "Eliminar"}}
+{"en": "Descriptiion of Change Type\n", "es": "Descripción del tipo de modificación\n", "proper_terms": {"type": "tipo"}, "random_terms": {"Change": "modificación"}}
+{"en": "You can manage (save, load, and delete) customized views efficiently here.\n", "es": "Aquí puede gestionar (guardar, cargar y borrar) vistas personalizadas de forma eficiente.\n", "proper_terms": {"save": "guardar"}, "random_terms": {"manage": "gestionar"}}
+{"en": "Create a new data source.\n", "es": "Cree una nueva fuente de datos.\n", "proper_terms": {"data source": "fuente de datos"}, "random_terms": {"Create": "Cree", "new": "nueva"}}
+{"en": "Configure Record Types\n", "es": "Configurar tipos de registro\n", "proper_terms": {"type": "tipo"}, "random_terms": {"Configure": "Configurar"}}
+{"en": "Business Partner Transfer\n", "es": "Transferencia de socio comercial\n", "proper_terms": {"partner": "socio"}, "random_terms": {"Business": "socio"}}
+{"en": "Business Partner Grouping\n", "es": "Agrupación de socios comerciales\n", "proper_terms": {"partner": "socio"}, "random_terms": {"Grouping": "Agrupación"}}
+{"en": "Alert Time Distribution\n", "es": "Distribución de tiempo de alertas\n", "proper_terms": {"time": "tiempo"}, "random_terms": {"Alert": "alertas"}}
+{"en": "Click Tab Configuration and select any of the following options:\n", "es": "Haga clic en Configuración de ficha y seleccione cualquiera de las siguientes opciones:\n", "proper_terms": {"tab": "ficha"}, "random_terms": {"Click": "Haga clic"}}
+{"en": "The job does the following:\n", "es": "El job hace lo siguiente:\n", "proper_terms": {"job": "job"}, "random_terms": {"following": "siguiente"}}
+{"en": "You can now delete manual tasks.\n", "es": "Ahora puede eliminar tareas manuales.\n", "proper_terms": {"delete": "eliminar"}, "random_terms": {"manual": "manuales"}}
+{"en": "Source Document Category\n", "es": "Tipo de documento de origen\n", "proper_terms": {"source document category": "tipo de documento de origen"}, "random_terms": {"Source": "Origen", "Document": "documento", "Category": "tipo"}}
+{"en": "Mass Processing - Export\n", "es": "Procesamiento en masa: Exportación\n", "proper_terms": {"mass processing": "procesamiento en masa"}, "random_terms": {"Export": "Exportación"}}
+{"en": "How to Delete Folders\n", "es": "Cómo borrar carpetas\n", "proper_terms": {"delete": "borrar"}, "random_terms": {"Folders": "carpetas"}}
+{"en": "Discard your changes.\n", "es": "Rechazar los cambios.\n", "proper_terms": {"discard": "rechazar"}, "random_terms": {"changes": "cambios"}}
+{"en": "Starting Mass Processing\n", "es": "Iniciar tratamiento en masa\n", "proper_terms": {"mass processing": "tratamiento en masa"}, "random_terms": {"Starting": "Iniciar"}}
+{"en": "Compliance Requirement Version\n", "es": "Versión de requisito de conformidad\n", "proper_terms": {"compliance requirement": "requisito de conformidad"}, "random_terms": {"Version": "versión"}}
+{"en": "Application Programming Interfaces\n", "es": "Interfases de programación de la aplicación\n", "proper_terms": {"interface": "interfase"}, "random_terms": {"Application": "aplicación"}}
+{"en": "Select your template and choose Open.\n", "es": "Seleccione la plantilla y haga clic en Abrir.\n", "proper_terms": {"template": "plantilla"}, "random_terms": {"choose": "haga clic"}}
+{"en": "Indicates the category of the business partner role.\n", "es": "Indica la categoría del rol de interlocutor comercial.\n", "proper_terms": {"partner": "interlocutor"}, "random_terms": {"Indicates": "Indica"}}
+{"en": "Process Payment Cards\n", "es": "Procesar tarjetas de pago\n", "proper_terms": {"process": "procesar"}, "random_terms": {"Payment": "pago"}}
+{"en": "Type of file source\n", "es": "Tipo de fuente de archivo\n", "proper_terms": {"source": "fuente"}, "random_terms": {"Type": "Tipo"}}
+{"en": "New Task Template\n", "es": "Nueva plantilla de tarea\n", "proper_terms": {"template": "plantilla"}, "random_terms": {"Task": "tarea"}}
+{"en": "You can set the following modeling properties:\n", "es": "Puede definir las siguientes propiedades de modelado:\n", "proper_terms": {"set": "definir"}, "random_terms": {"following": "siguientes"}}
+{"en": "Select the properties you want to copy from the source.\n", "es": "Seleccione las propiedades que desea copiar de la fuente.\n", "proper_terms": {"source": "fuente"}, "random_terms": {"Select": "Seleccione"}}
+{"en": "Please note also that the default setting for new hierarchies is to use them in compatible set groups.If you do not wish to do so, you must deselect this option.\n", "es": "Tenga también en cuenta que la opción estándar para nuevas jerarquías debe utilizarse en grupos de conjuntos compatibles.Si no desea hacerlo, debe anular la selección de esta opción.\n", "proper_terms": {"set": "conjunto"}, "random_terms": {"wish": "desea"}}

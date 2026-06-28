@@ -1,0 +1,62 @@
+trainable params: 14,966,784 || all params: 3,100,905,472 || trainable%: 0.4827
+Training examples: 4492 (1 mode(s) x 4492 samples)
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+ [561/561 25:17, Epoch 0/1]
+Step	Training Loss
+10	0.636700
+20	0.493200
+30	0.519300
+40	0.436700
+50	0.450300
+60	0.375800
+70	0.403500
+80	0.399400
+90	0.437300
+100	0.406600
+110	0.410000
+120	0.465400
+130	0.410300
+140	0.355400
+150	0.426200
+160	0.375700
+170	0.405100
+180	0.393300
+190	0.423600
+200	0.388000
+210	0.456300
+220	0.396100
+230	0.411400
+240	0.443000
+250	0.386900
+260	0.410900
+270	0.392800
+280	0.342400
+290	0.331100
+300	0.346500
+310	0.397100
+320	0.384700
+330	0.370600
+340	0.364100
+350	0.387500
+360	0.387000
+370	0.344400
+380	0.404100
+390	0.379600
+400	0.364000
+410	0.345900
+420	0.320200
+430	0.366500
+440	0.360500
+450	0.364100
+460	0.353400
+470	0.244500
+480	0.364600
+490	0.327700
+500	0.348600
+510	0.357000
+520	0.347600
+530	0.369400
+540	0.382800
+550	0.376700
+560	0.347900
+LoRA adapter saved to: /dss/dsshome1/0E/go35bit2/Finetuning experiment/results/qwen_lora_no_few_shots_3b/adapter

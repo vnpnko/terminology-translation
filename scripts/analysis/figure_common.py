@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
-from matplotlib.patches import Patch
 from matplotlib.artist import Artist
 
 from plot_style import (
@@ -53,6 +53,54 @@ GROUP_WIDTH = 0.72
 BAR_EDGE = "#333333"
 BAR_LW = 0.6
 VALUE_FONTSIZE = 9
+
+EXP1_VARIANTS = ("original", "expand", "cleaned")
+EXP23_STRATEGIES = ("original", "expand", "cleaned")
+
+
+def ylim_from_values(values: list[float | None], pad_ratio: float = 0.14) -> tuple[float, float]:
+    present = [v for v in values if v is not None]
+    if not present:
+        return (0.0, 1.0)
+    return (0.0, max(present) * (1 + pad_ratio))
+
+
+def compute_shared_expansion_ylims(results_root: Path) -> dict[str, tuple[float, float]]:
+    """Shared BLEU / term-accuracy y-limits across exp1 and exp23 for visual comparison."""
+    from metrics_loader import (
+        BASELINE_DIRS,
+        DEFAULT_MODE,
+        LANG_ORDER,
+        get_lang_mode_metrics,
+        load_metrics_path,
+        macro_average,
+    )
+
+    bleu_values: list[float | None] = []
+    term_values: list[float | None] = []
+
+    for variant in EXP1_VARIANTS:
+        for baseline in BASELINE_DIRS:
+            summary = load_metrics_path(
+                results_root / "dev_v1" / variant / baseline / "metrics_summary.json"
+            )
+            row = macro_average(summary, DEFAULT_MODE)
+            bleu_values.append(row.get("bleu"))
+            term_values.append(row.get("term_accuracy_pct"))
+
+    for strategy in EXP23_STRATEGIES:
+        summary = load_metrics_path(
+            results_root / "dev_v1" / strategy / "gpt" / "metrics_summary.json"
+        )
+        for lang in LANG_ORDER:
+            row = get_lang_mode_metrics(summary, lang, DEFAULT_MODE)
+            bleu_values.append(row.get("bleu"))
+            term_values.append(row.get("term_accuracy_pct"))
+
+    return {
+        "bleu": ylim_from_values(bleu_values),
+        "term_accuracy_pct": ylim_from_values(term_values),
+    }
 
 
 def plot_grouped_bars(

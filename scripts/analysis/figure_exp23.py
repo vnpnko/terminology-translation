@@ -9,6 +9,7 @@ from matplotlib.patches import Patch
 
 from figure_common import (
     EXPANSION_COLORS,
+    compute_shared_expansion_ylims,
     create_pair_figure,
     finalize_pair_layout,
     place_figure_caption,
@@ -63,6 +64,7 @@ def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | N
 def build_exp23_figure(results_root: Path) -> Figure:
     apply_poster_style()
     data = _collect_data(results_root)
+    shared_ylims = compute_shared_expansion_ylims(results_root)
 
     fig, axes, legend_ax = create_pair_figure(TITLE)
 
@@ -80,6 +82,7 @@ def build_exp23_figure(results_root: Path) -> Figure:
             ylabel=ylabel,
             panel_title=panel_title,
             xlabel="Language pair",
+            ylim=shared_ylims[metric_key],
         )
 
     legend_handles = [

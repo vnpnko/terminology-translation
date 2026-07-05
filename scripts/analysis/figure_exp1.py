@@ -8,10 +8,11 @@ from matplotlib.figure import Figure
 from matplotlib.patches import Patch
 
 from figure_common import (
+    BLEU_YLIM_TOP,
     EXPANSION_COLORS,
+    TERM_ACC_YLIM_TOP,
     create_pair_figure,
     finalize_pair_layout,
-    place_figure_caption,
     place_side_legend,
     plot_grouped_bars,
 )
@@ -29,16 +30,12 @@ VARIANT_ORDER = ("original", "expand", "cleaned")
 VARIANT_LABELS = {
     "original": "Original",
     "expand": "GPT expand",
-    "cleaned": "Domain-filtered",
+    "cleaned": "GPT cleaned",
 }
 
 TITLE = (
-    "Proper Terms Expansion: Original vs GPT Expand vs Domain-Filtered\n"
-    "(GPT-4o-mini, Qwen2.5-3B, Qwen2.5-7B · proper_term · macro avg over EN→DE/RU/ES)"
-)
-SUBTITLE = (
-    "Same original/expand lists as Term Expansion Strategies; third arm is domain-filtered "
-    "(not dictionary). Term counts (GPT) in legend."
+    "Proper Terms Expansion: Original vs GPT Expand vs GPT cleaned\n"
+    "(GPT-4o-mini, Qwen2.5-3B, Qwen2.5-7B; proper_term; macro avg over language pairs)"
 )
 
 
@@ -79,10 +76,17 @@ def build_exp1_figure(results_root: Path) -> Figure:
 
     fig, axes, legend_ax = create_pair_figure(TITLE)
 
-    for ax, metric_key, ylabel, panel_title in [
-        (axes[0], "bleu", "BLEU", "BLEU by model"),
-        (axes[1], "term_accuracy_pct", "Term accuracy (%)", "Term accuracy by model"),
-    ]:
+    metric_axes = [
+        (axes[0], "bleu", "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
+        (
+            axes[1],
+            "term_accuracy_pct",
+            "Term accuracy (%)",
+            TERM_ACC_YLIM_TOP,
+            list(range(0, TERM_ACC_YLIM_TOP + 1, 20)),
+        ),
+    ]
+    for ax, metric_key, ylabel, ylim_top, yticks in metric_axes:
         plot_grouped_bars(
             ax,
             group_keys=BASELINE_DIRS,
@@ -93,8 +97,9 @@ def build_exp1_figure(results_root: Path) -> Figure:
             },
             value_fn=lambda variant, baseline: summaries[variant][baseline].get(metric_key),
             ylabel=ylabel,
-            panel_title=panel_title,
             xlabel="Model",
+            ylim_top=ylim_top,
+            yticks=yticks,
         )
 
     legend_handles = [
@@ -106,6 +111,5 @@ def build_exp1_figure(results_root: Path) -> Figure:
         for v in VARIANT_ORDER
     ]
     place_side_legend(legend_ax, legend_handles, "Expansion strategy")
-    place_figure_caption(fig, SUBTITLE)
     finalize_pair_layout(fig)
     return fig

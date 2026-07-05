@@ -1,4 +1,4 @@
-"""Term expansion: original vs GPT contextual vs dictionary from dev_v2."""
+"""Term expansion: original vs GPT contextual vs domain-filtered."""
 
 from __future__ import annotations
 
@@ -8,10 +8,11 @@ from matplotlib.figure import Figure
 from matplotlib.patches import Patch
 
 from figure_common import (
+    BLEU_YLIM_TOP,
     EXPANSION_COLORS,
+    TERM_ACC_YLIM_TOP,
     create_pair_figure,
     finalize_pair_layout,
-    place_figure_caption,
     place_side_legend,
     plot_grouped_bars,
 )
@@ -25,22 +26,17 @@ from metrics_loader import (
 )
 from plot_style import apply_poster_style
 
-STRATEGY_ORDER = ("original", "expand", "dictionary")
+STRATEGY_ORDER = ("original", "expand", "cleaned")
 STRATEGY_LABELS = {
     "original": "Original",
     "expand": "GPT expand",
-    "dictionary": "Dictionary",
+    "cleaned": "GPT cleaned",
 }
 
 TITLE = (
-    "Term Expansion Strategies: Original vs GPT Expand vs Dictionary from dev_v2\n"
-    "(GPT-4o-mini · proper_term · 500-line dev_v1 · by language pair)"
+    "Proper Terms Expansion: Original vs GPT Expand vs GPT cleaned\n"
+    "(GPT-4o-mini; proper_term; dev_v1)"
 )
-SUBTITLE = (
-    "Same original/expand lists as Proper Terms Expansion; third arm is dictionary from dev_v2. "
-    "EN→ES scores highest; GPT expand leads on BLEU/chrF, dictionary matches expand on BLEU."
-)
-
 
 def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | None]]]:
     paths = [
@@ -66,10 +62,17 @@ def build_exp23_figure(results_root: Path) -> Figure:
 
     fig, axes, legend_ax = create_pair_figure(TITLE)
 
-    for ax, metric_key, ylabel, panel_title in [
-        (axes[0], "bleu", "BLEU", "BLEU by language pair"),
-        (axes[1], "term_accuracy_pct", "Term accuracy (%)", "Term accuracy by language pair"),
-    ]:
+    metric_axes = [
+        (axes[0], "bleu", "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
+        (
+            axes[1],
+            "term_accuracy_pct",
+            "Term accuracy (%)",
+            TERM_ACC_YLIM_TOP,
+            list(range(0, TERM_ACC_YLIM_TOP + 1, 20)),
+        ),
+    ]
+    for ax, metric_key, ylabel, ylim_top, yticks in metric_axes:
         plot_grouped_bars(
             ax,
             group_keys=LANG_ORDER,
@@ -78,8 +81,9 @@ def build_exp23_figure(results_root: Path) -> Figure:
             series_labels=STRATEGY_LABELS,
             value_fn=lambda strategy, lang: data[strategy][lang].get(metric_key),
             ylabel=ylabel,
-            panel_title=panel_title,
             xlabel="Language pair",
+            ylim_top=ylim_top,
+            yticks=yticks,
         )
 
     legend_handles = [
@@ -87,6 +91,5 @@ def build_exp23_figure(results_root: Path) -> Figure:
         for k in STRATEGY_ORDER
     ]
     place_side_legend(legend_ax, legend_handles, "Expansion strategy")
-    place_figure_caption(fig, SUBTITLE)
     finalize_pair_layout(fig)
     return fig

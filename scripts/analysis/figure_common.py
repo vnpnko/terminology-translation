@@ -16,8 +16,13 @@ from plot_style import (
     COLOR_GPT_EXPAND,
     COLOR_ORIGINAL,
     POSTER_BLUE,
+    fixed_top_ylim,
     headroom_ylim,
 )
+
+BLEU_YLIM_TOP = 70
+TERM_ACC_YLIM_TOP = 100
+YLIM_LABEL_PAD = 0.06
 
 # Shared colors for the two overlapping variants (original, expand) and each third arm.
 EXPANSION_COLORS = {
@@ -59,8 +64,10 @@ def plot_grouped_bars(
     series_labels: dict[str, str],
     value_fn: Callable[[str, str], float | None],
     ylabel: str,
-    panel_title: str,
+    panel_title: str | None = None,
     xlabel: str | None = None,
+    ylim_top: float | None = None,
+    yticks: list[float] | np.ndarray | None = None,
 ) -> list[float | None]:
     n_series = len(series_keys)
     x = np.arange(len(group_keys))
@@ -97,13 +104,19 @@ def plot_grouped_bars(
                     fontweight="bold",
                 )
 
-    ax.set_title(panel_title, loc="left", fontsize=14, color=POSTER_BLUE, pad=12)
+    if panel_title:
+        ax.set_title(panel_title, loc="left", fontsize=14, color=POSTER_BLUE, pad=12)
     ax.set_xticks(x)
     ax.set_xticklabels(tick_labels)
     ax.set_ylabel(ylabel, labelpad=10)
     if xlabel:
         ax.set_xlabel(xlabel, labelpad=10)
-    headroom_ylim(ax, all_values)
+    if ylim_top is not None:
+        fixed_top_ylim(ax, ylim_top, pad_ratio=YLIM_LABEL_PAD)
+    else:
+        headroom_ylim(ax, all_values)
+    if yticks is not None:
+        ax.set_yticks(yticks)
     return all_values
 
 

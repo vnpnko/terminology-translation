@@ -103,6 +103,11 @@ def headroom_ylim(ax, values: list[float | None], pad_ratio: float = 0.14) -> No
     ax.set_ylim(0, ymax * (1 + pad_ratio))
 
 
+def fixed_top_ylim(ax, top: float, pad_ratio: float = 0.06) -> None:
+    """Fix the y-axis top to ``top``, with a small pad for bar value labels."""
+    ax.set_ylim(0, top * (1 + pad_ratio))
+
+
 def save_figure(fig: Figure, output_dir: Path, stem: str) -> tuple[Path, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     pdf_path = output_dir / f"{stem}.pdf"

@@ -1,4 +1,4 @@
-"""Term expansion: original vs GPT contextual vs domain-filtered."""
+"""dev_v1 (test) vs dev_v2 training set comparison (GPT baseline)."""
 
 from __future__ import annotations
 
@@ -26,49 +26,43 @@ from metrics_loader import (
 )
 from plot_style import apply_poster_style
 
-NO_TERM_KEY = "no_term"
-NO_TERM_MODE = "no_term"
-NO_TERM_SOURCE_STRATEGY = "original"
-NO_TERM_LABEL = "No term"
-
-STRATEGY_ORDER = ("original", "expand", "cleaned")
-SERIES_ORDER = (NO_TERM_KEY, *STRATEGY_ORDER)
-STRATEGY_LABELS = {
-    NO_TERM_KEY: NO_TERM_LABEL,
-    "original": "Original",
-    "expand": "GPT expand",
-    "cleaned": "GPT cleaned",
+DATASET_ORDER = ("dev_v1", "dev_v2_training")
+DATASET_LABELS = {
+    "dev_v1": "Test (dev_v1)",
+    "dev_v2_training": "Training (dev_v2)",
+}
+DATASET_COLORS = {
+    "dev_v1": EXPANSION_COLORS["dev_v1"],
+    "dev_v2_training": EXPANSION_COLORS["dev_v2_training"],
 }
 
 TITLE = (
-    "Terminology expansion by language pair\n"
-    "(No-term baseline and three proper-term strategies; evaluated with GPT-4o-mini)"
+    "Test vs training terminology datasets\n"
+    "(proper_term; GPT-4o-mini; per language pair)"
 )
 
+
+def _dataset_paths(results_root: Path) -> dict[str, Path]:
+    return {
+        "dev_v1": results_root / "dev_v1" / "original" / "gpt" / "metrics_summary.json",
+        "dev_v2_training": results_root / "dev_v2" / "training" / "gpt" / "metrics_summary.json",
+    }
+
+
 def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | None]]]:
-    paths = [
-        results_root / "dev_v1" / strategy / "gpt" / "metrics_summary.json"
-        for strategy in STRATEGY_ORDER
-    ]
-    require_paths(paths)
+    paths = _dataset_paths(results_root)
+    require_paths(list(paths.values()))
 
     data: dict[str, dict[str, dict[str, float | None]]] = {}
-    for strategy in STRATEGY_ORDER:
-        summary = load_metrics_path(
-            results_root / "dev_v1" / strategy / "gpt" / "metrics_summary.json"
-        )
-        data[strategy] = {
+    for key, path in paths.items():
+        summary = load_metrics_path(path)
+        data[key] = {
             lang: get_lang_mode_metrics(summary, lang, DEFAULT_MODE) for lang in LANG_ORDER
         }
-        if strategy == NO_TERM_SOURCE_STRATEGY:
-            data[NO_TERM_KEY] = {
-                lang: get_lang_mode_metrics(summary, lang, NO_TERM_MODE)
-                for lang in LANG_ORDER
-            }
     return data
 
 
-def build_exp23_figure(results_root: Path) -> Figure:
+def build_exp4_figure(results_root: Path) -> Figure:
     apply_poster_style()
     data = _collect_data(results_root)
 
@@ -89,9 +83,9 @@ def build_exp23_figure(results_root: Path) -> Figure:
             ax,
             group_keys=LANG_ORDER,
             group_labels=LANG_LABELS,
-            series_keys=SERIES_ORDER,
-            series_labels=STRATEGY_LABELS,
-            value_fn=lambda strategy, lang: data[strategy][lang].get(metric_key),
+            series_keys=DATASET_ORDER,
+            series_labels=DATASET_LABELS,
+            value_fn=lambda dataset, lang, mk=metric_key: data[dataset][lang].get(mk),
             ylabel=ylabel,
             xlabel="Language pair",
             ylim_top=ylim_top,
@@ -99,9 +93,9 @@ def build_exp23_figure(results_root: Path) -> Figure:
         )
 
     legend_handles = [
-        Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=STRATEGY_LABELS[k])
-        for k in SERIES_ORDER
+        Patch(facecolor=DATASET_COLORS[k], edgecolor="#333333", label=DATASET_LABELS[k])
+        for k in DATASET_ORDER
     ]
-    place_side_legend(legend_ax, legend_handles, "Expansion strategy")
+    place_side_legend(legend_ax, legend_handles, "Dataset")
     finalize_pair_layout(fig)
     return fig

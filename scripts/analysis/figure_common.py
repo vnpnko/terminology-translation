@@ -14,6 +14,7 @@ from matplotlib.artist import Artist
 from plot_style import (
     COLOR_DICTIONARY,
     COLOR_GPT_EXPAND,
+    COLOR_NO_TERM,
     COLOR_ORIGINAL,
     POSTER_BLUE,
     fixed_top_ylim,
@@ -26,10 +27,13 @@ YLIM_LABEL_PAD = 0.06
 
 # Shared colors for the two overlapping variants (original, expand) and each third arm.
 EXPANSION_COLORS = {
+    "no_term": COLOR_NO_TERM,
     "original": COLOR_ORIGINAL,
     "expand": COLOR_GPT_EXPAND,
     "dictionary": COLOR_DICTIONARY,
     "cleaned": COLOR_DICTIONARY,
+    "dev_v1": COLOR_ORIGINAL,
+    "dev_v2_training": COLOR_DICTIONARY,
 }
 
 PAIR_FIG_SIZE = (17, 6.5)
@@ -131,9 +135,12 @@ def plot_grouped_bars(
         offset = (s_idx - (n_series - 1) / 2) * bar_width
         values = [value_fn(series_key, group_key) for group_key in group_keys]
         all_values.extend(values)
+        # Missing values (e.g. term accuracy for the no-term baseline) render as
+        # empty bars instead of raising in matplotlib.
+        plot_values = [np.nan if v is None else v for v in values]
         bars = ax.bar(
             x + offset,
-            values,
+            plot_values,
             bar_width * 0.92,
             label=series_labels[series_key],
             color=EXPANSION_COLORS[series_key],

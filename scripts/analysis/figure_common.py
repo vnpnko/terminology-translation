@@ -32,6 +32,8 @@ EXPANSION_COLORS = {
     "expand": COLOR_GPT_EXPAND,
     "dictionary": COLOR_DICTIONARY,
     "cleaned": COLOR_DICTIONARY,
+    "dev_v1": COLOR_ORIGINAL,
+    "dev_v2_training": COLOR_DICTIONARY,
 }
 
 PAIR_FIG_SIZE = (17, 6.5)

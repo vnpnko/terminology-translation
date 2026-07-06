@@ -28,7 +28,7 @@ from plot_style import save_figure
 FIGURE_BUILDERS = {
     "exp1": ("fig_exp1_term_expansion", lambda root: build_exp1_figure(root / "results")),
     "exp23": ("fig_exp23_expansion_strategies", lambda root: build_exp23_figure(root / "results")),
-    "exp4": ("fig_exp4_dictionary_vs_original", lambda root: build_exp4_figure(root / "results")),
+    "exp4": ("fig_exp4_dev_v1_vs_dev_v2_training", lambda root: build_exp4_figure(root / "results")),
     "exp5": ("fig_exp5_lora_finetuning", lambda root: build_exp5_figure(root)),
 }
 

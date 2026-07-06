@@ -41,8 +41,8 @@ STRATEGY_LABELS = {
 }
 
 TITLE = (
-    "Proper Terms Expansion: Original vs GPT Expand vs GPT cleaned\n"
-    "(GPT-4o-mini; proper_term; dev_v1)"
+    "Terminology expansion by language pair\n"
+    "(No-term baseline and three proper-term strategies; evaluated with GPT-4o-mini)"
 )
 
 def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | None]]]:

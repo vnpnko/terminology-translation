@@ -40,8 +40,8 @@ VARIANT_LABELS = {
 }
 
 TITLE = (
-    "Proper Terms Expansion: Original vs GPT Expand vs GPT cleaned\n"
-    "(GPT-4o-mini, Qwen2.5-3B, Qwen2.5-7B; proper_term)"
+    "Terminology expansion across models\n"
+    "(No-term baseline and three proper-term strategies; macro avg over language pairs)"
 )
 
 

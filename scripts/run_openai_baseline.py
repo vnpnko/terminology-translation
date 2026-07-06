@@ -13,6 +13,12 @@ Usage::
         --data-dir data/dev_v1/original \\
         --output-dir results/dev_v1/original/gpt \\
         --limit 10
+
+    python scripts/run_openai_baseline.py \\
+        --data-dir data/dev_v1/original \\
+        --data-variant original \\
+        --output-dir results/dev_v1/original/gpt_nofs \\
+        --no-few-shot
 """
 
 from __future__ import annotations
@@ -122,6 +128,15 @@ def data_stem(lang: str, data_version: str, data_variant: str | None) -> str:
     if data_variant:
         stem = f"{stem}_{data_variant}"
     return stem
+
+
+def normalize_data_variant(value: str | None) -> str | None:
+    if value is None:
+        return None
+    normalized = value.strip().lower()
+    if normalized in {"", "original", "none", "-"}:
+        return None
+    return value.strip()
 
 
 def load_jsonl(path: Path, max_samples: int | None = None) -> list[dict[str, Any]]:
@@ -270,8 +285,10 @@ def translate_sample(
     output_tag: str,
     lang: str,
     mode: str,
+    *,
+    use_few_shot: bool = True,
 ) -> str:
-    examples_block = format_sample_examples(lang, mode)
+    examples_block = format_sample_examples(lang, mode) if use_few_shot else ""
     term_block = format_terminology_block(terminology or {})
     if term_block:
         term_block += "\n"
@@ -317,6 +334,8 @@ def run_mode(
     output_dir: Path,
     config: dict[str, str],
     stem: str,
+    *,
+    use_few_shot: bool = True,
 ) -> dict[str, Any]:
     ref_field = config["ref_field"]
     output_tag = config["output_tag"]
@@ -335,6 +354,7 @@ def run_mode(
             output_tag,
             lang,
             mode,
+            use_few_shot=use_few_shot,
         )
         preds.append(pred)
         record = sample.copy()
@@ -372,7 +392,14 @@ def parse_args() -> argparse.Namespace:
         default=REPO_ROOT / "data" / "dev_v1" / "dictionary",
     )
     parser.add_argument("--data-version", default="v1")
-    parser.add_argument("--data-variant", default="dictionary")
+    parser.add_argument(
+        "--data-variant",
+        default="dictionary",
+        help=(
+            "Filename suffix for input JSONL (e.g. dictionary, expand, cleaned). "
+            "Use 'original' for base dev_v1 files without a suffix (ende_dev_v1.jsonl)."
+        ),
+    )
     parser.add_argument(
         "--output-dir",
         type=Path,
@@ -382,11 +409,25 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model", default=None)
     parser.add_argument("--max-retries", type=int, default=3)
     parser.add_argument("--retry-delay", type=float, default=5.0)
+    parser.add_argument(
+        "--no-few-shot",
+        action="store_true",
+        help="Skip the 3 in-prompt few-shot examples; terminology injection still applies per mode.",
+    )
+    parser.add_argument(
+        "--modes",
+        nargs="+",
+        choices=MODES,
+        default=MODES,
+        metavar="MODE",
+        help=f"Translation modes to run (default: all). Choices: {', '.join(MODES)}.",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
+    data_variant = normalize_data_variant(args.data_variant)
     data_dir = args.data_dir.resolve()
     output_dir = args.output_dir.resolve()
 
@@ -400,20 +441,27 @@ def main() -> None:
 
     datasets: dict[str, list[dict[str, Any]]] = {}
     for lang in LANG_GROUPS:
-        path = data_dir / f"{data_stem(lang, args.data_version, args.data_variant)}.jsonl"
+        path = data_dir / f"{data_stem(lang, args.data_version, data_variant)}.jsonl"
         if not path.is_file():
             raise SystemExit(f"Missing dataset: {path}")
         datasets[lang] = load_jsonl(path, args.limit)
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    use_few_shot = not args.no_few_shot
     summary: dict[str, Any] = {
         "data_version": args.data_version,
-        "data_variant": args.data_variant,
+        "data_variant": data_variant,
         "data_dir": repo_rel_path(data_dir),
-        "prompt_examples_per_lang": {lang: len(SAMPLE_SENTENCES[lang]) for lang in LANG_GROUPS},
+        "use_few_shot": use_few_shot,
+        "prompt_examples_per_lang": (
+            {lang: len(SAMPLE_SENTENCES[lang]) for lang in LANG_GROUPS}
+            if use_few_shot
+            else {lang: 0 for lang in LANG_GROUPS}
+        ),
         "provider": "openrouter",
         "base_url": OPENROUTER_BASE_URL,
         "model": model,
+        "modes": args.modes,
         "max_samples": args.limit,
         "languages": {},
     }
@@ -423,7 +471,7 @@ def main() -> None:
         samples = datasets[lang]
         lang_dir = output_dir / lang
         lang_dir.mkdir(parents=True, exist_ok=True)
-        stem = data_stem(lang, args.data_version, args.data_variant)
+        stem = data_stem(lang, args.data_version, data_variant)
         print(f"\n=== {lang}: {len(samples)} samples → {config['target_lang']} ===")
         lang_results = {
             mode: run_mode(
@@ -437,8 +485,9 @@ def main() -> None:
                 lang_dir,
                 config,
                 stem,
+                use_few_shot=use_few_shot,
             )
-            for mode in MODES
+            for mode in args.modes
         }
         summary["languages"][lang] = {
             "data_file": repo_rel_path(data_dir / f"{stem}.jsonl"),

@@ -11,12 +11,7 @@ from matplotlib.figure import Figure
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
-from figure_common import (
-    CAPTION_FONTSIZE,
-    CAPTION_X,
-    CAPTION_Y,
-    place_side_legend,
-)
+from figure_common import place_side_legend
 from metrics_loader import LANG_LABELS, LANG_ORDER, require_paths
 from plot_style import (
     LANG_COLORS,
@@ -28,29 +23,32 @@ from plot_style import (
 
 FINETUNING_DIR_NAME = "Finetuning experiment"
 
-EPOCH_RUNS = (
-    (0, "qwen_base"),
+LORA_EPOCH_RUNS = (
     (1, "qwen_lora_no_few_shots"),
     (2, "qwen_lora_no_few_shots_2_epochs"),
     (3, "qwen_lora_no_few_shots_3_epochs"),
 )
 
+NO_FEW_SHOT_PATHS = {
+    "Qwen2.5-7B": "results/dev_v1/original/no-few-shots/qwen-7b/metrics_summary.json",
+    "Qwen2.5-3B": "results/dev_v1/original/no-few-shots/qwen-3b/metrics_summary.json",
+}
+
+NO_FEW_SHOT_GPT_PATH = "results/dev_v1/original/no-few-shots/gpt/metrics_summary.json"
+
+# (metrics path, label, use_finetuning_results_root)
 COMPARE_RUNS = (
-    ("gpt_base/metrics_summary.json", "GPT-4o-mini (few-shot)"),
-    ("Qwen2.5-7B/qwen_base/metrics_summary.json", "Qwen 7B base (few-shot)"),
-    ("Qwen2.5-7B/qwen_lora_no_few_shots_2_epochs/metrics_summary.json", "Qwen 7B LoRA 2ep (no few-shot)"),
+    (NO_FEW_SHOT_GPT_PATH, "GPT-4o-mini (no few-shot)", False),
+    ("gpt_base/metrics_summary.json", "GPT-4o-mini (few-shot)", True),
+    ("Qwen2.5-7B/qwen_lora_no_few_shots_2_epochs/metrics_summary.json", "Qwen 7B LoRA 2ep (no few-shot)", True),
 )
 
-# Epoch 0 = untuned base with 3-shot prompt; epochs 1–3 = LoRA without few-shot (ExperimentsSummary §5).
-EPOCH_XTICKS = ["0\n(base,\nfew-shot)", "1", "2", "3"]
+# x=0: few-shot base (standalone); x=1: no-few-shot base; x=2–4: LoRA epochs 1–3.
+EPOCH_XTICKS = ["0\n(few-shot)", "0", "1", "2", "3"]
 
 TITLE = (
-    "Fine-Tuning Qwen2.5 on SAP dev_v2: LoRA Epoch Ablation vs GPT-4o-mini\n"
-    "(train ~1,500 sent./lang · test held-out dev_v1 · proper_term)"
-)
-SUBTITLE = (
-    "Epoch 0: untuned Qwen base with 3-shot prompt; epochs 1–3: LoRA without few-shot. "
-    "LoRA closes the BLEU gap on EN→ES/RU; GPT-4o-mini remains strongest for terminology accuracy."
+    "LoRA Epoch Ablation for Qwen2.5\n"
+    "(train dev_v2; test dev_v1; proper_term; compared with GPT-4o-mini)"
 )
 
 
@@ -76,31 +74,53 @@ def _load_run_metrics(project_root: Path, rel_path: str):
     return by_lang, macro_average(by_lang)
 
 
-def _collect_epoch_series(project_root: Path, model_dir: str) -> dict[str, list[tuple[int, float | None]]]:
-    paths = [
+def _load_metrics_at_path(project_root: Path, path: Path):
+    _, extract_proper_term_metrics, load_summary, macro_average = _import_finetuning_parser(
         project_root
-        / FINETUNING_DIR_NAME
-        / "results"
-        / model_dir
-        / folder
-        / "metrics_summary.json"
-        for _, folder in EPOCH_RUNS
+    )
+    summary = load_summary(path)
+    by_lang = extract_proper_term_metrics(summary)
+    return by_lang, macro_average(by_lang)
+
+
+def _collect_epoch_series(project_root: Path, model_dir: str) -> dict:
+    finetuning_results = project_root / FINETUNING_DIR_NAME / "results" / model_dir
+    paths = [
+        finetuning_results / "qwen_base" / "metrics_summary.json",
+        project_root / NO_FEW_SHOT_PATHS[model_dir],
+        *(
+            finetuning_results / folder / "metrics_summary.json"
+            for _, folder in LORA_EPOCH_RUNS
+        ),
     ]
     require_paths(paths)
 
-    bleu_series: list[tuple[int, float | None]] = []
-    term_series: list[tuple[int, float | None]] = []
+    _, fewshot_macro = _load_run_metrics(project_root, f"{model_dir}/qwen_base/metrics_summary.json")
+    _, nofs_macro = _load_metrics_at_path(project_root, project_root / NO_FEW_SHOT_PATHS[model_dir])
 
-    for epochs, folder in EPOCH_RUNS:
+    bleu_line: list[tuple[int, float | None]] = [(1, nofs_macro.bleu)]
+    term_line: list[tuple[int, float | None]] = [(1, nofs_macro.term_avg_pct)]
+
+    for epoch, folder in LORA_EPOCH_RUNS:
         _, macro = _load_run_metrics(project_root, f"{model_dir}/{folder}/metrics_summary.json")
-        bleu_series.append((epochs, macro.bleu))
-        term_series.append((epochs, macro.term_avg_pct))
+        x_pos = epoch + 1
+        bleu_line.append((x_pos, macro.bleu))
+        term_line.append((x_pos, macro.term_avg_pct))
 
-    return {"bleu": bleu_series, "term_acc": term_series}
+    return {
+        "fewshot_base": {"bleu": fewshot_macro.bleu, "term_acc": fewshot_macro.term_avg_pct},
+        "line": {"bleu": bleu_line, "term_acc": term_line},
+    }
 
 
 def _short_model_label(label: str) -> str:
     return label.replace(" (few-shot)", "\n(few-shot)").replace(" (no few-shot)", "\n(no few-shot)")
+
+
+def _compare_run_path(project_root: Path, rel_path: str, use_finetuning_results: bool) -> Path:
+    if use_finetuning_results:
+        return project_root / FINETUNING_DIR_NAME / "results" / rel_path
+    return project_root / rel_path
 
 
 def _plot_model_lang_bars(
@@ -110,7 +130,6 @@ def _plot_model_lang_bars(
     LangMetrics,
     metric_attr: str,
     ylabel: str,
-    title: str,
 ) -> None:
     n_models = len(model_labels)
     n_langs = len(LANG_ORDER)
@@ -151,7 +170,6 @@ def _plot_model_lang_bars(
     ax.set_xticklabels([_short_model_label(label) for label in model_labels])
     ax.tick_params(axis="x", pad=6)
     ax.set_ylabel(ylabel, labelpad=10)
-    ax.set_title(title, loc="left", fontsize=14, color=POSTER_BLUE, pad=16)
     headroom_ylim(ax, all_values)
 
 
@@ -159,7 +177,8 @@ def build_exp5_figure(project_root: Path) -> Figure:
     apply_poster_style()
 
     compare_paths = [
-        project_root / FINETUNING_DIR_NAME / "results" / rel for rel, _ in COMPARE_RUNS
+        _compare_run_path(project_root, rel_path, use_finetuning_results)
+        for rel_path, _, use_finetuning_results in COMPARE_RUNS
     ]
     require_paths(compare_paths)
 
@@ -170,8 +189,8 @@ def build_exp5_figure(project_root: Path) -> Figure:
         project_root
     )
     compare_data = {}
-    for rel, label in COMPARE_RUNS:
-        summary = load_summary(project_root / FINETUNING_DIR_NAME / "results" / rel)
+    for rel_path, label, use_finetuning_results in COMPARE_RUNS:
+        summary = load_summary(_compare_run_path(project_root, rel_path, use_finetuning_results))
         compare_data[label] = extract_proper_term_metrics(summary)
 
     fig = plt.figure(figsize=(17, 11))
@@ -197,22 +216,57 @@ def build_exp5_figure(project_root: Path) -> Figure:
     fig.suptitle(TITLE, fontsize=16, fontweight="bold", color=POSTER_BLUE, y=0.97)
 
     line_styles = {
-        "7B": {"color": SIZE_COLORS["7B"], "marker": "o", "label": "Qwen2.5-7B-Instruct"},
-        "3B": {"color": SIZE_COLORS["3B"], "marker": "s", "label": "Qwen2.5-3B-Instruct"},
+        "7B": {
+            "color": SIZE_COLORS["7B"],
+            "marker": "o",
+            "label": "Qwen 7B",
+            "annotate_offset": (0, 10),
+            "annotate_va": "bottom",
+        },
+        "3B": {
+            "color": SIZE_COLORS["3B"],
+            "marker": "s",
+            "label": "Qwen 3B",
+            "annotate_offset": (0, -10),
+            "annotate_va": "top",
+        },
     }
     series_by_size = {"7B": series_7b, "3B": series_3b}
 
-    for ax, metric_key, ylabel, panel_title in [
-        (ax_bleu, "bleu", "BLEU (macro avg)", "LoRA epochs vs BLEU"),
-        (ax_term, "term_acc", "Term accuracy % (macro avg)", "LoRA epochs vs term accuracy"),
+    for ax, metric_key, ylabel in [
+        (ax_bleu, "bleu", "BLEU (macro avg)"),
+        (ax_term, "term_acc", "Term accuracy % (macro avg)"),
     ]:
         panel_values: list[float | None] = []
         for size, series in series_by_size.items():
             style = line_styles[size]
-            points = series[metric_key]
+            points = series["line"][metric_key]
             xs = [p[0] for p in points]
             ys = [p[1] for p in points]
             panel_values.extend(ys)
+
+            fewshot_val = series["fewshot_base"][metric_key]
+            if fewshot_val is not None:
+                panel_values.append(fewshot_val)
+                ax.plot(
+                    [0],
+                    [fewshot_val],
+                    linestyle="none",
+                    marker=style["marker"],
+                    color=style["color"],
+                    markersize=9,
+                )
+                ax.annotate(
+                    f"{fewshot_val:.1f}",
+                    (0, fewshot_val),
+                    textcoords="offset points",
+                    xytext=style["annotate_offset"],
+                    ha="center",
+                    va=style["annotate_va"],
+                    fontsize=10,
+                    fontweight="bold",
+                )
+
             ax.plot(
                 xs,
                 ys,
@@ -228,32 +282,21 @@ def build_exp5_figure(project_root: Path) -> Figure:
                         f"{y:.1f}",
                         (x, y),
                         textcoords="offset points",
-                        xytext=(0, 10),
+                        xytext=style["annotate_offset"],
                         ha="center",
+                        va=style["annotate_va"],
                         fontsize=10,
                         fontweight="bold",
                     )
 
-        ax.axvline(2, color="#888888", linestyle="--", linewidth=1.4, alpha=0.85)
-        ax.set_xticks([0, 1, 2, 3])
+        ax.axvline(3, color="#888888", linestyle="--", linewidth=1.4, alpha=0.85, zorder=0)
+        ax.set_xticks([0, 1, 2, 3, 4])
         ax.set_xticklabels(EPOCH_XTICKS)
+        ax.set_xlabel("Epochs", labelpad=12)
         ax.set_ylabel(ylabel, labelpad=10)
-        ax.set_title(panel_title, loc="left", fontsize=14, color=POSTER_BLUE, pad=10)
         headroom_ylim(ax, panel_values)
 
-    ax_bleu.set_xlabel("")
-    ax_term.set_xlabel("LoRA fine-tuning epochs (1–3: no few-shot at inference)", labelpad=12)
-
-    ax_bleu.text(
-        2.08,
-        ax_bleu.get_ylim()[1] * 0.92,
-        "best overall\n(7B)",
-        fontsize=10,
-        color="#555555",
-        va="top",
-    )
-
-    model_labels = [label for _, label in COMPARE_RUNS]
+    model_labels = [label for _, label, _ in COMPARE_RUNS]
     _plot_model_lang_bars(
         ax_compare_bleu,
         compare_data,
@@ -261,7 +304,6 @@ def build_exp5_figure(project_root: Path) -> Figure:
         LangMetrics,
         "bleu",
         "BLEU",
-        "BLEU by model and language pair",
     )
     _plot_model_lang_bars(
         ax_compare_term,
@@ -270,7 +312,6 @@ def build_exp5_figure(project_root: Path) -> Figure:
         LangMetrics,
         "term_avg_pct",
         "Term accuracy (%)",
-        "Term accuracy by model and language pair",
     )
 
     size_handles = [
@@ -293,14 +334,5 @@ def build_exp5_figure(project_root: Path) -> Figure:
     ]
     place_side_legend(ax_legend_bottom, lang_handles, "Language pair")
 
-    fig.text(
-        CAPTION_X,
-        CAPTION_Y,
-        SUBTITLE,
-        ha="center",
-        va="bottom",
-        fontsize=CAPTION_FONTSIZE,
-        color="#444444",
-    )
     fig.subplots_adjust(top=0.82, bottom=0.14, left=0.07, right=0.98)
     return fig

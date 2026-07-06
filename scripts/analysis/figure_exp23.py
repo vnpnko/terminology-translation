@@ -26,8 +26,15 @@ from metrics_loader import (
 )
 from plot_style import apply_poster_style
 
+NO_TERM_KEY = "no_term"
+NO_TERM_MODE = "no_term"
+NO_TERM_SOURCE_STRATEGY = "original"
+NO_TERM_LABEL = "No term"
+
 STRATEGY_ORDER = ("original", "expand", "cleaned")
+SERIES_ORDER = (NO_TERM_KEY, *STRATEGY_ORDER)
 STRATEGY_LABELS = {
+    NO_TERM_KEY: NO_TERM_LABEL,
     "original": "Original",
     "expand": "GPT expand",
     "cleaned": "GPT cleaned",
@@ -53,6 +60,11 @@ def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | N
         data[strategy] = {
             lang: get_lang_mode_metrics(summary, lang, DEFAULT_MODE) for lang in LANG_ORDER
         }
+        if strategy == NO_TERM_SOURCE_STRATEGY:
+            data[NO_TERM_KEY] = {
+                lang: get_lang_mode_metrics(summary, lang, NO_TERM_MODE)
+                for lang in LANG_ORDER
+            }
     return data
 
 
@@ -77,7 +89,7 @@ def build_exp23_figure(results_root: Path) -> Figure:
             ax,
             group_keys=LANG_ORDER,
             group_labels=LANG_LABELS,
-            series_keys=STRATEGY_ORDER,
+            series_keys=SERIES_ORDER,
             series_labels=STRATEGY_LABELS,
             value_fn=lambda strategy, lang: data[strategy][lang].get(metric_key),
             ylabel=ylabel,
@@ -88,7 +100,7 @@ def build_exp23_figure(results_root: Path) -> Figure:
 
     legend_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=STRATEGY_LABELS[k])
-        for k in STRATEGY_ORDER
+        for k in SERIES_ORDER
     ]
     place_side_legend(legend_ax, legend_handles, "Expansion strategy")
     finalize_pair_layout(fig)

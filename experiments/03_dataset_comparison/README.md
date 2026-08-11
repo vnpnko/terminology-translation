@@ -1,0 +1,28 @@
+# 03 · Dataset comparison
+
+Compares GPT-4o-mini `proper_term` performance on the `dev_v1` test set vs. the `dev_v2` training set. Produces the poster's `fig_exp4_dev_v1_vs_dev_v2_training` figure.
+
+This is a **thin wrapper**: no experiment-local data or results. It reads the shared `results/` tree.
+
+## Reproduce
+
+```bash
+python src/analysis/generate_result_figures.py --only exp4
+```
+
+Generating script: [`src/analysis/figure_exp4.py`](../../src/analysis/figure_exp4.py) (`build_exp4_figure`), shared helpers in [`figure_common.py`](../../src/analysis/figure_common.py) and [`metrics_loader.py`](../../src/analysis/metrics_loader.py).
+
+## Inputs
+
+| Dataset | Results path |
+| ------- | ------------ |
+| `dev_v1` test | `results/dev_v1/original/gpt/metrics_summary.json` |
+| `dev_v2` training | `results/dev_v2/training/gpt/metrics_summary.json` |
+
+## Output
+
+[`poster/figures/fig_exp4_dev_v1_vs_dev_v2_training.pdf`](../../poster/figures/fig_exp4_dev_v1_vs_dev_v2_training.pdf)
+
+## Known gap
+
+`poster/figures/fig_exp4_dictionary_vs_original.pdf` also exists in the poster figures folder, but no current script in `src/analysis/` regenerates it — `figure_exp4.py` only builds the dev_v1-vs-dev_v2 comparison above. This looks like a stale artifact from an earlier version of the pipeline (the closest current equivalent is `compare_v1_variants_to_excel.py`, which compares `dev_v1/original` vs `dev_v1/dictionary` results into an Excel workbook, not a figure). If this comparison is still needed for the poster, it needs a script written or restored; until then, treat that one PDF as unreproducible from this repo.

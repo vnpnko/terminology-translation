@@ -1,5 +1,11 @@
-#!/usr/bin/env python3
 """Compare dev_v1/original vs dev_v1/dictionary GPT baseline results.
+
+Writes one styled .xlsx file (default:
+``report/datasets/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx``).
+Reads ``metrics_summary.json`` from ``<results-root>/dev_v1/original/<baseline>/``
+and ``<results-root>/dev_v1/dictionary/<baseline>/``.
+
+Usage::
 
     python src/analysis/compare_v1_variants_to_excel.py
     python src/analysis/compare_v1_variants_to_excel.py --baseline gpt
@@ -11,6 +17,7 @@ import argparse
 import json
 import math
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 from openpyxl import Workbook
@@ -49,12 +56,12 @@ THICK = Side(style="medium", color="000000")
 THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 
-def load_summary(path: Path) -> dict:
+def load_summary(path: Path) -> dict[str, Any]:
     with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
-def extract_metric(metrics: dict, spec: str | tuple[str, str]) -> float | None:
+def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> float | None:
     if isinstance(spec, str):
         value = metrics.get(spec)
     else:
@@ -67,7 +74,7 @@ def extract_metric(metrics: dict, spec: str | tuple[str, str]) -> float | None:
     return value
 
 
-def extract_mode_metrics(summary: dict) -> dict[tuple[str, str], dict[str, float | None]]:
+def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[str, float | None]]:
     by_lang_mode: dict[tuple[str, str], dict[str, float | None]] = {}
     for lang in LANG_ORDER:
         lang_data = summary.get("languages", {}).get(lang)
@@ -198,7 +205,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb.save(output_path)
 
 
-def main() -> None:
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline", default="gpt", choices=("gpt", "qwen_3b", "qwen_7b"))
     parser.add_argument("--results-root", type=Path, default=Path("results"))
@@ -207,7 +214,11 @@ def main() -> None:
         type=Path,
         default=Path("report/datasets/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx"),
     )
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
 
     results_root = args.results_root.resolve()
     df = build_comparison(results_root, args.baseline)

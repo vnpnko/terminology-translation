@@ -1,7 +1,12 @@
-#!/usr/bin/env python3
 """Generate poster result figures from metrics_summary.json files.
 
-Usage:
+Writes a PDF and PNG per figure to ``--output-dir`` (default:
+``<project-root>/poster/figures``). Reads ``metrics_summary.json`` files
+under ``<project-root>/results`` (and ``experiments/05_lora_finetuning``
+for exp5).
+
+Usage::
+
     python src/analysis/generate_result_figures.py
     python src/analysis/generate_result_figures.py --only exp1 exp5
     python src/analysis/generate_result_figures.py --output-dir poster/figures
@@ -55,7 +60,7 @@ def generate_figures(
     return written
 
 
-def main() -> None:
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--project-root",
@@ -75,7 +80,11 @@ def main() -> None:
         choices=list(FIGURE_BUILDERS.keys()),
         help="Generate only selected figures",
     )
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
 
     project_root = args.project_root.resolve()
     output_dir = (

@@ -59,37 +59,6 @@ Scripts live in `src/`.
 | `data_preparation/apply_dictionary_to_dev_v1.py`             | Applies dictionary to dev_v1 into `data/interim/dev_v1_dictionary/` (optional, new files).  |
 | `data_preparation/strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
 
-### GPT term pipeline (500-sentence eval)
-
-| Script | Purpose |
-| ------ | ------- |
-| `run_gpt_term_pipeline.py` | 3-step GPT pipeline: extract EN terms → propose target translations (no reference) → translate. |
-
-This is an **inference-time experiment**, not a dictionary build. Reference translations (`de`/`es`/`ru`) in the JSONL are used **for evaluation only** — they are never sent to GPT during steps 1–2.
-
-```bash
-# Pilot (10 lines, German)
-python src/run_gpt_term_pipeline.py --lang ende --limit 10
-
-# Full run (500 lines × 3 language pairs)
-python src/run_gpt_term_pipeline.py --all
-
-# Resume after interruption
-python src/run_gpt_term_pipeline.py --all --resume
-
-# Compare oracle vs GPT-proposed modes
-python src/analysis/compare_gpt_pipeline_modes.py
-```
-
-**Outputs**
-
-| Path | Description |
-| ---- | ----------- |
-| `data/interim/dev_v1_gpt_proposed/` | Cached `gpt_extracted_terms` and `gpt_proposed_terms` per line |
-| `results/dev_v1/original/gpt_pipeline/` | Translations + `metrics_summary.json` |
-
-**Co-editor handoff (Qwen):** load `data/interim/dev_v1_gpt_proposed/{lang}_dev_v1_gpt_terms.jsonl`, use `gpt_proposed_terms` as the terminology dict in the Qwen baseline notebooks (translation step only). Write results to e.g. `results/dev_v1/original/qwen_3b_gpt_terms/`.
-
 ### Analysis
 
 All analysis scripts require `pandas` and `openpyxl`.
@@ -99,7 +68,6 @@ All analysis scripts require `pandas` and `openpyxl`.
 | `analysis/compare_models_to_excel.py`   | Compares GPT, Qwen 3B, and Qwen 7B. Rows grouped by mode.                    |
 | `analysis/compare_modes_to_excel.py`    | Compares `no_term`, `proper_term`, and `random_term`. Rows grouped by model. |
 | `analysis/compare_datasets_to_excel.py` | Compares `dev_v1/original` vs `dev_v2`. Rows grouped by mode.                |
-| `analysis/compare_gpt_pipeline_modes.py` | Compares GPT baseline modes vs `gpt_proposed_term` pipeline.                  |
 
 Example commands:
 
@@ -117,7 +85,6 @@ Generated comparison Excel files are written under `report/`:
 | ------------------ | ------------------------------ | -------------------------------------------------------------------------------- |
 | `report/models/`   | `compare_models_to_excel.py`   | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
 | `report/modes/`    | `compare_modes_to_excel.py`    | `<dataset>_mode_comparison.xlsx`                                                 |
-| `report/modes/`    | `compare_gpt_pipeline_modes.py` | `dev_v1_original_gpt_pipeline_mode_comparison.xlsx`                              |
 | `report/datasets/` | `compare_datasets_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`                      |
 
 ## Data
@@ -131,24 +98,6 @@ All data lives in `data/`, staged by how far it is from the original source — 
 | `interim/dev_v1_expand/` | interim | Expanded version of `raw/dev_v1_original/` with additional `proper_terms`. |
 | `interim/dev_v1_cleaned/` | interim | Cleaned version of `dev_v1_expand/` with terminology-poor `proper_terms` removed. |
 | `interim/dev_v1_dictionary/` | interim | dev_v1 enriched from term dictionary (optional output of `apply_dictionary_to_dev_v1.py`). |
-| `interim/dev_v1_gpt_proposed/` | interim | GPT-extracted and GPT-proposed term pairs for the 500-line eval set (output of `run_gpt_term_pipeline.py`). |
 | `processed/dev_v2/` | processed | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus, ready to use. |
 | `processed/term_dictionary/` | processed | Term dictionary built from dev_v2 with line IDs, lemmas, and observed inflections (output of `build_term_dictionary.py`). |
 | `processed/term_pairs/` | processed | Flat aggregated EN→target term-pair lists from v1/v2. |
-
-### Term dictionary pipeline
-
-```bash
-conda activate terminology-translation
-pip install -r requirements.txt
-python -m spacy download en_core_web_sm de_core_news_sm es_core_news_sm
-
-# Build dictionary from dev_v2 (dry run)
-python src/data_preparation/build_term_dictionary.py --all --limit 50
-
-# Full build (requires OPENROUTER_API_KEY in .env)
-python src/data_preparation/build_term_dictionary.py --all
-
-# Optional: apply to dev_v1 (writes new files only)
-python src/data_preparation/apply_dictionary_to_dev_v1.py --all
-```

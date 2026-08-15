@@ -1,8 +1,8 @@
 """Compare GPT, Qwen 3B, and Qwen 7B baseline metrics_summary.json files into one Excel sheet.
 
 Writes one styled .xlsx file (default:
-``report/models/<dataset>_model_comparison.xlsx``). Reads
-``metrics_summary.json`` from ``<dataset_dir>/{gpt,qwen_3b,qwen_7b}/``.
+``experiments/01_term_expansion_by_model/report/<dataset>_model_comparison.xlsx``).
+Reads ``metrics_summary.json`` from ``<dataset_dir>/{gpt,qwen_3b,qwen_7b}/``.
 
 Usage::
 
@@ -257,7 +257,7 @@ def dataset_slug(dataset_dir: Path) -> str:
 
 
 def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
-    return report_dir / "models" / f"{dataset_slug(dataset_dir)}_model_comparison.xlsx"
+    return report_dir / f"{dataset_slug(dataset_dir)}_model_comparison.xlsx"
 
 
 def parse_args() -> argparse.Namespace:
@@ -271,12 +271,15 @@ def parse_args() -> argparse.Namespace:
         "--output",
         type=Path,
         default=None,
-        help="Output .xlsx path (default: report/models/<dataset>_model_comparison.xlsx)",
+        help=(
+            "Output .xlsx path "
+            "(default: experiments/01_term_expansion_by_model/report/<dataset>_model_comparison.xlsx)"
+        ),
     )
     parser.add_argument(
         "--report-dir",
         type=Path,
-        default=Path("report"),
+        default=Path("experiments/01_term_expansion_by_model/report"),
         help="Report output directory when --output is not set",
     )
     return parser.parse_args()

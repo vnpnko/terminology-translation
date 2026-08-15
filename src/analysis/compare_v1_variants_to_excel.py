@@ -1,7 +1,7 @@
 """Compare dev_v1/original vs dev_v1/dictionary GPT baseline results.
 
 Writes one styled .xlsx file (default:
-``report/datasets/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx``).
+``experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx``).
 Reads ``metrics_summary.json`` from ``<results-root>/dev_v1/original/<baseline>/``
 and ``<results-root>/dev_v1/dictionary/<baseline>/``.
 
@@ -212,7 +212,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("report/datasets/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx"),
+        default=Path(
+            "experiments/03_dataset_comparison/report/"
+            "dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx"
+        ),
     )
     return parser.parse_args()
 

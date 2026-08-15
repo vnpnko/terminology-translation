@@ -1,7 +1,8 @@
 """Compare no_term, proper_term, and random_term modes across all baseline models.
 
 Writes one styled .xlsx file (default:
-``report/modes/<dataset>_mode_comparison.xlsx``) with 9 data rows: 3 models
+``experiments/02_term_expansion_by_language_pair/report/<dataset>_mode_comparison.xlsx``)
+with 9 data rows: 3 models
 (GPT, Qwen 3B, Qwen 7B), each with 3 language rows (ende, enru, enes). The
 model column is merged per block. Reads ``metrics_summary.json`` from
 ``<dataset_dir>/{gpt,qwen_3b,qwen_7b}/``.
@@ -261,7 +262,7 @@ def dataset_slug(dataset_dir: Path) -> str:
 
 
 def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
-    return report_dir / "modes" / f"{dataset_slug(dataset_dir)}_mode_comparison.xlsx"
+    return report_dir / f"{dataset_slug(dataset_dir)}_mode_comparison.xlsx"
 
 
 def parse_args() -> argparse.Namespace:
@@ -275,12 +276,15 @@ def parse_args() -> argparse.Namespace:
         "--output",
         type=Path,
         default=None,
-        help="Output .xlsx path (default: report/modes/<dataset>_mode_comparison.xlsx)",
+        help=(
+            "Output .xlsx path "
+            "(default: experiments/02_term_expansion_by_language_pair/report/<dataset>_mode_comparison.xlsx)"
+        ),
     )
     parser.add_argument(
         "--report-dir",
         type=Path,
-        default=Path("report"),
+        default=Path("experiments/02_term_expansion_by_language_pair/report"),
         help="Report output directory when --output is not set",
     )
     return parser.parse_args()

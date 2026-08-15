@@ -79,13 +79,15 @@ Each `gpt/`, `qwen_3b/` and `qwen_7b/` results directory contains a `metrics_sum
 
 ## Report
 
-Generated comparison Excel files are written under `report/`:
+Generated comparison Excel files live inside the experiment they compare, under `experiments/<name>/report/` — not in a shared top-level `report/` directory. A table belongs wherever its comparison axis is the experiment's subject: model-vs-model tables belong to the "by model" experiment, mode-vs-mode tables to the "by language pair" experiment, dataset-vs-dataset tables to the dataset-comparison experiment.
 
-| Directory          | Produced by                    | Naming pattern                                                                   |
-| ------------------ | ------------------------------ | -------------------------------------------------------------------------------- |
-| `report/models/`   | `compare_models_to_excel.py`   | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
-| `report/modes/`    | `compare_modes_to_excel.py`    | `<dataset>_mode_comparison.xlsx`                                                 |
-| `report/datasets/` | `compare_datasets_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`                      |
+| Report dir | Produced by | Naming pattern |
+| ---------- | ----------- | --------------- |
+| [`experiments/01_term_expansion_by_model/report/`](experiments/01_term_expansion_by_model/README.md#report-tables) | `compare_models_to_excel.py` | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
+| [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `compare_modes_to_excel.py` | `<dataset>_mode_comparison.xlsx` |
+| [`experiments/03_dataset_comparison/report/`](experiments/03_dataset_comparison/README.md#report-tables) | `compare_datasets_to_excel.py`, `compare_v1_variants_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`, `dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` |
+
+See each experiment's README for the exact command to regenerate every table it holds. When a new comparison table doesn't fit any existing experiment, create a new experiment folder for it rather than adding a new top-level report category.
 
 ## Data
 

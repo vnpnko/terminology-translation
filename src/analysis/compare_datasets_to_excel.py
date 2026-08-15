@@ -1,7 +1,7 @@
 """Compare dev_v1/original vs dev_v2 metrics for one baseline model.
 
 Writes one styled .xlsx file (default:
-``report/datasets/dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx``)
+``experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx``)
 with 9 data rows (mode x language). The mode column is merged per block
 (no_term, proper_term, random_term). Each metric block has dev_v1_original,
 dev_v2, and best columns. Reads ``metrics_summary.json`` from
@@ -261,7 +261,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 
 
 def default_output_path(baseline: str, report_dir: Path) -> Path:
-    return report_dir / "datasets" / f"dev_v1_original_vs_dev_v2_{baseline}_dataset_comparison.xlsx"
+    return report_dir / f"dev_v1_original_vs_dev_v2_{baseline}_dataset_comparison.xlsx"
 
 
 def parse_args() -> argparse.Namespace:
@@ -283,14 +283,14 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=None,
         help=(
-            "Output .xlsx path "
-            "(default: report/datasets/dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx)"
+            "Output .xlsx path (default: experiments/03_dataset_comparison/report/"
+            "dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx)"
         ),
     )
     parser.add_argument(
         "--report-dir",
         type=Path,
-        default=Path("report"),
+        default=Path("experiments/03_dataset_comparison/report"),
         help="Report output directory when --output is not set",
     )
     return parser.parse_args()

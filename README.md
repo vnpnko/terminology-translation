@@ -21,8 +21,8 @@ Each figure in [`poster/terminology_translation.pdf`](poster/terminology_transla
 
 | Figure | Experiment | Command | Reads from |
 | ------ | ---------- | ------- | ---------- |
-| [`fig_exp1_term_expansion`](poster/figures/fig_exp1_term_expansion.pdf) | [`01_term_expansion`](experiments/01_term_expansion/README.md) | `python src/analysis/generate_result_figures.py --only exp1` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_exp23_expansion_strategies`](poster/figures/fig_exp23_expansion_strategies.pdf) | [`02_expansion_strategies`](experiments/02_expansion_strategies/README.md) | `python src/analysis/generate_result_figures.py --only exp23` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_exp1_term_expansion`](poster/figures/fig_exp1_term_expansion.pdf) | [`01_term_expansion_by_model`](experiments/01_term_expansion_by_model/README.md) | `python src/analysis/generate_result_figures.py --only exp1` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_exp23_expansion_strategies`](poster/figures/fig_exp23_expansion_strategies.pdf) | [`02_term_expansion_by_language_pair`](experiments/02_term_expansion_by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only exp23` | `results/dev_v1/{original,expand,cleaned}/` |
 | [`fig_exp4_dev_v1_vs_dev_v2_training`](poster/figures/fig_exp4_dev_v1_vs_dev_v2_training.pdf) | [`03_dataset_comparison`](experiments/03_dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only exp4` | `results/dev_v1/original/`, `results/dev_v2/` |
 | [`fig_exp5_lora_finetuning`](poster/figures/fig_exp5_lora_finetuning.pdf) | [`05_lora_finetuning`](experiments/05_lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only exp5` | `results/dev_v1/original/no-few-shots/`, `experiments/05_lora_finetuning/results/` |
 
@@ -34,8 +34,8 @@ Generate all five at once with `python src/analysis/generate_result_figures.py` 
 
 | Experiment | Contents |
 | ---------- | -------- |
-| [`01_term_expansion/`](experiments/01_term_expansion/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered. |
-| [`02_expansion_strategies/`](experiments/02_expansion_strategies/README.md) | Term expansion strategy comparison: original vs. GPT contextual vs. domain-filtered. |
+| [`01_term_expansion_by_model/`](experiments/01_term_expansion_by_model/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered, by model. |
+| [`02_term_expansion_by_language_pair/`](experiments/02_term_expansion_by_language_pair/README.md) | Same term-expansion strategy comparison, broken out by language pair. |
 | [`03_dataset_comparison/`](experiments/03_dataset_comparison/README.md) | `dev_v1` (test) vs. `dev_v2` (training) set comparison, GPT baseline. |
 | [`04_baseline/`](experiments/04_baseline/README.md) | GPT-4o-mini and Qwen base-model translation notebooks on `dev_v1`. |
 | [`05_lora_finetuning/`](experiments/05_lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT-4o-mini and Qwen base, with an Excel export pipeline. |

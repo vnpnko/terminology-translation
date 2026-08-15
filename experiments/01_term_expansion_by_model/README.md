@@ -1,4 +1,4 @@
-# 01 · Term expansion
+# 01 · Term expansion strategies by model
 
 Compares GPT-4o-mini translation quality across `no_term`, `random_term`, the three `proper_term` source variants (original / GPT-expanded / GPT-cleaned), and the external term dictionary. Produces the poster's `fig_exp1_term_expansion` figure.
 

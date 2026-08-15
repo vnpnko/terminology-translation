@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
-"""
-Check a JSONL file for duplicate source sentences within the same file.
+"""Check a JSONL file for duplicate source sentences within the same file.
 
-Compares the ``en`` field only (whitespace-stripped). Does not compare across
-files. Report-only — no output file is written.
+Report-only — no output file is written. Compares the ``en`` field only
+(whitespace-stripped) within a single file; does not compare across files.
+Takes any JSONL file as input via a positional path argument (e.g. under
+``data/processed/`` or ``data/raw/``) — there is no fixed input directory.
 
 Usage::
 

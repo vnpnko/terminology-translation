@@ -1,18 +1,12 @@
-"""Compare dev_v1/original vs dev_v2 metrics for one baseline model.
+"""Compare no_term, proper_term, and random_term modes across all baseline models.
 
-Writes one styled .xlsx file (default:
-``report/datasets/dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx``)
-with 9 data rows (mode x language). The mode column is merged per block
-(no_term, proper_term, random_term). Each metric block has dev_v1_original,
-dev_v2, and best columns. Reads ``metrics_summary.json`` from
-``<results-root>/dev_v1/original/<baseline>/`` and
-``<results-root>/dev_v2/<baseline>/``.
+Writes one Excel file with 9 data rows: 3 models (GPT, Qwen 3B, Qwen 7B),
+each with 3 language rows (ende, enru, enes). The model column is merged per block.
 
-Usage::
-
-    python src/analysis/compare_datasets_to_excel.py --baseline gpt
-    python src/analysis/compare_datasets_to_excel.py --baseline qwen_3b
-    python src/analysis/compare_datasets_to_excel.py --baseline qwen_7b
+    python src/analysis/compare_modes_to_excel.py results/dev_v1/original
+    python src/analysis/compare_modes_to_excel.py results/dev_v1/expand
+    python src/analysis/compare_modes_to_excel.py results/dev_v1/cleaned
+    python src/analysis/compare_modes_to_excel.py results/dev_v2
 """
 
 from __future__ import annotations
@@ -21,21 +15,19 @@ import argparse
 import json
 import math
 from pathlib import Path
-from typing import Any
 
 import pandas as pd
 from openpyxl import Workbook
-from openpyxl.cell.cell import Cell
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
 BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
-DATASET_ORDER = ("dev_v1_original", "dev_v2")
-DATASET_PATHS = {
-    "dev_v1_original": Path("dev_v1/original"),
-    "dev_v2": Path("dev_v2"),
+BASELINE_LABELS = {
+    "gpt": "GPT",
+    "qwen_3b": "Qwen 3B",
+    "qwen_7b": "Qwen 7B",
 }
 
 METRICS = (
@@ -52,8 +44,9 @@ METRICS = (
 
 HEADER_FILL = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
 BEST_FILLS = {
-    "dev_v1_original": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
-    "dev_v2": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
+    "no_term": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
+    "proper_term": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
+    "random_term": PatternFill(start_color="F8CBAD", end_color="F8CBAD", fill_type="solid"),
     "tie": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),
 }
 
@@ -62,12 +55,12 @@ THICK = Side(style="medium", color="000000")
 THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 
-def load_summary(path: Path) -> dict[str, Any]:
+def load_summary(path: Path) -> dict:
     with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
-def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> float | None:
+def extract_metric(metrics: dict, spec: str | tuple[str, str]) -> float | None:
     if isinstance(spec, str):
         value = metrics.get(spec)
     else:
@@ -80,7 +73,7 @@ def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> floa
     return value
 
 
-def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[str, float | None]]:
+def extract_mode_metrics(summary: dict) -> dict[tuple[str, str], dict[str, float | None]]:
     by_lang_mode: dict[tuple[str, str], dict[str, float | None]] = {}
 
     for lang in LANG_ORDER:
@@ -101,7 +94,7 @@ def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[
     return by_lang_mode
 
 
-def best_dataset(values: dict[str, float | None]) -> str | None:
+def best_mode(values: dict[str, float | None]) -> str | None:
     present = {label: value for label, value in values.items() if value is not None}
     if not present:
         return None
@@ -113,59 +106,52 @@ def best_dataset(values: dict[str, float | None]) -> str | None:
     return winners[0]
 
 
-def validate_all_baselines(results_root: Path) -> None:
-    for dataset_label, dataset_path in DATASET_PATHS.items():
-        resolved = (results_root / dataset_path).resolve()
-        for baseline_dir in BASELINE_DIRS:
-            summary_path = resolved / baseline_dir / "metrics_summary.json"
-            if not summary_path.exists():
-                raise FileNotFoundError(
-                    f"Missing metrics file for {dataset_label}: {summary_path}"
-                )
-
-
-def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
+def build_comparison(dataset_dir: Path) -> pd.DataFrame:
     summaries: dict[str, dict[tuple[str, str], dict[str, float | None]]] = {}
 
-    for dataset_label, dataset_path in DATASET_PATHS.items():
-        summary_path = (results_root / dataset_path / baseline / "metrics_summary.json").resolve()
-        summaries[dataset_label] = extract_mode_metrics(load_summary(summary_path))
+    for baseline_dir in BASELINE_DIRS:
+        summary_path = dataset_dir / baseline_dir / "metrics_summary.json"
+        if not summary_path.exists():
+            raise FileNotFoundError(f"Missing metrics file: {summary_path}")
+        summaries[baseline_dir] = extract_mode_metrics(load_summary(summary_path))
 
     rows: list[dict[str, object]] = []
 
-    for mode in MODE_ORDER:
+    for baseline_dir in BASELINE_DIRS:
         for lang in LANG_ORDER:
-            dataset_metrics = {
-                dataset_label: summaries[dataset_label].get((lang, mode))
-                for dataset_label in DATASET_ORDER
+            mode_metrics = {
+                mode: summaries[baseline_dir].get((lang, mode)) for mode in MODE_ORDER
             }
-            if all(metrics is None for metrics in dataset_metrics.values()):
+            if all(metrics is None for metrics in mode_metrics.values()):
                 continue
 
-            row: dict[str, object] = {"mode": mode, "language": lang}
+            row: dict[str, object] = {
+                "model": BASELINE_LABELS[baseline_dir],
+                "language": lang,
+            }
 
             for column, _, _ in METRICS:
                 labeled_values: dict[str, float | None] = {}
-                for dataset_label in DATASET_ORDER:
-                    metrics = dataset_metrics[dataset_label]
+                for mode in MODE_ORDER:
+                    metrics = mode_metrics[mode]
                     value = metrics.get(column) if metrics else None
-                    row[f"{dataset_label}_{column}"] = value
-                    labeled_values[dataset_label] = value
+                    row[f"{mode}_{column}"] = value
+                    labeled_values[mode] = value
 
-                row[f"best_{column}"] = best_dataset(labeled_values)
+                row[f"best_{column}"] = best_mode(labeled_values)
 
             rows.append(row)
 
-    columns = ["mode", "language"]
+    columns = ["model", "language"]
     for column, _, _ in METRICS:
-        columns.extend([f"{dataset_label}_{column}" for dataset_label in DATASET_ORDER])
+        columns.extend([f"{mode}_{column}" for mode in MODE_ORDER])
         columns.append(f"best_{column}")
 
     return pd.DataFrame(rows, columns=columns)
 
 
 def apply_cell_style(
-    cell: Cell,
+    cell,
     *,
     bold: bool = False,
     fill: PatternFill | None = None,
@@ -191,10 +177,10 @@ def apply_cell_style(
 def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb = Workbook()
     ws = wb.active
-    ws.title = "datasets"
+    ws.title = "modes"
 
-    fixed_headers = ("mode", "language")
-    value_subheaders = DATASET_ORDER + ("best",)
+    fixed_headers = ("model", "language")
+    value_subheaders = MODE_ORDER + ("best",)
     cols_per_metric = len(value_subheaders)
 
     for col_idx, header in enumerate(fixed_headers, start=1):
@@ -219,19 +205,19 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     for row_offset, record in enumerate(records, start=3):
         thick_bottom = record["language"] == "enes"
 
-        mode_cell = ws.cell(
+        model_cell = ws.cell(
             row=row_offset,
             column=1,
-            value=record["mode"] if record["language"] == LANG_ORDER[0] else None,
+            value=record["model"] if record["language"] == LANG_ORDER[0] else None,
         )
-        apply_cell_style(mode_cell, thick_bottom=thick_bottom)
+        apply_cell_style(model_cell, thick_bottom=thick_bottom)
 
         lang_cell = ws.cell(row=row_offset, column=2, value=record["language"])
         apply_cell_style(lang_cell, thick_bottom=thick_bottom)
 
         for metric_idx, (column, _, _) in enumerate(METRICS):
             start_col = metric_start_col + metric_idx * cols_per_metric
-            values = [record[f"{dataset_label}_{column}"] for dataset_label in DATASET_ORDER]
+            values = [record[f"{mode}_{column}"] for mode in MODE_ORDER]
             values.append(record[f"best_{column}"])
 
             for offset, value in enumerate(values):
@@ -243,8 +229,8 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
                 )
                 apply_cell_style(cell, fill=fill, thick_bottom=thick_bottom)
 
-    for mode_idx in range(len(MODE_ORDER)):
-        start_row = 3 + mode_idx * len(LANG_ORDER)
+    for baseline_idx in range(len(BASELINE_DIRS)):
+        start_row = 3 + baseline_idx * len(LANG_ORDER)
         end_row = start_row + len(LANG_ORDER) - 1
         ws.merge_cells(start_row=start_row, start_column=1, end_row=end_row, end_column=1)
         ws.cell(row=start_row, column=1).alignment = Alignment(
@@ -252,7 +238,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
             vertical="center",
         )
 
-    ws.column_dimensions["A"].width = 14
+    ws.column_dimensions["A"].width = 12
     ws.column_dimensions["B"].width = 12
     for col_idx in range(metric_start_col, metric_start_col + len(METRICS) * cols_per_metric):
         ws.column_dimensions[get_column_letter(col_idx)].width = 16
@@ -260,32 +246,29 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb.save(output_path)
 
 
-def default_output_path(baseline: str, report_dir: Path) -> Path:
-    return report_dir / "datasets" / f"dev_v1_original_vs_dev_v2_{baseline}_dataset_comparison.xlsx"
+def dataset_slug(dataset_dir: Path) -> str:
+    parts = list(dataset_dir.resolve().parts)
+    if "results" in parts:
+        parts = parts[parts.index("results") + 1 :]
+    return "_".join(parts)
 
 
-def parse_args() -> argparse.Namespace:
+def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
+    return report_dir / "modes" / f"{dataset_slug(dataset_dir)}_mode_comparison.xlsx"
+
+
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--baseline",
-        required=True,
-        choices=BASELINE_DIRS,
-        help="Which baseline model to compare datasets for",
-    )
-    parser.add_argument(
-        "--results-root",
+        "dataset_dir",
         type=Path,
-        default=Path("results"),
-        help="Root directory containing dev_v1/original and dev_v2 result folders",
+        help="Results directory containing gpt/, qwen_3b/, and qwen_7b/ subfolders",
     )
     parser.add_argument(
         "--output",
         type=Path,
         default=None,
-        help=(
-            "Output .xlsx path "
-            "(default: report/datasets/dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx)"
-        ),
+        help="Output .xlsx path (default: report/modes/<dataset>_mode_comparison.xlsx)",
     )
     parser.add_argument(
         "--report-dir",
@@ -293,29 +276,22 @@ def parse_args() -> argparse.Namespace:
         default=Path("report"),
         help="Report output directory when --output is not set",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
 
-
-def main() -> None:
-    args = parse_args()
-
-    results_root = args.results_root.resolve()
-    validate_all_baselines(results_root)
-
+    dataset_dir = args.dataset_dir.resolve()
     output_path = (
         args.output.resolve()
         if args.output
-        else default_output_path(args.baseline, args.report_dir.resolve())
+        else default_output_path(dataset_dir, args.report_dir.resolve())
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    df = build_comparison(results_root, args.baseline)
+    df = build_comparison(dataset_dir)
     write_styled_excel(df, output_path)
 
-    print(f"Baseline: {args.baseline}")
     print(
         f"Wrote {len(df)} rows "
-        f"({len(MODE_ORDER)} modes x {len(LANG_ORDER)} languages) to {output_path}"
+        f"({len(BASELINE_DIRS)} models x {len(LANG_ORDER)} languages) to {output_path}"
     )
 
 

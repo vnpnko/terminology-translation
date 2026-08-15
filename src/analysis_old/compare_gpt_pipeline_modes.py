@@ -1,11 +1,5 @@
 """Compare GPT baseline modes vs gpt_proposed_term pipeline on dev_v1/original.
 
-Writes one styled .xlsx file (default:
-``report/modes/dev_v1_original_gpt_pipeline_mode_comparison.xlsx``). Reads
-``metrics_summary.json`` from ``--baseline-dir`` and ``--pipeline-dir``.
-
-Usage::
-
     python src/analysis/compare_gpt_pipeline_modes.py
     python src/analysis/compare_gpt_pipeline_modes.py \\
         --baseline-dir results/dev_v1/original/gpt \\
@@ -18,7 +12,6 @@ import argparse
 import json
 import math
 from pathlib import Path
-from typing import Any
 
 import pandas as pd
 from openpyxl import Workbook
@@ -65,12 +58,12 @@ THIN = Side(style="thin", color="000000")
 THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 
-def load_summary(path: Path) -> dict[str, Any]:
+def load_summary(path: Path) -> dict:
     with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
-def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> float | None:
+def extract_metric(metrics: dict, spec: str | tuple[str, str]) -> float | None:
     if isinstance(spec, str):
         value = metrics.get(spec)
     else:
@@ -83,7 +76,7 @@ def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> floa
     return value
 
 
-def extract_lang_mode_metrics(summary: dict[str, Any], mode: str) -> dict[str, dict[str, float | None]]:
+def extract_lang_mode_metrics(summary: dict, mode: str) -> dict[str, dict[str, float | None]]:
     by_lang: dict[str, dict[str, float | None]] = {}
     for lang in LANG_ORDER:
         lang_data = summary.get("languages", {}).get(lang)
@@ -204,7 +197,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb.save(output_path)
 
 
-def parse_args() -> argparse.Namespace:
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--baseline-dir",
@@ -221,11 +214,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=Path("report/modes/dev_v1_original_gpt_pipeline_mode_comparison.xlsx"),
     )
-    return parser.parse_args()
-
-
-def main() -> None:
-    args = parse_args()
+    args = parser.parse_args()
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     df = build_comparison(args.baseline_dir.resolve(), args.pipeline_dir.resolve())

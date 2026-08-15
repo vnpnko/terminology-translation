@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
 
 from matplotlib.figure import Figure
 from matplotlib.patches import Patch
@@ -54,17 +53,11 @@ TITLE = (
 
 def _collect_data(
     results_root: Path,
-) -> tuple[
-    dict[str, dict[str, Any]],
-    dict[str, dict[str, Any]],
-    dict[str, dict[str, Any]],
-    dict[str, dict[str, Any]],
-    dict[str, int],
-]:
-    summaries: dict[str, dict[str, dict[str, Any]]] = {}
-    no_term: dict[str, dict[str, Any]] = {}
-    random_term: dict[str, dict[str, Any]] = {}
-    external_dictionary: dict[str, dict[str, Any]] = {}
+) -> tuple[dict, dict[str, dict], dict[str, dict], dict[str, dict], dict[str, int]]:
+    summaries: dict[str, dict[str, dict]] = {}
+    no_term: dict[str, dict] = {}
+    random_term: dict[str, dict] = {}
+    external_dictionary: dict[str, dict] = {}
     term_counts: dict[str, int] = {}
 
     paths = [

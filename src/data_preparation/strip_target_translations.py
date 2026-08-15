@@ -1,21 +1,29 @@
-#!/usr/bin/env python3
-"""
-Strip non-English translations from JSONL files in extra/.
+"""Strip non-English translations from JSONL files in extra/.
 
-Keeps the English sentence and term keys; clears translation sentences
-(de, es, ru, ...) and translation values in proper_terms / random_terms.
+Writes back in place (with ``--dry-run`` to preview first). Keeps the
+English sentence and term keys; clears translation sentences (de, es, ru,
+...) and translation values in proper_terms / random_terms. Input defaults
+to ``data/extra/*_dev.jsonl``; pass ``--input`` to target other files.
+
+Usage::
+
+    python strip_target_translations.py
+    python strip_target_translations.py --input data/extra/ende_dev.jsonl --dry-run
 """
+
+from __future__ import annotations
 
 import argparse
 import json
 from pathlib import Path
+from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INPUTS = sorted((REPO_ROOT / "data" / "extra").glob("*_dev.jsonl"))
 TERM_FIELDS = frozenset({"proper_terms", "random_terms"})
 
 
-def strip_record(record: dict) -> dict:
+def strip_record(record: dict[str, Any]) -> dict[str, Any]:
     out: dict = {}
     for key, value in record.items():
         if key == "en":
@@ -49,7 +57,7 @@ def process_file(path: Path, *, dry_run: bool = False) -> int:
     return len(lines)
 
 
-def main() -> None:
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Clear translation text in extra/ JSONL dev files."
     )
@@ -65,7 +73,11 @@ def main() -> None:
         action="store_true",
         help="Show what would be changed without writing files",
     )
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
 
     if not args.input:
         raise SystemExit("No input files matched.")

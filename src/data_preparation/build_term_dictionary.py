@@ -1,9 +1,13 @@
-#!/usr/bin/env python3
-"""
-Build a provenance-aware term dictionary from dev_v2 JSONL files.
+"""Build a provenance-aware term dictionary from dev_v2 JSONL files.
 
-Lines 1-1000: seed from human proper_terms + GPT expansion.
-Lines 1001-2000: GPT extraction only (ignore existing proper_terms).
+Writes ``<pair>_term_dictionary.jsonl`` and a combined ``build_report.json``
+to ``data/processed/term_dictionary/`` (default; use ``--force`` to
+overwrite). Reads dev_v2 input from ``data/processed/dev_v2/``. Uses
+OpenRouter for LLM-assisted extraction (``OPENROUTER_API_KEY`` in
+``.env``); pass ``--skip-llm`` to seed from human ``proper_terms`` only.
+
+  1. Lines 1-1000: seed from human ``proper_terms``, then expand via LLM.
+  2. Lines 1001-2000: LLM extraction only (ignores existing ``proper_terms``).
 
 Usage::
 
@@ -22,7 +26,7 @@ import time
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -165,7 +169,7 @@ def parse_batch_terms(parsed: dict[str, Any]) -> dict[int, dict[str, str]]:
 def call_llm_batch(
     batch: list[tuple[int, dict[str, Any]]],
     *,
-    prompt_builder,
+    prompt_builder: Callable[..., str],
     lang_pair: LangPair,
     api_key: str,
     model: str,
@@ -288,7 +292,7 @@ def llm_extract_for_range(
     *,
     lang_pair: LangPair,
     source_file: str,
-    prompt_builder,
+    prompt_builder: Callable[..., str],
     source_label: str,
     max_words: int,
     max_en_chars: int | None,

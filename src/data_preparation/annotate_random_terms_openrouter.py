@@ -1,22 +1,23 @@
-#!/usr/bin/env python3
-"""
-Fill ``random_terms`` in JSONL files that already have ``en``, a target post-edit, and ``proper_terms``.
+"""Fill ``random_terms`` in JSONL files that already have ``en``, a target post-edit, and ``proper_terms``.
+
+Writes to ``--output`` (a new file; the input is left untouched). Uses
+OpenRouter (same setup as ``annotate_proper_terms_openrouter.py``):
+``OPENROUTER_API_KEY`` in ``src/.env``. By default the input is split into
+chunks and processed in parallel via subprocess workers; use
+``--workers 1`` for a single-process run on the full file.
 
 For each line:
-  1. An LLM picks 1–2 **random** (non-domain) word pairs in the sentence pair.
+  1. An LLM picks 1-2 **random** (non-domain) word pairs in the sentence pair.
   2. Keys use the exact English surface form (substring of ``en``).
   3. Values are aligned to the target post-edit (substring of ``de`` / ``es`` / ``ru``).
   4. Terms must not duplicate keys already in ``proper_terms``.
 
-Uses OpenRouter (same setup as ``fill_proper_terms_parallel.py``):
-  OPENROUTER_API_KEY in ``src/.env``.
-
 Usage::
 
-    python fill_random_terms.py -t de -i input.jsonl -o output.jsonl
-    python fill_random_terms.py -t ru -i enru_with_proper_terms.jsonl -o filled.jsonl
-    python fill_random_terms.py -t es -i enes_dev.jsonl -o enes_dev.filled.jsonl --workers 1
-    python fill_random_terms.py -t de -i input.jsonl -o output.jsonl --merge-only
+    python annotate_random_terms_openrouter.py -t de -i input.jsonl -o output.jsonl
+    python annotate_random_terms_openrouter.py -t ru -i enru_with_proper_terms.jsonl -o filled.jsonl
+    python annotate_random_terms_openrouter.py -t es -i enes_dev.jsonl -o enes_dev.filled.jsonl --workers 1
+    python annotate_random_terms_openrouter.py -t de -i input.jsonl -o output.jsonl --merge-only
 """
 
 from __future__ import annotations
@@ -152,7 +153,7 @@ def drop_proper_overlaps(terms: dict[str, str], proper_terms: dict[str, str]) ->
     return out
 
 
-def safe_print(text: str, *, file=None) -> None:
+def safe_print(text: str, *, file: Any = None) -> None:
     """Print without crashing on Windows consoles that lack Unicode (e.g. cp1252)."""
     out = file or sys.stdout
     enc = getattr(out, "encoding", None) or "utf-8"
@@ -311,7 +312,7 @@ def extract_random_terms(
     return aligned
 
 
-def record_needs_fill(record: dict) -> bool:
+def record_needs_fill(record: dict[str, Any]) -> bool:
     random = record.get("random_terms") or {}
     if not isinstance(random, dict) or not random:
         return True
@@ -335,7 +336,7 @@ def process_file(
     save_every: int,
     require_proper: bool,
 ) -> tuple[int, int]:
-    records: list[dict] = []
+    records: list[dict[str, Any]] = []
     with input_path.open(encoding="utf-8") as f:
         for line in f:
             raw = line.rstrip("\n")
@@ -654,9 +655,7 @@ def run_parallel(
     print(f"Chunk files kept in {work_dir}")
 
 
-def main() -> None:
-    load_dotenv()
-
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Fill random_terms in JSONL via LLM (parallel by default)."
     )
@@ -711,7 +710,12 @@ def main() -> None:
         action="store_true",
         help="Skip lines with empty proper_terms",
     )
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    load_dotenv()
+    args = parse_args()
 
     input_path = args.input.resolve()
     output_path = args.output.resolve()

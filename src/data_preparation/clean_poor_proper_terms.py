@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
-"""
-Remove weak/generic entries from `proper_terms` in JSONL records.
+"""Remove weak/generic entries from `proper_terms` in JSONL records.
 
-Writes ``<pair>_dev_v<N>_cleaned.jsonl`` next to the input file.
+Writes ``<pair>_dev_v<N>_cleaned.jsonl`` next to the input file — refuses to
+run if that output already exists. Reads ``OPENROUTER_API_KEY`` or
+``OPENAI_API_KEY`` from ``.env`` at the repo root for the default
+LLM-judged mode (``--mode rule-based`` skips API calls entirely).
 
 Usage::
 
@@ -357,7 +358,7 @@ Return JSON exactly in this format:
 
 
 def clean_record(
-    record: dict,
+    record: dict[str, Any],
     drop_terms: frozenset[str],
     context_hints: frozenset[str],
     strict_drop: bool,
@@ -370,13 +371,13 @@ def clean_record(
     explanation: str,
     examples: list[str],
     provider: str,
-) -> tuple[dict, int]:
+) -> tuple[dict[str, Any], int]:
     sentence = str(record.get("en", ""))
     proper_terms = record.get("proper_terms")
     if not isinstance(proper_terms, dict):
         return record, 0
 
-    cleaned = {}
+    cleaned: dict[str, str] = {}
     removed = 0
     openai_remove_set: set[str] = set()
     if use_openai and proper_terms:

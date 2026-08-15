@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
-"""
-Collect ``proper_terms`` pairs from SAP v1 and v2 dev JSONL files.
+"""Collect ``proper_terms`` pairs from SAP v1 and v2 dev JSONL files.
 
-For each language group, reads v1 + v2 sources, merges duplicate English keys
-(case-insensitive), picks the most frequent (EN surface, target surface) pair,
-and writes one JSONL line per unique term:
+Writes one JSONL file per language to ``data/processed/term_pairs/`` (default
+path; override with ``--output``) — never modifies the v1/v2 inputs. Reads
+v1 from ``data/sap_dev/`` and v2 from ``data/sap_v2_with_terms/``. For each
+language group, merges duplicate English keys (case-insensitive) across both
+sources, picks the most frequent (EN surface, target surface) pair, and
+writes one JSONL line per unique term:
 
   {"en": "<english>", "de": "<german>"}   # or "es" / "ru"
 
@@ -16,10 +17,10 @@ Supported target languages (``-t`` / ``--target-lang``):
 
 Usage::
 
-    python collect_proper_terms.py -t de
-    python collect_proper_terms.py -t es -o ../../data/processed/term_pairs/enes_pairs.jsonl
-    python collect_proper_terms.py --all
-    python collect_proper_terms.py -t ru --include-count
+    python collect_term_pairs_from_jsonl.py -t de
+    python collect_term_pairs_from_jsonl.py -t es -o ../../data/processed/term_pairs/enes_pairs.jsonl
+    python collect_term_pairs_from_jsonl.py --all
+    python collect_term_pairs_from_jsonl.py -t ru --include-count
 """
 
 from __future__ import annotations
@@ -30,6 +31,7 @@ import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent.parent
@@ -139,17 +141,17 @@ def build_records(
     lang: LangConfig,
     *,
     include_count: bool,
-) -> list[dict]:
-    records: list[dict] = []
+) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
     for en, tgt, count in merged:
-        row: dict = {"en": en, lang.field: tgt}
+        row: dict[str, Any] = {"en": en, lang.field: tgt}
         if include_count:
             row["count"] = count
         records.append(row)
     return records
 
 
-def write_jsonl(path: Path, records: list[dict]) -> None:
+def write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="\n") as f:
         for record in records:
@@ -162,7 +164,7 @@ def collect_language(
     v1_path: Path | None,
     v2_path: Path | None,
     include_count: bool,
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     v1 = v1_path or default_paths(lang)[0]
     v2 = v2_path or default_paths(lang)[1]
 
@@ -182,7 +184,7 @@ def collect_language(
     return build_records(merged, lang, include_count=include_count)
 
 
-def main() -> None:
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Collect proper_terms EN→target pairs from SAP v1+v2 into JSONL."
     )
@@ -222,7 +224,11 @@ def main() -> None:
         action="store_true",
         help='Add integer "count" field (occurrences in v1+v2)',
     )
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
 
     if args.all and args.target_lang:
         raise SystemExit("Use either -t or --all, not both.")

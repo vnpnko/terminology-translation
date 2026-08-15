@@ -24,6 +24,8 @@ def repo_rel_path(path: Path | str, *, base: Path = REPO_ROOT) -> str:
         return resolved.relative_to(base.resolve()).as_posix()
     except ValueError:
         return resolved.as_posix()
+
+
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 
@@ -291,7 +293,7 @@ def make_batches(
 
 
 @lru_cache(maxsize=4)
-def _spacy_model(lang_code: str):
+def _spacy_model(lang_code: str) -> Any:
     import spacy
 
     model_map = {
@@ -306,7 +308,7 @@ def _spacy_model(lang_code: str):
 
 
 @lru_cache(maxsize=1)
-def _pymorphy_analyzer():
+def _pymorphy_analyzer() -> Any:
     import pymorphy3
 
     return pymorphy3.MorphAnalyzer()

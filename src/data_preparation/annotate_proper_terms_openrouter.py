@@ -1,23 +1,22 @@
-#!/usr/bin/env python3
-"""
-Fill ``proper_terms`` in JSONL files (EN source + target-language post-edit).
+"""Fill ``proper_terms`` in JSONL files (EN source + target-language post-edit).
+
+Writes to ``--output`` (a new file; the input is left untouched). Uses
+OpenRouter (``OPENROUTER_API_KEY`` in ``src/.env``). By default the input is
+split into chunks and processed in parallel via subprocess workers (like
+``annotate_random_terms_openrouter.py``); use ``--workers 1`` for a
+single-process run on the full file.
 
 For each line:
-  1. An LLM picks 1–2 IT / enterprise-software terms in the English sentence.
+  1. An LLM picks 1-2 IT / enterprise-software terms in the English sentence.
   2. Keys use the exact English surface form (substring of ``en``).
   3. Values are aligned to the target post-edit (substring of ``de`` / ``es`` / ``ru``).
 
-Uses OpenRouter (``OPENROUTER_API_KEY`` in ``src/.env``).
-
-By default the input is split into chunks and processed in parallel (like ``fill_random_terms.py``).
-Use ``--workers 1`` for a single-process run on the full file.
-
 Usage::
 
-    python fill_proper_terms.py -t de -i input.jsonl -o output.jsonl
-    python fill_proper_terms.py -t ru -i enru_dev.jsonl -o filled.jsonl
-    python fill_proper_terms.py -t es -i enes_dev.jsonl -o filled.jsonl --workers 1
-    python fill_proper_terms.py -t de -i input.jsonl -o output.jsonl --merge-only
+    python annotate_proper_terms_openrouter.py -t de -i input.jsonl -o output.jsonl
+    python annotate_proper_terms_openrouter.py -t ru -i enru_dev.jsonl -o filled.jsonl
+    python annotate_proper_terms_openrouter.py -t es -i enes_dev.jsonl -o filled.jsonl --workers 1
+    python annotate_proper_terms_openrouter.py -t de -i input.jsonl -o output.jsonl --merge-only
 """
 
 from __future__ import annotations
@@ -98,7 +97,7 @@ def load_dotenv(path: Path = ENV_FILE) -> None:
             os.environ[key] = value
 
 
-def safe_print(text: str, *, file=None) -> None:
+def safe_print(text: str, *, file: Any = None) -> None:
     """Print without crashing on Windows consoles that lack Unicode (e.g. cp1252)."""
     out = file or sys.stdout
     enc = getattr(out, "encoding", None) or "utf-8"
@@ -284,7 +283,7 @@ def extract_proper_terms(
     return aligned
 
 
-def record_needs_fill(record: dict) -> bool:
+def record_needs_fill(record: dict[str, Any]) -> bool:
     proper = record.get("proper_terms") or {}
     if not isinstance(proper, dict) or not proper:
         return True
@@ -307,7 +306,7 @@ def process_file(
     dry_run: bool,
     save_every: int,
 ) -> tuple[int, int]:
-    records: list[dict] = []
+    records: list[dict[str, Any]] = []
     with input_path.open(encoding="utf-8") as f:
         for line in f:
             raw = line.rstrip("\n")
@@ -616,9 +615,7 @@ def run_parallel(
     safe_print(f"Chunk files kept in {work_dir}")
 
 
-def main() -> None:
-    load_dotenv()
-
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Fill proper_terms in JSONL via LLM (parallel by default)."
     )
@@ -668,7 +665,12 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    load_dotenv()
+    args = parse_args()
 
     input_path = args.input.resolve()
     output_path = args.output.resolve()

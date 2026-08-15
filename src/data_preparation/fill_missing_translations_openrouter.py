@@ -1,11 +1,15 @@
-#!/usr/bin/env python3
-"""
-Fill target-language sentences and term translations in JSONL dev files.
+"""Fill target-language sentences and term translations in JSONL dev files.
 
-Uses GPT-4o-mini via OpenRouter (https://openrouter.ai).
-API key: set OPENROUTER_API_KEY in ``.env`` at the repo root (see ``.env.example``).
+Writes back in place (files resolved against ``--input-dir``, default
+``data/sap_dev/``) via an atomic temp-file replace; pass ``--dry-run`` to
+preview without writing. Uses GPT-4o-mini via OpenRouter
+(https://openrouter.ai); set ``OPENROUTER_API_KEY`` in ``.env`` at the repo
+root (see ``.env.example``).
 
-Usage: ``python fill_translations.py ende_dev_1.jsonl`` (file(s) in ``new data/``).
+Usage::
+
+    python fill_missing_translations_openrouter.py ende_dev_1.jsonl
+    python fill_missing_translations_openrouter.py ende_dev_1.jsonl --dry-run
 """
 
 from __future__ import annotations
@@ -57,7 +61,7 @@ def load_dotenv(path: Path = ENV_FILE) -> None:
             os.environ[key] = value
 
 
-def detect_language(path: Path, record: dict) -> tuple[str, str]:
+def detect_language(path: Path, record: dict[str, Any]) -> tuple[str, str]:
     stem = path.stem.lower()
     for prefix, pair in LANG_PAIR_PREFIXES.items():
         if stem.startswith(prefix):
@@ -68,7 +72,7 @@ def detect_language(path: Path, record: dict) -> tuple[str, str]:
     raise ValueError(f"Cannot detect target language for {path}")
 
 
-def record_needs_translation(record: dict, tgt_code: str) -> bool:
+def record_needs_translation(record: dict[str, Any], tgt_code: str) -> bool:
     sentence = record.get(tgt_code, "")
     if not isinstance(sentence, str) or not sentence.strip():
         return True
@@ -155,7 +159,7 @@ def openrouter_chat(
 
 
 def translate_record(
-    record: dict,
+    record: dict[str, Any],
     *,
     tgt_code: str,
     target_lang: str,
@@ -164,7 +168,7 @@ def translate_record(
     temperature: float,
     timeout: float,
     max_retries: int,
-) -> dict:
+) -> dict[str, Any]:
     proper_terms = dict(record.get("proper_terms") or {})
     random_terms = dict(record.get("random_terms") or {})
     en_text = record["en"]
@@ -221,7 +225,7 @@ def translate_record(
     return out
 
 
-def write_jsonl(path: Path, records: list[dict]) -> None:
+def write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
     tmp = path.with_suffix(path.suffix + ".tmp")
     lines = [json.dumps(r, ensure_ascii=False) + "\n" for r in records]
     tmp.write_text("".join(lines), encoding="utf-8")
@@ -242,7 +246,7 @@ def process_file(
     dry_run: bool,
     save_every: int,
 ) -> tuple[int, int]:
-    records: list[dict] = []
+    records: list[dict[str, Any]] = []
     with path.open(encoding="utf-8") as f:
         for line in f:
             raw = line.rstrip("\n")
@@ -312,9 +316,7 @@ def resolve_input_paths(names: list[str], input_dir: Path) -> list[Path]:
     return paths
 
 
-def main() -> None:
-    load_dotenv()
-
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Fill translations in new data/ JSONL files via OpenRouter.",
         epilog="Example: python fill_translations.py ende_dev_1.jsonl",
@@ -387,7 +389,12 @@ def main() -> None:
         action="store_true",
         help="List work without calling the API or writing files",
     )
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    load_dotenv()
+    args = parse_args()
 
     input_dir = args.input_dir.resolve()
     if not input_dir.is_dir():

@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
-"""
-Expand proper_terms in JSONL dev files using OpenRouter GPT-4o-mini.
+"""Expand proper_terms in JSONL dev files using OpenRouter GPT-4o-mini.
 
-The source sentence, target sentence, and random_terms are preserved. Only new
-validated EN->target term pairs are appended to proper_terms.
+Writes ``<input_stem>_expand.jsonl`` next to the input file — refuses to run
+if that output already exists. Reads ``OPENROUTER_API_KEY`` from ``.env`` at
+the repo root. The source sentence, target sentence, and random_terms are
+preserved; only new validated EN->target term pairs are appended to
+proper_terms.
 
 Usage::
 

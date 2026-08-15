@@ -1,11 +1,15 @@
-#!/usr/bin/env python3
 """Build JSONL outputs from SAP term_postedits flat files.
+
+Reads ``term_postedits.test.<pair>.{src,pe,mt,terms}`` flat files from
+``--data-dir`` (default: ``data/sap_term_postedits/<ende|enes|enru>``) and
+writes two JSONL files back into that same directory: sentences with
+``proper_terms``, and a terms-only file.
 
 Usage::
 
-    python build_term_jsonl.py -t de --data-dir "../../data/sap_term_postedits/ende"
-    python build_term_jsonl.py -t ru --data-dir "../../data/sap_term_postedits/enru"
-    python build_term_jsonl.py -t es --data-dir path/to/enes -o out.jsonl --out-terms-jsonl terms.jsonl
+    python convert_term_postedits_to_jsonl.py -t de --data-dir "../../data/sap_term_postedits/ende"
+    python convert_term_postedits_to_jsonl.py -t ru --data-dir "../../data/sap_term_postedits/enru"
+    python convert_term_postedits_to_jsonl.py -t es --data-dir path/to/enes --out-jsonl out.jsonl --out-terms-jsonl terms.jsonl
 """
 
 from __future__ import annotations
@@ -15,7 +19,6 @@ import ast
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Tuple
 
 
 @dataclass(frozen=True)
@@ -36,11 +39,11 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_ROOT = REPO_ROOT / "data" / "sap_term_postedits"
 
 
-def load_lines(path: Path) -> List[str]:
+def load_lines(path: Path) -> list[str]:
     return path.read_text(encoding="utf-8").splitlines()
 
 
-def parse_terms_line(line: str) -> List[Tuple[str, str]]:
+def parse_terms_line(line: str) -> list[tuple[str, str]]:
     stripped = line.strip()
     if not stripped:
         return []
@@ -50,7 +53,7 @@ def parse_terms_line(line: str) -> List[Tuple[str, str]]:
         raise ValueError(f"Invalid terms line: {stripped}") from exc
     if not isinstance(parsed, list):
         return []
-    terms: List[Tuple[str, str]] = []
+    terms: list[tuple[str, str]] = []
     for item in parsed:
         if not isinstance(item, tuple) or len(item) < 3:
             continue
@@ -76,7 +79,7 @@ def default_out_terms_jsonl(data_dir: Path, lang: TargetLang) -> Path:
     return data_dir / f"{stem_for(lang)}.terms.jsonl"
 
 
-def main() -> None:
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Build JSONL outputs with proper terms from term_postedits files."
     )
@@ -109,7 +112,11 @@ def main() -> None:
         default=None,
         help="Output JSONL with term pairs only (default: <data-dir>/term_postedits.test.<pair>.terms.jsonl)",
     )
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
 
     lang = TARGET_LANGS[args.target_lang]
     data_dir = (args.data_dir or default_data_dir(lang)).resolve()

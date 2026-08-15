@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
-"""
-Remove dev_v2 lines whose English source also appears in dev_v1/original.
+"""Remove dev_v2 lines whose English source also appears in dev_v1/original.
 
-Writes filtered files to data/processed/dev_v2/deduped/ — never overwrites originals.
+Writes filtered files to ``data/processed/dev_v2/deduped/`` — never
+overwrites the ``data/processed/dev_v2/`` or ``data/raw/dev_v1_original/``
+inputs. Reads dev_v2 sources from ``data/processed/dev_v2/`` and filters out
+any line whose ``en`` text also appears in ``data/raw/dev_v1_original/``.
 
 Usage::
 

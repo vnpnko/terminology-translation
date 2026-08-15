@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
-"""
-Apply term dictionary to dev_v1 original JSONL (optional secondary step).
+"""Apply term dictionary to dev_v1 original JSONL (optional secondary step).
 
-Reads dictionary from data/processed/term_dictionary/ and enriches proper_terms in
-dev_v1 using reference-based disambiguation. Writes new files to
-data/interim/dev_v1_dictionary/ only — never overwrites the raw/interim inputs.
+Writes new files to ``data/interim/dev_v1_dictionary/`` only — never
+overwrites the raw/interim inputs. Reads the dictionary from
+``data/processed/term_dictionary/`` and enriches ``proper_terms`` in dev_v1
+(``data/raw/dev_v1_original/``) using reference-based disambiguation.
 
 Usage::
 

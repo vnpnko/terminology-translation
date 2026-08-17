@@ -79,7 +79,7 @@ The table-comparison and figure-generating scripts themselves are experiment-spe
 | Script | Location | Purpose |
 | ------ | -------- | ------- |
 | `compare_models_to_excel.py`, `figure_model_comparison.py` | [`experiments/01_term_expansion_by_model/scripts/`](experiments/01_term_expansion_by_model/README.md) | Compares GPT, Qwen 3B, and Qwen 7B. Rows grouped by mode. |
-| `compare_modes_to_excel.py`, `figure_mode_comparison.py` | [`experiments/02_term_expansion_by_language_pair/scripts/`](experiments/02_term_expansion_by_language_pair/README.md) | Compares `no_term`, `proper_term`, and `random_term`. Rows grouped by model. |
+| `compare_languages_to_excel.py`, `figure_mode_comparison.py` | [`experiments/02_term_expansion_by_language_pair/scripts/`](experiments/02_term_expansion_by_language_pair/README.md) | Compares `ende`, `enru`, and `enes`. Rows grouped by mode then model. |
 | `compare_datasets_to_excel.py`, `compare_v1_variants_to_excel.py`, `figure_dataset_comparison.py` | [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md) | Compares `dev_v1/original` vs `dev_v2`, and `dev_v1/original` vs `dev_v1/dictionary`. |
 | `figure_lora_finetuning.py` | [`experiments/04_lora_finetuning/scripts/`](experiments/04_lora_finetuning/README.md) | LoRA epoch ablation vs. GPT-4o-mini. |
 
@@ -93,12 +93,12 @@ Each `gpt/`, `qwen_3b/` and `qwen_7b/` results directory contains a `metrics_sum
 
 ## Report
 
-Generated comparison Excel files live inside the experiment they compare, under `experiments/<name>/report/` — not in a shared top-level `report/` directory. A table belongs wherever its comparison axis is the experiment's subject: model-vs-model tables belong to the "by model" experiment, mode-vs-mode tables to the "by language pair" experiment, dataset-vs-dataset tables to the dataset-comparison experiment.
+Generated comparison Excel files live inside the experiment they compare, under `experiments/<name>/report/` — not in a shared top-level `report/` directory. A table belongs wherever its comparison axis is the experiment's subject: model-vs-model tables belong to the "by model" experiment, language-vs-language tables to the "by language pair" experiment, dataset-vs-dataset tables to the dataset-comparison experiment.
 
 | Report dir | Produced by | Naming pattern |
 | ---------- | ----------- | --------------- |
 | [`experiments/01_term_expansion_by_model/report/`](experiments/01_term_expansion_by_model/README.md#report-tables) | `scripts/compare_models_to_excel.py` | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
-| [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `scripts/compare_modes_to_excel.py` | `<dataset>_mode_comparison.xlsx` |
+| [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `scripts/compare_languages_to_excel.py` | `<dataset>_language_comparison.xlsx` |
 | [`experiments/03_dataset_comparison/report/`](experiments/03_dataset_comparison/README.md#report-tables) | `scripts/compare_datasets_to_excel.py`, `scripts/compare_v1_variants_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`, `dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` |
 
 See each experiment's README for the exact command to regenerate every table it holds. When a new comparison table doesn't fit any existing experiment, create a new experiment folder for it rather than adding a new top-level report category.

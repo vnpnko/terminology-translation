@@ -1,18 +1,18 @@
-"""Compare no_term, proper_term, and random_term modes across all baseline models.
+"""Compare ende, enru, and enes language pairs across all baseline models and modes.
 
 Writes one styled .xlsx file (default:
-``experiments/02_term_expansion_by_language_pair/report/<dataset>_mode_comparison.xlsx``)
-with 9 data rows: 3 models
-(GPT, Qwen 3B, Qwen 7B), each with 3 language rows (ende, enru, enes). The
-model column is merged per block. Reads ``metrics_summary.json`` from
+``experiments/02_term_expansion_by_language_pair/report/<dataset>_language_comparison.xlsx``)
+with 9 data rows: 3 modes
+(no_term, proper_term, random_term), each with 3 model rows (GPT, Qwen 3B, Qwen 7B). The
+mode column is merged per block. Reads ``metrics_summary.json`` from
 ``<dataset_dir>/{gpt,qwen_3b,qwen_7b}/``.
 
 Usage::
 
-    python experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py results/dev_v1/original
-    python experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py results/dev_v1/expand
-    python experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py results/dev_v1/cleaned
-    python experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py results/dev_v2
+    python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v1/original
+    python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v1/expand
+    python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v1/cleaned
+    python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v2
 """
 
 from __future__ import annotations
@@ -52,9 +52,9 @@ METRICS = (
 
 HEADER_FILL = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
 BEST_FILLS = {
-    "no_term": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
-    "proper_term": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
-    "random_term": PatternFill(start_color="F8CBAD", end_color="F8CBAD", fill_type="solid"),
+    "ende": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
+    "enru": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
+    "enes": PatternFill(start_color="F8CBAD", end_color="F8CBAD", fill_type="solid"),
     "tie": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),
 }
 
@@ -102,7 +102,7 @@ def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[
     return by_lang_mode
 
 
-def best_mode(values: dict[str, float | None]) -> str | None:
+def best_language(values: dict[str, float | None]) -> str | None:
     present = {label: value for label, value in values.items() if value is not None}
     if not present:
         return None
@@ -125,34 +125,34 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
 
     rows: list[dict[str, object]] = []
 
-    for baseline_dir in BASELINE_DIRS:
-        for lang in LANG_ORDER:
-            mode_metrics = {
-                mode: summaries[baseline_dir].get((lang, mode)) for mode in MODE_ORDER
+    for mode in MODE_ORDER:
+        for baseline_dir in BASELINE_DIRS:
+            lang_metrics = {
+                lang: summaries[baseline_dir].get((lang, mode)) for lang in LANG_ORDER
             }
-            if all(metrics is None for metrics in mode_metrics.values()):
+            if all(metrics is None for metrics in lang_metrics.values()):
                 continue
 
             row: dict[str, object] = {
+                "mode": mode,
                 "model": BASELINE_LABELS[baseline_dir],
-                "language": lang,
             }
 
             for column, _, _ in METRICS:
                 labeled_values: dict[str, float | None] = {}
-                for mode in MODE_ORDER:
-                    metrics = mode_metrics[mode]
+                for lang in LANG_ORDER:
+                    metrics = lang_metrics[lang]
                     value = metrics.get(column) if metrics else None
-                    row[f"{mode}_{column}"] = value
-                    labeled_values[mode] = value
+                    row[f"{lang}_{column}"] = value
+                    labeled_values[lang] = value
 
-                row[f"best_{column}"] = best_mode(labeled_values)
+                row[f"best_{column}"] = best_language(labeled_values)
 
             rows.append(row)
 
-    columns = ["model", "language"]
+    columns = ["mode", "model"]
     for column, _, _ in METRICS:
-        columns.extend([f"{mode}_{column}" for mode in MODE_ORDER])
+        columns.extend([f"{lang}_{column}" for lang in LANG_ORDER])
         columns.append(f"best_{column}")
 
     return pd.DataFrame(rows, columns=columns)
@@ -185,10 +185,10 @@ def apply_cell_style(
 def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb = Workbook()
     ws = wb.active
-    ws.title = "modes"
+    ws.title = "languages"
 
-    fixed_headers = ("model", "language")
-    value_subheaders = MODE_ORDER + ("best",)
+    fixed_headers = ("mode", "model")
+    value_subheaders = LANG_ORDER + ("best",)
     cols_per_metric = len(value_subheaders)
 
     for col_idx, header in enumerate(fixed_headers, start=1):
@@ -211,21 +211,21 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 
     records = df.to_dict(orient="records")
     for row_offset, record in enumerate(records, start=3):
-        thick_bottom = record["language"] == "enes"
+        thick_bottom = record["model"] == BASELINE_LABELS[BASELINE_DIRS[-1]]
 
-        model_cell = ws.cell(
+        mode_cell = ws.cell(
             row=row_offset,
             column=1,
-            value=record["model"] if record["language"] == LANG_ORDER[0] else None,
+            value=record["mode"] if record["model"] == BASELINE_LABELS[BASELINE_DIRS[0]] else None,
         )
-        apply_cell_style(model_cell, thick_bottom=thick_bottom)
+        apply_cell_style(mode_cell, thick_bottom=thick_bottom)
 
-        lang_cell = ws.cell(row=row_offset, column=2, value=record["language"])
-        apply_cell_style(lang_cell, thick_bottom=thick_bottom)
+        model_cell = ws.cell(row=row_offset, column=2, value=record["model"])
+        apply_cell_style(model_cell, thick_bottom=thick_bottom)
 
         for metric_idx, (column, _, _) in enumerate(METRICS):
             start_col = metric_start_col + metric_idx * cols_per_metric
-            values = [record[f"{mode}_{column}"] for mode in MODE_ORDER]
+            values = [record[f"{lang}_{column}"] for lang in LANG_ORDER]
             values.append(record[f"best_{column}"])
 
             for offset, value in enumerate(values):
@@ -237,9 +237,9 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
                 )
                 apply_cell_style(cell, fill=fill, thick_bottom=thick_bottom)
 
-    for baseline_idx in range(len(BASELINE_DIRS)):
-        start_row = 3 + baseline_idx * len(LANG_ORDER)
-        end_row = start_row + len(LANG_ORDER) - 1
+    for mode_idx in range(len(MODE_ORDER)):
+        start_row = 3 + mode_idx * len(BASELINE_DIRS)
+        end_row = start_row + len(BASELINE_DIRS) - 1
         ws.merge_cells(start_row=start_row, start_column=1, end_row=end_row, end_column=1)
         ws.cell(row=start_row, column=1).alignment = Alignment(
             horizontal="center",
@@ -262,7 +262,7 @@ def dataset_slug(dataset_dir: Path) -> str:
 
 
 def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
-    return report_dir / f"{dataset_slug(dataset_dir)}_mode_comparison.xlsx"
+    return report_dir / f"{dataset_slug(dataset_dir)}_language_comparison.xlsx"
 
 
 def parse_args() -> argparse.Namespace:
@@ -278,7 +278,7 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help=(
             "Output .xlsx path "
-            "(default: experiments/02_term_expansion_by_language_pair/report/<dataset>_mode_comparison.xlsx)"
+            "(default: experiments/02_term_expansion_by_language_pair/report/<dataset>_language_comparison.xlsx)"
         ),
     )
     parser.add_argument(
@@ -306,7 +306,7 @@ def main() -> None:
 
     print(
         f"Wrote {len(df)} rows "
-        f"({len(BASELINE_DIRS)} models x {len(LANG_ORDER)} languages) to {output_path}"
+        f"({len(MODE_ORDER)} modes x {len(BASELINE_DIRS)} models) to {output_path}"
     )
 
 

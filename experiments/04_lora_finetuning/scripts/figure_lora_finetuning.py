@@ -34,8 +34,8 @@ LORA_EPOCH_RUNS = (
 )
 
 NO_FEW_SHOT_PATHS = {
-    "Qwen2.5-7B": "results/dev_v1/original/no-few-shots/qwen-7b/metrics_summary.json",
-    "Qwen2.5-3B": "results/dev_v1/original/no-few-shots/qwen-3b/metrics_summary.json",
+    "Qwen2.5-7B": "results/dev_v1/original/no-few-shots/qwen_7b/metrics_summary.json",
+    "Qwen2.5-3B": "results/dev_v1/original/no-few-shots/qwen_3b/metrics_summary.json",
 }
 
 NO_FEW_SHOT_GPT_PATH = "results/dev_v1/original/no-few-shots/gpt/metrics_summary.json"

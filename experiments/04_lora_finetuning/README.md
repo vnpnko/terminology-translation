@@ -1,6 +1,6 @@
-# 05 · LoRA fine-tuning
+# 04 · LoRA fine-tuning
 
-LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared against a Qwen base model and a GPT-4o-mini baseline, evaluated on `proper_term` mode only. Produces the poster's `fig_exp5_lora_finetuning` figure (epoch ablation vs. GPT-4o-mini).
+LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared against a Qwen base model and a GPT-4o-mini baseline, evaluated on `proper_term` mode only. Produces the poster's `fig_lora_finetuning` figure (epoch ablation vs. GPT-4o-mini).
 
 ## Layout
 
@@ -27,7 +27,7 @@ Generate supervisor-ready Excel workbooks from `metrics_summary.json` and `train
 From the repository root:
 
 ```bash
-python experiments/05_lora_finetuning/scripts/export_finetuning_report.py
+python experiments/04_lora_finetuning/scripts/export_finetuning_report.py
 ```
 
 Outputs land in `report/`:
@@ -41,15 +41,15 @@ Outputs land in `report/`:
 Export a single workbook:
 
 ```bash
-python experiments/05_lora_finetuning/scripts/export_finetuning_report.py --model 7B
+python experiments/04_lora_finetuning/scripts/export_finetuning_report.py --model 7B
 ```
 
 Custom paths:
 
 ```bash
-python experiments/05_lora_finetuning/scripts/export_finetuning_report.py \
-  --results-dir experiments/05_lora_finetuning/results \
-  --output-dir experiments/05_lora_finetuning/report
+python experiments/04_lora_finetuning/scripts/export_finetuning_report.py \
+  --results-dir experiments/04_lora_finetuning/results \
+  --output-dir experiments/04_lora_finetuning/report
 ```
 
 ### Requirements
@@ -100,7 +100,7 @@ To add a run, edit `scripts/run_registry.json` and re-run the export script.
 | `scripts/export_finetuning_report.py` | CLI entry point for the Excel export |
 | `scripts/filter_test_sentence_overlap.py` | Filters test sentences overlapping with training data |
 | `scripts/filter_test_term_overlap.py` | Filters test terms overlapping with training data |
-| `scripts/figure_exp5.py` | Builds the poster's `fig_exp5_lora_finetuning` figure (`build_exp5_figure`; run via `python src/analysis/generate_result_figures.py --only exp5`) |
+| `scripts/figure_lora_finetuning.py` | Builds the poster's `fig_lora_finetuning` figure (`build_lora_finetuning_figure`; run via `python src/analysis/generate_result_figures.py --only lora_finetuning`) |
 | `scripts/remove_dev_v2_overlap.py` | Removes `dev_v2` lines whose English source also appears in `dev_v1/dev_v1_original` (writes `data/dev_v2_deduped/`); feeds the leakage honesty-check comparisons |
 
 ### Notes

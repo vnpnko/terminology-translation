@@ -1,16 +1,16 @@
 # 01 · Term expansion strategies by model
 
-Compares GPT-4o-mini translation quality across `no_term`, `random_term`, the three `proper_term` source variants (original / GPT-expanded / GPT-cleaned), and the external term dictionary. Produces the poster's `fig_exp1_term_expansion` figure.
+Compares GPT-4o-mini translation quality across `no_term`, `random_term`, the three `proper_term` source variants (original / GPT-expanded / GPT-cleaned), and the external term dictionary. Produces the poster's `fig_term_expansion` figure.
 
-This is a **thin wrapper**: there is no experiment-local data here, only this experiment's `scripts/` and `report/` below. It is a specific comparison drawn from the shared, evolving `data/` → `results/` pipeline documented in the [root README](../../README.md#data), not a separate model run like [`baseline`](../baseline/README.md) or [`05_lora_finetuning`](../05_lora_finetuning/README.md).
+This is a **thin wrapper**: there is no experiment-local data here, only this experiment's `scripts/` and `report/` below. It is a specific comparison drawn from the shared, evolving `data/` → `results/` pipeline documented in the [root README](../../README.md#data), not a separate model run like [`00_baseline`](../00_baseline/README.md) or [`04_lora_finetuning`](../04_lora_finetuning/README.md).
 
 ## Reproduce
 
 ```bash
-python src/analysis/generate_result_figures.py --only exp1
+python src/analysis/generate_result_figures.py --only model_comparison
 ```
 
-Generating script: [`scripts/figure_exp1.py`](scripts/figure_exp1.py) (`build_exp1_figure`), shared helpers in [`src/analysis/figure_common.py`](../../src/analysis/figure_common.py) and [`src/analysis/metrics_loader.py`](../../src/analysis/metrics_loader.py).
+Generating script: [`scripts/figure_model_comparison.py`](scripts/figure_model_comparison.py) (`build_model_comparison_figure`), shared helpers in [`src/analysis/figure_common.py`](../../src/analysis/figure_common.py) and [`src/analysis/metrics_loader.py`](../../src/analysis/metrics_loader.py).
 
 ## Inputs
 
@@ -27,7 +27,7 @@ Plus the `no_term` and `random_term` baseline modes from the same `original` res
 
 ## Output
 
-[`poster/figures/fig_exp1_term_expansion.pdf`](../../poster/figures/fig_exp1_term_expansion.pdf)
+[`poster/figures/fig_term_expansion.pdf`](../../poster/figures/fig_term_expansion.pdf)
 
 ## Report tables
 

@@ -1,8 +1,8 @@
 """Export finetuning experiment metrics to Excel workbooks for reporting.
 
 Usage:
-    python experiments/05_lora_finetuning/scripts/export_finetuning_report.py
-    python experiments/05_lora_finetuning/scripts/export_finetuning_report.py --model 7B
+    python experiments/04_lora_finetuning/scripts/export_finetuning_report.py
+    python experiments/04_lora_finetuning/scripts/export_finetuning_report.py --model 7B
 """
 
 from __future__ import annotations
@@ -118,7 +118,7 @@ def main() -> int:
         "--results-dir",
         type=Path,
         default=DEFAULT_RESULTS_DIR,
-        help="Path to experiments/05_lora_finetuning/results",
+        help="Path to experiments/04_lora_finetuning/results",
     )
     parser.add_argument(
         "--output-dir",

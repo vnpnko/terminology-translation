@@ -21,28 +21,28 @@ Each figure in [`poster/terminology_translation.pdf`](poster/terminology_transla
 
 | Figure | Experiment | Command | Reads from |
 | ------ | ---------- | ------- | ---------- |
-| [`fig_exp1_term_expansion`](poster/figures/fig_exp1_term_expansion.pdf) | [`01_term_expansion_by_model`](experiments/01_term_expansion_by_model/README.md) | `python src/analysis/generate_result_figures.py --only exp1` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_exp23_expansion_strategies`](poster/figures/fig_exp23_expansion_strategies.pdf) | [`02_term_expansion_by_language_pair`](experiments/02_term_expansion_by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only exp23` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_exp4_dev_v1_vs_dev_v2_training`](poster/figures/fig_exp4_dev_v1_vs_dev_v2_training.pdf) | [`03_dataset_comparison`](experiments/03_dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only exp4` | `results/dev_v1/original/`, `results/dev_v2/` |
-| [`fig_exp5_lora_finetuning`](poster/figures/fig_exp5_lora_finetuning.pdf) | [`05_lora_finetuning`](experiments/05_lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only exp5` | `results/dev_v1/original/no-few-shots/`, `experiments/05_lora_finetuning/results/` |
+| [`fig_term_expansion`](poster/figures/fig_term_expansion.pdf) | [`01_term_expansion_by_model`](experiments/01_term_expansion_by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_expansion_strategies`](poster/figures/fig_expansion_strategies.pdf) | [`02_term_expansion_by_language_pair`](experiments/02_term_expansion_by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_dev_v1_vs_dev_v2_training`](poster/figures/fig_dev_v1_vs_dev_v2_training.pdf) | [`03_dataset_comparison`](experiments/03_dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/`, `results/dev_v2/` |
+| [`fig_lora_finetuning`](poster/figures/fig_lora_finetuning.pdf) | [`04_lora_finetuning`](experiments/04_lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/no-few-shots/`, `experiments/04_lora_finetuning/results/` |
 
 Generate all four at once with `python src/analysis/generate_result_figures.py` (writes to `poster/figures/`).
 
 ## Experiments
 
-`experiments/` holds `baseline` plus four numbered, ordered experiments. `01`–`03` are analyses over the shared `data/` → `results/` → `report/` pipeline documented below — each owns a `scripts/` folder with its table/figure-generating code, but no experiment-local data (see their READMEs for exact reproduce commands); `baseline` and `05` are self-contained model-run experiments with their own `data/`/`results/`.
+`experiments/` holds five numbered, ordered experiments. `01`–`03` are analyses over the shared `data/` → `results/` → `report/` pipeline documented below — each owns a `scripts/` folder with its table/figure-generating code, but no experiment-local data (see their READMEs for exact reproduce commands); `00_baseline` and `04_lora_finetuning` are self-contained model-run experiments with their own `data/`/`results/`.
 
 | Experiment | Contents |
 | ---------- | -------- |
+| [`00_baseline/`](experiments/00_baseline/README.md) | GPT-4o-mini and Qwen base-model translation notebooks on `dev_v1`. |
 | [`01_term_expansion_by_model/`](experiments/01_term_expansion_by_model/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered, by model. |
 | [`02_term_expansion_by_language_pair/`](experiments/02_term_expansion_by_language_pair/README.md) | Same term-expansion strategy comparison, broken out by language pair. |
 | [`03_dataset_comparison/`](experiments/03_dataset_comparison/README.md) | `dev_v1` (test) vs. `dev_v2` (training) set comparison, GPT baseline. |
-| [`baseline/`](experiments/baseline/README.md) | GPT-4o-mini and Qwen base-model translation notebooks on `dev_v1`. |
-| [`05_lora_finetuning/`](experiments/05_lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT-4o-mini and Qwen base, with an Excel export pipeline. |
+| [`04_lora_finetuning/`](experiments/04_lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT-4o-mini and Qwen base, with an Excel export pipeline. |
 
 ## Scripts
 
-Genuinely shared code lives in `src/`. Single-experiment scripts live under the owning `experiments/NN_xxx/scripts/` (mirroring `05_lora_finetuning/scripts/`), and import shared `src/` code as `from src.analysis... import ...` / `from src.data_preparation... import ...`.
+Genuinely shared code lives in `src/`. Single-experiment scripts live under the owning `experiments/NN_xxx/scripts/` (mirroring `04_lora_finetuning/scripts/`), and import shared `src/` code as `from src.analysis... import ...` / `from src.data_preparation... import ...`.
 
 ### Data preparation (shared, `src/data_preparation/`)
 
@@ -78,10 +78,10 @@ The table-comparison and figure-generating scripts themselves are experiment-spe
 
 | Script | Location | Purpose |
 | ------ | -------- | ------- |
-| `compare_models_to_excel.py`, `figure_exp1.py` | [`experiments/01_term_expansion_by_model/scripts/`](experiments/01_term_expansion_by_model/README.md) | Compares GPT, Qwen 3B, and Qwen 7B. Rows grouped by mode. |
-| `compare_modes_to_excel.py`, `figure_exp23.py` | [`experiments/02_term_expansion_by_language_pair/scripts/`](experiments/02_term_expansion_by_language_pair/README.md) | Compares `no_term`, `proper_term`, and `random_term`. Rows grouped by model. |
-| `compare_datasets_to_excel.py`, `compare_v1_variants_to_excel.py`, `figure_exp4.py` | [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md) | Compares `dev_v1/original` vs `dev_v2`, and `dev_v1/original` vs `dev_v1/dictionary`. |
-| `figure_exp5.py` | [`experiments/05_lora_finetuning/scripts/`](experiments/05_lora_finetuning/README.md) | LoRA epoch ablation vs. GPT-4o-mini. |
+| `compare_models_to_excel.py`, `figure_model_comparison.py` | [`experiments/01_term_expansion_by_model/scripts/`](experiments/01_term_expansion_by_model/README.md) | Compares GPT, Qwen 3B, and Qwen 7B. Rows grouped by mode. |
+| `compare_modes_to_excel.py`, `figure_mode_comparison.py` | [`experiments/02_term_expansion_by_language_pair/scripts/`](experiments/02_term_expansion_by_language_pair/README.md) | Compares `no_term`, `proper_term`, and `random_term`. Rows grouped by model. |
+| `compare_datasets_to_excel.py`, `compare_v1_variants_to_excel.py`, `figure_dataset_comparison.py` | [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md) | Compares `dev_v1/original` vs `dev_v2`, and `dev_v1/original` vs `dev_v1/dictionary`. |
+| `figure_lora_finetuning.py` | [`experiments/04_lora_finetuning/scripts/`](experiments/04_lora_finetuning/README.md) | LoRA epoch ablation vs. GPT-4o-mini. |
 
 Example commands:
 

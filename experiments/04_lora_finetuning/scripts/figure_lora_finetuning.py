@@ -25,7 +25,7 @@ from src.analysis.plot_style import (
 )
 from metrics_parser import LangMetrics, extract_proper_term_metrics, load_summary, macro_average
 
-FINETUNING_DIR_NAME = "experiments/05_lora_finetuning"
+FINETUNING_DIR_NAME = "experiments/04_lora_finetuning"
 
 LORA_EPOCH_RUNS = (
     (1, "qwen_lora_no_few_shots"),
@@ -158,7 +158,7 @@ def _plot_model_lang_bars(
     headroom_ylim(ax, all_values)
 
 
-def build_exp5_figure(project_root: Path) -> Figure:
+def build_lora_finetuning_figure(project_root: Path) -> Figure:
     apply_poster_style()
 
     compare_paths = [

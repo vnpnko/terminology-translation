@@ -1,4 +1,4 @@
-"""Shared layout and grouped-bar helpers for paired expansion figures (exp1 & exp23)."""
+"""Shared layout and grouped-bar helpers for paired expansion figures (model_comparison & mode_comparison)."""
 
 from __future__ import annotations
 
@@ -79,7 +79,7 @@ def ylim_from_values(values: list[float | None], pad_ratio: float = 0.14) -> tup
 
 
 def compute_shared_expansion_ylims(results_root: Path) -> dict[str, tuple[float, float]]:
-    """Shared BLEU / term-accuracy y-limits across exp1 and exp23 for visual comparison."""
+    """Shared BLEU / term-accuracy y-limits across model_comparison and mode_comparison for visual comparison."""
     from src.analysis.metrics_loader import (
         BASELINE_DIRS,
         DEFAULT_MODE,

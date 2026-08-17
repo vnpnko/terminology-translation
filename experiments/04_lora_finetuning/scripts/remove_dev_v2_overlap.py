@@ -1,7 +1,7 @@
 """Remove dev_v2 lines whose English source also appears in dev_v1/original.
 
 Writes filtered files to
-``experiments/05_lora_finetuning/data/dev_v2_deduped/`` — never overwrites
+``experiments/04_lora_finetuning/data/dev_v2_deduped/`` — never overwrites
 the ``data/dev_v2/dev_v2_original/`` or ``data/dev_v1/dev_v1_original/``
 inputs. Reads dev_v2 sources from ``data/dev_v2/dev_v2_original/`` and
 filters out any line whose ``en`` text also appears in
@@ -36,7 +36,7 @@ from src.data_preparation.term_utils import (
     save_jsonl,
 )
 
-DEV_V2_DEDUPED_DIR = PROJECT_ROOT / "experiments" / "05_lora_finetuning" / "data" / "dev_v2_deduped"
+DEV_V2_DEDUPED_DIR = PROJECT_ROOT / "experiments" / "04_lora_finetuning" / "data" / "dev_v2_deduped"
 
 
 def dev_v1_input_name(lang_pair: LangPair) -> str:
@@ -154,7 +154,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Overwrite existing output in experiments/05_lora_finetuning/data/dev_v2_deduped/",
+        help="Overwrite existing output in experiments/04_lora_finetuning/data/dev_v2_deduped/",
     )
     return parser.parse_args()
 

@@ -7,9 +7,9 @@ removed.  The filtered file overwrites the original; removed rows are written to
 companion *.removed.jsonl file for inspection.
 
 Usage:
-    python experiments/05_lora_finetuning/scripts/filter_test_term_overlap.py
-    python experiments/05_lora_finetuning/scripts/filter_test_term_overlap.py --dry-run
-    python experiments/05_lora_finetuning/scripts/filter_test_term_overlap.py \
+    python experiments/04_lora_finetuning/scripts/filter_test_term_overlap.py
+    python experiments/04_lora_finetuning/scripts/filter_test_term_overlap.py --dry-run
+    python experiments/04_lora_finetuning/scripts/filter_test_term_overlap.py \
         --training-dir path/to/training --test-dir path/to/test_cleaned
 """
 

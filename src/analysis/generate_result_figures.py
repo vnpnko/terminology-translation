@@ -2,13 +2,13 @@
 
 Writes a PDF and PNG per figure to ``--output-dir`` (default:
 ``<project-root>/poster/figures``). Reads ``metrics_summary.json`` files
-under ``<project-root>/results`` (and ``experiments/05_lora_finetuning``
-for exp5).
+under ``<project-root>/results`` (and ``experiments/04_lora_finetuning``
+for lora_finetuning).
 
 Usage::
 
     python src/analysis/generate_result_figures.py
-    python src/analysis/generate_result_figures.py --only exp1 exp5
+    python src/analysis/generate_result_figures.py --only model_comparison lora_finetuning
     python src/analysis/generate_result_figures.py --output-dir poster/figures
 """
 
@@ -28,22 +28,22 @@ EXPERIMENT_SCRIPTS_DIRS = [
     PROJECT_ROOT / "experiments" / "01_term_expansion_by_model" / "scripts",
     PROJECT_ROOT / "experiments" / "02_term_expansion_by_language_pair" / "scripts",
     PROJECT_ROOT / "experiments" / "03_dataset_comparison" / "scripts",
-    PROJECT_ROOT / "experiments" / "05_lora_finetuning" / "scripts",
+    PROJECT_ROOT / "experiments" / "04_lora_finetuning" / "scripts",
 ]
 for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
     sys.path.insert(0, str(_scripts_dir))
 
-from figure_exp1 import build_exp1_figure
-from figure_exp23 import build_exp23_figure
-from figure_exp4 import build_exp4_figure
-from figure_exp5 import build_exp5_figure
+from figure_model_comparison import build_model_comparison_figure
+from figure_mode_comparison import build_mode_comparison_figure
+from figure_dataset_comparison import build_dataset_comparison_figure
+from figure_lora_finetuning import build_lora_finetuning_figure
 from plot_style import save_figure
 
 FIGURE_BUILDERS = {
-    "exp1": ("fig_exp1_term_expansion", lambda root: build_exp1_figure(root / "results")),
-    "exp23": ("fig_exp23_expansion_strategies", lambda root: build_exp23_figure(root / "results")),
-    "exp4": ("fig_exp4_dev_v1_vs_dev_v2_training", lambda root: build_exp4_figure(root / "results")),
-    "exp5": ("fig_exp5_lora_finetuning", lambda root: build_exp5_figure(root)),
+    "model_comparison": ("fig_term_expansion", lambda root: build_model_comparison_figure(root / "results")),
+    "mode_comparison": ("fig_expansion_strategies", lambda root: build_mode_comparison_figure(root / "results")),
+    "dataset_comparison": ("fig_dev_v1_vs_dev_v2_training", lambda root: build_dataset_comparison_figure(root / "results")),
+    "lora_finetuning": ("fig_lora_finetuning", lambda root: build_lora_finetuning_figure(root)),
 }
 
 

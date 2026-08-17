@@ -66,7 +66,7 @@ def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | N
     return data
 
 
-def build_exp4_figure(results_root: Path) -> Figure:
+def build_dataset_comparison_figure(results_root: Path) -> Figure:
     apply_poster_style()
     data = _collect_data(results_root)
 

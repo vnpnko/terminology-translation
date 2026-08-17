@@ -6,9 +6,9 @@ Kept rows are written to data/test_cleaned_gpt/; removed rows go to a companion
 *.removed.jsonl file for inspection. Original test files are not modified.
 
 Usage:
-    python experiments/05_lora_finetuning/scripts/filter_test_sentence_overlap.py
-    python experiments/05_lora_finetuning/scripts/filter_test_sentence_overlap.py --dry-run
-    python experiments/05_lora_finetuning/scripts/filter_test_sentence_overlap.py \
+    python experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py
+    python experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py --dry-run
+    python experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py \
         --training-dir path/to/training --test-dir path/to/test \
         --output-dir path/to/test_cleaned_gpt
 """

@@ -29,16 +29,16 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 - **Repo location:** [`experiments/02_term_expansion_by_language_pair/`](../experiments/02_term_expansion_by_language_pair/README.md) (modes) and [`experiments/03_dataset_comparison/`](../experiments/03_dataset_comparison/README.md) (dictionary variant)
 - **Scripts:** [`experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py`](../experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py), [`experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py`](../experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py)
 - **Tables:** `experiments/02_term_expansion_by_language_pair/report/dev_v1_{original,expand,cleaned}_mode_comparison.xlsx`, `dev_v2_mode_comparison.xlsx`; `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx`
-- **Figure:** `poster/figures/fig_exp23_expansion_strategies.pdf`
+- **Figure:** `poster/figures/fig_expansion_strategies.pdf`
 - **Poster finding to reuse:** EN→ES strongest on both BLEU and term accuracy; EN→DE beats EN→RU on BLEU, EN→RU leads on term accuracy.
-- **Known gap (see `03_dataset_comparison/README.md`):** `poster/figures/fig_exp4_dictionary_vs_original.pdf` exists but no current script regenerates it — treat as unreproducible until fixed, don't cite it as if it were live.
+- **Known gap (see `03_dataset_comparison/README.md`):** `poster/figures/fig_dictionary_vs_original.pdf` exists but no current script regenerates it — treat as unreproducible until fixed, don't cite it as if it were live.
 
 ### 3.2 Terminology modes across models (GPT-4o-mini vs Qwen 3B vs Qwen 7B) — 🟢 (see ISSUES §4 for workbook duplication)
 - **RQ:** How do a closed frontier model and two open base models compare on terminology-constrained translation, and does that comparison hold across term-list variants (original / GPT-expand / GPT-clean)?
 - **Repo location:** [`experiments/01_term_expansion_by_model/`](../experiments/01_term_expansion_by_model/README.md)
 - **Script:** [`experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py`](../experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py)
 - **Tables:** `experiments/01_term_expansion_by_model/report/dev_v1_{original,expand,cleaned}_model_comparison.xlsx`, `dev_v2_model_comparison.xlsx` — **use only the `metrics` sheet** in `dev_v1_original_model_comparison.xlsx` (see ISSUES §4, `Sheet1` and `terms expansion types` are redundant near-duplicates)
-- **Figure:** `poster/figures/fig_exp1_term_expansion.pdf`
+- **Figure:** `poster/figures/fig_term_expansion.pdf`
 
 ### 3.3 dev_v1 vs dev_v2 dataset comparison — 🟢 (background context, not one of the required axes, but needed to set up §3.4.2)
 - **RQ:** How comparable is the dev_v2 proxy training set to the dev_v1 test set on GPT-4o-mini?
@@ -47,10 +47,10 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 
 ### 3.4 LoRA fine-tuning (Qwen2.5-3B / 7B, 1–3 epochs) — 🟡 README's export section is stale
 - **RQ:** Does LoRA fine-tuning on dev_v2 close the gap between open Qwen models and GPT-4o-mini on terminology-constrained translation?
-- **Repo location:** [`experiments/05_lora_finetuning/`](../experiments/05_lora_finetuning/README.md), evaluated on `proper_term` mode only.
-- **Canonical runs** (from [`scripts/run_registry.json`](../experiments/05_lora_finetuning/scripts/run_registry.json)): `base` (no fine-tuning), `lora_1ep_fs` (1 epoch, few-shot), `lora_2ep_nofs` (2 epochs, no few-shot), `lora_3ep_nofs` (3 epochs, no few-shot), for both 3B and 7B, plus `gpt_base`.
+- **Repo location:** [`experiments/04_lora_finetuning/`](../experiments/04_lora_finetuning/README.md), evaluated on `proper_term` mode only.
+- **Canonical runs** (from [`scripts/run_registry.json`](../experiments/04_lora_finetuning/scripts/run_registry.json)): `base` (no fine-tuning), `lora_1ep_fs` (1 epoch, few-shot), `lora_2ep_nofs` (2 epochs, no few-shot), `lora_3ep_nofs` (3 epochs, no few-shot), for both 3B and 7B, plus `gpt_base`.
 - **Tables:** the README documents `results_Qwen2.5-{3B,7B}.xlsx` and `results_GPT4o-mini.xlsx` as the export output — **none of these three files exist in the repo.** The only workbook actually committed is `comparisons.xlsx` (hand-assembled, differently structured, sheet names not matching the README's documented sheet list). `run_registry.json`'s own `workbook` fields still point at the three missing files — the registry is stale evidence of an abandoned export pipeline. Use `comparisons.xlsx` as the real source of truth for now, but re-run/rebuild the export before citing numbers in the paper (see ISSUES §2).
-- **Figure:** `poster/figures/fig_exp5_lora_finetuning.pdf` — epoch ablation vs. GPT-4o-mini.
+- **Figure:** `poster/figures/fig_lora_finetuning.pdf` — epoch ablation vs. GPT-4o-mini.
 - **Poster findings to reuse:** LoRA gains build through epochs, peak ~2 epochs; 7B term accuracy stable, 3B term accuracy drops without few-shot but recovers after fine-tuning; best 7B LoRA closes much of the BLEU gap to GPT, especially EN→RU, while GPT few-shot stays strongest on term accuracy.
 
 #### 3.4.1 Few-shot ablation — 🟡 two separate, differently-scoped experiments exist under this name
@@ -66,21 +66,21 @@ There are **two distinct few-shot comparisons** in the repo; the report needs to
 #### 3.4.2 Data-leakage honesty check ("good vs bad data") — 🔴 fully undocumented in any README
 **Why this section exists:** dev_v2 is used as a training-set proxy for the shared task (see §3.3) because the real shared-task training data isn't available. But dev_v2 and dev_v1 are drawn from overlapping SAP documentation, so some dev_v2 lines are near-duplicates of dev_v1 test lines — fine-tuning on them would leak test signal and make LoRA's gains look bigger than they are.
 
-**What was actually done** (reconstructed from [`experiments/05_lora_finetuning/scripts/remove_dev_v2_overlap.py`](../experiments/05_lora_finetuning/scripts/remove_dev_v2_overlap.py) and its (now-deleted, see ISSUES §1) report output):
+**What was actually done** (reconstructed from [`experiments/04_lora_finetuning/scripts/remove_dev_v2_overlap.py`](../experiments/04_lora_finetuning/scripts/remove_dev_v2_overlap.py) and its (now-deleted, see ISSUES §1) report output):
 1. dev_v2 started at **2000 lines/language** (verified: current `data/dev_v2/dev_v2_original/*.jsonl` is still 2000 lines/language).
 2. **500 lines/language removed** where the English source *and* target already appeared verbatim in dev_v1 — exact-overlap deduplication, kept = 1500/language. (Recovered from git history, commit `5f9e31f`: `filter_unique_en: 500, input_lines: 2000, removed: 500, kept: 1500` for all three language pairs.)
-3. **2–3 more lines/language removed** to reserve as few-shot prompt examples (commit `1fc187d`), leaving the training files at their current size — verified: `experiments/05_lora_finetuning/data/training/*.jsonl` = 1498 (ende) / 1497 (enes) / 1497 (enru) lines, i.e. 1500 minus 2–3.
+3. **2–3 more lines/language removed** to reserve as few-shot prompt examples (commit `1fc187d`), leaving the training files at their current size — verified: `experiments/04_lora_finetuning/data/training/*.jsonl` = 1498 (ende) / 1497 (enes) / 1497 (enru) lines, i.e. 1500 minus 2–3.
 4. Even after exact-overlap removal, some dev_v1 test sentences remain **near-duplicates** of dev_v2 training sentences (differing by only a few words) — this is the poster's stated caveat: *"some dev_v1 test sentences overlap lexically with dev_v2 training data."*
-5. To check whether this near-duplicate leakage inflates LoRA's apparent gains, the test set was split into a **"good"** subset (no near-duplicate in training) and a **"bad"** subset (near-duplicate present), using [`experiments/05_lora_finetuning/scripts/filter_test_sentence_overlap.py`](../experiments/05_lora_finetuning/scripts/filter_test_sentence_overlap.py) (≥50% token containment ratio = "overlap"). Results for both subsets were evaluated for GPT and Qwen-7B-base, and manually compiled into `comparisons.xlsx`'s **"good vs bad data"** sheet.
+5. To check whether this near-duplicate leakage inflates LoRA's apparent gains, the test set was split into a **"good"** subset (no near-duplicate in training) and a **"bad"** subset (near-duplicate present), using [`experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py`](../experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py) (≥50% token containment ratio = "overlap"). Results for both subsets were evaluated for GPT and Qwen-7B-base, and manually compiled into `comparisons.xlsx`'s **"good vs bad data"** sheet.
 
 **What the data shows** (from `comparisons.xlsx`, macro-avg BLEU): GPT bad=49.34 vs good=46.18; Qwen-base bad=38.84 vs good=38.07; Qwen-LoRA (7B, 2ep, no-few-shot) bad=56.28 vs good=46.97. All three models score *higher* on the "bad" (leakage-suspected) subset than the "good" subset, and LoRA's bad-vs-good gap (56.28 → 46.97, −9.3 BLEU) is larger than GPT's (49.34 → 46.18, −3.2) or Qwen-base's (38.84 → 38.07, −0.8) — i.e., **the data itself supports the "LoRA gains may be partly leakage-inflated" caveat**, and quantifies it: on the leakage-free "good" subset, LoRA's edge over GPT shrinks from +6.9 BLEU (bad subset) to +0.8 BLEU (good subset).
 
 **Caveats to state plainly in the paper:**
 - This check only used the `test_cleaned_by_sentences` split, and even that split is the *only* one worth reporting: the parallel `test_cleaned_by_terms` split (filtering on shared *term* overlap rather than whole-sentence overlap) turns out heavily skewed once inspected — only 11–14 "good" sentences vs. 483–486 "bad" sentences per language (almost every dev_v1 sentence shares a term-dictionary entry with dev_v2 training data), so it wouldn't give a statistically meaningful comparison even if run. It was prepared (`data/test_cleaned_by_terms/{data_good,data_bad}/`) but **never evaluated** — no matching `results/.../test_cleaned_by_terms/` exists anywhere. ⚫ Recommendation: don't run it; note the skew as the reason in the paper instead.
-- Only 2 of the 5 comparison blocks in the "good vs bad data" sheet were produced by [`fill_good_vs_bad_gpt.py`](../experiments/05_lora_finetuning/scripts/fill_good_vs_bad_gpt.py) (GPT and Qwen-base blocks); the `qwen_lora` blocks (blocks 3–5) have no generating script anywhere in the repo and appear hand-entered — re-verify those numbers against `results/Qwen2.5-7B/qwen_lora_no_few_shots_2_epochs/test_cleaned_by_sentences/` before citing them.
+- Only 2 of the 5 comparison blocks in the "good vs bad data" sheet were produced by [`fill_good_vs_bad_gpt.py`](../experiments/04_lora_finetuning/scripts/fill_good_vs_bad_gpt.py) (GPT and Qwen-base blocks); the `qwen_lora` blocks (blocks 3–5) have no generating script anywhere in the repo and appear hand-entered — re-verify those numbers against `results/Qwen2.5-7B/qwen_lora_no_few_shots_2_epochs/test_cleaned_by_sentences/` before citing them.
 - **The Qwen-base "good" column has a labeling bug**: in `fill_good_vs_bad_gpt.py`, the `qwen_base` block's `good_path` points at the plain, unfiltered `qwen_base/metrics_summary.json` (the full 500-line test set), not an actual good-filtered subset — so the Qwen-base row of this table is not really "good vs bad," it's "bad-filtered vs. full-unfiltered." Only the GPT row and the (unscripted, hand-entered) LoRA rows compare a true good-filtered subset against a true bad-filtered subset. Fix the script (point `good_path` at a real `qwen_base/test_cleaned_by_sentences/data_good/metrics_summary.json`, generating it first if it doesn't exist) before citing the Qwen-base line of this comparison.
 - Only run for Qwen **7B**, not 3B.
-- `data/dev_v2/dev_v2_original/training set/*.jsonl` (note the literal space in the folder name) and `experiments/05_lora_finetuning/data/training/*.jsonl` hold the same derived, post-removal training data checked in twice under two paths, with nothing in the repo indicating which is canonical — pick one before writing up exact training-set sizes.
+- `data/dev_v2/dev_v2_original/training set/*.jsonl` (note the literal space in the folder name) and `experiments/04_lora_finetuning/data/training/*.jsonl` hold the same derived, post-removal training data checked in twice under two paths, with nothing in the repo indicating which is canonical — pick one before writing up exact training-set sizes.
 
 ## Report-table cross-reference
 
@@ -90,12 +90,12 @@ There are **two distinct few-shot comparisons** in the repo; the report needs to
 | `experiments/02_term_expansion_by_language_pair/report/dev_v1_original_mode_comparison.xlsx` | `experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py` | Mode comparison table (§3.1) |
 | `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_gpt_dataset_comparison.xlsx` | `experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py` | dev_v1 vs dev_v2 table (§3.3) |
 | `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` | `experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py` | Dictionary vs original table (§3.1) |
-| `experiments/05_lora_finetuning/report/results_Qwen2.5-{3B,7B}.xlsx`, `results_GPT4o-mini.xlsx` | `experiments/05_lora_finetuning/scripts/export_finetuning_report.py` | LoRA main results, epoch ablation (§3.4) |
-| `experiments/05_lora_finetuning/report/comparisons.xlsx` sheet `good vs bad data` | `experiments/05_lora_finetuning/scripts/fill_good_vs_bad_gpt.py` + manual edits | Leakage honesty-check table (§3.4.2) |
-| `poster/figures/fig_exp1_term_expansion.pdf` | `experiments/01_term_expansion_by_model/scripts/figure_exp1.py` | Figure, §3.2 |
-| `poster/figures/fig_exp23_expansion_strategies.pdf` | `experiments/02_term_expansion_by_language_pair/scripts/figure_exp23.py` | Figure, §3.1 |
-| `poster/figures/fig_exp4_dev_v1_vs_dev_v2_training.pdf` | `experiments/03_dataset_comparison/scripts/figure_exp4.py` | Figure, §3.3 |
-| `poster/figures/fig_exp5_lora_finetuning.pdf` | `experiments/05_lora_finetuning/scripts/figure_exp5.py` | Figure, §3.4 |
+| `experiments/04_lora_finetuning/report/results_Qwen2.5-{3B,7B}.xlsx`, `results_GPT4o-mini.xlsx` | `experiments/04_lora_finetuning/scripts/export_finetuning_report.py` | LoRA main results, epoch ablation (§3.4) |
+| `experiments/04_lora_finetuning/report/comparisons.xlsx` sheet `good vs bad data` | `experiments/04_lora_finetuning/scripts/fill_good_vs_bad_gpt.py` + manual edits | Leakage honesty-check table (§3.4.2) |
+| `poster/figures/fig_term_expansion.pdf` | `experiments/01_term_expansion_by_model/scripts/figure_model_comparison.py` | Figure, §3.2 |
+| `poster/figures/fig_expansion_strategies.pdf` | `experiments/02_term_expansion_by_language_pair/scripts/figure_mode_comparison.py` | Figure, §3.1 |
+| `poster/figures/fig_dev_v1_vs_dev_v2_training.pdf` | `experiments/03_dataset_comparison/scripts/figure_dataset_comparison.py` | Figure, §3.3 |
+| `poster/figures/fig_lora_finetuning.pdf` | `experiments/04_lora_finetuning/scripts/figure_lora_finetuning.py` | Figure, §3.4 |
 
 ## Open questions
 

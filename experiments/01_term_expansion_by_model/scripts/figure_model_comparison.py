@@ -125,7 +125,7 @@ def _series_legend_label(series: str, term_counts: dict[str, int]) -> str:
     return f"{base} ({count} terms)" if count is not None else base
 
 
-def build_exp1_figure(results_root: Path) -> Figure:
+def build_model_comparison_figure(results_root: Path) -> Figure:
     apply_poster_style()
     summaries, no_term, random_term, external_dictionary, term_counts = _collect_data(results_root)
 

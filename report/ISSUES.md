@@ -23,7 +23,7 @@ Every messy, undocumented, or broken thing found while planning [`README.md`](RE
 
 ## 3. Undocumented or partially-documented experiments
 
-- **"Good vs bad data" leakage honesty check** (see `README.md` §3.6.2 for the full reconstruction) — not mentioned in any README anywhere in the repo. Only visible via `comparisons.xlsx`'s `good vs bad data` sheet and its partial generator script `fill_good_vs_bad_gpt.py`.
+- **"Good vs bad data" leakage honesty check** (see `README.md` §3.4.2 for the full reconstruction) — not mentioned in any README anywhere in the repo. Only visible via `comparisons.xlsx`'s `good vs bad data` sheet and its partial generator script `fill_good_vs_bad_gpt.py`.
   - **Bug found:** `fill_good_vs_bad_gpt.py`'s Qwen-base block wires `good_path` to the plain, unfiltered `qwen_base/metrics_summary.json` — not an actual good-filtered subset. So the Qwen-base row of the sheet is silently "bad-filtered vs. full-unfiltered," not "good vs bad" like the GPT row and the (separately, manually entered) LoRA rows. **This makes the Qwen-base row in the current sheet directly misleading if cited as-is.**
   - Only 2 of 5 comparison blocks (GPT, Qwen-base) are script-generated; the 3 `qwen_lora` blocks have no generating script anywhere and appear hand-entered.
   - Only evaluated for Qwen **7B**; no 3B good/bad results exist.

@@ -7,8 +7,8 @@ and ``<results-root>/dev_v1/dictionary/<baseline>/``.
 
 Usage::
 
-    python src/analysis/compare_v1_variants_to_excel.py
-    python src/analysis/compare_v1_variants_to_excel.py --baseline gpt
+    python experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py
+    python experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py --baseline gpt
 """
 
 from __future__ import annotations

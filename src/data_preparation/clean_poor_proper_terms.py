@@ -7,8 +7,8 @@ LLM-judged mode (``--mode rule-based`` skips API calls entirely).
 
 Usage::
 
-    python clean_poor_proper_terms.py -i ../../data/interim/dev_v1_expand/ende_dev_v1_expand.jsonl
-    python clean_poor_proper_terms.py -i ../../data/raw/dev_v1_original/ende_dev_v1.jsonl
+    python clean_poor_proper_terms.py -i ../../data/dev_v1/dev_v1_expand/ende_dev_v1_expand.jsonl
+    python clean_poor_proper_terms.py -i ../../data/dev_v1/dev_v1_original/ende_dev_v1.jsonl
 """
 
 from __future__ import annotations
@@ -548,8 +548,8 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         required=True,
         help=(
-            "Input JSONL path (e.g. data/interim/dev_v1_expand/ende_dev_v1_expand.jsonl "
-            "or data/raw/dev_v1_original/ende_dev_v1.jsonl)"
+            "Input JSONL path (e.g. data/dev_v1/dev_v1_expand/ende_dev_v1_expand.jsonl "
+            "or data/dev_v1/dev_v1_original/ende_dev_v1.jsonl)"
         ),
     )
     parser.add_argument(

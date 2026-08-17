@@ -27,14 +27,14 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 ### 3.1 Terminology modes (no-term / proper-term / random-term) — 🟢
 - **RQ:** Does injecting explicit terminology constraints improve BLEU/chrF/term accuracy over no constraints, and does an unrelated (random-term) constraint list act as a fair control?
 - **Repo location:** [`experiments/02_term_expansion_by_language_pair/`](../experiments/02_term_expansion_by_language_pair/README.md)
-- **Script:** [`src/analysis/compare_modes_to_excel.py`](../src/analysis/compare_modes_to_excel.py)
+- **Script:** [`experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py`](../experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py)
 - **Tables:** `experiments/02_term_expansion_by_language_pair/report/dev_v1_{original,expand,cleaned}_mode_comparison.xlsx`, `dev_v2_mode_comparison.xlsx`
 - **Figure:** `poster/figures/fig_exp23_expansion_strategies.pdf`
 
 ### 3.2 Model comparison (GPT-4o-mini vs Qwen 3B vs Qwen 7B) — 🟢 (see ISSUES §4 for workbook duplication)
 - **RQ:** How do a closed frontier model and two open base models compare on terminology-constrained translation?
 - **Repo location:** [`experiments/01_term_expansion_by_model/`](../experiments/01_term_expansion_by_model/README.md)
-- **Script:** [`src/analysis/compare_models_to_excel.py`](../src/analysis/compare_models_to_excel.py)
+- **Script:** [`experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py`](../experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py)
 - **Tables:** `experiments/01_term_expansion_by_model/report/dev_v1_{original,expand,cleaned}_model_comparison.xlsx`, `dev_v2_model_comparison.xlsx` — **use only the `metrics` sheet** in `dev_v1_original_model_comparison.xlsx` (see ISSUES §4, `Sheet1` and `terms expansion types` are redundant near-duplicates)
 - **Figure:** `poster/figures/fig_exp1_term_expansion.pdf`
 
@@ -46,13 +46,13 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 ### 3.4 Term-expansion strategies (original / GPT-expand / GPT-clean / external dictionary) — 🟡
 - **RQ:** Does expanding the terminology-constraint list (GPT-suggested) improve performance over the original small list, and does domain-filtering ("cleaning") that expanded list help further? How does an external dictionary (built from dev_v2) compare?
 - **Repo location:** [`experiments/01_term_expansion_by_model/`](../experiments/01_term_expansion_by_model/README.md) (by model) and [`experiments/03_dataset_comparison/`](../experiments/03_dataset_comparison/README.md) (`original` vs `dictionary`)
-- **Scripts:** `compare_models_to_excel.py`, [`src/analysis/compare_v1_variants_to_excel.py`](../src/analysis/compare_v1_variants_to_excel.py)
+- **Scripts:** `experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py`, [`experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py`](../experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py)
 - **Known gap (see `03_dataset_comparison/README.md`):** `poster/figures/fig_exp4_dictionary_vs_original.pdf` exists but no current script regenerates it — treat as unreproducible until fixed, don't cite it as if it were live.
 
 ### 3.5 dev_v1 vs dev_v2 dataset comparison — 🟢 (background context, not one of the required axes, but needed to set up §3.6.2)
 - **RQ:** How comparable is the dev_v2 proxy training set to the dev_v1 test set on GPT-4o-mini?
 - **Repo location:** [`experiments/03_dataset_comparison/`](../experiments/03_dataset_comparison/README.md)
-- **Script:** [`src/analysis/compare_datasets_to_excel.py`](../src/analysis/compare_datasets_to_excel.py)
+- **Script:** [`experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py`](../experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py)
 
 ### 3.6 LoRA fine-tuning (Qwen2.5-3B / 7B, 1–3 epochs) — 🟡 README's export section is stale
 - **RQ:** Does LoRA fine-tuning on dev_v2 close the gap between open Qwen models and GPT-4o-mini on terminology-constrained translation?
@@ -75,7 +75,7 @@ There are **two distinct few-shot comparisons** in the repo; the report needs to
 #### 3.6.2 Data-leakage honesty check ("good vs bad data") — 🔴 fully undocumented in any README
 **Why this section exists:** dev_v2 is used as a training-set proxy for the shared task (see §3.5) because the real shared-task training data isn't available. But dev_v2 and dev_v1 are drawn from overlapping SAP documentation, so some dev_v2 lines are near-duplicates of dev_v1 test lines — fine-tuning on them would leak test signal and make LoRA's gains look bigger than they are.
 
-**What was actually done** (reconstructed from [`src/data_preparation/remove_dev_v2_overlap.py`](../src/data_preparation/remove_dev_v2_overlap.py) and its (now-deleted, see ISSUES §1) report output):
+**What was actually done** (reconstructed from [`experiments/05_lora_finetuning/scripts/remove_dev_v2_overlap.py`](../experiments/05_lora_finetuning/scripts/remove_dev_v2_overlap.py) and its (now-deleted, see ISSUES §1) report output):
 1. dev_v2 started at **2000 lines/language** (verified: current `data/dev_v2/dev_v2_original/*.jsonl` is still 2000 lines/language).
 2. **500 lines/language removed** where the English source *and* target already appeared verbatim in dev_v1 — exact-overlap deduplication, kept = 1500/language. (Recovered from git history, commit `5f9e31f`: `filter_unique_en: 500, input_lines: 2000, removed: 500, kept: 1500` for all three language pairs.)
 3. **2–3 more lines/language removed** to reserve as few-shot prompt examples (commit `1fc187d`), leaving the training files at their current size — verified: `experiments/05_lora_finetuning/data/training/*.jsonl` = 1498 (ende) / 1497 (enes) / 1497 (enru) lines, i.e. 1500 minus 2–3.
@@ -95,16 +95,16 @@ There are **two distinct few-shot comparisons** in the repo; the report needs to
 
 | Existing file | Produced by | Maps to paper table/figure |
 | -------------- | ----------- | --------------------------- |
-| `experiments/01_term_expansion_by_model/report/dev_v1_original_model_comparison.xlsx` (sheet `metrics`) | `compare_models_to_excel.py` | Model comparison table (§3.2) |
-| `experiments/02_term_expansion_by_language_pair/report/dev_v1_original_mode_comparison.xlsx` | `compare_modes_to_excel.py` | Mode comparison table (§3.1) |
-| `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_gpt_dataset_comparison.xlsx` | `compare_datasets_to_excel.py` | dev_v1 vs dev_v2 table (§3.5) |
-| `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` | `compare_v1_variants_to_excel.py` | Dictionary vs original table (§3.4) |
-| `experiments/05_lora_finetuning/report/results_Qwen2.5-{3B,7B}.xlsx`, `results_GPT4o-mini.xlsx` | `export_finetuning_report.py` | LoRA main results, epoch ablation (§3.6) |
-| `experiments/05_lora_finetuning/report/comparisons.xlsx` sheet `good vs bad data` | `fill_good_vs_bad_gpt.py` + manual edits | Leakage honesty-check table (§3.6.2) |
-| `poster/figures/fig_exp1_term_expansion.pdf` | `src/analysis/figure_exp1.py` | Figure, §3.2 |
-| `poster/figures/fig_exp23_expansion_strategies.pdf` | `figure_exp23.py` | Figure, §3.1/§3.3 |
-| `poster/figures/fig_exp4_dev_v1_vs_dev_v2_training.pdf` | `figure_exp4.py` | Figure, §3.5 |
-| `poster/figures/fig_exp5_lora_finetuning.pdf` | `figure_exp5.py` | Figure, §3.6 |
+| `experiments/01_term_expansion_by_model/report/dev_v1_original_model_comparison.xlsx` (sheet `metrics`) | `experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py` | Model comparison table (§3.2) |
+| `experiments/02_term_expansion_by_language_pair/report/dev_v1_original_mode_comparison.xlsx` | `experiments/02_term_expansion_by_language_pair/scripts/compare_modes_to_excel.py` | Mode comparison table (§3.1) |
+| `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_gpt_dataset_comparison.xlsx` | `experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py` | dev_v1 vs dev_v2 table (§3.5) |
+| `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` | `experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py` | Dictionary vs original table (§3.4) |
+| `experiments/05_lora_finetuning/report/results_Qwen2.5-{3B,7B}.xlsx`, `results_GPT4o-mini.xlsx` | `experiments/05_lora_finetuning/scripts/export_finetuning_report.py` | LoRA main results, epoch ablation (§3.6) |
+| `experiments/05_lora_finetuning/report/comparisons.xlsx` sheet `good vs bad data` | `experiments/05_lora_finetuning/scripts/fill_good_vs_bad_gpt.py` + manual edits | Leakage honesty-check table (§3.6.2) |
+| `poster/figures/fig_exp1_term_expansion.pdf` | `experiments/01_term_expansion_by_model/scripts/figure_exp1.py` | Figure, §3.2 |
+| `poster/figures/fig_exp23_expansion_strategies.pdf` | `experiments/02_term_expansion_by_language_pair/scripts/figure_exp23.py` | Figure, §3.1/§3.3 |
+| `poster/figures/fig_exp4_dev_v1_vs_dev_v2_training.pdf` | `experiments/03_dataset_comparison/scripts/figure_exp4.py` | Figure, §3.5 |
+| `poster/figures/fig_exp5_lora_finetuning.pdf` | `experiments/05_lora_finetuning/scripts/figure_exp5.py` | Figure, §3.6 |
 
 ## Open questions
 

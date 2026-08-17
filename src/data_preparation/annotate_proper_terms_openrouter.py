@@ -1,7 +1,7 @@
 """Fill ``proper_terms`` in JSONL files (EN source + target-language post-edit).
 
 Writes to ``--output`` (a new file; the input is left untouched). Uses
-OpenRouter (``OPENROUTER_API_KEY`` in ``src/.env``). By default the input is
+OpenRouter (``OPENROUTER_API_KEY`` in ``.env`` at the repo root). By default the input is
 split into chunks and processed in parallel via subprocess workers (like
 ``annotate_random_terms_openrouter.py``); use ``--workers 1`` for a
 single-process run on the full file.

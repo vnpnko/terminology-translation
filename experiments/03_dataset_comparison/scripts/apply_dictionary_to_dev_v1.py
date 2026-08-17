@@ -1,9 +1,9 @@
 """Apply term dictionary to dev_v1 original JSONL (optional secondary step).
 
-Writes new files to ``data/interim/dev_v1_dictionary/`` only — never
-overwrites the raw/interim inputs. Reads the dictionary from
-``data/processed/term_dictionary/`` and enriches ``proper_terms`` in dev_v1
-(``data/raw/dev_v1_original/``) using reference-based disambiguation.
+Writes new files to ``data/dev_v1/dev_v1_dictionary/`` only — never
+overwrites the original inputs. Reads the dictionary from
+``data/dev_v2/dev_v2_dictionary/`` and enriches ``proper_terms`` in dev_v1
+(``data/dev_v1/dev_v1_original/``) using reference-based disambiguation.
 
 Usage::
 
@@ -21,11 +21,10 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-if str(SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPT_DIR))
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from term_utils import (
+from src.data_preparation.term_utils import (
     DEV_V1_DICTIONARY_DIR,
     DEV_V1_ORIGINAL_DIR,
     LANG_PAIRS,
@@ -279,7 +278,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Overwrite existing output in data/interim/dev_v1_dictionary/",
+        help="Overwrite existing output in data/dev_v1/dev_v1_dictionary/",
     )
     return parser.parse_args()
 

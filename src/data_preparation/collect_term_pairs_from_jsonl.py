@@ -1,11 +1,12 @@
-"""Collect ``proper_terms`` pairs from SAP v1 and v2 dev JSONL files.
+"""Collect ``proper_terms`` pairs from dev_v1 and dev_v2 JSONL files.
 
-Writes one JSONL file per language to ``data/processed/term_pairs/`` (default
-path; override with ``--output``) — never modifies the v1/v2 inputs. Reads
-v1 from ``data/sap_dev/`` and v2 from ``data/sap_v2_with_terms/``. For each
-language group, merges duplicate English keys (case-insensitive) across both
-sources, picks the most frequent (EN surface, target surface) pair, and
-writes one JSONL line per unique term:
+Writes one JSONL file per language to ``data/dev_v2/dev_v2_for_training/``
+(default path; override with ``--output``) — never modifies the v1/v2
+inputs. Reads v1 from ``data/dev_v1/dev_v1_original/`` and v2 from
+``data/dev_v2/dev_v2_original/``. For each language group, merges duplicate
+English keys (case-insensitive) across both sources, picks the most
+frequent (EN surface, target surface) pair, and writes one JSONL line per
+unique term:
 
   {"en": "<english>", "de": "<german>"}   # or "es" / "ru"
 
@@ -18,7 +19,7 @@ Supported target languages (``-t`` / ``--target-lang``):
 Usage::
 
     python collect_term_pairs_from_jsonl.py -t de
-    python collect_term_pairs_from_jsonl.py -t es -o ../../data/processed/term_pairs/enes_pairs.jsonl
+    python collect_term_pairs_from_jsonl.py -t es -o ../../data/dev_v2/dev_v2_for_training/enes_pairs.jsonl
     python collect_term_pairs_from_jsonl.py --all
     python collect_term_pairs_from_jsonl.py -t ru --include-count
 """
@@ -70,9 +71,9 @@ LANGS: dict[str, LangConfig] = {
     ),
 }
 
-V1_DIR = REPO_ROOT / "data" / "sap_dev"
-V2_DIR = REPO_ROOT / "data" / "sap_v2_with_terms"
-DEFAULT_OUT_DIR = REPO_ROOT / "data" / "processed" / "term_pairs"
+V1_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_original"
+V2_DIR = REPO_ROOT / "data" / "dev_v2" / "dev_v2_original"
+DEFAULT_OUT_DIR = REPO_ROOT / "data" / "dev_v2" / "dev_v2_for_training"
 
 
 def default_paths(lang: LangConfig) -> tuple[Path, Path]:
@@ -217,7 +218,7 @@ def parse_args() -> argparse.Namespace:
         "--output",
         type=Path,
         default=None,
-        help="Output JSONL (default: data/processed/term_pairs/<pair>_proper_term_pairs.jsonl)",
+        help="Output JSONL (default: data/dev_v2/dev_v2_for_training/<pair>_proper_term_pairs.jsonl)",
     )
     parser.add_argument(
         "--include-count",

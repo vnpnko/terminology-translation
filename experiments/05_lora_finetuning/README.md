@@ -100,6 +100,8 @@ To add a run, edit `scripts/run_registry.json` and re-run the export script.
 | `scripts/export_finetuning_report.py` | CLI entry point for the Excel export |
 | `scripts/filter_test_sentence_overlap.py` | Filters test sentences overlapping with training data |
 | `scripts/filter_test_term_overlap.py` | Filters test terms overlapping with training data |
+| `scripts/figure_exp5.py` | Builds the poster's `fig_exp5_lora_finetuning` figure (`build_exp5_figure`; run via `python src/analysis/generate_result_figures.py --only exp5`) |
+| `scripts/remove_dev_v2_overlap.py` | Removes `dev_v2` lines whose English source also appears in `dev_v1/dev_v1_original` (writes `data/dev_v2_deduped/`); feeds the leakage honesty-check comparisons |
 
 ### Notes
 

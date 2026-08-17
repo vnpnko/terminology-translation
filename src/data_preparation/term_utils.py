@@ -29,10 +29,10 @@ def repo_rel_path(path: Path | str, *, base: Path = REPO_ROOT) -> str:
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 
-DEV_V2_DIR = REPO_ROOT / "data" / "processed" / "dev_v2"
-DEV_V1_ORIGINAL_DIR = REPO_ROOT / "data" / "raw" / "dev_v1_original"
-TERM_DICTIONARY_DIR = REPO_ROOT / "data" / "processed" / "term_dictionary"
-DEV_V1_DICTIONARY_DIR = REPO_ROOT / "data" / "interim" / "dev_v1_dictionary"
+DEV_V2_DIR = REPO_ROOT / "data" / "dev_v2" / "dev_v2_original"
+DEV_V1_ORIGINAL_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_original"
+TERM_DICTIONARY_DIR = REPO_ROOT / "data" / "dev_v2" / "dev_v2_dictionary"
+DEV_V1_DICTIONARY_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_dictionary"
 
 SNIPPET_MAX_LEN = 120
 

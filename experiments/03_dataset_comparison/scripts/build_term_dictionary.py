@@ -1,8 +1,8 @@
 """Build a provenance-aware term dictionary from dev_v2 JSONL files.
 
 Writes ``<pair>_term_dictionary.jsonl`` and a combined ``build_report.json``
-to ``data/processed/term_dictionary/`` (default; use ``--force`` to
-overwrite). Reads dev_v2 input from ``data/processed/dev_v2/``. Uses
+to ``data/dev_v2/dev_v2_dictionary/`` (default; use ``--force`` to
+overwrite). Reads dev_v2 input from ``data/dev_v2/dev_v2_original/``. Uses
 OpenRouter for LLM-assisted extraction (``OPENROUTER_API_KEY`` in
 ``.env``); pass ``--skip-llm`` to seed from human ``proper_terms`` only.
 
@@ -28,11 +28,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Callable
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-if str(SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPT_DIR))
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from term_utils import (
+from src.data_preparation.term_utils import (
     DEFAULT_MODEL,
     DEV_V2_DIR,
     ENV_FILE,

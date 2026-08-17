@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 from matplotlib.figure import Figure
 from matplotlib.patches import Patch
 
-from figure_common import (
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
     TERM_ACC_YLIM_TOP,
@@ -16,7 +20,7 @@ from figure_common import (
     place_side_legend,
     plot_grouped_bars,
 )
-from metrics_loader import (
+from src.analysis.metrics_loader import (
     DEFAULT_MODE,
     EXTERNAL_DICTIONARY_RESULTS,
     LANG_LABELS,
@@ -27,7 +31,7 @@ from metrics_loader import (
     load_metrics_path,
     require_paths,
 )
-from plot_style import apply_poster_style
+from src.analysis.plot_style import apply_poster_style
 
 NO_TERM_KEY = "no_term"
 RANDOM_TERM_KEY = "random_term"

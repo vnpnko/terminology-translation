@@ -24,6 +24,15 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
+EXPERIMENT_SCRIPTS_DIRS = [
+    PROJECT_ROOT / "experiments" / "01_term_expansion_by_model" / "scripts",
+    PROJECT_ROOT / "experiments" / "02_term_expansion_by_language_pair" / "scripts",
+    PROJECT_ROOT / "experiments" / "03_dataset_comparison" / "scripts",
+    PROJECT_ROOT / "experiments" / "05_lora_finetuning" / "scripts",
+]
+for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
+    sys.path.insert(0, str(_scripts_dir))
+
 from figure_exp1 import build_exp1_figure
 from figure_exp23 import build_exp23_figure
 from figure_exp4 import build_exp4_figure

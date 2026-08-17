@@ -11,15 +11,19 @@ from matplotlib.figure import Figure
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
-from figure_common import place_side_legend
-from metrics_loader import LANG_LABELS, LANG_ORDER, require_paths
-from plot_style import (
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.figure_common import place_side_legend
+from src.analysis.metrics_loader import LANG_LABELS, LANG_ORDER, require_paths
+from src.analysis.plot_style import (
     LANG_COLORS,
     POSTER_BLUE,
     SIZE_COLORS,
     apply_poster_style,
     headroom_ylim,
 )
+from metrics_parser import LangMetrics, extract_proper_term_metrics, load_summary, macro_average
 
 FINETUNING_DIR_NAME = "experiments/05_lora_finetuning"
 
@@ -52,32 +56,13 @@ TITLE = (
 )
 
 
-def _finetuning_scripts_dir(project_root: Path) -> Path:
-    return project_root / FINETUNING_DIR_NAME / "scripts"
-
-
-def _import_finetuning_parser(project_root: Path):
-    scripts_dir = _finetuning_scripts_dir(project_root)
-    if str(scripts_dir) not in sys.path:
-        sys.path.insert(0, str(scripts_dir))
-    from metrics_parser import LangMetrics, extract_proper_term_metrics, load_summary, macro_average
-
-    return LangMetrics, extract_proper_term_metrics, load_summary, macro_average
-
-
 def _load_run_metrics(project_root: Path, rel_path: str):
-    _, extract_proper_term_metrics, load_summary, macro_average = _import_finetuning_parser(
-        project_root
-    )
     summary = load_summary(project_root / FINETUNING_DIR_NAME / "results" / rel_path)
     by_lang = extract_proper_term_metrics(summary)
     return by_lang, macro_average(by_lang)
 
 
 def _load_metrics_at_path(project_root: Path, path: Path):
-    _, extract_proper_term_metrics, load_summary, macro_average = _import_finetuning_parser(
-        project_root
-    )
     summary = load_summary(path)
     by_lang = extract_proper_term_metrics(summary)
     return by_lang, macro_average(by_lang)
@@ -185,9 +170,6 @@ def build_exp5_figure(project_root: Path) -> Figure:
     series_7b = _collect_epoch_series(project_root, "Qwen2.5-7B")
     series_3b = _collect_epoch_series(project_root, "Qwen2.5-3B")
 
-    LangMetrics, extract_proper_term_metrics, load_summary, _ = _import_finetuning_parser(
-        project_root
-    )
     compare_data = {}
     for rel_path, label, use_finetuning_results in COMPARE_RUNS:
         summary = load_summary(_compare_run_path(project_root, rel_path, use_finetuning_results))

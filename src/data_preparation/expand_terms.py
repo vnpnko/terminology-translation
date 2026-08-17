@@ -8,8 +8,8 @@ proper_terms.
 
 Usage::
 
-    python expand_terms.py -i ../../data/raw/dev_v1_original/ende_dev_v1.jsonl
-    python expand_terms.py -i ../../data/raw/dev_v1_original/enes_dev_v1.jsonl
+    python expand_terms.py -i ../../data/dev_v1/dev_v1_original/ende_dev_v1.jsonl
+    python expand_terms.py -i ../../data/dev_v1/dev_v1_original/enes_dev_v1.jsonl
 """
 
 from __future__ import annotations
@@ -446,7 +446,7 @@ def parse_args() -> argparse.Namespace:
         "--input",
         type=Path,
         required=True,
-        help="Input JSONL path (e.g. data/raw/dev_v1_original/ende_dev_v1.jsonl)",
+        help="Input JSONL path (e.g. data/dev_v1/dev_v1_original/ende_dev_v1.jsonl)",
     )
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--api-key", default=None)

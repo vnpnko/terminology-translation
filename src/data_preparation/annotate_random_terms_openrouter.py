@@ -2,7 +2,7 @@
 
 Writes to ``--output`` (a new file; the input is left untouched). Uses
 OpenRouter (same setup as ``annotate_proper_terms_openrouter.py``):
-``OPENROUTER_API_KEY`` in ``src/.env``. By default the input is split into
+``OPENROUTER_API_KEY`` in ``.env`` at the repo root. By default the input is split into
 chunks and processed in parallel via subprocess workers; use
 ``--workers 1`` for a single-process run on the full file.
 

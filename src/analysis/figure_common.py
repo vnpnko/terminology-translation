@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import sys
 from collections.abc import Callable
 from pathlib import Path
 
@@ -11,7 +12,10 @@ from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from matplotlib.artist import Artist
 
-from plot_style import (
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.plot_style import (
     COLOR_DICTIONARY,
     COLOR_EXTERNAL_DICTIONARY,
     COLOR_GPT_EXPAND,
@@ -76,7 +80,7 @@ def ylim_from_values(values: list[float | None], pad_ratio: float = 0.14) -> tup
 
 def compute_shared_expansion_ylims(results_root: Path) -> dict[str, tuple[float, float]]:
     """Shared BLEU / term-accuracy y-limits across exp1 and exp23 for visual comparison."""
-    from metrics_loader import (
+    from src.analysis.metrics_loader import (
         BASELINE_DIRS,
         DEFAULT_MODE,
         LANG_ORDER,

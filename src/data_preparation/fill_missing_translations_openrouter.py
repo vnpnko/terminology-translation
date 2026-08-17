@@ -1,7 +1,9 @@
 """Fill target-language sentences and term translations in JSONL dev files.
 
 Writes back in place (files resolved against ``--input-dir``, default
-``data/sap_dev/``) via an atomic temp-file replace; pass ``--dry-run`` to
+``data/sap_dev/`` — no longer present in this repo after the open-sourcing
+restructure; pass ``--input-dir`` to point at real data) via an atomic
+temp-file replace; pass ``--dry-run`` to
 preview without writing. Uses GPT-4o-mini via OpenRouter
 (https://openrouter.ai); set ``OPENROUTER_API_KEY`` in ``.env`` at the repo
 root (see ``.env.example``).

@@ -35,6 +35,14 @@
         "is_baseline": false
       },
       {
+        "run_id": "lora_1ep_nofs",
+        "label": "LoRA 1 epoch, no few-shot",
+        "folder": "qwen_lora_no_few_shots",
+        "use_few_shot": false,
+        "num_epochs": 1,
+        "is_baseline": false
+      },
+      {
         "run_id": "lora_2ep_nofs",
         "label": "LoRA 2 epochs, no few-shot",
         "folder": "qwen_lora_no_few_shots_2_epochs",
@@ -70,6 +78,14 @@
         "label": "LoRA 1 epoch, few-shot",
         "folder": "qwen_lora",
         "use_few_shot": true,
+        "num_epochs": 1,
+        "is_baseline": false
+      },
+      {
+        "run_id": "lora_1ep_nofs",
+        "label": "LoRA 1 epoch, no few-shot",
+        "folder": "qwen_lora_no_few_shots",
+        "use_few_shot": false,
         "num_epochs": 1,
         "is_baseline": false
       },

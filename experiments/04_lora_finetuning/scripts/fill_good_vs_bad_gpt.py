@@ -1,4 +1,4 @@
-"""Fill good-vs-bad comparison blocks in comparisons.xlsx from gpt_base metrics."""
+"""Fill good-vs-bad comparison blocks in "good vs bad data.xlsx" from gpt_base metrics."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import openpyxl
 from openpyxl.styles import PatternFill
 
 ROOT = Path(__file__).resolve().parents[1]
-XLSX_PATH = ROOT / "report" / "comparisons.xlsx"
+XLSX_PATH = ROOT / "report" / "good vs bad data.xlsx"
 SHEET = "good vs bad data"
 QWEN_BASE = ROOT / "results" / "Qwen2.5-7B" / "qwen_base"
 BLOCKS = {

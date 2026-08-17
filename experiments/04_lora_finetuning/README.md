@@ -13,52 +13,16 @@ LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared a
 | `data/test_cleaned_by_sentences/`, `data/test_cleaned_by_terms/` | Test set filtered for overlap with the training set (see `scripts/filter_test_sentence_overlap.py` / `filter_test_term_overlap.py`) |
 | `data/training/` | `dev_v2` training set per language pair |
 | `results/` | Per-model, per-run predictions and `metrics_summary.json` (see run names below) |
-| `report/` | Generated Excel workbooks (see below) |
-| `scripts/` | Data filtering + Excel export scripts |
+| `report/` | Comparison Excel workbooks (see "Report tables" below) |
+| `scripts/` | Data filtering + Excel report scripts |
 
 ## Running the notebooks
 
 Each notebook writes predictions and `metrics_summary.json` under `results/<model>/<run_name>/`. Run order: `qwen_base.ipynb` and `gpt.ipynb` first (baselines), then `qwen_finetuned.ipynb` for the LoRA runs.
 
-## Excel export
-
-Generate supervisor-ready Excel workbooks from `metrics_summary.json` and `training_loss.txt` files under `results/`.
-
-From the repository root:
-
-```bash
-python experiments/04_lora_finetuning/scripts/export_finetuning_report.py
-```
-
-Outputs land in `report/`:
-
-| File | Contents |
-|------|----------|
-| `results_Qwen2.5-3B.xlsx` | 3B runs: main results, base vs LoRA, epoch ablation, config, training loss |
-| `results_Qwen2.5-7B.xlsx` | Same structure for 7B |
-| `results_GPT4o-mini.xlsx` | GPT baseline + comparison vs best Qwen per size |
-
-Export a single workbook:
-
-```bash
-python experiments/04_lora_finetuning/scripts/export_finetuning_report.py --model 7B
-```
-
-Custom paths:
-
-```bash
-python experiments/04_lora_finetuning/scripts/export_finetuning_report.py \
-  --results-dir experiments/04_lora_finetuning/results \
-  --output-dir experiments/04_lora_finetuning/report
-```
-
-### Requirements
-
-Uses `pandas` and `openpyxl` from the repo root [`requirements.txt`](../../requirements.txt).
-
 ### Registered runs
 
-Runs are defined in [`scripts/run_registry.json`](scripts/run_registry.json). The export script **fails** if any registered run is missing `metrics_summary.json`.
+Runs are defined in [`scripts/run_registry.json`](scripts/run_registry.json).
 
 **3B** (`Qwen2.5-3B/`):
 
@@ -67,41 +31,41 @@ Runs are defined in [`scripts/run_registry.json`](scripts/run_registry.json). Th
 - `qwen_lora_no_few_shots_2_epochs` — LoRA, 2 epochs, no few-shot
 - `qwen_lora_no_few_shots_3_epochs` — LoRA, 3 epochs, no few-shot
 
+- `qwen_lora_no_few_shots` — LoRA, 1 epoch, no few-shot
+
 **7B** (`Qwen2.5-7B/`): same folder names.
 
 **GPT**: `gpt_base/`
 
-To add a run, edit `scripts/run_registry.json` and re-run the export script.
+## Report tables
 
-### Workbook sheets
+`report/` holds one comparison workbook per axis, each with the same 5 metric columns (`BLEU`, `chrF`, `Term Acc (%)`, `Cons Macro Avg`, `Cons Weighted Avg`) evaluated on `proper_term` mode, one row per `lang_pair`:
 
-**Qwen workbooks (3B / 7B)**
+| File | Compares | Regenerate |
+| ---- | -------- | ---------- |
+| `report/good vs bad data.xlsx` | GPT / Qwen-base / Qwen-LoRA(7B) on the leakage-honesty-check "good" vs "bad" test subsets (5 stacked blocks incl. GPT-vs-LoRA on each subset) | `python experiments/04_lora_finetuning/scripts/fill_good_vs_bad_gpt.py` — fills only the GPT and `qwen_base` blocks; the 3 `qwen_lora` blocks are hand-entered and must be updated manually |
+| `report/base_few_shots_vs_lora_1_epoch.xlsx` | `qwen_base_with_few_shots` vs `qwen_lora_no_few_shots` (1 epoch), for 3B and 7B | no generating script — hand-assembled from `results/.../metrics_summary.json` |
+| `report/best_models.xlsx` | Best LoRA config (`qwen_lora_7b_no_shots_3_epochs`) vs GPT-4o-mini few-shot | no generating script — hand-assembled |
+| `report/epoch_ablation.xlsx` | 1 / 2 / 3 LoRA epochs (no few-shot), one sheet per model size; each cell colored red/yellow/green by ranking that (language, metric) value across the 3 epochs (worst/mid/best) | `python experiments/04_lora_finetuning/scripts/compare_epochs_to_excel.py` |
+| `report/few_shots_ablation.xlsx` | `no_shots` vs `few_shots`, one sheet per model (GPT-4o-mini, Qwen 3B, Qwen 7B); Qwen sheets stack `qwen_base` and `qwen_lora` rows | no generating script — hand-assembled |
 
-1. **main_results** — language pairs as rows; BLEU, chrF, term accuracy, total terms; absolute deltas vs GPT and vs base
-2. **base_vs_lora** — best LoRA config per language vs base
-3. **epoch_ablation** — `lora_2ep_nofs` vs `lora_3ep_nofs`
-4. **experiment_config** — run metadata and file existence flags
-5. **training_loss_meta** — final step/loss per run
-6. **training_loss** — wide step × run loss table
+**TODO:** the remaining 3 hand-assembled files (`base_few_shots_vs_lora_1_epoch.xlsx`, `best_models.xlsx`, `few_shots_ablation.xlsx`) still have no export script (unlike e.g. `experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py` or this experiment's own `compare_epochs_to_excel.py`, which regenerate their workbooks from `metrics_summary.json` directly). Writing equivalent scripts for these would remove the manual-copy risk.
 
-**GPT workbook**
+### Requirements
 
-1. **gpt_baseline** — GPT scores per language
-2. **gpt_vs_best_qwen** — best 3B and 7B LoRA vs GPT per language
-3. **experiment_config** — GPT run metadata
+Uses `openpyxl` from the repo root [`requirements.txt`](../../requirements.txt).
 
 ### Scripts
 
 | File | Role |
 |------|------|
-| `scripts/run_registry.json` | Which result folders to include |
-| `scripts/metrics_parser.py` | Load JSON metrics and training loss files |
-| `scripts/sheet_builders.py` | Build DataFrames for each sheet |
-| `scripts/export_finetuning_report.py` | CLI entry point for the Excel export |
+| `scripts/fill_good_vs_bad_gpt.py` | Fills the GPT and `qwen_base` blocks of `report/good vs bad data.xlsx` from `metrics_summary.json` |
+| `scripts/compare_epochs_to_excel.py` | Builds `report/epoch_ablation.xlsx` (1/2/3 no-few-shot LoRA epochs, one sheet per model size, rank-colored red/yellow/green) from `metrics_summary.json`, run selection driven by `run_registry.json` |
 | `scripts/filter_test_sentence_overlap.py` | Filters test sentences overlapping with training data |
 | `scripts/filter_test_term_overlap.py` | Filters test terms overlapping with training data |
 | `scripts/figure_lora_finetuning.py` | Builds the poster's `fig_lora_finetuning` figure (`build_lora_finetuning_figure`; run via `python src/analysis/generate_result_figures.py --only lora_finetuning`) |
 | `scripts/remove_dev_v2_overlap.py` | Removes `dev_v2` lines whose English source also appears in `dev_v1/dev_v1_original` (writes `data/dev_v2_deduped/`); feeds the leakage honesty-check comparisons |
+| `scripts/run_registry.json`, `scripts/metrics_parser.py`, `scripts/sheet_builders.py`, `scripts/export_finetuning_report.py` | Legacy export pipeline for a `results_Qwen2.5-{3B,7B}.xlsx` / `results_GPT4o-mini.xlsx` workbook format that was superseded by the "Report tables" above and is no longer used to produce anything in `report/` (see [`report/ISSUES.md`](../../report/ISSUES.md)) |
 
 ### Notes
 

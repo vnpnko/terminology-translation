@@ -55,7 +55,6 @@ Genuinely shared code lives in `src/`. Single-experiment scripts live under the 
 | `data_preparation/annotate_random_terms_openrouter.py`     | Adds control `random_terms` (non-domain word pairs) after `proper_terms`.    |
 | `data_preparation/clean_poor_proper_terms.py`              | Removes weak or generic entries from `proper_terms`.                         |
 | `data_preparation/expand_terms.py`                         | Appends additional term pairs to `proper_terms`.                             |
-| `data_preparation/collect_term_pairs_from_jsonl.py`        | Aggregates `proper_terms` from v1/v2 dev files into unique term-pair JSONL.  |
 | `data_preparation/strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
 | `data_preparation/term_utils.py`                           | Shared path constants and helpers for the dictionary-building scripts below. |
 
@@ -116,5 +115,5 @@ All data lives in `data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than
 | `dev_v1/dev_v1_cleaned/` | Cleaned version of `dev_v1_expand/` with terminology-poor `proper_terms` removed (output of `clean_poor_proper_terms.py`). |
 | `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from the term dictionary (output of `apply_dictionary_to_dev_v1.py`, [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md)). |
 | `dev_v2/dev_v2_original/` | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus, used as a training-set proxy (see `report/README.md`). |
-| `dev_v2/dev_v2_for_training/` | Flat aggregated EN→target term-pair lists from v1/v2 (output of `collect_term_pairs_from_jsonl.py`). |
+| `dev_v2/dev_v2_training/` | Post-removal, few-shot-trimmed dev_v2 training set (1498/1497/1497 sentences/language pair) used to fine-tune the LoRA models in [`experiments/04_lora_finetuning/`](experiments/04_lora_finetuning/README.md). Duplicates `experiments/04_lora_finetuning/data/training/` — see `report/ISSUES.md` §1 for the open canonical-path question. |
 | `shared_task/` | WMT2025 terminology shared-task materials: task docs (`shared_task_docs/`), track 1 (en→de/es/ru, `shared_task_track1/`), and track 2 (en↔zh, 2015–2024, `shared_task_track2/`). |

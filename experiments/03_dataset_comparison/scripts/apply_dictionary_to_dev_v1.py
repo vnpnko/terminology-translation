@@ -1,10 +1,11 @@
 """Apply term dictionary to dev_v1 original JSONL (optional secondary step).
 
-Writes new files to ``data/dev_v1/dev_v1_dictionary/`` only — never
-overwrites the original inputs. Reads the dictionary from
+Writes ``{lang}_dev_v1_dictionary.jsonl`` to ``data/dev_v1/dev_v1_dictionary/``
+only — never overwrites the original inputs. Reads the dictionary from
 ``experiments/03_dataset_comparison/data/dev_v2_dictionary/`` and enriches
 ``proper_terms`` in dev_v1 (``data/dev_v1/dev_v1_original/``) using
-reference-based disambiguation.
+reference-based disambiguation; terms with an ambiguous dictionary
+translation are silently skipped rather than added.
 
 Usage::
 
@@ -15,7 +16,6 @@ Usage::
 from __future__ import annotations
 
 import argparse
-import json
 import re
 import sys
 from collections import defaultdict
@@ -40,8 +40,6 @@ from src.data_preparation.term_utils import (
     locate_substring,
     normalize_key,
     refuse_if_exists,
-    repo_rel_path,
-    save_json,
     save_jsonl,
 )
 
@@ -132,7 +130,7 @@ def apply_dictionary_to_record(
     *,
     lang_pair: LangPair,
     form_index: dict[str, list[dict[str, Any]]],
-) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+) -> dict[str, Any]:
     en = str(record.get("en", ""))
     reference = str(record.get(lang_pair.tgt_code, ""))
     proper_terms = dict(record.get("proper_terms") or {})
@@ -142,7 +140,6 @@ def apply_dictionary_to_record(
         blocked.update(normalize_key(k) for k in random_terms)
 
     additions: dict[str, str] = {}
-    ambiguous: list[dict[str, Any]] = []
 
     candidate_spans: list[tuple[int, int, str]] = []
     seen_span: set[tuple[int, int, str]] = set()
@@ -176,22 +173,8 @@ def apply_dictionary_to_record(
 
         lemma_groups = group_entries_by_translation_lemma(matching_entries)
         if len(lemma_groups) > 1:
-            ambiguous.append(
-                {
-                    "en_surface": surface,
-                    "en": en,
-                    "reference": reference,
-                    "candidates": [
-                        {
-                            "tgt_surface": e["tgt_surface"],
-                            "lemma_tgt": e.get("lemma_tgt"),
-                            "line_id": e.get("line_id"),
-                            "lemma_en": e.get("lemma_en"),
-                        }
-                        for e in matching_entries
-                    ],
-                }
-            )
+            # Dictionary disagrees on the translation lemma for this term — skip
+            # rather than guess.
             continue
 
         group_entries = next(iter(lemma_groups.values()))
@@ -210,18 +193,17 @@ def apply_dictionary_to_record(
     merged = dict(proper_terms)
     merged.update(additions)
     out["proper_terms"] = merged
-    return out, ambiguous
+    return out
 
 
 def apply_for_pair(
     lang_pair: LangPair,
     *,
     force: bool,
-) -> dict[str, Any]:
+) -> None:
     dict_path = TERM_DICTIONARY_DIR / lang_pair.output_name
     input_path = DEV_V1_ORIGINAL_DIR / dev_v1_input_name(lang_pair)
     output_path = DEV_V1_DICTIONARY_DIR / dev_v1_output_name(lang_pair)
-    ambiguous_path = DEV_V1_DICTIONARY_DIR / f"{lang_pair.prefix}_ambiguous_skipped.jsonl"
 
     refuse_if_exists(output_path, force=force)
 
@@ -233,41 +215,21 @@ def apply_for_pair(
     records = load_jsonl(input_path)
 
     enriched: list[dict[str, Any]] = []
-    all_ambiguous: list[dict[str, Any]] = []
-    added_counts: list[int] = []
+    terms_added_total = 0
 
     for record in records:
-        out, ambiguous = apply_dictionary_to_record(
+        out = apply_dictionary_to_record(
             record,
             lang_pair=lang_pair,
             form_index=form_index,
         )
         enriched.append(out)
-        all_ambiguous.extend(ambiguous)
         before = len(record.get("proper_terms") or {})
         after = len(out.get("proper_terms") or {})
-        added_counts.append(after - before)
+        terms_added_total += after - before
 
     save_jsonl(output_path, enriched)
-    if all_ambiguous:
-        save_jsonl(ambiguous_path, all_ambiguous)
-    elif ambiguous_path.exists():
-        ambiguous_path.unlink()
-
-    report = {
-        "lang_pair": lang_pair.prefix,
-        "input": repo_rel_path(input_path),
-        "output": repo_rel_path(output_path),
-        "records": len(enriched),
-        "terms_added_total": sum(added_counts),
-        "avg_terms_added": round(sum(added_counts) / max(len(added_counts), 1), 3),
-        "ambiguous_skipped": len(all_ambiguous),
-    }
-    print(
-        f"Wrote {output_path} (+{report['terms_added_total']} terms, "
-        f"{report['ambiguous_skipped']} ambiguous skipped)"
-    )
-    return report
+    print(f"Wrote {output_path} (+{terms_added_total} terms)")
 
 
 def parse_args() -> argparse.Namespace:
@@ -295,13 +257,8 @@ def main() -> None:
     else:
         pairs = [LANG_PAIRS[target_to_prefix[args.target_lang]]]
 
-    reports: dict[str, Any] = {}
     for lang_pair in pairs:
-        reports[lang_pair.prefix] = apply_for_pair(lang_pair, force=args.force)
-
-    report_path = DEV_V1_DICTIONARY_DIR / "apply_report.json"
-    save_json(report_path, reports)
-    print(f"\nWrote apply report to {report_path}")
+        apply_for_pair(lang_pair, force=args.force)
 
 
 if __name__ == "__main__":

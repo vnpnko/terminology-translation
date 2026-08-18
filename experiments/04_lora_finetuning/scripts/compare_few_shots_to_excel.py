@@ -1,20 +1,20 @@
-"""Compare no-few-shot vs few-shot for GPT-4o-mini, Qwen base, and Qwen LoRA (1 epoch).
+"""Compare zero-shot vs few-shot for GPT-4o-mini, Qwen base, and Qwen LoRA (1 epoch).
 
-Writes one .xlsx file (default: ``experiments/04_lora_finetuning/report/few_shots_ablation.xlsx``)
-with 3 sheets: ``GPT-4o-mini``, ``Qwen2.5-3B``, ``Qwen2.5-7B``. The GPT sheet has one row per
-language pair; the Qwen sheets stack a ``qwen_base`` block and a ``qwen_lora`` block (3 rows
-each), matching the two differently-scoped few-shot experiments documented in
-``report/README.md`` §3.4.1:
+Writes one .xlsx file (default:
+``experiments/04_lora_finetuning/report/zero_shot_vs_few_shot_ablation.xlsx``) with 3 sheets:
+``GPT-4o-mini``, ``Qwen2.5-3B``, ``Qwen2.5-7B``. The GPT sheet has one row per language pair;
+the Qwen sheets stack a ``qwen_base`` block and a ``qwen_lora`` block (3 rows each), matching
+the two differently-scoped few-shot experiments documented in ``report/README.md`` §3.4.1:
 
-- **Baseline-level** (GPT, Qwen base): ``few_shots`` reads the LoRA experiment's own local
+- **Baseline-level** (GPT, Qwen base): ``few_shot`` reads the LoRA experiment's own local
   baseline run (``<results-root>/gpt_base/`` or ``<results-root>/<model_dir>/qwen_base/``);
-  ``no_shots`` reads the separate, shared ``<baseline-results-root>/dev_v1/original/no-few-shots/
+  ``zero_shot`` reads the separate, shared ``<baseline-results-root>/dev_v1/original/zero_shot/
   {gpt,qwen_3b,qwen_7b}/`` tree (not tracked in ``run_registry.json``).
 - **LoRA-level** (``qwen_lora``): both columns are local, driven by ``run_registry.json``'s
-  ``lora_1ep_nofs``/``lora_1ep_fs`` runs.
+  ``lora_1_epoch_zero_shot``/``lora_1_epoch_few_shot`` runs.
 
-Each value cell is colored green if it is the higher (or tied-highest) of its no_shots/
-few_shots pair, yellow otherwise — no red is used.
+Each value cell is colored green if it is the higher (or tied-highest) of its zero_shot/
+few_shot pair, yellow otherwise — no red is used.
 
 Usage::
 
@@ -97,51 +97,51 @@ def extract_row(summary: dict[str, Any] | None, lang: str) -> list[float | None]
     return values
 
 
-def lora_1ep_runs(registry: dict[str, Any], model_key: str) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Return (no_few_shot_run, few_shot_run) for 1-epoch LoRA runs."""
+def lora_1_epoch_runs(registry: dict[str, Any], model_key: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Return (zero_shot_run, few_shot_run) for 1-epoch LoRA runs."""
     runs = {run["run_id"]: run for run in registry[model_key]["runs"]}
-    return runs["lora_1ep_nofs"], runs["lora_1ep_fs"]
+    return runs["lora_1_epoch_zero_shot"], runs["lora_1_epoch_few_shot"]
 
 
 def gpt_rows(results_root: Path, baseline_results_root: Path) -> dict[str, tuple[list, list]]:
-    no_shots_summary = load_metrics_summary(
-        baseline_results_root / "dev_v1" / "original" / "no-few-shots" / "gpt" / "metrics_summary.json"
+    zero_shot_summary = load_metrics_summary(
+        baseline_results_root / "dev_v1" / "original" / "zero_shot" / "gpt" / "metrics_summary.json"
     )
-    few_shots_summary = load_metrics_summary(results_root / "gpt_base" / "metrics_summary.json")
+    few_shot_summary = load_metrics_summary(results_root / "gpt_base" / "metrics_summary.json")
     return {
-        lang: (extract_row(no_shots_summary, lang), extract_row(few_shots_summary, lang)) for lang in LANG_ORDER
+        lang: (extract_row(zero_shot_summary, lang), extract_row(few_shot_summary, lang)) for lang in LANG_ORDER
     }
 
 
 def qwen_base_rows(
     results_root: Path, baseline_results_root: Path, model_dir: str, baseline_dir: str
 ) -> dict[str, tuple[list, list]]:
-    no_shots_summary = load_metrics_summary(
-        baseline_results_root / "dev_v1" / "original" / "no-few-shots" / baseline_dir / "metrics_summary.json"
+    zero_shot_summary = load_metrics_summary(
+        baseline_results_root / "dev_v1" / "original" / "zero_shot" / baseline_dir / "metrics_summary.json"
     )
-    few_shots_summary = load_metrics_summary(results_root / model_dir / "qwen_base" / "metrics_summary.json")
+    few_shot_summary = load_metrics_summary(results_root / model_dir / "qwen_base" / "metrics_summary.json")
     return {
-        lang: (extract_row(no_shots_summary, lang), extract_row(few_shots_summary, lang)) for lang in LANG_ORDER
+        lang: (extract_row(zero_shot_summary, lang), extract_row(few_shot_summary, lang)) for lang in LANG_ORDER
     }
 
 
 def qwen_lora_rows(results_root: Path, registry: dict[str, Any], model_key: str, model_dir: str) -> dict[str, tuple[list, list]]:
-    no_shots_run, few_shots_run = lora_1ep_runs(registry, model_key)
-    no_shots_summary = load_metrics_summary(results_root / model_dir / no_shots_run["folder"] / "metrics_summary.json")
-    few_shots_summary = load_metrics_summary(results_root / model_dir / few_shots_run["folder"] / "metrics_summary.json")
+    zero_shot_run, few_shot_run = lora_1_epoch_runs(registry, model_key)
+    zero_shot_summary = load_metrics_summary(results_root / model_dir / zero_shot_run["folder"] / "metrics_summary.json")
+    few_shot_summary = load_metrics_summary(results_root / model_dir / few_shot_run["folder"] / "metrics_summary.json")
     return {
-        lang: (extract_row(no_shots_summary, lang), extract_row(few_shots_summary, lang)) for lang in LANG_ORDER
+        lang: (extract_row(zero_shot_summary, lang), extract_row(few_shot_summary, lang)) for lang in LANG_ORDER
     }
 
 
-def pair_fills(no_shots_val: float | None, few_shots_val: float | None) -> tuple[PatternFill | None, PatternFill | None]:
+def pair_fills(zero_shot_val: float | None, few_shot_val: float | None) -> tuple[PatternFill | None, PatternFill | None]:
     """Green for the higher (or tied-highest) value of the pair, yellow for the other."""
-    if no_shots_val is None or few_shots_val is None:
+    if zero_shot_val is None or few_shot_val is None:
         return None, None
-    max_val = max(no_shots_val, few_shots_val)
-    no_fill = PAIR_FILLS["high"] if no_shots_val == max_val else PAIR_FILLS["low"]
-    few_fill = PAIR_FILLS["high"] if few_shots_val == max_val else PAIR_FILLS["low"]
-    return no_fill, few_fill
+    max_val = max(zero_shot_val, few_shot_val)
+    zero_fill = PAIR_FILLS["high"] if zero_shot_val == max_val else PAIR_FILLS["low"]
+    few_fill = PAIR_FILLS["high"] if few_shot_val == max_val else PAIR_FILLS["low"]
+    return zero_fill, few_fill
 
 
 def apply_cell_style(cell: Cell, *, fill: PatternFill | None = None) -> None:
@@ -171,28 +171,28 @@ def autofit_columns(ws: Worksheet, *, min_width: int = 8, max_width: int = 40, p
 
 
 def write_group_header(ws: Worksheet, start_col: int, cols_per_group: int) -> None:
-    no_shots_cell = ws.cell(row=1, column=start_col, value="no_shots")
-    apply_cell_style(no_shots_cell, fill=HEADER_FILL)
+    zero_shot_cell = ws.cell(row=1, column=start_col, value="zero_shot")
+    apply_cell_style(zero_shot_cell, fill=HEADER_FILL)
     ws.merge_cells(start_row=1, start_column=start_col, end_row=1, end_column=start_col + cols_per_group - 1)
 
-    few_shots_col = start_col + cols_per_group
-    few_shots_cell = ws.cell(row=1, column=few_shots_col, value="few_shots")
-    apply_cell_style(few_shots_cell, fill=HEADER_FILL)
-    ws.merge_cells(start_row=1, start_column=few_shots_col, end_row=1, end_column=few_shots_col + cols_per_group - 1)
+    few_shot_col = start_col + cols_per_group
+    few_shot_cell = ws.cell(row=1, column=few_shot_col, value="few_shot")
+    apply_cell_style(few_shot_cell, fill=HEADER_FILL)
+    ws.merge_cells(start_row=1, start_column=few_shot_col, end_row=1, end_column=few_shot_col + cols_per_group - 1)
 
-    for group_start in (start_col, few_shots_col):
+    for group_start in (start_col, few_shot_col):
         for offset, (_, _, title, _) in enumerate(METRICS):
             sub_cell = ws.cell(row=2, column=group_start + offset, value=title)
             apply_cell_style(sub_cell, fill=HEADER_FILL)
 
 
-def write_data_row(ws: Worksheet, row: int, start_col: int, no_shots_values: list, few_shots_values: list) -> None:
+def write_data_row(ws: Worksheet, row: int, start_col: int, zero_shot_values: list, few_shot_values: list) -> None:
     cols_per_group = len(METRICS)
     for offset in range(cols_per_group):
-        no_fill, few_fill = pair_fills(no_shots_values[offset], few_shots_values[offset])
-        no_cell = ws.cell(row=row, column=start_col + offset, value=no_shots_values[offset])
-        apply_cell_style(no_cell, fill=no_fill)
-        few_cell = ws.cell(row=row, column=start_col + cols_per_group + offset, value=few_shots_values[offset])
+        zero_fill, few_fill = pair_fills(zero_shot_values[offset], few_shot_values[offset])
+        zero_cell = ws.cell(row=row, column=start_col + offset, value=zero_shot_values[offset])
+        apply_cell_style(zero_cell, fill=zero_fill)
+        few_cell = ws.cell(row=row, column=start_col + cols_per_group + offset, value=few_shot_values[offset])
         apply_cell_style(few_cell, fill=few_fill)
 
 
@@ -208,8 +208,8 @@ def write_gpt_sheet(ws: Worksheet, rows_by_lang: dict[str, tuple[list, list]]) -
     for row_offset, lang in enumerate(LANG_ORDER, start=3):
         lang_cell = ws.cell(row=row_offset, column=1, value=lang)
         apply_cell_style(lang_cell)
-        no_shots_values, few_shots_values = rows_by_lang[lang]
-        write_data_row(ws, row_offset, start_col=2, no_shots_values=no_shots_values, few_shots_values=few_shots_values)
+        zero_shot_values, few_shot_values = rows_by_lang[lang]
+        write_data_row(ws, row_offset, start_col=2, zero_shot_values=zero_shot_values, few_shot_values=few_shot_values)
 
     autofit_columns(ws)
 
@@ -239,8 +239,8 @@ def write_qwen_sheet(
         for lang in LANG_ORDER:
             lang_cell = ws.cell(row=row, column=2, value=lang)
             apply_cell_style(lang_cell)
-            no_shots_values, few_shots_values = rows_by_lang[lang]
-            write_data_row(ws, row, start_col=data_start_col, no_shots_values=no_shots_values, few_shots_values=few_shots_values)
+            zero_shot_values, few_shot_values = rows_by_lang[lang]
+            write_data_row(ws, row, start_col=data_start_col, zero_shot_values=zero_shot_values, few_shot_values=few_shot_values)
             row += 1
 
         block_cell = ws.cell(row=block_start_row, column=1, value=block_label)
@@ -262,7 +262,7 @@ def parse_args() -> argparse.Namespace:
         "--baseline-results-root",
         type=Path,
         default=Path("results"),
-        help="Root directory containing dev_v1/original/no-few-shots/{gpt,qwen_3b,qwen_7b}/",
+        help="Root directory containing dev_v1/original/zero_shot/{gpt,qwen_3b,qwen_7b}/",
     )
     parser.add_argument(
         "--registry",
@@ -273,7 +273,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("experiments/04_lora_finetuning/report/few_shots_ablation.xlsx"),
+        default=Path("experiments/04_lora_finetuning/report/zero_shot_vs_few_shot_ablation.xlsx"),
         help="Output .xlsx path",
     )
     return parser.parse_args()
@@ -284,9 +284,9 @@ def validate_required(results_root: Path, registry: dict[str, Any]) -> None:
     for model_key in MODEL_KEYS:
         model_dir = registry[model_key]["model_dir"]
         required.append(results_root / model_dir / "qwen_base" / "metrics_summary.json")
-        no_shots_run, few_shots_run = lora_1ep_runs(registry, model_key)
-        required.append(results_root / model_dir / no_shots_run["folder"] / "metrics_summary.json")
-        required.append(results_root / model_dir / few_shots_run["folder"] / "metrics_summary.json")
+        zero_shot_run, few_shot_run = lora_1_epoch_runs(registry, model_key)
+        required.append(results_root / model_dir / zero_shot_run["folder"] / "metrics_summary.json")
+        required.append(results_root / model_dir / few_shot_run["folder"] / "metrics_summary.json")
 
     missing = [str(path) for path in required if not path.exists()]
     if missing:

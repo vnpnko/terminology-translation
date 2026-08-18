@@ -12,15 +12,15 @@ yellow = middle, green = best variant. This is a different axis than the
 ``best`` column, which colors by the best *model* within a single row.
 
 Note: ``results/dev_v1/original/`` has no ``gpt``/``qwen_3b``/``qwen_7b``
-subfolders directly — it's nested under ``no-few-shots/`` or
-``with-few-shots/`` (see ``report/README.md`` §3.4.1). This script defaults
-to ``with-few-shots``; override with ``--original`` if you want the
-``no-few-shots`` variant instead.
+subfolders directly — it's nested under ``zero_shot/`` or
+``few_shot/`` (see ``report/README.md`` §3.4.1). This script defaults
+to ``few_shot``; override with ``--original`` if you want the
+``zero_shot`` variant instead.
 
 Usage::
 
     python experiments/01_term_expansion_by_model/scripts/compare_proper_term_across_models_to_excel.py
-    python experiments/01_term_expansion_by_model/scripts/compare_proper_term_across_models_to_excel.py --original results/dev_v1/original/no-few-shots
+    python experiments/01_term_expansion_by_model/scripts/compare_proper_term_across_models_to_excel.py --original results/dev_v1/original/zero_shot
 """
 
 from __future__ import annotations
@@ -287,8 +287,8 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help=(
             "Path to the dev_v1/original results (default: "
-            "<results-root>/dev_v1/original/with-few-shots — "
-            "override with <results-root>/dev_v1/original/no-few-shots if preferred)"
+            "<results-root>/dev_v1/original/few_shot — "
+            "override with <results-root>/dev_v1/original/zero_shot if preferred)"
         ),
     )
     parser.add_argument(
@@ -307,7 +307,7 @@ def main() -> None:
 
     results_root = args.results_root.resolve()
     variant_dirs = {
-        "original": (args.original.resolve() if args.original else results_root / "dev_v1" / "original" / "with-few-shots"),
+        "original": (args.original.resolve() if args.original else results_root / "dev_v1" / "original" / "few_shot"),
         "expand": results_root / "dev_v1" / "expand",
         "cleaned": results_root / "dev_v1" / "cleaned",
     }

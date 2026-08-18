@@ -35,7 +35,7 @@ Model-vs-model (GPT / Qwen 3B / Qwen 7B) comparison workbooks, one per dataset v
 
 | File | Regenerate |
 | ---- | ---------- |
-| `report/dev_v1_original_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/original/with-few-shots` (or `.../no-few-shots`; `results/dev_v1/original` has no `gpt`/`qwen_3b`/`qwen_7b` directly — see `report/README.md` §3.4.1) |
+| `report/dev_v1_original_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/original/few_shot` (or `.../zero_shot`; `results/dev_v1/original` has no `gpt`/`qwen_3b`/`qwen_7b` directly — see `report/README.md` §3.4.1) |
 | `report/dev_v1_expand_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/expand` |
 | `report/dev_v1_cleaned_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/cleaned` |
 | `report/dev_v2_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v2` |

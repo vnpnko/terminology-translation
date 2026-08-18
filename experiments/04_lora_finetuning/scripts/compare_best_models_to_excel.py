@@ -4,9 +4,10 @@ Writes one .xlsx file (default: ``experiments/04_lora_finetuning/report/best_mod
 with a single sheet, one row per language pair. Both columns are local:
 
 - LoRA side: ``<results-root>/Qwen2.5-7B/<folder>/metrics_summary.json``, where ``<folder>``
-  is ``run_registry.json``'s entry for ``--lora-run`` (default ``lora_2ep_nofs`` — chosen over
-  3 epochs: training loss keeps dropping sharply at 3 epochs while held-out BLEU/chrF plateau
-  or regress, an overfitting signature; only Term Accuracy keeps improving at 3 epochs).
+  is ``run_registry.json``'s entry for ``--lora-run`` (default ``lora_2_epoch_zero_shot`` —
+  chosen over 3 epochs: training loss keeps dropping sharply at 3 epochs while held-out
+  BLEU/chrF plateau or regress, an overfitting signature; only Term Accuracy keeps improving
+  at 3 epochs).
 - GPT side: ``<results-root>/gpt_base/metrics_summary.json``.
 
 Each value cell is colored green if it is the higher (or tied-highest) of its
@@ -16,7 +17,7 @@ LoRA/GPT pair, yellow otherwise — no red is used. Same coloring convention as
 Usage::
 
     python experiments/04_lora_finetuning/scripts/compare_best_models_to_excel.py
-    python experiments/04_lora_finetuning/scripts/compare_best_models_to_excel.py --lora-run lora_3ep_nofs
+    python experiments/04_lora_finetuning/scripts/compare_best_models_to_excel.py --lora-run lora_3_epoch_zero_shot
 """
 
 from __future__ import annotations
@@ -34,7 +35,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEY = "7B"
-RIGHT_LABEL = "gpt_4o_mini_few_shots"
+RIGHT_LABEL = "GPT-4o-mini"
 
 HEADER_FILL = PatternFill(start_color="FFD9D9D9", end_color="FFD9D9D9", fill_type="solid")
 PAIR_FILLS = {
@@ -197,7 +198,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--lora-run",
-        default="lora_2ep_nofs",
+        default="lora_2_epoch_zero_shot",
         help="run_registry.json run_id (7B) to use as the 'best' LoRA config",
     )
     parser.add_argument(
@@ -231,13 +232,13 @@ def main() -> None:
     model_dir = registry[MODEL_KEY]["model_dir"]
     run = lora_run(registry, args.lora_run)
     num_epochs = run["num_epochs"]
-    left_label = f"qwen_lora_7b_no_shots_{num_epochs}_epochs"
+    left_label = f"qwen_lora_7b_zero_shot_{num_epochs}_epochs"
 
     rows_by_lang = best_rows(results_root, registry, args.lora_run)
 
     wb = Workbook()
     ws = wb.active
-    ws.title = "Sheet1"
+    ws.title = "best_models"
     write_sheet(ws, rows_by_lang, left_label)
 
     output_path = args.output.resolve()

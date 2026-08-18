@@ -63,14 +63,14 @@ def load_registry(registry_path: Path) -> dict[str, Any]:
 
 
 def epoch_runs_for_model(registry: dict[str, Any], model_key: str) -> list[tuple[int, dict[str, Any]]]:
-    """Pick the no-few-shot LoRA run for each epoch count, holding few-shot status constant."""
+    """Pick the zero-shot LoRA run for each epoch count, holding few-shot status constant."""
     runs = [run for run in registry[model_key]["runs"] if not run["is_baseline"] and not run["use_few_shot"]]
     by_epoch = {run["num_epochs"]: run for run in runs}
 
     missing = [epoch for epoch in REQUIRED_EPOCHS if epoch not in by_epoch]
     if missing:
         raise ValueError(
-            f"run_registry.json model '{model_key}' is missing non-baseline, no-few-shot runs "
+            f"run_registry.json model '{model_key}' is missing non-baseline, zero-shot runs "
             f"for epoch(s) {missing} (found: {sorted(by_epoch)})"
         )
 

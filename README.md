@@ -24,7 +24,7 @@ Each figure in [`poster/terminology_translation.pdf`](poster/terminology_transla
 | [`fig_term_expansion`](poster/figures/fig_term_expansion.pdf) | [`01_term_expansion_by_model`](experiments/01_term_expansion_by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
 | [`fig_expansion_strategies`](poster/figures/fig_expansion_strategies.pdf) | [`02_term_expansion_by_language_pair`](experiments/02_term_expansion_by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
 | [`fig_dev_v1_vs_dev_v2_training`](poster/figures/fig_dev_v1_vs_dev_v2_training.pdf) | [`03_dataset_comparison`](experiments/03_dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/`, `results/dev_v2/` |
-| [`fig_lora_finetuning`](poster/figures/fig_lora_finetuning.pdf) | [`04_lora_finetuning`](experiments/04_lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/no-few-shots/`, `experiments/04_lora_finetuning/results/` |
+| [`fig_lora_finetuning`](poster/figures/fig_lora_finetuning.pdf) | [`04_lora_finetuning`](experiments/04_lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/zero_shot/`, `experiments/04_lora_finetuning/results/` |
 
 Generate all four at once with `python src/analysis/generate_result_figures.py` (writes to `poster/figures/`).
 

@@ -19,15 +19,15 @@
     "workbook": "results_Qwen2.5-3B.xlsx",
     "runs": [
       {
-        "run_id": "base",
-        "label": "Qwen2.5-3B base",
+        "run_id": "base_few_shot",
+        "label": "Qwen2.5-3B base, few-shot",
         "folder": "qwen_base",
-        "use_few_shot": false,
+        "use_few_shot": true,
         "num_epochs": 0,
         "is_baseline": true
       },
       {
-        "run_id": "lora_1ep_fs",
+        "run_id": "lora_1_epoch_few_shot",
         "label": "LoRA 1 epoch, few-shot",
         "folder": "qwen_lora",
         "use_few_shot": true,
@@ -35,24 +35,24 @@
         "is_baseline": false
       },
       {
-        "run_id": "lora_1ep_nofs",
-        "label": "LoRA 1 epoch, no few-shot",
+        "run_id": "lora_1_epoch_zero_shot",
+        "label": "LoRA 1 epoch, zero-shot",
         "folder": "qwen_lora_no_few_shots",
         "use_few_shot": false,
         "num_epochs": 1,
         "is_baseline": false
       },
       {
-        "run_id": "lora_2ep_nofs",
-        "label": "LoRA 2 epochs, no few-shot",
+        "run_id": "lora_2_epoch_zero_shot",
+        "label": "LoRA 2 epochs, zero-shot",
         "folder": "qwen_lora_no_few_shots_2_epochs",
         "use_few_shot": false,
         "num_epochs": 2,
         "is_baseline": false
       },
       {
-        "run_id": "lora_3ep_nofs",
-        "label": "LoRA 3 epochs, no few-shot",
+        "run_id": "lora_3_epoch_zero_shot",
+        "label": "LoRA 3 epochs, zero-shot",
         "folder": "qwen_lora_no_few_shots_3_epochs",
         "use_few_shot": false,
         "num_epochs": 3,
@@ -66,15 +66,15 @@
     "workbook": "results_Qwen2.5-7B.xlsx",
     "runs": [
       {
-        "run_id": "base",
-        "label": "Qwen2.5-7B base",
+        "run_id": "base_few_shot",
+        "label": "Qwen2.5-7B base, few-shot",
         "folder": "qwen_base",
-        "use_few_shot": false,
+        "use_few_shot": true,
         "num_epochs": 0,
         "is_baseline": true
       },
       {
-        "run_id": "lora_1ep_fs",
+        "run_id": "lora_1_epoch_few_shot",
         "label": "LoRA 1 epoch, few-shot",
         "folder": "qwen_lora",
         "use_few_shot": true,
@@ -82,24 +82,24 @@
         "is_baseline": false
       },
       {
-        "run_id": "lora_1ep_nofs",
-        "label": "LoRA 1 epoch, no few-shot",
+        "run_id": "lora_1_epoch_zero_shot",
+        "label": "LoRA 1 epoch, zero-shot",
         "folder": "qwen_lora_no_few_shots",
         "use_few_shot": false,
         "num_epochs": 1,
         "is_baseline": false
       },
       {
-        "run_id": "lora_2ep_nofs",
-        "label": "LoRA 2 epochs, no few-shot",
+        "run_id": "lora_2_epoch_zero_shot",
+        "label": "LoRA 2 epochs, zero-shot",
         "folder": "qwen_lora_no_few_shots_2_epochs",
         "use_few_shot": false,
         "num_epochs": 2,
         "is_baseline": false
       },
       {
-        "run_id": "lora_3ep_nofs",
-        "label": "LoRA 3 epochs, no few-shot",
+        "run_id": "lora_3_epoch_zero_shot",
+        "label": "LoRA 3 epochs, zero-shot",
         "folder": "qwen_lora_no_few_shots_3_epochs",
         "use_few_shot": false,
         "num_epochs": 3,

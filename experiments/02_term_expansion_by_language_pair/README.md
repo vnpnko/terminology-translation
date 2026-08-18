@@ -26,7 +26,7 @@ Language-pair comparison (`ende` / `enru` / `enes`) workbooks, one per dataset v
 
 | File | Regenerate |
 | ---- | ---------- |
-| `report/dev_v1_original_language_comparison.xlsx` | `python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v1/original/with-few-shots` (or `.../no-few-shots`; `results/dev_v1/original` has no `gpt`/`qwen_3b`/`qwen_7b` directly — see `report/README.md` §3.4.1) |
+| `report/dev_v1_original_language_comparison.xlsx` | `python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v1/original/few_shot` (or `.../zero_shot`; `results/dev_v1/original` has no `gpt`/`qwen_3b`/`qwen_7b` directly — see `report/README.md` §3.4.1) |
 | `report/dev_v1_expand_language_comparison.xlsx` | `python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v1/expand` |
 | `report/dev_v1_cleaned_language_comparison.xlsx` | `python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v1/cleaned` |
 | `report/dev_v2_language_comparison.xlsx` | `python experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py results/dev_v2` |

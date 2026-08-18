@@ -1,16 +1,16 @@
-"""Compare Qwen base (with few-shot) vs LoRA 1 epoch (no few-shot), for both model sizes.
+"""Compare Qwen base (few-shot) vs LoRA 1 epoch (zero-shot), for both model sizes.
 
 Writes one .xlsx file (default:
-``experiments/04_lora_finetuning/report/base_few_shots_vs_lora_1_epoch.xlsx``) with a single
-sheet, one block per model size (``Qwen2.5-3B``, ``Qwen2.5-7B``, 3 rows each). Both columns
-are local, driven by ``run_registry.json``:
+``experiments/04_lora_finetuning/report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx``) with a
+single sheet, one block per model size (``Qwen2.5-3B``, ``Qwen2.5-7B``, 3 rows each). Both
+columns are local, driven by ``run_registry.json``:
 
-- ``qwen_base_with_few_shots`` = ``<results-root>/<model_dir>/qwen_base/metrics_summary.json``.
-- ``qwen_lora_no_few_shots`` = ``<results-root>/<model_dir>/<folder>/metrics_summary.json``,
-  where ``<folder>`` is the registry's ``lora_1ep_nofs`` run.
+- ``qwen_base_few_shot`` = ``<results-root>/<model_dir>/qwen_base/metrics_summary.json``.
+- ``qwen_lora_zero_shot`` = ``<results-root>/<model_dir>/<folder>/metrics_summary.json``,
+  where ``<folder>`` is the registry's ``lora_1_epoch_zero_shot`` run.
 
 Each value cell is colored green if it is the higher (or tied-highest) of its
-qwen_base_with_few_shots/qwen_lora_no_few_shots pair, yellow otherwise — no red is used.
+qwen_base_few_shot/qwen_lora_zero_shot pair, yellow otherwise — no red is used.
 Same coloring convention as
 ``experiments/04_lora_finetuning/scripts/compare_few_shots_to_excel.py``.
 
@@ -34,8 +34,8 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEYS = ("3B", "7B")
-LEFT_LABEL = "qwen_base_with_few_shots"
-RIGHT_LABEL = "qwen_lora_no_few_shots"
+LEFT_LABEL = "qwen_base_few_shot"
+RIGHT_LABEL = "qwen_lora_zero_shot"
 
 HEADER_FILL = PatternFill(start_color="FFD9D9D9", end_color="FFD9D9D9", fill_type="solid")
 PAIR_FILLS = {
@@ -96,14 +96,14 @@ def extract_row(summary: dict[str, Any] | None, lang: str) -> list[float | None]
     return values
 
 
-def lora_1ep_nofs_run(registry: dict[str, Any], model_key: str) -> dict[str, Any]:
+def lora_1_epoch_zero_shot_run(registry: dict[str, Any], model_key: str) -> dict[str, Any]:
     runs = {run["run_id"]: run for run in registry[model_key]["runs"]}
-    return runs["lora_1ep_nofs"]
+    return runs["lora_1_epoch_zero_shot"]
 
 
 def model_rows(results_root: Path, registry: dict[str, Any], model_key: str, model_dir: str) -> dict[str, tuple[list, list]]:
     base_summary = load_metrics_summary(results_root / model_dir / "qwen_base" / "metrics_summary.json")
-    lora_run = lora_1ep_nofs_run(registry, model_key)
+    lora_run = lora_1_epoch_zero_shot_run(registry, model_key)
     lora_summary = load_metrics_summary(results_root / model_dir / lora_run["folder"] / "metrics_summary.json")
     return {lang: (extract_row(base_summary, lang), extract_row(lora_summary, lang)) for lang in LANG_ORDER}
 
@@ -218,7 +218,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("experiments/04_lora_finetuning/report/base_few_shots_vs_lora_1_epoch.xlsx"),
+        default=Path("experiments/04_lora_finetuning/report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx"),
         help="Output .xlsx path",
     )
     return parser.parse_args()
@@ -229,7 +229,7 @@ def validate_required(results_root: Path, registry: dict[str, Any]) -> None:
     for model_key in MODEL_KEYS:
         model_dir = registry[model_key]["model_dir"]
         required.append(results_root / model_dir / "qwen_base" / "metrics_summary.json")
-        lora_run = lora_1ep_nofs_run(registry, model_key)
+        lora_run = lora_1_epoch_zero_shot_run(registry, model_key)
         required.append(results_root / model_dir / lora_run["folder"] / "metrics_summary.json")
 
     missing = [str(path) for path in required if not path.exists()]
@@ -251,7 +251,7 @@ def main() -> None:
 
     wb = Workbook()
     ws = wb.active
-    ws.title = "Sheet1"
+    ws.title = "base_vs_lora"
     write_sheet(ws, rows_by_model)
 
     output_path = args.output.resolve()

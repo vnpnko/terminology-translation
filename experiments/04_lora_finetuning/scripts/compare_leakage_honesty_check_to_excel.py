@@ -225,7 +225,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--lora-run",
-        default="lora_2ep_nofs",
+        default="lora_2_epoch_zero_shot",
         help="run_registry.json run_id (7B) to use for the LoRA side",
     )
     parser.add_argument(

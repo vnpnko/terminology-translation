@@ -33,21 +33,21 @@ LORA_EPOCH_RUNS = (
     (3, "qwen_lora_no_few_shots_3_epochs"),
 )
 
-NO_FEW_SHOT_PATHS = {
-    "Qwen2.5-7B": "results/dev_v1/original/no-few-shots/qwen_7b/metrics_summary.json",
-    "Qwen2.5-3B": "results/dev_v1/original/no-few-shots/qwen_3b/metrics_summary.json",
+ZERO_SHOT_PATHS = {
+    "Qwen2.5-7B": "results/dev_v1/original/zero_shot/qwen_7b/metrics_summary.json",
+    "Qwen2.5-3B": "results/dev_v1/original/zero_shot/qwen_3b/metrics_summary.json",
 }
 
-NO_FEW_SHOT_GPT_PATH = "results/dev_v1/original/no-few-shots/gpt/metrics_summary.json"
+ZERO_SHOT_GPT_PATH = "results/dev_v1/original/zero_shot/gpt/metrics_summary.json"
 
 # (metrics path, label, use_finetuning_results_root)
 COMPARE_RUNS = (
-    (NO_FEW_SHOT_GPT_PATH, "GPT-4o-mini (no few-shot)", False),
+    (ZERO_SHOT_GPT_PATH, "GPT-4o-mini (zero-shot)", False),
     ("gpt_base/metrics_summary.json", "GPT-4o-mini (few-shot)", True),
-    ("Qwen2.5-7B/qwen_lora_no_few_shots_2_epochs/metrics_summary.json", "Qwen 7B LoRA 2ep (no few-shot)", True),
+    ("Qwen2.5-7B/qwen_lora_no_few_shots_2_epochs/metrics_summary.json", "Qwen 7B LoRA 2ep (zero-shot)", True),
 )
 
-# x=0: few-shot base (standalone); x=1: no-few-shot base; x=2–4: LoRA epochs 1–3.
+# x=0: few-shot base (standalone); x=1: zero-shot base; x=2–4: LoRA epochs 1–3.
 EPOCH_XTICKS = ["0\n(few-shot)", "0", "1", "2", "3"]
 
 TITLE = (
@@ -72,7 +72,7 @@ def _collect_epoch_series(project_root: Path, model_dir: str) -> dict:
     finetuning_results = project_root / FINETUNING_DIR_NAME / "results" / model_dir
     paths = [
         finetuning_results / "qwen_base" / "metrics_summary.json",
-        project_root / NO_FEW_SHOT_PATHS[model_dir],
+        project_root / ZERO_SHOT_PATHS[model_dir],
         *(
             finetuning_results / folder / "metrics_summary.json"
             for _, folder in LORA_EPOCH_RUNS
@@ -81,10 +81,10 @@ def _collect_epoch_series(project_root: Path, model_dir: str) -> dict:
     require_paths(paths)
 
     _, fewshot_macro = _load_run_metrics(project_root, f"{model_dir}/qwen_base/metrics_summary.json")
-    _, nofs_macro = _load_metrics_at_path(project_root, project_root / NO_FEW_SHOT_PATHS[model_dir])
+    _, zero_shot_macro = _load_metrics_at_path(project_root, project_root / ZERO_SHOT_PATHS[model_dir])
 
-    bleu_line: list[tuple[int, float | None]] = [(1, nofs_macro.bleu)]
-    term_line: list[tuple[int, float | None]] = [(1, nofs_macro.term_avg_pct)]
+    bleu_line: list[tuple[int, float | None]] = [(1, zero_shot_macro.bleu)]
+    term_line: list[tuple[int, float | None]] = [(1, zero_shot_macro.term_avg_pct)]
 
     for epoch, folder in LORA_EPOCH_RUNS:
         _, macro = _load_run_metrics(project_root, f"{model_dir}/{folder}/metrics_summary.json")

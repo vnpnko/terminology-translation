@@ -7,7 +7,7 @@ Takes any JSONL file as input via a positional path argument (e.g. under
 
 Usage::
 
-    python check_duplicate_sources.py data/dev_v2/dev_v2_original/ende_dev_v2.jsonl
+    python check_duplicate_sources.py data/dev_v2/ende_dev_v2.jsonl
     python check_duplicate_sources.py path/to/file.jsonl --source-field en
 """
 

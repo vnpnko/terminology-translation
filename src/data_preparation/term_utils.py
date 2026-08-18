@@ -29,7 +29,7 @@ def repo_rel_path(path: Path | str, *, base: Path = REPO_ROOT) -> str:
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 
-DEV_V2_DIR = REPO_ROOT / "data" / "dev_v2" / "dev_v2_original"
+DEV_V2_DIR = REPO_ROOT / "data" / "dev_v2"
 DEV_V1_ORIGINAL_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_original"
 # Only consumed by experiments/03_dataset_comparison/scripts/{build_term_dictionary,
 # apply_dictionary_to_dev_v1}.py, so it lives under that experiment rather than shared data/.

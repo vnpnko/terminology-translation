@@ -405,6 +405,7 @@
 {"en": "A system messageconfirming that the changes have been saved appears.", "de": "Eine Systemmeldung bestätigt, dass die Änderungen gesichert wurden.", "proper_terms": {"message": "Meldung"}, "random_terms": {"saved": "gesichert"}}
 {"en": "Process Additional information data", "de": "Process Additional information data", "proper_terms": {"process": "Process"}, "random_terms": {"information": "information"}}
 {"en": "Order Fulfillment Cockpit", "de": "Order Fulfillment Cockpit", "proper_terms": {"order": "Order"}, "random_terms": {"Cockpit": "Cockpit"}}
+{"en": "This is a monitoring list.", "de": "Dies ist ein Überwachungsliste.", "proper_terms": {"monitoring": "Überwachung"}, "random_terms": {"list": "liste"}}
 {"en": "Limitations and Restrictions", "de": "Einschränkungen und Beschränkungen", "proper_terms": {"restriction": "Einschränkung"}, "random_terms": {"Limitations": "Einschränkungen"}}
 {"en": "You can create the following two types of hierarchies:", "de": "Sie können die folgenden zwei Typen von Hierarchien erstellen:", "proper_terms": {"type": "Typ", "create": "erstellen"}, "random_terms": {"types": "Typen"}}
 {"en": "If you flag the Execute ABC checkbox, the alternative control is active and will be used productively when you click Save.", "de": "Wenn Sie das Ankreuzfeld ABC ausführen markieren, ist die Alternativensteuerung aktiv und wird verwendet, sobald Sie Sichern auswählen.", "proper_terms": {"flag": "markieren"}, "random_terms": {"Save": "Sichern"}}
@@ -483,6 +484,7 @@
 {"en": "The following is a sample query:", "de": "Im Folgenden finden Sie eine Beispielabfrage:", "proper_terms": {"query": "Abfrage"}, "random_terms": {"sample": "Beispiel"}}
 {"en": "Find the purchase order by:", "de": "Für die Suche nach dem Bestellauftrag haben Sie folgende Möglichkeiten:", "proper_terms": {"order": "Auftrag"}, "random_terms": {}}
 {"en": "In the Team Members tab, do the following:", "de": "Gehen Sie auf der Registerkarte Teammitglieder folgendermaßen vor:", "proper_terms": {"team member": "Teammitglied"}, "random_terms": {"tab": "Registerkarte", "do": "vor"}}
+{"en": "Editing facility information", "de": "Bearbeiten von Objektinformationen", "proper_terms": {"facility": "Objekt"}, "random_terms": {"Editing": "Bearbeiten"}}
 {"en": "Change Tracker Log", "de": "Change Tracker Log", "proper_terms": {"log": "Log"}, "random_terms": {}}
 {"en": "Message Change Log", "de": "Message Change Log", "proper_terms": {"message": "Message"}, "random_terms": {}}
 {"en": "Choose a level.", "de": "Wählen Sie eine Stufe aus.", "proper_terms": {"level": "Stufe"}, "random_terms": {"Choose": "Wählen"}}

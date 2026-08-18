@@ -2,8 +2,8 @@
 
 Writes filtered files to
 ``experiments/04_lora_finetuning/data/dev_v2_deduped/`` — never overwrites
-the ``data/dev_v2/dev_v2_original/`` or ``data/dev_v1/dev_v1_original/``
-inputs. Reads dev_v2 sources from ``data/dev_v2/dev_v2_original/`` and
+the ``data/dev_v2/`` or ``data/dev_v1/dev_v1_original/``
+inputs. Reads dev_v2 sources from ``data/dev_v2/`` and
 filters out any line whose ``en`` text also appears in
 ``data/dev_v1/dev_v1_original/``.
 

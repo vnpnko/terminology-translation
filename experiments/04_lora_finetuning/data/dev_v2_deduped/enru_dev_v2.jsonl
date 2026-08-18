@@ -147,6 +147,7 @@
 {"en": "Manage Resource Requests", "ru": "Управление заявками на ресурсы", "proper_terms": {"request": "заявка"}, "random_terms": {"Manage": "Управление", "Resource": "ресурсы"}}
 {"en": "Change queue assignments.", "ru": "Изменение присвоений очереди.", "proper_terms": {"change": "изменение"}, "random_terms": {"queue": "очереди", "assignments": "присвоений"}}
 {"en": "Code List tab", "ru": "Вкладка \"Список кодов\"", "proper_terms": {"tab": "вкладка"}, "random_terms": {"List": "Список", "Code": "код"}}
+{"en": "Pause and Restart Real-Time Replication", "ru": "Приостановка и перезапуск тиражирования в реальном времени", "proper_terms": {"pause": "приостановка", "restart": "перезапуск"}, "random_terms": {"Real-Time": "реальном", "Replication": "тиражирования"}}
 {"en": "Once you remove the constraint for the successor operation, the operation is rescheduled automatically and the relationship is repaired.", "ru": "После удаления ограничения для последующей операции операция автоматически перепланируется, и связь исправляется.", "proper_terms": {"relationship": "связь"}, "random_terms": {"repaired": "исправляется"}}
 {"en": "Aggregate Notifications shows whether the notifications to be sent are aggregated (Yes) or separate for each situation instance (No).", "ru": "Агрегировать уведомления показывает, должны ли отправляемые уведомления быть агрегированными (Да) или отдельными для каждой инстанции ситуации (Нет).", "proper_terms": {"aggregate": "агрегировать"}, "random_terms": {"Notifications": "уведомления", "separate": "отдельными"}}
 {"en": "Expiring service contracts", "ru": "Сервисные договоры с истекающим сроком действия", "proper_terms": {"contract": "договор"}, "random_terms": {"Expiring": "истекающим", "service": "Сервисные"}}
@@ -366,6 +367,7 @@
 {"en": "Withholding Tax at Row Level", "ru": "Налог на источники дохода на уровне строки", "proper_terms": {"withholding tax": "налог на источники дохода"}, "random_terms": {"Row": "строки"}}
 {"en": "Pending PO Assignment", "ru": "Ожидается назначение заказа на закупку", "proper_terms": {"assignment": "назначение"}, "random_terms": {"Pending": "Ожидается", "PO": "заказ"}}
 {"en": "Service in Bank Statement", "ru": "Услуга в выписке по счету", "proper_terms": {"service": "услуга"}, "random_terms": {"Statement": "выписке"}}
+{"en": "Create and delete Spaces", "ru": "Создание и удаление пространств", "proper_terms": {"space": "пространство"}, "random_terms": {"delete": "удаление", "Create": "Создание"}}
 {"en": "Workflow Event Action", "ru": "Операция события потока операций", "proper_terms": {"action": "операция"}, "random_terms": {"Workflow": "потока", "Event": "события"}}
 {"en": "You can attach files or links to the object.", "ru": "можно вложить файлы или ссылки на объекты.", "proper_terms": {"attach": "вложить"}, "random_terms": {"files": "файлы", "links": "ссылки"}}
 {"en": "Indicates the address to which payment is sent.", "ru": "Указывают адрес, на который отправляется оплата.", "proper_terms": {"payment": "оплата"}, "random_terms": {"address": "адрес", "sent": "отправляется"}}
@@ -469,6 +471,7 @@
 {"en": "Telephone extension number", "ru": "Добавочный номер телефона", "proper_terms": {"extension number": "добавочный номер"}, "random_terms": {"Telephone": "телефон"}}
 {"en": "Security type ID", "ru": "Идентификатор вида ценной бумаги", "proper_terms": {"type": "вид"}, "random_terms": {"ID": "Идентификатор"}}
 {"en": "Select the Public option.", "ru": "Выберите опцию Общий.", "proper_terms": {"public": "общий"}, "random_terms": {"Select": "Выберите", "option": "опцию"}}
+{"en": "Pause email notifications", "ru": "Приостановка уведомлений по электронной почте", "proper_terms": {"pause": "приостановка"}, "random_terms": {"email": "электронной", "notifications": "уведомлений"}}
 {"en": "Expiring or new contracts", "ru": "Истекающие или новые контракты", "proper_terms": {"contract": "контракт"}, "random_terms": {"new": "новые", "Expiring": "Истекающие"}}
 {"en": "Get User Id", "ru": "Получить ид. пользователя", "proper_terms": {"get": "получить"}, "random_terms": {"User": "пользователя", "Id": "ид."}}
 {"en": "Search for your contract.", "ru": "Выполните поиск договора.", "proper_terms": {"contract": "договор"}, "random_terms": {"Search": "поиск"}}

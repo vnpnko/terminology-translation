@@ -45,13 +45,15 @@ Runs are defined in [`scripts/run_registry.json`](scripts/run_registry.json).
 | ---- | -------- | ---------- |
 | `report/good vs bad data.xlsx` | GPT / Qwen-base / Qwen-LoRA(7B) on the leakage-honesty-check "good" vs "bad" test subsets (5 stacked blocks incl. GPT-vs-LoRA on each subset) | `python experiments/04_lora_finetuning/scripts/fill_good_vs_bad_gpt.py` — fills only the GPT and `qwen_base` blocks; the 3 `qwen_lora` blocks are hand-entered and must be updated manually |
 | `report/base_few_shots_vs_lora_1_epoch.xlsx` | `qwen_base_with_few_shots` vs `qwen_lora_no_few_shots` (1 epoch), for 3B and 7B; each cell colored green (higher/tied-highest) or yellow (lower), no red | `python experiments/04_lora_finetuning/scripts/compare_base_vs_lora_to_excel.py` |
-| `report/best_models.xlsx` | Best LoRA config (`qwen_lora_7b_no_shots_3_epochs`) vs GPT-4o-mini few-shot | no generating script — hand-assembled |
+| `report/best_models.xlsx` | Best LoRA config (`qwen_lora_7b_no_shots_2_epochs`, see note below) vs GPT-4o-mini few-shot; each cell colored green (higher/tied-highest) or yellow (lower), no red | `python experiments/04_lora_finetuning/scripts/compare_best_models_to_excel.py` — LoRA run selectable via `--lora-run` (default `lora_2ep_nofs`) |
 | `report/epoch_ablation.xlsx` | 1 / 2 / 3 LoRA epochs (no few-shot), one sheet per model size; each cell colored red/yellow/green by ranking that (language, metric) value across the 3 epochs (worst/mid/best) | `python experiments/04_lora_finetuning/scripts/compare_epochs_to_excel.py` |
 | `report/few_shots_ablation.xlsx` | `no_shots` vs `few_shots`, one sheet per model (GPT-4o-mini, Qwen 3B, Qwen 7B); Qwen sheets stack `qwen_base` and `qwen_lora` rows; each cell colored green (higher/tied-highest) or yellow (lower), no red | `python experiments/04_lora_finetuning/scripts/compare_few_shots_to_excel.py` — GPT/`qwen_base` rows split across two results trees (see script docstring); `qwen_lora` rows are fully local, driven by `run_registry.json` |
 
-**TODO:** the remaining hand-assembled file (`best_models.xlsx`) still has no export script (unlike e.g. `experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py` or this experiment's own `compare_epochs_to_excel.py`/`compare_few_shots_to_excel.py`/`compare_base_vs_lora_to_excel.py`, which regenerate their workbooks from `metrics_summary.json` directly). Writing an equivalent script would remove the manual-copy risk.
+All 5 files are now script-generated — no hand-assembled workbooks remain in `report/`.
 
 **Note:** `compare_few_shots_to_excel.py` fixed two data bugs found in the previous hand-assembled `few_shots_ablation.xlsx` while verifying against it — a 3rd-row `enru` label mistakenly entered as `ende` in both the `qwen_base` and `qwen_lora` blocks (3B sheet), and a genuine `enes`/`enru` term-accuracy value swap in the `qwen_base` block (3B sheet). It also fills in `Qwen2.5-7B`'s `qwen_base` `no_shots` cells, which the old file left blank even though the source data (`results/dev_v1/original/no-few-shots/qwen_7b/`) exists.
+
+**Note:** `best_models.xlsx` previously cited the 3-epoch LoRA run as "best". Comparing `epoch_ablation.xlsx`'s 2-vs-3-epoch numbers against each run's `training_loss.txt` showed training loss dropping much further at 3 epochs (~0.05–0.07 vs ~0.14–0.17 at 2 epochs) while held-out BLEU/chrF plateau or slightly regress and only Term Accuracy keeps rising — an overfitting signature. `compare_best_models_to_excel.py` now defaults to `lora_2ep_nofs` (override with `--lora-run`), and also fills GPT's previously-blank consistency columns.
 
 ### Requirements
 
@@ -65,6 +67,7 @@ Uses `openpyxl` from the repo root [`requirements.txt`](../../requirements.txt).
 | `scripts/compare_epochs_to_excel.py` | Builds `report/epoch_ablation.xlsx` (1/2/3 no-few-shot LoRA epochs, one sheet per model size, rank-colored red/yellow/green) from `metrics_summary.json`, run selection driven by `run_registry.json` |
 | `scripts/compare_few_shots_to_excel.py` | Builds `report/few_shots_ablation.xlsx` (no_shots vs few_shots for GPT, Qwen base, Qwen LoRA) from `metrics_summary.json` in both `results/` (root) and `experiments/04_lora_finetuning/results/` |
 | `scripts/compare_base_vs_lora_to_excel.py` | Builds `report/base_few_shots_vs_lora_1_epoch.xlsx` (qwen_base_with_few_shots vs qwen_lora_no_few_shots, one sheet, 3B/7B blocks) from `metrics_summary.json`, run selection driven by `run_registry.json` |
+| `scripts/compare_best_models_to_excel.py` | Builds `report/best_models.xlsx` (best Qwen 7B LoRA config, default 2 epochs, vs GPT-4o-mini few-shot) from `metrics_summary.json`; LoRA run overridable via `--lora-run` |
 | `scripts/filter_test_sentence_overlap.py` | Filters test sentences overlapping with training data |
 | `scripts/filter_test_term_overlap.py` | Filters test terms overlapping with training data |
 | `scripts/figure_lora_finetuning.py` | Builds the poster's `fig_lora_finetuning` figure (`build_lora_finetuning_figure`; run via `python src/analysis/generate_result_figures.py --only lora_finetuning`) |

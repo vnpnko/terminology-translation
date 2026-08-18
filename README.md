@@ -39,6 +39,7 @@ Generate all four at once with `python src/analysis/generate_result_figures.py` 
 | [`02_term_expansion_by_language_pair/`](experiments/02_term_expansion_by_language_pair/README.md) | Same term-expansion strategy comparison, broken out by language pair. |
 | [`03_dataset_comparison/`](experiments/03_dataset_comparison/README.md) | `dev_v1` (test) vs. `dev_v2` (training) set comparison, GPT baseline. |
 | [`04_lora_finetuning/`](experiments/04_lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT-4o-mini and Qwen base, with an Excel export pipeline. |
+| [`05_gpt_proposed_terms/`](experiments/05_gpt_proposed_terms/README.md) | GPT-4o-mini `proper_term` (oracle dictionary) vs. `gpt_proposed_term` (GPT self-extracts/proposes terminology), zero-shot on `dev_v1/original`. |
 
 ## Scripts
 
@@ -100,6 +101,7 @@ Generated comparison Excel files live inside the experiment they compare, under 
 | [`experiments/01_term_expansion_by_model/report/`](experiments/01_term_expansion_by_model/README.md#report-tables) | `scripts/compare_models_to_excel.py` | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
 | [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `scripts/compare_languages_to_excel.py` | `<dataset>_language_comparison.xlsx` |
 | [`experiments/03_dataset_comparison/report/`](experiments/03_dataset_comparison/README.md#report-tables) | `scripts/compare_datasets_to_excel.py`, `scripts/compare_v1_variants_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`, `dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` |
+| [`experiments/05_gpt_proposed_terms/report/`](experiments/05_gpt_proposed_terms/README.md) | `scripts/compare_gpt_pipeline_modes_to_excel.py` | `dev_v1_original_gpt_pipeline_mode_comparison.xlsx` |
 
 See each experiment's README for the exact command to regenerate every table it holds. When a new comparison table doesn't fit any existing experiment, create a new experiment folder for it rather than adding a new top-level report category.
 

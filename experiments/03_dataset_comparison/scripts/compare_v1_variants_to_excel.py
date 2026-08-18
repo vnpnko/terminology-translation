@@ -22,7 +22,6 @@ from typing import Any
 import pandas as pd
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-from openpyxl.utils import get_column_letter
 
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
@@ -134,6 +133,24 @@ def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=columns)
 
 
+def autofit_columns(ws, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
+    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
+    excluded = set()
+    for merged_range in ws.merged_cells.ranges:
+        if merged_range.max_col > merged_range.min_col:
+            excluded.add((merged_range.min_row, merged_range.min_col))
+
+    widths: dict[str, int] = {}
+    for row in ws.iter_rows():
+        for cell in row:
+            if cell.value is None or (cell.row, cell.column) in excluded:
+                continue
+            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
+
+    for col_letter, width in widths.items():
+        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
+
+
 def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb = Workbook()
     ws = wb.active
@@ -196,10 +213,7 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
         end_row = start_row + len(LANG_ORDER) - 1
         ws.merge_cells(start_row=start_row, start_column=1, end_row=end_row, end_column=1)
 
-    ws.column_dimensions["A"].width = 14
-    ws.column_dimensions["B"].width = 12
-    for col_idx in range(metric_start_col, metric_start_col + len(METRICS) * cols_per_metric):
-        ws.column_dimensions[get_column_letter(col_idx)].width = 18
+    autofit_columns(ws)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     wb.save(output_path)

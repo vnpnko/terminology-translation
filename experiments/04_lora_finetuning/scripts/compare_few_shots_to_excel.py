@@ -32,7 +32,6 @@ from typing import Any
 from openpyxl import Workbook
 from openpyxl.cell.cell import Cell
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 
 LANG_ORDER = ("ende", "enes", "enru")
@@ -153,6 +152,24 @@ def apply_cell_style(cell: Cell, *, fill: PatternFill | None = None) -> None:
     cell.border = THIN_BORDER
 
 
+def autofit_columns(ws: Worksheet, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
+    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
+    excluded = set()
+    for merged_range in ws.merged_cells.ranges:
+        if merged_range.max_col > merged_range.min_col:
+            excluded.add((merged_range.min_row, merged_range.min_col))
+
+    widths: dict[str, int] = {}
+    for row in ws.iter_rows():
+        for cell in row:
+            if cell.value is None or (cell.row, cell.column) in excluded:
+                continue
+            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
+
+    for col_letter, width in widths.items():
+        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
+
+
 def write_group_header(ws: Worksheet, start_col: int, cols_per_group: int) -> None:
     no_shots_cell = ws.cell(row=1, column=start_col, value="no_shots")
     apply_cell_style(no_shots_cell, fill=HEADER_FILL)
@@ -194,9 +211,7 @@ def write_gpt_sheet(ws: Worksheet, rows_by_lang: dict[str, tuple[list, list]]) -
         no_shots_values, few_shots_values = rows_by_lang[lang]
         write_data_row(ws, row_offset, start_col=2, no_shots_values=no_shots_values, few_shots_values=few_shots_values)
 
-    ws.column_dimensions["A"].width = 12
-    for col_idx in range(2, 2 + 2 * cols_per_group):
-        ws.column_dimensions[get_column_letter(col_idx)].width = 16
+    autofit_columns(ws)
 
 
 def write_qwen_sheet(
@@ -232,10 +247,7 @@ def write_qwen_sheet(
         apply_cell_style(block_cell)
         ws.merge_cells(start_row=block_start_row, start_column=1, end_row=row - 1, end_column=1)
 
-    ws.column_dimensions["A"].width = 14
-    ws.column_dimensions["B"].width = 12
-    for col_idx in range(data_start_col, data_start_col + 2 * cols_per_group):
-        ws.column_dimensions[get_column_letter(col_idx)].width = 16
+    autofit_columns(ws)
 
 
 def parse_args() -> argparse.Namespace:

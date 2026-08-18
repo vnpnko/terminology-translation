@@ -30,7 +30,6 @@ from typing import Any
 from openpyxl import Workbook
 from openpyxl.cell.cell import Cell
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-from openpyxl.utils import get_column_letter
 
 LANG_ORDER = ("ende", "enru", "enes")
 VARIANT_ORDER = ("original", "expand", "cleaned", "dictionary")
@@ -150,6 +149,24 @@ def apply_cell_style(
     cell.border = THIN_BORDER
 
 
+def autofit_columns(ws, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
+    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
+    excluded = set()
+    for merged_range in ws.merged_cells.ranges:
+        if merged_range.max_col > merged_range.min_col:
+            excluded.add((merged_range.min_row, merged_range.min_col))
+
+    widths: dict[str, int] = {}
+    for row in ws.iter_rows():
+        for cell in row:
+            if cell.value is None or (cell.row, cell.column) in excluded:
+                continue
+            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
+
+    for col_letter, width in widths.items():
+        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
+
+
 def write_styled_excel(rows: list[dict[str, object]], output_path: Path) -> None:
     wb = Workbook()
     ws = wb.active
@@ -200,8 +217,7 @@ def write_styled_excel(rows: list[dict[str, object]], output_path: Path) -> None
         ws.merge_cells(start_row=3, start_column=1, end_row=2 + len(rows), end_column=1)
         ws.cell(row=3, column=1).alignment = Alignment(horizontal="center", vertical="center")
 
-    for col_idx in range(1, metric_start_col + len(METRICS) * cols_per_metric):
-        ws.column_dimensions[get_column_letter(col_idx)].width = 13
+    autofit_columns(ws)
 
     wb.save(output_path)
 

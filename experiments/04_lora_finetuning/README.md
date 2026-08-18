@@ -57,6 +57,8 @@ All 5 files are now script-generated — no hand-assembled workbooks remain in `
 
 **Note:** `good vs bad data.xlsx` was renamed and redesigned into `leakage_honesty_check.xlsx`. It went through several redesign rounds: first split into 2 sheets (`train_test_overlap`, `data_difficulty`), which duplicated the `qwen_lora` block in both; then consolidated back into a single sheet with all 3 models stacked once, controls-then-trained-model order; then the column groups (originally `bad_data`/`good_data`) were renamed to `overlap_data`/`no_overlap_data` (sheet: `overlap_vs_no_overlap_data`) to name the actual split criterion instead of a "bad"/"good" value judgment. It's fully script-generated (`fill_good_vs_bad_gpt.py`, which only covered 2 of the old 5 blocks, has been removed). The `test_cleaned_by_sentences/data_good` split for `qwen_base` — previously flagged as buggy/missing in `report/ISSUES.md` — was verified to exist and match the old file's numbers exactly, so that concern is resolved.
 
+**Model names in `leakage_honesty_check.xlsx`:** the workbook's `model` column uses short labels; here's what each one is concretely: `gpt` = GPT-4o-mini; `qwen_base` = Qwen2.5-7B, base model with few-shot prompting (`qwen-2.5-7b_with_few_shots` — this is the `qwen_base` run folder, which despite its name is a few-shot run; `run_registry.json` sets `use_few_shot: false` for it, but that flag is itself wrong, see `report/README.md` §3.4.1 point 3); `qwen_lora` = Qwen2.5-7B, LoRA fine-tuned, 2 epochs, no few-shot (`qwen-2.5-7b_no_few_shots_2_epochs`, i.e. `run_registry.json`'s `lora_2ep_nofs`, the script's `--lora-run` default).
+
 ### Requirements
 
 Uses `openpyxl` from the repo root [`requirements.txt`](../../requirements.txt).

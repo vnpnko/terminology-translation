@@ -48,8 +48,8 @@ TITLE = (
 
 def _dataset_paths(results_root: Path) -> dict[str, Path]:
     return {
-        "dev_v1": results_root / "dev_v1" / "original" / "gpt" / "metrics_summary.json",
-        "dev_v2_training": results_root / "dev_v2" / "training" / "gpt" / "metrics_summary.json",
+        "dev_v1": results_root / "dev_v1" / "original" / "zero_shot" / "gpt" / "metrics_summary.json",
+        "dev_v2_training": results_root / "dev_v2" / "dev_v2_for_training" / "gpt" / "metrics_summary.json",
     }
 
 

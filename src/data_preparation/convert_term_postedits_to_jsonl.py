@@ -2,8 +2,8 @@
 
 Reads ``term_postedits.test.<pair>.{src,pe,mt,terms}`` flat files from
 ``--data-dir`` (default: ``data/sap_term_postedits/<ende|enes|enru>`` — this
-raw source is not checked into the repo after the open-sourcing restructure,
-so ``--data-dir`` must point at real flat files to run) and writes two JSONL
+raw source is not checked into the repo, so ``--data-dir`` must point at
+real flat files to run) and writes two JSONL
 files back into that same directory: sentences with ``proper_terms``, and a
 terms-only file.
 

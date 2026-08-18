@@ -8,9 +8,8 @@ Zero-shot baselines on `dev_v1`: GPT-4o-mini (via OpenRouter) and a Qwen2.5 base
 |------|----------|
 | `notebooks/openai_baseline.ipynb` | GPT-4o-mini baseline via OpenRouter |
 | `notebooks/qwen_baseline.ipynb` | Qwen2.5 base model baseline |
-| `results/openai_translation/` | GPT predictions + `metrics_summary.json`, per language pair |
-| `results/qwen_translation/` | Qwen predictions + `metrics_summary.json`, per language pair |
-| `results/used_data/` | Copy of the `dev_v1` input files used for this run |
+| `results/openai_translation/` | GPT predictions (`{lang}_..._{mode}_predictions.jsonl`) + `metrics_summary.json` |
+| `results/qwen_translation/` | Qwen predictions (`{lang}_..._{mode}_predictions.jsonl`) + `metrics_summary.json` |
 
 ## Running
 

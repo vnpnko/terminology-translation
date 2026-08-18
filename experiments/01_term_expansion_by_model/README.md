@@ -18,7 +18,7 @@ Reads `metrics_summary.json` under `results/dev_v1/` for the GPT-4o-mini baselin
 
 | Variant | Source data | Results path |
 | ------- | ------------ | ------------ |
-| `original` | `data/dev_v1/dev_v1_original/` | `results/dev_v1/original/gpt/` |
+| `original` | `data/dev_v1/dev_v1_original/` | `results/dev_v1/original/zero_shot/gpt/` |
 | `expand` | `data/dev_v1/dev_v1_expand/` | `results/dev_v1/expand/gpt/` |
 | `cleaned` | `data/dev_v1/dev_v1_cleaned/` | `results/dev_v1/cleaned/gpt/` |
 | external dictionary | `data/dev_v1/dev_v1_dictionary/` | `results/dev_v1/dictionary/gpt/` |
@@ -35,7 +35,8 @@ Model-vs-model (GPT / Qwen 3B / Qwen 7B) comparison workbooks, one per dataset v
 
 | File | Regenerate |
 | ---- | ---------- |
-| `report/dev_v1_original_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/original/few_shot` (or `.../zero_shot`; `results/dev_v1/original` has no `gpt`/`qwen_3b`/`qwen_7b` directly — see `report/README.md` §3.4.1) |
+| `report/dev_v1_original_zero_shot_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/original/zero_shot` |
+| `report/dev_v1_original_few_shot_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/original/few_shot` |
 | `report/dev_v1_expand_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/expand` |
 | `report/dev_v1_cleaned_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/cleaned` |
 | `report/dev_v2_model_comparison.xlsx` | `python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v2` |

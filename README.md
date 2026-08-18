@@ -30,7 +30,7 @@ Generate all four at once with `python src/analysis/generate_result_figures.py` 
 
 ## Experiments
 
-`experiments/` holds five numbered, ordered experiments. `01`–`03` are analyses over the shared `data/` → `results/` → `report/` pipeline documented below — each owns a `scripts/` folder with its table/figure-generating code, but no experiment-local data (see their READMEs for exact reproduce commands); `00_baseline` and `04_lora_finetuning` are self-contained model-run experiments with their own `data/`/`results/`.
+`experiments/` holds six numbered, ordered experiments. `01`–`03` are analyses over the shared `data/` → `results/` → `report/` pipeline documented below — each owns a `scripts/` folder with its table/figure-generating code (see their READMEs for exact reproduce commands); `00_baseline` and `04_lora_finetuning` are self-contained model-run experiments with their own `data/`/`results/`; `03_dataset_comparison` and `05_gpt_proposed_terms` each also own one small experiment-local `data/` folder for input that only they consume.
 
 | Experiment | Contents |
 | ---------- | -------- |
@@ -83,13 +83,9 @@ The table-comparison and figure-generating scripts themselves are experiment-spe
 | `compare_datasets_to_excel.py`, `compare_v1_variants_to_excel.py`, `figure_dataset_comparison.py` | [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md) | Compares `dev_v1/original` vs `dev_v2`, and `dev_v1/original` vs `dev_v1/dictionary`. |
 | `figure_lora_finetuning.py` | [`experiments/04_lora_finetuning/scripts/`](experiments/04_lora_finetuning/README.md) | LoRA epoch ablation vs. GPT-4o-mini. |
 
-Example commands:
-
 ## Results
 
-All results live in `results/`
-
-Each `gpt/`, `qwen_3b/` and `qwen_7b/` results directory contains a `metrics_summary.json` file.
+All results live in `results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; every other dataset/variant (`dev_v1/{expand,cleaned,dictionary}/`, `dev_v2/`) has a single, unqualified model directory.
 
 ## Report
 
@@ -97,8 +93,8 @@ Generated comparison Excel files live inside the experiment they compare, under 
 
 | Report dir | Produced by | Naming pattern |
 | ---------- | ----------- | --------------- |
-| [`experiments/01_term_expansion_by_model/report/`](experiments/01_term_expansion_by_model/README.md#report-tables) | `scripts/compare_models_to_excel.py` | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
-| [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `scripts/compare_languages_to_excel.py` | `<dataset>_language_comparison.xlsx` |
+| [`experiments/01_term_expansion_by_model/report/`](experiments/01_term_expansion_by_model/README.md#report-tables) | `scripts/compare_models_to_excel.py` | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_cleaned_model_comparison.xlsx`; `dev_v1_original` splits into `dev_v1_original_zero_shot_model_comparison.xlsx` and `dev_v1_original_few_shot_model_comparison.xlsx`) |
+| [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `scripts/compare_languages_to_excel.py` | `<dataset>_language_comparison.xlsx` (same `dev_v1_original` zero_shot/few_shot split) |
 | [`experiments/03_dataset_comparison/report/`](experiments/03_dataset_comparison/README.md#report-tables) | `scripts/compare_datasets_to_excel.py`, `scripts/compare_v1_variants_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`, `dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` |
 | [`experiments/05_gpt_proposed_terms/report/`](experiments/05_gpt_proposed_terms/README.md) | `scripts/compare_gpt_pipeline_modes_to_excel.py` | `dev_v1_original_gpt_pipeline_mode_comparison.xlsx` |
 

@@ -3,8 +3,8 @@
 Writes back in place (with ``--dry-run`` to preview first). Keeps the
 English sentence and term keys; clears translation sentences (de, es, ru,
 ...) and translation values in proper_terms / random_terms. Input defaults
-to ``data/extra/*_dev.jsonl`` — no longer present in this repo after the
-open-sourcing restructure; pass ``--input`` to target real files.
+to ``data/extra/*_dev.jsonl``, which doesn't exist in this repo;
+pass ``--input`` to target real files.
 
 Usage::
 

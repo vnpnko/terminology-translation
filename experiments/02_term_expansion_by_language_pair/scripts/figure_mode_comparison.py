@@ -57,9 +57,15 @@ TITLE = (
     "(dev_v1 baselines/strategies plus External dictionary on dev_v2; evaluated with GPT-4o-mini)"
 )
 
+def _strategy_dir(results_root: Path, strategy: str) -> Path:
+    if strategy == BASELINE_SOURCE_STRATEGY:
+        return results_root / "dev_v1" / strategy / "zero_shot"
+    return results_root / "dev_v1" / strategy
+
+
 def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | None]]]:
     paths = [
-        results_root / "dev_v1" / strategy / "gpt" / "metrics_summary.json"
+        _strategy_dir(results_root, strategy) / "gpt" / "metrics_summary.json"
         for strategy in STRATEGY_ORDER
     ]
     paths.append(
@@ -70,7 +76,7 @@ def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | N
     data: dict[str, dict[str, dict[str, float | None]]] = {}
     for strategy in STRATEGY_ORDER:
         summary = load_metrics_path(
-            results_root / "dev_v1" / strategy / "gpt" / "metrics_summary.json"
+            _strategy_dir(results_root, strategy) / "gpt" / "metrics_summary.json"
         )
         data[strategy] = {
             lang: get_lang_mode_metrics(summary, lang, DEFAULT_MODE) for lang in LANG_ORDER

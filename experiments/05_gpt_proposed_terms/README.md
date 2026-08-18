@@ -2,7 +2,7 @@
 
 Compares GPT-4o-mini's `proper_term` mode (fed the oracle dictionary) against `gpt_proposed_term` mode (GPT extracts and translates its own terminology, with no access to the reference translation) on the `dev_v1/original` 500-line eval set, for all three language pairs. Both runs are zero-shot, so the comparison is apples-to-apples.
 
-This experiment restores a comparison that previously existed (`results/dev_v1/original/gpt_pipeline/metrics_summary.json`, `report/modes/dev_v1_original_gpt_pipeline_mode_comparison.xlsx`) but was deleted during a 2026-08-15 refactor. It reuses the already-cached GPT pipeline output — no new API calls are made.
+This experiment reuses already-cached GPT pipeline output (extract → propose → translate) — no new API calls are made.
 
 ## Reproduce
 

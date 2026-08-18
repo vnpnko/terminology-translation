@@ -27,7 +27,7 @@ LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
 VARIANT_ORDER = ("dev_v1_original", "dev_v1_dictionary")
 VARIANT_PATHS = {
-    "dev_v1_original": Path("dev_v1/original"),
+    "dev_v1_original": Path("dev_v1/original/zero_shot"),
     "dev_v1_dictionary": Path("dev_v1/dictionary"),
 }
 

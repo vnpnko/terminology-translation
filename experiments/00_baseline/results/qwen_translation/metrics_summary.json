@@ -18,7 +18,7 @@
       "output_tag": "de",
       "modes": {
         "no_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\ende\\ende_dev_v1_no_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/ende_dev_v1_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 80.78290194195498,
             "chrf": 89.67885051644923,
@@ -35,7 +35,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\ende\\ende_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/ende_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 85.34748306389464,
             "chrf": 93.51660694867022,
@@ -75,7 +75,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\ende\\ende_dev_v1_random_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/ende_dev_v1_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 75.5158502566036,
             "chrf": 87.87417799734625,
@@ -124,7 +124,7 @@
       "output_tag": "ru",
       "modes": {
         "no_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\enru\\enru_dev_v1_no_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/enru_dev_v1_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 36.86780880033764,
             "chrf": 64.8897905042052,
@@ -141,7 +141,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\enru\\enru_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/enru_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 63.73305291414272,
             "chrf": 72.01352902007581,
@@ -174,7 +174,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\enru\\enru_dev_v1_random_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/enru_dev_v1_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 36.62788673944799,
             "chrf": 66.23468359829953,
@@ -216,7 +216,7 @@
       "output_tag": "es",
       "modes": {
         "no_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\enes\\enes_dev_v1_no_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/enes_dev_v1_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 94.51473217849144,
             "chrf": 94.86850521323076,
@@ -233,7 +233,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\enes\\enes_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/enes_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 94.51473217849144,
             "chrf": 94.86850521323076,
@@ -266,7 +266,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "C:\\Users\\vnpnk\\Documents\\TUM\\studies\\semester 2\\Practical course\\terminology-translation\\Baseline\\qwen_translation\\enes\\enes_dev_v1_random_term_predictions.jsonl",
+          "predictions_file": "experiments/00_baseline/results/qwen_translation/enes_dev_v1_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 94.51473217849144,
             "chrf": 94.86850521323076,

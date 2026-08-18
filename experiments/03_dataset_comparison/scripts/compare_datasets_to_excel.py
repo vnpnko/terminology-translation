@@ -5,8 +5,8 @@ Writes one styled .xlsx file (default:
 with 9 data rows (mode x language). The mode column is merged per block
 (no_term, proper_term, random_term). Each metric block has dev_v1_original,
 dev_v2, and best columns. Reads ``metrics_summary.json`` from
-``<results-root>/dev_v1/original/<baseline>/`` and
-``<results-root>/dev_v2/<baseline>/``.
+``<results-root>/dev_v1/original/few_shot/<baseline>/`` (the only dev_v1/original
+variant with all 3 modes) and ``<results-root>/dev_v2/<baseline>/``.
 
 Usage::
 
@@ -33,7 +33,7 @@ MODE_ORDER = ("no_term", "proper_term", "random_term")
 BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
 DATASET_ORDER = ("dev_v1_original", "dev_v2")
 DATASET_PATHS = {
-    "dev_v1_original": Path("dev_v1/original"),
+    "dev_v1_original": Path("dev_v1/original/few_shot"),
     "dev_v2": Path("dev_v2"),
 }
 

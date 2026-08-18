@@ -56,6 +56,12 @@ TITLE = (
 )
 
 
+def _variant_dir(results_root: Path, variant: str) -> Path:
+    if variant == BASELINE_SOURCE_VARIANT:
+        return results_root / "dev_v1" / variant / "zero_shot"
+    return results_root / "dev_v1" / variant
+
+
 def _collect_data(
     results_root: Path,
 ) -> tuple[
@@ -72,7 +78,7 @@ def _collect_data(
     term_counts: dict[str, int] = {}
 
     paths = [
-        results_root / "dev_v1" / variant / baseline / "metrics_summary.json"
+        _variant_dir(results_root, variant) / baseline / "metrics_summary.json"
         for variant in VARIANT_ORDER
         for baseline in BASELINE_DIRS
     ]
@@ -85,7 +91,7 @@ def _collect_data(
     for variant in VARIANT_ORDER:
         summaries[variant] = {}
         for baseline in BASELINE_DIRS:
-            path = results_root / "dev_v1" / variant / baseline / "metrics_summary.json"
+            path = _variant_dir(results_root, variant) / baseline / "metrics_summary.json"
             summary = load_metrics_path(path)
             summaries[variant][baseline] = macro_average(summary, DEFAULT_MODE)
             if variant == BASELINE_SOURCE_VARIANT:

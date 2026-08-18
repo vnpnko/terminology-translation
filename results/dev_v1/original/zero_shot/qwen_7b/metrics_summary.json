@@ -22,7 +22,7 @@
       "output_tag": "de",
       "modes": {
         "proper_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/zero-shot experiment/results/qwen-7b/ende/ende_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/qwen_7b/ende_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 33.88509025366881,
             "chrf": 64.4555716746124,
@@ -1688,7 +1688,7 @@
       "output_tag": "ru",
       "modes": {
         "proper_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/zero-shot experiment/results/qwen-7b/enru/enru_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/qwen_7b/enru_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 27.312495708176485,
             "chrf": 59.085436618377976,
@@ -3011,7 +3011,7 @@
       "output_tag": "es",
       "modes": {
         "proper_term": {
-          "predictions_file": "/dss/dsshome1/0E/go35bit2/zero-shot experiment/results/qwen-7b/enes/enes_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/qwen_7b/enes_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 43.87162185259776,
             "chrf": 70.2589199715877,

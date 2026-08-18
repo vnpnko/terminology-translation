@@ -20,7 +20,7 @@
       "output_tag": "de",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/ende/ende_dev_v1_dictionary_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/ende_dev_v1_dictionary_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 42.46240345706781,
             "chrf": 66.98900998361339,
@@ -37,7 +37,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/ende/ende_dev_v1_dictionary_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/ende_dev_v1_dictionary_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 54.12488479371674,
             "chrf": 78.36526438321229,
@@ -4431,7 +4431,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/ende/ende_dev_v1_dictionary_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/ende_dev_v1_dictionary_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 44.139551732339676,
             "chrf": 70.29743105335217,
@@ -7532,7 +7532,7 @@
       "output_tag": "ru",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/enru/enru_dev_v1_dictionary_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/enru_dev_v1_dictionary_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 28.60929856487324,
             "chrf": 58.77559990341402,
@@ -7549,7 +7549,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/enru/enru_dev_v1_dictionary_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/enru_dev_v1_dictionary_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 43.49889848461612,
             "chrf": 72.45995024990887,
@@ -11187,7 +11187,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/enru/enru_dev_v1_dictionary_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/enru_dev_v1_dictionary_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 31.119825034128993,
             "chrf": 62.563488036125534,
@@ -14134,7 +14134,7 @@
       "output_tag": "es",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/enes/enes_dev_v1_dictionary_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/enes_dev_v1_dictionary_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 47.588734183356166,
             "chrf": 69.07499761670046,
@@ -14151,7 +14151,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/enes/enes_dev_v1_dictionary_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/enes_dev_v1_dictionary_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 64.83165350095547,
             "chrf": 82.25934468449383,
@@ -18538,7 +18538,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v1/dictionary/gpt/enes/enes_dev_v1_dictionary_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/dictionary/gpt/enes_dev_v1_dictionary_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 51.7801902333191,
             "chrf": 72.88087064822034,

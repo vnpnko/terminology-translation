@@ -24,7 +24,7 @@
       "output_tag": "de",
       "modes": {
         "proper_term": {
-          "predictions_file": "results/dev_v1/original/gpt_nofs/ende/ende_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt/ende_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 44.2062167512025,
             "chrf": 71.37317641833121,
@@ -1690,7 +1690,7 @@
       "output_tag": "ru",
       "modes": {
         "proper_term": {
-          "predictions_file": "results/dev_v1/original/gpt_nofs/enru/enru_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt/enru_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 33.4462607310705,
             "chrf": 64.78065790633464,
@@ -3013,7 +3013,7 @@
       "output_tag": "es",
       "modes": {
         "proper_term": {
-          "predictions_file": "results/dev_v1/original/gpt_nofs/enes/enes_dev_v1_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt/enes_dev_v1_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 48.033702306963946,
             "chrf": 73.0459087920281,

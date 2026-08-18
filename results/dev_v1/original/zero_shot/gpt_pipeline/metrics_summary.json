@@ -16,7 +16,7 @@
       "output_tag": "de",
       "modes": {
         "gpt_proposed_term": {
-          "predictions_file": "results/dev_v1/original/zero_shot/gpt_pipeline/ende/ende_dev_v1_gpt_proposed_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt_pipeline/ende_dev_v1_gpt_proposed_term_predictions.jsonl",
           "metrics": {
             "bleu": 41.43618592325232,
             "chrf": 66.83911534213487,
@@ -3202,7 +3202,7 @@
       "output_tag": "ru",
       "modes": {
         "gpt_proposed_term": {
-          "predictions_file": "results/dev_v1/original/zero_shot/gpt_pipeline/enru/enru_dev_v1_gpt_proposed_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt_pipeline/enru_dev_v1_gpt_proposed_term_predictions.jsonl",
           "metrics": {
             "bleu": 28.230871474459274,
             "chrf": 58.2731423541466,
@@ -6514,7 +6514,7 @@
       "output_tag": "es",
       "modes": {
         "gpt_proposed_term": {
-          "predictions_file": "results/dev_v1/original/zero_shot/gpt_pipeline/enes/enes_dev_v1_gpt_proposed_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt_pipeline/enes_dev_v1_gpt_proposed_term_predictions.jsonl",
           "metrics": {
             "bleu": 48.10718733409574,
             "chrf": 69.90481394422167,

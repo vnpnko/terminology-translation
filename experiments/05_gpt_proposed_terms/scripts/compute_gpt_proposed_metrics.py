@@ -7,7 +7,7 @@ and ``prediction_gpt_proposed_term(_clean)``). No API calls are made here -- thi
 only scores predictions that were generated earlier.
 
 Writes:
-    results/dev_v1/original/zero_shot/gpt_pipeline/{lang}/{lang}_dev_v1_gpt_proposed_term_predictions.jsonl
+    results/dev_v1/original/zero_shot/gpt_pipeline/{lang}_dev_v1_gpt_proposed_term_predictions.jsonl
     results/dev_v1/original/zero_shot/gpt_pipeline/metrics_summary.json
 
 Usage::
@@ -189,7 +189,7 @@ def evaluate_language(lang: str, samples: list[dict[str, Any]], output_dir: Path
     config = LANG_CONFIG[lang]
     ref_field = config["ref_field"]
 
-    pred_path = output_dir / lang / f"{lang}_dev_v1_gpt_proposed_term_predictions.jsonl"
+    pred_path = output_dir / f"{lang}_dev_v1_gpt_proposed_term_predictions.jsonl"
     save_jsonl(pred_path, samples)
 
     clean_preds = [s.get(f"prediction_{MODE}_clean", "") for s in samples]

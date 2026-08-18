@@ -20,7 +20,7 @@
       "output_tag": "de",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/ende/ende_dev_v1_cleaned_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/ende_dev_v1_cleaned_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 42.49874951538161,
             "chrf": 67.04925695359339,
@@ -37,7 +37,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/ende/ende_dev_v1_cleaned_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/ende_dev_v1_cleaned_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 51.244445997833296,
             "chrf": 75.6954453059872,
@@ -2296,7 +2296,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/ende/ende_dev_v1_cleaned_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/ende_dev_v1_cleaned_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 43.98247955105997,
             "chrf": 70.2502613196158,
@@ -5397,7 +5397,7 @@
       "output_tag": "ru",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/enru/enru_dev_v1_cleaned_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/enru_dev_v1_cleaned_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 28.300723639347854,
             "chrf": 58.96157104080788,
@@ -5414,7 +5414,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/enru/enru_dev_v1_cleaned_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/enru_dev_v1_cleaned_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 39.220045862976164,
             "chrf": 68.37085045032345,
@@ -7372,7 +7372,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/enru/enru_dev_v1_cleaned_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/enru_dev_v1_cleaned_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 32.058304940311984,
             "chrf": 62.846902637151324,
@@ -10319,7 +10319,7 @@
       "output_tag": "es",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/enes/enes_dev_v1_cleaned_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/enes_dev_v1_cleaned_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 48.4920980075653,
             "chrf": 69.78280913470842,
@@ -10336,7 +10336,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/enes/enes_dev_v1_cleaned_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/enes_dev_v1_cleaned_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 61.131163000942955,
             "chrf": 79.03354646336024,
@@ -12826,7 +12826,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v1/cleaned/gpt/enes/enes_dev_v1_cleaned_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v1/cleaned/gpt/enes_dev_v1_cleaned_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 50.70684056343824,
             "chrf": 72.4054743347176,

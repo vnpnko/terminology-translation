@@ -18,7 +18,7 @@ python experiments/05_gpt_proposed_terms/scripts/compare_gpt_pipeline_modes_to_e
 
 | Path | Description |
 | ---- | ----------- |
-| `data/dev_v1/dev_v1_gpt_proposed/{lang}_dev_v1_gpt_terms.jsonl` | Cached `gpt_extracted_terms`, `gpt_proposed_terms`, and `prediction_gpt_proposed_term(_clean)` per line — the output of an earlier GPT extract → propose → translate run |
+| `data/dev_v1_gpt_proposed/{lang}_dev_v1_gpt_terms.jsonl` | Cached `gpt_extracted_terms`, `gpt_proposed_terms`, and `prediction_gpt_proposed_term(_clean)` per line — the output of an earlier GPT extract → propose → translate run. Lives in this experiment folder since it's the only consumer. |
 | `results/dev_v1/original/zero_shot/gpt/metrics_summary.json` | The zero-shot `proper_term` (oracle) baseline metrics |
 
 ## Outputs

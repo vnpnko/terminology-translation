@@ -1,6 +1,6 @@
 {
   "pipeline": "gpt_extract_propose_translate",
-  "cache_dir": "data/dev_v1/dev_v1_gpt_proposed",
+  "cache_dir": "experiments/05_gpt_proposed_terms/data/dev_v1_gpt_proposed",
   "provider": "openrouter",
   "base_url": "https://openrouter.ai/api/v1",
   "model": "openai/gpt-4o-mini",
@@ -9,7 +9,7 @@
   ],
   "languages": {
     "ende": {
-      "data_file": "data/dev_v1/dev_v1_gpt_proposed/ende_dev_v1_gpt_terms.jsonl",
+      "data_file": "experiments/05_gpt_proposed_terms/data/dev_v1_gpt_proposed/ende_dev_v1_gpt_terms.jsonl",
       "sample_count": 500,
       "ref_field": "de",
       "target_lang": "German",
@@ -3195,7 +3195,7 @@
       }
     },
     "enru": {
-      "data_file": "data/dev_v1/dev_v1_gpt_proposed/enru_dev_v1_gpt_terms.jsonl",
+      "data_file": "experiments/05_gpt_proposed_terms/data/dev_v1_gpt_proposed/enru_dev_v1_gpt_terms.jsonl",
       "sample_count": 500,
       "ref_field": "ru",
       "target_lang": "Russian",
@@ -6507,7 +6507,7 @@
       }
     },
     "enes": {
-      "data_file": "data/dev_v1/dev_v1_gpt_proposed/enes_dev_v1_gpt_terms.jsonl",
+      "data_file": "experiments/05_gpt_proposed_terms/data/dev_v1_gpt_proposed/enes_dev_v1_gpt_terms.jsonl",
       "sample_count": 500,
       "ref_field": "es",
       "target_lang": "Spanish",

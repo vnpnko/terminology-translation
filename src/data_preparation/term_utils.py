@@ -31,7 +31,11 @@ DEFAULT_MODEL = "openai/gpt-4o-mini"
 
 DEV_V2_DIR = REPO_ROOT / "data" / "dev_v2" / "dev_v2_original"
 DEV_V1_ORIGINAL_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_original"
-TERM_DICTIONARY_DIR = REPO_ROOT / "data" / "dev_v2" / "dev_v2_dictionary"
+# Only consumed by experiments/03_dataset_comparison/scripts/{build_term_dictionary,
+# apply_dictionary_to_dev_v1}.py, so it lives under that experiment rather than shared data/.
+TERM_DICTIONARY_DIR = (
+    REPO_ROOT / "experiments" / "03_dataset_comparison" / "data" / "dev_v2_dictionary"
+)
 DEV_V1_DICTIONARY_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_dictionary"
 
 SNIPPET_MAX_LEN = 120

@@ -2,8 +2,9 @@
 
 Writes new files to ``data/dev_v1/dev_v1_dictionary/`` only — never
 overwrites the original inputs. Reads the dictionary from
-``data/dev_v2/dev_v2_dictionary/`` and enriches ``proper_terms`` in dev_v1
-(``data/dev_v1/dev_v1_original/``) using reference-based disambiguation.
+``experiments/03_dataset_comparison/data/dev_v2_dictionary/`` and enriches
+``proper_terms`` in dev_v1 (``data/dev_v1/dev_v1_original/``) using
+reference-based disambiguation.
 
 Usage::
 

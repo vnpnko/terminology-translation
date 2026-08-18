@@ -1,8 +1,8 @@
 """Build a provenance-aware term dictionary from dev_v2 JSONL files.
 
 Writes ``<pair>_term_dictionary.jsonl`` and a combined ``build_report.json``
-to ``data/dev_v2/dev_v2_dictionary/`` (default; use ``--force`` to
-overwrite). Reads dev_v2 input from ``data/dev_v2/dev_v2_original/``. Uses
+to ``experiments/03_dataset_comparison/data/dev_v2_dictionary/`` (default; use
+``--force`` to overwrite). Reads dev_v2 input from ``data/dev_v2/dev_v2_original/``. Uses
 OpenRouter for LLM-assisted extraction (``OPENROUTER_API_KEY`` in
 ``.env``); pass ``--skip-llm`` to seed from human ``proper_terms`` only.
 

@@ -2,7 +2,9 @@
 
 Compares GPT-4o-mini `proper_term` performance on the `dev_v1` test set vs. the `dev_v2` training set. Produces the poster's `fig_dev_v1_vs_dev_v2_training` figure.
 
-This is a **thin wrapper** for the figure/report scripts below: no experiment-local results, only `scripts/` and `report/`. It reads the shared `results/` tree. It also owns the two scripts that build the "dictionary" dataset variant compared here (`scripts/build_term_dictionary.py`, `scripts/apply_dictionary_to_dev_v1.py`).
+This is a **thin wrapper** for the figure/report scripts below: no experiment-local results, only `scripts/`, `data/`, and `report/`. It reads the shared `results/` tree. It also owns the two scripts that build the "dictionary" dataset variant compared here (`scripts/build_term_dictionary.py`, `scripts/apply_dictionary_to_dev_v1.py`).
+
+`data/dev_v2_dictionary/` (the term dictionary `build_term_dictionary.py` builds from dev_v2, then `apply_dictionary_to_dev_v1.py` applies to dev_v1) lives here rather than in the shared `data/` tree since this experiment is its only consumer — analogous to `experiments/05_gpt_proposed_terms/data/`. It hasn't been regenerated since the repo restructure, so it doesn't exist on disk yet; run `python experiments/03_dataset_comparison/scripts/build_term_dictionary.py --all` to produce it before `apply_dictionary_to_dev_v1.py`.
 
 ## Reproduce
 

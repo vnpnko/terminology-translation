@@ -1,7 +1,7 @@
 """Compute BLEU/chrF/terminology metrics for the cached GPT-proposed-term pipeline run.
 
 Reads the cached extract -> propose -> translate results from
-``data/dev_v1/dev_v1_gpt_proposed/{lang}_dev_v1_gpt_terms.jsonl`` (500 lines x
+``experiments/05_gpt_proposed_terms/data/dev_v1_gpt_proposed/{lang}_dev_v1_gpt_terms.jsonl`` (500 lines x
 ende/enru/enes, already containing ``gpt_extracted_terms``, ``gpt_proposed_terms``
 and ``prediction_gpt_proposed_term(_clean)``). No API calls are made here -- this
 only scores predictions that were generated earlier.
@@ -27,6 +27,7 @@ from typing import Any
 import sacrebleu
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+EXPERIMENT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src" / "data_preparation"))
 
 from term_utils import normalize_key, repo_rel_path  # noqa: E402
@@ -39,7 +40,7 @@ LANG_CONFIG = {
 }
 LANG_GROUPS = tuple(LANG_CONFIG)
 
-DEFAULT_CACHE_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_gpt_proposed"
+DEFAULT_CACHE_DIR = EXPERIMENT_DIR / "data" / "dev_v1_gpt_proposed"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "results" / "dev_v1" / "original" / "zero_shot" / "gpt_pipeline"
 
 

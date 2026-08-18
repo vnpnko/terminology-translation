@@ -107,7 +107,7 @@ See each experiment's README for the exact command to regenerate every table it 
 
 ## Data
 
-All data lives in `data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than by processing stage:
+All data lives in `data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than by processing stage. Two exceptions live inside the experiment that's their only consumer instead: `dev_v1_gpt_proposed/`, under [`experiments/05_gpt_proposed_terms/data/`](experiments/05_gpt_proposed_terms/README.md), and `dev_v2_dictionary/` (the term dictionary built from dev_v2), under [`experiments/03_dataset_comparison/data/`](experiments/03_dataset_comparison/README.md).
 
 | Path | Description |
 | ---- | ----------- |
@@ -115,8 +115,6 @@ All data lives in `data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than
 | `dev_v1/dev_v1_expand/` | Expanded version of `dev_v1_original/` with additional `proper_terms` (output of `expand_terms.py`). |
 | `dev_v1/dev_v1_cleaned/` | Cleaned version of `dev_v1_expand/` with terminology-poor `proper_terms` removed (output of `clean_poor_proper_terms.py`). |
 | `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from the term dictionary (output of `apply_dictionary_to_dev_v1.py`, [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md)). |
-| `dev_v1/dev_v1_gpt_proposed/` | GPT-proposed term variant. |
 | `dev_v2/dev_v2_original/` | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus, used as a training-set proxy (see `report/README.md`). |
 | `dev_v2/dev_v2_for_training/` | Flat aggregated EN→target term-pair lists from v1/v2 (output of `collect_term_pairs_from_jsonl.py`). |
-| `dev_v2/dev_v2_dictionary/` | Term dictionary built from dev_v2 with line IDs, lemmas, and observed inflections (output of `build_term_dictionary.py`, [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md)). |
 | `shared_task/` | WMT2025 terminology shared-task materials: task docs (`shared_task_docs/`), track 1 (en→de/es/ru, `shared_task_track1/`), and track 2 (en↔zh, 2015–2024, `shared_task_track2/`). |

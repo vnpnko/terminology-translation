@@ -14,6 +14,7 @@ LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared a
 | `data/training/` | `dev_v2` training set per language pair |
 | `results/` | Per-model, per-run predictions and `metrics_summary.json` (see run names below) |
 | `report/` | Comparison Excel workbooks (see "Report tables" below) |
+| `figures/` | `fig_lora_finetuning`, this experiment's figure (see "Output" below) |
 | `scripts/` | Data filtering + Excel report scripts |
 
 ## Running the notebooks
@@ -39,6 +40,10 @@ Runs are defined in [`scripts/run_registry.json`](scripts/run_registry.json). Ru
 ### Naming standard
 
 This experiment's scripts, `run_registry.json`, and generated workbooks use `zero_shot`/`few_shot` as the one term for few-shot-prompting status, and canonical name pairs for the two models compared throughout: `gpt` (machine key: folder/dict keys, `model` column values) / `GPT-4o-mini` (display: sheet titles, group headers, prose), and `qwen_3b`/`qwen_7b` (machine key) / `Qwen2.5-3B`/`Qwen2.5-7B` (display). Both `base` runs use `use_few_shot: true` in `run_registry.json` — the base runs are in fact few-shot (3 examples per language, per `report/README.md`), and the run id is `base_few_shot` accordingly. The shared `results/dev_v1/original/{zero_shot,few_shot}/` folders (also read by `01`–`03`) use this same vocabulary.
+
+## Output
+
+[`figures/fig_lora_finetuning.pdf`](figures/fig_lora_finetuning.pdf) — this is the figure's home; it's copied to [`poster/figures/`](../../poster/figures/fig_lora_finetuning.pdf) for the poster.
 
 ## Report tables
 

@@ -1,15 +1,21 @@
-"""Generate poster result figures from metrics_summary.json files.
+"""Generate result figures from metrics_summary.json files.
 
-Writes a PDF and PNG per figure to ``--output-dir`` (default:
-``<project-root>/poster/figures``). Reads ``metrics_summary.json`` files
-under ``<project-root>/results`` (and ``experiments/04_lora_finetuning``
-for lora_finetuning).
+Writes a PDF and PNG per figure into its owning experiment's ``figures/``
+directory by default (e.g. ``experiments/01_term_expansion_by_model/figures/``)
+— that's each figure's canonical home. ``--output-dir`` overrides this and
+writes every selected figure into one shared directory instead, useful for
+ad hoc regeneration. Note that ``poster/figures/`` and ``report/figures/``
+are curated, manually-copied collections of whichever figures are actually
+used in the poster/paper (not generation targets); after regenerating a
+figure's home copy, copy it over by hand if it needs to be updated there.
+Reads ``metrics_summary.json`` files under ``<project-root>/results`` (and
+``experiments/04_lora_finetuning`` for lora_finetuning).
 
 Usage::
 
     python src/analysis/generate_result_figures.py
     python src/analysis/generate_result_figures.py --only model_comparison lora_finetuning
-    python src/analysis/generate_result_figures.py --output-dir poster/figures
+    python src/analysis/generate_result_figures.py --output-dir /tmp/figures
 """
 
 from __future__ import annotations
@@ -40,16 +46,32 @@ from figure_lora_finetuning import build_lora_finetuning_figure
 from plot_style import save_figure
 
 FIGURE_BUILDERS = {
-    "model_comparison": ("fig_term_expansion", lambda root: build_model_comparison_figure(root / "results")),
-    "mode_comparison": ("fig_expansion_strategies", lambda root: build_mode_comparison_figure(root / "results")),
-    "dataset_comparison": ("fig_dev_v1_vs_dev_v2_training", lambda root: build_dataset_comparison_figure(root / "results")),
-    "lora_finetuning": ("fig_lora_finetuning", lambda root: build_lora_finetuning_figure(root)),
+    "model_comparison": (
+        "fig_term_expansion",
+        lambda root: build_model_comparison_figure(root / "results"),
+        Path("experiments/01_term_expansion_by_model/figures"),
+    ),
+    "mode_comparison": (
+        "fig_expansion_strategies",
+        lambda root: build_mode_comparison_figure(root / "results"),
+        Path("experiments/02_term_expansion_by_language_pair/figures"),
+    ),
+    "dataset_comparison": (
+        "fig_dev_v1_vs_dev_v2_training",
+        lambda root: build_dataset_comparison_figure(root / "results"),
+        Path("experiments/03_dataset_comparison/figures"),
+    ),
+    "lora_finetuning": (
+        "fig_lora_finetuning",
+        lambda root: build_lora_finetuning_figure(root),
+        Path("experiments/04_lora_finetuning/figures"),
+    ),
 }
 
 
 def generate_figures(
     project_root: Path,
-    output_dir: Path,
+    output_dir: Path | None = None,
     only: list[str] | None = None,
 ) -> list[tuple[str, Path, Path]]:
     keys = only if only else list(FIGURE_BUILDERS.keys())
@@ -59,9 +81,10 @@ def generate_figures(
 
     written: list[tuple[str, Path, Path]] = []
     for key in keys:
-        stem, builder = FIGURE_BUILDERS[key]
+        stem, builder, home_dir = FIGURE_BUILDERS[key]
         fig = builder(project_root)
-        pdf_path, png_path = save_figure(fig, output_dir, stem)
+        target_dir = output_dir if output_dir is not None else project_root / home_dir
+        pdf_path, png_path = save_figure(fig, target_dir, stem)
         plt.close(fig)
         written.append((stem, pdf_path, png_path))
         print(f"Wrote {pdf_path.name} and {png_path.name}")
@@ -81,7 +104,10 @@ def parse_args() -> argparse.Namespace:
         "--output-dir",
         type=Path,
         default=None,
-        help="Output directory for figures (default: <project-root>/poster/figures)",
+        help=(
+            "Write every selected figure into this one directory instead of its "
+            "owning experiment's figures/ home (default: each figure's home dir)"
+        ),
     )
     parser.add_argument(
         "--only",
@@ -96,14 +122,14 @@ def main() -> None:
     args = parse_args()
 
     project_root = args.project_root.resolve()
-    output_dir = (
-        args.output_dir.resolve()
-        if args.output_dir
-        else project_root / "poster" / "figures"
-    )
+    output_dir = args.output_dir.resolve() if args.output_dir else None
 
-    generate_figures(project_root, output_dir, args.only)
-    print(f"Done. Figures saved to {output_dir}")
+    written = generate_figures(project_root, output_dir, args.only)
+    if output_dir is not None:
+        print(f"Done. Figures saved to {output_dir}")
+    else:
+        for stem, pdf_path, _ in written:
+            print(f"{stem}: saved to {pdf_path.parent}")
 
 
 if __name__ == "__main__":

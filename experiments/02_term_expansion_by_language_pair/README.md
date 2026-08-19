@@ -18,7 +18,7 @@ Same `results/dev_v1/{original/zero_shot,expand,cleaned,dictionary}/gpt/metrics_
 
 ## Output
 
-[`poster/figures/fig_expansion_strategies.pdf`](../../poster/figures/fig_expansion_strategies.pdf)
+[`figures/fig_expansion_strategies.pdf`](figures/fig_expansion_strategies.pdf) — this is the figure's home; it's copied to [`poster/figures/`](../../poster/figures/fig_expansion_strategies.pdf) for the poster.
 
 ## Report tables
 

@@ -95,10 +95,10 @@ There are **two distinct few-shot comparisons** in the repo; name them separatel
 | `experiments/04_lora_finetuning/report/epoch_ablation.xlsx` | `experiments/04_lora_finetuning/scripts/compare_epochs_to_excel.py` | Epoch ablation table (§3.4) |
 | `experiments/04_lora_finetuning/report/zero_shot_vs_few_shot_ablation.xlsx` | `experiments/04_lora_finetuning/scripts/compare_few_shots_to_excel.py` | Few-shot ablation table (§3.4.1) |
 | `experiments/04_lora_finetuning/report/leakage_honesty_check.xlsx` | `experiments/04_lora_finetuning/scripts/compare_leakage_honesty_check_to_excel.py` | Leakage honesty-check table (§3.4.2) |
-| `poster/figures/fig_term_expansion.pdf` | `experiments/01_term_expansion_by_model/scripts/figure_model_comparison.py` | Figure, §3.2 |
-| `poster/figures/fig_expansion_strategies.pdf` | `experiments/02_term_expansion_by_language_pair/scripts/figure_mode_comparison.py` | Figure, §3.1 |
-| `poster/figures/fig_dev_v1_vs_dev_v2_training.pdf` | `experiments/03_dataset_comparison/scripts/figure_dataset_comparison.py` | Figure, §3.3 |
-| `poster/figures/fig_lora_finetuning.pdf` | `experiments/04_lora_finetuning/scripts/figure_lora_finetuning.py` | Figure, §3.4 |
+| `experiments/01_term_expansion_by_model/figures/fig_term_expansion.pdf` (copied to `poster/figures/`) | `experiments/01_term_expansion_by_model/scripts/figure_model_comparison.py` | Figure, §3.2 |
+| `experiments/02_term_expansion_by_language_pair/figures/fig_expansion_strategies.pdf` (copied to `poster/figures/`) | `experiments/02_term_expansion_by_language_pair/scripts/figure_mode_comparison.py` | Figure, §3.1 |
+| `experiments/03_dataset_comparison/figures/fig_dev_v1_vs_dev_v2_training.pdf` (copied to `report/figures/`) | `experiments/03_dataset_comparison/scripts/figure_dataset_comparison.py` | Figure, §3.3 |
+| `experiments/04_lora_finetuning/figures/fig_lora_finetuning.pdf` (copied to `poster/figures/`) | `experiments/04_lora_finetuning/scripts/figure_lora_finetuning.py` | Figure, §3.4 |
 
 ## Open questions
 

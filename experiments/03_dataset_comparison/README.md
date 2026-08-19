@@ -23,7 +23,7 @@ Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_datas
 
 ## Output
 
-[`poster/figures/fig_dev_v1_vs_dev_v2_training.pdf`](../../poster/figures/fig_dev_v1_vs_dev_v2_training.pdf)
+[`figures/fig_dev_v1_vs_dev_v2_training.pdf`](figures/fig_dev_v1_vs_dev_v2_training.pdf) — this is the figure's home; it's copied to [`report/figures/`](../../report/figures/fig_dev_v1_vs_dev_v2_training.pdf) since it's background context for the paper, not shown on the poster.
 
 ## Report tables
 

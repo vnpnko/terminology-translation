@@ -27,7 +27,7 @@ Plus the `no_term` and `random_term` baseline modes from the same `original` res
 
 ## Output
 
-[`poster/figures/fig_term_expansion.pdf`](../../poster/figures/fig_term_expansion.pdf)
+[`figures/fig_term_expansion.pdf`](figures/fig_term_expansion.pdf) — this is the figure's home; it's copied to [`poster/figures/`](../../poster/figures/fig_term_expansion.pdf) for the poster.
 
 ## Report tables
 

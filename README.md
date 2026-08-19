@@ -15,18 +15,18 @@ Each JSONL record has an English source sentence, a target-language reference, d
 }
 ```
 
-## Reproducing the poster figures
+## Reproducing the figures
 
-Each figure in [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) is built by a `figure_expN.py` script living in the owning experiment's `scripts/` folder, reading from the shared `results/`/`report/` tree (experiments 01–03) or from a specific experiment folder (05). All four are driven by one shared orchestrator, [`src/analysis/generate_result_figures.py`](src/analysis/generate_result_figures.py):
+Each figure is built by a `figure_expN.py` script living in the owning experiment's `scripts/` folder, reading from the shared `results/`/`report/` tree (experiments 01–03) or from a specific experiment folder (05). All four are driven by one shared orchestrator, [`src/analysis/generate_result_figures.py`](src/analysis/generate_result_figures.py), which writes each figure into its owning experiment's `figures/` directory — that's the figure's canonical home. `poster/figures/` and `report/figures/` are **not** generation targets: they're curated, manually-copied collections of whichever figures actually appear in [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) or the paper — copy a figure's home file over by hand whenever it's added or updated.
 
-| Figure | Experiment | Command | Reads from |
-| ------ | ---------- | ------- | ---------- |
-| [`fig_term_expansion`](poster/figures/fig_term_expansion.pdf) | [`01_term_expansion_by_model`](experiments/01_term_expansion_by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_expansion_strategies`](poster/figures/fig_expansion_strategies.pdf) | [`02_term_expansion_by_language_pair`](experiments/02_term_expansion_by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_dev_v1_vs_dev_v2_training`](poster/figures/fig_dev_v1_vs_dev_v2_training.pdf) | [`03_dataset_comparison`](experiments/03_dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/`, `results/dev_v2/` |
-| [`fig_lora_finetuning`](poster/figures/fig_lora_finetuning.pdf) | [`04_lora_finetuning`](experiments/04_lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/zero_shot/`, `experiments/04_lora_finetuning/results/` |
+| Figure | Home | Experiment | Command | Reads from |
+| ------ | ---- | ---------- | ------- | ---------- |
+| [`fig_term_expansion`](experiments/01_term_expansion_by_model/figures/fig_term_expansion.pdf) | `experiments/01_term_expansion_by_model/figures/` | [`01_term_expansion_by_model`](experiments/01_term_expansion_by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_expansion_strategies`](experiments/02_term_expansion_by_language_pair/figures/fig_expansion_strategies.pdf) | `experiments/02_term_expansion_by_language_pair/figures/` | [`02_term_expansion_by_language_pair`](experiments/02_term_expansion_by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_dev_v1_vs_dev_v2_training`](experiments/03_dataset_comparison/figures/fig_dev_v1_vs_dev_v2_training.pdf) | `experiments/03_dataset_comparison/figures/` | [`03_dataset_comparison`](experiments/03_dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/`, `results/dev_v2/` |
+| [`fig_lora_finetuning`](experiments/04_lora_finetuning/figures/fig_lora_finetuning.pdf) | `experiments/04_lora_finetuning/figures/` | [`04_lora_finetuning`](experiments/04_lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/zero_shot/`, `experiments/04_lora_finetuning/results/` |
 
-Generate all four at once with `python src/analysis/generate_result_figures.py` (writes to `poster/figures/`).
+Generate all four at once with `python src/analysis/generate_result_figures.py` (writes each into its home dir above). Of these, `fig_term_expansion`, `fig_expansion_strategies`, and `fig_lora_finetuning` are copied to `poster/figures/` for the poster; `fig_dev_v1_vs_dev_v2_training` is copied to `report/figures/` instead, since it's background context for the paper rather than a poster figure.
 
 ## Experiments
 

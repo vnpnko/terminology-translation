@@ -33,7 +33,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 EXPERIMENT_SCRIPTS_DIRS = [
     PROJECT_ROOT / "experiments" / "term_expansion" / "by_model" / "scripts",
     PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "scripts",
-    PROJECT_ROOT / "experiments" / "term_expansion" / "dataset_comparison" / "scripts",
+    PROJECT_ROOT / "experiments" / "dataset_comparison" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "scripts",
 ]
 for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
@@ -59,7 +59,7 @@ FIGURE_BUILDERS = {
     "dataset_comparison": (
         "fig_dev_v1_vs_dev_v2_training",
         lambda root: build_dataset_comparison_figure(root / "results"),
-        Path("experiments/term_expansion/dataset_comparison/figures"),
+        Path("experiments/dataset_comparison/figures"),
     ),
     "lora_finetuning": (
         "fig_lora_finetuning",

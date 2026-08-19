@@ -2,11 +2,22 @@
 
 Writes one styled .xlsx file (default:
 ``experiments/term_expansion/by_language_pair/report/language_comparison.xlsx``)
-with one sheet per dataset variant (``dev_v1_original_zero_shot``,
-``dev_v1_original_few_shot``, ``dev_v1_expand``, ``dev_v1_cleaned``, ``dev_v2``), each
-with 9 data rows: 3 modes (no_term, proper_term, random_term), each with 3 model rows
-(GPT, Qwen 3B, Qwen 7B). The mode column is merged per block. Reads
-``metrics_summary.json`` from ``<results-root>/<variant>/{gpt,qwen_3b,qwen_7b}/``.
+with two sheets (``dev_v1`` -- from ``dev_v1/original/few_shot`` --, and
+``dev_v2``), rows grouped by mode (``no_term``/``proper_term``/``random_term``)
+then model. Reads ``metrics_summary.json`` from
+``<results-root>/<variant>/{gpt,qwen_3b,qwen_7b}/``.
+
+Each value cell (ende/enru/enes) is colored by ranking it against the other
+two languages in the same row, using the shared Good/Bad/Neutral convention
+(see ``src/analysis/excel_style.py``): green = best language, red = worst,
+a genuine tie is neutral, and a strictly-middle value is left unfilled.
+
+The ``expand``/``cleaned``/``dictionary`` term-list variants are covered by
+``proper_term_across_languages.xlsx`` instead (see
+``compare_proper_term_across_languages_to_excel.py``) -- they were dropped
+from here since ``no_term``/``random_term`` don't exist for those variants
+(only ``original/few_shot`` has all three modes), making their sheets here
+pure duplicates of that other workbook's ``proper_term`` rows.
 
 Usage::
 
@@ -19,6 +30,7 @@ import argparse
 import json
 import math
 import sys
+from itertools import groupby
 from pathlib import Path
 from typing import Any
 
@@ -33,8 +45,7 @@ from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,
-    best_label,
-    label_fill,
+    rank_fills,
 )
 
 LANG_ORDER = ("ende", "enru", "enes")
@@ -47,11 +58,8 @@ BASELINE_LABELS = {
 }
 
 DATASET_VARIANTS = (
-    ("dev_v1_original_zero_shot", Path("dev_v1/original/zero_shot")),
-    ("dev_v1_original_few_shot", Path("dev_v1/original/few_shot")),
-    ("dev_v1_expand", Path("dev_v1/expand")),
-    ("dev_v1_cleaned", Path("dev_v1/cleaned")),
-    ("dev_v2", Path("dev_v2")),
+    ("dev_v1", Path("dev_v1/original/few_shot"), BASELINE_DIRS),
+    ("dev_v2", Path("dev_v2"), BASELINE_DIRS),
 )
 
 METRICS = (
@@ -109,18 +117,18 @@ def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[
 def validate_all_variants(results_root: Path) -> None:
     missing = [
         str(results_root / variant_path / baseline_dir / "metrics_summary.json")
-        for _, variant_path in DATASET_VARIANTS
-        for baseline_dir in BASELINE_DIRS
+        for _, variant_path, baseline_dirs in DATASET_VARIANTS
+        for baseline_dir in baseline_dirs
         if not (results_root / variant_path / baseline_dir / "metrics_summary.json").exists()
     ]
     if missing:
         raise FileNotFoundError(f"Missing metrics file(s): {missing}")
 
 
-def build_comparison(dataset_dir: Path) -> pd.DataFrame:
+def build_comparison(dataset_dir: Path, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> pd.DataFrame:
     summaries: dict[str, dict[tuple[str, str], dict[str, float | None]]] = {}
 
-    for baseline_dir in BASELINE_DIRS:
+    for baseline_dir in baseline_dirs:
         summary_path = dataset_dir / baseline_dir / "metrics_summary.json"
         if not summary_path.exists():
             raise FileNotFoundError(f"Missing metrics file: {summary_path}")
@@ -129,41 +137,33 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
     rows: list[dict[str, object]] = []
 
     for mode in MODE_ORDER:
-        for baseline_dir in BASELINE_DIRS:
+        for baseline_dir in baseline_dirs:
             lang_metrics = {
                 lang: summaries[baseline_dir].get((lang, mode)) for lang in LANG_ORDER
             }
             if all(metrics is None for metrics in lang_metrics.values()):
                 continue
 
-            row: dict[str, object] = {
-                "mode": mode,
-                "model": BASELINE_LABELS[baseline_dir],
-            }
+            row: dict[str, object] = {"mode": mode, "model": BASELINE_LABELS[baseline_dir]}
 
             for column, _, _ in METRICS:
-                labeled_values: dict[str, float | None] = {}
                 for lang in LANG_ORDER:
                     metrics = lang_metrics[lang]
                     value = metrics.get(column) if metrics else None
                     row[f"{lang}_{column}"] = value
-                    labeled_values[lang] = value
-
-                row[f"best_{column}"] = best_label(labeled_values)
 
             rows.append(row)
 
     columns = ["mode", "model"]
     for column, _, _ in METRICS:
         columns.extend([f"{lang}_{column}" for lang in LANG_ORDER])
-        columns.append(f"best_{column}")
 
     return pd.DataFrame(rows, columns=columns)
 
 
-def write_sheet(ws, df: pd.DataFrame) -> None:
+def write_sheet(ws, df: pd.DataFrame, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> None:
     fixed_headers = ("mode", "model")
-    value_subheaders = LANG_ORDER + ("best",)
+    value_subheaders = LANG_ORDER
     cols_per_metric = len(value_subheaders)
 
     for col_idx, header in enumerate(fixed_headers, start=1):
@@ -186,12 +186,12 @@ def write_sheet(ws, df: pd.DataFrame) -> None:
 
     records = df.to_dict(orient="records")
     for row_offset, record in enumerate(records, start=3):
-        thick_bottom = record["model"] == BASELINE_LABELS[BASELINE_DIRS[-1]]
+        thick_bottom = record["model"] == BASELINE_LABELS[baseline_dirs[-1]]
 
         mode_cell = ws.cell(
             row=row_offset,
             column=1,
-            value=record["mode"] if record["model"] == BASELINE_LABELS[BASELINE_DIRS[0]] else None,
+            value=record["mode"] if record["model"] == BASELINE_LABELS[baseline_dirs[0]] else None,
         )
         apply_cell_style(mode_cell, thick_bottom=thick_bottom)
 
@@ -200,16 +200,12 @@ def write_sheet(ws, df: pd.DataFrame) -> None:
 
         for metric_idx, (column, _, _) in enumerate(METRICS):
             start_col = metric_start_col + metric_idx * cols_per_metric
-            values = [record[f"{lang}_{column}"] for lang in LANG_ORDER]
-            values.append(record[f"best_{column}"])
+            row_values = {lang: record[f"{lang}_{column}"] for lang in LANG_ORDER}
+            fills = rank_fills(row_values)
 
-            for offset, value in enumerate(values):
-                cell = ws.cell(row=row_offset, column=start_col + offset, value=value)
-                fill_font = (
-                    label_fill(value)
-                    if offset == cols_per_metric - 1 and isinstance(value, str)
-                    else None
-                )
+            for offset, lang in enumerate(LANG_ORDER):
+                cell = ws.cell(row=row_offset, column=start_col + offset, value=row_values[lang])
+                fill_font = fills.get(lang)
                 apply_cell_style(
                     cell,
                     fill=fill_font[0] if fill_font else None,
@@ -217,14 +213,14 @@ def write_sheet(ws, df: pd.DataFrame) -> None:
                     thick_bottom=thick_bottom,
                 )
 
-    for mode_idx in range(len(MODE_ORDER)):
-        start_row = 3 + mode_idx * len(BASELINE_DIRS)
-        end_row = start_row + len(BASELINE_DIRS) - 1
-        ws.merge_cells(start_row=start_row, start_column=1, end_row=end_row, end_column=1)
-        ws.cell(row=start_row, column=1).alignment = Alignment(
-            horizontal="center",
-            vertical="center",
-        )
+    row_offset = 3
+    for _mode, group in groupby(records, key=lambda r: r["mode"]):
+        group_len = sum(1 for _ in group)
+        end_row = row_offset + group_len - 1
+        if end_row > row_offset:
+            ws.merge_cells(start_row=row_offset, start_column=1, end_row=end_row, end_column=1)
+            ws.cell(row=row_offset, column=1).alignment = Alignment(horizontal="center", vertical="center")
+        row_offset = end_row + 1
 
     autofit_columns(ws)
 
@@ -258,21 +254,15 @@ def main() -> None:
     wb = Workbook()
     wb.remove(wb.active)
 
-    row_count = 0
-    for sheet_title, variant_path in DATASET_VARIANTS:
-        df = build_comparison(results_root / variant_path)
-        row_count = len(df)
+    for sheet_title, variant_path, baseline_dirs in DATASET_VARIANTS:
+        df = build_comparison(results_root / variant_path, baseline_dirs)
         ws = wb.create_sheet(title=sheet_title)
-        write_sheet(ws, df)
+        write_sheet(ws, df, baseline_dirs)
 
     wb.save(output_path)
 
-    variant_names = ", ".join(name for name, _ in DATASET_VARIANTS)
-    print(
-        f"Wrote {len(DATASET_VARIANTS)} sheets ({variant_names}), "
-        f"{row_count} rows each ({len(MODE_ORDER)} modes x {len(BASELINE_DIRS)} models), "
-        f"to {output_path}"
-    )
+    variant_names = ", ".join(name for name, _, _ in DATASET_VARIANTS)
+    print(f"Wrote {len(DATASET_VARIANTS)} sheets ({variant_names}) to {output_path}")
 
 
 if __name__ == "__main__":

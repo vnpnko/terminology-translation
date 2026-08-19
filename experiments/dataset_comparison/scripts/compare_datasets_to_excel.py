@@ -1,12 +1,14 @@
 """Compare dev_v1/original vs dev_v2 metrics for all three baseline models.
 
 Writes one styled .xlsx file (default:
-``experiments/dataset_comparison/report/dev_v1_original_vs_dev_v2_dataset_comparison.xlsx``)
+``experiments/dataset_comparison/report/dataset_comparison.xlsx``)
 with one sheet per baseline (``gpt``, ``qwen_3b``, ``qwen_7b``), each with 9
 data rows (mode x language). The mode column is merged per block (no_term,
-proper_term, random_term). Each metric block has dev_v1_original, dev_v2, and
-best columns. Reads ``metrics_summary.json`` from
-``<results-root>/dev_v1/original/few_shot/<baseline>/`` (the only dev_v1/original
+proper_term, random_term). Each metric block has dev_v1 and dev_v2 columns,
+colored with the shared Good/Bad/Neutral convention (see
+``src/analysis/excel_style.py``): green for the higher value, red for the
+lower, yellow if they're within 1% of each other. Reads ``metrics_summary.json``
+from ``<results-root>/dev_v1/original/few_shot/<baseline>/`` (the only dev_v1/original
 variant with all 3 modes) and ``<results-root>/dev_v2/<baseline>/``.
 
 Usage::
@@ -34,16 +36,15 @@ from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,
-    best_label,
-    label_fill,
+    rank_fills,
 )
 
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
 BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
-DATASET_ORDER = ("dev_v1_original", "dev_v2")
+DATASET_ORDER = ("dev_v1", "dev_v2")
 DATASET_PATHS = {
-    "dev_v1_original": Path("dev_v1/original/few_shot"),
+    "dev_v1": Path("dev_v1/original/few_shot"),
     "dev_v2": Path("dev_v2"),
 }
 
@@ -131,28 +132,23 @@ def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
             row: dict[str, object] = {"mode": mode, "language": lang}
 
             for column, _, _ in METRICS:
-                labeled_values: dict[str, float | None] = {}
                 for dataset_label in DATASET_ORDER:
                     metrics = dataset_metrics[dataset_label]
                     value = metrics.get(column) if metrics else None
                     row[f"{dataset_label}_{column}"] = value
-                    labeled_values[dataset_label] = value
-
-                row[f"best_{column}"] = best_label(labeled_values)
 
             rows.append(row)
 
     columns = ["mode", "language"]
     for column, _, _ in METRICS:
         columns.extend([f"{dataset_label}_{column}" for dataset_label in DATASET_ORDER])
-        columns.append(f"best_{column}")
 
     return pd.DataFrame(rows, columns=columns)
 
 
 def write_sheet(ws, df: pd.DataFrame) -> None:
     fixed_headers = ("mode", "language")
-    value_subheaders = DATASET_ORDER + ("best",)
+    value_subheaders = DATASET_ORDER
     cols_per_metric = len(value_subheaders)
 
     for col_idx, header in enumerate(fixed_headers, start=1):
@@ -190,15 +186,11 @@ def write_sheet(ws, df: pd.DataFrame) -> None:
         for metric_idx, (column, _, _) in enumerate(METRICS):
             start_col = metric_start_col + metric_idx * cols_per_metric
             values = [record[f"{dataset_label}_{column}"] for dataset_label in DATASET_ORDER]
-            values.append(record[f"best_{column}"])
+            fills = rank_fills(dict(zip(DATASET_ORDER, values)))
 
-            for offset, value in enumerate(values):
+            for offset, (dataset_label, value) in enumerate(zip(DATASET_ORDER, values)):
                 cell = ws.cell(row=row_offset, column=start_col + offset, value=value)
-                fill_font = (
-                    label_fill(value)
-                    if offset == cols_per_metric - 1 and isinstance(value, str)
-                    else None
-                )
+                fill_font = fills.get(dataset_label)
                 apply_cell_style(
                     cell,
                     fill=fill_font[0] if fill_font else None,
@@ -231,7 +223,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=Path(
             "experiments/dataset_comparison/report/"
-            "dev_v1_original_vs_dev_v2_dataset_comparison.xlsx"
+            "dataset_comparison.xlsx"
         ),
         help="Output .xlsx path",
     )

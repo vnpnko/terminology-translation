@@ -1,28 +1,26 @@
 """Compare ende, enru, and enes for proper_term mode across dev_v1 term-list variants.
 
 Writes one styled .xlsx file (default:
-``experiments/term_expansion/by_language_pair/report/dev_v1_proper_term_across_languages.xlsx``)
-with 9 data rows: 3 term-list variants (original, expand, cleaned), each with
-3 model rows (GPT, Qwen 3B, Qwen 7B). Only ``proper_term`` mode is included.
-Reads ``metrics_summary.json`` from ``<variant_dir>/{gpt,qwen_3b,qwen_7b}/``.
+``experiments/term_expansion/by_language_pair/report/proper_term_across_languages.xlsx``)
+with 12 data rows: 4 term-list variants (original, expand, cleaned, dictionary),
+each with 3 model rows (GPT, Qwen 3B, Qwen 7B). Only ``proper_term`` mode is
+included. Reads ``metrics_summary.json`` from ``<variant_dir>/{gpt,qwen_3b,qwen_7b}/``.
 
 Each value cell is colored by ranking that (model, language) combination's
-value **across the 3 variants** (not across languages), using the shared
+value **across the 4 variants** (not across languages), using the shared
 Good/Bad/Neutral convention (see ``src/analysis/excel_style.py``): green =
-best variant, red = worst variant, the strictly-middle variant is left
+best variant, red = worst variant, any value neither best nor worst is left
 unfilled. This is a different axis than the ``best`` column, which colors
 green/yellow by the best *language* within a single row. Matches the sibling
-``dev_v1_proper_term_across_models.xlsx`` workbook
+``proper_term_across_models.xlsx`` workbook
 (``term_expansion/by_model/scripts/``).
 
 Note: ``results/dev_v1/original/`` has no ``gpt``/``qwen_3b``/``qwen_7b``
 subfolders directly — it's nested under ``zero_shot/`` or
 ``few_shot/`` (see ``report/README.md`` §3.4.1). This script defaults
 to ``few_shot``, which is the source of the sibling
-``dev_v1_proper_term_across_models.xlsx`` workbook's numbers; override with
-``--original`` if you want the ``zero_shot`` variant instead (note that
-tree only has ``proper_term`` mode evaluated, so this still works, but see
---original's help for the path).
+``proper_term_across_models.xlsx`` workbook's numbers; override with
+``--original`` if you want the ``zero_shot`` variant instead.
 
 Usage::
 
@@ -49,13 +47,11 @@ from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,
-    best_label,
-    label_fill,
     rank_fills,
 )
 
 LANG_ORDER = ("ende", "enru", "enes")
-VARIANT_ORDER = ("original", "expand", "cleaned")
+VARIANT_ORDER = ("original", "expand", "cleaned", "dictionary")
 BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
 BASELINE_LABELS = {
     "gpt": "GPT",
@@ -129,13 +125,9 @@ def build_comparison(variant_dirs: dict[str, Path]) -> dict[tuple[str, str], dic
             row: dict[str, object] = {"data": variant, "model": BASELINE_LABELS[baseline_dir]}
 
             for column, _, _ in METRICS:
-                labeled_values: dict[str, float | None] = {}
                 for lang in LANG_ORDER:
                     value = lang_metrics.get(lang, {}).get(column)
                     row[f"{lang}_{column}"] = value
-                    labeled_values[lang] = value
-
-                row[f"best_{column}"] = best_label(labeled_values)
 
             rows[(variant, baseline_dir)] = row
 
@@ -154,13 +146,16 @@ def variant_rank_fill(
     return rank_fills(values).get(variant)
 
 
-def write_styled_excel(rows: dict[tuple[str, str], dict[str, object]], output_path: Path) -> None:
+def write_styled_excel(
+    rows: dict[tuple[str, str], dict[str, object]],
+    output_path: Path,
+) -> None:
     wb = Workbook()
     ws = wb.active
     ws.title = "proper_term"
 
     fixed_headers = ("data", "model")
-    value_subheaders = LANG_ORDER + ("best",)
+    value_subheaders = LANG_ORDER
     cols_per_metric = len(value_subheaders)
 
     for col_idx, header in enumerate(fixed_headers, start=1):
@@ -207,18 +202,6 @@ def write_styled_excel(rows: dict[tuple[str, str], dict[str, object]], output_pa
                         font=fill_font[1] if fill_font else None,
                     )
 
-                best_cell = ws.cell(
-                    row=row_offset,
-                    column=start_col + cols_per_metric - 1,
-                    value=record[f"best_{column}"],
-                )
-                best_fill_font = label_fill(record[f"best_{column}"])
-                apply_cell_style(
-                    best_cell,
-                    fill=best_fill_font[0] if best_fill_font else None,
-                    font=best_fill_font[1] if best_fill_font else None,
-                )
-
             row_offset += 1
 
     for variant_idx in range(len(VARIANT_ORDER)):
@@ -254,7 +237,7 @@ def parse_args() -> argparse.Namespace:
         "--output",
         type=Path,
         default=Path(
-            "experiments/term_expansion/by_language_pair/report/dev_v1_proper_term_across_languages.xlsx"
+            "experiments/term_expansion/by_language_pair/report/proper_term_across_languages.xlsx"
         ),
         help="Output .xlsx path",
     )
@@ -265,10 +248,12 @@ def main() -> None:
     args = parse_args()
 
     results_root = args.results_root.resolve()
+    original_dir = args.original.resolve() if args.original else results_root / "dev_v1" / "original" / "few_shot"
     variant_dirs = {
-        "original": (args.original.resolve() if args.original else results_root / "dev_v1" / "original" / "few_shot"),
+        "original": original_dir,
         "expand": results_root / "dev_v1" / "expand",
         "cleaned": results_root / "dev_v1" / "cleaned",
+        "dictionary": results_root / "dev_v1" / "dictionary",
     }
 
     rows = build_comparison(variant_dirs)

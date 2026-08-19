@@ -17,7 +17,7 @@ DEFAULT_MODE = "proper_term"
 NO_TERM_MODE = "no_term"
 RANDOM_TERM_MODE = "random_term"
 
-EXTERNAL_DICTIONARY_RESULTS = "dev_v2"
+EXTERNAL_DICTIONARY_RESULTS = "dev_v2/original"
 
 BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
 BASELINE_LABELS = {

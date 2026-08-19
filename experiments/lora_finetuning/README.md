@@ -16,9 +16,9 @@ Five sub-experiments, each independently reproducible (own `scripts/`+`report/`)
 
 | Path | Contents |
 |------|----------|
-| `notebooks/gpt.ipynb` | GPT-4o-mini baseline run on the finetuning test set |
-| `notebooks/qwen_base.ipynb` | Qwen2.5 (3B/7B) base model, no fine-tuning |
-| `notebooks/qwen_finetuned.ipynb` | LoRA fine-tuning + inference for Qwen2.5 (3B/7B), 1/2/3 epochs |
+| [`../../notebooks/gpt.ipynb`](../../notebooks/gpt.ipynb) | GPT-4o-mini baseline run on the finetuning test set |
+| [`../../notebooks/qwen_base.ipynb`](../../notebooks/qwen_base.ipynb) | Qwen2.5 (3B/7B) base model, no fine-tuning |
+| [`../../notebooks/qwen_finetuned.ipynb`](../../notebooks/qwen_finetuned.ipynb) | LoRA fine-tuning + inference for Qwen2.5 (3B/7B), 1/2/3 epochs |
 | `data/test/` | Held-out `dev_v1` test set per language pair |
 | `data/training/` | `dev_v2` training set per language pair |
 | `data/dev_v2_deduped/` | `dev_v2` with `dev_v1`-overlapping lines removed (see `scripts/remove_dev_v2_overlap.py`); upstream of `data/training/` |
@@ -30,7 +30,7 @@ Five sub-experiments, each independently reproducible (own `scripts/`+`report/`)
 
 ## Running the notebooks
 
-Each notebook writes predictions and `metrics_summary.json` under `results/<model>/<run_name>/`. Run order: `qwen_base.ipynb` and `gpt.ipynb` first (baselines), then `qwen_finetuned.ipynb` for the LoRA runs.
+The three model-running notebooks live in the repo-root [`notebooks/`](../../notebooks/) directory (run manually, e.g. on LRZ AI Systems — not driven by any script). Each notebook writes predictions and `metrics_summary.json` under `results/<model>/<run_name>/`. Run order: `qwen_base.ipynb` and `gpt.ipynb` first (baselines), then `qwen_finetuned.ipynb` for the LoRA runs.
 
 ### Registered runs
 

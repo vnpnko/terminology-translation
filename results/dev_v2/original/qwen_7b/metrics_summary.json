@@ -18,7 +18,7 @@
       "output_tag": "de",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/ende_dev_v2_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/ende_dev_v2_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 31.32552263687719,
             "chrf": 60.33828420056634,
@@ -35,7 +35,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/ende_dev_v2_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/ende_dev_v2_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 38.643176271946,
             "chrf": 68.26380076747647,
@@ -9126,7 +9126,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/ende_dev_v2_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/ende_dev_v2_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 34.423233752224455,
             "chrf": 63.920151073115875,
@@ -17225,7 +17225,7 @@
       "output_tag": "ru",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/enru_dev_v2_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/enru_dev_v2_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 24.684826315008316,
             "chrf": 54.37295469501902,
@@ -17242,7 +17242,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/enru_dev_v2_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/enru_dev_v2_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 35.39755152380427,
             "chrf": 64.19875698084608,
@@ -26508,7 +26508,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/enru_dev_v2_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/enru_dev_v2_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 29.503203677687388,
             "chrf": 59.52284986795837,
@@ -36840,7 +36840,7 @@
       "output_tag": "es",
       "modes": {
         "no_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/enes_dev_v2_no_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/enes_dev_v2_no_term_predictions.jsonl",
           "metrics": {
             "bleu": 44.66703003757013,
             "chrf": 67.43058465313958,
@@ -36857,7 +36857,7 @@
           }
         },
         "proper_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/enes_dev_v2_proper_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/enes_dev_v2_proper_term_predictions.jsonl",
           "metrics": {
             "bleu": 54.69569022959442,
             "chrf": 75.16285839427655,
@@ -46676,7 +46676,7 @@
           }
         },
         "random_term": {
-          "predictions_file": "results/dev_v2/qwen_7b/enes_dev_v2_random_term_predictions.jsonl",
+          "predictions_file": "results/dev_v2/original/qwen_7b/enes_dev_v2_random_term_predictions.jsonl",
           "metrics": {
             "bleu": 47.97280217248825,
             "chrf": 70.88348427463508,

@@ -9,7 +9,7 @@ colored with the shared Good/Bad/Neutral convention (see
 ``src/analysis/excel_style.py``): green for the higher value, red for the
 lower, yellow if they're within 1% of each other. Reads ``metrics_summary.json``
 from ``<results-root>/dev_v1/original/few_shot/<baseline>/`` (the only dev_v1/original
-variant with all 3 modes) and ``<results-root>/dev_v2/<baseline>/``.
+variant with all 3 modes) and ``<results-root>/dev_v2/original/<baseline>/``.
 
 Usage::
 
@@ -45,7 +45,7 @@ BASELINE_DIRS = ("gpt", "qwen_3b", "qwen_7b")
 DATASET_ORDER = ("dev_v1", "dev_v2")
 DATASET_PATHS = {
     "dev_v1": Path("dev_v1/original/few_shot"),
-    "dev_v2": Path("dev_v2"),
+    "dev_v2": Path("dev_v2/original"),
 }
 
 METRICS = (

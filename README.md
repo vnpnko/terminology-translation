@@ -23,22 +23,24 @@ Each figure is built by a `figure_expN.py` script living in the owning experimen
 | ------ | ---- | ---------- | ------- | ---------- |
 | [`fig_term_expansion`](experiments/term_expansion/by_model/figures/fig_term_expansion.pdf) | `experiments/term_expansion/by_model/figures/` | [`term_expansion/by_model`](experiments/term_expansion/by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
 | [`fig_expansion_strategies`](experiments/term_expansion/by_language_pair/figures/fig_expansion_strategies.pdf) | `experiments/term_expansion/by_language_pair/figures/` | [`term_expansion/by_language_pair`](experiments/term_expansion/by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_dev_v1_vs_dev_v2_training`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_training.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/`, `results/dev_v2/` |
+| [`fig_dev_v1_vs_dev_v2_training`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_training.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/`, `results/dev_v2/for_training/` |
 | [`fig_lora_finetuning`](experiments/lora_finetuning/figures/fig_lora_finetuning.pdf) | `experiments/lora_finetuning/figures/` | [`lora_finetuning`](experiments/lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/zero_shot/`, `experiments/lora_finetuning/results/` |
 
 Generate all four at once with `python src/analysis/generate_result_figures.py` (writes each into its home dir above). Of these, `fig_term_expansion`, `fig_expansion_strategies`, and `fig_lora_finetuning` are copied to `poster/figures/` for the poster; `fig_dev_v1_vs_dev_v2_training` is copied to `report/figures/` instead, since it's background context for the paper rather than a poster figure.
 
+## Notebooks
+
+[`notebooks/`](notebooks/) holds the three manually-run model notebooks (`gpt.ipynb`, `qwen_base.ipynb`, `qwen_finetuned.ipynb`) used to produce the `lora_finetuning` results — run individually (e.g. on LRZ AI Systems), not driven by any script.
+
 ## Experiments
 
-`experiments/` groups experiments into four top-level directories: `baseline/`, `dataset_comparison/`, `term_expansion/` (3 nested sub-experiments), and `lora_finetuning/` (5 nested sub-experiments). Each experiment owns a `scripts/` folder with its table/figure-generating code (see their READMEs for exact reproduce commands); `baseline/` and `lora_finetuning/` are self-contained model-run experiments with their own `data/`/`results/`; `term_expansion/dictionary/` also owns one small experiment-local `data/` folder for input that only it consumes.
+`experiments/` groups experiments into three top-level directories: `dataset_comparison/`, `term_expansion/` (2 nested sub-experiments), and `lora_finetuning/` (5 nested sub-experiments). Each experiment owns a `scripts/` folder with its table/figure-generating code (see their READMEs for exact reproduce commands); `lora_finetuning/` is a self-contained model-run experiment with its own `data/`/`results/`.
 
 | Experiment | Contents |
 | ---------- | -------- |
-| [`baseline/`](experiments/baseline/README.md) | GPT-4o-mini baseline translation notebook on `dev_v1`. |
 | [`dataset_comparison/`](experiments/dataset_comparison/README.md) | `dev_v1` (test) vs. `dev_v2` (training) set comparison, GPT baseline. |
-| [`term_expansion/by_model/`](experiments/term_expansion/by_model/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered, by model. |
+| [`term_expansion/by_model/`](experiments/term_expansion/by_model/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered vs. externally-sourced dictionary, by model. |
 | [`term_expansion/by_language_pair/`](experiments/term_expansion/by_language_pair/README.md) | Same term-expansion strategy comparison, broken out by language pair. |
-| [`term_expansion/dictionary/`](experiments/term_expansion/dictionary/README.md) | `dev_v1/original` vs. `dev_v1/dictionary` (externally built term-list variant), GPT baseline. |
 | [`lora_finetuning/`](experiments/lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT-4o-mini and Qwen base: 5 sub-experiments (`epoch_ablation/`, `best_models/`, `base_vs_lora/`, `few_shot_ablation/`, `leakage_check/`) sharing `results/`, `data/`, and `run_registry.json`. |
 
 ## Scripts
@@ -86,7 +88,7 @@ The table-comparison and figure-generating scripts themselves are experiment-spe
 
 ## Results
 
-All results live in `results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; every other dataset/variant (`dev_v1/{expand,cleaned,dictionary}/`, `dev_v2/`) has a single, unqualified model directory.
+All results live in `results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; `dev_v1/{expand,cleaned,dictionary}/` each have a single, unqualified model directory. `results/dev_v2/` splits into `original/` (dev_v2 as an eval target, mirroring `dev_v1/original/`) and `for_training/` (dev_v2 as a training-set proxy, read only by `dataset_comparison`).
 
 ## Report
 

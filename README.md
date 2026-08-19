@@ -56,6 +56,7 @@ Genuinely shared code lives in `src/`. Single-experiment scripts live under the 
 | `data_preparation/clean_poor_proper_terms.py`              | Removes weak or generic entries from `proper_terms`.                         |
 | `data_preparation/expand_terms.py`                         | Appends additional term pairs to `proper_terms`.                             |
 | `data_preparation/strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
+| `data_preparation/check_duplicate_sources.py`               | Report-only: checks a JSONL file for duplicate source (`en`) sentences.      |
 | `data_preparation/term_utils.py`                           | Shared path constants and helpers for the dictionary-building scripts below. |
 
 Two dictionary-building scripts are experiment-specific and live in [`experiments/03_dataset_comparison/scripts/`](experiments/03_dataset_comparison/README.md):

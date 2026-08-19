@@ -88,7 +88,7 @@ There are **two distinct few-shot comparisons** in the repo; name them separatel
 | -------------- | ----------- | --------------------------- |
 | `experiments/01_term_expansion_by_model/report/dev_v1_original_{zero_shot,few_shot}_model_comparison.xlsx` (sheet `metrics`) | `experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py` | Model comparison table (§3.2) |
 | `experiments/02_term_expansion_by_language_pair/report/dev_v1_original_{zero_shot,few_shot}_language_comparison.xlsx` | `experiments/02_term_expansion_by_language_pair/scripts/compare_languages_to_excel.py` | Language comparison table (§3.1) |
-| `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_gpt_dataset_comparison.xlsx` | `experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py` | dev_v1 vs dev_v2 table (§3.3) |
+| `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_dataset_comparison.xlsx` (one sheet per model) | `experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py` | dev_v1 vs dev_v2 table (§3.3) |
 | `experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` | `experiments/03_dataset_comparison/scripts/compare_v1_variants_to_excel.py` | Dictionary vs original table (§3.1) |
 | `experiments/04_lora_finetuning/report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx` | `experiments/04_lora_finetuning/scripts/compare_base_vs_lora_to_excel.py` | Base-few-shot vs LoRA-1-epoch table (§3.4) |
 | `experiments/04_lora_finetuning/report/best_models.xlsx` | `experiments/04_lora_finetuning/scripts/compare_best_models_to_excel.py` | Best LoRA vs GPT table (§3.4) |

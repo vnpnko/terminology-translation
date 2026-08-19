@@ -1,18 +1,17 @@
-"""Compare dev_v1/original vs dev_v2 metrics for one baseline model.
+"""Compare dev_v1/original vs dev_v2 metrics for all three baseline models.
 
 Writes one styled .xlsx file (default:
-``experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx``)
-with 9 data rows (mode x language). The mode column is merged per block
-(no_term, proper_term, random_term). Each metric block has dev_v1_original,
-dev_v2, and best columns. Reads ``metrics_summary.json`` from
+``experiments/03_dataset_comparison/report/dev_v1_original_vs_dev_v2_dataset_comparison.xlsx``)
+with one sheet per baseline (``gpt``, ``qwen_3b``, ``qwen_7b``), each with 9
+data rows (mode x language). The mode column is merged per block (no_term,
+proper_term, random_term). Each metric block has dev_v1_original, dev_v2, and
+best columns. Reads ``metrics_summary.json`` from
 ``<results-root>/dev_v1/original/few_shot/<baseline>/`` (the only dev_v1/original
 variant with all 3 modes) and ``<results-root>/dev_v2/<baseline>/``.
 
 Usage::
 
-    python experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py --baseline gpt
-    python experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py --baseline qwen_3b
-    python experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py --baseline qwen_7b
+    python experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py
 """
 
 from __future__ import annotations
@@ -151,11 +150,7 @@ def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=columns)
 
 
-def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "datasets"
-
+def write_sheet(ws, df: pd.DataFrame) -> None:
     fixed_headers = ("mode", "language")
     value_subheaders = DATASET_ORDER + ("best",)
     cols_per_metric = len(value_subheaders)
@@ -222,21 +217,9 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 
     autofit_columns(ws)
 
-    wb.save(output_path)
-
-
-def default_output_path(baseline: str, report_dir: Path) -> Path:
-    return report_dir / f"dev_v1_original_vs_dev_v2_{baseline}_dataset_comparison.xlsx"
-
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--baseline",
-        required=True,
-        choices=BASELINE_DIRS,
-        help="Which baseline model to compare datasets for",
-    )
     parser.add_argument(
         "--results-root",
         type=Path,
@@ -246,17 +229,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=None,
-        help=(
-            "Output .xlsx path (default: experiments/03_dataset_comparison/report/"
-            "dev_v1_original_vs_dev_v2_<baseline>_dataset_comparison.xlsx)"
+        default=Path(
+            "experiments/03_dataset_comparison/report/"
+            "dev_v1_original_vs_dev_v2_dataset_comparison.xlsx"
         ),
-    )
-    parser.add_argument(
-        "--report-dir",
-        type=Path,
-        default=Path("experiments/03_dataset_comparison/report"),
-        help="Report output directory when --output is not set",
+        help="Output .xlsx path",
     )
     return parser.parse_args()
 
@@ -267,20 +244,25 @@ def main() -> None:
     results_root = args.results_root.resolve()
     validate_all_baselines(results_root)
 
-    output_path = (
-        args.output.resolve()
-        if args.output
-        else default_output_path(args.baseline, args.report_dir.resolve())
-    )
+    output_path = args.output.resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    df = build_comparison(results_root, args.baseline)
-    write_styled_excel(df, output_path)
+    wb = Workbook()
+    wb.remove(wb.active)
 
-    print(f"Baseline: {args.baseline}")
+    row_count = 0
+    for baseline_dir in BASELINE_DIRS:
+        df = build_comparison(results_root, baseline_dir)
+        row_count = len(df)
+        ws = wb.create_sheet(title=baseline_dir)
+        write_sheet(ws, df)
+
+    wb.save(output_path)
+
     print(
-        f"Wrote {len(df)} rows "
-        f"({len(MODE_ORDER)} modes x {len(LANG_ORDER)} languages) to {output_path}"
+        f"Wrote {len(BASELINE_DIRS)} sheets ({', '.join(BASELINE_DIRS)}), "
+        f"{row_count} rows each ({len(MODE_ORDER)} modes x {len(LANG_ORDER)} languages), "
+        f"to {output_path}"
     )
 
 

@@ -47,6 +47,7 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 - **RQ:** How comparable is the dev_v2 proxy training set to the dev_v1 test set on GPT-4o-mini?
 - **Repo location:** [`experiments/03_dataset_comparison/`](../experiments/03_dataset_comparison/README.md)
 - **Script:** [`experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py`](../experiments/03_dataset_comparison/scripts/compare_datasets_to_excel.py)
+- **Caveat:** dev_v2 (2000 sentences/language) is 4x larger than dev_v1 (500 sentences/language) in this comparison. BLEU/chrF are corpus-level aggregates, so the size difference doesn't bias either score, but dev_v1's estimate carries more sampling noise than dev_v2's — and with no confidence intervals or bootstrap resampling computed (single-run point estimates throughout), small gaps between the two should be read as inconclusive rather than as a finding.
 
 ### 3.4 LoRA fine-tuning (Qwen2.5-3B / 7B, 1–3 epochs)
 - **RQ:** Does LoRA fine-tuning on dev_v2 close the gap between open Qwen models and GPT-4o-mini on terminology-constrained translation?

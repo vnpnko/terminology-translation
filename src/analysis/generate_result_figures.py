@@ -1,7 +1,7 @@
 """Generate result figures from metrics_summary.json files.
 
 Writes a PDF and PNG per figure into its owning experiment's ``figures/``
-directory by default (e.g. ``experiments/01_term_expansion_by_model/figures/``)
+directory by default (e.g. ``experiments/term_expansion/by_model/figures/``)
 — that's each figure's canonical home. ``--output-dir`` overrides this and
 writes every selected figure into one shared directory instead, useful for
 ad hoc regeneration. Note that ``poster/figures/`` and ``report/figures/``
@@ -9,7 +9,7 @@ are curated, manually-copied collections of whichever figures are actually
 used in the poster/paper (not generation targets); after regenerating a
 figure's home copy, copy it over by hand if it needs to be updated there.
 Reads ``metrics_summary.json`` files under ``<project-root>/results`` (and
-``experiments/04_lora_finetuning`` for lora_finetuning).
+``experiments/lora_finetuning`` for lora_finetuning).
 
 Usage::
 
@@ -31,10 +31,10 @@ PROJECT_ROOT = SCRIPT_DIR.parent.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
 EXPERIMENT_SCRIPTS_DIRS = [
-    PROJECT_ROOT / "experiments" / "01_term_expansion_by_model" / "scripts",
-    PROJECT_ROOT / "experiments" / "02_term_expansion_by_language_pair" / "scripts",
-    PROJECT_ROOT / "experiments" / "03_dataset_comparison" / "scripts",
-    PROJECT_ROOT / "experiments" / "04_lora_finetuning" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "by_model" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "dataset_comparison" / "scripts",
+    PROJECT_ROOT / "experiments" / "lora_finetuning" / "scripts",
 ]
 for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
     sys.path.insert(0, str(_scripts_dir))
@@ -49,22 +49,22 @@ FIGURE_BUILDERS = {
     "model_comparison": (
         "fig_term_expansion",
         lambda root: build_model_comparison_figure(root / "results"),
-        Path("experiments/01_term_expansion_by_model/figures"),
+        Path("experiments/term_expansion/by_model/figures"),
     ),
     "mode_comparison": (
         "fig_expansion_strategies",
         lambda root: build_mode_comparison_figure(root / "results"),
-        Path("experiments/02_term_expansion_by_language_pair/figures"),
+        Path("experiments/term_expansion/by_language_pair/figures"),
     ),
     "dataset_comparison": (
         "fig_dev_v1_vs_dev_v2_training",
         lambda root: build_dataset_comparison_figure(root / "results"),
-        Path("experiments/03_dataset_comparison/figures"),
+        Path("experiments/term_expansion/dataset_comparison/figures"),
     ),
     "lora_finetuning": (
         "fig_lora_finetuning",
         lambda root: build_lora_finetuning_figure(root),
-        Path("experiments/04_lora_finetuning/figures"),
+        Path("experiments/lora_finetuning/figures"),
     ),
 }
 

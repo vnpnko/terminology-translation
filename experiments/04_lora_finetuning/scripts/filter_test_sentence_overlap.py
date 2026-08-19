@@ -1,16 +1,22 @@
-"""Remove test sentences whose source text overlaps with training source sentences.
+"""Split test sentences into overlap/no_overlap subsets by training-set containment.
 
 For each language pair, any test row whose English source sentence has at least
-50% token containment overlap with any training source sentence is removed.
-Kept rows are written to data/test_cleaned_gpt/; removed rows go to a companion
-*.removed.jsonl file for inspection. Original test files are not modified.
+50% token containment overlap with any training source sentence is an "overlap"
+row; otherwise it's "no_overlap". To keep the leakage-honesty comparison fair
+across language pairs, every language and category is then truncated to the
+same size: the minimum row count found across all three languages' overlap AND
+no_overlap sets (computed at runtime, not hardcoded), keeping the first N rows
+in original file order (deterministic, no random sampling).
+
+Writes ``{output_dir}/no_overlap/{test_file}`` and ``{output_dir}/overlap/{test_file}``
+for each language pair. Original test files are not modified.
 
 Usage:
     python experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py
     python experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py --dry-run
     python experiments/04_lora_finetuning/scripts/filter_test_sentence_overlap.py \
         --training-dir path/to/training --test-dir path/to/test \
-        --output-dir path/to/test_cleaned_gpt
+        --output-dir path/to/test_cleaned_by_sentences
 """
 
 from __future__ import annotations
@@ -26,7 +32,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_TRAINING_DIR = SCRIPT_DIR.parent / "data" / "training"
 DEFAULT_TEST_DIR = SCRIPT_DIR.parent / "data" / "test"
-DEFAULT_OUTPUT_DIR = SCRIPT_DIR.parent / "data" / "test_cleaned_gpt"
+DEFAULT_OUTPUT_DIR = SCRIPT_DIR.parent / "data" / "test_cleaned_by_sentences"
 
 OVERLAP_THRESHOLD = 0.5
 
@@ -95,63 +101,49 @@ def build_training_token_sets(training_path: Path) -> list[set[str]]:
     return [tokenize(source_sentence(record)) for record in load_jsonl(training_path)]
 
 
-def filter_pair(
+def compute_pair(
     pair: str,
     training_dir: Path,
     test_dir: Path,
-    output_dir: Path,
-    dry_run: bool,
-) -> None:
+) -> tuple[list[dict], list[dict]] | None:
+    """Return (no_overlap_rows, overlap_rows) for one language pair, or None if inputs are missing."""
     training_file, test_file = PAIR_FILES[pair]
     training_path = training_dir / training_file
     test_path = test_dir / test_file
-    output_path = output_dir / test_file
-    removed_path = output_dir / test_file.replace(".jsonl", ".removed.jsonl")
 
     if not training_path.exists():
         print(f"  [{pair}] WARNING: training file not found: {training_path}")
-        return
+        return None
     if not test_path.exists():
         print(f"  [{pair}] WARNING: test file not found: {test_path}")
-        return
+        return None
 
     train_token_sets = build_training_token_sets(training_path)
     test_rows = load_jsonl(test_path)
 
-    kept: list[dict] = []
-    removed: list[dict] = []
+    no_overlap_rows: list[dict] = []
+    overlap_rows: list[dict] = []
     empty_source_count = 0
 
     for row in test_rows:
         test_tokens = tokenize(source_sentence(row))
         if not test_tokens:
             empty_source_count += 1
-            kept.append(row)
+            no_overlap_rows.append(row)
             continue
         if has_sentence_overlap(test_tokens, train_token_sets):
-            removed.append(row)
+            overlap_rows.append(row)
         else:
-            kept.append(row)
+            no_overlap_rows.append(row)
 
-    total = len(test_rows)
-    n_kept = len(kept)
-    n_removed = len(removed)
+    print(
+        f"  [{pair}] raw: {len(no_overlap_rows)} no_overlap, {len(overlap_rows)} overlap"
+        f" (of {len(test_rows)})"
+    )
+    if empty_source_count:
+        print(f"  [{pair}] {empty_source_count} row(s) with empty source counted as no_overlap")
 
-    if dry_run:
-        print(
-            f"  [{pair}] DRY-RUN - would keep {n_kept}, remove {n_removed} (of {total})"
-        )
-        if empty_source_count:
-            print(f"  [{pair}] DRY-RUN - {empty_source_count} row(s) with empty source kept")
-    else:
-        write_jsonl(output_path, kept)
-        write_jsonl(removed_path, removed)
-        print(
-            f"  [{pair}] kept {n_kept}, removed {n_removed} (of {total})"
-            f" -> {output_path.name}, removed rows in {removed_path.name}"
-        )
-        if empty_source_count:
-            print(f"  [{pair}] {empty_source_count} row(s) with empty source kept")
+    return no_overlap_rows, overlap_rows
 
 
 # ---------------------------------------------------------------------------
@@ -162,8 +154,9 @@ def filter_pair(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Remove test sentences whose source text has >=50% token containment "
-            "overlap with any training source sentence."
+            "Split test sentences into overlap/no_overlap subsets by >=50% token "
+            "containment with training data, balanced to the same size across "
+            "all three language pairs."
         )
     )
     parser.add_argument(
@@ -182,7 +175,10 @@ def parse_args() -> argparse.Namespace:
         "--output-dir",
         type=Path,
         default=DEFAULT_OUTPUT_DIR,
-        help="Directory for filtered output files (default: data/test_cleaned_gpt).",
+        help=(
+            "Directory to write no_overlap/ and overlap/ subdirectories into "
+            "(default: data/test_cleaned_by_sentences)."
+        ),
     )
     parser.add_argument(
         "--dry-run",
@@ -201,14 +197,40 @@ def main() -> None:
     print(f"  output dir   : {args.output_dir}")
     print()
 
+    per_pair: dict[str, tuple[list[dict], list[dict]]] = {}
     for pair in PAIR_FILES:
-        filter_pair(
-            pair,
-            args.training_dir,
-            args.test_dir,
-            args.output_dir,
-            args.dry_run,
-        )
+        result = compute_pair(pair, args.training_dir, args.test_dir)
+        if result is not None:
+            per_pair[pair] = result
+
+    if not per_pair:
+        print("\nNo language pairs computed; nothing to do.")
+        return
+
+    target_n = min(
+        len(rows) for no_overlap_rows, overlap_rows in per_pair.values() for rows in (no_overlap_rows, overlap_rows)
+    )
+    print(f"\nBalancing every language/category to the minimum count: {target_n}")
+
+    for pair, (no_overlap_rows, overlap_rows) in per_pair.items():
+        _, test_file = PAIR_FILES[pair]
+        no_overlap_balanced = no_overlap_rows[:target_n]
+        overlap_balanced = overlap_rows[:target_n]
+
+        if args.dry_run:
+            print(
+                f"  [{pair}] DRY-RUN - would write {len(no_overlap_balanced)} no_overlap, "
+                f"{len(overlap_balanced)} overlap"
+            )
+        else:
+            no_overlap_path = args.output_dir / "no_overlap" / test_file
+            overlap_path = args.output_dir / "overlap" / test_file
+            write_jsonl(no_overlap_path, no_overlap_balanced)
+            write_jsonl(overlap_path, overlap_balanced)
+            print(
+                f"  [{pair}] wrote {len(no_overlap_balanced)} no_overlap -> {no_overlap_path}, "
+                f"{len(overlap_balanced)} overlap -> {overlap_path}"
+            )
 
     print()
     print("Done.")

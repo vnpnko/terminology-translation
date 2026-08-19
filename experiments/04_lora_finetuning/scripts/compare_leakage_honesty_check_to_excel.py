@@ -17,9 +17,7 @@ sentence difficulty), and qwen_lora's is much larger (~9.3) — evidence of leak
 on top of the difficulty confound, not instead of it.
 
 Reads ``metrics_summary.json`` from
-``<results-root>/{gpt_base,<model_dir>/qwen_base,<model_dir>/<lora folder>}/test_cleaned_by_sentences/{data_bad,data_good}/``
-(on-disk folder names stay ``data_bad``/``data_good`` — only the workbook's displayed
-column/sheet names changed).
+``<results-root>/{gpt_base,<model_dir>/qwen_base,<model_dir>/<lora folder>}/test_cleaned_by_sentences/{overlap,no_overlap}/``.
 
 Each value cell is colored green if it is the higher (or tied-highest) of its
 overlap_data/no_overlap_data pair, yellow otherwise — no red is used. Same coloring
@@ -240,7 +238,7 @@ def parse_args() -> argparse.Namespace:
 def validate_required(results_root: Path, model_dir: str, lora_folder: str) -> None:
     required = []
     for base_dir in (results_root / "gpt_base", results_root / model_dir / "qwen_base", results_root / model_dir / lora_folder):
-        for subset in ("data_bad", "data_good"):
+        for subset in ("overlap", "no_overlap"):
             required.append(base_dir / "test_cleaned_by_sentences" / subset / "metrics_summary.json")
 
     missing = [str(path) for path in required if not path.exists()]
@@ -262,9 +260,9 @@ def main() -> None:
     base_dir = results_root / model_dir / "qwen_base"
     lora_dir = results_root / model_dir / run["folder"]
 
-    gpt_bad, gpt_good = subset_rows(gpt_dir, "data_bad"), subset_rows(gpt_dir, "data_good")
-    base_bad, base_good = subset_rows(base_dir, "data_bad"), subset_rows(base_dir, "data_good")
-    lora_bad, lora_good = subset_rows(lora_dir, "data_bad"), subset_rows(lora_dir, "data_good")
+    gpt_bad, gpt_good = subset_rows(gpt_dir, "overlap"), subset_rows(gpt_dir, "no_overlap")
+    base_bad, base_good = subset_rows(base_dir, "overlap"), subset_rows(base_dir, "no_overlap")
+    lora_bad, lora_good = subset_rows(lora_dir, "overlap"), subset_rows(lora_dir, "no_overlap")
 
     wb = Workbook()
     ws = wb.active

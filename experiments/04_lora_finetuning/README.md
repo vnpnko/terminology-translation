@@ -58,7 +58,7 @@ All 5 files are script-generated — no hand-assembled workbooks are in `report/
 
 **Note:** `compare_best_models_to_excel.py` defaults to `lora_2_epoch_zero_shot` (override with `--lora-run`). This follows the evidence in `epoch_ablation.xlsx`: going from 2 to 3 epochs drops training loss much further (~0.05–0.07 vs ~0.14–0.17) while held-out BLEU/chrF plateau or slightly regress and only Term Accuracy keeps rising — an overfitting signature, so 2 epochs is treated as the better generalizing checkpoint.
 
-**Note:** `leakage_honesty_check.xlsx` is fully script-generated (`compare_leakage_honesty_check_to_excel.py`), with column groups named `overlap_data`/`no_overlap_data` for the actual split criterion (≥50% token containment with the training set), not a "bad"/"good" value judgment. The `test_cleaned_by_sentences/data_good` split it reads for `qwen_base` is a real, verified good-filtered subset.
+**Note:** `leakage_honesty_check.xlsx` is fully script-generated (`compare_leakage_honesty_check_to_excel.py`), with column groups named `overlap_data`/`no_overlap_data` for the actual split criterion (≥50% token containment with the training set). The `test_cleaned_by_sentences/no_overlap` split it reads for `qwen_base` is a real, verified no-overlap subset.
 
 **Model names in `leakage_honesty_check.xlsx`:** the workbook's `model` column uses short labels; here's what each one is concretely: `gpt` = GPT-4o-mini; `qwen_base` = Qwen2.5-7B, base model, few-shot (`run_registry.json`'s `base_few_shot`, folder `qwen_base` — the folder name itself doesn't indicate few-shot, but the run is); `qwen_lora` = Qwen2.5-7B, LoRA fine-tuned, 2 epochs, zero-shot (`run_registry.json`'s `lora_2_epoch_zero_shot`, folder `qwen_lora_no_few_shots_2_epochs`, the script's `--lora-run` default).
 
@@ -70,7 +70,7 @@ Uses `openpyxl` from the repo root [`requirements.txt`](../../requirements.txt).
 
 | File | Role |
 |------|------|
-| `scripts/compare_leakage_honesty_check_to_excel.py` | Builds `report/leakage_honesty_check.xlsx` (single sheet, see "Report tables" above) from `metrics_summary.json` under `.../test_cleaned_by_sentences/{data_bad,data_good}/`; LoRA run overridable via `--lora-run` |
+| `scripts/compare_leakage_honesty_check_to_excel.py` | Builds `report/leakage_honesty_check.xlsx` (single sheet, see "Report tables" above) from `metrics_summary.json` under `.../test_cleaned_by_sentences/{overlap,no_overlap}/`; LoRA run overridable via `--lora-run` |
 | `scripts/compare_epochs_to_excel.py` | Builds `report/epoch_ablation.xlsx` (1/2/3 zero-shot LoRA epochs, one sheet per model size, rank-colored red/yellow/green) from `metrics_summary.json`, run selection driven by `run_registry.json` |
 | `scripts/compare_few_shots_to_excel.py` | Builds `report/zero_shot_vs_few_shot_ablation.xlsx` (zero_shot vs few_shot for GPT, Qwen base, Qwen LoRA) from `metrics_summary.json` in both `results/` (root) and `experiments/04_lora_finetuning/results/` |
 | `scripts/compare_base_vs_lora_to_excel.py` | Builds `report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx` (qwen_base_few_shot vs qwen_lora_zero_shot, one sheet, 3B/7B blocks) from `metrics_summary.json`, run selection driven by `run_registry.json` |

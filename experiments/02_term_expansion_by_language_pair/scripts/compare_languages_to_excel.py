@@ -20,13 +20,23 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 from openpyxl import Workbook
-from openpyxl.cell.cell import Cell
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+from openpyxl.styles import Alignment
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.excel_style import (  # noqa: E402
+    HEADER_FILL,
+    apply_cell_style,
+    autofit_columns,
+    label_fill,
+)
 
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
@@ -48,18 +58,6 @@ METRICS = (
         "Weighted Consistency",
     ),
 )
-
-HEADER_FILL = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
-BEST_FILLS = {
-    "ende": PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid"),
-    "enru": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),
-    "enes": PatternFill(start_color="F8CBAD", end_color="F8CBAD", fill_type="solid"),
-    "tie": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),
-}
-
-THIN = Side(style="thin", color="000000")
-THICK = Side(style="medium", color="000000")
-THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 
 def load_summary(path: Path) -> dict[str, Any]:
@@ -157,48 +155,6 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=columns)
 
 
-def apply_cell_style(
-    cell: Cell,
-    *,
-    bold: bool = False,
-    fill: PatternFill | None = None,
-    border: Border | None = THIN_BORDER,
-    thick_bottom: bool = False,
-) -> None:
-    cell.font = Font(bold=bold)
-    cell.alignment = Alignment(horizontal="center", vertical="center")
-    if fill is not None:
-        cell.fill = fill
-    if border is not None:
-        if thick_bottom:
-            cell.border = Border(
-                left=border.left,
-                right=border.right,
-                top=border.top,
-                bottom=THICK,
-            )
-        else:
-            cell.border = border
-
-
-def autofit_columns(ws, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
-    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
-    excluded = set()
-    for merged_range in ws.merged_cells.ranges:
-        if merged_range.max_col > merged_range.min_col:
-            excluded.add((merged_range.min_row, merged_range.min_col))
-
-    widths: dict[str, int] = {}
-    for row in ws.iter_rows():
-        for cell in row:
-            if cell.value is None or (cell.row, cell.column) in excluded:
-                continue
-            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
-
-    for col_letter, width in widths.items():
-        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
-
-
 def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
     wb = Workbook()
     ws = wb.active
@@ -247,12 +203,17 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 
             for offset, value in enumerate(values):
                 cell = ws.cell(row=row_offset, column=start_col + offset, value=value)
-                fill = (
-                    BEST_FILLS.get(value)
+                fill_font = (
+                    label_fill(value)
                     if offset == cols_per_metric - 1 and isinstance(value, str)
                     else None
                 )
-                apply_cell_style(cell, fill=fill, thick_bottom=thick_bottom)
+                apply_cell_style(
+                    cell,
+                    fill=fill_font[0] if fill_font else None,
+                    font=fill_font[1] if fill_font else None,
+                    thick_bottom=thick_bottom,
+                )
 
     for mode_idx in range(len(MODE_ORDER)):
         start_row = 3 + mode_idx * len(BASELINE_DIRS)

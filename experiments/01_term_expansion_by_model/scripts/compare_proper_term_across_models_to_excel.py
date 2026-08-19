@@ -7,9 +7,11 @@ with 9 data rows: 3 term-list variants (original, expand, cleaned), each with
 Reads ``metrics_summary.json`` from ``<variant_dir>/{gpt,qwen_3b,qwen_7b}/``.
 
 Each value cell is colored by ranking that (model, language) combination's
-value **across the 3 variants** (not across models): red = worst variant,
-yellow = middle, green = best variant. This is a different axis than the
-``best`` column, which colors by the best *model* within a single row.
+value **across the 3 variants** (not across models), using the shared
+Good/Bad/Neutral convention (see ``src/analysis/excel_style.py``): green =
+best variant, red = worst variant, the strictly-middle variant is left
+unfilled. This is a different axis than the ``best`` column, which colors
+green/yellow by the best *model* within a single row.
 
 Note: ``results/dev_v1/original/`` has no ``gpt``/``qwen_3b``/``qwen_7b``
 subfolders directly — it's nested under ``zero_shot/`` or
@@ -28,12 +30,23 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Any
 
 from openpyxl import Workbook
-from openpyxl.cell.cell import Cell
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+from openpyxl.styles import Alignment
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.excel_style import (  # noqa: E402
+    HEADER_FILL,
+    apply_cell_style,
+    autofit_columns,
+    label_fill,
+    rank_fills,
+)
 
 LANG_ORDER = ("ende", "enru", "enes")
 VARIANT_ORDER = ("original", "expand", "cleaned")
@@ -56,22 +69,6 @@ METRICS = (
         "Weighted Consistency",
     ),
 )
-
-HEADER_FILL = PatternFill(start_color="FFD9D9D9", end_color="FFD9D9D9", fill_type="solid")
-RANK_FILLS = {
-    "low": PatternFill(start_color="FFFF0000", end_color="FFFF0000", fill_type="solid"),
-    "mid": PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid"),
-    "high": PatternFill(start_color="FF00B050", end_color="FF00B050", fill_type="solid"),
-}
-BEST_FILLS = {
-    "GPT": PatternFill(start_color="FFC6EFCE", end_color="FFC6EFCE", fill_type="solid"),
-    "Qwen 3B": PatternFill(start_color="FFBDD7EE", end_color="FFBDD7EE", fill_type="solid"),
-    "Qwen 7B": PatternFill(start_color="FFF8CBAD", end_color="FFF8CBAD", fill_type="solid"),
-    "tie": PatternFill(start_color="FFFFEB9C", end_color="FFFFEB9C", fill_type="solid"),
-}
-
-THIN = Side(style="thin", color="000000")
-THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 
 def load_summary(path: Path) -> dict[str, Any]:
@@ -154,55 +151,16 @@ def build_comparison(variant_dirs: dict[str, Path]) -> dict[tuple[str, str], dic
     return rows
 
 
-def variant_rank_fill(rows: dict[tuple[str, str], dict[str, object]], lang: str, key: str, variant: str) -> PatternFill | None:
+def variant_rank_fill(
+    rows: dict[tuple[str, str], dict[str, object]], lang: str, key: str, variant: str
+) -> tuple[PatternFill, Font] | None:
     """Rank a (model, language) value against its counterpart in the other 2 variants."""
     values = {
         v: rows[(v, lang)][key]
         for v in VARIANT_ORDER
         if (v, lang) in rows and rows[(v, lang)][key] is not None
     }
-    if variant not in values:
-        return None
-
-    max_val = max(values.values())
-    min_val = min(values.values())
-    value = values[variant]
-    if value == max_val:
-        return RANK_FILLS["high"]
-    if value == min_val:
-        return RANK_FILLS["low"]
-    return RANK_FILLS["mid"]
-
-
-def apply_cell_style(
-    cell: Cell,
-    *,
-    bold: bool = False,
-    fill: PatternFill | None = None,
-) -> None:
-    cell.font = Font(bold=bold)
-    cell.alignment = Alignment(horizontal="center", vertical="center")
-    if fill is not None:
-        cell.fill = fill
-    cell.border = THIN_BORDER
-
-
-def autofit_columns(ws, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
-    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
-    excluded = set()
-    for merged_range in ws.merged_cells.ranges:
-        if merged_range.max_col > merged_range.min_col:
-            excluded.add((merged_range.min_row, merged_range.min_col))
-
-    widths: dict[str, int] = {}
-    for row in ws.iter_rows():
-        for cell in row:
-            if cell.value is None or (cell.row, cell.column) in excluded:
-                continue
-            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
-
-    for col_letter, width in widths.items():
-        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
+    return rank_fills(values).get(variant)
 
 
 def write_styled_excel(rows: dict[tuple[str, str], dict[str, object]], output_path: Path) -> None:
@@ -251,14 +209,24 @@ def write_styled_excel(rows: dict[tuple[str, str], dict[str, object]], output_pa
 
                 for offset, (key, _baseline_dir) in enumerate(baseline_key_pairs):
                     cell = ws.cell(row=row_offset, column=start_col + offset, value=record[key])
-                    apply_cell_style(cell, fill=variant_rank_fill(rows, lang, key, variant))
+                    fill_font = variant_rank_fill(rows, lang, key, variant)
+                    apply_cell_style(
+                        cell,
+                        fill=fill_font[0] if fill_font else None,
+                        font=fill_font[1] if fill_font else None,
+                    )
 
                 best_cell = ws.cell(
                     row=row_offset,
                     column=start_col + cols_per_metric - 1,
                     value=record[f"best_{column}"],
                 )
-                apply_cell_style(best_cell, fill=BEST_FILLS.get(record[f"best_{column}"]))
+                best_fill_font = label_fill(record[f"best_{column}"])
+                apply_cell_style(
+                    best_cell,
+                    fill=best_fill_font[0] if best_fill_font else None,
+                    font=best_fill_font[1] if best_fill_font else None,
+                )
 
             row_offset += 1
 

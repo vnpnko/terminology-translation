@@ -10,9 +10,9 @@ with a single sheet, one row per language pair. Both columns are local:
   at 3 epochs).
 - GPT side: ``<results-root>/gpt_base/metrics_summary.json``.
 
-Each value cell is colored green if it is the higher (or tied-highest) of its
-LoRA/GPT pair, yellow otherwise — no red is used. Same coloring convention as
-``experiments/04_lora_finetuning/scripts/compare_few_shots_to_excel.py``.
+Each value cell is colored by the shared Good/Bad/Neutral convention (see
+``src/analysis/excel_style.py``): green for the higher of its LoRA/GPT pair,
+red for the lower, yellow if equal.
 
 Usage::
 
@@ -25,26 +25,26 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Any
 
 from openpyxl import Workbook
-from openpyxl.cell.cell import Cell
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.worksheet.worksheet import Worksheet
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.excel_style import (  # noqa: E402
+    HEADER_FILL,
+    apply_cell_style,
+    autofit_columns,
+    rank_fills,
+)
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEY = "7B"
 RIGHT_LABEL = "GPT-4o-mini"
-
-HEADER_FILL = PatternFill(start_color="FFD9D9D9", end_color="FFD9D9D9", fill_type="solid")
-PAIR_FILLS = {
-    "low": PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid"),
-    "high": PatternFill(start_color="FF00B050", end_color="FF00B050", fill_type="solid"),
-}
-
-THIN = Side(style="thin", color="000000")
-THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 METRICS = (
     ("bleu", "bleu", "BLEU", 2),
@@ -109,42 +109,6 @@ def best_rows(results_root: Path, registry: dict[str, Any], run_id: str) -> dict
     return {lang: (extract_row(lora_summary, lang), extract_row(gpt_summary, lang)) for lang in LANG_ORDER}
 
 
-def pair_fills(left_val: float | None, right_val: float | None) -> tuple[PatternFill | None, PatternFill | None]:
-    """Green for the higher (or tied-highest) value of the pair, yellow for the other."""
-    if left_val is None or right_val is None:
-        return None, None
-    max_val = max(left_val, right_val)
-    left_fill = PAIR_FILLS["high"] if left_val == max_val else PAIR_FILLS["low"]
-    right_fill = PAIR_FILLS["high"] if right_val == max_val else PAIR_FILLS["low"]
-    return left_fill, right_fill
-
-
-def apply_cell_style(cell: Cell, *, fill: PatternFill | None = None) -> None:
-    cell.font = Font(bold=False)
-    cell.alignment = Alignment(horizontal="center", vertical="center")
-    if fill is not None:
-        cell.fill = fill
-    cell.border = THIN_BORDER
-
-
-def autofit_columns(ws: Worksheet, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
-    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
-    excluded = set()
-    for merged_range in ws.merged_cells.ranges:
-        if merged_range.max_col > merged_range.min_col:
-            excluded.add((merged_range.min_row, merged_range.min_col))
-
-    widths: dict[str, int] = {}
-    for row in ws.iter_rows():
-        for cell in row:
-            if cell.value is None or (cell.row, cell.column) in excluded:
-                continue
-            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
-
-    for col_letter, width in widths.items():
-        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
-
-
 def write_sheet(ws: Worksheet, rows_by_lang: dict[str, tuple[list, list]], left_label: str) -> None:
     cols_per_group = len(METRICS)
     data_start_col = 2
@@ -173,11 +137,22 @@ def write_sheet(ws: Worksheet, rows_by_lang: dict[str, tuple[list, list]], left_
         left_values, right_values = rows_by_lang[lang]
 
         for offset in range(cols_per_group):
-            left_fill, right_fill = pair_fills(left_values[offset], right_values[offset])
+            fills = rank_fills({"left": left_values[offset], "right": right_values[offset]})
+            left_fill_font = fills.get("left")
+            right_fill_font = fills.get("right")
+
             left_cell = ws.cell(row=row_offset, column=data_start_col + offset, value=left_values[offset])
-            apply_cell_style(left_cell, fill=left_fill)
+            apply_cell_style(
+                left_cell,
+                fill=left_fill_font[0] if left_fill_font else None,
+                font=left_fill_font[1] if left_fill_font else None,
+            )
             right_cell = ws.cell(row=row_offset, column=right_col + offset, value=right_values[offset])
-            apply_cell_style(right_cell, fill=right_fill)
+            apply_cell_style(
+                right_cell,
+                fill=right_fill_font[0] if right_fill_font else None,
+                font=right_fill_font[1] if right_fill_font else None,
+            )
 
     autofit_columns(ws)
 

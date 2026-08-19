@@ -13,8 +13,9 @@ the two differently-scoped few-shot experiments documented in ``report/README.md
 - **LoRA-level** (``qwen_lora``): both columns are local, driven by ``run_registry.json``'s
   ``lora_1_epoch_zero_shot``/``lora_1_epoch_few_shot`` runs.
 
-Each value cell is colored green if it is the higher (or tied-highest) of its zero_shot/
-few_shot pair, yellow otherwise — no red is used.
+Each value cell is colored by the shared Good/Bad/Neutral convention (see
+``src/analysis/excel_style.py``): green for the higher of its zero_shot/
+few_shot pair, red for the lower, yellow if they're equal.
 
 Usage::
 
@@ -26,26 +27,26 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Any
 
 from openpyxl import Workbook
-from openpyxl.cell.cell import Cell
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.worksheet.worksheet import Worksheet
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.excel_style import (  # noqa: E402
+    HEADER_FILL,
+    apply_cell_style,
+    autofit_columns,
+    rank_fills,
+)
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEYS = ("3B", "7B")
 BASELINE_DIRS = {"3B": "qwen_3b", "7B": "qwen_7b"}
-
-HEADER_FILL = PatternFill(start_color="FFD9D9D9", end_color="FFD9D9D9", fill_type="solid")
-PAIR_FILLS = {
-    "low": PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid"),
-    "high": PatternFill(start_color="FF00B050", end_color="FF00B050", fill_type="solid"),
-}
-
-THIN = Side(style="thin", color="000000")
-THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 METRICS = (
     ("bleu", "bleu", "BLEU", 2),
@@ -134,42 +135,6 @@ def qwen_lora_rows(results_root: Path, registry: dict[str, Any], model_key: str,
     }
 
 
-def pair_fills(zero_shot_val: float | None, few_shot_val: float | None) -> tuple[PatternFill | None, PatternFill | None]:
-    """Green for the higher (or tied-highest) value of the pair, yellow for the other."""
-    if zero_shot_val is None or few_shot_val is None:
-        return None, None
-    max_val = max(zero_shot_val, few_shot_val)
-    zero_fill = PAIR_FILLS["high"] if zero_shot_val == max_val else PAIR_FILLS["low"]
-    few_fill = PAIR_FILLS["high"] if few_shot_val == max_val else PAIR_FILLS["low"]
-    return zero_fill, few_fill
-
-
-def apply_cell_style(cell: Cell, *, fill: PatternFill | None = None) -> None:
-    cell.font = Font(bold=False)
-    cell.alignment = Alignment(horizontal="center", vertical="center")
-    if fill is not None:
-        cell.fill = fill
-    cell.border = THIN_BORDER
-
-
-def autofit_columns(ws: Worksheet, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
-    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
-    excluded = set()
-    for merged_range in ws.merged_cells.ranges:
-        if merged_range.max_col > merged_range.min_col:
-            excluded.add((merged_range.min_row, merged_range.min_col))
-
-    widths: dict[str, int] = {}
-    for row in ws.iter_rows():
-        for cell in row:
-            if cell.value is None or (cell.row, cell.column) in excluded:
-                continue
-            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
-
-    for col_letter, width in widths.items():
-        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
-
-
 def write_group_header(ws: Worksheet, start_col: int, cols_per_group: int) -> None:
     zero_shot_cell = ws.cell(row=1, column=start_col, value="zero_shot")
     apply_cell_style(zero_shot_cell, fill=HEADER_FILL)
@@ -189,11 +154,22 @@ def write_group_header(ws: Worksheet, start_col: int, cols_per_group: int) -> No
 def write_data_row(ws: Worksheet, row: int, start_col: int, zero_shot_values: list, few_shot_values: list) -> None:
     cols_per_group = len(METRICS)
     for offset in range(cols_per_group):
-        zero_fill, few_fill = pair_fills(zero_shot_values[offset], few_shot_values[offset])
+        fills = rank_fills({"zero_shot": zero_shot_values[offset], "few_shot": few_shot_values[offset]})
+        zero_fill_font = fills.get("zero_shot")
+        few_fill_font = fills.get("few_shot")
+
         zero_cell = ws.cell(row=row, column=start_col + offset, value=zero_shot_values[offset])
-        apply_cell_style(zero_cell, fill=zero_fill)
+        apply_cell_style(
+            zero_cell,
+            fill=zero_fill_font[0] if zero_fill_font else None,
+            font=zero_fill_font[1] if zero_fill_font else None,
+        )
         few_cell = ws.cell(row=row, column=start_col + cols_per_group + offset, value=few_shot_values[offset])
-        apply_cell_style(few_cell, fill=few_fill)
+        apply_cell_style(
+            few_cell,
+            fill=few_fill_font[0] if few_fill_font else None,
+            font=few_fill_font[1] if few_fill_font else None,
+        )
 
 
 def write_gpt_sheet(ws: Worksheet, rows_by_lang: dict[str, tuple[list, list]]) -> None:

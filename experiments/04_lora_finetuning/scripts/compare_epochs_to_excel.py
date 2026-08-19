@@ -8,8 +8,8 @@ epoch counts read from ``scripts/run_registry.json`` (not hardcoded). Reads
 mode only).
 
 Each value cell is colored by ranking that (language, metric) value **across the 3 epoch
-counts**: red = worst epoch, yellow = middle, green = best epoch. Same rank-coloring
-convention as ``experiments/01_term_expansion_by_model/scripts/compare_proper_term_across_models_to_excel.py``.
+counts** using the shared Good/Bad/Neutral convention (see ``src/analysis/excel_style.py``):
+green = best epoch, red = worst epoch, the remaining (strictly middle) epoch is left unfilled.
 
 Usage::
 
@@ -21,27 +21,26 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Any
 
 from openpyxl import Workbook
-from openpyxl.cell.cell import Cell
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.worksheet.worksheet import Worksheet
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.excel_style import (  # noqa: E402
+    HEADER_FILL,
+    apply_cell_style,
+    autofit_columns,
+    rank_fills,
+)
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEYS = ("3B", "7B")
 REQUIRED_EPOCHS = (1, 2, 3)
-
-HEADER_FILL = PatternFill(start_color="FFD9D9D9", end_color="FFD9D9D9", fill_type="solid")
-RANK_FILLS = {
-    "low": PatternFill(start_color="FFFF0000", end_color="FFFF0000", fill_type="solid"),
-    "mid": PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid"),
-    "high": PatternFill(start_color="FF00B050", end_color="FF00B050", fill_type="solid"),
-}
-
-THIN = Side(style="thin", color="000000")
-THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 METRICS = (
     ("bleu", "bleu", "BLEU", 2),
@@ -133,53 +132,6 @@ def epoch_label(num_epochs: int) -> str:
     return f"{num_epochs} epoch" if num_epochs == 1 else f"{num_epochs} epochs"
 
 
-def epoch_rank_fill(epoch_values: dict[int, float | None], num_epochs: int) -> PatternFill | None:
-    """Rank one epoch's (language, metric) value against its counterparts at the other epochs."""
-    present = {epoch: value for epoch, value in epoch_values.items() if value is not None}
-    value = epoch_values.get(num_epochs)
-    if value is None or not present:
-        return None
-
-    max_val = max(present.values())
-    min_val = min(present.values())
-    if value == max_val:
-        return RANK_FILLS["high"]
-    if value == min_val:
-        return RANK_FILLS["low"]
-    return RANK_FILLS["mid"]
-
-
-def apply_cell_style(
-    cell: Cell,
-    *,
-    bold: bool = False,
-    fill: PatternFill | None = None,
-) -> None:
-    cell.font = Font(bold=bold)
-    cell.alignment = Alignment(horizontal="center", vertical="center")
-    if fill is not None:
-        cell.fill = fill
-    cell.border = THIN_BORDER
-
-
-def autofit_columns(ws: Worksheet, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
-    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
-    excluded = set()
-    for merged_range in ws.merged_cells.ranges:
-        if merged_range.max_col > merged_range.min_col:
-            excluded.add((merged_range.min_row, merged_range.min_col))
-
-    widths: dict[str, int] = {}
-    for row in ws.iter_rows():
-        for cell in row:
-            if cell.value is None or (cell.row, cell.column) in excluded:
-                continue
-            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
-
-    for col_letter, width in widths.items():
-        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
-
-
 def write_sheet(ws: Worksheet, rows_by_lang: dict[str, dict[int, list[float | None]]]) -> None:
     cols_per_epoch = len(METRICS)
 
@@ -209,11 +161,17 @@ def write_sheet(ws: Worksheet, rows_by_lang: dict[str, dict[int, list[float | No
             values_by_epoch = {
                 num_epochs: epoch_values[num_epochs][metric_idx] for num_epochs in REQUIRED_EPOCHS
             }
+            fills = rank_fills(values_by_epoch)
 
             for epoch_idx, num_epochs in enumerate(REQUIRED_EPOCHS):
                 start_col = metric_start_col + epoch_idx * cols_per_epoch
                 cell = ws.cell(row=row_offset, column=start_col + metric_idx, value=values_by_epoch[num_epochs])
-                apply_cell_style(cell, fill=epoch_rank_fill(values_by_epoch, num_epochs))
+                fill_font = fills.get(num_epochs)
+                apply_cell_style(
+                    cell,
+                    fill=fill_font[0] if fill_font else None,
+                    font=fill_font[1] if fill_font else None,
+                )
 
     autofit_columns(ws)
 

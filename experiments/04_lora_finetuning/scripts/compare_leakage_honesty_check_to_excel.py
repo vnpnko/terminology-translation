@@ -19,9 +19,10 @@ on top of the difficulty confound, not instead of it.
 Reads ``metrics_summary.json`` from
 ``<results-root>/{gpt_base,<model_dir>/qwen_base,<model_dir>/<lora folder>}/test_cleaned_by_sentences/{overlap,no_overlap}/``.
 
-Each value cell is colored green if it is the higher (or tied-highest) of its
-overlap_data/no_overlap_data pair, yellow otherwise — no red is used. Same coloring
-convention as ``experiments/04_lora_finetuning/scripts/compare_few_shots_to_excel.py``.
+Each value cell is colored green if it is the higher of its overlap_data/no_overlap_data
+pair, red if it is the lower, and yellow if the pair ties (shared Good/Bad/Neutral
+convention, see ``src/analysis/excel_style.py``). Same coloring convention as
+``experiments/04_lora_finetuning/scripts/compare_few_shots_to_excel.py``.
 
 Usage::
 
@@ -33,24 +34,20 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Any
 
 from openpyxl import Workbook
-from openpyxl.cell.cell import Cell
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.worksheet.worksheet import Worksheet
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.analysis.excel_style import apply_cell_style, autofit_columns, rank_fills  # noqa: E402
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEY = "7B"
-
-PAIR_FILLS = {
-    "low": PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid"),
-    "high": PatternFill(start_color="FF00B050", end_color="FF00B050", fill_type="solid"),
-}
-
-THIN = Side(style="thin", color="000000")
-THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 METRICS = (
     ("bleu", "bleu", "BLEU", 2),
@@ -112,42 +109,6 @@ def subset_rows(base_dir: Path, subset: str) -> dict[str, list[float | None]]:
     return {lang: extract_row(summary, lang) for lang in LANG_ORDER}
 
 
-def pair_fills(bad_val: float | None, good_val: float | None) -> tuple[PatternFill | None, PatternFill | None]:
-    """Green for the higher (or tied-highest) value of the pair, yellow for the other."""
-    if bad_val is None or good_val is None:
-        return None, None
-    max_val = max(bad_val, good_val)
-    bad_fill = PAIR_FILLS["high"] if bad_val == max_val else PAIR_FILLS["low"]
-    good_fill = PAIR_FILLS["high"] if good_val == max_val else PAIR_FILLS["low"]
-    return bad_fill, good_fill
-
-
-def apply_cell_style(cell: Cell, *, fill: PatternFill | None = None) -> None:
-    cell.font = Font(bold=False)
-    cell.alignment = Alignment(horizontal="center", vertical="center")
-    if fill is not None:
-        cell.fill = fill
-    cell.border = THIN_BORDER
-
-
-def autofit_columns(ws: Worksheet, *, min_width: int = 8, max_width: int = 40, padding: int = 2) -> None:
-    """Size each column from its own cell contents (openpyxl has no true AutoFit)."""
-    excluded = set()
-    for merged_range in ws.merged_cells.ranges:
-        if merged_range.max_col > merged_range.min_col:
-            excluded.add((merged_range.min_row, merged_range.min_col))
-
-    widths: dict[str, int] = {}
-    for row in ws.iter_rows():
-        for cell in row:
-            if cell.value is None or (cell.row, cell.column) in excluded:
-                continue
-            widths[cell.column_letter] = max(widths.get(cell.column_letter, 0), len(str(cell.value)))
-
-    for col_letter, width in widths.items():
-        ws.column_dimensions[col_letter].width = max(min_width, min(width + padding, max_width))
-
-
 def write_group_header(ws: Worksheet, start_col: int, cols_per_group: int) -> None:
     bad_cell = ws.cell(row=1, column=start_col, value="overlap_data")
     apply_cell_style(bad_cell)
@@ -174,11 +135,21 @@ def write_block(ws: Worksheet, start_row: int, label: str, bad: dict[str, list],
         lang_cell = ws.cell(row=row, column=lang_col, value=lang)
         apply_cell_style(lang_cell)
         for offset in range(cols_per_group):
-            bad_fill, good_fill = pair_fills(bad[lang][offset], good[lang][offset])
+            fills = rank_fills({"bad": bad[lang][offset], "good": good[lang][offset]})
+            bad_fill_font = fills.get("bad")
+            good_fill_font = fills.get("good")
             bad_cell = ws.cell(row=row, column=data_start_col + offset, value=bad[lang][offset])
-            apply_cell_style(bad_cell, fill=bad_fill)
+            apply_cell_style(
+                bad_cell,
+                fill=bad_fill_font[0] if bad_fill_font else None,
+                font=bad_fill_font[1] if bad_fill_font else None,
+            )
             good_cell = ws.cell(row=row, column=data_start_col + cols_per_group + offset, value=good[lang][offset])
-            apply_cell_style(good_cell, fill=good_fill)
+            apply_cell_style(
+                good_cell,
+                fill=good_fill_font[0] if good_fill_font else None,
+                font=good_fill_font[1] if good_fill_font else None,
+            )
         row += 1
 
     block_cell = ws.cell(row=start_row, column=1, value=label)

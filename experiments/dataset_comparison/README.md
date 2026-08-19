@@ -17,7 +17,7 @@ Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_datas
 | Dataset | Results path |
 | ------- | ------------ |
 | `dev_v1` test | `results/dev_v1/original/zero_shot/gpt/metrics_summary.json` |
-| `dev_v2` training | `results/dev_v2/for_training/gpt/metrics_summary.json` |
+| `dev_v2` training | `results/dev_v2/gpt/metrics_summary.json` |
 
 ## Output
 

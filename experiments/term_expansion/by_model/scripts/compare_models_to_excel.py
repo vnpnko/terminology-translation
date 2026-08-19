@@ -59,7 +59,7 @@ BASELINE_LABELS = {
 
 DATASET_VARIANTS = (
     ("dev_v1", Path("dev_v1/original/few_shot"), BASELINE_DIRS),
-    ("dev_v2", Path("dev_v2/original"), BASELINE_DIRS),
+    ("dev_v2", Path("dev_v2"), BASELINE_DIRS),
 )
 
 METRICS = (

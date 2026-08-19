@@ -2,10 +2,6 @@
 
 Things about the current repo state worth knowing before writing the paper. Companion to [`README.md`](README.md).
 
-## Missing or unreproducible data
-
-- `test_cleaned_by_sentences`'s good/bad leakage-honesty evaluation exists only for Qwen 7B (`experiments/04_lora_finetuning/results/Qwen2.5-7B/`); no 3B good/bad results exist.
-
 ## Confounds to state plainly in the paper
 
 - The LoRA few-shot ablation is confounded with epoch count: `run_registry.json` has only one few-shot LoRA run (`lora_1_epoch_few_shot`); the 2- and 3-epoch runs are both zero-shot, so there's no clean way to isolate "few-shot effect" from "epoch count" on the LoRA side.

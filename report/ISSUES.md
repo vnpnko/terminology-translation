@@ -4,7 +4,6 @@ Things about the current repo state worth knowing before writing the paper. Comp
 
 ## Confounds to state plainly in the paper
 
-- The LoRA few-shot ablation is confounded with epoch count: `run_registry.json` has only one few-shot LoRA run (`lora_1_epoch_few_shot`); the 2- and 3-epoch runs are both zero-shot, so there's no clean way to isolate "few-shot effect" from "epoch count" on the LoRA side.
 - The leakage-honesty check's `overlap_data`/`no_overlap_data` split is confounded with sentence length and terminology density, not just training-set overlap: `overlap_data` sentences are 30–49% shorter on average and have meaningfully higher terminology density (most pronounced on `enes`, 38.8% vs. 17.8%), while total unique terms per subset are nearly identical. This is why even GPT (never trained on `dev_v2`) shows a real gap between the two subsets — the leakage-inflation reading for `qwen_lora` should be stated as "on top of this difficulty confound," not as if the confound were absent. See `README.md` §3.4.2 for the full write-up and numbers.
 
 ## Script/data inconsistencies
@@ -15,5 +14,4 @@ Things about the current repo state worth knowing before writing the paper. Comp
 
 ## Open questions for the user
 
-1. **Few-shot scope for the paper**: report only the clean baseline-level few-shot comparison (GPT/Qwen 3B/7B, no fine-tuning) and describe the LoRA-side epoch/few-shot confound as a stated limitation, or invest time in running the missing `lora_2_epoch_few_shot`/`lora_3_epoch_few_shot` configs first for a cleaner ablation?
-2. **Dead export pipeline**: delete `run_registry.json`'s unused `workbook` fields and the `export_finetuning_report.py`/`sheet_builders.py`/`metrics_parser.py` files outright, or leave them as reference?
+1. **Dead export pipeline**: delete `run_registry.json`'s unused `workbook` fields and the `export_finetuning_report.py`/`sheet_builders.py`/`metrics_parser.py` files outright, or leave them as reference?

@@ -52,14 +52,12 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 - **Figure:** `poster/figures/fig_lora_finetuning.pdf` — epoch ablation vs. GPT-4o-mini.
 - **Poster findings to reuse:** LoRA gains build through epochs, peak ~2 epochs; 7B term accuracy stable, 3B term accuracy drops without few-shot but recovers after fine-tuning; best 7B LoRA closes much of the BLEU gap to GPT, especially EN→RU, while GPT few-shot stays strongest on term accuracy.
 
-#### 3.4.1 Few-shot ablation — 🟡 two separate, differently-scoped experiments exist under this name
-There are **two distinct few-shot comparisons** in the repo; the report needs to pick which one(s) it reports and name them so readers don't conflate them:
+#### 3.4.1 Few-shot ablation — 🟢 two separate, differently-scoped comparisons exist under this name
+There are **two distinct few-shot comparisons** in the repo; name them separately in the report so readers don't conflate them:
 
 1. **Baseline-level few-shot** (GPT + Qwen 3B/7B, no fine-tuning): `results/dev_v1/original/zero_shot/{gpt,qwen_3b,qwen_7b}/` vs `results/dev_v1/original/few_shot/{gpt,qwen_3b,qwen_7b}/`.
-2. **LoRA-level few-shot** (Qwen only, tangled with epoch count): `run_registry.json`'s `lora_1_epoch_few_shot` is the only few-shot LoRA run; all multi-epoch runs (`lora_2_epoch_zero_shot`, `lora_3_epoch_zero_shot`) are zero-shot. So the LoRA-side "few-shot effect" is confounded with "epoch count" — there is no clean 2-epoch-few-shot run to isolate the two variables. The poster's framing ("few-shot prompting matters for terminology about as much as LoRA") is the honest way to describe this confound, not a clean ablation.
+2. **LoRA-level few-shot** (Qwen only, held at 1 epoch): `run_registry.json`'s `lora_1_epoch_few_shot` vs `lora_1_epoch_zero_shot`. The RQ here is whether few-shot prompting contributes differently to a trained vs. untrained model, not whether it interacts with epoch count — holding epoch count fixed at 1 while varying few-shot is exactly what isolates that, so the 2-/3-epoch runs (zero-shot only, used for the separate epoch-ablation axis) don't need a few-shot counterpart.
 3. `filter_test_sentence_overlap.py` defaults to an output directory (`data/test_cleaned_gpt`) that doesn't match the actually-committed `test_cleaned_by_sentences/` — regenerating the current data from scratch needs `--output-dir` passed explicitly.
-
-**Decision needed from user:** report only the baseline-level few-shot comparison (clean, 3 models × zero/few-shot) and describe the LoRA-side entanglement as a limitation, or invest in running the missing `lora_2_epoch_few_shot`/`lora_3_epoch_few_shot` configs first? See `ISSUES.md`.
 
 #### 3.4.2 Data-leakage honesty check (`leakage_honesty_check.xlsx`) — 🔴 fully undocumented in any README
 **Why this section exists:** dev_v2 is used as a training-set proxy for the shared task (see §3.3) because the real shared-task training data isn't available. But dev_v2 and dev_v1 are drawn from overlapping SAP documentation, so some dev_v2 lines are near-duplicates of dev_v1 test lines — fine-tuning on them would leak test signal and make LoRA's gains look bigger than they are.
@@ -99,5 +97,4 @@ There are **two distinct few-shot comparisons** in the repo; the report needs to
 
 ## Open questions
 
-See [`ISSUES.md`](ISSUES.md) for full detail. Short version:
-1. Report only the baseline-level few-shot comparison, or also fix the LoRA-side epoch/few-shot confound first (§3.4.1)?
+See [`ISSUES.md`](ISSUES.md) for full detail.

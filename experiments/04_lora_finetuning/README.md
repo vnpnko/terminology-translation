@@ -76,10 +76,9 @@ Uses `openpyxl` from the repo root [`requirements.txt`](../../requirements.txt).
 | `scripts/compare_base_vs_lora_to_excel.py` | Builds `report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx` (qwen_base_few_shot vs qwen_lora_zero_shot, one sheet, 3B/7B blocks) from `metrics_summary.json`, run selection driven by `run_registry.json` |
 | `scripts/compare_best_models_to_excel.py` | Builds `report/best_models.xlsx` (best Qwen 7B LoRA config, default 2 epochs zero-shot, vs GPT-4o-mini) from `metrics_summary.json`; LoRA run overridable via `--lora-run` |
 | `scripts/filter_test_sentence_overlap.py` | Filters test sentences overlapping with training data |
-| `scripts/figure_lora_finetuning.py` | Builds the poster's `fig_lora_finetuning` figure (`build_lora_finetuning_figure`; run via `python src/analysis/generate_result_figures.py --only lora_finetuning`) |
+| `scripts/figure_lora_finetuning.py` | Builds the poster's `fig_lora_finetuning` figure (`build_lora_finetuning_figure`; run via `python src/analysis/generate_result_figures.py --only lora_finetuning`); imports `metrics_parser.py` for `metrics_summary.json` loading/aggregation helpers |
 | `scripts/remove_dev_v2_overlap.py` | Removes `dev_v2` lines whose English source also appears in `dev_v1/dev_v1_original` (writes `data/dev_v2_deduped/`); feeds the leakage honesty-check comparisons |
-| `scripts/run_registry.json` | Run registry (folder names, `use_few_shot`, epoch counts) driving `compare_epochs_to_excel.py`, `compare_base_vs_lora_to_excel.py`, `compare_best_models_to_excel.py`, and `compare_leakage_honesty_check_to_excel.py`; also carries unused `workbook` fields (see next row) |
-| `scripts/metrics_parser.py`, `scripts/sheet_builders.py`, `scripts/export_finetuning_report.py` | Export pipeline for a `results_Qwen2.5-{3B,7B}.xlsx` / `results_GPT4o-mini.xlsx` workbook format; produces nothing currently used in `report/` (see [`report/ISSUES.md`](../../report/ISSUES.md)) |
+| `scripts/run_registry.json` | Run registry (folder names, `use_few_shot`, epoch counts) driving `compare_epochs_to_excel.py`, `compare_base_vs_lora_to_excel.py`, `compare_best_models_to_excel.py`, and `compare_leakage_honesty_check_to_excel.py` |
 
 ### Notes
 

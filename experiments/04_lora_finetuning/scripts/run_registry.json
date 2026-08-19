@@ -1,7 +1,6 @@
 {
   "gpt": {
     "model_size": "gpt",
-    "workbook": "results_GPT4o-mini.xlsx",
     "runs": [
       {
         "run_id": "gpt_base",
@@ -16,7 +15,6 @@
   "3B": {
     "model_size": "3B",
     "model_dir": "Qwen2.5-3B",
-    "workbook": "results_Qwen2.5-3B.xlsx",
     "runs": [
       {
         "run_id": "base_few_shot",
@@ -63,7 +61,6 @@
   "7B": {
     "model_size": "7B",
     "model_dir": "Qwen2.5-7B",
-    "workbook": "results_Qwen2.5-7B.xlsx",
     "runs": [
       {
         "run_id": "base_few_shot",

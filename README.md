@@ -94,8 +94,8 @@ Generated comparison Excel files live inside the experiment they compare, under 
 
 | Report dir | Produced by | Naming pattern |
 | ---------- | ----------- | --------------- |
-| [`experiments/01_term_expansion_by_model/report/`](experiments/01_term_expansion_by_model/README.md#report-tables) | `scripts/compare_models_to_excel.py` | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_cleaned_model_comparison.xlsx`; `dev_v1_original` splits into `dev_v1_original_zero_shot_model_comparison.xlsx` and `dev_v1_original_few_shot_model_comparison.xlsx`) |
-| [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `scripts/compare_languages_to_excel.py` | `<dataset>_language_comparison.xlsx` (same `dev_v1_original` zero_shot/few_shot split) |
+| [`experiments/01_term_expansion_by_model/report/`](experiments/01_term_expansion_by_model/README.md#report-tables) | `scripts/compare_models_to_excel.py` | `model_comparison.xlsx` (one sheet per dataset variant: `dev_v1_original_zero_shot`, `dev_v1_original_few_shot`, `dev_v1_expand`, `dev_v1_cleaned`, `dev_v2`) |
+| [`experiments/02_term_expansion_by_language_pair/report/`](experiments/02_term_expansion_by_language_pair/README.md#report-tables) | `scripts/compare_languages_to_excel.py` | `language_comparison.xlsx` (same per-variant sheet split) |
 | [`experiments/03_dataset_comparison/report/`](experiments/03_dataset_comparison/README.md#report-tables) | `scripts/compare_datasets_to_excel.py`, `scripts/compare_v1_variants_to_excel.py` | `dev_v1_original_vs_dev_v2_dataset_comparison.xlsx` (one sheet per model), `dev_v1_original_vs_dev_v1_dictionary_gpt_comparison.xlsx` |
 | [`experiments/05_gpt_proposed_terms/report/`](experiments/05_gpt_proposed_terms/README.md) | `scripts/compare_gpt_pipeline_modes_to_excel.py` | `dev_v1_original_gpt_pipeline_mode_comparison.xlsx` |
 

@@ -1,15 +1,14 @@
-"""Compare GPT, Qwen 3B, and Qwen 7B baseline metrics_summary.json files into one Excel sheet.
+"""Compare GPT, Qwen 3B, and Qwen 7B baseline metrics_summary.json files into one Excel workbook.
 
 Writes one styled .xlsx file (default:
-``experiments/01_term_expansion_by_model/report/<dataset>_model_comparison.xlsx``).
-Reads ``metrics_summary.json`` from ``<dataset_dir>/{gpt,qwen_3b,qwen_7b}/``.
+``experiments/01_term_expansion_by_model/report/model_comparison.xlsx``) with one
+sheet per dataset variant (``dev_v1_original_zero_shot``, ``dev_v1_original_few_shot``,
+``dev_v1_expand``, ``dev_v1_cleaned``, ``dev_v2``). Reads ``metrics_summary.json``
+from ``<results-root>/<variant>/{gpt,qwen_3b,qwen_7b}/``.
 
 Usage::
 
-    python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/original
-    python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/expand
-    python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v1/cleaned
-    python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py results/dev_v2
+    python experiments/01_term_expansion_by_model/scripts/compare_models_to_excel.py
 """
 
 from __future__ import annotations
@@ -44,6 +43,14 @@ BASELINE_LABELS = {
     "qwen_3b": "Qwen 3B",
     "qwen_7b": "Qwen 7B",
 }
+
+DATASET_VARIANTS = (
+    ("dev_v1_original_zero_shot", Path("dev_v1/original/zero_shot")),
+    ("dev_v1_original_few_shot", Path("dev_v1/original/few_shot")),
+    ("dev_v1_expand", Path("dev_v1/expand")),
+    ("dev_v1_cleaned", Path("dev_v1/cleaned")),
+    ("dev_v2", Path("dev_v2")),
+)
 
 METRICS = (
     ("bleu", "bleu", "BLEU"),
@@ -97,6 +104,17 @@ def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[
     return by_lang_mode
 
 
+def validate_all_variants(results_root: Path) -> None:
+    missing = [
+        str(results_root / variant_path / baseline_dir / "metrics_summary.json")
+        for _, variant_path in DATASET_VARIANTS
+        for baseline_dir in BASELINE_DIRS
+        if not (results_root / variant_path / baseline_dir / "metrics_summary.json").exists()
+    ]
+    if missing:
+        raise FileNotFoundError(f"Missing metrics file(s): {missing}")
+
+
 def build_comparison(dataset_dir: Path) -> pd.DataFrame:
     summaries: dict[str, dict[tuple[str, str], dict[str, float | None]]] = {}
 
@@ -139,11 +157,7 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=columns)
 
 
-def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "metrics"
-
+def write_sheet(ws, df: pd.DataFrame) -> None:
     fixed_headers = ("mode", "language")
     value_subheaders = tuple(BASELINE_LABELS[baseline_dir] for baseline_dir in BASELINE_DIRS) + ("best",)
     cols_per_metric = len(value_subheaders)
@@ -210,41 +224,20 @@ def write_styled_excel(df: pd.DataFrame, output_path: Path) -> None:
 
     autofit_columns(ws)
 
-    wb.save(output_path)
-
-
-def dataset_slug(dataset_dir: Path) -> str:
-    parts = list(dataset_dir.resolve().parts)
-    if "results" in parts:
-        parts = parts[parts.index("results") + 1 :]
-    return "_".join(parts)
-
-
-def default_output_path(dataset_dir: Path, report_dir: Path) -> Path:
-    return report_dir / f"{dataset_slug(dataset_dir)}_model_comparison.xlsx"
-
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "dataset_dir",
+        "--results-root",
         type=Path,
-        help="Results directory containing gpt/, qwen_3b/, and qwen_7b/ subfolders",
+        default=Path("results"),
+        help="Root directory containing dev_v1/{original,expand,cleaned} and dev_v2 result folders",
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=None,
-        help=(
-            "Output .xlsx path "
-            "(default: experiments/01_term_expansion_by_model/report/<dataset>_model_comparison.xlsx)"
-        ),
-    )
-    parser.add_argument(
-        "--report-dir",
-        type=Path,
-        default=Path("experiments/01_term_expansion_by_model/report"),
-        help="Report output directory when --output is not set",
+        default=Path("experiments/01_term_expansion_by_model/report/model_comparison.xlsx"),
+        help="Output .xlsx path",
     )
     return parser.parse_args()
 
@@ -252,18 +245,30 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    dataset_dir = args.dataset_dir.resolve()
-    output_path = (
-        args.output.resolve()
-        if args.output
-        else default_output_path(dataset_dir, args.report_dir.resolve())
-    )
+    results_root = args.results_root.resolve()
+    validate_all_variants(results_root)
+
+    output_path = args.output.resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    df = build_comparison(dataset_dir)
-    write_styled_excel(df, output_path)
+    wb = Workbook()
+    wb.remove(wb.active)
 
-    print(f"Wrote {len(df)} rows ({len(MODE_ORDER)} modes x {len(LANG_ORDER)} languages) to {output_path}")
+    row_count = 0
+    for sheet_title, variant_path in DATASET_VARIANTS:
+        df = build_comparison(results_root / variant_path)
+        row_count = len(df)
+        ws = wb.create_sheet(title=sheet_title)
+        write_sheet(ws, df)
+
+    wb.save(output_path)
+
+    variant_names = ", ".join(name for name, _ in DATASET_VARIANTS)
+    print(
+        f"Wrote {len(DATASET_VARIANTS)} sheets ({variant_names}), "
+        f"{row_count} rows each ({len(MODE_ORDER)} modes x {len(LANG_ORDER)} languages), "
+        f"to {output_path}"
+    )
 
 
 if __name__ == "__main__":

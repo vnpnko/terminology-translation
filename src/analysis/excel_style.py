@@ -31,12 +31,24 @@ THIN = Side(style="thin", color="000000")
 THICK = Side(style="medium", color="000000")
 THIN_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
+# Display heuristic, not a significance test: a comparison group whose spread is
+# within this fraction of its larger value reads as "no meaningful difference" and
+# is colored as a tie.
+TIE_RELATIVE_TOLERANCE = 0.01
+
+
+def _is_tie(max_val: float, min_val: float) -> bool:
+    if max_val == min_val:
+        return True
+    return abs(max_val - min_val) <= TIE_RELATIVE_TOLERANCE * max(abs(max_val), abs(min_val))
+
 
 def rank_fills(values: dict[K, float | None]) -> dict[K, tuple[PatternFill, Font]]:
     """Classify each series' value against the others in the same comparison group.
 
     - Series with a ``None`` value are omitted from the result (no fill).
-    - If every present value is equal, every series gets Neutral (tie).
+    - If every present value is equal, or the whole group's spread is within
+      ``TIE_RELATIVE_TOLERANCE`` of its larger value, every series gets Neutral (tie).
     - Otherwise the max value(s) get Good, the min value(s) get Bad, and any
       value strictly between the max and min (only possible with 3+ series)
       is omitted from the result (left unfilled).
@@ -47,7 +59,7 @@ def rank_fills(values: dict[K, float | None]) -> dict[K, tuple[PatternFill, Font
 
     max_val = max(present.values())
     min_val = min(present.values())
-    if max_val == min_val:
+    if _is_tie(max_val, min_val):
         return {key: (NEUTRAL_FILL, NEUTRAL_FONT) for key in present}
 
     result: dict[K, tuple[PatternFill, Font]] = {}
@@ -57,6 +69,25 @@ def rank_fills(values: dict[K, float | None]) -> dict[K, tuple[PatternFill, Font
         elif value == min_val:
             result[key] = (BAD_FILL, BAD_FONT)
     return result
+
+
+def best_label(values: dict[K, float | None]) -> K | str | None:
+    """Winner key for a ``best_<metric>`` label column: a key, ``"tie"``, or ``None``.
+
+    Uses the same tie rule as ``rank_fills`` (exact equality or within
+    ``TIE_RELATIVE_TOLERANCE``), applied to the group's overall spread.
+    """
+    present = {key: value for key, value in values.items() if value is not None}
+    if not present:
+        return None
+
+    max_val = max(present.values())
+    min_val = min(present.values())
+    if _is_tie(max_val, min_val):
+        return "tie"
+
+    winners = [key for key, value in present.items() if value == max_val]
+    return "tie" if len(winners) > 1 else winners[0]
 
 
 def label_fill(label: str | None) -> tuple[PatternFill, Font] | None:

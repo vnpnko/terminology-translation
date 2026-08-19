@@ -20,6 +20,10 @@ Every experiment below draws on the same building blocks (source: [`src/analysis
 - **dev_v1** — 500 sentences/language pair, the held-out test set.
 - **dev_v2** — sourced from SAP `term_postedits`; **not** the original shared-task dev set, used as a proxy because it's the same documentation domain. Originally 2000 lines/language; see §3.4.2 for how it was cut down for training.
 
+## Report table coloring conventions
+
+Every `compare_*_to_excel.py` script (see [`src/analysis/excel_style.py`](../src/analysis/excel_style.py)) colors cells within each comparison group using Excel's own built-in Good/Bad/Neutral cell styles: green = best value, red = worst value, yellow = tie. A "tie" includes exact equality and any spread within 1% of the larger value (`TIE_RELATIVE_TOLERANCE`) — a display heuristic for readability, not a statistical significance claim, since these are single-run point estimates rather than multi-seed/bootstrap results. In 3+-way comparisons, a value that is neither best nor worst nor tied with either is left unfilled.
+
 ## Experiments section outline
 
 Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented · ⚫ Data/results missing.

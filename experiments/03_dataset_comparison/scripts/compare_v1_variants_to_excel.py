@@ -27,7 +27,7 @@ from openpyxl.styles import Alignment, Border, Font, Side
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.analysis.excel_style import HEADER_FILL, autofit_columns, label_fill  # noqa: E402
+from src.analysis.excel_style import HEADER_FILL, autofit_columns, best_label, label_fill  # noqa: E402
 
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("no_term", "proper_term", "random_term")
@@ -89,15 +89,6 @@ def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[
     return by_lang_mode
 
 
-def best_variant(values: dict[str, float | None]) -> str | None:
-    present = {label: value for label, value in values.items() if value is not None}
-    if not present:
-        return None
-    max_val = max(present.values())
-    winners = [label for label, value in present.items() if abs(value - max_val) < 1e-9]
-    return "tie" if len(winners) > 1 else winners[0]
-
-
 def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
     summaries: dict[str, dict[tuple[str, str], dict[str, float | None]]] = {}
     for variant_label, variant_path in VARIANT_PATHS.items():
@@ -122,7 +113,7 @@ def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
                     value = metrics.get(column) if metrics else None
                     row[f"{variant_label}_{column}"] = value
                     labeled[variant_label] = value
-                row[f"best_{column}"] = best_variant(labeled)
+                row[f"best_{column}"] = best_label(labeled)
             rows.append(row)
 
     columns = ["mode", "language"]

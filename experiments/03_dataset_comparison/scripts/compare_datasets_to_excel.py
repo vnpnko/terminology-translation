@@ -35,6 +35,7 @@ from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,
+    best_label,
     label_fill,
 )
 
@@ -99,18 +100,6 @@ def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[
     return by_lang_mode
 
 
-def best_dataset(values: dict[str, float | None]) -> str | None:
-    present = {label: value for label, value in values.items() if value is not None}
-    if not present:
-        return None
-
-    max_val = max(present.values())
-    winners = [label for label, value in present.items() if abs(value - max_val) < 1e-9]
-    if len(winners) > 1:
-        return "tie"
-    return winners[0]
-
-
 def validate_all_baselines(results_root: Path) -> None:
     for dataset_label, dataset_path in DATASET_PATHS.items():
         resolved = (results_root / dataset_path).resolve()
@@ -150,7 +139,7 @@ def build_comparison(results_root: Path, baseline: str) -> pd.DataFrame:
                     row[f"{dataset_label}_{column}"] = value
                     labeled_values[dataset_label] = value
 
-                row[f"best_{column}"] = best_dataset(labeled_values)
+                row[f"best_{column}"] = best_label(labeled_values)
 
             rows.append(row)
 

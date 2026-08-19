@@ -35,6 +35,7 @@ from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,
+    best_label,
     label_fill,
 )
 
@@ -99,18 +100,6 @@ def extract_mode_metrics(summary: dict[str, Any]) -> dict[tuple[str, str], dict[
     return by_lang_mode
 
 
-def best_language(values: dict[str, float | None]) -> str | None:
-    present = {label: value for label, value in values.items() if value is not None}
-    if not present:
-        return None
-
-    max_val = max(present.values())
-    winners = [label for label, value in present.items() if abs(value - max_val) < 1e-9]
-    if len(winners) > 1:
-        return "tie"
-    return winners[0]
-
-
 def build_comparison(dataset_dir: Path) -> pd.DataFrame:
     summaries: dict[str, dict[tuple[str, str], dict[str, float | None]]] = {}
 
@@ -143,7 +132,7 @@ def build_comparison(dataset_dir: Path) -> pd.DataFrame:
                     row[f"{lang}_{column}"] = value
                     labeled_values[lang] = value
 
-                row[f"best_{column}"] = best_language(labeled_values)
+                row[f"best_{column}"] = best_label(labeled_values)
 
             rows.append(row)
 

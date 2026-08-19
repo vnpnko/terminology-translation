@@ -32,7 +32,7 @@ from openpyxl.styles import Alignment, Border, Font, Side
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.analysis.excel_style import HEADER_FILL, autofit_columns, label_fill  # noqa: E402
+from src.analysis.excel_style import HEADER_FILL, autofit_columns, best_label, label_fill  # noqa: E402
 
 LANG_ORDER = ("ende", "enru", "enes")
 MODE_ORDER = ("proper_term", "gpt_proposed_term")
@@ -100,15 +100,6 @@ def oracle_diagnostics_by_lang(summary: dict[str, Any], mode: str) -> dict[str, 
     return by_lang
 
 
-def best_mode(values: dict[str, float | None]) -> str | None:
-    present = {label: value for label, value in values.items() if value is not None}
-    if not present:
-        return None
-    max_val = max(present.values())
-    winners = [label for label, value in present.items() if abs(value - max_val) < 1e-9]
-    return "tie" if len(winners) > 1 else winners[0]
-
-
 def build_comparison(oracle_summary: dict[str, Any], pipeline_summary: dict[str, Any]) -> pd.DataFrame:
     by_mode = {
         "proper_term": mode_metrics_by_lang(oracle_summary, "proper_term"),
@@ -128,7 +119,7 @@ def build_comparison(oracle_summary: dict[str, Any], pipeline_summary: dict[str,
                 value = metrics.get(column) if metrics else None
                 row[f"{mode}_{column}"] = value
                 labeled[mode] = value
-            row[f"best_{column}"] = best_mode(labeled)
+            row[f"best_{column}"] = best_label(labeled)
         rows.append(row)
 
     columns = ["language"]

@@ -25,8 +25,6 @@ Usage::
 from __future__ import annotations
 
 import argparse
-import json
-import math
 import sys
 from pathlib import Path
 from typing import Any
@@ -36,7 +34,18 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
+from compare_common import (  # noqa: E402
+    METRICS,
+    RUN_GPT_BASE,
+    RUN_LORA_1_EPOCH_FEW_SHOT,
+    RUN_LORA_1_EPOCH_ZERO_SHOT,
+    extract_row,
+    load_metrics_summary,
+    load_registry,
+    write_group_header,
+)
 from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
@@ -48,67 +57,18 @@ LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEYS = ("3B", "7B")
 BASELINE_DIRS = {"3B": "qwen_3b", "7B": "qwen_7b"}
 
-METRICS = (
-    ("bleu", "bleu", "BLEU", 2),
-    ("chrf", "chrf", "chrF", 2),
-    ("term_accuracy_pct", ("terminology_accuracy", "avg_ratio_pct"), "Term Acc (%)", 2),
-    ("macro_avg_consistency", ("terminology_consistency", "macro_avg_consistency"), "Cons Macro Avg", 4),
-    (
-        "weighted_avg_consistency",
-        ("terminology_consistency", "weighted_avg_consistency"),
-        "Cons Weighted Avg",
-        4,
-    ),
-)
-
-
-def load_registry(registry_path: Path) -> dict[str, Any]:
-    with registry_path.open(encoding="utf-8") as f:
-        return json.load(f)
-
-
-def load_metrics_summary(path: Path) -> dict[str, Any] | None:
-    if not path.exists():
-        return None
-    with path.open(encoding="utf-8") as f:
-        return json.load(f)
-
-
-def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> float | None:
-    if isinstance(spec, str):
-        value = metrics.get(spec)
-    else:
-        section, key = spec
-        value = metrics.get(section, {}).get(key)
-    if value is None:
-        return None
-    if isinstance(value, float) and math.isnan(value):
-        return None
-    return value
-
-
-def extract_row(summary: dict[str, Any] | None, lang: str) -> list[float | None]:
-    if summary is None:
-        return [None] * len(METRICS)
-    metrics = summary["languages"][lang]["modes"]["proper_term"]["metrics"]
-    values = []
-    for _, spec, _, decimals in METRICS:
-        value = extract_metric(metrics, spec)
-        values.append(round(value, decimals) if value is not None else None)
-    return values
-
 
 def lora_1_epoch_runs(registry: dict[str, Any], model_key: str) -> tuple[dict[str, Any], dict[str, Any]]:
     """Return (zero_shot_run, few_shot_run) for 1-epoch LoRA runs."""
     runs = {run["run_id"]: run for run in registry[model_key]["runs"]}
-    return runs["lora_1_epoch_zero_shot"], runs["lora_1_epoch_few_shot"]
+    return runs[RUN_LORA_1_EPOCH_ZERO_SHOT], runs[RUN_LORA_1_EPOCH_FEW_SHOT]
 
 
 def gpt_rows(results_root: Path, baseline_results_root: Path) -> dict[str, tuple[list, list]]:
     zero_shot_summary = load_metrics_summary(
         baseline_results_root / "dev_v1" / "original" / "zero_shot" / "gpt" / "metrics_summary.json"
     )
-    few_shot_summary = load_metrics_summary(results_root / "gpt_base" / "metrics_summary.json")
+    few_shot_summary = load_metrics_summary(results_root / RUN_GPT_BASE / "metrics_summary.json")
     return {
         lang: (extract_row(zero_shot_summary, lang), extract_row(few_shot_summary, lang)) for lang in LANG_ORDER
     }
@@ -133,22 +93,6 @@ def qwen_lora_rows(results_root: Path, registry: dict[str, Any], model_key: str,
     return {
         lang: (extract_row(zero_shot_summary, lang), extract_row(few_shot_summary, lang)) for lang in LANG_ORDER
     }
-
-
-def write_group_header(ws: Worksheet, start_col: int, cols_per_group: int) -> None:
-    zero_shot_cell = ws.cell(row=1, column=start_col, value="zero_shot")
-    apply_cell_style(zero_shot_cell, fill=HEADER_FILL)
-    ws.merge_cells(start_row=1, start_column=start_col, end_row=1, end_column=start_col + cols_per_group - 1)
-
-    few_shot_col = start_col + cols_per_group
-    few_shot_cell = ws.cell(row=1, column=few_shot_col, value="few_shot")
-    apply_cell_style(few_shot_cell, fill=HEADER_FILL)
-    ws.merge_cells(start_row=1, start_column=few_shot_col, end_row=1, end_column=few_shot_col + cols_per_group - 1)
-
-    for group_start in (start_col, few_shot_col):
-        for offset, (_, _, title, _) in enumerate(METRICS):
-            sub_cell = ws.cell(row=2, column=group_start + offset, value=title)
-            apply_cell_style(sub_cell, fill=HEADER_FILL)
 
 
 def write_data_row(ws: Worksheet, row: int, start_col: int, zero_shot_values: list, few_shot_values: list) -> None:
@@ -179,7 +123,7 @@ def write_gpt_sheet(ws: Worksheet, rows_by_lang: dict[str, tuple[list, list]]) -
     apply_cell_style(lang_header, fill=HEADER_FILL)
     ws.merge_cells(start_row=1, start_column=1, end_row=2, end_column=1)
 
-    write_group_header(ws, start_col=2, cols_per_group=cols_per_group)
+    write_group_header(ws, 2, cols_per_group, "zero_shot", "few_shot", fill=HEADER_FILL)
 
     for row_offset, lang in enumerate(LANG_ORDER, start=3):
         lang_cell = ws.cell(row=row_offset, column=1, value=lang)
@@ -207,7 +151,7 @@ def write_qwen_sheet(
     apply_cell_style(lang_header, fill=HEADER_FILL)
     ws.merge_cells(start_row=1, start_column=2, end_row=2, end_column=2)
 
-    write_group_header(ws, start_col=data_start_col, cols_per_group=cols_per_group)
+    write_group_header(ws, data_start_col, cols_per_group, "zero_shot", "few_shot", fill=HEADER_FILL)
 
     row = 3
     for block_label, rows_by_lang in (("qwen_base", base_rows_by_lang), ("qwen_lora", lora_rows_by_lang)):
@@ -231,7 +175,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--results-root",
         type=Path,
-        default=Path("experiments/lora_finetuning/results"),
+        default=Path("experiments/lora_finetuning/shared/results"),
         help="Root directory containing gpt_base/ and Qwen2.5-3B/, Qwen2.5-7B/ result folders",
     )
     parser.add_argument(
@@ -243,7 +187,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--registry",
         type=Path,
-        default=Path("experiments/lora_finetuning/run_registry.json"),
+        default=Path("experiments/lora_finetuning/shared/run_registry.json"),
         help="Path to run_registry.json",
     )
     parser.add_argument(
@@ -256,7 +200,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def validate_required(results_root: Path, registry: dict[str, Any]) -> None:
-    required = [results_root / "gpt_base" / "metrics_summary.json"]
+    required = [results_root / RUN_GPT_BASE / "metrics_summary.json"]
     for model_key in MODEL_KEYS:
         model_dir = registry[model_key]["model_dir"]
         required.append(results_root / model_dir / "qwen_base" / "metrics_summary.json")

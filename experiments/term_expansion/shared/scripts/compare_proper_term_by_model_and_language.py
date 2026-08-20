@@ -23,8 +23,8 @@ override with ``--original`` if you want the ``zero_shot`` variant instead.
 
 Usage::
 
-    python experiments/term_expansion/scripts/compare_proper_term_by_model_and_language.py
-    python experiments/term_expansion/scripts/compare_proper_term_by_model_and_language.py --original results/dev_v1/original/zero_shot
+    python experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py
+    python experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py --original results/dev_v1/original/zero_shot
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ from typing import Any
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.analysis.excel_style import (  # noqa: E402
@@ -314,13 +314,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model-output",
         type=Path,
-        default=Path("experiments/term_expansion/report/proper_term_across_models.xlsx"),
+        default=Path("experiments/term_expansion/by_model/report/proper_term_across_models.xlsx"),
         help="Output .xlsx path for the by-model workbook",
     )
     parser.add_argument(
         "--language-output",
         type=Path,
-        default=Path("experiments/term_expansion/report/proper_term_across_languages.xlsx"),
+        default=Path("experiments/term_expansion/by_language_pair/report/proper_term_across_languages.xlsx"),
         help="Output .xlsx path for the by-language workbook",
     )
     return parser.parse_args()

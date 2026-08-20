@@ -1,6 +1,6 @@
 # Base (few-shot) vs LoRA (1 epoch, zero-shot)
 
-Compares `qwen_base_few_shot` vs `qwen_lora_zero_shot` (1 epoch), for 3B and 7B — does 1 epoch of fine-tuning beat few-shot prompting without any fine-tuning? `proper_term` mode only. Reuses the parent [`lora_finetuning/`](../README.md)'s shared `results/`, `data/`, and `run_registry.json` — see that README for run naming and registered-runs details.
+Compares `qwen_base_few_shot` vs `qwen_lora_zero_shot` (1 epoch), for 3B and 7B — does 1 epoch of fine-tuning beat few-shot prompting without any fine-tuning? `proper_term` mode only. Reuses the parent [`lora_finetuning/`](../README.md)'s shared `shared/results/`, `shared/data/`, and `shared/run_registry.json` — see that README for run naming and registered-runs details.
 
 ## Report table
 
@@ -12,4 +12,4 @@ Compares `qwen_base_few_shot` vs `qwen_lora_zero_shot` (1 epoch), for 3B and 7B 
 
 | File | Role |
 |------|------|
-| `scripts/compare_base_vs_lora_to_excel.py` | Builds `report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx` from `metrics_summary.json`, run selection driven by [`../run_registry.json`](../run_registry.json) |
+| `scripts/compare_base_vs_lora_to_excel.py` | Builds `report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx` from `metrics_summary.json`, run selection driven by [`../shared/run_registry.json`](../shared/run_registry.json); shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |

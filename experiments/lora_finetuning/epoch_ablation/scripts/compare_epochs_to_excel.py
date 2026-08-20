@@ -19,8 +19,6 @@ Usage::
 from __future__ import annotations
 
 import argparse
-import json
-import math
 import sys
 from pathlib import Path
 from typing import Any
@@ -30,7 +28,9 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
+from compare_common import METRICS, extract_row, load_metrics_summary, load_registry  # noqa: E402
 from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
@@ -41,24 +41,6 @@ from src.analysis.excel_style import (  # noqa: E402
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEYS = ("3B", "7B")
 REQUIRED_EPOCHS = (1, 2, 3)
-
-METRICS = (
-    ("bleu", "bleu", "BLEU", 2),
-    ("chrf", "chrf", "chrF", 2),
-    ("term_accuracy_pct", ("terminology_accuracy", "avg_ratio_pct"), "Term Acc (%)", 2),
-    ("macro_avg_consistency", ("terminology_consistency", "macro_avg_consistency"), "Cons Macro Avg", 4),
-    (
-        "weighted_avg_consistency",
-        ("terminology_consistency", "weighted_avg_consistency"),
-        "Cons Weighted Avg",
-        4,
-    ),
-)
-
-
-def load_registry(registry_path: Path) -> dict[str, Any]:
-    with registry_path.open(encoding="utf-8") as f:
-        return json.load(f)
 
 
 def epoch_runs_for_model(registry: dict[str, Any], model_key: str) -> list[tuple[int, dict[str, Any]]]:
@@ -74,34 +56,6 @@ def epoch_runs_for_model(registry: dict[str, Any], model_key: str) -> list[tuple
         )
 
     return [(epoch, by_epoch[epoch]) for epoch in REQUIRED_EPOCHS]
-
-
-def load_metrics_summary(results_root: Path, model_dir: str, folder: str) -> dict[str, Any]:
-    path = results_root / model_dir / folder / "metrics_summary.json"
-    with path.open(encoding="utf-8") as f:
-        return json.load(f)
-
-
-def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> float | None:
-    if isinstance(spec, str):
-        value = metrics.get(spec)
-    else:
-        section, key = spec
-        value = metrics.get(section, {}).get(key)
-    if value is None:
-        return None
-    if isinstance(value, float) and math.isnan(value):
-        return None
-    return value
-
-
-def extract_row(summary: dict[str, Any], lang: str) -> list[float | None]:
-    metrics = summary["languages"][lang]["modes"]["proper_term"]["metrics"]
-    values = []
-    for _, spec, _, decimals in METRICS:
-        value = extract_metric(metrics, spec)
-        values.append(round(value, decimals) if value is not None else None)
-    return values
 
 
 def validate_all_runs(results_root: Path, registry: dict[str, Any]) -> None:
@@ -120,7 +74,8 @@ def build_model_rows(
     epoch_runs = epoch_runs_for_model(registry, model_key)
 
     summaries = {
-        epoch: load_metrics_summary(results_root, model_dir, run["folder"]) for epoch, run in epoch_runs
+        epoch: load_metrics_summary(results_root / model_dir / run["folder"] / "metrics_summary.json")
+        for epoch, run in epoch_runs
     }
 
     return {
@@ -181,13 +136,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--results-root",
         type=Path,
-        default=Path("experiments/lora_finetuning/results"),
+        default=Path("experiments/lora_finetuning/shared/results"),
         help="Root directory containing Qwen2.5-3B/ and Qwen2.5-7B/ result folders",
     )
     parser.add_argument(
         "--registry",
         type=Path,
-        default=Path("experiments/lora_finetuning/run_registry.json"),
+        default=Path("experiments/lora_finetuning/shared/run_registry.json"),
         help="Path to run_registry.json",
     )
     parser.add_argument(

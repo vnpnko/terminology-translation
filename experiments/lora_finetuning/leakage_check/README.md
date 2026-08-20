@@ -2,7 +2,7 @@
 
 Checks whether LoRA training on `dev_v2` leaked into the `dev_v1` test set: splits `dev_v1` test sentences into `overlap`/`no_overlap` subsets by ≥50% token containment with the training set, then compares `overlap_data` vs. `no_overlap_data` performance for `qwen_base` (untrained, control), `gpt` (closed model, never exposed to `dev_v2` training data, control), and `qwen_lora` (trained, the model under test) — controls first so the overlap-vs-no-overlap gap visibly grows with training exposure. `proper_term` mode only.
 
-`data/{overlap,no_overlap}/` (the test-sentence split) lives here since this check is its only consumer; it's built from the parent [`lora_finetuning/`](../README.md)'s shared `data/training/` and `data/test/` via `filter_test_sentence_overlap.py` below. The resulting `results/*/test_cleaned_by_sentences/{overlap,no_overlap}/metrics_summary.json` files (produced by re-running the model notebooks against this split) live under the parent's shared `results/` tree, alongside each model's regular results.
+`data/{overlap,no_overlap}/` (the test-sentence split) lives here since this check is its only consumer; it's built from the parent [`lora_finetuning/`](../README.md)'s shared `shared/data/training/` and `shared/data/test/` via `filter_test_sentence_overlap.py` below. The resulting `results/*/test_cleaned_by_sentences/{overlap,no_overlap}/metrics_summary.json` files (produced by re-running the model notebooks against this split) live under the parent's shared `shared/results/` tree, alongside each model's regular results.
 
 ## Report table
 
@@ -22,5 +22,5 @@ Checks whether LoRA training on `dev_v2` leaked into the `dev_v1` test set: spli
 
 | File | Role |
 |------|------|
-| `scripts/compare_leakage_honesty_check_to_excel.py` | Builds `report/leakage_honesty_check.xlsx` from `metrics_summary.json` under `.../test_cleaned_by_sentences/{overlap,no_overlap}/`; LoRA run overridable via `--lora-run` |
+| `scripts/compare_leakage_honesty_check_to_excel.py` | Builds `report/leakage_honesty_check.xlsx` from `metrics_summary.json` under `.../test_cleaned_by_sentences/{overlap,no_overlap}/`; LoRA run overridable via `--lora-run`; shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |
 | `scripts/filter_test_sentence_overlap.py` | Splits `dev_v1` test sentences into `overlap`/`no_overlap` subsets by ≥50% token containment with the training set, balanced to the minimum count across languages; writes `data/{overlap,no_overlap}/{lang}_dev_v1_test.jsonl` |

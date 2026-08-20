@@ -18,7 +18,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from src.analysis.plot_style import (
     COLOR_DICTIONARY,
     COLOR_EXTERNAL_DICTIONARY,
+    COLOR_GPT,
     COLOR_GPT_EXPAND,
+    COLOR_LORA,
     COLOR_NO_TERM,
     COLOR_ORIGINAL,
     COLOR_RANDOM_TERM,
@@ -42,6 +44,8 @@ EXPANSION_COLORS = {
     "external_dictionary": COLOR_EXTERNAL_DICTIONARY,
     "dev_v1": COLOR_ORIGINAL,
     "dev_v2": COLOR_DICTIONARY,
+    "gpt_few_shot": COLOR_GPT,
+    "qwen_lora_2ep": COLOR_LORA,
 }
 
 PAIR_FIG_SIZE = (19, 6.5)

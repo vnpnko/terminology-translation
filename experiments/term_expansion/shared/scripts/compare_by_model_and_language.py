@@ -24,7 +24,7 @@ sheets here pure duplicates of that other workbook's ``proper_term`` rows.
 
 Usage::
 
-    python experiments/term_expansion/scripts/compare_by_model_and_language.py
+    python experiments/term_expansion/shared/scripts/compare_by_model_and_language.py
 """
 
 from __future__ import annotations
@@ -41,7 +41,7 @@ import pandas as pd
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.analysis.excel_style import (  # noqa: E402
@@ -330,13 +330,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model-output",
         type=Path,
-        default=Path("experiments/term_expansion/report/model_comparison.xlsx"),
+        default=Path("experiments/term_expansion/by_model/report/model_comparison.xlsx"),
         help="Output .xlsx path for the by-model workbook",
     )
     parser.add_argument(
         "--language-output",
         type=Path,
-        default=Path("experiments/term_expansion/report/language_comparison.xlsx"),
+        default=Path("experiments/term_expansion/by_language_pair/report/language_comparison.xlsx"),
         help="Output .xlsx path for the by-language workbook",
     )
     return parser.parse_args()

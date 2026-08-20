@@ -30,8 +30,8 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-DEFAULT_TRAINING_DIR = SCRIPT_DIR.parent.parent / "data" / "training"
-DEFAULT_TEST_DIR = SCRIPT_DIR.parent.parent / "data" / "test"
+DEFAULT_TRAINING_DIR = SCRIPT_DIR.parent.parent / "shared" / "data" / "training"
+DEFAULT_TEST_DIR = SCRIPT_DIR.parent.parent / "shared" / "data" / "test"
 DEFAULT_OUTPUT_DIR = SCRIPT_DIR.parent / "data"
 
 OVERLAP_THRESHOLD = 0.5

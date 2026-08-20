@@ -23,8 +23,6 @@ Usage::
 from __future__ import annotations
 
 import argparse
-import json
-import math
 import sys
 from pathlib import Path
 from typing import Any
@@ -34,7 +32,16 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
+from compare_common import (  # noqa: E402
+    METRICS,
+    RUN_GPT_BASE,
+    RUN_LORA_2_EPOCH_ZERO_SHOT,
+    extract_row,
+    load_metrics_summary,
+    load_registry,
+)
 from src.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
@@ -46,55 +53,6 @@ LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEY = "7B"
 RIGHT_LABEL = "GPT-4o-mini"
 
-METRICS = (
-    ("bleu", "bleu", "BLEU", 2),
-    ("chrf", "chrf", "chrF", 2),
-    ("term_accuracy_pct", ("terminology_accuracy", "avg_ratio_pct"), "Term Acc (%)", 2),
-    ("macro_avg_consistency", ("terminology_consistency", "macro_avg_consistency"), "Cons Macro Avg", 4),
-    (
-        "weighted_avg_consistency",
-        ("terminology_consistency", "weighted_avg_consistency"),
-        "Cons Weighted Avg",
-        4,
-    ),
-)
-
-
-def load_registry(registry_path: Path) -> dict[str, Any]:
-    with registry_path.open(encoding="utf-8") as f:
-        return json.load(f)
-
-
-def load_metrics_summary(path: Path) -> dict[str, Any] | None:
-    if not path.exists():
-        return None
-    with path.open(encoding="utf-8") as f:
-        return json.load(f)
-
-
-def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> float | None:
-    if isinstance(spec, str):
-        value = metrics.get(spec)
-    else:
-        section, key = spec
-        value = metrics.get(section, {}).get(key)
-    if value is None:
-        return None
-    if isinstance(value, float) and math.isnan(value):
-        return None
-    return value
-
-
-def extract_row(summary: dict[str, Any] | None, lang: str) -> list[float | None]:
-    if summary is None:
-        return [None] * len(METRICS)
-    metrics = summary["languages"][lang]["modes"]["proper_term"]["metrics"]
-    values = []
-    for _, spec, _, decimals in METRICS:
-        value = extract_metric(metrics, spec)
-        values.append(round(value, decimals) if value is not None else None)
-    return values
-
 
 def lora_run(registry: dict[str, Any], run_id: str) -> dict[str, Any]:
     runs = {run["run_id"]: run for run in registry[MODEL_KEY]["runs"]}
@@ -105,7 +63,7 @@ def best_rows(results_root: Path, registry: dict[str, Any], run_id: str) -> dict
     model_dir = registry[MODEL_KEY]["model_dir"]
     run = lora_run(registry, run_id)
     lora_summary = load_metrics_summary(results_root / model_dir / run["folder"] / "metrics_summary.json")
-    gpt_summary = load_metrics_summary(results_root / "gpt_base" / "metrics_summary.json")
+    gpt_summary = load_metrics_summary(results_root / RUN_GPT_BASE / "metrics_summary.json")
     return {lang: (extract_row(lora_summary, lang), extract_row(gpt_summary, lang)) for lang in LANG_ORDER}
 
 
@@ -162,18 +120,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--results-root",
         type=Path,
-        default=Path("experiments/lora_finetuning/results"),
+        default=Path("experiments/lora_finetuning/shared/results"),
         help="Root directory containing gpt_base/ and Qwen2.5-7B/ result folders",
     )
     parser.add_argument(
         "--registry",
         type=Path,
-        default=Path("experiments/lora_finetuning/run_registry.json"),
+        default=Path("experiments/lora_finetuning/shared/run_registry.json"),
         help="Path to run_registry.json",
     )
     parser.add_argument(
         "--lora-run",
-        default="lora_2_epoch_zero_shot",
+        default=RUN_LORA_2_EPOCH_ZERO_SHOT,
         help="run_registry.json run_id (7B) to use as the 'best' LoRA config",
     )
     parser.add_argument(
@@ -190,7 +148,7 @@ def validate_required(results_root: Path, registry: dict[str, Any], run_id: str)
     run = lora_run(registry, run_id)
     required = [
         results_root / model_dir / run["folder"] / "metrics_summary.json",
-        results_root / "gpt_base" / "metrics_summary.json",
+        results_root / RUN_GPT_BASE / "metrics_summary.json",
     ]
     missing = [str(path) for path in required if not path.exists()]
     if missing:

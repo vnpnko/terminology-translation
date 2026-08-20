@@ -1,8 +1,8 @@
 # LoRA fine-tuning
 
-LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared against a Qwen base model and a GPT-4o-mini baseline, evaluated on `proper_term` mode only. Produces the poster's `fig_lora_finetuning` figure (epoch ablation vs. GPT-4o-mini).
+LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared against a Qwen base model and a GPT-4o-mini baseline, evaluated on `proper_term` mode only. Produces the poster's `fig_lora_epoch_ablation` and `fig_lora_best_models` figures, each owned by its matching sub-experiment (see below).
 
-Five sub-experiments, each independently reproducible (own `scripts/`+`report/`), share this directory's `results/`, `data/`, and `run_registry.json`:
+Five sub-experiments, each independently reproducible (own `scripts/`+`report/`), share this directory's `shared/results/`, `shared/data/`, and `shared/run_registry.json`:
 
 | Sub-experiment | Contents |
 | -------------- | -------- |
@@ -19,22 +19,21 @@ Five sub-experiments, each independently reproducible (own `scripts/`+`report/`)
 | [`../../notebooks/gpt.ipynb`](../../notebooks/gpt.ipynb) | GPT-4o-mini baseline run on the finetuning test set |
 | [`../../notebooks/qwen_base.ipynb`](../../notebooks/qwen_base.ipynb) | Qwen2.5 (3B/7B) base model, no fine-tuning |
 | [`../../notebooks/qwen_finetuned.ipynb`](../../notebooks/qwen_finetuned.ipynb) | LoRA fine-tuning + inference for Qwen2.5 (3B/7B), 1/2/3 epochs |
-| `data/test/` | Held-out `dev_v1` test set per language pair |
-| `data/training/` | `dev_v2` training set per language pair |
-| `data/dev_v2_deduped/` | `dev_v2` with `dev_v1`-overlapping lines removed (see `scripts/remove_dev_v2_overlap.py`); upstream of `data/training/` |
-| `results/` | Per-model, per-run predictions and `metrics_summary.json` (see run names below) — shared by all 5 sub-experiments |
-| `run_registry.json` | Run registry (folder names, `use_few_shot`, epoch counts) — shared by all 5 sub-experiments |
-| `figures/` | `fig_lora_finetuning`, this experiment's figure (see "Output" below) |
-| `scripts/` | Shared data-prep script and the figure-generating script (see "Scripts" below) — each sub-experiment has its own `scripts/` for its comparison script |
+| `shared/data/test/` | Held-out `dev_v1` test set per language pair |
+| `shared/data/training/` | `dev_v2` training set per language pair |
+| `shared/data/dev_v2_deduped/` | `dev_v2` with `dev_v1`-overlapping lines removed (see `shared/scripts/remove_dev_v2_overlap.py`); upstream of `shared/data/training/` |
+| `shared/results/` | Per-model, per-run predictions and `metrics_summary.json` (see run names below) — shared by all 5 sub-experiments |
+| `shared/run_registry.json` | Run registry (folder names, `use_few_shot`, epoch counts) — shared by all 5 sub-experiments |
+| `shared/scripts/` | Shared data-prep script and `compare_common.py` (see "Scripts" below) — each sub-experiment has its own `scripts/` for its comparison script (and, for `epoch_ablation`/`best_models`, its figure script), importing from this `shared/scripts/compare_common.py` |
 | `epoch_ablation/`, `best_models/`, `base_vs_lora/`, `few_shot_ablation/`, `leakage_check/` | Sub-experiments (see table above) |
 
 ## Running the notebooks
 
-The three model-running notebooks live in the repo-root [`notebooks/`](../../notebooks/) directory (run manually, e.g. on LRZ AI Systems — not driven by any script). Each notebook writes predictions and `metrics_summary.json` under `results/<model>/<run_name>/`. Run order: `qwen_base.ipynb` and `gpt.ipynb` first (baselines), then `qwen_finetuned.ipynb` for the LoRA runs.
+The three model-running notebooks live in the repo-root [`notebooks/`](../../notebooks/) directory (run manually, e.g. on LRZ AI Systems — not driven by any script). Each notebook writes predictions and `metrics_summary.json` under `shared/results/<model>/<run_name>/`. Run order: `qwen_base.ipynb` and `gpt.ipynb` first (baselines), then `qwen_finetuned.ipynb` for the LoRA runs.
 
 ### Registered runs
 
-Runs are defined in [`run_registry.json`](run_registry.json). Run ids use the `zero_shot`/`few_shot` vocabulary (see "Naming standard" below), which does not match the on-disk result folder names — see the mapping below.
+Runs are defined in [`shared/run_registry.json`](shared/run_registry.json). Run ids use the `zero_shot`/`few_shot` vocabulary (see "Naming standard" below), which does not match the on-disk result folder names — see the mapping below.
 
 **3B** (`Qwen2.5-3B/`):
 
@@ -54,15 +53,20 @@ This experiment's scripts, `run_registry.json`, and generated workbooks use `zer
 
 ## Output
 
-[`figures/fig_lora_finetuning.pdf`](figures/fig_lora_finetuning.pdf) — this is the figure's home; it's copied to [`poster/figures/`](../../poster/figures/fig_lora_finetuning.pdf) for the poster. Draws on the same underlying data as `epoch_ablation/` (epoch line-chart panels) and `best_models/`-like data (final GPT-vs-best-LoRA comparison panels) — not code-coupled to either sub-experiment's script, since the figure reads `metrics_summary.json` independently, but conceptually spans both, which is why it stays at this parent level rather than in either sub-experiment.
+This experiment used to produce one combined `fig_lora_finetuning` figure; it's since been split so each figure lives with the sub-experiment it belongs to:
+
+- [`epoch_ablation/figures/fig_lora_epoch_ablation.pdf`](epoch_ablation/figures/fig_lora_epoch_ablation.pdf) — BLEU/term accuracy vs. LoRA epoch count, both model sizes. See [`epoch_ablation/README.md`](epoch_ablation/README.md).
+- [`best_models/figures/fig_lora_best_models.pdf`](best_models/figures/fig_lora_best_models.pdf) — best LoRA config vs. GPT-4o-mini, by language pair. See [`best_models/README.md`](best_models/README.md).
+
+Both are copied to [`poster/figures/`](../../poster/figures/) for the poster.
 
 ## Scripts
 
 | File | Role |
 |------|------|
-| `scripts/figure_lora_finetuning.py` | Builds the poster's `fig_lora_finetuning` figure (`build_lora_finetuning_figure`; run via `python src/analysis/generate_result_figures.py --only lora_finetuning`); imports `metrics_parser.py` for `metrics_summary.json` loading/aggregation helpers |
-| `scripts/metrics_parser.py` | `metrics_summary.json` loading/aggregation helpers, used only by `figure_lora_finetuning.py` |
-| `scripts/remove_dev_v2_overlap.py` | Removes `dev_v2` lines whose English source also appears in `dev_v1/dev_v1_original` (writes `data/dev_v2_deduped/`), upstream of the shared `data/training/` used by all 5 sub-experiments' LoRA runs |
+| `shared/scripts/metrics_parser.py` | `metrics_summary.json` loading/aggregation helpers, used by `epoch_ablation/scripts/figure_epoch_ablation.py` |
+| `shared/scripts/remove_dev_v2_overlap.py` | Removes `dev_v2` lines whose English source also appears in `dev_v1/dev_v1_original` (writes `shared/data/dev_v2_deduped/`), upstream of the shared `shared/data/training/` used by all 5 sub-experiments' LoRA runs |
+| `shared/scripts/compare_common.py` | Shared helpers (`load_registry`, `load_metrics_summary`, `extract_metric`, `extract_row`, `write_group_header`, the `METRICS` spec, and named run-id constants) imported by all 5 sub-experiments' `compare_*_to_excel.py` scripts — not a script itself, just deduplicated plumbing |
 
 See each sub-experiment's README for its own comparison/filter script.
 

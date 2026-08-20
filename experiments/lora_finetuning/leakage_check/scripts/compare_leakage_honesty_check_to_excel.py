@@ -32,8 +32,6 @@ Usage::
 from __future__ import annotations
 
 import argparse
-import json
-import math
 import sys
 from pathlib import Path
 from typing import Any
@@ -43,60 +41,21 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
+from compare_common import (  # noqa: E402
+    METRICS,
+    RUN_GPT_BASE,
+    RUN_LORA_2_EPOCH_ZERO_SHOT,
+    extract_row,
+    load_metrics_summary,
+    load_registry,
+    write_group_header,
+)
 from src.analysis.excel_style import apply_cell_style, autofit_columns, rank_fills  # noqa: E402
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEY = "7B"
-
-METRICS = (
-    ("bleu", "bleu", "BLEU", 2),
-    ("chrf", "chrf", "chrF", 2),
-    ("term_accuracy_pct", ("terminology_accuracy", "avg_ratio_pct"), "Term Acc (%)", 2),
-    ("macro_avg_consistency", ("terminology_consistency", "macro_avg_consistency"), "Cons Macro Avg", 4),
-    (
-        "weighted_avg_consistency",
-        ("terminology_consistency", "weighted_avg_consistency"),
-        "Cons Weighted Avg",
-        4,
-    ),
-)
-
-
-def load_registry(registry_path: Path) -> dict[str, Any]:
-    with registry_path.open(encoding="utf-8") as f:
-        return json.load(f)
-
-
-def load_metrics_summary(path: Path) -> dict[str, Any] | None:
-    if not path.exists():
-        return None
-    with path.open(encoding="utf-8") as f:
-        return json.load(f)
-
-
-def extract_metric(metrics: dict[str, Any], spec: str | tuple[str, str]) -> float | None:
-    if isinstance(spec, str):
-        value = metrics.get(spec)
-    else:
-        section, key = spec
-        value = metrics.get(section, {}).get(key)
-    if value is None:
-        return None
-    if isinstance(value, float) and math.isnan(value):
-        return None
-    return value
-
-
-def extract_row(summary: dict[str, Any] | None, lang: str) -> list[float | None]:
-    if summary is None:
-        return [None] * len(METRICS)
-    metrics = summary["languages"][lang]["modes"]["proper_term"]["metrics"]
-    values = []
-    for _, spec, _, decimals in METRICS:
-        value = extract_metric(metrics, spec)
-        values.append(round(value, decimals) if value is not None else None)
-    return values
 
 
 def lora_run(registry: dict[str, Any], run_id: str) -> dict[str, Any]:
@@ -107,22 +66,6 @@ def lora_run(registry: dict[str, Any], run_id: str) -> dict[str, Any]:
 def subset_rows(base_dir: Path, subset: str) -> dict[str, list[float | None]]:
     summary = load_metrics_summary(base_dir / "test_cleaned_by_sentences" / subset / "metrics_summary.json")
     return {lang: extract_row(summary, lang) for lang in LANG_ORDER}
-
-
-def write_group_header(ws: Worksheet, start_col: int, cols_per_group: int) -> None:
-    bad_cell = ws.cell(row=1, column=start_col, value="overlap_data")
-    apply_cell_style(bad_cell)
-    ws.merge_cells(start_row=1, start_column=start_col, end_row=1, end_column=start_col + cols_per_group - 1)
-
-    good_col = start_col + cols_per_group
-    good_cell = ws.cell(row=1, column=good_col, value="no_overlap_data")
-    apply_cell_style(good_cell)
-    ws.merge_cells(start_row=1, start_column=good_col, end_row=1, end_column=good_col + cols_per_group - 1)
-
-    for group_start in (start_col, good_col):
-        for offset, (_, _, title, _) in enumerate(METRICS):
-            sub_cell = ws.cell(row=2, column=group_start + offset, value=title)
-            apply_cell_style(sub_cell)
 
 
 def write_block(ws: Worksheet, start_row: int, label: str, bad: dict[str, list], good: dict[str, list]) -> int:
@@ -169,7 +112,7 @@ def write_sheet(ws: Worksheet, blocks: list[tuple[str, dict, dict]]) -> None:
     lang_cell = ws.cell(row=2, column=2, value="lang_pair")
     apply_cell_style(lang_cell)
 
-    write_group_header(ws, data_start_col, cols_per_group)
+    write_group_header(ws, data_start_col, cols_per_group, "overlap_data", "no_overlap_data")
 
     row = 3
     for label, bad, good in blocks:
@@ -183,18 +126,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--results-root",
         type=Path,
-        default=Path("experiments/lora_finetuning/results"),
+        default=Path("experiments/lora_finetuning/shared/results"),
         help="Root directory containing gpt_base/ and Qwen2.5-7B/ result folders",
     )
     parser.add_argument(
         "--registry",
         type=Path,
-        default=Path("experiments/lora_finetuning/run_registry.json"),
+        default=Path("experiments/lora_finetuning/shared/run_registry.json"),
         help="Path to run_registry.json",
     )
     parser.add_argument(
         "--lora-run",
-        default="lora_2_epoch_zero_shot",
+        default=RUN_LORA_2_EPOCH_ZERO_SHOT,
         help="run_registry.json run_id (7B) to use for the LoRA side",
     )
     parser.add_argument(
@@ -208,7 +151,7 @@ def parse_args() -> argparse.Namespace:
 
 def validate_required(results_root: Path, model_dir: str, lora_folder: str) -> None:
     required = []
-    for base_dir in (results_root / "gpt_base", results_root / model_dir / "qwen_base", results_root / model_dir / lora_folder):
+    for base_dir in (results_root / RUN_GPT_BASE, results_root / model_dir / "qwen_base", results_root / model_dir / lora_folder):
         for subset in ("overlap", "no_overlap"):
             required.append(base_dir / "test_cleaned_by_sentences" / subset / "metrics_summary.json")
 
@@ -227,7 +170,7 @@ def main() -> None:
 
     validate_required(results_root, model_dir, run["folder"])
 
-    gpt_dir = results_root / "gpt_base"
+    gpt_dir = results_root / RUN_GPT_BASE
     base_dir = results_root / model_dir / "qwen_base"
     lora_dir = results_root / model_dir / run["folder"]
 

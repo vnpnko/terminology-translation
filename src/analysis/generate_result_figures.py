@@ -1,7 +1,7 @@
 """Generate result figures from metrics_summary.json files.
 
 Writes a PDF and PNG per figure into its owning experiment's ``figures/``
-directory by default (e.g. ``experiments/term_expansion/figures/``)
+directory by default (e.g. ``experiments/term_expansion/by_model/figures/``)
 — that's each figure's canonical home. ``--output-dir`` overrides this and
 writes every selected figure into one shared directory instead, useful for
 ad hoc regeneration. Note that ``poster/figures/`` and ``report/figures/``
@@ -9,12 +9,12 @@ are curated, manually-copied collections of whichever figures are actually
 used in the poster/paper (not generation targets); after regenerating a
 figure's home copy, copy it over by hand if it needs to be updated there.
 Reads ``metrics_summary.json`` files under ``<project-root>/results`` (and
-``experiments/lora_finetuning`` for lora_finetuning).
+``experiments/lora_finetuning/shared/results`` for ``epoch_ablation``/``best_models``).
 
 Usage::
 
     python src/analysis/generate_result_figures.py
-    python src/analysis/generate_result_figures.py --only model_comparison lora_finetuning
+    python src/analysis/generate_result_figures.py --only model_comparison epoch_ablation
     python src/analysis/generate_result_figures.py --output-dir /tmp/figures
 """
 
@@ -31,9 +31,11 @@ PROJECT_ROOT = SCRIPT_DIR.parent.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
 EXPERIMENT_SCRIPTS_DIRS = [
-    PROJECT_ROOT / "experiments" / "term_expansion" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "by_model" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "scripts",
     PROJECT_ROOT / "experiments" / "dataset_comparison" / "scripts",
-    PROJECT_ROOT / "experiments" / "lora_finetuning" / "scripts",
+    PROJECT_ROOT / "experiments" / "lora_finetuning" / "epoch_ablation" / "scripts",
+    PROJECT_ROOT / "experiments" / "lora_finetuning" / "best_models" / "scripts",
 ]
 for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
     sys.path.insert(0, str(_scripts_dir))
@@ -41,29 +43,35 @@ for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
 from figure_by_model import build_by_model_figure
 from figure_by_language_pair import build_by_language_pair_figures
 from figure_dataset_comparison import build_dataset_comparison_figures
-from figure_lora_finetuning import build_lora_finetuning_figure
+from figure_epoch_ablation import build_epoch_ablation_figure
+from figure_best_models import build_best_models_figure
 from plot_style import save_figure
 
 FIGURE_BUILDERS = {
     "model_comparison": (
         "fig_term_expansion_across_model",
         lambda root: build_by_model_figure(root / "results"),
-        Path("experiments/term_expansion/figures"),
+        Path("experiments/term_expansion/by_model/figures"),
     ),
     "mode_comparison": (
         "fig_term_expansion_across_languages",
         lambda root: build_by_language_pair_figures(root / "results"),
-        Path("experiments/term_expansion/figures"),
+        Path("experiments/term_expansion/by_language_pair/figures"),
     ),
     "dataset_comparison": (
         "fig_dev_v1_vs_dev_v2",
         lambda root: build_dataset_comparison_figures(root / "results"),
         Path("experiments/dataset_comparison/figures"),
     ),
-    "lora_finetuning": (
-        "fig_lora_finetuning",
-        lambda root: build_lora_finetuning_figure(root),
-        Path("experiments/lora_finetuning/figures"),
+    "epoch_ablation": (
+        "fig_lora_epoch_ablation",
+        lambda root: build_epoch_ablation_figure(root),
+        Path("experiments/lora_finetuning/epoch_ablation/figures"),
+    ),
+    "best_models": (
+        "fig_lora_best_models",
+        lambda root: build_best_models_figure(root),
+        Path("experiments/lora_finetuning/best_models/figures"),
     ),
 }
 

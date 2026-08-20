@@ -10,7 +10,7 @@ This is a **thin wrapper**: no experiment-local data, only `scripts/`, `report/`
 python shared/lib/analysis/generate_result_figures.py --only dataset_comparison
 ```
 
-Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_dataset_comparison.py) (`build_dataset_comparison_figures`), shared helpers in [`shared/lib/analysis/figure_common.py`](../../shared/lib/analysis/figure_common.py) and [`shared/lib/analysis/metrics_loader.py`](../../shared/lib/analysis/metrics_loader.py).
+Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_dataset_comparison.py) (`build_dataset_comparison_figures`), shared helpers in [`shared/lib/analysis/grouped_bar_figure_common.py`](../../shared/lib/analysis/grouped_bar_figure_common.py) and [`shared/lib/analysis/metrics_loader.py`](../../shared/lib/analysis/metrics_loader.py).
 
 ## Inputs
 

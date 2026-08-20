@@ -17,4 +17,4 @@ Compares 1 / 2 / 3 LoRA fine-tuning epochs (zero-shot), one sheet per model size
 | File | Role |
 |------|------|
 | `scripts/compare_epochs_to_excel.py` | Builds `report/epoch_ablation.xlsx` from `metrics_summary.json`, run selection driven by [`../shared/run_registry.json`](../shared/run_registry.json); shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |
-| `scripts/figure_epoch_ablation.py` | Builds the poster's `fig_lora_epoch_ablation` figure (`build_epoch_ablation_figure`; run via `python shared/lib/analysis/generate_result_figures.py --only epoch_ablation`); imports [`../shared/scripts/metrics_parser.py`](../shared/scripts/metrics_parser.py) for `metrics_summary.json` loading/aggregation helpers |
+| `scripts/figure_epoch_ablation.py` | Builds the poster's `fig_lora_epoch_ablation` figure (`build_epoch_ablation_figure`; run via `python shared/lib/analysis/generate_result_figures.py --only epoch_ablation`); imports [`shared/lib/analysis/metrics_loader.py`](../../../shared/lib/analysis/metrics_loader.py) for `metrics_summary.json` loading/aggregation helpers |

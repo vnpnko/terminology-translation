@@ -10,12 +10,15 @@ from matplotlib.lines import Line2D
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
-sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
-from shared.lib.analysis.figure_common import BLEU_YLIM_TOP, TERM_ACC_YLIM_TOP, create_pair_figure, finalize_pair_layout, place_side_legend
-from shared.lib.analysis.metrics_loader import require_paths
+from shared.lib.analysis.grouped_bar_figure_common import BLEU_YLIM_TOP, TERM_ACC_YLIM_TOP, create_pair_figure, finalize_pair_layout, place_side_legend
+from shared.lib.analysis.metrics_loader import (
+    extract_proper_term_metrics,
+    load_summary,
+    macro_average_lang_metrics as macro_average,
+    require_paths,
+)
 from shared.lib.analysis.plot_style import SIZE_COLORS, apply_poster_style, fixed_top_ylim
-from metrics_parser import load_summary, extract_proper_term_metrics, macro_average  # noqa: E402
 
 FINETUNING_RESULTS = PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "results"
 

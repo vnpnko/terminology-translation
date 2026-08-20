@@ -74,14 +74,14 @@ All analysis scripts require `pandas` and `openpyxl`.
 
 | Script | Purpose |
 | ------ | ------- |
-| `analysis/metrics_loader.py`, `analysis/figure_common.py`, `analysis/plot_style.py` | Shared metrics-loading and plotting helpers used by every `figure_expN.py`. |
+| `analysis/metrics_loader.py`, `analysis/grouped_bar_figure_common.py`, `analysis/plot_style.py` | Shared metrics-loading and plotting helpers used by every `figure_expN.py`. |
 | `analysis/generate_result_figures.py` | Orchestrator: builds all four poster figures by importing each experiment's `figure_expN.py`. |
 
 The table-comparison and figure-generating scripts themselves are experiment-specific; see each experiment's README:
 
 | Script | Location | Purpose |
 | ------ | -------- | ------- |
-| `compare_by_model_and_language.py`, `compare_proper_term_by_model_and_language.py` | [`experiments/term_expansion/shared/scripts/`](experiments/term_expansion/README.md) | Compares GPT, Qwen 3B, and Qwen 7B, and `ende`/`enru`/`enes` — writes both axes' report tables in one run. |
+| `compare_by_model_and_language.py` (`--mode {all,proper_term}`) | [`experiments/term_expansion/shared/scripts/`](experiments/term_expansion/README.md) | Compares GPT, Qwen 3B, and Qwen 7B, and `ende`/`enru`/`enes` — writes both axes' report tables in one run. |
 | `figure_by_model.py` | [`experiments/term_expansion/by_model/scripts/`](experiments/term_expansion/by_model/README.md) | Aggregated across language pairs, grouped by model. |
 | `figure_by_language_pair.py` | [`experiments/term_expansion/by_language_pair/scripts/`](experiments/term_expansion/by_language_pair/README.md) | One figure per model, grouped by language pair. |
 | `compare_datasets_to_excel.py`, `figure_dataset_comparison.py` | [`experiments/dataset_comparison/scripts/`](experiments/dataset_comparison/README.md) | Compares `dev_v1/original` vs `dev_v2`. |
@@ -98,8 +98,8 @@ Generated comparison Excel files live inside the experiment they compare, under 
 
 | Report dir | Produced by | Naming pattern |
 | ---------- | ----------- | --------------- |
-| [`experiments/term_expansion/by_model/report/`](experiments/term_expansion/by_model/README.md#report-tables), [`by_language_pair/report/`](experiments/term_expansion/by_language_pair/README.md#report-tables) | `shared/scripts/compare_by_model_and_language.py` | `model_comparison.xlsx` (by_model) + `language_comparison.xlsx` (by_language_pair), one sheet per dataset variant: `dev_v1`, `dev_v2` |
-| [`experiments/term_expansion/by_model/report/`](experiments/term_expansion/by_model/README.md#report-tables), [`by_language_pair/report/`](experiments/term_expansion/by_language_pair/README.md#report-tables) | `shared/scripts/compare_proper_term_by_model_and_language.py` | `proper_term_across_models.xlsx` (by_model) + `proper_term_across_languages.xlsx` (by_language_pair), rows: 4 term-list variants × language/model |
+| [`experiments/term_expansion/by_model/report/`](experiments/term_expansion/by_model/README.md#report-tables), [`by_language_pair/report/`](experiments/term_expansion/by_language_pair/README.md#report-tables) | `shared/scripts/compare_by_model_and_language.py` (default `--mode all`) | `model_comparison.xlsx` (by_model) + `language_comparison.xlsx` (by_language_pair), one sheet per dataset variant: `dev_v1`, `dev_v2` |
+| [`experiments/term_expansion/by_model/report/`](experiments/term_expansion/by_model/README.md#report-tables), [`by_language_pair/report/`](experiments/term_expansion/by_language_pair/README.md#report-tables) | `shared/scripts/compare_by_model_and_language.py --mode proper_term` | `proper_term_across_models.xlsx` (by_model) + `proper_term_across_languages.xlsx` (by_language_pair), rows: 4 term-list variants × language/model |
 | [`experiments/dataset_comparison/report/`](experiments/dataset_comparison/README.md#report-tables) | `scripts/compare_datasets_to_excel.py` | `dataset_comparison.xlsx` (one sheet per model) |
 
 See each experiment's README for the exact command to regenerate every table it holds. When a new comparison table doesn't fit any existing experiment, create a new experiment folder for it rather than adding a new top-level report category.

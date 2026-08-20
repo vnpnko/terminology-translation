@@ -31,7 +31,7 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 ### 3.1 Terminology modes across language pairs (no-term / proper-term / random-term, EN→DE / EN→RU / EN→ES) — 🟢
 - **RQ:** Does injecting explicit terminology constraints improve BLEU/chrF/term accuracy over no constraints, does an unrelated (random-term) constraint list act as a fair control, and does that benefit vary by language pair or by model? How does an external dictionary (built from dev_v2) compare, in this same mode×language breakdown?
 - **Repo location:** [`experiments/term_expansion/`](../experiments/term_expansion/README.md) (modes and dictionary variant — dictionary data lives in `shared/results/dev_v1/dictionary/`)
-- **Scripts:** [`experiments/term_expansion/shared/scripts/compare_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_by_model_and_language.py), [`compare_proper_term_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py)
+- **Scripts:** [`experiments/term_expansion/shared/scripts/compare_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_by_model_and_language.py) (`--mode all` and `--mode proper_term`)
 - **Tables:** `experiments/term_expansion/by_language_pair/report/language_comparison.xlsx` (sheets: `dev_v1`, `dev_v2`); `experiments/term_expansion/by_language_pair/report/proper_term_across_languages.xlsx` (`original`/`expand`/`cleaned`/`dictionary`, all 3 models)
 - **Figure:** `poster/figures/fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}.pdf` — one figure per model (GPT/Qwen 3B/Qwen 7B), grouped by language pair.
 - **Poster finding to reuse:** EN→ES strongest on both BLEU and term accuracy; EN→DE beats EN→RU on BLEU, EN→RU leads on term accuracy.
@@ -39,7 +39,7 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 ### 3.2 Terminology modes across models (GPT-4o-mini vs Qwen 3B vs Qwen 7B) — 🟢
 - **RQ:** How do a closed frontier model and two open base models compare on terminology-constrained translation, and does that comparison hold across term-list variants (original / GPT-expand / GPT-clean)?
 - **Repo location:** [`experiments/term_expansion/`](../experiments/term_expansion/README.md)
-- **Scripts:** [`experiments/term_expansion/shared/scripts/compare_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_by_model_and_language.py), [`compare_proper_term_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py)
+- **Scripts:** [`experiments/term_expansion/shared/scripts/compare_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_by_model_and_language.py) (`--mode all` and `--mode proper_term`)
 - **Tables:** `experiments/term_expansion/by_model/report/model_comparison.xlsx` (sheets: `dev_v1`, `dev_v2`); `experiments/term_expansion/by_model/report/proper_term_across_models.xlsx` (`original`/`expand`/`cleaned`/`dictionary`, all 3 models)
 - **Figure:** `poster/figures/fig_term_expansion_across_model.pdf` — aggregated by model, macro avg over language pairs.
 
@@ -88,8 +88,8 @@ There are **two distinct few-shot comparisons** in the repo; name them separatel
 | -------------- | ----------- | --------------------------- |
 | `experiments/term_expansion/by_model/report/model_comparison.xlsx` (one sheet per dataset variant) | `experiments/term_expansion/shared/scripts/compare_by_model_and_language.py` | Model comparison table (§3.2) |
 | `experiments/term_expansion/by_language_pair/report/language_comparison.xlsx` (one sheet per dataset variant) | `experiments/term_expansion/shared/scripts/compare_by_model_and_language.py` | Language comparison table (§3.1) |
-| `experiments/term_expansion/by_model/report/proper_term_across_models.xlsx` (4 term-list variants incl. dictionary, all 3 models) | `experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py` | Term-list variant table (§3.2) |
-| `experiments/term_expansion/by_language_pair/report/proper_term_across_languages.xlsx` (4 term-list variants incl. dictionary, all 3 models) | `experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py` | Term-list variant table (§3.1) |
+| `experiments/term_expansion/by_model/report/proper_term_across_models.xlsx` (4 term-list variants incl. dictionary, all 3 models) | `experiments/term_expansion/shared/scripts/compare_by_model_and_language.py --mode proper_term` | Term-list variant table (§3.2) |
+| `experiments/term_expansion/by_language_pair/report/proper_term_across_languages.xlsx` (4 term-list variants incl. dictionary, all 3 models) | `experiments/term_expansion/shared/scripts/compare_by_model_and_language.py --mode proper_term` | Term-list variant table (§3.1) |
 | `experiments/dataset_comparison/report/dataset_comparison.xlsx` (one sheet per model) | `experiments/dataset_comparison/scripts/compare_datasets_to_excel.py` | dev_v1 vs dev_v2 table (§3.3) |
 | `experiments/lora_finetuning/base_vs_lora/report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx` | `experiments/lora_finetuning/base_vs_lora/scripts/compare_base_vs_lora_to_excel.py` | Base-few-shot vs LoRA-1-epoch table (§3.4) |
 | `experiments/lora_finetuning/best_models/report/best_models.xlsx` | `experiments/lora_finetuning/best_models/scripts/compare_best_models_to_excel.py` | Best LoRA vs GPT table (§3.4) |

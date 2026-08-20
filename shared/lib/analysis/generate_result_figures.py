@@ -8,14 +8,14 @@ ad hoc regeneration. Note that ``poster/figures/`` and ``report/figures/``
 are curated, manually-copied collections of whichever figures are actually
 used in the poster/paper (not generation targets); after regenerating a
 figure's home copy, copy it over by hand if it needs to be updated there.
-Reads ``metrics_summary.json`` files under ``<project-root>/results`` (and
+Reads ``metrics_summary.json`` files under ``<project-root>/shared/results`` (and
 ``experiments/lora_finetuning/shared/results`` for ``epoch_ablation``/``best_models``).
 
 Usage::
 
-    python src/analysis/generate_result_figures.py
-    python src/analysis/generate_result_figures.py --only model_comparison epoch_ablation
-    python src/analysis/generate_result_figures.py --output-dir /tmp/figures
+    python shared/lib/analysis/generate_result_figures.py
+    python shared/lib/analysis/generate_result_figures.py --only model_comparison epoch_ablation
+    python shared/lib/analysis/generate_result_figures.py --output-dir /tmp/figures
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
+PROJECT_ROOT = SCRIPT_DIR.parents[2]
 sys.path.insert(0, str(SCRIPT_DIR))
 
 EXPERIMENT_SCRIPTS_DIRS = [
@@ -50,17 +50,17 @@ from plot_style import save_figure
 FIGURE_BUILDERS = {
     "model_comparison": (
         "fig_term_expansion_across_model",
-        lambda root: build_by_model_figure(root / "results"),
+        lambda root: build_by_model_figure(root / "shared" / "results"),
         Path("experiments/term_expansion/by_model/figures"),
     ),
     "mode_comparison": (
         "fig_term_expansion_across_languages",
-        lambda root: build_by_language_pair_figures(root / "results"),
+        lambda root: build_by_language_pair_figures(root / "shared" / "results"),
         Path("experiments/term_expansion/by_language_pair/figures"),
     ),
     "dataset_comparison": (
         "fig_dev_v1_vs_dev_v2",
-        lambda root: build_dataset_comparison_figures(root / "results"),
+        lambda root: build_dataset_comparison_figures(root / "shared" / "results"),
         Path("experiments/dataset_comparison/figures"),
     ),
     "epoch_ablation": (

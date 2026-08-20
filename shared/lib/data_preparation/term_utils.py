@@ -13,7 +13,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 ENV_FILE = REPO_ROOT / ".env"
 
 
@@ -29,14 +29,14 @@ def repo_rel_path(path: Path | str, *, base: Path = REPO_ROOT) -> str:
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 
-DEV_V2_DIR = REPO_ROOT / "data" / "dev_v2"
-DEV_V1_ORIGINAL_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_original"
+DEV_V2_DIR = REPO_ROOT / "shared" / "data" / "dev_v2"
+DEV_V1_ORIGINAL_DIR = REPO_ROOT / "shared" / "data" / "dev_v1" / "dev_v1_original"
 # Only consumed by experiments/term_expansion/dictionary/scripts/{build_term_dictionary,
-# apply_dictionary_to_dev_v1}.py, so it lives under that experiment rather than shared data/.
+# apply_dictionary_to_dev_v1}.py, so it lives under that experiment rather than shared/data/.
 TERM_DICTIONARY_DIR = (
     REPO_ROOT / "experiments" / "term_expansion" / "dictionary" / "data" / "dev_v2_dictionary"
 )
-DEV_V1_DICTIONARY_DIR = REPO_ROOT / "data" / "dev_v1" / "dev_v1_dictionary"
+DEV_V1_DICTIONARY_DIR = REPO_ROOT / "shared" / "data" / "dev_v1" / "dev_v1_dictionary"
 
 SNIPPET_MAX_LEN = 120
 

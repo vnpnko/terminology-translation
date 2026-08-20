@@ -16,7 +16,7 @@ from typing import Any
 from openpyxl.styles import PatternFill
 from openpyxl.worksheet.worksheet import Worksheet
 
-from src.analysis.excel_style import apply_cell_style
+from shared.lib.analysis.excel_style import apply_cell_style
 
 # run_registry.json's run_id vocabulary, referenced by name instead of as scattered literals.
 RUN_GPT_BASE = "gpt_base"

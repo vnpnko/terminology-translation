@@ -11,7 +11,7 @@ with a single sheet, one row per language pair. Both columns are local:
 - GPT side: ``<results-root>/gpt_base/metrics_summary.json``.
 
 Each value cell is colored by the shared Good/Bad/Neutral convention (see
-``src/analysis/excel_style.py``): green for the higher of its LoRA/GPT pair,
+``shared/lib/analysis/excel_style.py``): green for the higher of its LoRA/GPT pair,
 red for the lower, yellow if equal.
 
 Usage::
@@ -42,7 +42,7 @@ from compare_common import (  # noqa: E402
     load_metrics_summary,
     load_registry,
 )
-from src.analysis.excel_style import (  # noqa: E402
+from shared.lib.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,

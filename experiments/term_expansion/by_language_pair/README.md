@@ -1,14 +1,14 @@
 # Term expansion by language pair
 
-Broken out by language pair (`ende` / `enru` / `enes`), one figure per model (GPT-4o-mini / Qwen 3B / Qwen 7B). Reuses the parent [`term_expansion/`](../README.md)'s shared `data/` → `results/` pipeline and its `../shared/scripts/` compare scripts — see that README for the Inputs table.
+Broken out by language pair (`ende` / `enru` / `enes`), one figure per model (GPT-4o-mini / Qwen 3B / Qwen 7B). Reuses the parent [`term_expansion/`](../README.md)'s shared `shared/data/` → `shared/results/` pipeline and its `../shared/scripts/` compare scripts — see that README for the Inputs table.
 
 ## Reproduce
 
 ```bash
-python src/analysis/generate_result_figures.py --only mode_comparison
+python shared/lib/analysis/generate_result_figures.py --only mode_comparison
 ```
 
-Generating script: [`scripts/figure_by_language_pair.py`](scripts/figure_by_language_pair.py) (`build_by_language_pair_figures`, one figure per model), shared helpers in [`src/analysis/figure_common.py`](../../../src/analysis/figure_common.py) and [`src/analysis/metrics_loader.py`](../../../src/analysis/metrics_loader.py).
+Generating script: [`scripts/figure_by_language_pair.py`](scripts/figure_by_language_pair.py) (`build_by_language_pair_figures`, one figure per model), shared helpers in [`shared/lib/analysis/figure_common.py`](../../../shared/lib/analysis/figure_common.py) and [`shared/lib/analysis/metrics_loader.py`](../../../shared/lib/analysis/metrics_loader.py).
 
 ## Output
 

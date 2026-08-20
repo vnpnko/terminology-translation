@@ -17,21 +17,21 @@ Each JSONL record has an English source sentence, a target-language reference, d
 
 ## Reproducing the figures
 
-Each figure is built by a `figure_*.py` script living in the owning experiment's `scripts/` folder, reading from the shared `results/`/`report/` tree (the `term_expansion/` experiments) or from a specific experiment folder (`lora_finetuning/`). All are driven by one shared orchestrator, [`src/analysis/generate_result_figures.py`](src/analysis/generate_result_figures.py), which writes each figure into its owning experiment's `figures/` directory — that's the figure's canonical home. `poster/figures/` and `report/figures/` are **not** generation targets: they're curated, manually-copied collections of whichever figures actually appear in [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) or the paper — copy a figure's home file over by hand whenever it's added or updated.
+Each figure is built by a `figure_*.py` script living in the owning experiment's `scripts/` folder, reading from the shared `shared/results/`/`report/` tree (the `term_expansion/` experiments) or from a specific experiment folder (`lora_finetuning/`). All are driven by one shared orchestrator, [`shared/lib/analysis/generate_result_figures.py`](shared/lib/analysis/generate_result_figures.py), which writes each figure into its owning experiment's `figures/` directory — that's the figure's canonical home. `poster/figures/` and `report/figures/` are **not** generation targets: they're curated, manually-copied collections of whichever figures actually appear in [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) or the paper — copy a figure's home file over by hand whenever it's added or updated.
 
 | Figure | Home | Experiment | Command | Reads from |
 | ------ | ---- | ---------- | ------- | ---------- |
-| [`fig_term_expansion_across_model`](experiments/term_expansion/by_model/figures/fig_term_expansion_across_model.pdf) | `experiments/term_expansion/by_model/figures/` | [`term_expansion/by_model`](experiments/term_expansion/by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}`](experiments/term_expansion/by_language_pair/figures/fig_term_expansion_across_languages_gpt.pdf) | `experiments/term_expansion/by_language_pair/figures/` | [`term_expansion/by_language_pair`](experiments/term_expansion/by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_dev_v1_vs_dev_v2_{no_term,proper_term,random_term}`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_proper_term.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/few_shot/`, `results/dev_v2/` |
-| [`fig_lora_epoch_ablation`](experiments/lora_finetuning/epoch_ablation/figures/fig_lora_epoch_ablation.pdf) | `experiments/lora_finetuning/epoch_ablation/figures/` | [`lora_finetuning/epoch_ablation`](experiments/lora_finetuning/epoch_ablation/README.md) | `python src/analysis/generate_result_figures.py --only epoch_ablation` | `results/dev_v1/original/zero_shot/`, `experiments/lora_finetuning/shared/results/` |
-| [`fig_lora_best_models`](experiments/lora_finetuning/best_models/figures/fig_lora_best_models.pdf) | `experiments/lora_finetuning/best_models/figures/` | [`lora_finetuning/best_models`](experiments/lora_finetuning/best_models/README.md) | `python src/analysis/generate_result_figures.py --only best_models` | `experiments/lora_finetuning/shared/results/`, `experiments/lora_finetuning/shared/run_registry.json` |
+| [`fig_term_expansion_across_model`](experiments/term_expansion/by_model/figures/fig_term_expansion_across_model.pdf) | `experiments/term_expansion/by_model/figures/` | [`term_expansion/by_model`](experiments/term_expansion/by_model/README.md) | `python shared/lib/analysis/generate_result_figures.py --only model_comparison` | `shared/results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}`](experiments/term_expansion/by_language_pair/figures/fig_term_expansion_across_languages_gpt.pdf) | `experiments/term_expansion/by_language_pair/figures/` | [`term_expansion/by_language_pair`](experiments/term_expansion/by_language_pair/README.md) | `python shared/lib/analysis/generate_result_figures.py --only mode_comparison` | `shared/results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_dev_v1_vs_dev_v2_{no_term,proper_term,random_term}`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_proper_term.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python shared/lib/analysis/generate_result_figures.py --only dataset_comparison` | `shared/results/dev_v1/original/few_shot/`, `shared/results/dev_v2/` |
+| [`fig_lora_epoch_ablation`](experiments/lora_finetuning/epoch_ablation/figures/fig_lora_epoch_ablation.pdf) | `experiments/lora_finetuning/epoch_ablation/figures/` | [`lora_finetuning/epoch_ablation`](experiments/lora_finetuning/epoch_ablation/README.md) | `python shared/lib/analysis/generate_result_figures.py --only epoch_ablation` | `shared/results/dev_v1/original/zero_shot/`, `experiments/lora_finetuning/shared/results/` |
+| [`fig_lora_best_models`](experiments/lora_finetuning/best_models/figures/fig_lora_best_models.pdf) | `experiments/lora_finetuning/best_models/figures/` | [`lora_finetuning/best_models`](experiments/lora_finetuning/best_models/README.md) | `python shared/lib/analysis/generate_result_figures.py --only best_models` | `experiments/lora_finetuning/shared/results/`, `experiments/lora_finetuning/shared/run_registry.json` |
 
-Generate all at once with `python src/analysis/generate_result_figures.py` (writes each into its home dir above; `dataset_comparison` writes 3 files, one per term mode, and `mode_comparison` writes 3 files, one per model). Of these, `fig_term_expansion_across_model`, the 3 `fig_term_expansion_across_languages_{model}` figures, `fig_lora_epoch_ablation`, and `fig_lora_best_models` are copied to `poster/figures/` for the poster; the 3 `fig_dev_v1_vs_dev_v2_{mode}` figures are copied to `report/figures/` instead, since they're background context for the paper rather than poster figures.
+Generate all at once with `python shared/lib/analysis/generate_result_figures.py` (writes each into its home dir above; `dataset_comparison` writes 3 files, one per term mode, and `mode_comparison` writes 3 files, one per model). Of these, `fig_term_expansion_across_model`, the 3 `fig_term_expansion_across_languages_{model}` figures, `fig_lora_epoch_ablation`, and `fig_lora_best_models` are copied to `poster/figures/` for the poster; the 3 `fig_dev_v1_vs_dev_v2_{mode}` figures are copied to `report/figures/` instead, since they're background context for the paper rather than poster figures.
 
 ## Notebooks
 
-[`notebooks/`](notebooks/) holds the three manually-run model notebooks (`gpt.ipynb`, `qwen_base.ipynb`, `qwen_finetuned.ipynb`) used to produce the `lora_finetuning` results — run individually (e.g. on LRZ AI Systems), not driven by any script.
+[`shared/notebooks/`](shared/notebooks/) holds the three manually-run model notebooks (`gpt.ipynb`, `qwen_base.ipynb`, `qwen_finetuned.ipynb`) used to produce the `lora_finetuning` results — run individually (e.g. on LRZ AI Systems), not driven by any script.
 
 ## Experiments
 
@@ -45,9 +45,9 @@ Generate all at once with `python src/analysis/generate_result_figures.py` (writ
 
 ## Scripts
 
-Genuinely shared code lives in `src/`. Single-experiment scripts live under the owning experiment's `scripts/` folder (e.g. `experiments/lora_finetuning/shared/scripts/`, `experiments/term_expansion/by_model/scripts/`), and import shared `src/` code as `from src.analysis... import ...` / `from src.data_preparation... import ...` — this holds regardless of how deeply an experiment is nested under `experiments/`.
+Genuinely shared code lives in `shared/lib/`. Single-experiment scripts live under the owning experiment's `scripts/` folder (e.g. `experiments/lora_finetuning/shared/scripts/`, `experiments/term_expansion/by_model/scripts/`), and import shared `shared/lib/` code as `from shared.lib.analysis... import ...` / `from shared.lib.data_preparation... import ...` — this holds regardless of how deeply an experiment is nested under `experiments/`.
 
-### Data preparation (shared, `src/data_preparation/`)
+### Data preparation (shared, `shared/lib/data_preparation/`)
 
 | Script                                                     | Purpose                                                                      |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -66,9 +66,9 @@ Two dictionary-building scripts are experiment-specific and live in [`experiment
 | Script | Purpose |
 | ------ | ------- |
 | `build_term_dictionary.py` | Builds provenance-aware term dictionary from dev_v2 (GPT via OpenRouter). |
-| `apply_dictionary_to_dev_v1.py` | Applies the dictionary to dev_v1 into `data/dev_v1/dev_v1_dictionary/` (optional, new files). |
+| `apply_dictionary_to_dev_v1.py` | Applies the dictionary to dev_v1 into `shared/data/dev_v1/dev_v1_dictionary/` (optional, new files). |
 
-### Analysis (shared, `src/analysis/`)
+### Analysis (shared, `shared/lib/analysis/`)
 
 All analysis scripts require `pandas` and `openpyxl`.
 
@@ -90,7 +90,7 @@ The table-comparison and figure-generating scripts themselves are experiment-spe
 
 ## Results
 
-All results live in `results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; `dev_v1/{expand,cleaned,dictionary}/` each have a single, unqualified model directory. `results/dev_v2/` is flat like the other unqualified variants (`gpt/`, `qwen_3b/`, `qwen_7b/`); it's used both as an eval target and, via `dataset_comparison`, compared directly against `dev_v1/original/`.
+All results live in `shared/results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `shared/results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; `dev_v1/{expand,cleaned,dictionary}/` each have a single, unqualified model directory. `shared/results/dev_v2/` is flat like the other unqualified variants (`gpt/`, `qwen_3b/`, `qwen_7b/`); it's used both as an eval target and, via `dataset_comparison`, compared directly against `dev_v1/original/`.
 
 ## Report
 
@@ -106,7 +106,7 @@ See each experiment's README for the exact command to regenerate every table it 
 
 ## Data
 
-All data lives in `data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than by processing stage. One exception lives inside the experiment that's its only consumer instead: `dev_v2_dictionary/` (the term dictionary built from dev_v2), under [`experiments/term_expansion/dictionary/data/`](experiments/term_expansion/dictionary/README.md).
+All data lives in `shared/data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than by processing stage. One exception lives inside the experiment that's its only consumer instead: `dev_v2_dictionary/` (the term dictionary built from dev_v2), under [`experiments/term_expansion/dictionary/data/`](experiments/term_expansion/dictionary/README.md).
 
 | Path | Description |
 | ---- | ----------- |

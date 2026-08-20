@@ -19,8 +19,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_INPUTS = sorted((REPO_ROOT / "data" / "extra").glob("*_dev.jsonl"))
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_INPUTS = sorted((REPO_ROOT / "shared" / "data" / "extra").glob("*_dev.jsonl"))
 TERM_FIELDS = frozenset({"proper_terms", "random_terms"})
 
 

@@ -16,9 +16,9 @@ Five sub-experiments, each independently reproducible (own `scripts/`+`report/`)
 
 | Path | Contents |
 |------|----------|
-| [`../../notebooks/gpt.ipynb`](../../notebooks/gpt.ipynb) | GPT-4o-mini baseline run on the finetuning test set |
-| [`../../notebooks/qwen_base.ipynb`](../../notebooks/qwen_base.ipynb) | Qwen2.5 (3B/7B) base model, no fine-tuning |
-| [`../../notebooks/qwen_finetuned.ipynb`](../../notebooks/qwen_finetuned.ipynb) | LoRA fine-tuning + inference for Qwen2.5 (3B/7B), 1/2/3 epochs |
+| [`../../shared/notebooks/gpt.ipynb`](../../shared/notebooks/gpt.ipynb) | GPT-4o-mini baseline run on the finetuning test set |
+| [`../../shared/notebooks/qwen_base.ipynb`](../../shared/notebooks/qwen_base.ipynb) | Qwen2.5 (3B/7B) base model, no fine-tuning |
+| [`../../shared/notebooks/qwen_finetuned.ipynb`](../../shared/notebooks/qwen_finetuned.ipynb) | LoRA fine-tuning + inference for Qwen2.5 (3B/7B), 1/2/3 epochs |
 | `shared/data/test/` | Held-out `dev_v1` test set per language pair |
 | `shared/data/training/` | `dev_v2` training set per language pair |
 | `shared/data/dev_v2_deduped/` | `dev_v2` with `dev_v1`-overlapping lines removed (see `shared/scripts/remove_dev_v2_overlap.py`); upstream of `shared/data/training/` |
@@ -29,7 +29,7 @@ Five sub-experiments, each independently reproducible (own `scripts/`+`report/`)
 
 ## Running the notebooks
 
-The three model-running notebooks live in the repo-root [`notebooks/`](../../notebooks/) directory (run manually, e.g. on LRZ AI Systems — not driven by any script). Each notebook writes predictions and `metrics_summary.json` under `shared/results/<model>/<run_name>/`. Run order: `qwen_base.ipynb` and `gpt.ipynb` first (baselines), then `qwen_finetuned.ipynb` for the LoRA runs.
+The three model-running notebooks live in the repo-root [`shared/notebooks/`](../../shared/notebooks/) directory (run manually, e.g. on LRZ AI Systems — not driven by any script). Each notebook writes predictions and `metrics_summary.json` under `shared/results/<model>/<run_name>/`. Run order: `qwen_base.ipynb` and `gpt.ipynb` first (baselines), then `qwen_finetuned.ipynb` for the LoRA runs.
 
 ### Registered runs
 
@@ -49,7 +49,7 @@ Runs are defined in [`shared/run_registry.json`](shared/run_registry.json). Run 
 
 ### Naming standard
 
-This experiment's scripts, `run_registry.json`, and generated workbooks use `zero_shot`/`few_shot` as the one term for few-shot-prompting status, and canonical name pairs for the two models compared throughout: `gpt` (machine key: folder/dict keys, `model` column values) / `GPT-4o-mini` (display: sheet titles, group headers, prose), and `qwen_3b`/`qwen_7b` (machine key) / `Qwen2.5-3B`/`Qwen2.5-7B` (display). Both `base` runs use `use_few_shot: true` in `run_registry.json` — the base runs are in fact few-shot (3 examples per language, per `report/README.md`), and the run id is `base_few_shot` accordingly. The shared `results/dev_v1/original/{zero_shot,few_shot}/` folders (also read by the `term_expansion/` experiments) use this same vocabulary.
+This experiment's scripts, `run_registry.json`, and generated workbooks use `zero_shot`/`few_shot` as the one term for few-shot-prompting status, and canonical name pairs for the two models compared throughout: `gpt` (machine key: folder/dict keys, `model` column values) / `GPT-4o-mini` (display: sheet titles, group headers, prose), and `qwen_3b`/`qwen_7b` (machine key) / `Qwen2.5-3B`/`Qwen2.5-7B` (display). Both `base` runs use `use_few_shot: true` in `run_registry.json` — the base runs are in fact few-shot (3 examples per language, per `report/README.md`), and the run id is `base_few_shot` accordingly. The shared `shared/results/dev_v1/original/{zero_shot,few_shot}/` folders (also read by the `term_expansion/` experiments) use this same vocabulary.
 
 ## Output
 

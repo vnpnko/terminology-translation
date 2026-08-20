@@ -11,7 +11,7 @@ from matplotlib.patches import Patch
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.analysis.figure_common import (
+from shared.lib.analysis.figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
     TERM_ACC_YLIM_TOP,
@@ -20,7 +20,7 @@ from src.analysis.figure_common import (
     place_side_legend,
     plot_grouped_bars,
 )
-from src.analysis.metrics_loader import (
+from shared.lib.analysis.metrics_loader import (
     BASELINE_DIRS,
     BASELINE_LABELS,
     EXTERNAL_DICTIONARY_RESULTS,
@@ -29,7 +29,7 @@ from src.analysis.metrics_loader import (
     macro_average,
     require_paths,
 )
-from src.analysis.plot_style import apply_poster_style
+from shared.lib.analysis.plot_style import apply_poster_style
 
 DATASET_ORDER = ("dev_v1", "dev_v2")
 DATASET_LABELS = {

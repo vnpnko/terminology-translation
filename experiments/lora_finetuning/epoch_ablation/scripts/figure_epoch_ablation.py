@@ -12,9 +12,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
-from src.analysis.figure_common import BLEU_YLIM_TOP, TERM_ACC_YLIM_TOP, create_pair_figure, finalize_pair_layout, place_side_legend
-from src.analysis.metrics_loader import require_paths
-from src.analysis.plot_style import SIZE_COLORS, apply_poster_style, fixed_top_ylim
+from shared.lib.analysis.figure_common import BLEU_YLIM_TOP, TERM_ACC_YLIM_TOP, create_pair_figure, finalize_pair_layout, place_side_legend
+from shared.lib.analysis.metrics_loader import require_paths
+from shared.lib.analysis.plot_style import SIZE_COLORS, apply_poster_style, fixed_top_ylim
 from metrics_parser import load_summary, extract_proper_term_metrics, macro_average  # noqa: E402
 
 FINETUNING_RESULTS = PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "results"
@@ -26,8 +26,8 @@ LORA_EPOCH_RUNS = (
 )
 
 ZERO_SHOT_PATHS = {
-    "Qwen2.5-7B": "results/dev_v1/original/zero_shot/qwen_7b/metrics_summary.json",
-    "Qwen2.5-3B": "results/dev_v1/original/zero_shot/qwen_3b/metrics_summary.json",
+    "Qwen2.5-7B": "shared/results/dev_v1/original/zero_shot/qwen_7b/metrics_summary.json",
+    "Qwen2.5-3B": "shared/results/dev_v1/original/zero_shot/qwen_3b/metrics_summary.json",
 }
 
 MODEL_STYLES = {

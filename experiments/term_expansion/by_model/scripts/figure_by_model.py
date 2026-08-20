@@ -12,7 +12,7 @@ from matplotlib.patches import Patch
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.analysis.figure_common import (
+from shared.lib.analysis.figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
     TERM_ACC_YLIM_TOP,
@@ -21,7 +21,7 @@ from src.analysis.figure_common import (
     place_side_legend,
     plot_grouped_bars,
 )
-from src.analysis.metrics_loader import (
+from shared.lib.analysis.metrics_loader import (
     BASELINE_DIRS,
     BASELINE_LABELS,
     DEFAULT_MODE,
@@ -32,7 +32,7 @@ from src.analysis.metrics_loader import (
     macro_average,
     require_paths,
 )
-from src.analysis.plot_style import apply_poster_style
+from shared.lib.analysis.plot_style import apply_poster_style
 
 NO_TERM_KEY = "no_term"
 RANDOM_TERM_KEY = "random_term"

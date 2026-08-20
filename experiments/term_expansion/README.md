@@ -7,9 +7,9 @@ Compares terminology-constrained translation across `no_term`, `random_term`, th
 | [`by_model/`](by_model/README.md) | Aggregated by model (macro avg over language pairs). Produces `fig_term_expansion_across_model`. |
 | [`by_language_pair/`](by_language_pair/README.md) | Broken out by language pair, one figure per model. Produces `fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}`. |
 
-This is a **thin wrapper**: there is no experiment-local data here, only `shared/`, `by_model/`, and `by_language_pair/` below. It is a specific comparison drawn from the shared, evolving `data/` → `results/` pipeline documented in the [root README](../../README.md#data), not a separate model run like [`lora_finetuning`](../lora_finetuning/README.md).
+This is a **thin wrapper**: there is no experiment-local data here, only `shared/`, `by_model/`, and `by_language_pair/` below. It is a specific comparison drawn from the shared, evolving `shared/data/` → `shared/results/` pipeline documented in the [root README](../../README.md#data), not a separate model run like [`lora_finetuning`](../lora_finetuning/README.md).
 
-The externally-sourced dictionary term-list variant (`results/dev_v1/dictionary/`) doesn't have its own experiment folder — its data-prep scripts and standalone comparisons are folded in here.
+The externally-sourced dictionary term-list variant (`shared/results/dev_v1/dictionary/`) doesn't have its own experiment folder — its data-prep scripts and standalone comparisons are folded in here.
 
 For the `dev_v1`-vs-`dev_v2` dataset comparability check (a different axis — not about term-list strategy), see the top-level [`dataset_comparison/`](../dataset_comparison/README.md).
 
@@ -23,15 +23,15 @@ For the `dev_v1`-vs-`dev_v2` dataset comparability check (a different axis — n
 
 ## Inputs
 
-Both axes read `metrics_summary.json` under `results/dev_v1/` for all 3 models (GPT-4o-mini, Qwen 3B, Qwen 7B) across:
+Both axes read `metrics_summary.json` under `shared/results/dev_v1/` for all 3 models (GPT-4o-mini, Qwen 3B, Qwen 7B) across:
 
 | Variant | Source data | Results path |
 | ------- | ------------ | ------------ |
-| `original` | `data/dev_v1/dev_v1_original/` | `results/dev_v1/original/few_shot/` |
-| `expand` | `data/dev_v1/dev_v1_expand/` | `results/dev_v1/expand/` |
-| `cleaned` | `data/dev_v1/dev_v1_cleaned/` | `results/dev_v1/cleaned/` |
-| external dictionary | `data/dev_v1/dev_v1_dictionary/` | `results/dev_v2/` |
+| `original` | `shared/data/dev_v1/dev_v1_original/` | `shared/results/dev_v1/original/few_shot/` |
+| `expand` | `shared/data/dev_v1/dev_v1_expand/` | `shared/results/dev_v1/expand/` |
+| `cleaned` | `shared/data/dev_v1/dev_v1_cleaned/` | `shared/results/dev_v1/cleaned/` |
+| external dictionary | `shared/data/dev_v1/dev_v1_dictionary/` | `shared/results/dev_v2/` |
 
-Plus the `no_term` and `random_term` baseline modes — only from `results/dev_v1/original/few_shot/`. These two modes don't depend on the term-list variant, so they were only ever run once and were pruned from `expand`/`cleaned`/`dictionary` as redundant; `metrics_summary.json` in those directories now has only a `proper_term` entry per language. `zero_shot` was similarly pruned to `proper_term` only — `few_shot` is the only `dev_v1/original` variant with all 3 modes, which is why both axes source `original` from there (not `zero_shot`).
+Plus the `no_term` and `random_term` baseline modes — only from `shared/results/dev_v1/original/few_shot/`. These two modes don't depend on the term-list variant, so they were only ever run once and were pruned from `expand`/`cleaned`/`dictionary` as redundant; `metrics_summary.json` in those directories now has only a `proper_term` entry per language. `zero_shot` was similarly pruned to `proper_term` only — `few_shot` is the only `dev_v1/original` variant with all 3 modes, which is why both axes source `original` from there (not `zero_shot`).
 
 `shared/scripts/compare_by_model_and_language.py` handles the pruned variants correctly: those sheets simply show `proper_term` rows only, with the mode-label merge computed from the rows actually present rather than assuming a fixed count per mode.

@@ -12,11 +12,11 @@ Reads ``metrics_summary.json`` from ``<variant_dir>/{gpt,qwen_3b,qwen_7b}/``.
 
 Each value cell is colored by ranking that (model, language) combination's
 value **across the 4 variants** (not across models/languages), using the
-shared Good/Bad/Neutral convention (see ``src/analysis/excel_style.py``):
+shared Good/Bad/Neutral convention (see ``shared/lib/analysis/excel_style.py``):
 green = best variant, red = worst variant, any value neither best nor worst
 is left unfilled.
 
-Note: ``results/dev_v1/original/`` has no ``gpt``/``qwen_3b``/``qwen_7b``
+Note: ``shared/results/dev_v1/original/`` has no ``gpt``/``qwen_3b``/``qwen_7b``
 subfolders directly — it's nested under ``zero_shot/`` or ``few_shot/``
 (see ``report/README.md`` §3.4.1). This script defaults to ``few_shot``;
 override with ``--original`` if you want the ``zero_shot`` variant instead.
@@ -24,7 +24,7 @@ override with ``--original`` if you want the ``zero_shot`` variant instead.
 Usage::
 
     python experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py
-    python experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py --original results/dev_v1/original/zero_shot
+    python experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py --original shared/results/dev_v1/original/zero_shot
 """
 
 from __future__ import annotations
@@ -42,7 +42,7 @@ from openpyxl.styles import Alignment
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.analysis.excel_style import (  # noqa: E402
+from shared.lib.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,
@@ -298,7 +298,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--results-root",
         type=Path,
-        default=Path("results"),
+        default=Path("shared/results"),
         help="Root directory containing dev_v1 result folders",
     )
     parser.add_argument(

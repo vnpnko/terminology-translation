@@ -10,7 +10,7 @@ columns are local, driven by ``run_registry.json``:
   where ``<folder>`` is the registry's ``lora_1_epoch_zero_shot`` run.
 
 Each value cell is colored by the shared Good/Bad/Neutral convention (see
-``src/analysis/excel_style.py``): green for the higher of its
+``shared/lib/analysis/excel_style.py``): green for the higher of its
 qwen_base_few_shot/qwen_lora_zero_shot pair, red for the lower, yellow if equal.
 
 Usage::
@@ -40,7 +40,7 @@ from compare_common import (  # noqa: E402
     load_registry,
     write_group_header,
 )
-from src.analysis.excel_style import (  # noqa: E402
+from shared.lib.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,

@@ -25,7 +25,7 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.data_preparation.term_utils import (
+from shared.lib.data_preparation.term_utils import (
     DEV_V1_ORIGINAL_DIR,
     DEV_V2_DIR,
     LANG_PAIRS,

@@ -2,15 +2,15 @@
 
 Compares performance on `dev_v1` vs. `dev_v2` (an additional terminology dataset sourced from an open SAP repo), per model (`gpt`, `qwen_3b`, `qwen_7b`), one figure per term mode (`no_term`, `proper_term`, `random_term`). Produces the `fig_dev_v1_vs_dev_v2_{mode}` figures.
 
-This is a **thin wrapper**: no experiment-local data, only `scripts/`, `report/`, and `figures/`. It reads the shared `results/` tree.
+This is a **thin wrapper**: no experiment-local data, only `scripts/`, `report/`, and `figures/`. It reads the shared `shared/results/` tree.
 
 ## Reproduce
 
 ```bash
-python src/analysis/generate_result_figures.py --only dataset_comparison
+python shared/lib/analysis/generate_result_figures.py --only dataset_comparison
 ```
 
-Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_dataset_comparison.py) (`build_dataset_comparison_figures`), shared helpers in [`src/analysis/figure_common.py`](../../src/analysis/figure_common.py) and [`src/analysis/metrics_loader.py`](../../src/analysis/metrics_loader.py).
+Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_dataset_comparison.py) (`build_dataset_comparison_figures`), shared helpers in [`shared/lib/analysis/figure_common.py`](../../shared/lib/analysis/figure_common.py) and [`shared/lib/analysis/metrics_loader.py`](../../shared/lib/analysis/metrics_loader.py).
 
 ## Inputs
 
@@ -18,12 +18,12 @@ Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_datas
 
 | Dataset | Results path |
 | ------- | ------------ |
-| `dev_v1` (gpt) | `results/dev_v1/original/few_shot/gpt/metrics_summary.json` |
-| `dev_v1` (qwen_3b) | `results/dev_v1/original/few_shot/qwen_3b/metrics_summary.json` |
-| `dev_v1` (qwen_7b) | `results/dev_v1/original/few_shot/qwen_7b/metrics_summary.json` |
-| `dev_v2` (gpt) | `results/dev_v2/gpt/metrics_summary.json` |
-| `dev_v2` (qwen_3b) | `results/dev_v2/qwen_3b/metrics_summary.json` |
-| `dev_v2` (qwen_7b) | `results/dev_v2/qwen_7b/metrics_summary.json` |
+| `dev_v1` (gpt) | `shared/results/dev_v1/original/few_shot/gpt/metrics_summary.json` |
+| `dev_v1` (qwen_3b) | `shared/results/dev_v1/original/few_shot/qwen_3b/metrics_summary.json` |
+| `dev_v1` (qwen_7b) | `shared/results/dev_v1/original/few_shot/qwen_7b/metrics_summary.json` |
+| `dev_v2` (gpt) | `shared/results/dev_v2/gpt/metrics_summary.json` |
+| `dev_v2` (qwen_3b) | `shared/results/dev_v2/qwen_3b/metrics_summary.json` |
+| `dev_v2` (qwen_7b) | `shared/results/dev_v2/qwen_7b/metrics_summary.json` |
 
 ## Output
 

@@ -14,7 +14,7 @@ the two differently-scoped few-shot experiments documented in ``report/README.md
   ``lora_1_epoch_zero_shot``/``lora_1_epoch_few_shot`` runs.
 
 Each value cell is colored by the shared Good/Bad/Neutral convention (see
-``src/analysis/excel_style.py``): green for the higher of its zero_shot/
+``shared/lib/analysis/excel_style.py``): green for the higher of its zero_shot/
 few_shot pair, red for the lower, yellow if they're equal.
 
 Usage::
@@ -46,7 +46,7 @@ from compare_common import (  # noqa: E402
     load_registry,
     write_group_header,
 )
-from src.analysis.excel_style import (  # noqa: E402
+from shared.lib.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,
@@ -181,7 +181,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--baseline-results-root",
         type=Path,
-        default=Path("results"),
+        default=Path("shared/results"),
         help="Root directory containing dev_v1/original/zero_shot/{gpt,qwen_3b,qwen_7b}/",
     )
     parser.add_argument(

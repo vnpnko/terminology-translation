@@ -26,9 +26,9 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 ENV_FILE = REPO_ROOT / ".env"
-DEFAULT_INPUT_DIR = REPO_ROOT / "data" / "sap_dev"
+DEFAULT_INPUT_DIR = REPO_ROOT / "shared" / "data" / "sap_dev"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 TERM_FIELDS = frozenset({"proper_terms", "random_terms"})

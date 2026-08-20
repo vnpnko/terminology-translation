@@ -37,8 +37,8 @@ TARGET_LANGS: dict[str, TargetLang] = {
     "ru": TargetLang("ru", "Russian", "ru", "enru"),
 }
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_DATA_ROOT = REPO_ROOT / "data" / "sap_term_postedits"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_DATA_ROOT = REPO_ROOT / "shared" / "data" / "sap_term_postedits"
 
 
 def load_lines(path: Path) -> list[str]:

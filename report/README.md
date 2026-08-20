@@ -6,7 +6,7 @@ Companion doc: [`ISSUES.md`](ISSUES.md) — every messy/undocumented/broken thin
 
 ## Canonical vocabulary
 
-Every experiment below draws on the same building blocks (source: [`src/analysis/metrics_loader.py`](../src/analysis/metrics_loader.py)). Use these exact names in the paper so tables are consistent:
+Every experiment below draws on the same building blocks (source: [`shared/lib/analysis/metrics_loader.py`](../shared/lib/analysis/metrics_loader.py)). Use these exact names in the paper so tables are consistent:
 
 | Axis | Values |
 | ---- | ------ |
@@ -22,7 +22,7 @@ Every experiment below draws on the same building blocks (source: [`src/analysis
 
 ## Report table coloring conventions
 
-Every `compare_*_to_excel.py` script (see [`src/analysis/excel_style.py`](../src/analysis/excel_style.py)) colors cells within each comparison group using Excel's own built-in Good/Bad/Neutral cell styles: green = best value, red = worst value, yellow = tie. A "tie" includes exact equality and any spread within 1% of the larger value (`TIE_RELATIVE_TOLERANCE`) — a display heuristic for readability, not a statistical significance claim, since these are single-run point estimates rather than multi-seed/bootstrap results. In 3+-way comparisons, a value that is neither best nor worst nor tied with either is left unfilled.
+Every `compare_*_to_excel.py` script (see [`shared/lib/analysis/excel_style.py`](../shared/lib/analysis/excel_style.py)) colors cells within each comparison group using Excel's own built-in Good/Bad/Neutral cell styles: green = best value, red = worst value, yellow = tie. A "tie" includes exact equality and any spread within 1% of the larger value (`TIE_RELATIVE_TOLERANCE`) — a display heuristic for readability, not a statistical significance claim, since these are single-run point estimates rather than multi-seed/bootstrap results. In 3+-way comparisons, a value that is neither best nor worst nor tied with either is left unfilled.
 
 ## Experiments section outline
 
@@ -30,7 +30,7 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 
 ### 3.1 Terminology modes across language pairs (no-term / proper-term / random-term, EN→DE / EN→RU / EN→ES) — 🟢
 - **RQ:** Does injecting explicit terminology constraints improve BLEU/chrF/term accuracy over no constraints, does an unrelated (random-term) constraint list act as a fair control, and does that benefit vary by language pair or by model? How does an external dictionary (built from dev_v2) compare, in this same mode×language breakdown?
-- **Repo location:** [`experiments/term_expansion/`](../experiments/term_expansion/README.md) (modes and dictionary variant — dictionary data lives in `results/dev_v1/dictionary/`)
+- **Repo location:** [`experiments/term_expansion/`](../experiments/term_expansion/README.md) (modes and dictionary variant — dictionary data lives in `shared/results/dev_v1/dictionary/`)
 - **Scripts:** [`experiments/term_expansion/shared/scripts/compare_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_by_model_and_language.py), [`compare_proper_term_by_model_and_language.py`](../experiments/term_expansion/shared/scripts/compare_proper_term_by_model_and_language.py)
 - **Tables:** `experiments/term_expansion/by_language_pair/report/language_comparison.xlsx` (sheets: `dev_v1`, `dev_v2`); `experiments/term_expansion/by_language_pair/report/proper_term_across_languages.xlsx` (`original`/`expand`/`cleaned`/`dictionary`, all 3 models)
 - **Figure:** `poster/figures/fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}.pdf` — one figure per model (GPT/Qwen 3B/Qwen 7B), grouped by language pair.
@@ -60,14 +60,14 @@ Status legend: 🟢 Documented · 🟡 Partially documented · 🔴 Undocumented
 #### 3.4.1 Few-shot ablation — 🟢 two separate, differently-scoped comparisons exist under this name
 There are **two distinct few-shot comparisons** in the repo; name them separately in the report so readers don't conflate them:
 
-1. **Baseline-level few-shot** (GPT + Qwen 3B/7B, no fine-tuning): `results/dev_v1/original/zero_shot/{gpt,qwen_3b,qwen_7b}/` vs `results/dev_v1/original/few_shot/{gpt,qwen_3b,qwen_7b}/`.
+1. **Baseline-level few-shot** (GPT + Qwen 3B/7B, no fine-tuning): `shared/results/dev_v1/original/zero_shot/{gpt,qwen_3b,qwen_7b}/` vs `shared/results/dev_v1/original/few_shot/{gpt,qwen_3b,qwen_7b}/`.
 2. **LoRA-level few-shot** (Qwen only, held at 1 epoch): `run_registry.json`'s `lora_1_epoch_few_shot` vs `lora_1_epoch_zero_shot`. The RQ here is whether few-shot prompting contributes differently to a trained vs. untrained model, not whether it interacts with epoch count — holding epoch count fixed at 1 while varying few-shot is exactly what isolates that, so the 2-/3-epoch runs (zero-shot only, used for the separate epoch-ablation axis) don't need a few-shot counterpart.
 
 #### 3.4.2 Data-leakage honesty check (`leakage_honesty_check.xlsx`) — 🔴 fully undocumented in any README
 **Why this section exists:** dev_v2 is used as a training-set proxy for the shared task (see §3.3) because the real shared-task training data isn't available. But dev_v2 and dev_v1 are drawn from overlapping SAP documentation, so some dev_v2 lines are near-duplicates of dev_v1 test lines — fine-tuning on them would leak test signal and make LoRA's gains look bigger than they are.
 
 **What was actually done** ([`experiments/lora_finetuning/shared/scripts/remove_dev_v2_overlap.py`](../experiments/lora_finetuning/shared/scripts/remove_dev_v2_overlap.py) implements this pipeline; regenerate with `python experiments/lora_finetuning/shared/scripts/remove_dev_v2_overlap.py --all`, writing `experiments/lora_finetuning/shared/data/dev_v2_deduped/` and its `remove_overlap_report.json`):
-1. dev_v2 starts at **2000 lines/language** (`data/dev_v2/*.jsonl`).
+1. dev_v2 starts at **2000 lines/language** (`shared/data/dev_v2/*.jsonl`).
 2. **500 lines/language removed** where the English source *and* target already appear verbatim in dev_v1 — exact-overlap deduplication, kept = 1500/language.
 3. **2–3 more lines/language removed** to reserve as few-shot prompt examples, leaving the training files at their current size: `experiments/lora_finetuning/shared/data/training/*.jsonl` = 1498 (ende) / 1497 (enes) / 1497 (enru) lines, i.e. 1500 minus 2–3.
 4. Even after exact-overlap removal, some dev_v1 test sentences remain **near-duplicates** of dev_v2 training sentences (differing by only a few words) — this is the poster's stated caveat: *"some dev_v1 test sentences overlap lexically with dev_v2 training data."*

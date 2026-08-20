@@ -8,7 +8,7 @@ epoch counts read from ``scripts/run_registry.json`` (not hardcoded). Reads
 mode only).
 
 Each value cell is colored by ranking that (language, metric) value **across the 3 epoch
-counts** using the shared Good/Bad/Neutral convention (see ``src/analysis/excel_style.py``):
+counts** using the shared Good/Bad/Neutral convention (see ``shared/lib/analysis/excel_style.py``):
 green = best epoch, red = worst epoch, the remaining (strictly middle) epoch is left unfilled.
 
 Usage::
@@ -31,7 +31,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
 from compare_common import METRICS, extract_row, load_metrics_summary, load_registry  # noqa: E402
-from src.analysis.excel_style import (  # noqa: E402
+from shared.lib.analysis.excel_style import (  # noqa: E402
     HEADER_FILL,
     apply_cell_style,
     autofit_columns,

@@ -21,7 +21,7 @@ Reads ``metrics_summary.json`` from
 
 Each value cell is colored green if it is the higher of its overlap_data/no_overlap_data
 pair, red if it is the lower, and yellow if the pair ties (shared Good/Bad/Neutral
-convention, see ``src/analysis/excel_style.py``). Same coloring convention as
+convention, see ``shared/lib/analysis/excel_style.py``). Same coloring convention as
 ``experiments/lora_finetuning/few_shot_ablation/scripts/compare_few_shots_to_excel.py``.
 
 Usage::
@@ -52,7 +52,7 @@ from compare_common import (  # noqa: E402
     load_registry,
     write_group_header,
 )
-from src.analysis.excel_style import apply_cell_style, autofit_columns, rank_fills  # noqa: E402
+from shared.lib.analysis.excel_style import apply_cell_style, autofit_columns, rank_fills  # noqa: E402
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEY = "7B"

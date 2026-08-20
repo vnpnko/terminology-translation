@@ -41,7 +41,7 @@ EXPANSION_COLORS = {
     "cleaned": COLOR_DICTIONARY,
     "external_dictionary": COLOR_EXTERNAL_DICTIONARY,
     "dev_v1": COLOR_ORIGINAL,
-    "dev_v2_training": COLOR_DICTIONARY,
+    "dev_v2": COLOR_DICTIONARY,
 }
 
 PAIR_FIG_SIZE = (19, 6.5)

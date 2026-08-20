@@ -41,7 +41,7 @@ for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
 
 from figure_model_comparison import build_model_comparison_figure
 from figure_mode_comparison import build_mode_comparison_figure
-from figure_dataset_comparison import build_dataset_comparison_figure
+from figure_dataset_comparison import build_dataset_comparison_figures
 from figure_lora_finetuning import build_lora_finetuning_figure
 from plot_style import save_figure
 
@@ -57,8 +57,8 @@ FIGURE_BUILDERS = {
         Path("experiments/term_expansion/by_language_pair/figures"),
     ),
     "dataset_comparison": (
-        "fig_dev_v1_vs_dev_v2_training",
-        lambda root: build_dataset_comparison_figure(root / "results"),
+        "fig_dev_v1_vs_dev_v2",
+        lambda root: build_dataset_comparison_figures(root / "results"),
         Path("experiments/dataset_comparison/figures"),
     ),
     "lora_finetuning": (
@@ -82,12 +82,15 @@ def generate_figures(
     written: list[tuple[str, Path, Path]] = []
     for key in keys:
         stem, builder, home_dir = FIGURE_BUILDERS[key]
-        fig = builder(project_root)
+        result = builder(project_root)
         target_dir = output_dir if output_dir is not None else project_root / home_dir
-        pdf_path, png_path = save_figure(fig, target_dir, stem)
-        plt.close(fig)
-        written.append((stem, pdf_path, png_path))
-        print(f"Wrote {pdf_path.name} and {png_path.name}")
+        figs = result.items() if isinstance(result, dict) else [(None, result)]
+        for suffix, fig in figs:
+            fig_stem = f"{stem}_{suffix}" if suffix is not None else stem
+            pdf_path, png_path = save_figure(fig, target_dir, fig_stem)
+            plt.close(fig)
+            written.append((fig_stem, pdf_path, png_path))
+            print(f"Wrote {pdf_path.name} and {png_path.name}")
 
     return written
 

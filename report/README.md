@@ -98,7 +98,7 @@ There are **two distinct few-shot comparisons** in the repo; name them separatel
 | `experiments/lora_finetuning/leakage_check/report/leakage_honesty_check.xlsx` | `experiments/lora_finetuning/leakage_check/scripts/compare_leakage_honesty_check_to_excel.py` | Leakage honesty-check table (§3.4.2) |
 | `experiments/term_expansion/by_model/figures/fig_term_expansion.pdf` (copied to `poster/figures/`) | `experiments/term_expansion/by_model/scripts/figure_model_comparison.py` | Figure, §3.2 |
 | `experiments/term_expansion/by_language_pair/figures/fig_expansion_strategies.pdf` (copied to `poster/figures/`) | `experiments/term_expansion/by_language_pair/scripts/figure_mode_comparison.py` | Figure, §3.1 |
-| `experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_training.pdf` (copied to `report/figures/`) | `experiments/dataset_comparison/scripts/figure_dataset_comparison.py` | Figure, §3.3 |
+| `experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_{no_term,proper_term,random_term}.pdf` (copied to `report/figures/`) | `experiments/dataset_comparison/scripts/figure_dataset_comparison.py` | Figure, §3.3 |
 | `experiments/lora_finetuning/figures/fig_lora_finetuning.pdf` (copied to `poster/figures/`) | `experiments/lora_finetuning/scripts/figure_lora_finetuning.py` | Figure, §3.4 |
 
 ## Open questions

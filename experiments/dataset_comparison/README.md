@@ -1,6 +1,6 @@
 # Dataset comparison
 
-Compares GPT-4o-mini `proper_term` performance on the `dev_v1` test set vs. the `dev_v2` training set. Produces the poster's `fig_dev_v1_vs_dev_v2_training` figure.
+Compares performance on `dev_v1` vs. `dev_v2` (an additional terminology dataset sourced from an open SAP repo), per model (`gpt`, `qwen_3b`, `qwen_7b`), one figure per term mode (`no_term`, `proper_term`, `random_term`). Produces the `fig_dev_v1_vs_dev_v2_{mode}` figures.
 
 This is a **thin wrapper**: no experiment-local data, only `scripts/`, `report/`, and `figures/`. It reads the shared `results/` tree.
 
@@ -10,18 +10,24 @@ This is a **thin wrapper**: no experiment-local data, only `scripts/`, `report/`
 python src/analysis/generate_result_figures.py --only dataset_comparison
 ```
 
-Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_dataset_comparison.py) (`build_dataset_comparison_figure`), shared helpers in [`src/analysis/figure_common.py`](../../src/analysis/figure_common.py) and [`src/analysis/metrics_loader.py`](../../src/analysis/metrics_loader.py).
+Generating script: [`scripts/figure_dataset_comparison.py`](scripts/figure_dataset_comparison.py) (`build_dataset_comparison_figures`), shared helpers in [`src/analysis/figure_common.py`](../../src/analysis/figure_common.py) and [`src/analysis/metrics_loader.py`](../../src/analysis/metrics_loader.py).
 
 ## Inputs
 
+`dev_v1` is sourced from `original/few_shot` (the only `dev_v1/original` variant with all 3 term modes; `zero_shot` only has `proper_term`).
+
 | Dataset | Results path |
 | ------- | ------------ |
-| `dev_v1` test | `results/dev_v1/original/zero_shot/gpt/metrics_summary.json` |
-| `dev_v2` training | `results/dev_v2/gpt/metrics_summary.json` |
+| `dev_v1` (gpt) | `results/dev_v1/original/few_shot/gpt/metrics_summary.json` |
+| `dev_v1` (qwen_3b) | `results/dev_v1/original/few_shot/qwen_3b/metrics_summary.json` |
+| `dev_v1` (qwen_7b) | `results/dev_v1/original/few_shot/qwen_7b/metrics_summary.json` |
+| `dev_v2` (gpt) | `results/dev_v2/gpt/metrics_summary.json` |
+| `dev_v2` (qwen_3b) | `results/dev_v2/qwen_3b/metrics_summary.json` |
+| `dev_v2` (qwen_7b) | `results/dev_v2/qwen_7b/metrics_summary.json` |
 
 ## Output
 
-[`figures/fig_dev_v1_vs_dev_v2_training.pdf`](figures/fig_dev_v1_vs_dev_v2_training.pdf) — this is the figure's home; it's copied to [`report/figures/`](../../report/figures/fig_dev_v1_vs_dev_v2_training.pdf) since it's background context for the paper, not shown on the poster.
+One figure per term mode — `figures/fig_dev_v1_vs_dev_v2_no_term.pdf`, [`figures/fig_dev_v1_vs_dev_v2_proper_term.pdf`](figures/fig_dev_v1_vs_dev_v2_proper_term.pdf), `figures/fig_dev_v1_vs_dev_v2_random_term.pdf` — these are the figures' home; each is copied to [`report/figures/`](../../report/figures/) since they're background context for the paper, not shown on the poster. (`no_term` mode has no BLEU-vs-term-accuracy gap by definition — the term accuracy panel is empty there.)
 
 ## Report tables
 

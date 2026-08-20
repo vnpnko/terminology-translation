@@ -23,10 +23,10 @@ Each figure is built by a `figure_expN.py` script living in the owning experimen
 | ------ | ---- | ---------- | ------- | ---------- |
 | [`fig_term_expansion`](experiments/term_expansion/by_model/figures/fig_term_expansion.pdf) | `experiments/term_expansion/by_model/figures/` | [`term_expansion/by_model`](experiments/term_expansion/by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
 | [`fig_expansion_strategies`](experiments/term_expansion/by_language_pair/figures/fig_expansion_strategies.pdf) | `experiments/term_expansion/by_language_pair/figures/` | [`term_expansion/by_language_pair`](experiments/term_expansion/by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_dev_v1_vs_dev_v2_training`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_training.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/`, `results/dev_v2/` |
+| [`fig_dev_v1_vs_dev_v2_{no_term,proper_term,random_term}`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_proper_term.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/few_shot/`, `results/dev_v2/` |
 | [`fig_lora_finetuning`](experiments/lora_finetuning/figures/fig_lora_finetuning.pdf) | `experiments/lora_finetuning/figures/` | [`lora_finetuning`](experiments/lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/zero_shot/`, `experiments/lora_finetuning/results/` |
 
-Generate all four at once with `python src/analysis/generate_result_figures.py` (writes each into its home dir above). Of these, `fig_term_expansion`, `fig_expansion_strategies`, and `fig_lora_finetuning` are copied to `poster/figures/` for the poster; `fig_dev_v1_vs_dev_v2_training` is copied to `report/figures/` instead, since it's background context for the paper rather than a poster figure.
+Generate all four at once with `python src/analysis/generate_result_figures.py` (writes each into its home dir above; `dataset_comparison` writes 3 files, one per term mode). Of these, `fig_term_expansion`, `fig_expansion_strategies`, and `fig_lora_finetuning` are copied to `poster/figures/` for the poster; the 3 `fig_dev_v1_vs_dev_v2_{mode}` figures are copied to `report/figures/` instead, since they're background context for the paper rather than poster figures.
 
 ## Notebooks
 
@@ -38,7 +38,7 @@ Generate all four at once with `python src/analysis/generate_result_figures.py` 
 
 | Experiment | Contents |
 | ---------- | -------- |
-| [`dataset_comparison/`](experiments/dataset_comparison/README.md) | `dev_v1` (test) vs. `dev_v2` (training) set comparison, GPT baseline. |
+| [`dataset_comparison/`](experiments/dataset_comparison/README.md) | `dev_v1` vs. `dev_v2` terminology dataset comparison, per model. |
 | [`term_expansion/by_model/`](experiments/term_expansion/by_model/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered vs. externally-sourced dictionary, by model. |
 | [`term_expansion/by_language_pair/`](experiments/term_expansion/by_language_pair/README.md) | Same term-expansion strategy comparison, broken out by language pair. |
 | [`lora_finetuning/`](experiments/lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT-4o-mini and Qwen base: 5 sub-experiments (`epoch_ablation/`, `best_models/`, `base_vs_lora/`, `few_shot_ablation/`, `leakage_check/`) sharing `results/`, `data/`, and `run_registry.json`. |

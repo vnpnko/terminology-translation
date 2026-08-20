@@ -64,7 +64,6 @@ Both are copied to [`poster/figures/`](../../poster/figures/) for the poster.
 
 | File | Role |
 |------|------|
-| `shared/scripts/metrics_parser.py` | `metrics_summary.json` loading/aggregation helpers, used by `epoch_ablation/scripts/figure_epoch_ablation.py` |
 | `shared/scripts/remove_dev_v2_overlap.py` | Removes `dev_v2` lines whose English source also appears in `dev_v1/dev_v1_original` (writes `shared/data/dev_v2_deduped/`), upstream of the shared `shared/data/training/` used by all 5 sub-experiments' LoRA runs |
 | `shared/scripts/compare_common.py` | Shared helpers (`load_registry`, `load_metrics_summary`, `extract_metric`, `extract_row`, `write_group_header`, the `METRICS` spec, and named run-id constants) imported by all 5 sub-experiments' `compare_*_to_excel.py` scripts — not a script itself, just deduplicated plumbing |
 

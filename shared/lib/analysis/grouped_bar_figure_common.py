@@ -1,4 +1,4 @@
-"""Shared layout and grouped-bar helpers for paired expansion figures (model_comparison & mode_comparison)."""
+"""Shared grouped-bar figure layout and plotting helpers, used by the term_expansion, dataset_comparison, and lora_finetuning poster/report figure scripts."""
 
 from __future__ import annotations
 

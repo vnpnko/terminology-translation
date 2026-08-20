@@ -12,7 +12,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
-from shared.lib.analysis.figure_common import (
+from shared.lib.analysis.grouped_bar_figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
     TERM_ACC_YLIM_TOP,

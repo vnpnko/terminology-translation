@@ -17,7 +17,7 @@ For the `dev_v1`-vs-`dev_v2` dataset comparability check (a different axis — n
 
 | Path | Contents |
 |------|----------|
-| `shared/scripts/compare_by_model_and_language.py`, `compare_proper_term_by_model_and_language.py` | Comparison scripts genuinely used by **both** axes — each single run writes one output into `by_model/report/` and one into `by_language_pair/report/`. These were deliberately merged from axis-transposed duplicates; there's no clean way to split them into "the by_model version" and "the by_language_pair version". |
+| `shared/scripts/compare_by_model_and_language.py` (`--mode {all,proper_term}`) | Comparison script genuinely used by **both** axes — each single run writes one output into `by_model/report/` and one into `by_language_pair/report/`. Both modes were deliberately merged from axis-transposed duplicates; there's no clean way to split them into "the by_model version" and "the by_language_pair version". |
 | [`by_model/`](by_model/README.md) | By-model figure, scripts, and report tables. |
 | [`by_language_pair/`](by_language_pair/README.md) | By-language-pair figure, scripts, and report tables. |
 

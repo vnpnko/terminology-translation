@@ -27,22 +27,31 @@ import json
 import os
 import re
 import shutil
-import subprocess
 import sys
 import time
 import urllib.error
-import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-SCRIPTS_DIR = SCRIPT_DIR.parent
+from openrouter_annotation_common import (
+    ENV_FILE,
+    cap_terms as _cap_terms,
+    load_dotenv,
+    locate_substring,
+    merge_chunks,
+    openrouter_chat,
+    parse_model_json,
+    read_nonempty_lines,
+    run_fill_chunk,
+    safe_print,
+    split_lines,
+    write_chunks,
+)
+
 DEFAULT_WORKERS = 10
 DEFAULT_CHUNKS = 10
-ENV_FILE = SCRIPTS_DIR / ".env"
-OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 MAX_RANDOM_TERMS = 2
 MIN_RANDOM_TERMS = 1
@@ -79,42 +88,8 @@ TARGET_LANGS: dict[str, TargetLang] = {
 }
 
 
-def load_dotenv(path: Path = ENV_FILE) -> None:
-    if not path.is_file():
-        return
-    for line in path.read_text(encoding="utf-8-sig").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-        if line.startswith("export "):
-            line = line[7:].strip()
-        key, sep, value = line.partition("=")
-        if not sep:
-            continue
-        key = key.strip().lstrip("\ufeff")
-        value = value.strip()
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
-            value = value[1:-1]
-        if key and key not in os.environ:
-            os.environ[key] = value
-
-
-def locate_substring(needle: str, haystack: str) -> str | None:
-    needle = needle.strip()
-    if not needle:
-        return None
-    pattern = re.escape(needle)
-    match = re.search(pattern, haystack, flags=re.IGNORECASE)
-    if not match:
-        return None
-    return haystack[match.start() : match.end()]
-
-
 def cap_terms(terms: dict[str, str], max_count: int = MAX_RANDOM_TERMS) -> dict[str, str]:
-    if len(terms) <= max_count:
-        return terms
-    ranked = sorted(terms.items(), key=lambda kv: len(kv[0]), reverse=True)
-    return dict(ranked[:max_count])
+    return _cap_terms(terms, max_count)
 
 
 def align_terms(
@@ -153,14 +128,6 @@ def drop_proper_overlaps(terms: dict[str, str], proper_terms: dict[str, str]) ->
     return out
 
 
-def safe_print(text: str, *, file: Any = None) -> None:
-    """Print without crashing on Windows consoles that lack Unicode (e.g. cp1252)."""
-    out = file or sys.stdout
-    enc = getattr(out, "encoding", None) or "utf-8"
-    safe = text.encode(enc, errors="replace").decode(enc, errors="replace")
-    print(safe, file=out, flush=True)
-
-
 def build_prompt(en: str, target: str, proper_terms: dict[str, str], lang: TargetLang) -> str:
     proper_json = json.dumps(proper_terms, ensure_ascii=False)
     return f"""You annotate SAP / enterprise IT documentation sentence pairs with **random terms**.
@@ -189,48 +156,6 @@ English:
 {lang.name}:
 {target}
 """
-
-
-def parse_model_json(content: str) -> dict[str, Any]:
-    text = content.strip()
-    if text.startswith("```"):
-        text = re.sub(r"^```(?:json)?\s*", "", text)
-        text = re.sub(r"\s*```$", "", text)
-    return json.loads(text)
-
-
-def openrouter_chat(
-    *,
-    api_key: str,
-    model: str,
-    messages: list[dict[str, str]],
-    temperature: float,
-    timeout: float,
-) -> str:
-    body = json.dumps(
-        {
-            "model": model,
-            "messages": messages,
-            "temperature": temperature,
-            "response_format": {"type": "json_object"},
-        },
-        ensure_ascii=False,
-    ).encode("utf-8")
-    req = urllib.request.Request(
-        OPENROUTER_URL,
-        data=body,
-        method="POST",
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        payload = json.load(resp)
-    try:
-        return payload["choices"][0]["message"]["content"]
-    except (KeyError, IndexError, TypeError) as exc:
-        raise RuntimeError(f"Unexpected OpenRouter response: {payload}") from exc
 
 
 def extract_random_terms(
@@ -428,64 +353,6 @@ def process_file(
     return updated, skipped
 
 
-def read_nonempty_lines(path: Path) -> list[str]:
-    lines: list[str] = []
-    with path.open(encoding="utf-8") as f:
-        for line in f:
-            raw = line.rstrip("\n")
-            if raw.strip():
-                lines.append(raw)
-    return lines
-
-
-def split_lines(lines: list[str], num_chunks: int) -> list[list[str]]:
-    if not lines:
-        return []
-    if num_chunks < 1:
-        raise ValueError("num_chunks must be >= 1")
-    n = len(lines)
-    base, remainder = divmod(n, num_chunks)
-    chunks: list[list[str]] = []
-    start = 0
-    for i in range(num_chunks):
-        size = base + (1 if i < remainder else 0)
-        if size == 0:
-            continue
-        chunks.append(lines[start : start + size])
-        start += size
-    return chunks
-
-
-def write_chunks(lines: list[str], num_chunks: int, work_dir: Path) -> list[Path]:
-    work_dir.mkdir(parents=True, exist_ok=True)
-    chunks = split_lines(lines, num_chunks)
-    paths: list[Path] = []
-    for i, chunk_lines in enumerate(chunks):
-        path = work_dir / f"chunk_{i:02d}.jsonl"
-        text = "\n".join(chunk_lines) + ("\n" if chunk_lines else "")
-        path.write_text(text, encoding="utf-8")
-        paths.append(path)
-        print(f"  wrote {path.name}: {len(chunk_lines)} lines")
-    return paths
-
-
-def merge_chunks(chunk_outputs: list[Path], output_path: Path) -> int:
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    total = 0
-    with output_path.open("w", encoding="utf-8", newline="\n") as out:
-        for path in chunk_outputs:
-            if not path.is_file():
-                raise FileNotFoundError(f"Missing chunk output: {path}")
-            with path.open(encoding="utf-8") as f:
-                for line in f:
-                    raw = line.rstrip("\n")
-                    if not raw.strip():
-                        continue
-                    out.write(raw + "\n")
-                    total += 1
-    return total
-
-
 def build_chunk_cmd(
     chunk_in: Path,
     chunk_out: Path,
@@ -537,27 +404,6 @@ def build_chunk_cmd(
     return cmd
 
 
-def run_fill_chunk(chunk_idx: int, cmd: list[str], chunk_out: Path) -> tuple[int, Path]:
-    print(f"[chunk {chunk_idx:02d}] start -> {chunk_out.name}", flush=True)
-    proc = subprocess.run(
-        cmd,
-        cwd=SCRIPT_DIR,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-    )
-    if proc.stdout:
-        safe_print(proc.stdout)
-    if proc.returncode != 0:
-        err = proc.stderr or proc.stdout or "(no output)"
-        raise RuntimeError(f"chunk {chunk_idx:02d} failed (exit {proc.returncode}):\n{err}")
-    if proc.stderr:
-        safe_print(proc.stderr, file=sys.stderr)
-    print(f"[chunk {chunk_idx:02d}] done", flush=True)
-    return chunk_idx, chunk_out
-
-
 def run_parallel(
     input_path: Path,
     output_path: Path,
@@ -580,9 +426,9 @@ def run_parallel(
     dry_run: bool,
 ) -> None:
     lines = read_nonempty_lines(input_path)
-    print(f"Input: {input_path} ({len(lines)} lines)")
-    print(f"Target language: {lang.code} ({lang.name})")
-    print(f"Chunks: {chunks}, workers: {workers}, work-dir: {work_dir}")
+    safe_print(f"Input: {input_path} ({len(lines)} lines)")
+    safe_print(f"Target language: {lang.code} ({lang.name})")
+    safe_print(f"Chunks: {chunks}, workers: {workers}, work-dir: {work_dir}")
 
     chunk_out_dir = work_dir / "out"
     existing_outputs = sorted(chunk_out_dir.glob("chunk_*.filled.jsonl"))
@@ -590,20 +436,20 @@ def run_parallel(
     if merge_only:
         if not existing_outputs:
             raise SystemExit(f"No chunk outputs in {chunk_out_dir}")
-        print(f"Merging {len(existing_outputs)} chunk(s) -> {output_path} ...")
+        safe_print(f"Merging {len(existing_outputs)} chunk(s) -> {output_path} ...")
         total = merge_chunks(existing_outputs, output_path)
         if total != len(lines):
             raise SystemExit(
                 f"Line count mismatch after merge: expected {len(lines)}, got {total}"
             )
-        print(f"Done: merged {total} lines into {output_path}")
+        safe_print(f"Done: merged {total} lines into {output_path}")
         return
 
     if clean and work_dir.exists():
         shutil.rmtree(work_dir)
-        print(f"Removed {work_dir}")
+        safe_print(f"Removed {work_dir}")
 
-    print("Splitting...")
+    safe_print("Splitting...")
     chunk_inputs = write_chunks(lines, chunks, work_dir / "in")
     chunk_outputs = [
         chunk_out_dir / f"chunk_{i:02d}.filled.jsonl" for i in range(len(chunk_inputs))
@@ -611,10 +457,10 @@ def run_parallel(
     chunk_out_dir.mkdir(parents=True, exist_ok=True)
 
     if dry_run:
-        print("Dry run: would process each chunk with --workers 1, then merge.")
+        safe_print("Dry run: would process each chunk with --workers 1, then merge.")
         return
 
-    print(f"Processing {len(chunk_inputs)} chunks with {workers} workers...")
+    safe_print(f"Processing {len(chunk_inputs)} chunks with {workers} workers...")
     results: dict[int, Path] = {}
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures = [
@@ -645,14 +491,14 @@ def run_parallel(
             results[idx] = path
 
     ordered_outputs = [results[i] for i in range(len(chunk_inputs))]
-    print(f"Merging -> {output_path} ...")
+    safe_print(f"Merging -> {output_path} ...")
     total = merge_chunks(ordered_outputs, output_path)
     if total != len(lines):
         raise SystemExit(
             f"Line count mismatch after merge: expected {len(lines)}, got {total}"
         )
-    print(f"Done: merged {total} lines into {output_path}")
-    print(f"Chunk files kept in {work_dir}")
+    safe_print(f"Done: merged {total} lines into {output_path}")
+    safe_print(f"Chunk files kept in {work_dir}")
 
 
 def parse_args() -> argparse.Namespace:

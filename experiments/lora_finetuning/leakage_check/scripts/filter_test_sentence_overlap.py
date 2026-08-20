@@ -16,7 +16,7 @@ Usage:
     python experiments/lora_finetuning/leakage_check/scripts/filter_test_sentence_overlap.py --dry-run
     python experiments/lora_finetuning/leakage_check/scripts/filter_test_sentence_overlap.py \
         --training-dir path/to/training --test-dir path/to/test \
-        --output-dir path/to/test_cleaned_by_sentences
+        --output-dir path/to/output
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_TRAINING_DIR = SCRIPT_DIR.parent.parent / "data" / "training"
 DEFAULT_TEST_DIR = SCRIPT_DIR.parent.parent / "data" / "test"
-DEFAULT_OUTPUT_DIR = SCRIPT_DIR.parent / "data" / "test_cleaned_by_sentences"
+DEFAULT_OUTPUT_DIR = SCRIPT_DIR.parent / "data"
 
 OVERLAP_THRESHOLD = 0.5
 
@@ -177,7 +177,7 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_OUTPUT_DIR,
         help=(
             "Directory to write no_overlap/ and overlap/ subdirectories into "
-            "(default: data/test_cleaned_by_sentences)."
+            "(default: data/)."
         ),
     )
     parser.add_argument(

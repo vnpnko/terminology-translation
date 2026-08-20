@@ -1,4 +1,4 @@
-"""Proper terms expansion: original / GPT-expanded / domain-filtered."""
+"""Terminology expansion strategies aggregated by model (macro avg over language pairs)."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from typing import Any
 from matplotlib.figure import Figure
 from matplotlib.patches import Patch
 
-PROJECT_ROOT = Path(__file__).resolve().parents[4]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.analysis.figure_common import (
@@ -52,13 +52,13 @@ VARIANT_LABELS = {
 
 TITLE = (
     "Terminology expansion across models\n"
-    "(dev_v1 baselines/strategies plus External dictionary on dev_v2; macro avg over language pairs)"
+    "(dev_v1; macro avg over language pairs)"
 )
 
 
 def _variant_dir(results_root: Path, variant: str) -> Path:
     if variant == BASELINE_SOURCE_VARIANT:
-        return results_root / "dev_v1" / variant / "zero_shot"
+        return results_root / "dev_v1" / variant / "few_shot"
     return results_root / "dev_v1" / variant
 
 
@@ -131,7 +131,7 @@ def _series_legend_label(series: str, term_counts: dict[str, int]) -> str:
     return f"{base} ({count} terms)" if count is not None else base
 
 
-def build_model_comparison_figure(results_root: Path) -> Figure:
+def build_by_model_figure(results_root: Path) -> Figure:
     apply_poster_style()
     summaries, no_term, random_term, external_dictionary, term_counts = _collect_data(results_root)
 

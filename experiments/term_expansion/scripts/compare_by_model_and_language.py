@@ -1,27 +1,30 @@
-"""Compare GPT, Qwen 3B, and Qwen 7B baseline metrics_summary.json files into one Excel workbook.
+"""Compare GPT/Qwen 3B/Qwen 7B and ende/enru/enes across dev_v1 and dev_v2.
 
-Writes one styled .xlsx file (default:
-``experiments/term_expansion/by_model/report/model_comparison.xlsx``) with
-two sheets (``dev_v1`` -- from ``dev_v1/original/few_shot`` --, and
-``dev_v2``). Reads ``metrics_summary.json`` from
-``<results-root>/<variant>/{gpt,qwen_3b,qwen_7b}/``.
+Writes two styled .xlsx files:
 
-Each value cell (GPT/Qwen 3B/Qwen 7B) is colored by ranking it against the
-other two models in the same row, using the shared Good/Bad/Neutral
-convention (see ``src/analysis/excel_style.py``): green = best model, red =
-worst, a genuine tie is neutral, and a strictly-middle value is left
-unfilled.
+- ``report/model_comparison.xlsx`` -- rows grouped by mode then language,
+  columns per model (GPT/Qwen 3B/Qwen 7B). Each value cell is colored by
+  ranking it against the other two models in the same row.
+- ``report/language_comparison.xlsx`` -- rows grouped by mode then model,
+  columns per language (ende/enru/enes). Each value cell is colored by
+  ranking it against the other two languages in the same row.
+
+Both use the shared Good/Bad/Neutral convention (see
+``src/analysis/excel_style.py``): green = best, red = worst, a genuine tie
+is neutral, and a strictly-middle value is left unfilled. Each has two
+sheets, ``dev_v1`` (from ``dev_v1/original/few_shot``) and ``dev_v2``. Reads
+``metrics_summary.json`` from ``<results-root>/<variant>/{gpt,qwen_3b,qwen_7b}/``.
 
 The ``expand``/``cleaned``/``dictionary`` term-list variants are covered by
-``proper_term_across_models.xlsx`` instead (see
-``compare_proper_term_across_models_to_excel.py``) -- they were dropped from
-here since ``no_term``/``random_term`` don't exist for those variants (only
-``original/few_shot`` has all three modes), making their sheets here pure
-duplicates of that other workbook's ``proper_term`` rows.
+``proper_term_across_models.xlsx``/``proper_term_across_languages.xlsx``
+instead (see ``compare_proper_term_by_model_and_language.py``) -- they were
+dropped from here since ``no_term``/``random_term`` don't exist for those
+variants (only ``original/few_shot`` has all three modes), making their
+sheets here pure duplicates of that other workbook's ``proper_term`` rows.
 
 Usage::
 
-    python experiments/term_expansion/by_model/scripts/compare_models_to_excel.py
+    python experiments/term_expansion/scripts/compare_by_model_and_language.py
 """
 
 from __future__ import annotations
@@ -38,7 +41,7 @@ import pandas as pd
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 
-PROJECT_ROOT = Path(__file__).resolve().parents[4]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.analysis.excel_style import (  # noqa: E402
@@ -125,15 +128,20 @@ def validate_all_variants(results_root: Path) -> None:
         raise FileNotFoundError(f"Missing metrics file(s): {missing}")
 
 
-def build_comparison(dataset_dir: Path, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> pd.DataFrame:
+def _load_summaries(
+    dataset_dir: Path, baseline_dirs: tuple[str, ...]
+) -> dict[str, dict[tuple[str, str], dict[str, float | None]]]:
     summaries: dict[str, dict[tuple[str, str], dict[str, float | None]]] = {}
-
     for baseline_dir in baseline_dirs:
         summary_path = dataset_dir / baseline_dir / "metrics_summary.json"
         if not summary_path.exists():
             raise FileNotFoundError(f"Missing metrics file: {summary_path}")
         summaries[baseline_dir] = extract_mode_metrics(load_summary(summary_path))
+    return summaries
 
+
+def build_comparison_by_model(dataset_dir: Path, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> pd.DataFrame:
+    summaries = _load_summaries(dataset_dir, baseline_dirs)
     rows: list[dict[str, object]] = []
 
     for mode in MODE_ORDER:
@@ -146,23 +154,42 @@ def build_comparison(dataset_dir: Path, baseline_dirs: tuple[str, ...] = BASELIN
                 continue
 
             row: dict[str, object] = {"mode": mode, "language": lang}
-
             for column, _, _ in METRICS:
                 for baseline_dir in baseline_dirs:
                     metrics = baseline_metrics[baseline_dir]
-                    value = metrics.get(column) if metrics else None
-                    row[f"{baseline_dir}_{column}"] = value
-
+                    row[f"{baseline_dir}_{column}"] = metrics.get(column) if metrics else None
             rows.append(row)
 
     columns = ["mode", "language"]
     for column, _, _ in METRICS:
         columns.extend([f"{baseline_dir}_{column}" for baseline_dir in baseline_dirs])
-
     return pd.DataFrame(rows, columns=columns)
 
 
-def write_sheet(ws, df: pd.DataFrame, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> None:
+def build_comparison_by_language(dataset_dir: Path, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> pd.DataFrame:
+    summaries = _load_summaries(dataset_dir, baseline_dirs)
+    rows: list[dict[str, object]] = []
+
+    for mode in MODE_ORDER:
+        for baseline_dir in baseline_dirs:
+            lang_metrics = {lang: summaries[baseline_dir].get((lang, mode)) for lang in LANG_ORDER}
+            if all(metrics is None for metrics in lang_metrics.values()):
+                continue
+
+            row: dict[str, object] = {"mode": mode, "model": BASELINE_LABELS[baseline_dir]}
+            for column, _, _ in METRICS:
+                for lang in LANG_ORDER:
+                    metrics = lang_metrics[lang]
+                    row[f"{lang}_{column}"] = metrics.get(column) if metrics else None
+            rows.append(row)
+
+    columns = ["mode", "model"]
+    for column, _, _ in METRICS:
+        columns.extend([f"{lang}_{column}" for lang in LANG_ORDER])
+    return pd.DataFrame(rows, columns=columns)
+
+
+def write_sheet_by_model(ws, df: pd.DataFrame, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> None:
     fixed_headers = ("mode", "language")
     value_subheaders = tuple(BASELINE_LABELS[baseline_dir] for baseline_dir in baseline_dirs)
     cols_per_metric = len(value_subheaders)
@@ -228,6 +255,70 @@ def write_sheet(ws, df: pd.DataFrame, baseline_dirs: tuple[str, ...] = BASELINE_
     autofit_columns(ws)
 
 
+def write_sheet_by_language(ws, df: pd.DataFrame, baseline_dirs: tuple[str, ...] = BASELINE_DIRS) -> None:
+    fixed_headers = ("mode", "model")
+    value_subheaders = LANG_ORDER
+    cols_per_metric = len(value_subheaders)
+
+    for col_idx, header in enumerate(fixed_headers, start=1):
+        cell = ws.cell(row=1, column=col_idx, value=header)
+        apply_cell_style(cell, bold=True, fill=HEADER_FILL)
+        ws.merge_cells(start_row=1, start_column=col_idx, end_row=2, end_column=col_idx)
+
+    metric_start_col = len(fixed_headers) + 1
+    for metric_idx, (_, _, title) in enumerate(METRICS):
+        start_col = metric_start_col + metric_idx * cols_per_metric
+        end_col = start_col + cols_per_metric - 1
+
+        title_cell = ws.cell(row=1, column=start_col, value=title)
+        apply_cell_style(title_cell, bold=True, fill=HEADER_FILL)
+        ws.merge_cells(start_row=1, start_column=start_col, end_row=1, end_column=end_col)
+
+        for offset, subheader in enumerate(value_subheaders):
+            sub_cell = ws.cell(row=2, column=start_col + offset, value=subheader)
+            apply_cell_style(sub_cell, bold=True, fill=HEADER_FILL)
+
+    records = df.to_dict(orient="records")
+    for row_offset, record in enumerate(records, start=3):
+        thick_bottom = record["model"] == BASELINE_LABELS[baseline_dirs[-1]]
+
+        mode_cell = ws.cell(
+            row=row_offset,
+            column=1,
+            value=record["mode"] if record["model"] == BASELINE_LABELS[baseline_dirs[0]] else None,
+        )
+        apply_cell_style(mode_cell, thick_bottom=thick_bottom)
+
+        model_cell = ws.cell(row=row_offset, column=2, value=record["model"])
+        apply_cell_style(model_cell, thick_bottom=thick_bottom)
+
+        for metric_idx, (column, _, _) in enumerate(METRICS):
+            start_col = metric_start_col + metric_idx * cols_per_metric
+            row_values = {lang: record[f"{lang}_{column}"] for lang in LANG_ORDER}
+            fills = rank_fills(row_values)
+
+            for offset, lang in enumerate(LANG_ORDER):
+                cell = ws.cell(row=row_offset, column=start_col + offset, value=row_values[lang])
+                fill_font = fills.get(lang)
+                apply_cell_style(
+                    cell,
+                    fill=fill_font[0] if fill_font else None,
+                    font=fill_font[1] if fill_font else None,
+                    thick_bottom=thick_bottom,
+                )
+
+    row_offset = 3
+    for _mode, group in groupby(records, key=lambda r: r["mode"]):
+        group_len = sum(1 for _ in group)
+        end_row = row_offset + group_len - 1
+        if end_row > row_offset:
+            ws.merge_cells(start_row=row_offset, start_column=1, end_row=end_row, end_column=1)
+            ws.cell(row=row_offset, column=1).alignment = Alignment(horizontal="center", vertical="center")
+        row_offset = end_row + 1
+
+    autofit_columns(ws)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -237,10 +328,16 @@ def parse_args() -> argparse.Namespace:
         help="Root directory containing dev_v1/{original,expand,cleaned} and dev_v2 result folders",
     )
     parser.add_argument(
-        "--output",
+        "--model-output",
         type=Path,
-        default=Path("experiments/term_expansion/by_model/report/model_comparison.xlsx"),
-        help="Output .xlsx path",
+        default=Path("experiments/term_expansion/report/model_comparison.xlsx"),
+        help="Output .xlsx path for the by-model workbook",
+    )
+    parser.add_argument(
+        "--language-output",
+        type=Path,
+        default=Path("experiments/term_expansion/report/language_comparison.xlsx"),
+        help="Output .xlsx path for the by-language workbook",
     )
     return parser.parse_args()
 
@@ -251,21 +348,29 @@ def main() -> None:
     results_root = args.results_root.resolve()
     validate_all_variants(results_root)
 
-    output_path = args.output.resolve()
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    wb = Workbook()
-    wb.remove(wb.active)
-
+    model_output_path = args.model_output.resolve()
+    model_output_path.parent.mkdir(parents=True, exist_ok=True)
+    wb_model = Workbook()
+    wb_model.remove(wb_model.active)
     for sheet_title, variant_path, baseline_dirs in DATASET_VARIANTS:
-        df = build_comparison(results_root / variant_path, baseline_dirs)
-        ws = wb.create_sheet(title=sheet_title)
-        write_sheet(ws, df, baseline_dirs)
+        df = build_comparison_by_model(results_root / variant_path, baseline_dirs)
+        ws = wb_model.create_sheet(title=sheet_title)
+        write_sheet_by_model(ws, df, baseline_dirs)
+    wb_model.save(model_output_path)
 
-    wb.save(output_path)
+    language_output_path = args.language_output.resolve()
+    language_output_path.parent.mkdir(parents=True, exist_ok=True)
+    wb_lang = Workbook()
+    wb_lang.remove(wb_lang.active)
+    for sheet_title, variant_path, baseline_dirs in DATASET_VARIANTS:
+        df = build_comparison_by_language(results_root / variant_path, baseline_dirs)
+        ws = wb_lang.create_sheet(title=sheet_title)
+        write_sheet_by_language(ws, df, baseline_dirs)
+    wb_lang.save(language_output_path)
 
     variant_names = ", ".join(name for name, _, _ in DATASET_VARIANTS)
-    print(f"Wrote {len(DATASET_VARIANTS)} sheets ({variant_names}) to {output_path}")
+    print(f"Wrote {len(DATASET_VARIANTS)} sheets ({variant_names}) to {model_output_path}")
+    print(f"Wrote {len(DATASET_VARIANTS)} sheets ({variant_names}) to {language_output_path}")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""Term expansion: original vs GPT contextual vs domain-filtered."""
+"""Terminology expansion strategies by language pair, one figure per model (GPT/Qwen 3B/Qwen 7B)."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from pathlib import Path
 from matplotlib.figure import Figure
 from matplotlib.patches import Patch
 
-PROJECT_ROOT = Path(__file__).resolve().parents[4]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.analysis.figure_common import (
@@ -21,6 +21,8 @@ from src.analysis.figure_common import (
     plot_grouped_bars,
 )
 from src.analysis.metrics_loader import (
+    BASELINE_DIRS,
+    BASELINE_LABELS,
     DEFAULT_MODE,
     EXTERNAL_DICTIONARY_RESULTS,
     LANG_LABELS,
@@ -52,60 +54,71 @@ STRATEGY_LABELS = {
     EXTERNAL_DICTIONARY_KEY: EXTERNAL_DICTIONARY_LABEL,
 }
 
-TITLE = (
-    "Terminology expansion by language pair\n"
-    "(dev_v1 baselines/strategies plus External dictionary on dev_v2; evaluated with GPT-4o-mini)"
-)
+
+def _title(baseline: str) -> str:
+    return (
+        "Terminology expansion by language pair\n"
+        f"(dev_v1; {BASELINE_LABELS[baseline]})"
+    )
+
 
 def _strategy_dir(results_root: Path, strategy: str) -> Path:
     if strategy == BASELINE_SOURCE_STRATEGY:
-        return results_root / "dev_v1" / strategy / "zero_shot"
+        return results_root / "dev_v1" / strategy / "few_shot"
     return results_root / "dev_v1" / strategy
 
 
-def _collect_data(results_root: Path) -> dict[str, dict[str, dict[str, float | None]]]:
+def _collect_data(
+    results_root: Path,
+) -> dict[str, dict[str, dict[str, dict[str, float | None]]]]:
     paths = [
-        _strategy_dir(results_root, strategy) / "gpt" / "metrics_summary.json"
+        _strategy_dir(results_root, strategy) / baseline / "metrics_summary.json"
         for strategy in STRATEGY_ORDER
+        for baseline in BASELINE_DIRS
     ]
-    paths.append(
-        results_root / EXTERNAL_DICTIONARY_RESULTS / "gpt" / "metrics_summary.json"
+    paths.extend(
+        results_root / EXTERNAL_DICTIONARY_RESULTS / baseline / "metrics_summary.json"
+        for baseline in BASELINE_DIRS
     )
     require_paths(paths)
 
-    data: dict[str, dict[str, dict[str, float | None]]] = {}
-    for strategy in STRATEGY_ORDER:
-        summary = load_metrics_path(
-            _strategy_dir(results_root, strategy) / "gpt" / "metrics_summary.json"
-        )
-        data[strategy] = {
-            lang: get_lang_mode_metrics(summary, lang, DEFAULT_MODE) for lang in LANG_ORDER
-        }
-        if strategy == BASELINE_SOURCE_STRATEGY:
-            data[NO_TERM_KEY] = {
-                lang: get_lang_mode_metrics(summary, lang, NO_TERM_MODE)
-                for lang in LANG_ORDER
-            }
-            data[RANDOM_TERM_KEY] = {
-                lang: get_lang_mode_metrics(summary, lang, RANDOM_TERM_MODE)
-                for lang in LANG_ORDER
-            }
-
-    external_summary = load_metrics_path(
-        results_root / EXTERNAL_DICTIONARY_RESULTS / "gpt" / "metrics_summary.json"
-    )
-    data[EXTERNAL_DICTIONARY_KEY] = {
-        lang: get_lang_mode_metrics(external_summary, lang, DEFAULT_MODE)
-        for lang in LANG_ORDER
+    data: dict[str, dict[str, dict[str, dict[str, float | None]]]] = {
+        baseline: {} for baseline in BASELINE_DIRS
     }
+    for strategy in STRATEGY_ORDER:
+        for baseline in BASELINE_DIRS:
+            summary = load_metrics_path(
+                _strategy_dir(results_root, strategy) / baseline / "metrics_summary.json"
+            )
+            data[baseline][strategy] = {
+                lang: get_lang_mode_metrics(summary, lang, DEFAULT_MODE) for lang in LANG_ORDER
+            }
+            if strategy == BASELINE_SOURCE_STRATEGY:
+                data[baseline][NO_TERM_KEY] = {
+                    lang: get_lang_mode_metrics(summary, lang, NO_TERM_MODE)
+                    for lang in LANG_ORDER
+                }
+                data[baseline][RANDOM_TERM_KEY] = {
+                    lang: get_lang_mode_metrics(summary, lang, RANDOM_TERM_MODE)
+                    for lang in LANG_ORDER
+                }
+
+    for baseline in BASELINE_DIRS:
+        external_summary = load_metrics_path(
+            results_root / EXTERNAL_DICTIONARY_RESULTS / baseline / "metrics_summary.json"
+        )
+        data[baseline][EXTERNAL_DICTIONARY_KEY] = {
+            lang: get_lang_mode_metrics(external_summary, lang, DEFAULT_MODE) for lang in LANG_ORDER
+        }
+
     return data
 
 
-def build_mode_comparison_figure(results_root: Path) -> Figure:
+def build_by_language_pair_figure(results_root: Path, baseline: str) -> Figure:
     apply_poster_style()
-    data = _collect_data(results_root)
+    data = _collect_data(results_root)[baseline]
 
-    fig, axes, legend_ax = create_pair_figure(TITLE)
+    fig, axes, legend_ax = create_pair_figure(_title(baseline))
 
     metric_axes = [
         (axes[0], "bleu", "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
@@ -124,7 +137,7 @@ def build_mode_comparison_figure(results_root: Path) -> Figure:
             group_labels=LANG_LABELS,
             series_keys=SERIES_ORDER,
             series_labels=STRATEGY_LABELS,
-            value_fn=lambda strategy, lang: data[strategy][lang].get(metric_key),
+            value_fn=lambda strategy, lang, mk=metric_key: data[strategy][lang].get(mk),
             ylabel=ylabel,
             xlabel="Language pair",
             ylim_top=ylim_top,
@@ -138,3 +151,7 @@ def build_mode_comparison_figure(results_root: Path) -> Figure:
     place_side_legend(legend_ax, legend_handles, "Expansion strategy")
     finalize_pair_layout(fig)
     return fig
+
+
+def build_by_language_pair_figures(results_root: Path) -> dict[str, Figure]:
+    return {baseline: build_by_language_pair_figure(results_root, baseline) for baseline in BASELINE_DIRS}

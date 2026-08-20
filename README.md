@@ -21,12 +21,12 @@ Each figure is built by a `figure_expN.py` script living in the owning experimen
 
 | Figure | Home | Experiment | Command | Reads from |
 | ------ | ---- | ---------- | ------- | ---------- |
-| [`fig_term_expansion`](experiments/term_expansion/by_model/figures/fig_term_expansion.pdf) | `experiments/term_expansion/by_model/figures/` | [`term_expansion/by_model`](experiments/term_expansion/by_model/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
-| [`fig_expansion_strategies`](experiments/term_expansion/by_language_pair/figures/fig_expansion_strategies.pdf) | `experiments/term_expansion/by_language_pair/figures/` | [`term_expansion/by_language_pair`](experiments/term_expansion/by_language_pair/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_term_expansion_across_model`](experiments/term_expansion/figures/fig_term_expansion_across_model.pdf) | `experiments/term_expansion/figures/` | [`term_expansion`](experiments/term_expansion/README.md) | `python src/analysis/generate_result_figures.py --only model_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}`](experiments/term_expansion/figures/fig_term_expansion_across_languages_gpt.pdf) | `experiments/term_expansion/figures/` | [`term_expansion`](experiments/term_expansion/README.md) | `python src/analysis/generate_result_figures.py --only mode_comparison` | `results/dev_v1/{original,expand,cleaned}/` |
 | [`fig_dev_v1_vs_dev_v2_{no_term,proper_term,random_term}`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_proper_term.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python src/analysis/generate_result_figures.py --only dataset_comparison` | `results/dev_v1/original/few_shot/`, `results/dev_v2/` |
 | [`fig_lora_finetuning`](experiments/lora_finetuning/figures/fig_lora_finetuning.pdf) | `experiments/lora_finetuning/figures/` | [`lora_finetuning`](experiments/lora_finetuning/README.md) | `python src/analysis/generate_result_figures.py --only lora_finetuning` | `results/dev_v1/original/zero_shot/`, `experiments/lora_finetuning/results/` |
 
-Generate all four at once with `python src/analysis/generate_result_figures.py` (writes each into its home dir above; `dataset_comparison` writes 3 files, one per term mode). Of these, `fig_term_expansion`, `fig_expansion_strategies`, and `fig_lora_finetuning` are copied to `poster/figures/` for the poster; the 3 `fig_dev_v1_vs_dev_v2_{mode}` figures are copied to `report/figures/` instead, since they're background context for the paper rather than poster figures.
+Generate all four at once with `python src/analysis/generate_result_figures.py` (writes each into its home dir above; `dataset_comparison` writes 3 files, one per term mode, and `mode_comparison` writes 3 files, one per model). Of these, `fig_term_expansion_across_model`, the 3 `fig_term_expansion_across_languages_{model}` figures, and `fig_lora_finetuning` are copied to `poster/figures/` for the poster; the 3 `fig_dev_v1_vs_dev_v2_{mode}` figures are copied to `report/figures/` instead, since they're background context for the paper rather than poster figures.
 
 ## Notebooks
 
@@ -34,18 +34,17 @@ Generate all four at once with `python src/analysis/generate_result_figures.py` 
 
 ## Experiments
 
-`experiments/` groups experiments into three top-level directories: `dataset_comparison/`, `term_expansion/` (2 nested sub-experiments), and `lora_finetuning/` (5 nested sub-experiments). Each experiment owns a `scripts/` folder with its table/figure-generating code (see their READMEs for exact reproduce commands); `lora_finetuning/` is a self-contained model-run experiment with its own `data/`/`results/`.
+`experiments/` groups experiments into three top-level directories: `dataset_comparison/`, `term_expansion/`, and `lora_finetuning/` (5 nested sub-experiments). Each experiment owns a `scripts/` folder with its table/figure-generating code (see their READMEs for exact reproduce commands); `lora_finetuning/` is a self-contained model-run experiment with its own `data/`/`results/`.
 
 | Experiment | Contents |
 | ---------- | -------- |
 | [`dataset_comparison/`](experiments/dataset_comparison/README.md) | `dev_v1` vs. `dev_v2` terminology dataset comparison, per model. |
-| [`term_expansion/by_model/`](experiments/term_expansion/by_model/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered vs. externally-sourced dictionary, by model. |
-| [`term_expansion/by_language_pair/`](experiments/term_expansion/by_language_pair/README.md) | Same term-expansion strategy comparison, broken out by language pair. |
+| [`term_expansion/`](experiments/term_expansion/README.md) | Proper-term expansion: original vs. GPT-expanded vs. domain-filtered vs. externally-sourced dictionary, both aggregated by model and broken out by language pair. |
 | [`lora_finetuning/`](experiments/lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT-4o-mini and Qwen base: 5 sub-experiments (`epoch_ablation/`, `best_models/`, `base_vs_lora/`, `few_shot_ablation/`, `leakage_check/`) sharing `results/`, `data/`, and `run_registry.json`. |
 
 ## Scripts
 
-Genuinely shared code lives in `src/`. Single-experiment scripts live under the owning experiment's `scripts/` folder (e.g. `experiments/lora_finetuning/scripts/`, `experiments/term_expansion/by_model/scripts/`), and import shared `src/` code as `from src.analysis... import ...` / `from src.data_preparation... import ...` — this holds regardless of how deeply an experiment is nested under `experiments/`.
+Genuinely shared code lives in `src/`. Single-experiment scripts live under the owning experiment's `scripts/` folder (e.g. `experiments/lora_finetuning/scripts/`, `experiments/term_expansion/scripts/`), and import shared `src/` code as `from src.analysis... import ...` / `from src.data_preparation... import ...` — this holds regardless of how deeply an experiment is nested under `experiments/`.
 
 ### Data preparation (shared, `src/data_preparation/`)
 
@@ -81,23 +80,22 @@ The table-comparison and figure-generating scripts themselves are experiment-spe
 
 | Script | Location | Purpose |
 | ------ | -------- | ------- |
-| `compare_models_to_excel.py`, `figure_model_comparison.py` | [`experiments/term_expansion/by_model/scripts/`](experiments/term_expansion/by_model/README.md) | Compares GPT, Qwen 3B, and Qwen 7B. Rows grouped by mode. |
-| `compare_languages_to_excel.py`, `figure_mode_comparison.py` | [`experiments/term_expansion/by_language_pair/scripts/`](experiments/term_expansion/by_language_pair/README.md) | Compares `ende`, `enru`, and `enes`. Rows grouped by mode then model. |
+| `compare_by_model_and_language.py`, `compare_proper_term_by_model_and_language.py`, `figure_by_model.py`, `figure_by_language_pair.py` | [`experiments/term_expansion/scripts/`](experiments/term_expansion/README.md) | Compares GPT, Qwen 3B, and Qwen 7B (`figure_by_model.py`: aggregated across language pairs) and `ende`/`enru`/`enes` (`figure_by_language_pair.py`: faceted by model). |
 | `compare_datasets_to_excel.py`, `figure_dataset_comparison.py` | [`experiments/dataset_comparison/scripts/`](experiments/dataset_comparison/README.md) | Compares `dev_v1/original` vs `dev_v2`. |
 | `figure_lora_finetuning.py` | [`experiments/lora_finetuning/scripts/`](experiments/lora_finetuning/README.md) | LoRA epoch ablation vs. GPT-4o-mini. |
 
 ## Results
 
-All results live in `results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; `dev_v1/{expand,cleaned,dictionary}/` each have a single, unqualified model directory. `results/dev_v2/` is flat like the other unqualified variants (`gpt/`, `qwen_3b/`, `qwen_7b/`); it's used both as an eval target and, via `dataset_comparison`, as the training-set proxy compared against `dev_v1/original/`.
+All results live in `results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; `dev_v1/{expand,cleaned,dictionary}/` each have a single, unqualified model directory. `results/dev_v2/` is flat like the other unqualified variants (`gpt/`, `qwen_3b/`, `qwen_7b/`); it's used both as an eval target and, via `dataset_comparison`, compared directly against `dev_v1/original/`.
 
 ## Report
 
-Generated comparison Excel files live inside the experiment they compare, under `experiments/<name>/report/` — not in a shared top-level `report/` directory. A table belongs wherever its comparison axis is the experiment's subject: model-vs-model tables belong to the "by model" experiment, language-vs-language tables to the "by language pair" experiment, dataset-vs-dataset tables to the dataset-comparison experiment.
+Generated comparison Excel files live inside the experiment they compare, under `experiments/<name>/report/` — not in a shared top-level `report/` directory. A table belongs wherever its comparison axis is the experiment's subject: model-vs-model and language-vs-language tables belong to the `term_expansion` experiment, dataset-vs-dataset tables to the dataset-comparison experiment.
 
 | Report dir | Produced by | Naming pattern |
 | ---------- | ----------- | --------------- |
-| [`experiments/term_expansion/by_model/report/`](experiments/term_expansion/by_model/README.md#report-tables) | `scripts/compare_models_to_excel.py` | `model_comparison.xlsx` (one sheet per dataset variant: `dev_v1_original_zero_shot`, `dev_v1_original_few_shot`, `dev_v1_expand`, `dev_v1_cleaned`, `dev_v2`, `dev_v1_dictionary`) |
-| [`experiments/term_expansion/by_language_pair/report/`](experiments/term_expansion/by_language_pair/README.md#report-tables) | `scripts/compare_languages_to_excel.py` | `language_comparison.xlsx` (same per-variant sheet split) |
+| [`experiments/term_expansion/report/`](experiments/term_expansion/README.md#report-tables) | `scripts/compare_by_model_and_language.py` | `model_comparison.xlsx` + `language_comparison.xlsx` (one sheet per dataset variant: `dev_v1`, `dev_v2`) |
+| [`experiments/term_expansion/report/`](experiments/term_expansion/README.md#report-tables) | `scripts/compare_proper_term_by_model_and_language.py` | `proper_term_across_models.xlsx` + `proper_term_across_languages.xlsx` (rows: 4 term-list variants × language/model) |
 | [`experiments/dataset_comparison/report/`](experiments/dataset_comparison/README.md#report-tables) | `scripts/compare_datasets_to_excel.py` | `dataset_comparison.xlsx` (one sheet per model) |
 
 See each experiment's README for the exact command to regenerate every table it holds. When a new comparison table doesn't fit any existing experiment, create a new experiment folder for it rather than adding a new top-level report category.

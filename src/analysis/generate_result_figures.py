@@ -1,7 +1,7 @@
 """Generate result figures from metrics_summary.json files.
 
 Writes a PDF and PNG per figure into its owning experiment's ``figures/``
-directory by default (e.g. ``experiments/term_expansion/by_model/figures/``)
+directory by default (e.g. ``experiments/term_expansion/figures/``)
 — that's each figure's canonical home. ``--output-dir`` overrides this and
 writes every selected figure into one shared directory instead, useful for
 ad hoc regeneration. Note that ``poster/figures/`` and ``report/figures/``
@@ -31,30 +31,29 @@ PROJECT_ROOT = SCRIPT_DIR.parent.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
 EXPERIMENT_SCRIPTS_DIRS = [
-    PROJECT_ROOT / "experiments" / "term_expansion" / "by_model" / "scripts",
-    PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "scripts",
     PROJECT_ROOT / "experiments" / "dataset_comparison" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "scripts",
 ]
 for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
     sys.path.insert(0, str(_scripts_dir))
 
-from figure_model_comparison import build_model_comparison_figure
-from figure_mode_comparison import build_mode_comparison_figure
+from figure_by_model import build_by_model_figure
+from figure_by_language_pair import build_by_language_pair_figures
 from figure_dataset_comparison import build_dataset_comparison_figures
 from figure_lora_finetuning import build_lora_finetuning_figure
 from plot_style import save_figure
 
 FIGURE_BUILDERS = {
     "model_comparison": (
-        "fig_term_expansion",
-        lambda root: build_model_comparison_figure(root / "results"),
-        Path("experiments/term_expansion/by_model/figures"),
+        "fig_term_expansion_across_model",
+        lambda root: build_by_model_figure(root / "results"),
+        Path("experiments/term_expansion/figures"),
     ),
     "mode_comparison": (
-        "fig_expansion_strategies",
-        lambda root: build_mode_comparison_figure(root / "results"),
-        Path("experiments/term_expansion/by_language_pair/figures"),
+        "fig_term_expansion_across_languages",
+        lambda root: build_by_language_pair_figures(root / "results"),
+        Path("experiments/term_expansion/figures"),
     ),
     "dataset_comparison": (
         "fig_dev_v1_vs_dev_v2",

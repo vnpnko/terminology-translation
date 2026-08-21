@@ -36,6 +36,7 @@ EXPERIMENT_SCRIPTS_DIRS = [
     PROJECT_ROOT / "experiments" / "dataset_comparison" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "epoch_ablation" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "best_models" / "scripts",
+    PROJECT_ROOT / "experiments" / "lora_finetuning" / "base_vs_lora" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "leakage_check" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "few_shot_ablation" / "scripts",
 ]
@@ -47,6 +48,7 @@ from figure_by_language_pair import build_by_language_pair_figures
 from figure_dataset_comparison import build_dataset_comparison_figures
 from figure_epoch_ablation import build_epoch_ablation_figure
 from figure_best_models import build_best_models_figure
+from figure_base_vs_lora import build_base_vs_lora_figure
 from figure_leakage_check import build_leakage_check_figure
 from figure_few_shot_ablation import build_few_shot_ablation_figure
 from figure_few_shot_ablation_qwen import build_few_shot_ablation_qwen_figure
@@ -77,6 +79,11 @@ FIGURE_BUILDERS = {
         "fig_lora_best_models",
         lambda root: build_best_models_figure(root),
         Path("experiments/lora_finetuning/best_models/figures"),
+    ),
+    "base_vs_lora": (
+        "fig_lora_base_vs_lora",
+        lambda root: build_base_vs_lora_figure(root),
+        Path("experiments/lora_finetuning/base_vs_lora/figures"),
     ),
     "leakage_check": (
         "fig_lora_leakage_check",

@@ -18,7 +18,7 @@ For the `dev_v1`-vs-`dev_v2` dataset comparability check (a different axis — n
 
 | Path | Contents |
 |------|----------|
-| `shared/scripts/compare_by_model_and_language.py` (`--mode {all,proper_term}`) | Comparison script genuinely used by **both** axes — each single run writes one output into `by_model/report/` and one into `by_language_pair/report/`. Both modes were deliberately merged from axis-transposed duplicates; there's no clean way to split them into "the by_model version" and "the by_language_pair version". |
+| `shared/scripts/compare_by_model_and_language.py` (`--mode {all,proper_term}`) | Comparison script genuinely shared by **both** axes — each single run writes one output into `by_model/report/` and one into `by_language_pair/report/`. There's no clean way to split it into "the by_model version" and "the by_language_pair version", since both axes need the same underlying comparisons. |
 | [`by_model/`](by_model/README.md) | By-model figure, scripts, and report tables. |
 | [`by_language_pair/`](by_language_pair/README.md) | By-language-pair figure, scripts, and report tables. |
 
@@ -33,6 +33,6 @@ Both axes read `metrics_summary.json` under `shared/results/dev_v1/` for all 3 m
 | `cleaned` | `shared/data/dev_v1/dev_v1_cleaned/` | `shared/results/dev_v1/cleaned/` |
 | external dictionary | `shared/data/dev_v1/dev_v1_dictionary/` | `shared/results/dev_v1/dictionary/` |
 
-Plus the `no_term` and `random_term` baseline modes — only from `shared/results/dev_v1/original/few_shot/`. These two modes don't depend on the term-list variant, so they were only ever run once and were pruned from `expand`/`cleaned`/`dictionary` as redundant; `metrics_summary.json` in those directories now has only a `proper_term` entry per language. `zero_shot` was similarly pruned to `proper_term` only — `few_shot` is the only `dev_v1/original` variant with all 3 modes, which is why both axes source `original` from there (not `zero_shot`).
+Plus the `no_term` and `random_term` baseline modes — only from `shared/results/dev_v1/original/few_shot/`. These two modes don't depend on the term-list variant, so `expand`/`cleaned`/`dictionary` and `zero_shot` each have only a `proper_term` entry per language in `metrics_summary.json`. `few_shot` is the only `dev_v1/original` variant with all 3 modes, which is why both axes source `original` from there (not `zero_shot`).
 
-`shared/scripts/compare_by_model_and_language.py` handles the pruned variants correctly: those sheets simply show `proper_term` rows only, with the mode-label merge computed from the rows actually present rather than assuming a fixed count per mode.
+`shared/scripts/compare_by_model_and_language.py` handles these `proper_term`-only variants correctly: those sheets simply show `proper_term` rows only, with the mode-label merge computed from the rows actually present rather than assuming a fixed count per mode.

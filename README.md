@@ -105,6 +105,6 @@ All data lives in `shared/data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rath
 | `dev_v1/dev_v1_original/` | Original course dev set (test set, 500 sentences/language pair). |
 | `dev_v1/dev_v1_expand/` | Expanded version of `dev_v1_original/` with additional `proper_terms` (output of `expand_terms.py`). |
 | `dev_v1/dev_v1_cleaned/` | Cleaned version of `dev_v1_expand/` with terminology-poor `proper_terms` removed (output of `clean_poor_proper_terms.py`). |
-| `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from an external term dictionary built from dev_v2. The build/apply scripts that produced this have since been removed — see [`report/ISSUES.md`](report/ISSUES.md). |
+| `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from an external term dictionary built from dev_v2. Regenerate via [`experiments/term_expansion/dictionary/`](experiments/term_expansion/dictionary/README.md)'s `build_term_dictionary.py`/`apply_dictionary_to_dev_v1.py`. |
 | `dev_v2/` | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus, used as a training-set proxy (see `report/README.md`). The post-removal, few-shot-trimmed training set derived from this lives at [`experiments/lora_finetuning/shared/data/training/`](experiments/lora_finetuning/README.md). |
 | `shared_task/` | WMT2025 terminology shared-task materials: task docs (`shared_task_docs/`), track 1 (en→de/es/ru, `shared_task_track1/`), and track 2 (en↔zh, 2015–2024, `shared_task_track2/`). |

@@ -53,13 +53,14 @@ This experiment's scripts, `run_registry.json`, and generated workbooks use `zer
 
 ## Output
 
-This experiment produces three figures, each living with the sub-experiment it belongs to:
+This experiment produces four figures, each living with the sub-experiment it belongs to:
 
 - [`epoch_ablation/figures/fig_lora_epoch_ablation.pdf`](epoch_ablation/figures/fig_lora_epoch_ablation.pdf) — BLEU/term accuracy vs. LoRA epoch count, both model sizes. See [`epoch_ablation/README.md`](epoch_ablation/README.md).
 - [`best_models/figures/fig_lora_best_models.pdf`](best_models/figures/fig_lora_best_models.pdf) — best LoRA config vs. GPT-4o-mini, by language pair. See [`best_models/README.md`](best_models/README.md).
 - [`leakage_check/figures/fig_lora_leakage_check.pdf`](leakage_check/figures/fig_lora_leakage_check.pdf) — BLEU/term accuracy, grouped by model, overlap-data vs no-overlap-data bars. See [`leakage_check/README.md`](leakage_check/README.md).
+- [`few_shot_ablation/figures/fig_lora_few_shot_ablation.pdf`](few_shot_ablation/figures/fig_lora_few_shot_ablation.pdf) — GPT-4o-mini only, all 5 metrics grouped with zero_shot/few_shot bars. See [`few_shot_ablation/README.md`](few_shot_ablation/README.md).
 
-The first two are copied to [`poster/figures/`](../../poster/figures/) for the poster; `leakage_check`'s is not currently included there.
+The first two are copied to [`poster/figures/`](../../poster/figures/) for the poster; `leakage_check`'s and `few_shot_ablation`'s are not currently included there.
 
 ## Scripts
 

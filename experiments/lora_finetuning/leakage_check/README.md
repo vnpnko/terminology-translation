@@ -18,9 +18,14 @@ Checks whether LoRA training on `dev_v2` leaked into the `dev_v1` test set: spli
 
 **Model names:** the workbook's `model` column uses short labels; here's what each one is concretely: `gpt` = GPT-4o-mini; `qwen_base` = Qwen2.5-7B, base model, few-shot (`run_registry.json`'s `base_few_shot`, folder `qwen_base` — the folder name itself doesn't indicate few-shot, but the run is); `qwen_lora` = Qwen2.5-7B, LoRA fine-tuned, 2 epochs, zero-shot (`run_registry.json`'s `lora_2_epoch_zero_shot`, folder `qwen_lora_no_few_shots_2_epochs`, the script's `--lora-run` default).
 
+## Output
+
+[`figures/fig_lora_leakage_check.pdf`](figures/fig_lora_leakage_check.pdf) — BLEU (left) and Term Accuracy (right), each grouped by model (`qwen_base`, `gpt`, `qwen_lora`) with `overlap_data`/`no_overlap_data` bars per group; macro-averaged across the 3 language pairs.
+
 ## Scripts
 
 | File | Role |
 |------|------|
 | `scripts/compare_leakage_honesty_check_to_excel.py` | Builds `report/leakage_honesty_check.xlsx` from `metrics_summary.json` under `.../test_cleaned_by_sentences/{overlap,no_overlap}/`; LoRA run overridable via `--lora-run`; shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |
 | `scripts/filter_test_sentence_overlap.py` | Splits `dev_v1` test sentences into `overlap`/`no_overlap` subsets by ≥50% token containment with the training set, balanced to the minimum count across languages; writes `data/{overlap,no_overlap}/{lang}_dev_v1_test.jsonl` |
+| `scripts/figure_leakage_check.py` | Builds the `fig_lora_leakage_check` figure (`build_leakage_check_figure`; run via `python shared/lib/analysis/generate_result_figures.py --only leakage_check`); resolves the LoRA run via [`../shared/run_registry.json`](../shared/run_registry.json) and shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |

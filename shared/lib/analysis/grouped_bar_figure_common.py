@@ -21,8 +21,10 @@ from shared.lib.analysis.plot_style import (
     COLOR_GPT,
     COLOR_GPT_EXPAND,
     COLOR_LORA,
+    COLOR_NO_OVERLAP_DATA,
     COLOR_NO_TERM,
     COLOR_ORIGINAL,
+    COLOR_OVERLAP_DATA,
     COLOR_RANDOM_TERM,
     POSTER_BLUE,
     fixed_top_ylim,
@@ -46,6 +48,8 @@ EXPANSION_COLORS = {
     "dev_v2": COLOR_DICTIONARY,
     "gpt_few_shot": COLOR_GPT,
     "qwen_lora_2ep": COLOR_LORA,
+    "overlap_data": COLOR_OVERLAP_DATA,
+    "no_overlap_data": COLOR_NO_OVERLAP_DATA,
 }
 
 PAIR_FIG_SIZE = (19, 6.5)

@@ -36,6 +36,7 @@ EXPERIMENT_SCRIPTS_DIRS = [
     PROJECT_ROOT / "experiments" / "dataset_comparison" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "epoch_ablation" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "best_models" / "scripts",
+    PROJECT_ROOT / "experiments" / "lora_finetuning" / "leakage_check" / "scripts",
 ]
 for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
     sys.path.insert(0, str(_scripts_dir))
@@ -45,6 +46,7 @@ from figure_by_language_pair import build_by_language_pair_figures
 from figure_dataset_comparison import build_dataset_comparison_figures
 from figure_epoch_ablation import build_epoch_ablation_figure
 from figure_best_models import build_best_models_figure
+from figure_leakage_check import build_leakage_check_figure
 from plot_style import save_figure
 
 FIGURE_BUILDERS = {
@@ -72,6 +74,11 @@ FIGURE_BUILDERS = {
         "fig_lora_best_models",
         lambda root: build_best_models_figure(root),
         Path("experiments/lora_finetuning/best_models/figures"),
+    ),
+    "leakage_check": (
+        "fig_lora_leakage_check",
+        lambda root: build_leakage_check_figure(root),
+        Path("experiments/lora_finetuning/leakage_check/figures"),
     ),
 }
 

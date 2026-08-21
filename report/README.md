@@ -18,7 +18,7 @@ Every experiment below draws on the same building blocks (source: [`shared/lib/a
 
 **Datasets** (poster definitions, see [`poster/terminology_translation.pdf`](../poster/terminology_translation.pdf)):
 - **dev_v1** — 500 sentences/language pair, the held-out test set.
-- **dev_v2** — sourced from SAP `term_postedits`; **not** the original shared-task dev set, used as a proxy because it's the same documentation domain. Originally 2000 lines/language; see §3.4.2 for how it was cut down for training.
+- **dev_v2** — sourced from SAP `term_postedits`; **not** the original shared-task dev set, used as a proxy because it's the same documentation domain. 2000 lines/language; §3.4.2 covers the smaller training-set size after overlap removal and few-shot reservation.
 
 ## Report table coloring conventions
 

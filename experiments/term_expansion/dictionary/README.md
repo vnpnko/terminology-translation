@@ -2,7 +2,7 @@
 
 Builds an external term dictionary from `dev_v2` and applies it to `dev_v1` as a fourth term-list variant (alongside `original`/`expand`/`cleaned`).
 
-This is a **thin wrapper**: no experiment-local results, only `scripts/` (and `data/` once regenerated). It owns the two scripts that build this variant; the comparisons that use its output live in the parent [`term_expansion/`](../README.md) experiment (`shared/scripts/compare_by_model_and_language.py --mode proper_term`) — the standalone comparison scripts that used to live here were folded into that shared script and are not restored.
+This is a **thin wrapper**: no experiment-local results, only `scripts/` (and `data/` once regenerated). It owns the two scripts that build this variant; the comparisons that use its output run through the parent [`term_expansion/`](../README.md) experiment's shared `compare_by_model_and_language.py --mode proper_term` rather than a standalone script local to this folder.
 
 `data/dev_v2_dictionary/` (the term dictionary `build_term_dictionary.py` builds from dev_v2, then `apply_dictionary_to_dev_v1.py` applies to dev_v1) lives here rather than in the shared `shared/data/` tree since this experiment is its only consumer. It doesn't exist on disk by default — `shared/data/dev_v1/dev_v1_dictionary/` (its already-applied output) does, so the report tables that use it work today without regenerating anything. Regenerating `data/dev_v2_dictionary/` is only needed if you want to rebuild `shared/data/dev_v1/dev_v1_dictionary/` from scratch (e.g. if it were lost) or extend the dictionary to a new language pair.
 

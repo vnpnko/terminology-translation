@@ -63,7 +63,7 @@ There are **two distinct few-shot comparisons** in the repo; name them separatel
 1. **Baseline-level few-shot** (GPT + Qwen 3B/7B, no fine-tuning): `shared/results/dev_v1/original/zero_shot/{gpt,qwen_3b,qwen_7b}/` vs `shared/results/dev_v1/original/few_shot/{gpt,qwen_3b,qwen_7b}/`.
 2. **LoRA-level few-shot** (Qwen only, held at 1 epoch): `run_registry.json`'s `lora_1_epoch_few_shot` vs `lora_1_epoch_zero_shot`. The RQ here is whether few-shot prompting contributes differently to a trained vs. untrained model, not whether it interacts with epoch count — holding epoch count fixed at 1 while varying few-shot is exactly what isolates that, so the 2-/3-epoch runs (zero-shot only, used for the separate epoch-ablation axis) don't need a few-shot counterpart.
 
-#### 3.4.2 Data-leakage honesty check (`leakage_honesty_check.xlsx`) — 🔴 fully undocumented in any README
+#### 3.4.2 Data-leakage honesty check (`leakage_honesty_check.xlsx`) — 🟢 documented in `leakage_check/README.md`
 **Why this section exists:** dev_v2 is used as a training-set proxy for the shared task (see §3.3) because the real shared-task training data isn't available. But dev_v2 and dev_v1 are drawn from overlapping SAP documentation, so some dev_v2 lines are near-duplicates of dev_v1 test lines — fine-tuning on them would leak test signal and make LoRA's gains look bigger than they are.
 
 **What was actually done** ([`experiments/lora_finetuning/shared/scripts/remove_dev_v2_overlap.py`](../experiments/lora_finetuning/shared/scripts/remove_dev_v2_overlap.py) implements this pipeline; regenerate with `python experiments/lora_finetuning/shared/scripts/remove_dev_v2_overlap.py --all`, writing `experiments/lora_finetuning/shared/data/dev_v2_deduped/` and its `remove_overlap_report.json`):

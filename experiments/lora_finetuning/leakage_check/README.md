@@ -8,7 +8,7 @@ Checks whether LoRA training on `dev_v2` leaked into the `dev_v1` test set: spli
 
 | File | Compares | Regenerate |
 | ---- | -------- | ---------- |
-| `report/leakage_honesty_check.xlsx` | Single sheet `overlap_vs_no_overlap_data` with `overlap_data`/`no_overlap_data` column groups (named for the split criterion, not a "bad"/"good" judgment) and 3 stacked 3-row model blocks (`qwen_base`, `gpt`, `qwen_lora`); each cell colored green (higher/tied-highest) or yellow (lower) against its overlap_data/no_overlap_data counterpart, no red | `python experiments/lora_finetuning/leakage_check/scripts/compare_leakage_honesty_check_to_excel.py` — LoRA run selectable via `--lora-run` (default `lora_2_epoch_zero_shot`) |
+| `report/leakage_honesty_check.xlsx` | Single sheet `overlap_vs_no_overlap_data` with `overlap_data`/`no_overlap_data` column groups (named for the split criterion, not a "bad"/"good" judgment) and 3 stacked 3-row model blocks (`qwen_base`, `gpt`, `qwen_lora`); each cell colored green (higher) or red (lower) against its overlap_data/no_overlap_data counterpart, yellow if tied | `python experiments/lora_finetuning/leakage_check/scripts/compare_leakage_honesty_check_to_excel.py` — LoRA run selectable via `--lora-run` (default `lora_2_epoch_zero_shot`) |
 
 **Note:** fully script-generated, with column groups named `overlap_data`/`no_overlap_data` for the actual split criterion (≥50% token containment with the training set). The `test_cleaned_by_sentences/no_overlap` split it reads for `qwen_base` is a real, verified no-overlap subset.
 

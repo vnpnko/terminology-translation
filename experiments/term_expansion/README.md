@@ -30,7 +30,7 @@ Both axes read `metrics_summary.json` under `shared/results/dev_v1/` for all 3 m
 | `original` | `shared/data/dev_v1/dev_v1_original/` | `shared/results/dev_v1/original/few_shot/` |
 | `expand` | `shared/data/dev_v1/dev_v1_expand/` | `shared/results/dev_v1/expand/` |
 | `cleaned` | `shared/data/dev_v1/dev_v1_cleaned/` | `shared/results/dev_v1/cleaned/` |
-| external dictionary | `shared/data/dev_v1/dev_v1_dictionary/` | `shared/results/dev_v2/` |
+| external dictionary | `shared/data/dev_v1/dev_v1_dictionary/` | `shared/results/dev_v1/dictionary/` |
 
 Plus the `no_term` and `random_term` baseline modes — only from `shared/results/dev_v1/original/few_shot/`. These two modes don't depend on the term-list variant, so they were only ever run once and were pruned from `expand`/`cleaned`/`dictionary` as redundant; `metrics_summary.json` in those directories now has only a `proper_term` entry per language. `zero_shot` was similarly pruned to `proper_term` only — `few_shot` is the only `dev_v1/original` variant with all 3 modes, which is why both axes source `original` from there (not `zero_shot`).
 

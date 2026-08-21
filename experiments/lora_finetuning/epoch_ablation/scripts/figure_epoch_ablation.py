@@ -34,8 +34,8 @@ ZERO_SHOT_PATHS = {
 }
 
 MODEL_STYLES = {
-    "Qwen2.5-7B": {"color": SIZE_COLORS["7B"], "marker": "o", "label": "Qwen 7B"},
-    "Qwen2.5-3B": {"color": SIZE_COLORS["3B"], "marker": "s", "label": "Qwen 3B"},
+    "Qwen2.5-7B": {"color": SIZE_COLORS["7B"], "marker": "o", "label": "Qwen 7B", "label_offset": 10},
+    "Qwen2.5-3B": {"color": SIZE_COLORS["3B"], "marker": "s", "label": "Qwen 3B", "label_offset": -14},
 }
 
 TITLE = (
@@ -90,15 +90,16 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
                 markersize=9,
                 label=style["label"],
             )
+            offset = style["label_offset"]
             for x, y in zip(xs, ys):
                 if y is not None:
                     ax.annotate(
                         f"{y:.1f}",
                         (x, y),
                         textcoords="offset points",
-                        xytext=(0, 10),
+                        xytext=(0, offset),
                         ha="center",
-                        va="bottom",
+                        va="bottom" if offset > 0 else "top",
                         fontsize=10,
                         fontweight="bold",
                     )

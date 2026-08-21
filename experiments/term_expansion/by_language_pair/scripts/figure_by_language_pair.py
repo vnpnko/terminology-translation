@@ -49,8 +49,8 @@ STRATEGY_LABELS = {
     NO_TERM_KEY: NO_TERM_LABEL,
     RANDOM_TERM_KEY: RANDOM_TERM_LABEL,
     "original": "Original",
-    "expand": "GPT expand",
-    "cleaned": "GPT cleaned",
+    "expand": "GPT-expanded",
+    "cleaned": "GPT-cleaned",
     EXTERNAL_DICTIONARY_KEY: EXTERNAL_DICTIONARY_LABEL,
 }
 

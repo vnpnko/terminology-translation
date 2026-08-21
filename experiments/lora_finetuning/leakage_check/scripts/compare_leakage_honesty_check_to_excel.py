@@ -1,7 +1,7 @@
 """Build the data-leakage honesty-check workbook (no_overlap_data vs overlap_data test subsets).
 
 Writes one .xlsx file (default:
-``experiments/lora_finetuning/leakage_check/report/leakage_honesty_check.xlsx``) with a single sheet
+``experiments/lora_finetuning/leakage_check/report/leakage_check.xlsx``) with a single sheet
 (``overlap_vs_no_overlap_data``), an ``overlap_data`` and ``no_overlap_data`` column group
 (5 metrics each — named for the actual split criterion, ≥50% token containment with the
 training set, rather than a "bad"/"good" value judgment), and 3 stacked 3-row
@@ -143,7 +143,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("experiments/lora_finetuning/leakage_check/report/leakage_honesty_check.xlsx"),
+        default=Path("experiments/lora_finetuning/leakage_check/report/leakage_check.xlsx"),
         help="Output .xlsx path",
     )
     return parser.parse_args()

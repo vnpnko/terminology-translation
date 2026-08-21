@@ -1,7 +1,7 @@
 """Compare Qwen base (few-shot) vs LoRA 1 epoch (zero-shot), for both model sizes.
 
 Writes one .xlsx file (default:
-``experiments/lora_finetuning/base_vs_lora/report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx``) with a
+``experiments/lora_finetuning/base_vs_lora/report/base_vs_lora.xlsx``) with a
 single sheet, one block per model size (``Qwen2.5-3B``, ``Qwen2.5-7B``, 3 rows each). Both
 columns are local, driven by ``run_registry.json``:
 
@@ -134,7 +134,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("experiments/lora_finetuning/base_vs_lora/report/base_few_shot_vs_lora_zero_shot_1_epoch.xlsx"),
+        default=Path("experiments/lora_finetuning/base_vs_lora/report/base_vs_lora.xlsx"),
         help="Output .xlsx path",
     )
     return parser.parse_args()

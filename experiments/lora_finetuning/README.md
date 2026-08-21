@@ -1,13 +1,13 @@
 # LoRA fine-tuning
 
-LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared against a Qwen base model and a GPT-4o-mini baseline, evaluated on `proper_term` mode only. Produces the poster's `fig_lora_epoch_ablation` and `fig_lora_best_models` figures, each owned by its matching sub-experiment (see below).
+LoRA fine-tuning of Qwen2.5 (3B and 7B) on the `dev_v2` training set, compared against a Qwen base model and a GPT baseline, evaluated on `proper_term` mode only. Produces the poster's `fig_lora_epoch_ablation` and `fig_lora_best_models` figures, each owned by its matching sub-experiment (see below).
 
 Five sub-experiments, each independently reproducible (own `scripts/`+`report/`), share this directory's `shared/results/`, `shared/data/`, and `shared/run_registry.json`:
 
 | Sub-experiment | Contents |
 | -------------- | -------- |
 | [`epoch_ablation/`](epoch_ablation/README.md) | 1 / 2 / 3 LoRA epochs, one sheet per model size. |
-| [`best_models/`](best_models/README.md) | Best LoRA config vs. GPT-4o-mini. |
+| [`best_models/`](best_models/README.md) | Best LoRA config vs. GPT. |
 | [`base_vs_lora/`](base_vs_lora/README.md) | `qwen_base_few_shot` vs. `qwen_lora_zero_shot` (1 epoch). |
 | [`few_shot_ablation/`](few_shot_ablation/README.md) | `zero_shot` vs. `few_shot` prompting for GPT, Qwen base, and Qwen LoRA. |
 | [`leakage_check/`](leakage_check/README.md) | Data-leakage honesty check: does LoRA training on `dev_v2` leak into the `dev_v1` test set? |
@@ -16,7 +16,7 @@ Five sub-experiments, each independently reproducible (own `scripts/`+`report/`)
 
 | Path | Contents |
 |------|----------|
-| [`../../shared/notebooks/gpt.ipynb`](../../shared/notebooks/gpt.ipynb) | GPT-4o-mini baseline run on the finetuning test set |
+| [`../../shared/notebooks/gpt.ipynb`](../../shared/notebooks/gpt.ipynb) | GPT baseline run on the finetuning test set |
 | [`../../shared/notebooks/qwen_base.ipynb`](../../shared/notebooks/qwen_base.ipynb) | Qwen2.5 (3B/7B) base model, no fine-tuning |
 | [`../../shared/notebooks/qwen_finetuned.ipynb`](../../shared/notebooks/qwen_finetuned.ipynb) | LoRA fine-tuning + inference for Qwen2.5 (3B/7B), 1/2/3 epochs |
 | `shared/data/test/` | Held-out `dev_v1` test set per language pair |
@@ -49,16 +49,16 @@ Runs are defined in [`shared/run_registry.json`](shared/run_registry.json). Run 
 
 ### Naming standard
 
-This experiment's scripts, `run_registry.json`, and generated workbooks use `zero_shot`/`few_shot` as the one term for few-shot-prompting status, and canonical name pairs for the two models compared throughout: `gpt` (machine key: folder/dict keys, `model` column values) / `GPT-4o-mini` (display: sheet titles, group headers, prose), and `qwen_3b`/`qwen_7b` (machine key) / `Qwen2.5-3B`/`Qwen2.5-7B` (display). Both `base` runs use `use_few_shot: true` in `run_registry.json` — the base runs are in fact few-shot (3 examples per language, per `report/README.md`), and the run id is `base_few_shot` accordingly. The shared `shared/results/dev_v1/original/{zero_shot,few_shot}/` folders (also read by the `term_expansion/` experiments) use this same vocabulary.
+This experiment's scripts, `run_registry.json`, and generated workbooks use `zero_shot`/`few_shot` as the one term for few-shot-prompting status, and canonical name pairs for the two models compared throughout: `gpt` (machine key: folder/dict keys, `model` column values) / `GPT` (prose and chart-label display), and `qwen_3b`/`qwen_7b` (machine key) / `Qwen 3B`/`Qwen 7B` (prose and chart-label display). Workbook sheet titles are the one exception — they use the full `GPT-4o-mini`/`Qwen2.5-3B`/`Qwen2.5-7B` form, mirroring the literal `run_registry.json` `model_dir` folder names rather than the short display form. Both `base` runs use `use_few_shot: true` in `run_registry.json` — the base runs are in fact few-shot (3 examples per language, per `report/README.md`), and the run id is `base_few_shot` accordingly. The shared `shared/results/dev_v1/original/{zero_shot,few_shot}/` folders (also read by the `term_expansion/` experiments) use this same vocabulary.
 
 ## Output
 
 This experiment produces four figures, each living with the sub-experiment it belongs to:
 
 - [`epoch_ablation/figures/fig_lora_epoch_ablation.pdf`](epoch_ablation/figures/fig_lora_epoch_ablation.pdf) — BLEU/term accuracy vs. LoRA epoch count, both model sizes. See [`epoch_ablation/README.md`](epoch_ablation/README.md).
-- [`best_models/figures/fig_lora_best_models.pdf`](best_models/figures/fig_lora_best_models.pdf) — best LoRA config vs. GPT-4o-mini, by language pair. See [`best_models/README.md`](best_models/README.md).
+- [`best_models/figures/fig_lora_best_models.pdf`](best_models/figures/fig_lora_best_models.pdf) — best LoRA config vs. GPT, by language pair. See [`best_models/README.md`](best_models/README.md).
 - [`leakage_check/figures/fig_lora_leakage_check.pdf`](leakage_check/figures/fig_lora_leakage_check.pdf) — BLEU/term accuracy, grouped by model, overlap-data vs no-overlap-data bars. See [`leakage_check/README.md`](leakage_check/README.md).
-- [`few_shot_ablation/figures/fig_lora_few_shot_ablation.pdf`](few_shot_ablation/figures/fig_lora_few_shot_ablation.pdf) — GPT-4o-mini only, all 5 metrics grouped with zero_shot/few_shot bars. See [`few_shot_ablation/README.md`](few_shot_ablation/README.md).
+- [`few_shot_ablation/figures/fig_lora_few_shot_ablation.pdf`](few_shot_ablation/figures/fig_lora_few_shot_ablation.pdf) — GPT only, all 5 metrics grouped with zero_shot/few_shot bars. See [`few_shot_ablation/README.md`](few_shot_ablation/README.md).
 
 The first two are copied to [`poster/figures/`](../../poster/figures/) for the poster; `leakage_check`'s and `few_shot_ablation`'s are not currently included there.
 

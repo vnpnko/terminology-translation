@@ -1,4 +1,4 @@
-"""Compare the best Qwen 7B LoRA config vs GPT-4o-mini few-shot.
+"""Compare the best Qwen 7B LoRA config vs GPT few-shot.
 
 Writes one .xlsx file (default: ``experiments/lora_finetuning/best_models/report/best_models.xlsx``)
 with a single sheet, one row per language pair. Both columns are local:
@@ -51,7 +51,7 @@ from shared.lib.analysis.excel_style import (  # noqa: E402
 
 LANG_ORDER = ("ende", "enes", "enru")
 MODEL_KEY = "7B"
-RIGHT_LABEL = "GPT-4o-mini"
+RIGHT_LABEL = "GPT"
 
 
 def lora_run(registry: dict[str, Any], run_id: str) -> dict[str, Any]:

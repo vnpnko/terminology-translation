@@ -1,4 +1,4 @@
-"""Zero-shot vs few-shot for GPT-4o-mini: one chart, 5 metric groups, macro-averaged over languages."""
+"""Zero-shot vs few-shot for GPT: one chart, 5 metric groups, macro-averaged over languages."""
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ METRIC_ORDER = ("bleu", "chrf", "term_accuracy_pct", "macro_avg_consistency", "w
 METRIC_LABELS = {
     "bleu": "BLEU",
     "chrf": "chrF",
-    "term_accuracy_pct": "Term Accuracy %",
+    "term_accuracy_pct": "Term accuracy (%)",
     "macro_avg_consistency": "Macro\nConsistency (%)",
     "weighted_avg_consistency": "Weighted\nConsistency (%)",
 }
@@ -39,7 +39,7 @@ SERIES_LABELS = {
     FEW_SHOT_KEY: "Few-shot",
 }
 
-TITLE = "GPT-4o-mini: zero-shot vs. few-shot\n(train dev_v2; test dev_v1; proper_term)"
+TITLE = "GPT: zero-shot vs. few-shot\n(train dev_v2; test dev_v1; proper_term)"
 
 FIG_SIZE = (13, 6.5)
 YLIM_TOP = 100

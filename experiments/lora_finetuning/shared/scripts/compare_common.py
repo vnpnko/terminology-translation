@@ -29,12 +29,12 @@ RUN_LORA_3_EPOCH_ZERO_SHOT = "lora_3_epoch_zero_shot"
 METRICS = (
     ("bleu", "bleu", "BLEU", 2),
     ("chrf", "chrf", "chrF", 2),
-    ("term_accuracy_pct", ("terminology_accuracy", "avg_ratio_pct"), "Term Acc (%)", 2),
-    ("macro_avg_consistency", ("terminology_consistency", "macro_avg_consistency"), "Cons Macro Avg", 4),
+    ("term_accuracy_pct", ("terminology_accuracy", "avg_ratio_pct"), "Term Accuracy %", 2),
+    ("macro_avg_consistency", ("terminology_consistency", "macro_avg_consistency"), "Macro Consistency", 4),
     (
         "weighted_avg_consistency",
         ("terminology_consistency", "weighted_avg_consistency"),
-        "Cons Weighted Avg",
+        "Weighted Consistency",
         4,
     ),
 )

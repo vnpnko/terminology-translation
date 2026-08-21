@@ -38,7 +38,7 @@ LANG_ORDER = ("ende", "enes", "enru")
 MODEL_ORDER = ("qwen_base", "gpt", "qwen_lora")
 MODEL_LABELS = {
     "qwen_base": "Qwen 7B\n(untrained)",
-    "gpt": "GPT-4o-mini",
+    "gpt": "GPT",
     "qwen_lora": "Qwen 7B\n(LoRA)",
 }
 

@@ -39,7 +39,7 @@ MODEL_STYLES = {
 }
 
 TITLE = (
-    "LoRA epoch ablation for Qwen2.5\n"
+    "Qwen: LoRA epochs 1–3\n"
     "(train dev_v2; test dev_v1; proper_term; zero-shot)"
 )
 
@@ -73,8 +73,8 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
     fig, axes, legend_ax = create_pair_figure(TITLE)
 
     metric_axes = [
-        (axes[0], 1, "BLEU (macro avg)", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
-        (axes[1], 2, "Term accuracy (%) (macro avg)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 20))),
+        (axes[0], 1, "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
+        (axes[1], 2, "Term accuracy (%)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 20))),
     ]
     for ax, value_idx, ylabel, ylim_top, yticks in metric_axes:
         for model_dir, style in MODEL_STYLES.items():

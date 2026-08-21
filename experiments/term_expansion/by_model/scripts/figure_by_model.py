@@ -149,11 +149,11 @@ def build_by_model_figure(results_root: Path) -> Figure:
     fig, axes, legend_ax = create_pair_figure(TITLE)
 
     metric_axes = [
-        (axes[0], "bleu", "BLEU (macro avg)", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
+        (axes[0], "bleu", "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
         (
             axes[1],
             "term_accuracy_pct",
-            "Term accuracy (%) (macro avg)",
+            "Term accuracy (%)",
             TERM_ACC_YLIM_TOP,
             list(range(0, TERM_ACC_YLIM_TOP + 1, 20)),
         ),

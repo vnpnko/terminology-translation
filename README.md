@@ -1,6 +1,6 @@
 # Terminology Translation
 
-Experiments on terminology-constrained machine translation for WMT-style sentence-level data. Code and data accompanying the [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) poster.
+Experiments on terminology-constrained machine translation for WMT-style sentence-level data. Code and data supporting an ACL-style paper in progress — see [`report/`](report/README.md) for its outline and current status. An earlier [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) covers a subset of the same results.
 
 Licensed under [MIT](LICENSE).
 
@@ -10,8 +10,8 @@ Each JSONL record has an English source sentence, a target-language reference, d
 {
   "en": "...",
   "de": "...",
-  "proper_terms": [{ "term": "translation" }],
-  "random_terms": [{ "word": "translation" }]
+  "proper_terms": { "term": "translation" },
+  "random_terms": { "word": "translation" }
 }
 ```
 
@@ -59,14 +59,6 @@ Genuinely shared code lives in `shared/lib/`. Single-experiment scripts live und
 | `data_preparation/expand_terms.py`                         | Appends additional term pairs to `proper_terms`.                             |
 | `data_preparation/strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
 | `data_preparation/check_duplicate_sources.py`               | Report-only: checks a JSONL file for duplicate source (`en`) sentences.      |
-| `data_preparation/term_utils.py`                           | Shared path constants and helpers for the dictionary-building scripts below. |
-
-Two dictionary-building scripts are experiment-specific and live in [`experiments/term_expansion/dictionary/scripts/`](experiments/term_expansion/dictionary/README.md):
-
-| Script | Purpose |
-| ------ | ------- |
-| `build_term_dictionary.py` | Builds provenance-aware term dictionary from dev_v2 (GPT via OpenRouter). |
-| `apply_dictionary_to_dev_v1.py` | Applies the dictionary to dev_v1 into `shared/data/dev_v1/dev_v1_dictionary/` (optional, new files). |
 
 ### Analysis (shared, `shared/lib/analysis/`)
 
@@ -75,7 +67,7 @@ All analysis scripts require `pandas` and `openpyxl`.
 | Script | Purpose |
 | ------ | ------- |
 | `analysis/metrics_loader.py`, `analysis/grouped_bar_figure_common.py`, `analysis/plot_style.py` | Shared metrics-loading and plotting helpers used by every `figure_expN.py`. |
-| `analysis/generate_result_figures.py` | Orchestrator: builds all four poster figures by importing each experiment's `figure_expN.py`. |
+| `analysis/generate_result_figures.py` | Orchestrator: builds all result figures (poster and report) by importing each experiment's `figure_expN.py`. |
 
 The table-comparison and figure-generating scripts themselves are experiment-specific; see each experiment's README:
 
@@ -106,13 +98,13 @@ See each experiment's README for the exact command to regenerate every table it 
 
 ## Data
 
-All data lives in `shared/data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than by processing stage. One exception lives inside the experiment that's its only consumer instead: `dev_v2_dictionary/` (the term dictionary built from dev_v2), under [`experiments/term_expansion/dictionary/data/`](experiments/term_expansion/dictionary/README.md).
+All data lives in `shared/data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than by processing stage.
 
 | Path | Description |
 | ---- | ----------- |
 | `dev_v1/dev_v1_original/` | Original course dev set (test set, 500 sentences/language pair). |
 | `dev_v1/dev_v1_expand/` | Expanded version of `dev_v1_original/` with additional `proper_terms` (output of `expand_terms.py`). |
 | `dev_v1/dev_v1_cleaned/` | Cleaned version of `dev_v1_expand/` with terminology-poor `proper_terms` removed (output of `clean_poor_proper_terms.py`). |
-| `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from the term dictionary (output of `apply_dictionary_to_dev_v1.py`, [`experiments/term_expansion/dictionary/scripts/`](experiments/term_expansion/dictionary/README.md)). |
+| `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from an external term dictionary built from dev_v2. The build/apply scripts that produced this have since been removed — see [`report/ISSUES.md`](report/ISSUES.md). |
 | `dev_v2/` | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus, used as a training-set proxy (see `report/README.md`). The post-removal, few-shot-trimmed training set derived from this lives at [`experiments/lora_finetuning/shared/data/training/`](experiments/lora_finetuning/README.md). |
 | `shared_task/` | WMT2025 terminology shared-task materials: task docs (`shared_task_docs/`), track 1 (en→de/es/ru, `shared_task_track1/`), and track 2 (en↔zh, 2015–2024, `shared_task_track2/`). |

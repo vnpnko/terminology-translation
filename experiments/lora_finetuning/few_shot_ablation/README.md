@@ -8,7 +8,7 @@ Note: only the `qwen_lora` block involves LoRA fine-tuning; the `GPT-4o-mini` sh
 
 | File | Compares | Regenerate |
 | ---- | -------- | ---------- |
-| `report/zero_shot_vs_few_shot_ablation.xlsx` | `zero_shot` vs `few_shot`, one sheet per model; Qwen sheets stack `qwen_base` and `qwen_lora` rows; each cell colored green (higher/tied-highest) or yellow (lower), no red | `python experiments/lora_finetuning/few_shot_ablation/scripts/compare_few_shots_to_excel.py` — GPT/`qwen_base` rows split across two results trees (see script docstring); `qwen_lora` rows are fully local, driven by `../shared/run_registry.json` |
+| `report/zero_shot_vs_few_shot_ablation.xlsx` | `zero_shot` vs `few_shot`, one sheet per model; Qwen sheets stack `qwen_base` and `qwen_lora` rows; each cell colored green (higher) or red (lower), yellow if tied | `python experiments/lora_finetuning/few_shot_ablation/scripts/compare_few_shots_to_excel.py` — GPT/`qwen_base` rows split across two results trees (see script docstring); `qwen_lora` rows are fully local, driven by `../shared/run_registry.json` |
 
 **Note:** fills in `Qwen2.5-7B`'s `qwen_base` `zero_shot` cells from `shared/results/dev_v1/original/zero_shot/qwen_7b/` (the shared baseline tree, not this experiment's local `shared/results/`).
 

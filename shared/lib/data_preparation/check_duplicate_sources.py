@@ -20,11 +20,16 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-if str(SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPT_DIR))
+REPO_ROOT = Path(__file__).resolve().parents[3]
 
-from term_utils import repo_rel_path
+
+def repo_rel_path(path: Path) -> str:
+    """Return a repo-root-relative path string for portable JSON reports."""
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        return resolved.as_posix()
 
 
 def find_duplicate_sources(

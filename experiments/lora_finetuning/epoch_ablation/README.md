@@ -6,7 +6,7 @@ Compares 1 / 2 / 3 LoRA fine-tuning epochs (zero-shot), one sheet per model size
 
 | File | Compares | Regenerate |
 | ---- | -------- | ---------- |
-| `report/epoch_ablation.xlsx` | 1 / 2 / 3 LoRA epochs (zero-shot), one sheet per model size; each cell colored red/yellow/green by ranking that (language, metric) value across the 3 epochs (worst/mid/best) | `python experiments/lora_finetuning/epoch_ablation/scripts/compare_epochs_to_excel.py` |
+| `report/epoch_ablation.xlsx` | 1 / 2 / 3 LoRA epochs (zero-shot), one sheet per model size; each cell colored green (best epoch) or red (worst epoch); the middle epoch's value is left unfilled, yellow only on a tie across all 3 | `python experiments/lora_finetuning/epoch_ablation/scripts/compare_epochs_to_excel.py` |
 
 ## Output
 

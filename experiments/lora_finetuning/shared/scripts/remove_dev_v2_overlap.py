@@ -18,25 +18,57 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(PROJECT_ROOT))
 
-from shared.lib.data_preparation.term_utils import (
-    DEV_V1_ORIGINAL_DIR,
-    DEV_V2_DIR,
-    LANG_PAIRS,
-    LangPair,
-    refuse_if_exists,
-    repo_rel_path,
-    save_json,
-    save_jsonl,
-)
-
+DEV_V2_DIR = PROJECT_ROOT / "shared" / "data" / "dev_v2"
+DEV_V1_ORIGINAL_DIR = PROJECT_ROOT / "shared" / "data" / "dev_v1" / "dev_v1_original"
 DEV_V2_DEDUPED_DIR = PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "data" / "dev_v2_deduped"
+
+
+@dataclass(frozen=True)
+class LangPair:
+    prefix: str
+    input_name: str
+
+
+LANG_PAIRS: dict[str, LangPair] = {
+    "ende": LangPair("ende", "ende_dev_v2.jsonl"),
+    "enes": LangPair("enes", "enes_dev_v2.jsonl"),
+    "enru": LangPair("enru", "enru_dev_v2.jsonl"),
+}
+
+
+def repo_rel_path(path: Path) -> str:
+    """Return a repo-root-relative path string for portable JSON reports."""
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return resolved.as_posix()
+
+
+def refuse_if_exists(path: Path, *, force: bool) -> None:
+    if path.exists() and not force:
+        raise SystemExit(
+            f"Output already exists: {path}\n"
+            "Refusing to overwrite. Pass --force to regenerate."
+        )
+
+
+def save_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        for record in records:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def save_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def dev_v1_input_name(lang_pair: LangPair) -> str:

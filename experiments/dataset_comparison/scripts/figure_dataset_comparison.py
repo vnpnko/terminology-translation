@@ -44,7 +44,7 @@ DATASET_COLORS = {
 
 def _title(mode: str) -> str:
     return (
-        "dev_v1 vs dev_v2 terminology datasets\n"
+        "dev_v1 vs. dev_v2\n"
         f"({mode}; macro avg over language pairs; per model)"
     )
 
@@ -80,11 +80,11 @@ def build_dataset_comparison_figure(results_root: Path, mode: str) -> Figure:
     fig, axes, legend_ax = create_pair_figure(_title(mode))
 
     metric_axes = [
-        (axes[0], "bleu", "BLEU (macro avg)", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
+        (axes[0], "bleu", "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
         (
             axes[1],
             "term_accuracy_pct",
-            "Term accuracy (%) (macro avg)",
+            "Term accuracy (%)",
             TERM_ACC_YLIM_TOP,
             list(range(0, TERM_ACC_YLIM_TOP + 1, 20)),
         ),

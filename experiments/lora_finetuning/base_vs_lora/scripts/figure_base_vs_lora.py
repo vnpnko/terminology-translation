@@ -56,7 +56,7 @@ METRIC_LABELS = {
     "weighted_avg_consistency": "Weighted\nCons (%)",
 }
 
-TITLE = "Qwen: base (few-shot) vs. LoRA (zero-shot, 1 epoch)\n(train dev_v2; test dev_v1; proper_term)"
+TITLE = "Qwen: base vs. LoRA (1 epoch)\n(train dev_v2; test dev_v1; proper_term)"
 
 YLIM_TOP = 100
 

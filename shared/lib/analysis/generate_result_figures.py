@@ -49,6 +49,7 @@ from figure_epoch_ablation import build_epoch_ablation_figure
 from figure_best_models import build_best_models_figure
 from figure_leakage_check import build_leakage_check_figure
 from figure_few_shot_ablation import build_few_shot_ablation_figure
+from figure_few_shot_ablation_qwen import build_few_shot_ablation_qwen_figure
 from plot_style import save_figure
 
 FIGURE_BUILDERS = {
@@ -85,6 +86,11 @@ FIGURE_BUILDERS = {
     "few_shot_ablation": (
         "fig_lora_few_shot_ablation",
         lambda root: build_few_shot_ablation_figure(root),
+        Path("experiments/lora_finetuning/few_shot_ablation/figures"),
+    ),
+    "few_shot_ablation_qwen": (
+        "fig_lora_few_shot_ablation_qwen",
+        lambda root: build_few_shot_ablation_qwen_figure(root),
         Path("experiments/lora_finetuning/few_shot_ablation/figures"),
     ),
 }

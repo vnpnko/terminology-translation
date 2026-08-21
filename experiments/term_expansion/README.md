@@ -4,7 +4,7 @@ Compares terminology-constrained translation across `no_term`, `random_term`, th
 
 | Sub-experiment | Contents |
 | -------------- | -------- |
-| [`by_model/`](by_model/README.md) | Aggregated by model (macro avg over language pairs). Produces `fig_term_expansion_across_model`. |
+| [`by_model/`](by_model/README.md) | Aggregated by model (macro avg over language pairs). Produces `fig_term_expansion_across_models`. |
 | [`by_language_pair/`](by_language_pair/README.md) | Broken out by language pair, one figure per model. Produces `fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}`. |
 | [`dictionary/`](dictionary/README.md) | Owns the `build_term_dictionary.py`/`apply_dictionary_to_dev_v1.py` scripts that (re)generate the externally-sourced dictionary term-list variant's data. No experiment-local results — its comparisons run through `shared/scripts/compare_by_model_and_language.py` like the other variants. |
 
@@ -24,7 +24,7 @@ For the `dev_v1`-vs-`dev_v2` dataset comparability check (a different axis — n
 
 ## Inputs
 
-Both axes read `metrics_summary.json` under `shared/results/dev_v1/` for all 3 models (GPT-4o-mini, Qwen 3B, Qwen 7B) across:
+Both axes read `metrics_summary.json` under `shared/results/dev_v1/` for all 3 models (GPT, Qwen 3B, Qwen 7B) across:
 
 | Variant | Source data | Results path |
 | ------- | ------------ | ------------ |

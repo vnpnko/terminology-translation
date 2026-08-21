@@ -1,4 +1,4 @@
-"""Best LoRA config (Qwen 7B, 2 epochs, zero-shot) vs. GPT-4o-mini (few-shot), by language pair."""
+"""Best LoRA config (Qwen 7B, 2 epochs, zero-shot) vs. GPT (few-shot), by language pair."""
 
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ GPT_KEY = "gpt_few_shot"
 LORA_KEY = "qwen_lora_2ep"
 SERIES_ORDER = (GPT_KEY, LORA_KEY)
 SERIES_LABELS = {
-    GPT_KEY: "GPT-4o-mini (few-shot)",
+    GPT_KEY: "GPT (few-shot)",
     LORA_KEY: "Qwen 7B LoRA 2ep (zero-shot)",
 }
 
@@ -48,7 +48,7 @@ BLEU_IDX = 0
 TERM_ACC_IDX = 2
 
 TITLE = (
-    "Best LoRA config vs. GPT-4o-mini\n"
+    "Best LoRA config vs. GPT\n"
     "(train dev_v2; test dev_v1; proper_term)"
 )
 

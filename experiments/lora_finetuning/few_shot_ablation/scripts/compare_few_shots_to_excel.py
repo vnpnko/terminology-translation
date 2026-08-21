@@ -1,7 +1,7 @@
-"""Compare zero-shot vs few-shot for GPT-4o-mini, Qwen base, and Qwen LoRA (1 epoch).
+"""Compare zero-shot vs few-shot for GPT, Qwen base, and Qwen LoRA (1 epoch).
 
 Writes one .xlsx file (default:
-``experiments/lora_finetuning/few_shot_ablation/report/zero_shot_vs_few_shot_ablation.xlsx``) with 3 sheets:
+``experiments/lora_finetuning/few_shot_ablation/report/few_shot_ablation.xlsx``) with 3 sheets:
 ``GPT-4o-mini``, ``Qwen2.5-3B``, ``Qwen2.5-7B``. The GPT sheet has one row per language pair;
 the Qwen sheets stack a ``qwen_base`` block and a ``qwen_lora`` block (3 rows each), matching
 the two differently-scoped few-shot experiments documented in ``report/README.md`` §3.4.1:
@@ -193,7 +193,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("experiments/lora_finetuning/few_shot_ablation/report/zero_shot_vs_few_shot_ablation.xlsx"),
+        default=Path("experiments/lora_finetuning/few_shot_ablation/report/few_shot_ablation.xlsx"),
         help="Output .xlsx path",
     )
     return parser.parse_args()

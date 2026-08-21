@@ -25,34 +25,9 @@ COLOR_BLEU = "#457B9D"
 COLOR_CHRF = "#E9C46A"
 COLOR_TERM_ACC = "#2A9D8F"
 COLOR_WEIGHTED_CONS = "#9B2226"
-COLOR_QWEN_BASE = "#E9C46A"
 COLOR_LORA = "#E76F51"
 COLOR_OVERLAP_DATA = "#BC4749"
 COLOR_NO_OVERLAP_DATA = "#588157"
-
-MODEL_COLORS = {
-    "GPT": COLOR_GPT,
-    "Qwen 3B": COLOR_QWEN_3B,
-    "Qwen 7B": COLOR_QWEN_7B,
-    "GPT-4o-mini": COLOR_GPT,
-    "GPT-4o-mini (few-shot)": COLOR_GPT,
-    "Qwen 7B base": COLOR_QWEN_BASE,
-    "Qwen 7B base (few-shot)": COLOR_QWEN_BASE,
-    "Qwen 7B LoRA 2ep": COLOR_LORA,
-    "Qwen 7B LoRA 2ep (no few-shot)": COLOR_LORA,
-}
-
-STRATEGY_COLORS = {
-    "Original": COLOR_ORIGINAL,
-    "GPT expand": COLOR_GPT_EXPAND,
-    "Dictionary": COLOR_DICTIONARY,
-}
-
-VARIANT_COLORS = {
-    "Original": COLOR_ORIGINAL,
-    "GPT-expanded": COLOR_GPT_EXPAND,
-    "Domain-filtered": COLOR_DICTIONARY,
-}
 
 METRIC_COLORS = {
     "BLEU": COLOR_BLEU,

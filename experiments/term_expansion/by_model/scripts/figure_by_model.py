@@ -46,8 +46,8 @@ VARIANT_ORDER = ("original", "expand", "cleaned")
 SERIES_ORDER = (NO_TERM_KEY, RANDOM_TERM_KEY, *VARIANT_ORDER, EXTERNAL_DICTIONARY_KEY)
 VARIANT_LABELS = {
     "original": "Original",
-    "expand": "GPT expand",
-    "cleaned": "GPT cleaned",
+    "expand": "GPT-expanded",
+    "cleaned": "GPT-cleaned",
 }
 
 TITLE = (

@@ -14,7 +14,7 @@ Reads ``metrics_summary.json`` files under ``<project-root>/shared/results`` (an
 Usage::
 
     python shared/lib/analysis/generate_result_figures.py
-    python shared/lib/analysis/generate_result_figures.py --only model_comparison epoch_ablation
+    python shared/lib/analysis/generate_result_figures.py --only by_model epoch_ablation
     python shared/lib/analysis/generate_result_figures.py --output-dir /tmp/figures
 """
 
@@ -52,12 +52,12 @@ from figure_few_shot_ablation import build_few_shot_ablation_figure
 from plot_style import save_figure
 
 FIGURE_BUILDERS = {
-    "model_comparison": (
-        "fig_term_expansion_across_model",
+    "by_model": (
+        "fig_term_expansion_across_models",
         lambda root: build_by_model_figure(root / "shared" / "results"),
         Path("experiments/term_expansion/by_model/figures"),
     ),
-    "mode_comparison": (
+    "by_language_pair": (
         "fig_term_expansion_across_languages",
         lambda root: build_by_language_pair_figures(root / "shared" / "results"),
         Path("experiments/term_expansion/by_language_pair/figures"),

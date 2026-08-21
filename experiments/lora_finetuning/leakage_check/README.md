@@ -8,7 +8,7 @@ Checks whether LoRA training on `dev_v2` leaked into the `dev_v1` test set: spli
 
 | File | Compares | Regenerate |
 | ---- | -------- | ---------- |
-| `report/leakage_honesty_check.xlsx` | Single sheet `overlap_vs_no_overlap_data` with `overlap_data`/`no_overlap_data` column groups (named for the split criterion, not a "bad"/"good" judgment) and 3 stacked 3-row model blocks (`qwen_base`, `gpt`, `qwen_lora`); each cell colored green (higher) or red (lower) against its overlap_data/no_overlap_data counterpart, yellow if tied | `python experiments/lora_finetuning/leakage_check/scripts/compare_leakage_honesty_check_to_excel.py` — LoRA run selectable via `--lora-run` (default `lora_2_epoch_zero_shot`) |
+| `report/leakage_check.xlsx` | Single sheet `overlap_vs_no_overlap_data` with `overlap_data`/`no_overlap_data` column groups (named for the split criterion, not a "bad"/"good" judgment) and 3 stacked 3-row model blocks (`qwen_base`, `gpt`, `qwen_lora`); each cell colored green (higher) or red (lower) against its overlap_data/no_overlap_data counterpart, yellow if tied | `python experiments/lora_finetuning/leakage_check/scripts/compare_leakage_honesty_check_to_excel.py` — LoRA run selectable via `--lora-run` (default `lora_2_epoch_zero_shot`) |
 
 **Note:** fully script-generated, with column groups named `overlap_data`/`no_overlap_data` for the actual split criterion (≥50% token containment with the training set). The `test_cleaned_by_sentences/no_overlap` split it reads for `qwen_base` is a real, verified no-overlap subset.
 
@@ -26,6 +26,6 @@ Checks whether LoRA training on `dev_v2` leaked into the `dev_v1` test set: spli
 
 | File | Role |
 |------|------|
-| `scripts/compare_leakage_honesty_check_to_excel.py` | Builds `report/leakage_honesty_check.xlsx` from `metrics_summary.json` under `.../test_cleaned_by_sentences/{overlap,no_overlap}/`; LoRA run overridable via `--lora-run`; shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |
+| `scripts/compare_leakage_honesty_check_to_excel.py` | Builds `report/leakage_check.xlsx` from `metrics_summary.json` under `.../test_cleaned_by_sentences/{overlap,no_overlap}/`; LoRA run overridable via `--lora-run`; shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |
 | `scripts/filter_test_sentence_overlap.py` | Splits `dev_v1` test sentences into `overlap`/`no_overlap` subsets by ≥50% token containment with the training set, balanced to the minimum count across languages; writes `data/{overlap,no_overlap}/{lang}_dev_v1_test.jsonl` |
 | `scripts/figure_leakage_check.py` | Builds the `fig_lora_leakage_check` figure (`build_leakage_check_figure`; run via `python shared/lib/analysis/generate_result_figures.py --only leakage_check`); resolves the LoRA run via [`../shared/run_registry.json`](../shared/run_registry.json) and shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |

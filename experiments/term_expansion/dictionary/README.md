@@ -6,7 +6,7 @@ This is a **thin wrapper**: no experiment-local results, only `scripts/` (and `d
 
 `data/dev_v2_dictionary/` (the term dictionary `build_term_dictionary.py` builds from dev_v2, then `apply_dictionary_to_dev_v1.py` applies to dev_v1) lives here rather than in the shared `shared/data/` tree since this experiment is its only consumer. It doesn't exist on disk by default — `shared/data/dev_v1/dev_v1_dictionary/` (its already-applied output) does, so the report tables that use it work today without regenerating anything. Regenerating `data/dev_v2_dictionary/` is only needed if you want to rebuild `shared/data/dev_v1/dev_v1_dictionary/` from scratch (e.g. if it were lost) or extend the dictionary to a new language pair.
 
-## Regenerating
+## Reproduce
 
 ```
 python experiments/term_expansion/dictionary/scripts/build_term_dictionary.py --all

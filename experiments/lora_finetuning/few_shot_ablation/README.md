@@ -12,8 +12,13 @@ Note: only the `qwen_lora` block involves LoRA fine-tuning; the `GPT-4o-mini` sh
 
 **Note:** fills in `Qwen2.5-7B`'s `qwen_base` `zero_shot` cells from `shared/results/dev_v1/original/zero_shot/qwen_7b/` (the shared baseline tree, not this experiment's local `shared/results/`).
 
+## Output
+
+[`figures/fig_lora_few_shot_ablation.pdf`](figures/fig_lora_few_shot_ablation.pdf) — GPT-4o-mini only: BLEU, chrF, Term Accuracy, Macro Consistency, and Weighted Consistency, each metric grouped with `zero_shot`/`few_shot` bars; macro-averaged across the 3 language pairs.
+
 ## Scripts
 
 | File | Role |
 |------|------|
 | `scripts/compare_few_shots_to_excel.py` | Builds `report/zero_shot_vs_few_shot_ablation.xlsx` from `metrics_summary.json` in both `shared/results/` (root) and `experiments/lora_finetuning/shared/results/`; shared loading/extraction helpers from [`../shared/scripts/compare_common.py`](../shared/scripts/compare_common.py) |
+| `scripts/figure_few_shot_ablation.py` | Builds the `fig_lora_few_shot_ablation` figure (`build_few_shot_ablation_figure`; run via `python shared/lib/analysis/generate_result_figures.py --only few_shot_ablation`); GPT-only, macro-averaged via [`shared/lib/analysis/metrics_loader.py`](../../../shared/lib/analysis/metrics_loader.py) from the same two result paths `compare_few_shots_to_excel.py` reads for GPT |

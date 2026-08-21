@@ -50,6 +50,8 @@ EXPANSION_COLORS = {
     "qwen_lora_2ep": COLOR_LORA,
     "overlap_data": COLOR_OVERLAP_DATA,
     "no_overlap_data": COLOR_NO_OVERLAP_DATA,
+    "zero_shot": COLOR_ORIGINAL,
+    "few_shot": COLOR_GPT_EXPAND,
 }
 
 PAIR_FIG_SIZE = (19, 6.5)

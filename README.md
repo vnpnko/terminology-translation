@@ -1,6 +1,10 @@
 # Terminology Translation
 
-Experiments on terminology-constrained machine translation for WMT-style sentence-level data.
+Experiments on terminology-constrained machine translation for WMT-style sentence-level data. Code and data supporting an ACL-style paper in progress — see [`report/`](report/README.md) for its outline and current status. An earlier [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) covers a subset of the same results.
+
+In enterprise software documentation, domain terms (UI labels, product names) frequently receive plausible-but-wrong translations from generic MT, breaking terminology consistency across screens and manuals. This project studies terminology-constrained EN→{DE, RU, ES} translation on SAP documentation data, in the spirit of the WMT25 Terminology Shared Task, comparing prompt-based term-list conditioning against LoRA fine-tuning of open Qwen2.5 models, evaluated against GPT-4o-mini.
+
+Licensed under [MIT](LICENSE).
 
 Each JSONL record has an English source sentence, a target-language reference, domain terminology, and random control terminology:
 
@@ -8,119 +12,111 @@ Each JSONL record has an English source sentence, a target-language reference, d
 {
   "en": "...",
   "de": "...",
-  "proper_terms": [{ "term": "translation" }],
-  "random_terms": [{ "word": "translation" }]
+  "proper_terms": { "term": "translation" },
+  "random_terms": { "word": "translation" }
 }
 ```
 
+## Reproducing the figures
+
+Each figure is built by a `figure_*.py` script living in the owning experiment's `scripts/` folder, reading from the shared `shared/results/`/`report/` tree (the `term_expansion/` experiments) or from a specific experiment folder (`lora_finetuning/`). All are driven by one shared orchestrator, [`shared/lib/analysis/generate_result_figures.py`](shared/lib/analysis/generate_result_figures.py), which writes each figure into its owning experiment's `figures/` directory — that's the figure's canonical home. `poster/figures/` and `report/figures/` are **not** generation targets: copy a figure's home file over by hand whenever it's added or updated. `poster/figures/` is a curated flat collection of whichever figures actually appear in [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf). `report/figures/` instead mirrors the full `experiments/` nesting (one directory per experiment/sub-experiment, dropping the trailing `figures/` — e.g. `experiments/lora_finetuning/epoch_ablation/figures/` → `report/figures/lora_finetuning/epoch_ablation/`) and holds every experiment's figures, both `.pdf` and `.png`, since the paper draws on the full result set rather than a hand-picked subset.
+
+| Figure | Home | Experiment | Command | Reads from |
+| ------ | ---- | ---------- | ------- | ---------- |
+| [`fig_term_expansion_across_models`](experiments/term_expansion/by_model/figures/fig_term_expansion_across_models.pdf) | `experiments/term_expansion/by_model/figures/` | [`term_expansion/by_model`](experiments/term_expansion/by_model/README.md) | `python shared/lib/analysis/generate_result_figures.py --only by_model` | `shared/results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}`](experiments/term_expansion/by_language_pair/figures/fig_term_expansion_across_languages_gpt.pdf) | `experiments/term_expansion/by_language_pair/figures/` | [`term_expansion/by_language_pair`](experiments/term_expansion/by_language_pair/README.md) | `python shared/lib/analysis/generate_result_figures.py --only by_language_pair` | `shared/results/dev_v1/{original,expand,cleaned}/` |
+| [`fig_dev_v1_vs_dev_v2_{no_term,proper_term,random_term}`](experiments/dataset_comparison/figures/fig_dev_v1_vs_dev_v2_proper_term.pdf) | `experiments/dataset_comparison/figures/` | [`dataset_comparison`](experiments/dataset_comparison/README.md) | `python shared/lib/analysis/generate_result_figures.py --only dataset_comparison` | `shared/results/dev_v1/original/few_shot/`, `shared/results/dev_v2/` |
+| [`fig_lora_epoch_ablation`](experiments/lora_finetuning/epoch_ablation/figures/fig_lora_epoch_ablation.pdf) | `experiments/lora_finetuning/epoch_ablation/figures/` | [`lora_finetuning/epoch_ablation`](experiments/lora_finetuning/epoch_ablation/README.md) | `python shared/lib/analysis/generate_result_figures.py --only epoch_ablation` | `shared/results/dev_v1/original/zero_shot/`, `experiments/lora_finetuning/shared/results/` |
+| [`fig_lora_best_models`](experiments/lora_finetuning/best_models/figures/fig_lora_best_models.pdf) | `experiments/lora_finetuning/best_models/figures/` | [`lora_finetuning/best_models`](experiments/lora_finetuning/best_models/README.md) | `python shared/lib/analysis/generate_result_figures.py --only best_models` | `experiments/lora_finetuning/shared/results/`, `experiments/lora_finetuning/shared/run_registry.json` |
+
+Generate all at once with `python shared/lib/analysis/generate_result_figures.py` (writes each into its home dir above; `dataset_comparison` writes 3 files, one per term mode, and `by_language_pair` writes 3 files, one per model). Of these, `fig_term_expansion_across_models`, the 3 `fig_term_expansion_across_languages_{model}` figures, `fig_lora_epoch_ablation`, and `fig_lora_best_models` are copied to `poster/figures/` for the poster. Every experiment's figures are copied to `report/figures/` for the paper, under a matching `report/figures/<experiment>/<sub-experiment>/` directory.
+
+## Notebooks
+
+[`shared/notebooks/`](shared/notebooks/) holds the three manually-run model notebooks (`gpt.ipynb`, `qwen_base.ipynb`, `qwen_finetuned.ipynb`) used to produce the `lora_finetuning` results — run individually (e.g. on LRZ AI Systems), not driven by any script.
+
+## Experiments
+
+Every experiment starts from the same SAP `term_postedits`-derived data (`dev_v1`, `dev_v2`) and shares one metric suite (BLEU, chrF, term accuracy, macro/weighted consistency) across the same three models: GPT-4o-mini, Qwen2.5-3B-Instruct, and Qwen2.5-7B-Instruct. From there, two axes vary independently: which term list is injected into the prompt (`original`/`expand`/`cleaned`/`dictionary`, under `no_term`/`proper_term`/`random_term` modes — see `term_expansion/`), and whether the model is queried as-is or LoRA fine-tuned on `dev_v2` (see `lora_finetuning/`). `dataset_comparison/` sits alongside these as background context comparing `dev_v1` to `dev_v2` directly.
+
+`experiments/` groups experiments into three top-level directories: `dataset_comparison/`, `term_expansion/`, and `lora_finetuning/` (5 nested sub-experiments). Each experiment owns a `scripts/` folder with its table/figure-generating code (see their READMEs for exact reproduce commands); `lora_finetuning/` is a self-contained model-run experiment with its own `data/`/`results/`.
+
+| Experiment | Contents |
+| ---------- | -------- |
+| [`dataset_comparison/`](experiments/dataset_comparison/README.md) | `dev_v1` vs. `dev_v2` terminology dataset comparison, per model. |
+| [`term_expansion/`](experiments/term_expansion/README.md) | Proper-term expansion: original vs. GPT-expanded vs. GPT-cleaned (domain-filtered) vs. externally-sourced dictionary, both aggregated by model and broken out by language pair. Also includes a self-contained oracle-vs-self-proposed-terminology comparison ([`gpt_proposed_term_pipeline/`](experiments/term_expansion/gpt_proposed_term_pipeline/README.md)). |
+| [`lora_finetuning/`](experiments/lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT and Qwen base: 5 sub-experiments (`epoch_ablation/`, `best_models/`, `base_vs_lora/`, `few_shot_ablation/`, `leakage_check/`) sharing `shared/results/`, `shared/data/`, and `shared/run_registry.json`. |
+
 ## Scripts
 
-Scripts live in `scripts/`.
+Genuinely shared code lives in `shared/lib/`. Single-experiment scripts live under the owning experiment's `scripts/` folder (e.g. `experiments/lora_finetuning/shared/scripts/`, `experiments/term_expansion/by_model/scripts/`), and import shared `shared/lib/` code as `from shared.lib.analysis... import ...` / `from shared.lib.data_preparation... import ...` — this holds regardless of how deeply an experiment is nested under `experiments/`.
 
-### Data preparation
+### Data preparation (shared, `shared/lib/data_preparation/`)
 
 | Script                                                     | Purpose                                                                      |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `data_preparation/convert_term_postedits_to_jsonl.py`      | Converts raw ASAP `term_postedits` flat files into JSONL mt-task format.     |
+| `data_preparation/convert_term_postedits_to_jsonl.py`      | Converts raw SAP `term_postedits` flat files into JSONL mt-task format.      |
 | `data_preparation/fill_missing_translations_openrouter.py` | Fills missing target sentences and term translations via OpenRouter.         |
 | `data_preparation/annotate_proper_terms_openrouter.py`     | Adds domain `proper_terms` (1–2 IT terms per sentence) via OpenRouter.       |
 | `data_preparation/annotate_random_terms_openrouter.py`     | Adds control `random_terms` (non-domain word pairs) after `proper_terms`.    |
 | `data_preparation/clean_poor_proper_terms.py`              | Removes weak or generic entries from `proper_terms`.                         |
 | `data_preparation/expand_terms.py`                         | Appends additional term pairs to `proper_terms`.                             |
-| `data_preparation/collect_term_pairs_from_jsonl.py`        | Aggregates `proper_terms` from v1/v2 dev files into unique term-pair JSONL.  |
-| `data_preparation/build_term_dictionary.py`                | Builds provenance-aware term dictionary from dev_v2 (GPT via OpenRouter).    |
-| `data_preparation/apply_dictionary_to_dev_v1.py`             | Applies dictionary to dev_v1 into `dev_v1/dictionary/` (optional, new files).  |
 | `data_preparation/strip_target_translations.py`            | Clears target sentences and term values while keeping English and term keys. |
+| `data_preparation/check_duplicate_sources.py`               | Report-only: checks a JSONL file for duplicate source (`en`) sentences.      |
 
-### GPT term pipeline (500-sentence eval)
-
-| Script | Purpose |
-| ------ | ------- |
-| `run_gpt_term_pipeline.py` | 3-step GPT pipeline: extract EN terms → propose target translations (no reference) → translate. |
-
-This is an **inference-time experiment**, not a dictionary build. Reference translations (`de`/`es`/`ru`) in the JSONL are used **for evaluation only** — they are never sent to GPT during steps 1–2.
-
-```bash
-# Pilot (10 lines, German)
-python scripts/run_gpt_term_pipeline.py --lang ende --limit 10
-
-# Full run (500 lines × 3 language pairs)
-python scripts/run_gpt_term_pipeline.py --all
-
-# Resume after interruption
-python scripts/run_gpt_term_pipeline.py --all --resume
-
-# Compare oracle vs GPT-proposed modes
-python scripts/analysis/compare_gpt_pipeline_modes.py
-```
-
-**Outputs**
-
-| Path | Description |
-| ---- | ----------- |
-| `data/dev_v1/gpt_proposed/` | Cached `gpt_extracted_terms` and `gpt_proposed_terms` per line |
-| `results/dev_v1/original/gpt_pipeline/` | Translations + `metrics_summary.json` |
-
-**Co-editor handoff (Qwen):** load `data/dev_v1/gpt_proposed/{lang}_dev_v1_gpt_terms.jsonl`, use `gpt_proposed_terms` as the terminology dict in the Qwen baseline notebooks (translation step only). Write results to e.g. `results/dev_v1/original/qwen_3b_gpt_terms/`.
-
-### Analysis
+### Analysis (shared, `shared/lib/analysis/`)
 
 All analysis scripts require `pandas` and `openpyxl`.
 
-| Script                                  | Purpose                                                                      |
-| --------------------------------------- | ---------------------------------------------------------------------------- |
-| `analysis/compare_models_to_excel.py`   | Compares GPT, Qwen 3B, and Qwen 7B. Rows grouped by mode.                    |
-| `analysis/compare_modes_to_excel.py`    | Compares `no_term`, `proper_term`, and `random_term`. Rows grouped by model. |
-| `analysis/compare_datasets_to_excel.py` | Compares `dev_v1/original` vs `dev_v2`. Rows grouped by mode.                |
-| `analysis/compare_gpt_pipeline_modes.py` | Compares GPT baseline modes vs `gpt_proposed_term` pipeline.                  |
+| Script | Purpose |
+| ------ | ------- |
+| `analysis/metrics_loader.py`, `analysis/grouped_bar_figure_common.py`, `analysis/plot_style.py` | Shared metrics-loading and plotting helpers used by every experiment's `figure_*.py`. |
+| `analysis/generate_result_figures.py` | Orchestrator: builds all result figures (poster and report) by importing each experiment's `figure_*.py`. |
 
-Example commands:
+The table-comparison and figure-generating scripts themselves are experiment-specific; see each experiment's README:
+
+| Script | Location | Purpose |
+| ------ | -------- | ------- |
+| `compare_by_model_and_language.py` (`--mode {all,proper_term}`) | [`experiments/term_expansion/shared/scripts/`](experiments/term_expansion/README.md) | Compares GPT, Qwen 3B, and Qwen 7B, and `ende`/`enru`/`enes` — writes both axes' report tables in one run. |
+| `figure_by_model.py` | [`experiments/term_expansion/by_model/scripts/`](experiments/term_expansion/by_model/README.md) | Aggregated across language pairs, grouped by model. |
+| `figure_by_language_pair.py` | [`experiments/term_expansion/by_language_pair/scripts/`](experiments/term_expansion/by_language_pair/README.md) | One figure per model, grouped by language pair. |
+| `compare_datasets_to_excel.py`, `figure_dataset_comparison.py` | [`experiments/dataset_comparison/scripts/`](experiments/dataset_comparison/README.md) | Compares `dev_v1/original` vs `dev_v2`. |
+| `figure_epoch_ablation.py` | [`experiments/lora_finetuning/epoch_ablation/scripts/`](experiments/lora_finetuning/epoch_ablation/README.md) | LoRA epoch ablation, both model sizes. |
+| `figure_best_models.py` | [`experiments/lora_finetuning/best_models/scripts/`](experiments/lora_finetuning/best_models/README.md) | Best LoRA config vs. GPT. |
 
 ## Results
 
-All results live in `results/`
-
-Each `gpt/`, `qwen_3b/` and `qwen_7b/` results directory contains a `metrics_summary.json` file.
+All results live in `shared/results/`, grouped by dataset/variant then by model (`gpt/`, `qwen_3b/`, `qwen_7b/`). Each model directory holds one `metrics_summary.json` plus one flat prediction file per language and mode (`{lang}_..._{mode}_predictions.jsonl` — no per-language subdirectory). `shared/results/dev_v1/original/` additionally splits into `zero_shot/` and `few_shot/` subdirectories, since that's the one dataset evaluated both ways; `dev_v1/{expand,cleaned,dictionary}/` each have a single, unqualified model directory. `shared/results/dev_v2/` is flat like the other unqualified variants (`gpt/`, `qwen_3b/`, `qwen_7b/`); it's used both as an eval target and, via `dataset_comparison`, compared directly against `dev_v1/original/`.
 
 ## Report
 
-Generated comparison Excel files are written under `report/`:
+Generated comparison Excel files live inside the experiment they compare, under `experiments/<name>/report/` — not in a shared top-level `report/` directory. A table belongs wherever its comparison axis is the experiment's subject: model-vs-model and language-vs-language tables belong to the `term_expansion` experiment, dataset-vs-dataset tables to the dataset-comparison experiment.
 
-| Directory          | Produced by                    | Naming pattern                                                                   |
-| ------------------ | ------------------------------ | -------------------------------------------------------------------------------- |
-| `report/models/`   | `compare_models_to_excel.py`   | `<dataset>_model_comparison.xlsx` (e.g. `dev_v1_original_model_comparison.xlsx`) |
-| `report/modes/`    | `compare_modes_to_excel.py`    | `<dataset>_mode_comparison.xlsx`                                                 |
-| `report/modes/`    | `compare_gpt_pipeline_modes.py` | `dev_v1_original_gpt_pipeline_mode_comparison.xlsx`                              |
-| `report/datasets/` | `compare_datasets_to_excel.py` | `dev_v1_original_vs_dev_v2_<model>_dataset_comparison.xlsx`                      |
+| Report dir | Produced by | Naming pattern |
+| ---------- | ----------- | --------------- |
+| [`experiments/term_expansion/by_model/report/`](experiments/term_expansion/by_model/README.md#report-tables), [`by_language_pair/report/`](experiments/term_expansion/by_language_pair/README.md#report-tables) | `shared/scripts/compare_by_model_and_language.py` (default `--mode all`) | `model_comparison.xlsx` (by_model) + `language_comparison.xlsx` (by_language_pair), one sheet per dataset variant: `dev_v1`, `dev_v2` |
+| [`experiments/term_expansion/by_model/report/`](experiments/term_expansion/by_model/README.md#report-tables), [`by_language_pair/report/`](experiments/term_expansion/by_language_pair/README.md#report-tables) | `shared/scripts/compare_by_model_and_language.py --mode proper_term` | `proper_term_across_models.xlsx` (by_model) + `proper_term_across_languages.xlsx` (by_language_pair), rows: 4 term-list variants × language/model |
+| [`experiments/dataset_comparison/report/`](experiments/dataset_comparison/README.md#report-table) | `scripts/compare_datasets_to_excel.py` | `dataset_comparison.xlsx` (one sheet per model) |
+
+See each experiment's README for the exact command to regenerate every table it holds. When a new comparison table doesn't fit any existing experiment, create a new experiment folder for it rather than adding a new top-level report category.
 
 ## Data
 
-All data lives in `data/`
+All data lives in `shared/data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rather than by processing stage.
 
-| Path               | Description                                                                                                                                                        |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `dev_v1/original/` | Original course dev set.                                                                                                                                           |
-| `dev_v1/expand/`   | Expanded version of `original/` with additional `proper_terms`.                                                                                                    |
-| `dev_v1/cleaned/`  | Cleaned version of `expand/` with terminology-poor `proper_terms` removed.                                                                                         |
-| `dev_v1/dictionary/` | dev_v1 enriched from term dictionary (optional output of `apply_dictionary_to_dev_v1.py`).                                                                         |
-| `dev_v1/gpt_proposed/` | GPT-extracted and GPT-proposed term pairs for the 500-line eval set (output of `run_gpt_term_pipeline.py`).                                                          |
-| `dev_v2/`          | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus. |
-| `term_dictionary/` | Term dictionary built from dev_v2 with line IDs, lemmas, and observed inflections.                                                                                  |
-| `term_pairs/`      | Flat aggregated EN→target term-pair lists from v1/v2.                                                                                                              |
+| Path | Description |
+| ---- | ----------- |
+| `dev_v1/dev_v1_original/` | Original course dev set (test set, 500 sentences/language pair). |
+| `dev_v1/dev_v1_expand/` | Expanded version of `dev_v1_original/` with additional `proper_terms` (output of `expand_terms.py`). |
+| `dev_v1/dev_v1_cleaned/` | Cleaned version of `dev_v1_expand/` with terminology-poor `proper_terms` removed (output of `clean_poor_proper_terms.py`). |
+| `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from an external term dictionary built from dev_v2. Regenerate via [`experiments/term_expansion/dictionary/`](experiments/term_expansion/dictionary/README.md)'s `build_term_dictionary.py`/`apply_dictionary_to_dev_v1.py`. |
+| `dev_v2/` | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus. Used as a training-set proxy for the WMT25 Terminology Shared Task's training data, which isn't publicly available — dev_v2 is not the original shared-task release, just the closest same-domain substitute (see `report/README.md`). The post-removal, few-shot-trimmed training set derived from this lives at [`experiments/lora_finetuning/shared/data/training/`](experiments/lora_finetuning/README.md). |
+| `shared_task/` | WMT2025 terminology shared-task materials: task docs (`shared_task_docs/`), track 1 (en→de/es/ru, `shared_task_track1/`), and track 2 (en↔zh, 2015–2024, `shared_task_track2/`). |
 
-### Term dictionary pipeline
+## Authors
 
-```bash
-conda activate terminology-translation
-pip install -r requirements.txt
-python -m spacy download en_core_web_sm de_core_news_sm es_core_news_sm
+A TUM course project, supervised by Dr. Marion Di Marco.
 
-# Build dictionary from dev_v2 (dry run)
-python scripts/data_preparation/build_term_dictionary.py --all --limit 50
-
-# Full build (requires OPENROUTER_API_KEY in .env)
-python scripts/data_preparation/build_term_dictionary.py --all
-
-# Optional: apply to dev_v1 (writes new files only)
-python scripts/data_preparation/apply_dictionary_to_dev_v1.py --all
-```
+- **Ivan Pylypenko** — led the Qwen2.5 baseline and LoRA fine-tuning study (training/eval runs, held-out splits, overlap filtering, Excel comparison exports); ran the GPT-4o-mini comparison baselines; contributed poster draft assets and chart updates.
+- **Robin Schukrafft** — built the GPT-proposed term pipeline, constructed the term dictionary and applied it to dev_v1, and ran GPT baselines on the dictionary setting; implemented the matplotlib analysis scripts and result figures.
+- **Ilnur Gayetov** — set up the data-preparation pipeline for SAP `term_postedits` (JSONL task format, term-pair collection, initial term-expansion script) and restructured the project; refactored shared evaluation into reusable modules and added evaluation runners for local Qwen and OpenRouter GPT-4o-mini.

@@ -1,0 +1,4248 @@
+{
+  "data_version": "v1",
+  "data_variant": null,
+  "data_dir": "data/dev_v1/original",
+  "use_few_shot": false,
+  "prompt_examples_per_lang": {
+    "ende": 0,
+    "enru": 0,
+    "enes": 0
+  },
+  "provider": "openrouter",
+  "base_url": "https://openrouter.ai/api/v1",
+  "model": "openai/gpt-4o-mini",
+  "modes": [
+    "proper_term"
+  ],
+  "max_samples": null,
+  "languages": {
+    "ende": {
+      "data_file": "data/dev_v1/original/ende_dev_v1.jsonl",
+      "sample_count": 500,
+      "ref_field": "de",
+      "target_lang": "German",
+      "output_tag": "de",
+      "modes": {
+        "proper_term": {
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt/ende_dev_v1_proper_term_predictions.jsonl",
+          "metrics": {
+            "bleu": 44.2062167512025,
+            "chrf": 71.37317641833121,
+            "terminology_accuracy": {
+              "total_terms": 557,
+              "avg_ratio_pct": 64.31623931623932,
+              "per_term_ratios": {
+                "design": 1.0,
+                "state": 1.0,
+                "check": 1.0,
+                "provider": 1.0,
+                "percentage": 0.0,
+                "consumption model": 1.0,
+                "task log": 1.0,
+                "space": 0.0,
+                "membership": 1.0,
+                "data provider": 1.0,
+                "release": 0.0,
+                "transfer": 1.0,
+                "category": 0.0,
+                "issue": 1.0,
+                "panel": 0.0,
+                "order": 1.0,
+                "assignment": 1.0,
+                "type": 0.0,
+                "schedule": 1.0,
+                "message": 0.0,
+                "create": 1.0,
+                "expand": 1.0,
+                "Machine Learning": 1.0,
+                "machine learning": 1.0,
+                "Knowledge Base": 1.0,
+                "knowledge base": 0.0,
+                "history": 0.0,
+                "provided": 1.0,
+                "line of business": 1.0,
+                "storage": 0.0,
+                "business name": 0.0,
+                "substitution": 1.0,
+                "trigger": 1.0,
+                "side panel": 1.0,
+                "bucket": 1.0,
+                "item": 1.0,
+                "monitoring": 0.0,
+                "service": 1.0,
+                "blocked": 1.0,
+                "access control": 0.0,
+                "selection": 1.0,
+                "validity period": 1.0,
+                "source": 1.0,
+                "connector": 0.0,
+                "support": 1.0,
+                "sequence": 1.0,
+                "work center": 1.0,
+                "operation": 0.0,
+                "residence period": 1.0,
+                "personal data": 1.0,
+                "scheduled": 1.0,
+                "reset": 1.0,
+                "revision": 1.0,
+                "compliance": 1.0,
+                "end date": 1.0,
+                "review": 1.0,
+                "assembly": 1.0,
+                "start": 1.0,
+                "reference": 0.0,
+                "process": 1.0,
+                "scheduling": 1.0,
+                "action": 0.0,
+                "Action": 0.0,
+                "query": 1.0,
+                "association": 0.0,
+                "download": 0.0,
+                "stored procedure": 0.0,
+                "notification": 0.0,
+                "key mapping": 1.0,
+                "allow": 1.0,
+                "reviewer": 1.0,
+                "property": 1.0,
+                "image": 0.0,
+                "header": 1.0,
+                "authorization": 1.0,
+                "offset": 1.0,
+                "fee": 1.0,
+                "reporting period": 1.0,
+                "update": 1.0,
+                "deploy": 1.0,
+                "set": 0.0,
+                "contract": 1.0,
+                "transaction": 1.0,
+                "renewal": 0.5,
+                "root": 1.0,
+                "select": 0.0,
+                "layer": 1.0,
+                "user": 1.0,
+                "timeframe": 1.0,
+                "control": 1.0,
+                "reject": 1.0,
+                "insert": 1.0,
+                "mapping": 0.0,
+                "available capacity": 1.0,
+                "callback": 0.0,
+                "client": 0.0,
+                "pause": 1.0,
+                "default value": 1.0,
+                "installment plan category": 1.0,
+                "use": 0.0,
+                "job": 0.0,
+                "worklist": 1.0,
+                "display": 1.0,
+                "asset": 1.0,
+                "restriction": 0.0,
+                "graphical view": 0.0,
+                "document": 0.0,
+                "identifier": 0.0,
+                "canvas": 1.0,
+                "Business Users": 0.0,
+                "business user": 1.0,
+                "load": 1.0,
+                "access": 0.0,
+                "part": 1.0,
+                "credentials": 1.0,
+                "label": 1.0,
+                "Material Groups": 1.0,
+                "material group": 0.0,
+                "module": 1.0,
+                "share": 1.0,
+                "account": 1.0,
+                "Account": 0.0,
+                "team member": 0.0,
+                "note": 0.0,
+                "section": 1.0,
+                "notes": 1.0,
+                "overhead allocation": 1.0,
+                "document type": 0.0,
+                "cohort": 1.0,
+                "request": 1.0,
+                "scenario": 0.0,
+                "alert": 0.0,
+                "ID": 1.0,
+                "match": 1.0,
+                "monitor": 0.0,
+                "change log": 1.0,
+                "confirmation": 0.0,
+                "finished": 1.0,
+                "record type": 0.0,
+                "subgroup": 0.0,
+                "appointment": 0.0,
+                "target costs": 1.0,
+                "position": 1.0,
+                "asset type": 1.0,
+                "learner type": 0.0,
+                "Network": 1.0,
+                "class": 1.0,
+                "safety instruction": 0.0,
+                "expired": 0.0,
+                "project manager": 1.0,
+                "instructor": 1.0,
+                "scales": 1.0,
+                "change": 1.0,
+                "stage": 1.0,
+                "subscription": 0.0,
+                "marker": 0.0,
+                "page type": 1.0,
+                "queue": 1.0,
+                "interest calculation": 1.0,
+                "facility": 0.0,
+                "ID type": 1.0,
+                "line type": 0.0,
+                "application log": 0.0,
+                "indicator": 1.0,
+                "score": 0.0,
+                "retention period": 1.0,
+                "expiration date": 1.0,
+                "Group": 0.0,
+                "group": 0.0,
+                "relationship": 0.0,
+                "compliance requirement": 0.0,
+                "get": 1.0,
+                "open item": 0.0,
+                "link": 0.0,
+                "data collector": 1.0,
+                "requested": 1.0,
+                "joint venture accounting": 1.0,
+                "Accounting": 1.0,
+                "application help": 1.0,
+                "condition": 0.0,
+                "termination": 0.0,
+                "intercompany": 0.0,
+                "vendor": 0.0,
+                "available": 1.0,
+                "format": 1.0,
+                "customer": 1.0,
+                "interface": 1.0,
+                "claim": 1.0,
+                "publish": 1.0,
+                "report": 1.0,
+                "service provider": 1.0,
+                "theme": 1.0,
+                "page": 1.0,
+                "attribute": 0.0,
+                "package": 0.0,
+                "attachment": 1.0,
+                "approver": 1.0,
+                "account assignment distribution": 1.0,
+                "custom": 0.0,
+                "constraint": 0.0,
+                "run": 1.0,
+                "feature": 0.0,
+                "upload": 1.0,
+                "entitlement": 0.0,
+                "standard available capacity": 1.0,
+                "deal": 1.0,
+                "string": 0.0,
+                "list view": 1.0,
+                "Table": 1.0,
+                "following": 1.0,
+                "change document": 0.0,
+                "log": 1.0,
+                "tile": 1.0,
+                "audit": 1.0,
+                "shared object": 0.0,
+                "purchase requisition item type": 1.0,
+                "tab": 1.0,
+                "range": 0.0,
+                "collection": 1.0,
+                "ranking": 1.0,
+                "processing": 1.0,
+                "project": 0.0,
+                "connectivity": 1.0,
+                "graph": 1.0,
+                "procedure": 1.0,
+                "Procedure": 1.0,
+                "domain": 0.0,
+                "classification": 0.0,
+                "icon": 0.0,
+                "period": 1.0,
+                "assessment": 0.0,
+                "incident": 0.0,
+                "return": 1.0,
+                "single document": 1.0
+              }
+            },
+            "terminology_consistency": {
+              "per_term": {
+                "design": {
+                  "occ": 2,
+                  "pseudo_ref": "Entwurf",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "state": {
+                  "occ": 1,
+                  "pseudo_ref": "Zustand",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "check": {
+                  "occ": 5,
+                  "pseudo_ref": "Kontrolle",
+                  "matches": 2,
+                  "consistency": 0.4
+                },
+                "provider": {
+                  "occ": 2,
+                  "pseudo_ref": "Provider",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "percentage": {
+                  "occ": 3,
+                  "pseudo_ref": "prozentual",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "consumption model": {
+                  "occ": 8,
+                  "pseudo_ref": "Verbrauchsmodell",
+                  "matches": 8,
+                  "consistency": 1.0
+                },
+                "task log": {
+                  "occ": 1,
+                  "pseudo_ref": "Aufgabenprotokoll",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "space": {
+                  "occ": 35,
+                  "pseudo_ref": "Space",
+                  "matches": 31,
+                  "consistency": 0.8857142857142857
+                },
+                "membership": {
+                  "occ": 1,
+                  "pseudo_ref": "Zugehörigkeit",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "data provider": {
+                  "occ": 22,
+                  "pseudo_ref": "Datenprovider",
+                  "matches": 19,
+                  "consistency": 0.8636363636363636
+                },
+                "release": {
+                  "occ": 4,
+                  "pseudo_ref": "Release",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "transfer": {
+                  "occ": 3,
+                  "pseudo_ref": "übertragen",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "category": {
+                  "occ": 3,
+                  "pseudo_ref": "Kategorie",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "issue": {
+                  "occ": 4,
+                  "pseudo_ref": "Problem",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "panel": {
+                  "occ": 2,
+                  "pseudo_ref": "Fenster",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "order": {
+                  "occ": 2,
+                  "pseudo_ref": "Auftrag",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "assignment": {
+                  "occ": 3,
+                  "pseudo_ref": "Einsatz",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "type": {
+                  "occ": 19,
+                  "pseudo_ref": "Art",
+                  "matches": 10,
+                  "consistency": 0.5263157894736842
+                },
+                "schedule": {
+                  "occ": 15,
+                  "pseudo_ref": "Terminplan",
+                  "matches": 10,
+                  "consistency": 0.6666666666666666
+                },
+                "message": {
+                  "occ": 11,
+                  "pseudo_ref": "Nachricht",
+                  "matches": 6,
+                  "consistency": 0.5454545454545454
+                },
+                "create": {
+                  "occ": 47,
+                  "pseudo_ref": "erstellen",
+                  "matches": 40,
+                  "consistency": 0.851063829787234
+                },
+                "expand": {
+                  "occ": 1,
+                  "pseudo_ref": "aufklappen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Machine Learning": {
+                  "occ": 4,
+                  "pseudo_ref": "Machine Learning",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "machine learning": {
+                  "occ": 4,
+                  "pseudo_ref": "Machine Learning",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "Knowledge Base": {
+                  "occ": 1,
+                  "pseudo_ref": "Knowledge Base",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "knowledge base": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "history": {
+                  "occ": 1,
+                  "pseudo_ref": "Verlauf",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "provided": {
+                  "occ": 2,
+                  "pseudo_ref": "angegeben",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "line of business": {
+                  "occ": 1,
+                  "pseudo_ref": "Geschäftsbereich",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "storage": {
+                  "occ": 1,
+                  "pseudo_ref": "Speicher",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business name": {
+                  "occ": 3,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "substitution": {
+                  "occ": 2,
+                  "pseudo_ref": "Ersetzung",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "trigger": {
+                  "occ": 7,
+                  "pseudo_ref": "Auslöser",
+                  "matches": 6,
+                  "consistency": 0.8571428571428571
+                },
+                "side panel": {
+                  "occ": 4,
+                  "pseudo_ref": "Seitenbereich",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "bucket": {
+                  "occ": 1,
+                  "pseudo_ref": "Periode",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "item": {
+                  "occ": 12,
+                  "pseudo_ref": "Position",
+                  "matches": 4,
+                  "consistency": 0.3333333333333333
+                },
+                "monitoring": {
+                  "occ": 7,
+                  "pseudo_ref": "Überwachung",
+                  "matches": 7,
+                  "consistency": 1.0
+                },
+                "service": {
+                  "occ": 4,
+                  "pseudo_ref": "Service",
+                  "matches": 3,
+                  "consistency": 0.75
+                },
+                "blocked": {
+                  "occ": 1,
+                  "pseudo_ref": "gesperrt",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "access control": {
+                  "occ": 3,
+                  "pseudo_ref": "Zugriffskontrolle",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "selection": {
+                  "occ": 4,
+                  "pseudo_ref": "Selektion",
+                  "matches": 3,
+                  "consistency": 0.75
+                },
+                "validity period": {
+                  "occ": 1,
+                  "pseudo_ref": "Gültigkeitszeitraum",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "source": {
+                  "occ": 4,
+                  "pseudo_ref": "Quelle",
+                  "matches": 3,
+                  "consistency": 0.75
+                },
+                "connector": {
+                  "occ": 1,
+                  "pseudo_ref": "Konnektor",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "support": {
+                  "occ": 1,
+                  "pseudo_ref": "Unterstützung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "sequence": {
+                  "occ": 3,
+                  "pseudo_ref": "Sequenz",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "work center": {
+                  "occ": 4,
+                  "pseudo_ref": "Arbeitsplatz",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "operation": {
+                  "occ": 4,
+                  "pseudo_ref": "Vorgang",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "residence period": {
+                  "occ": 2,
+                  "pseudo_ref": "Residenzzeit",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "personal data": {
+                  "occ": 1,
+                  "pseudo_ref": "personenbezogene Daten",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "scheduled": {
+                  "occ": 1,
+                  "pseudo_ref": "terminiert",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "reset": {
+                  "occ": 1,
+                  "pseudo_ref": "zurücksetzen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "revision": {
+                  "occ": 3,
+                  "pseudo_ref": "überarbeitete Version",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "compliance": {
+                  "occ": 2,
+                  "pseudo_ref": "Compliance",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "end date": {
+                  "occ": 2,
+                  "pseudo_ref": "Enddatum",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "review": {
+                  "occ": 1,
+                  "pseudo_ref": "Prüfung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "assembly": {
+                  "occ": 1,
+                  "pseudo_ref": "Zusammenstellung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "start": {
+                  "occ": 2,
+                  "pseudo_ref": "Start",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "reference": {
+                  "occ": 2,
+                  "pseudo_ref": "Verweis",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "process": {
+                  "occ": 4,
+                  "pseudo_ref": "Vorgang",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "scheduling": {
+                  "occ": 2,
+                  "pseudo_ref": "Terminierung",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "action": {
+                  "occ": 2,
+                  "pseudo_ref": "Aktion",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "Action": {
+                  "occ": 2,
+                  "pseudo_ref": "Aktion",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "query": {
+                  "occ": 4,
+                  "pseudo_ref": "Abfrage",
+                  "matches": 3,
+                  "consistency": 0.75
+                },
+                "association": {
+                  "occ": 2,
+                  "pseudo_ref": "Assoziation",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "download": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "stored procedure": {
+                  "occ": 2,
+                  "pseudo_ref": "gespeicherte Prozedur",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "notification": {
+                  "occ": 5,
+                  "pseudo_ref": "Benachrichtigung",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "key mapping": {
+                  "occ": 1,
+                  "pseudo_ref": "Schlüsselzuordnung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "allow": {
+                  "occ": 1,
+                  "pseudo_ref": "erlauben",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "reviewer": {
+                  "occ": 1,
+                  "pseudo_ref": "Prüfer",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "property": {
+                  "occ": 1,
+                  "pseudo_ref": "Eigenschaft",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "image": {
+                  "occ": 2,
+                  "pseudo_ref": "Bild",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "header": {
+                  "occ": 1,
+                  "pseudo_ref": "Überschrift",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "authorization": {
+                  "occ": 1,
+                  "pseudo_ref": "Autorisierung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "offset": {
+                  "occ": 1,
+                  "pseudo_ref": "Offset",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "fee": {
+                  "occ": 1,
+                  "pseudo_ref": "Vergütung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "reporting period": {
+                  "occ": 1,
+                  "pseudo_ref": "Berichtsperiode",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "update": {
+                  "occ": 5,
+                  "pseudo_ref": "Aktualisierung",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "deploy": {
+                  "occ": 1,
+                  "pseudo_ref": "übernehmen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "set": {
+                  "occ": 1,
+                  "pseudo_ref": "Set",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "contract": {
+                  "occ": 2,
+                  "pseudo_ref": "Kontrakt",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "transaction": {
+                  "occ": 6,
+                  "pseudo_ref": "Vorgang",
+                  "matches": 2,
+                  "consistency": 0.3333333333333333
+                },
+                "renewal": {
+                  "occ": 2,
+                  "pseudo_ref": "Erneuerung",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "root": {
+                  "occ": 1,
+                  "pseudo_ref": "Stamm",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "select": {
+                  "occ": 4,
+                  "pseudo_ref": "markieren",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "layer": {
+                  "occ": 1,
+                  "pseudo_ref": "Schicht",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "user": {
+                  "occ": 1,
+                  "pseudo_ref": "Anwender",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "timeframe": {
+                  "occ": 1,
+                  "pseudo_ref": "Zeitrahmen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "control": {
+                  "occ": 3,
+                  "pseudo_ref": "Kontrolle",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "reject": {
+                  "occ": 1,
+                  "pseudo_ref": "ablehnen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "insert": {
+                  "occ": 3,
+                  "pseudo_ref": "einfügen",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "mapping": {
+                  "occ": 5,
+                  "pseudo_ref": "Zuordnung",
+                  "matches": 4,
+                  "consistency": 0.8
+                },
+                "available capacity": {
+                  "occ": 1,
+                  "pseudo_ref": "verfügbare Kapazität",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "callback": {
+                  "occ": 1,
+                  "pseudo_ref": "Callback",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "client": {
+                  "occ": 1,
+                  "pseudo_ref": "Client",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "pause": {
+                  "occ": 2,
+                  "pseudo_ref": "pausieren",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "default value": {
+                  "occ": 2,
+                  "pseudo_ref": "Standardwert",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "installment plan category": {
+                  "occ": 1,
+                  "pseudo_ref": "Ratenplantyp",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "use": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "job": {
+                  "occ": 2,
+                  "pseudo_ref": "Job",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "worklist": {
+                  "occ": 1,
+                  "pseudo_ref": "Arbeitsliste",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "display": {
+                  "occ": 2,
+                  "pseudo_ref": "Anzeige",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "asset": {
+                  "occ": 2,
+                  "pseudo_ref": "Anlage",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "restriction": {
+                  "occ": 1,
+                  "pseudo_ref": "Einschränkung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "graphical view": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "document": {
+                  "occ": 5,
+                  "pseudo_ref": "Dokument",
+                  "matches": 4,
+                  "consistency": 0.8
+                },
+                "identifier": {
+                  "occ": 1,
+                  "pseudo_ref": "Identifikator",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "canvas": {
+                  "occ": 1,
+                  "pseudo_ref": "Grafikbereich",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Business Users": {
+                  "occ": 1,
+                  "pseudo_ref": "Anwender",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business user": {
+                  "occ": 2,
+                  "pseudo_ref": "Anwender",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "load": {
+                  "occ": 2,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "access": {
+                  "occ": 2,
+                  "pseudo_ref": "Zugriff",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "part": {
+                  "occ": 1,
+                  "pseudo_ref": "Part",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "credentials": {
+                  "occ": 1,
+                  "pseudo_ref": "Anmeldeinformationen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "label": {
+                  "occ": 1,
+                  "pseudo_ref": "Label",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Material Groups": {
+                  "occ": 1,
+                  "pseudo_ref": "Materialgruppen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "material group": {
+                  "occ": 1,
+                  "pseudo_ref": "Materialgruppe",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "module": {
+                  "occ": 1,
+                  "pseudo_ref": "Modul",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "share": {
+                  "occ": 2,
+                  "pseudo_ref": "teilen",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "account": {
+                  "occ": 2,
+                  "pseudo_ref": "Account",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "Account": {
+                  "occ": 1,
+                  "pseudo_ref": "Account",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "team member": {
+                  "occ": 1,
+                  "pseudo_ref": "Team-Mitglied",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "note": {
+                  "occ": 5,
+                  "pseudo_ref": "Hinweis",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "section": {
+                  "occ": 2,
+                  "pseudo_ref": "Abschnitt",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "notes": {
+                  "occ": 2,
+                  "pseudo_ref": "Anmerkungen",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "overhead allocation": {
+                  "occ": 1,
+                  "pseudo_ref": "Gemeinkostenverrechnung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "document type": {
+                  "occ": 2,
+                  "pseudo_ref": "Belegart",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "cohort": {
+                  "occ": 1,
+                  "pseudo_ref": "Lerngruppe",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "request": {
+                  "occ": 5,
+                  "pseudo_ref": "anfragen",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "scenario": {
+                  "occ": 3,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "alert": {
+                  "occ": 1,
+                  "pseudo_ref": "Alarm",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "ID": {
+                  "occ": 2,
+                  "pseudo_ref": "ID",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "match": {
+                  "occ": 1,
+                  "pseudo_ref": "abgleichen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "monitor": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "change log": {
+                  "occ": 1,
+                  "pseudo_ref": "Änderungsprotokoll",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "confirmation": {
+                  "occ": 3,
+                  "pseudo_ref": "Bestätigung",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "finished": {
+                  "occ": 1,
+                  "pseudo_ref": "beendet",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "record type": {
+                  "occ": 1,
+                  "pseudo_ref": "Satztyp",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "subgroup": {
+                  "occ": 1,
+                  "pseudo_ref": "Teilkonzern",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "appointment": {
+                  "occ": 1,
+                  "pseudo_ref": "Torbelegung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "target costs": {
+                  "occ": 1,
+                  "pseudo_ref": "Zielkosten",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "position": {
+                  "occ": 1,
+                  "pseudo_ref": "Bestand",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "asset type": {
+                  "occ": 1,
+                  "pseudo_ref": "Anlagenart",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "learner type": {
+                  "occ": 1,
+                  "pseudo_ref": "Lerntyp",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Network": {
+                  "occ": 1,
+                  "pseudo_ref": "Network",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "class": {
+                  "occ": 1,
+                  "pseudo_ref": "Kurseinheit",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "safety instruction": {
+                  "occ": 1,
+                  "pseudo_ref": "Betriebsanweisung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "expired": {
+                  "occ": 1,
+                  "pseudo_ref": "ausgelaufen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "project manager": {
+                  "occ": 1,
+                  "pseudo_ref": "Projektmanager",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "instructor": {
+                  "occ": 1,
+                  "pseudo_ref": "Kursleiter",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "scales": {
+                  "occ": 1,
+                  "pseudo_ref": "Staffel",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "change": {
+                  "occ": 3,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 0.3333333333333333
+                },
+                "stage": {
+                  "occ": 1,
+                  "pseudo_ref": "Stufe",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "subscription": {
+                  "occ": 3,
+                  "pseudo_ref": "Subskription",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "marker": {
+                  "occ": 1,
+                  "pseudo_ref": "Markierung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "page type": {
+                  "occ": 1,
+                  "pseudo_ref": "Seitenart",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "queue": {
+                  "occ": 1,
+                  "pseudo_ref": "Warteschlange",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "interest calculation": {
+                  "occ": 1,
+                  "pseudo_ref": "Zinsrechnung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "facility": {
+                  "occ": 1,
+                  "pseudo_ref": "Objekt",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "ID type": {
+                  "occ": 1,
+                  "pseudo_ref": "ID-Art",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "line type": {
+                  "occ": 1,
+                  "pseudo_ref": "Zeilenart",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "application log": {
+                  "occ": 1,
+                  "pseudo_ref": "Anwendungsprotokoll",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "indicator": {
+                  "occ": 2,
+                  "pseudo_ref": "Indikator",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "score": {
+                  "occ": 1,
+                  "pseudo_ref": "Punktzahl",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "retention period": {
+                  "occ": 1,
+                  "pseudo_ref": "Aufbewahrungszeitraum",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "expiration date": {
+                  "occ": 1,
+                  "pseudo_ref": "Auslaufdatum",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Group": {
+                  "occ": 1,
+                  "pseudo_ref": "Group",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "group": {
+                  "occ": 1,
+                  "pseudo_ref": "group",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "relationship": {
+                  "occ": 2,
+                  "pseudo_ref": "Verknüpfung",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "compliance requirement": {
+                  "occ": 5,
+                  "pseudo_ref": "Compliance-Anforderung",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "get": {
+                  "occ": 1,
+                  "pseudo_ref": "abrufen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "open item": {
+                  "occ": 1,
+                  "pseudo_ref": "offene Position",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "link": {
+                  "occ": 2,
+                  "pseudo_ref": "Zuordnung",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "data collector": {
+                  "occ": 1,
+                  "pseudo_ref": "Datensammler",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "requested": {
+                  "occ": 1,
+                  "pseudo_ref": "angefragt",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "joint venture accounting": {
+                  "occ": 1,
+                  "pseudo_ref": "Joint Venture Accounting",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Accounting": {
+                  "occ": 1,
+                  "pseudo_ref": "Accounting",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "application help": {
+                  "occ": 1,
+                  "pseudo_ref": "Anwendungshilfe",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "condition": {
+                  "occ": 3,
+                  "pseudo_ref": "Bedingung",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "termination": {
+                  "occ": 1,
+                  "pseudo_ref": "Kündigung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "intercompany": {
+                  "occ": 1,
+                  "pseudo_ref": "buchungskreisübergreifend",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "vendor": {
+                  "occ": 1,
+                  "pseudo_ref": "Lieferant",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "available": {
+                  "occ": 1,
+                  "pseudo_ref": "verfügbar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "format": {
+                  "occ": 1,
+                  "pseudo_ref": "Format",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "customer": {
+                  "occ": 3,
+                  "pseudo_ref": "Debitor",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "interface": {
+                  "occ": 2,
+                  "pseudo_ref": "Schnittstelle",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "claim": {
+                  "occ": 1,
+                  "pseudo_ref": "Schaden-/Leistungsfall",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "publish": {
+                  "occ": 1,
+                  "pseudo_ref": "veröffentlichen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "report": {
+                  "occ": 1,
+                  "pseudo_ref": "Report",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "service provider": {
+                  "occ": 1,
+                  "pseudo_ref": "Serviceanbieter",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "theme": {
+                  "occ": 1,
+                  "pseudo_ref": "Motiv",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "page": {
+                  "occ": 1,
+                  "pseudo_ref": "Page",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "attribute": {
+                  "occ": 2,
+                  "pseudo_ref": "Attribut",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "package": {
+                  "occ": 1,
+                  "pseudo_ref": "Packstück",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "attachment": {
+                  "occ": 1,
+                  "pseudo_ref": "Anlage",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "approver": {
+                  "occ": 1,
+                  "pseudo_ref": "Genehmigender",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "account assignment distribution": {
+                  "occ": 1,
+                  "pseudo_ref": "Kontierungsaufteilung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "custom": {
+                  "occ": 1,
+                  "pseudo_ref": "frei definierbar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "constraint": {
+                  "occ": 1,
+                  "pseudo_ref": "Einschränkung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "run": {
+                  "occ": 1,
+                  "pseudo_ref": "Lauf",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "feature": {
+                  "occ": 1,
+                  "pseudo_ref": "Merkmal",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "upload": {
+                  "occ": 2,
+                  "pseudo_ref": "Upload",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "entitlement": {
+                  "occ": 1,
+                  "pseudo_ref": "Anrecht",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "standard available capacity": {
+                  "occ": 1,
+                  "pseudo_ref": "Standardkapazitätsangebot",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "deal": {
+                  "occ": 1,
+                  "pseudo_ref": "Geschäft",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "string": {
+                  "occ": 1,
+                  "pseudo_ref": "Zeichenfolge",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "list view": {
+                  "occ": 1,
+                  "pseudo_ref": "Listensicht",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Table": {
+                  "occ": 1,
+                  "pseudo_ref": "Tabelle",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "following": {
+                  "occ": 2,
+                  "pseudo_ref": "Following",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "change document": {
+                  "occ": 1,
+                  "pseudo_ref": "Änderungsdokument",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "log": {
+                  "occ": 1,
+                  "pseudo_ref": "Log",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "tile": {
+                  "occ": 1,
+                  "pseudo_ref": "Kachel",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "audit": {
+                  "occ": 2,
+                  "pseudo_ref": "Audit",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "shared object": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "purchase requisition item type": {
+                  "occ": 1,
+                  "pseudo_ref": "Bestellanforderungs-Positionsart",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "tab": {
+                  "occ": 1,
+                  "pseudo_ref": "Tab",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "range": {
+                  "occ": 1,
+                  "pseudo_ref": "Bereich",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "collection": {
+                  "occ": 1,
+                  "pseudo_ref": "Collection",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "ranking": {
+                  "occ": 1,
+                  "pseudo_ref": "Ranking",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "processing": {
+                  "occ": 1,
+                  "pseudo_ref": "Verarbeitung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "project": {
+                  "occ": 1,
+                  "pseudo_ref": "Project",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "connectivity": {
+                  "occ": 1,
+                  "pseudo_ref": "Connectivity",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "graph": {
+                  "occ": 2,
+                  "pseudo_ref": "Diagramm",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "procedure": {
+                  "occ": 1,
+                  "pseudo_ref": "Vorgehensweise",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Procedure": {
+                  "occ": 1,
+                  "pseudo_ref": "Vorgehensweise",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "domain": {
+                  "occ": 1,
+                  "pseudo_ref": "Domain",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "classification": {
+                  "occ": 1,
+                  "pseudo_ref": "Klassifikation",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "icon": {
+                  "occ": 1,
+                  "pseudo_ref": "Symbol",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "period": {
+                  "occ": 1,
+                  "pseudo_ref": "Zeitraum",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "assessment": {
+                  "occ": 1,
+                  "pseudo_ref": "Bewertung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "incident": {
+                  "occ": 1,
+                  "pseudo_ref": "Meldung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "return": {
+                  "occ": 1,
+                  "pseudo_ref": "Meldung",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "single document": {
+                  "occ": 1,
+                  "pseudo_ref": "Einzelbeleg",
+                  "matches": 1,
+                  "consistency": 1.0
+                }
+              },
+              "macro_avg_consistency": 0.9032592350621464,
+              "weighted_avg_consistency": 0.8132854578096962
+            }
+          }
+        }
+      }
+    },
+    "enru": {
+      "data_file": "data/dev_v1/original/enru_dev_v1.jsonl",
+      "sample_count": 500,
+      "ref_field": "ru",
+      "target_lang": "Russian",
+      "output_tag": "ru",
+      "modes": {
+        "proper_term": {
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt/enru_dev_v1_proper_term_predictions.jsonl",
+          "metrics": {
+            "bleu": 33.4462607310705,
+            "chrf": 64.78065790633464,
+            "terminology_accuracy": {
+              "total_terms": 517,
+              "avg_ratio_pct": 72.70270270270271,
+              "per_term_ratios": {
+                "item": 1.0,
+                "run": 1.0,
+                "type": 0.0,
+                "provider": 0.0,
+                "performance": 1.0,
+                "preferences": 1.0,
+                "wizard": 0.0,
+                "replaced": 1.0,
+                "activity": 1.0,
+                "category": 1.0,
+                "activate": 1.0,
+                "project ID": 1.0,
+                "input": 0.0,
+                "union": 0.0,
+                "purpose": 1.0,
+                "repair": 0.0,
+                "validity period": 1.0,
+                "data provider": 1.0,
+                "edit": 1.0,
+                "demand management": 1.0,
+                "issue": 0.0,
+                "change": 1.0,
+                "output": 1.0,
+                "space": 0.0,
+                "schedule": 1.0,
+                "transaction currency": 0.0,
+                "content": 1.0,
+                "mapping": 1.0,
+                "contract": 0.0,
+                "review": 0.0,
+                "drill down": 1.0,
+                "enter": 1.0,
+                "process": 1.0,
+                "shared object": 1.0,
+                "pause": 1.0,
+                "inactive": 1.0,
+                "inspection": 1.0,
+                "situation": 1.0,
+                "service confirmation": 0.0,
+                "retention period": 1.0,
+                "thread": 0.0,
+                "limit": 0.0,
+                "clearing": 0.0,
+                "valid-from date": 1.0,
+                "item type": 0.0,
+                "tax category": 1.0,
+                "business entity": 1.0,
+                "use": 1.0,
+                "pane": 1.0,
+                "due date": 0.0,
+                "Environment, Health and Safety": 0.0,
+                "vendor": 0.0,
+                "service provider": 1.0,
+                "tab": 1.0,
+                "pattern": 1.0,
+                "transfer": 1.0,
+                "consumption": 0.0,
+                "grouping": 0.5,
+                "maintain": 1.0,
+                "activity type": 1.0,
+                "restart": 1.0,
+                "update": 1.0,
+                "available capacity": 1.0,
+                "request": 1.0,
+                "production version": 1.0,
+                "client": 0.0,
+                "cancel": 1.0,
+                "result type": 1.0,
+                "allocation": 1.0,
+                "sales order": 1.0,
+                "action": 1.0,
+                "usage type": 1.0,
+                "check": 1.0,
+                "get": 1.0,
+                "compare": 1.0,
+                "download": 1.0,
+                "purchase order": 1.0,
+                "Purchase Order": 1.0,
+                "rating": 1.0,
+                "availability control": 1.0,
+                "share": 1.0,
+                "action list": 1.0,
+                "product": 0.0,
+                "note type": 1.0,
+                "report category": 1.0,
+                "expiration": 1.0,
+                "scope": 1.0,
+                "release": 1.0,
+                "business partner grouping": 1.0,
+                "source assignment": 1.0,
+                "user status": 1.0,
+                "simulation run": 1.0,
+                "term": 1.0,
+                "characteristic": 1.0,
+                "reporting": 1.0,
+                "permission": 1.0,
+                "tax exemption": 0.0,
+                "use case": 0.0,
+                "utilization": 1.0,
+                "Personal Information": 0.0,
+                "print": 0.0,
+                "supplement": 1.0,
+                "credit profile": 1.0,
+                "base value": 1.0,
+                "account": 0.0,
+                "profit center": 1.0,
+                "general settings": 1.0,
+                "classification type": 1.0,
+                "card": 0.0,
+                "topic": 1.0,
+                "controller": 0.0,
+                "vendor account": 1.0,
+                "evaluation": 1.0,
+                "instance": 0.0,
+                "form": 0.0,
+                "entry": 0.0,
+                "calculation": 1.0,
+                "team member": 1.0,
+                "rework": 1.0,
+                "admission": 1.0,
+                "record type": 1.0,
+                "resume": 1.0,
+                "exception": 1.0,
+                "order": 1.0,
+                "data staging": 0.0,
+                "mapping template": 1.0,
+                "range": 0.0,
+                "event type": 1.0,
+                "destination": 1.0,
+                "lot": 1.0,
+                "task list": 1.0,
+                "copy": 1.0,
+                "user ID": 1.0,
+                "contract amount": 1.0,
+                "trace": 1.0,
+                "target attribute": 0.0,
+                "tenant": 1.0,
+                "Information Lifecycle Management": 0.0,
+                "set": 1.0,
+                "quota": 0.0,
+                "workflow": 1.0,
+                "calculation type": 1.0,
+                "in process": 1.0,
+                "charge": 0.0,
+                "pack": 1.0,
+                "branch": 1.0,
+                "exit": 0.5,
+                "rate": 1.0,
+                "distribution": 0.0,
+                "collection": 1.0,
+                "mark": 0.0,
+                "start time": 1.0,
+                "transaction": 0.0,
+                "control": 0.0,
+                "notification": 1.0,
+                "historical data": 1.0,
+                "access": 1.0,
+                "pricing date": 1.0,
+                "impact": 0.5,
+                "monitor": 1.0,
+                "record": 1.0,
+                "payment terms": 1.0,
+                "display": 1.0,
+                "assignment": 1.0,
+                "connection": 1.0,
+                "authorization number": 1.0,
+                "reclassification": 1.0,
+                "end time": 1.0,
+                "label": 1.0,
+                "balance": 1.0,
+                "output type": 1.0,
+                "home page": 0.0,
+                "substitution": 1.0,
+                "checkout": 0.0,
+                "communication type": 1.0,
+                "transport": 0.0,
+                "revenue recognition": 1.0,
+                "conversion rule": 0.0,
+                "apply": 1.0,
+                "regeneration": 1.0,
+                "settlement": 0.0,
+                "carrier": 0.0,
+                "severity": 1.0,
+                "JIT call": 1.0,
+                "duplicate": 0.0
+              }
+            },
+            "terminology_consistency": {
+              "per_term": {
+                "item": {
+                  "occ": 2,
+                  "pseudo_ref": "позиция",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "run": {
+                  "occ": 2,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "type": {
+                  "occ": 82,
+                  "pseudo_ref": "тип",
+                  "matches": 40,
+                  "consistency": 0.4878048780487805
+                },
+                "provider": {
+                  "occ": 22,
+                  "pseudo_ref": "провайдер",
+                  "matches": 17,
+                  "consistency": 0.7727272727272727
+                },
+                "performance": {
+                  "occ": 1,
+                  "pseudo_ref": "эффективность",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "preferences": {
+                  "occ": 2,
+                  "pseudo_ref": "настройки",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "wizard": {
+                  "occ": 5,
+                  "pseudo_ref": "ассистент",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "replaced": {
+                  "occ": 1,
+                  "pseudo_ref": "заменено",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "activity": {
+                  "occ": 3,
+                  "pseudo_ref": "активность",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "category": {
+                  "occ": 5,
+                  "pseudo_ref": "категория",
+                  "matches": 2,
+                  "consistency": 0.4
+                },
+                "activate": {
+                  "occ": 2,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "project ID": {
+                  "occ": 1,
+                  "pseudo_ref": "идентификатор проекта",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "input": {
+                  "occ": 9,
+                  "pseudo_ref": "ввод",
+                  "matches": 5,
+                  "consistency": 0.5555555555555556
+                },
+                "union": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "purpose": {
+                  "occ": 4,
+                  "pseudo_ref": "назначение",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "repair": {
+                  "occ": 1,
+                  "pseudo_ref": "ремонт",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "validity period": {
+                  "occ": 3,
+                  "pseudo_ref": "период действия",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "data provider": {
+                  "occ": 5,
+                  "pseudo_ref": "провайдер данных",
+                  "matches": 4,
+                  "consistency": 0.8
+                },
+                "edit": {
+                  "occ": 12,
+                  "pseudo_ref": "редактировать",
+                  "matches": 11,
+                  "consistency": 0.9166666666666666
+                },
+                "demand management": {
+                  "occ": 1,
+                  "pseudo_ref": "управление спросом",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "issue": {
+                  "occ": 1,
+                  "pseudo_ref": "отпуск",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "change": {
+                  "occ": 21,
+                  "pseudo_ref": "изменение",
+                  "matches": 8,
+                  "consistency": 0.38095238095238093
+                },
+                "output": {
+                  "occ": 11,
+                  "pseudo_ref": "вывод",
+                  "matches": 6,
+                  "consistency": 0.5454545454545454
+                },
+                "space": {
+                  "occ": 10,
+                  "pseudo_ref": "пространство",
+                  "matches": 8,
+                  "consistency": 0.8
+                },
+                "schedule": {
+                  "occ": 20,
+                  "pseudo_ref": "планирование",
+                  "matches": 7,
+                  "consistency": 0.35
+                },
+                "transaction currency": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "content": {
+                  "occ": 7,
+                  "pseudo_ref": "контент",
+                  "matches": 7,
+                  "consistency": 1.0
+                },
+                "mapping": {
+                  "occ": 5,
+                  "pseudo_ref": "сопоставление",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "contract": {
+                  "occ": 19,
+                  "pseudo_ref": "контракт",
+                  "matches": 10,
+                  "consistency": 0.5263157894736842
+                },
+                "review": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "drill down": {
+                  "occ": 1,
+                  "pseudo_ref": "выполнить развертку",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "enter": {
+                  "occ": 1,
+                  "pseudo_ref": "вводить",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "process": {
+                  "occ": 7,
+                  "pseudo_ref": "обработать",
+                  "matches": 5,
+                  "consistency": 0.7142857142857143
+                },
+                "shared object": {
+                  "occ": 1,
+                  "pseudo_ref": "общий объект",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "pause": {
+                  "occ": 3,
+                  "pseudo_ref": "приостановка",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "inactive": {
+                  "occ": 1,
+                  "pseudo_ref": "неактивно",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "inspection": {
+                  "occ": 1,
+                  "pseudo_ref": "проверка",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "situation": {
+                  "occ": 1,
+                  "pseudo_ref": "ситуация",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "service confirmation": {
+                  "occ": 7,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 4,
+                  "consistency": 0.5714285714285714
+                },
+                "retention period": {
+                  "occ": 1,
+                  "pseudo_ref": "период хранения",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "thread": {
+                  "occ": 1,
+                  "pseudo_ref": "тред",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "limit": {
+                  "occ": 3,
+                  "pseudo_ref": "предел",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "clearing": {
+                  "occ": 1,
+                  "pseudo_ref": "перерасчет",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "valid-from date": {
+                  "occ": 1,
+                  "pseudo_ref": "Действительно с",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "item type": {
+                  "occ": 2,
+                  "pseudo_ref": "вид позиции",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "tax category": {
+                  "occ": 1,
+                  "pseudo_ref": "тип налога",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business entity": {
+                  "occ": 1,
+                  "pseudo_ref": "бизнес-сущность",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "use": {
+                  "occ": 10,
+                  "pseudo_ref": "использование",
+                  "matches": 7,
+                  "consistency": 0.7
+                },
+                "pane": {
+                  "occ": 1,
+                  "pseudo_ref": "область",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "due date": {
+                  "occ": 1,
+                  "pseudo_ref": "срок",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Environment, Health and Safety": {
+                  "occ": 2,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "vendor": {
+                  "occ": 1,
+                  "pseudo_ref": "поставщик",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "service provider": {
+                  "occ": 2,
+                  "pseudo_ref": "поставщик услуг",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "tab": {
+                  "occ": 7,
+                  "pseudo_ref": "вкладка",
+                  "matches": 5,
+                  "consistency": 0.7142857142857143
+                },
+                "pattern": {
+                  "occ": 4,
+                  "pseudo_ref": "шаблон",
+                  "matches": 3,
+                  "consistency": 0.75
+                },
+                "transfer": {
+                  "occ": 3,
+                  "pseudo_ref": "перенести",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "consumption": {
+                  "occ": 4,
+                  "pseudo_ref": "потребление",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "grouping": {
+                  "occ": 1,
+                  "pseudo_ref": "группирование",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "maintain": {
+                  "occ": 1,
+                  "pseudo_ref": "выполнять ведение",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "activity type": {
+                  "occ": 2,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "restart": {
+                  "occ": 1,
+                  "pseudo_ref": "перезапуск",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "update": {
+                  "occ": 6,
+                  "pseudo_ref": "обновлять",
+                  "matches": 3,
+                  "consistency": 0.5
+                },
+                "available capacity": {
+                  "occ": 4,
+                  "pseudo_ref": "доступная мощность",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "request": {
+                  "occ": 2,
+                  "pseudo_ref": "заявка",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "production version": {
+                  "occ": 2,
+                  "pseudo_ref": "вариант изготовления",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "client": {
+                  "occ": 3,
+                  "pseudo_ref": "мандант",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "cancel": {
+                  "occ": 2,
+                  "pseudo_ref": "сторнировать",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "result type": {
+                  "occ": 1,
+                  "pseudo_ref": "тип результата",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "allocation": {
+                  "occ": 3,
+                  "pseudo_ref": "распределение",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "sales order": {
+                  "occ": 1,
+                  "pseudo_ref": "заказ на продажу",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "action": {
+                  "occ": 1,
+                  "pseudo_ref": "операция",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "usage type": {
+                  "occ": 1,
+                  "pseudo_ref": "тип использования",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "check": {
+                  "occ": 6,
+                  "pseudo_ref": "проверка",
+                  "matches": 5,
+                  "consistency": 0.8333333333333334
+                },
+                "get": {
+                  "occ": 3,
+                  "pseudo_ref": "получить",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "compare": {
+                  "occ": 1,
+                  "pseudo_ref": "сравнивать",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "download": {
+                  "occ": 4,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "purchase order": {
+                  "occ": 5,
+                  "pseudo_ref": "заказ на поставку",
+                  "matches": 2,
+                  "consistency": 0.4
+                },
+                "Purchase Order": {
+                  "occ": 5,
+                  "pseudo_ref": "Заказ на поставку",
+                  "matches": 2,
+                  "consistency": 0.4
+                },
+                "rating": {
+                  "occ": 2,
+                  "pseudo_ref": "оценка",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "availability control": {
+                  "occ": 1,
+                  "pseudo_ref": "контроль наличия",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "share": {
+                  "occ": 1,
+                  "pseudo_ref": "поделиться",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "action list": {
+                  "occ": 1,
+                  "pseudo_ref": "список операций",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "product": {
+                  "occ": 1,
+                  "pseudo_ref": "товар",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "note type": {
+                  "occ": 1,
+                  "pseudo_ref": "вид примечания",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "report category": {
+                  "occ": 1,
+                  "pseudo_ref": "категория отчета",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "expiration": {
+                  "occ": 1,
+                  "pseudo_ref": "истечение",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "scope": {
+                  "occ": 2,
+                  "pseudo_ref": "объем",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "release": {
+                  "occ": 5,
+                  "pseudo_ref": "деблокирование",
+                  "matches": 2,
+                  "consistency": 0.4
+                },
+                "business partner grouping": {
+                  "occ": 1,
+                  "pseudo_ref": "группировка деловых партнеров",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "source assignment": {
+                  "occ": 1,
+                  "pseudo_ref": "присвоение происхождения",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "user status": {
+                  "occ": 1,
+                  "pseudo_ref": "статус пользователя",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "simulation run": {
+                  "occ": 1,
+                  "pseudo_ref": "прогон моделирования",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "term": {
+                  "occ": 1,
+                  "pseudo_ref": "термин",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "characteristic": {
+                  "occ": 2,
+                  "pseudo_ref": "признак",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "reporting": {
+                  "occ": 2,
+                  "pseudo_ref": "отчетность",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "permission": {
+                  "occ": 1,
+                  "pseudo_ref": "разрешение",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "tax exemption": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "use case": {
+                  "occ": 2,
+                  "pseudo_ref": "случай использования",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "utilization": {
+                  "occ": 1,
+                  "pseudo_ref": "загрузка",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Personal Information": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "print": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "supplement": {
+                  "occ": 1,
+                  "pseudo_ref": "дополнение",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "credit profile": {
+                  "occ": 1,
+                  "pseudo_ref": "профиль кредита",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "base value": {
+                  "occ": 1,
+                  "pseudo_ref": "ссылочное значение",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "account": {
+                  "occ": 4,
+                  "pseudo_ref": "учетная запись",
+                  "matches": 1,
+                  "consistency": 0.25
+                },
+                "profit center": {
+                  "occ": 1,
+                  "pseudo_ref": "МВП",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "general settings": {
+                  "occ": 1,
+                  "pseudo_ref": "общие настройки",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "classification type": {
+                  "occ": 1,
+                  "pseudo_ref": "вид классификации",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "card": {
+                  "occ": 1,
+                  "pseudo_ref": "карта",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "topic": {
+                  "occ": 1,
+                  "pseudo_ref": "раздел",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "controller": {
+                  "occ": 2,
+                  "pseudo_ref": "оператор",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "vendor account": {
+                  "occ": 1,
+                  "pseudo_ref": "счет кредитора",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "evaluation": {
+                  "occ": 1,
+                  "pseudo_ref": "оценка",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "instance": {
+                  "occ": 1,
+                  "pseudo_ref": "инстанция",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "form": {
+                  "occ": 2,
+                  "pseudo_ref": "форма",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "entry": {
+                  "occ": 1,
+                  "pseudo_ref": "ввод",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "calculation": {
+                  "occ": 1,
+                  "pseudo_ref": "расчет",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "team member": {
+                  "occ": 1,
+                  "pseudo_ref": "участник группы",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "rework": {
+                  "occ": 1,
+                  "pseudo_ref": "доработка",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "admission": {
+                  "occ": 1,
+                  "pseudo_ref": "допуск",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "record type": {
+                  "occ": 1,
+                  "pseudo_ref": "вид записи",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "resume": {
+                  "occ": 1,
+                  "pseudo_ref": "резюме",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "exception": {
+                  "occ": 2,
+                  "pseudo_ref": "особая ситуация",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "order": {
+                  "occ": 1,
+                  "pseudo_ref": "поручение",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "data staging": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "mapping template": {
+                  "occ": 1,
+                  "pseudo_ref": "шаблон сопоставления",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "range": {
+                  "occ": 1,
+                  "pseudo_ref": "диапазон",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "event type": {
+                  "occ": 1,
+                  "pseudo_ref": "тип события",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "destination": {
+                  "occ": 2,
+                  "pseudo_ref": "адрес",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "lot": {
+                  "occ": 1,
+                  "pseudo_ref": "пакет",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "task list": {
+                  "occ": 1,
+                  "pseudo_ref": "список задач",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "copy": {
+                  "occ": 4,
+                  "pseudo_ref": "скопировать",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "user ID": {
+                  "occ": 1,
+                  "pseudo_ref": "идентификатор пользователя",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "contract amount": {
+                  "occ": 1,
+                  "pseudo_ref": "сумма контракта",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "trace": {
+                  "occ": 2,
+                  "pseudo_ref": "трассировка",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "target attribute": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "tenant": {
+                  "occ": 1,
+                  "pseudo_ref": "арендатор",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Information Lifecycle Management": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "set": {
+                  "occ": 2,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "quota": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "workflow": {
+                  "occ": 1,
+                  "pseudo_ref": "процесс",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "calculation type": {
+                  "occ": 1,
+                  "pseudo_ref": "вид расчета",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "in process": {
+                  "occ": 1,
+                  "pseudo_ref": "в обработке",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "charge": {
+                  "occ": 1,
+                  "pseudo_ref": "сбор",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "pack": {
+                  "occ": 1,
+                  "pseudo_ref": "упаковать",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "branch": {
+                  "occ": 1,
+                  "pseudo_ref": "ветвь",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "exit": {
+                  "occ": 1,
+                  "pseudo_ref": "выйти",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "rate": {
+                  "occ": 1,
+                  "pseudo_ref": "курс",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "distribution": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "collection": {
+                  "occ": 1,
+                  "pseudo_ref": "коллекция",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "mark": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "start time": {
+                  "occ": 1,
+                  "pseudo_ref": "время начала",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "transaction": {
+                  "occ": 2,
+                  "pseudo_ref": "операция",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "control": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "notification": {
+                  "occ": 2,
+                  "pseudo_ref": "уведомление",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "historical data": {
+                  "occ": 1,
+                  "pseudo_ref": "данные за прошлый период",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "access": {
+                  "occ": 1,
+                  "pseudo_ref": "переход",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "pricing date": {
+                  "occ": 1,
+                  "pseudo_ref": "дата цены",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "impact": {
+                  "occ": 1,
+                  "pseudo_ref": "влияние",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "monitor": {
+                  "occ": 2,
+                  "pseudo_ref": "отслеживать",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "record": {
+                  "occ": 2,
+                  "pseudo_ref": "запись",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "payment terms": {
+                  "occ": 1,
+                  "pseudo_ref": "условия платежа",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "display": {
+                  "occ": 1,
+                  "pseudo_ref": "показать",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "assignment": {
+                  "occ": 1,
+                  "pseudo_ref": "присвоение",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "connection": {
+                  "occ": 2,
+                  "pseudo_ref": "подключение",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "authorization number": {
+                  "occ": 1,
+                  "pseudo_ref": "номер полномочий",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "reclassification": {
+                  "occ": 1,
+                  "pseudo_ref": "реклассификация",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "end time": {
+                  "occ": 1,
+                  "pseudo_ref": "время окончания",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "label": {
+                  "occ": 1,
+                  "pseudo_ref": "метка",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "balance": {
+                  "occ": 1,
+                  "pseudo_ref": "сальдо",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "output type": {
+                  "occ": 1,
+                  "pseudo_ref": "вид вывода",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "home page": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "substitution": {
+                  "occ": 1,
+                  "pseudo_ref": "замена",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "checkout": {
+                  "occ": 1,
+                  "pseudo_ref": "чек-аут",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "communication type": {
+                  "occ": 1,
+                  "pseudo_ref": "вид коммуникации",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "transport": {
+                  "occ": 1,
+                  "pseudo_ref": "транспорт",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "revenue recognition": {
+                  "occ": 1,
+                  "pseudo_ref": "признание выручки",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "conversion rule": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "apply": {
+                  "occ": 1,
+                  "pseudo_ref": "применять",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "regeneration": {
+                  "occ": 1,
+                  "pseudo_ref": "перегенерация",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "settlement": {
+                  "occ": 1,
+                  "pseudo_ref": "расчет",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "carrier": {
+                  "occ": 1,
+                  "pseudo_ref": "перевозчик",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "severity": {
+                  "occ": 1,
+                  "pseudo_ref": "степень серьезности",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "JIT call": {
+                  "occ": 1,
+                  "pseudo_ref": "отзыв из производства",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "duplicate": {
+                  "occ": 1,
+                  "pseudo_ref": "дубликат",
+                  "matches": 1,
+                  "consistency": 1.0
+                }
+              },
+              "macro_avg_consistency": 0.8872187950750211,
+              "weighted_avg_consistency": 0.6982591876208892
+            }
+          }
+        }
+      }
+    },
+    "enes": {
+      "data_file": "data/dev_v1/original/enes_dev_v1.jsonl",
+      "sample_count": 500,
+      "ref_field": "es",
+      "target_lang": "Spanish",
+      "output_tag": "es",
+      "modes": {
+        "proper_term": {
+          "predictions_file": "results/dev_v1/original/zero_shot/gpt/enes_dev_v1_proper_term_predictions.jsonl",
+          "metrics": {
+            "bleu": 48.033702306963946,
+            "chrf": 73.0459087920281,
+            "terminology_accuracy": {
+              "total_terms": 516,
+              "avg_ratio_pct": 90.46242774566474,
+              "per_term_ratios": {
+                "item": 1.0,
+                "save": 1.0,
+                "replication": 1.0,
+                "sharing": 1.0,
+                "assembly": 1.0,
+                "tab": 1.0,
+                "schedule": 1.0,
+                "stage": 1.0,
+                "sorting": 1.0,
+                "partner": 1.0,
+                "split": 0.5,
+                "job": 1.0,
+                "processing": 1.0,
+                "step": 1.0,
+                "template": 1.0,
+                "type": 0.0,
+                "statement": 1.0,
+                "assessment": 1.0,
+                "recurrence": 1.0,
+                "read": 0.0,
+                "link": 1.0,
+                "delete": 1.0,
+                "edit": 1.0,
+                "transaction": 1.0,
+                "review": 1.0,
+                "processing rule": 1.0,
+                "document type": 1.0,
+                "write off": 1.0,
+                "Professional Services": 1.0,
+                "worklist": 1.0,
+                "notice": 1.0,
+                "purpose": 1.0,
+                "process": 0.0,
+                "default": 1.0,
+                "parallel processing": 1.0,
+                "launchpad": 1.0,
+                "report": 1.0,
+                "feedback": 1.0,
+                "trace": 1.0,
+                "work center": 1.0,
+                "public": 1.0,
+                "use": 1.0,
+                "remove": 1.0,
+                "add": 1.0,
+                "Actions": 1.0,
+                "measure": 0.0,
+                "role template": 1.0,
+                "requirement": 1.0,
+                "vendor": 1.0,
+                "set": 0.0,
+                "installment plan category": 1.0,
+                "expand": 1.0,
+                "save as": 1.0,
+                "issue": 1.0,
+                "termination": 1.0,
+                "production process": 1.0,
+                "complete": 0.0,
+                "SAP support": 1.0,
+                "deployment": 1.0,
+                "contract item": 1.0,
+                "header": 1.0,
+                "pause": 1.0,
+                "display": 1.0,
+                "central contract": 1.0,
+                "renewal": 1.0,
+                "customer": 1.0,
+                "local repository": 1.0,
+                "reporting period": 1.0,
+                "allocation": 1.0,
+                "consolidation chart of accounts": 1.0,
+                "dynamic modification": 1.0,
+                "source": 0.0,
+                "expired": 1.0,
+                "button": 1.0,
+                "source document": 1.0,
+                "role": 1.0,
+                "reporting": 1.0,
+                "outbound": 1.0,
+                "deleted": 1.0,
+                "scheduled": 1.0,
+                "reset": 0.0,
+                "business role": 1.0,
+                "enter": 1.0,
+                "container": 1.0,
+                "multiple": 1.0,
+                "incident": 0.0,
+                "process step": 1.0,
+                "port": 1.0,
+                "user interface": 1.0,
+                "account assignment": 1.0,
+                "retrieval": 1.0,
+                "bill": 0.0,
+                "prepayment": 1.0,
+                "run type": 1.0,
+                "contract creation": 1.0,
+                "security": 1.0,
+                "sort": 1.0,
+                "accounting": 1.0,
+                "approval": 1.0,
+                "Approval": 1.0,
+                "loop": 0.0,
+                "notification": 1.0,
+                "expected value": 1.0,
+                "endpoint": 1.0,
+                "scope": 1.0,
+                "popup": 1.0,
+                "contract account": 1.0,
+                "manager": 1.0,
+                "open": 1.0,
+                "range": 1.0,
+                "production order": 1.0,
+                "business content": 1.0,
+                "data subject": 1.0,
+                "monitor": 1.0,
+                "case": 0.0,
+                "deadline": 1.0,
+                "business document": 1.0,
+                "business context": 1.0,
+                "change": 1.0,
+                "object type": 1.0,
+                "service confirmation": 1.0,
+                "document category": 1.0,
+                "output": 1.0,
+                "flow": 1.0,
+                "contract": 1.0,
+                "expiration date": 1.0,
+                "transaction type": 1.0,
+                "retention period": 1.0,
+                "extension": 1.0,
+                "tax rate": 1.0,
+                "business unit": 1.0,
+                "business partner role": 1.0,
+                "business object": 1.0,
+                "service provider": 1.0,
+                "authentication": 1.0,
+                "charge": 0.0,
+                "administrator": 1.0,
+                "balance": 0.0,
+                "target": 1.0,
+                "storage type": 1.0,
+                "business entity": 1.0,
+                "data source": 1.0,
+                "time": 1.0,
+                "source document category": 1.0,
+                "mass processing": 1.0,
+                "discard": 1.0,
+                "compliance requirement": 1.0,
+                "interface": 0.0,
+                "product type": 1.0,
+                "storage": 1.0,
+                "check": 1.0,
+                "in-house production": 1.0,
+                "about": 1.0,
+                "object category": 1.0,
+                "clearing item": 1.0,
+                "site": 1.0,
+                "data binding": 1.0,
+                "inventory": 1.0,
+                "opening balance": 1.0,
+                "offset": 1.0,
+                "slot": 1.0,
+                "shipment": 1.0,
+                "cost type": 1.0,
+                "accepted": 1.0,
+                "string": 1.0,
+                "term": 1.0,
+                "completed": 1.0,
+                "data warehouse": 1.0,
+                "production version": 1.0,
+                "system administration": 1.0,
+                "password": 1.0,
+                "adjustment": 1.0,
+                "lock": 0.0
+              }
+            },
+            "terminology_consistency": {
+              "per_term": {
+                "item": {
+                  "occ": 12,
+                  "pseudo_ref": "elemento",
+                  "matches": 5,
+                  "consistency": 0.4166666666666667
+                },
+                "save": {
+                  "occ": 24,
+                  "pseudo_ref": "guardar",
+                  "matches": 23,
+                  "consistency": 0.9583333333333334
+                },
+                "replication": {
+                  "occ": 5,
+                  "pseudo_ref": "reproducción",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "sharing": {
+                  "occ": 4,
+                  "pseudo_ref": "compartición",
+                  "matches": 3,
+                  "consistency": 0.75
+                },
+                "assembly": {
+                  "occ": 2,
+                  "pseudo_ref": "conjunto",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "tab": {
+                  "occ": 26,
+                  "pseudo_ref": "pestaña",
+                  "matches": 21,
+                  "consistency": 0.8076923076923077
+                },
+                "schedule": {
+                  "occ": 15,
+                  "pseudo_ref": "programación",
+                  "matches": 11,
+                  "consistency": 0.7333333333333333
+                },
+                "stage": {
+                  "occ": 4,
+                  "pseudo_ref": "fase",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "sorting": {
+                  "occ": 1,
+                  "pseudo_ref": "orden",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "partner": {
+                  "occ": 47,
+                  "pseudo_ref": "socio",
+                  "matches": 44,
+                  "consistency": 0.9361702127659575
+                },
+                "split": {
+                  "occ": 1,
+                  "pseudo_ref": "partición",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "job": {
+                  "occ": 7,
+                  "pseudo_ref": "tarea",
+                  "matches": 4,
+                  "consistency": 0.5714285714285714
+                },
+                "processing": {
+                  "occ": 10,
+                  "pseudo_ref": "procesamiento",
+                  "matches": 7,
+                  "consistency": 0.7
+                },
+                "step": {
+                  "occ": 2,
+                  "pseudo_ref": "paso",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "template": {
+                  "occ": 21,
+                  "pseudo_ref": "modelo",
+                  "matches": 13,
+                  "consistency": 0.6190476190476191
+                },
+                "type": {
+                  "occ": 17,
+                  "pseudo_ref": "tipo",
+                  "matches": 9,
+                  "consistency": 0.5294117647058824
+                },
+                "statement": {
+                  "occ": 3,
+                  "pseudo_ref": "declaración",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "assessment": {
+                  "occ": 1,
+                  "pseudo_ref": "evaluación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "recurrence": {
+                  "occ": 2,
+                  "pseudo_ref": "repetición",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "read": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "link": {
+                  "occ": 3,
+                  "pseudo_ref": "enlace",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "delete": {
+                  "occ": 19,
+                  "pseudo_ref": "eliminar",
+                  "matches": 13,
+                  "consistency": 0.6842105263157895
+                },
+                "edit": {
+                  "occ": 10,
+                  "pseudo_ref": "editar",
+                  "matches": 6,
+                  "consistency": 0.6
+                },
+                "transaction": {
+                  "occ": 5,
+                  "pseudo_ref": "transacción",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "review": {
+                  "occ": 2,
+                  "pseudo_ref": "revisión",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "processing rule": {
+                  "occ": 1,
+                  "pseudo_ref": "regla de procesamiento",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "document type": {
+                  "occ": 4,
+                  "pseudo_ref": "clase de documento",
+                  "matches": 2,
+                  "consistency": 0.5
+                },
+                "write off": {
+                  "occ": 1,
+                  "pseudo_ref": "ignorar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "Professional Services": {
+                  "occ": 1,
+                  "pseudo_ref": "Servicios profesionales",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "worklist": {
+                  "occ": 3,
+                  "pseudo_ref": "lista de trabajo",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "notice": {
+                  "occ": 1,
+                  "pseudo_ref": "aviso",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "purpose": {
+                  "occ": 2,
+                  "pseudo_ref": "fin",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "process": {
+                  "occ": 7,
+                  "pseudo_ref": "procesar",
+                  "matches": 6,
+                  "consistency": 0.8571428571428571
+                },
+                "default": {
+                  "occ": 9,
+                  "pseudo_ref": "estándar",
+                  "matches": 3,
+                  "consistency": 0.3333333333333333
+                },
+                "parallel processing": {
+                  "occ": 1,
+                  "pseudo_ref": "procesamiento paralelo",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "launchpad": {
+                  "occ": 2,
+                  "pseudo_ref": "plataforma de lanzamiento",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "report": {
+                  "occ": 1,
+                  "pseudo_ref": "informe",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "feedback": {
+                  "occ": 1,
+                  "pseudo_ref": "comentarios",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "trace": {
+                  "occ": 1,
+                  "pseudo_ref": "seguimiento",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "work center": {
+                  "occ": 8,
+                  "pseudo_ref": "centro de trabajo",
+                  "matches": 5,
+                  "consistency": 0.625
+                },
+                "public": {
+                  "occ": 1,
+                  "pseudo_ref": "pública",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "use": {
+                  "occ": 10,
+                  "pseudo_ref": "utilizar",
+                  "matches": 8,
+                  "consistency": 0.8
+                },
+                "remove": {
+                  "occ": 3,
+                  "pseudo_ref": "quitar",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "add": {
+                  "occ": 6,
+                  "pseudo_ref": "añadir",
+                  "matches": 4,
+                  "consistency": 0.6666666666666666
+                },
+                "Actions": {
+                  "occ": 1,
+                  "pseudo_ref": "acciones",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "measure": {
+                  "occ": 8,
+                  "pseudo_ref": "indicador",
+                  "matches": 7,
+                  "consistency": 0.875
+                },
+                "role template": {
+                  "occ": 1,
+                  "pseudo_ref": "plantilla de rol",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "requirement": {
+                  "occ": 3,
+                  "pseudo_ref": "requisitos",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "vendor": {
+                  "occ": 2,
+                  "pseudo_ref": "acreedor",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "set": {
+                  "occ": 8,
+                  "pseudo_ref": "definir",
+                  "matches": 6,
+                  "consistency": 0.75
+                },
+                "installment plan category": {
+                  "occ": 1,
+                  "pseudo_ref": "categoría de plan de pago a plazos",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "expand": {
+                  "occ": 1,
+                  "pseudo_ref": "Desplegar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "save as": {
+                  "occ": 2,
+                  "pseudo_ref": "guardar como",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "issue": {
+                  "occ": 1,
+                  "pseudo_ref": "problema",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "termination": {
+                  "occ": 2,
+                  "pseudo_ref": "rescisión",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "production process": {
+                  "occ": 1,
+                  "pseudo_ref": "proceso de fabricación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "complete": {
+                  "occ": 2,
+                  "pseudo_ref": "concluir",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "SAP support": {
+                  "occ": 1,
+                  "pseudo_ref": "SAP Support",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "deployment": {
+                  "occ": 11,
+                  "pseudo_ref": "despliegue",
+                  "matches": 8,
+                  "consistency": 0.7272727272727273
+                },
+                "contract item": {
+                  "occ": 1,
+                  "pseudo_ref": "posición de contrato",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "header": {
+                  "occ": 1,
+                  "pseudo_ref": "cabecera",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "pause": {
+                  "occ": 5,
+                  "pseudo_ref": "interrumpir",
+                  "matches": 3,
+                  "consistency": 0.6
+                },
+                "display": {
+                  "occ": 2,
+                  "pseudo_ref": "Visualizar",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "central contract": {
+                  "occ": 1,
+                  "pseudo_ref": "pedido abierto central",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "renewal": {
+                  "occ": 1,
+                  "pseudo_ref": "renovación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "customer": {
+                  "occ": 2,
+                  "pseudo_ref": "deudor",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "local repository": {
+                  "occ": 1,
+                  "pseudo_ref": "repositorio local",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "reporting period": {
+                  "occ": 1,
+                  "pseudo_ref": "período del informe",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "allocation": {
+                  "occ": 4,
+                  "pseudo_ref": "imputación",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "consolidation chart of accounts": {
+                  "occ": 1,
+                  "pseudo_ref": "plan de posiciones",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "dynamic modification": {
+                  "occ": 2,
+                  "pseudo_ref": "modificación dinámica",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "source": {
+                  "occ": 7,
+                  "pseudo_ref": "fuente",
+                  "matches": 5,
+                  "consistency": 0.7142857142857143
+                },
+                "expired": {
+                  "occ": 1,
+                  "pseudo_ref": "vencido",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "button": {
+                  "occ": 4,
+                  "pseudo_ref": "pulsador",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "source document": {
+                  "occ": 1,
+                  "pseudo_ref": "documento de origen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "role": {
+                  "occ": 1,
+                  "pseudo_ref": "función",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "reporting": {
+                  "occ": 2,
+                  "pseudo_ref": "informes",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "outbound": {
+                  "occ": 1,
+                  "pseudo_ref": "salida",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "deleted": {
+                  "occ": 1,
+                  "pseudo_ref": "borrado",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "scheduled": {
+                  "occ": 1,
+                  "pseudo_ref": "programado",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "reset": {
+                  "occ": 2,
+                  "pseudo_ref": "restablecer",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "business role": {
+                  "occ": 2,
+                  "pseudo_ref": "rol empresarial",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "enter": {
+                  "occ": 1,
+                  "pseudo_ref": "indicar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "container": {
+                  "occ": 2,
+                  "pseudo_ref": "contenedor",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "multiple": {
+                  "occ": 2,
+                  "pseudo_ref": "múltiple",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "incident": {
+                  "occ": 1,
+                  "pseudo_ref": "incidencia",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "process step": {
+                  "occ": 1,
+                  "pseudo_ref": "paso del proceso",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "port": {
+                  "occ": 2,
+                  "pseudo_ref": "puerta",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "user interface": {
+                  "occ": 1,
+                  "pseudo_ref": "interfase de usuario",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "account assignment": {
+                  "occ": 1,
+                  "pseudo_ref": "asignación de cuentas",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "retrieval": {
+                  "occ": 1,
+                  "pseudo_ref": "recuperación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "bill": {
+                  "occ": 2,
+                  "pseudo_ref": "facturar",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "prepayment": {
+                  "occ": 1,
+                  "pseudo_ref": "pago adelantado",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "run type": {
+                  "occ": 1,
+                  "pseudo_ref": "clase de ejecución",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "contract creation": {
+                  "occ": 1,
+                  "pseudo_ref": "creación de pedido abierto",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "security": {
+                  "occ": 1,
+                  "pseudo_ref": "títulos",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "sort": {
+                  "occ": 1,
+                  "pseudo_ref": "clasificar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "accounting": {
+                  "occ": 1,
+                  "pseudo_ref": "contabilidad",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "approval": {
+                  "occ": 4,
+                  "pseudo_ref": "autorización",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "Approval": {
+                  "occ": 4,
+                  "pseudo_ref": "Autorización",
+                  "matches": 4,
+                  "consistency": 1.0
+                },
+                "loop": {
+                  "occ": 1,
+                  "pseudo_ref": "bucle",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "notification": {
+                  "occ": 1,
+                  "pseudo_ref": "Notificación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "expected value": {
+                  "occ": 1,
+                  "pseudo_ref": "valor previsto",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "endpoint": {
+                  "occ": 1,
+                  "pseudo_ref": "punto de acceso",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "scope": {
+                  "occ": 1,
+                  "pseudo_ref": "alcance",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "popup": {
+                  "occ": 1,
+                  "pseudo_ref": "popup",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "contract account": {
+                  "occ": 2,
+                  "pseudo_ref": "cuenta del contrato",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "manager": {
+                  "occ": 2,
+                  "pseudo_ref": "responsable",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "open": {
+                  "occ": 1,
+                  "pseudo_ref": "abierta",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "range": {
+                  "occ": 1,
+                  "pseudo_ref": "intervalo",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "production order": {
+                  "occ": 3,
+                  "pseudo_ref": "orden de producción",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "business content": {
+                  "occ": 1,
+                  "pseudo_ref": "contenido empresarial",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "data subject": {
+                  "occ": 1,
+                  "pseudo_ref": "sujeto de datos",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "monitor": {
+                  "occ": 1,
+                  "pseudo_ref": "supervisar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "case": {
+                  "occ": 1,
+                  "pseudo_ref": "caso",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "deadline": {
+                  "occ": 1,
+                  "pseudo_ref": "plazo",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business document": {
+                  "occ": 1,
+                  "pseudo_ref": "documento comercial",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business context": {
+                  "occ": 1,
+                  "pseudo_ref": "contexto empresarial",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "change": {
+                  "occ": 2,
+                  "pseudo_ref": "modificación",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "object type": {
+                  "occ": 3,
+                  "pseudo_ref": "clase de objeto",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "service confirmation": {
+                  "occ": 3,
+                  "pseudo_ref": "confirmación de servicio",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "document category": {
+                  "occ": 1,
+                  "pseudo_ref": "categoría de documento",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "output": {
+                  "occ": 1,
+                  "pseudo_ref": "resultado",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "flow": {
+                  "occ": 3,
+                  "pseudo_ref": "flujo",
+                  "matches": 2,
+                  "consistency": 0.6666666666666666
+                },
+                "contract": {
+                  "occ": 2,
+                  "pseudo_ref": "contrato",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "expiration date": {
+                  "occ": 2,
+                  "pseudo_ref": "fecha de expiración",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "transaction type": {
+                  "occ": 1,
+                  "pseudo_ref": "tipo de operación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "retention period": {
+                  "occ": 1,
+                  "pseudo_ref": "plazo de conservación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "extension": {
+                  "occ": 1,
+                  "pseudo_ref": "extensión",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "tax rate": {
+                  "occ": 1,
+                  "pseudo_ref": "tipo impositivo",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business unit": {
+                  "occ": 3,
+                  "pseudo_ref": "unidad empresarial",
+                  "matches": 3,
+                  "consistency": 1.0
+                },
+                "business partner role": {
+                  "occ": 1,
+                  "pseudo_ref": "rol de socio comercial",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business object": {
+                  "occ": 1,
+                  "pseudo_ref": "business object",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "service provider": {
+                  "occ": 1,
+                  "pseudo_ref": "proveedor de servicios",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "authentication": {
+                  "occ": 1,
+                  "pseudo_ref": "autenticación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "charge": {
+                  "occ": 1,
+                  "pseudo_ref": "cargo",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "administrator": {
+                  "occ": 1,
+                  "pseudo_ref": "responsable",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "balance": {
+                  "occ": 1,
+                  "pseudo_ref": "balance",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "target": {
+                  "occ": 1,
+                  "pseudo_ref": "objetivo",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "storage type": {
+                  "occ": 1,
+                  "pseudo_ref": "tipo de almacenamiento",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "business entity": {
+                  "occ": 1,
+                  "pseudo_ref": "entidad empresarial",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "data source": {
+                  "occ": 1,
+                  "pseudo_ref": "fuente de datos",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "time": {
+                  "occ": 1,
+                  "pseudo_ref": "tiempo",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "source document category": {
+                  "occ": 1,
+                  "pseudo_ref": "tipo de documento de origen",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "mass processing": {
+                  "occ": 2,
+                  "pseudo_ref": "procesamiento en masa",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "discard": {
+                  "occ": 1,
+                  "pseudo_ref": "rechazar",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "compliance requirement": {
+                  "occ": 1,
+                  "pseudo_ref": "requisito de conformidad",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "interface": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "product type": {
+                  "occ": 1,
+                  "pseudo_ref": "clase de producto",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "storage": {
+                  "occ": 1,
+                  "pseudo_ref": "almacén",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "check": {
+                  "occ": 1,
+                  "pseudo_ref": "verificación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "in-house production": {
+                  "occ": 1,
+                  "pseudo_ref": "fabricación propia",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "about": {
+                  "occ": 1,
+                  "pseudo_ref": "info",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "object category": {
+                  "occ": 1,
+                  "pseudo_ref": "categoría del objeto",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "clearing item": {
+                  "occ": 1,
+                  "pseudo_ref": "partida de compensación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "site": {
+                  "occ": 1,
+                  "pseudo_ref": "centro",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "data binding": {
+                  "occ": 1,
+                  "pseudo_ref": "vínculación de datos",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "inventory": {
+                  "occ": 2,
+                  "pseudo_ref": "inventario",
+                  "matches": 1,
+                  "consistency": 0.5
+                },
+                "opening balance": {
+                  "occ": 1,
+                  "pseudo_ref": "saldo inicial",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "offset": {
+                  "occ": 1,
+                  "pseudo_ref": "desplazamiento",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "slot": {
+                  "occ": 1,
+                  "pseudo_ref": "slot",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "shipment": {
+                  "occ": 1,
+                  "pseudo_ref": "envío",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "cost type": {
+                  "occ": 1,
+                  "pseudo_ref": "tipo de coste",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "accepted": {
+                  "occ": 1,
+                  "pseudo_ref": "aceptada",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "string": {
+                  "occ": 1,
+                  "pseudo_ref": "string",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "term": {
+                  "occ": 1,
+                  "pseudo_ref": "término",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "completed": {
+                  "occ": 2,
+                  "pseudo_ref": "concluido",
+                  "matches": 2,
+                  "consistency": 1.0
+                },
+                "data warehouse": {
+                  "occ": 1,
+                  "pseudo_ref": "data warehouse",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "production version": {
+                  "occ": 1,
+                  "pseudo_ref": "versión de fabricación",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "system administration": {
+                  "occ": 1,
+                  "pseudo_ref": "administración del sistema",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "password": {
+                  "occ": 1,
+                  "pseudo_ref": "contraseña",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "adjustment": {
+                  "occ": 1,
+                  "pseudo_ref": "Ajuste",
+                  "matches": 1,
+                  "consistency": 1.0
+                },
+                "lock": {
+                  "occ": 1,
+                  "pseudo_ref": "<MISSING>",
+                  "matches": 1,
+                  "consistency": 1.0
+                }
+              },
+              "macro_avg_consistency": 0.9091810922966711,
+              "weighted_avg_consistency": 0.8081395348837219
+            }
+          }
+        }
+      }
+    }
+  }
+}

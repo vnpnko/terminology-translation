@@ -15,22 +15,21 @@ sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "share
 from shared.lib.analysis.grouped_bar_figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
-    REPORT_LEGEND_WIDTH_RATIO,
+    REPORT_BAR_WIDTH_RATIO,
+    REPORT_GROUP_WIDTH,
+    REPORT_LEGEND_ROW_FONTSIZE,
+    REPORT_LEGEND_ROW_NCOL,
     REPORT_PAIR_BOTTOM,
     REPORT_PAIR_FIG_SIZE,
     REPORT_PAIR_LEFT,
     REPORT_PAIR_RIGHT,
     REPORT_PAIR_TOP,
     REPORT_PAIR_WSPACE,
-    REPORT_SIDE_LEGEND_BORDERPAD,
-    REPORT_SIDE_LEGEND_FONTSIZE,
-    REPORT_SIDE_LEGEND_LABELSPACING,
-    REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
     REPORT_SUPTITLE_FONTSIZE,
     TERM_ACC_YLIM_TOP,
     create_pair_figure,
     finalize_pair_layout,
-    place_side_legend,
+    place_legend_row,
     plot_grouped_bars,
 )
 from shared.lib.analysis.metrics_loader import LANG_LABELS, LANG_ORDER
@@ -59,12 +58,6 @@ SERIES_LABELS = {
 BLEU_IDX = 0
 TERM_ACC_IDX = 2
 
-TITLE = (
-    "Best LoRA config vs. GPT\n"
-    "(train dev_v2; test dev_v1; proper_term)"
-)
-
-
 def _collect_data() -> dict[str, dict[str, list[float | None]]]:
     registry = load_registry(REGISTRY_PATH)
     model_dir = registry[MODEL_KEY]["model_dir"]
@@ -84,12 +77,11 @@ def build_best_models_figure(project_root: Path) -> Figure:
     apply_report_style()
     data = _collect_data()
 
-    fig, axes, legend_ax = create_pair_figure(
-        TITLE,
+    fig, axes, _ = create_pair_figure(
+        None,
         figsize=REPORT_PAIR_FIG_SIZE,
-        legend_width_ratio=REPORT_LEGEND_WIDTH_RATIO,
         wspace=REPORT_PAIR_WSPACE,
-        suptitle_fontsize=REPORT_SUPTITLE_FONTSIZE,
+        legend_position="bottom",
     )
 
     metric_axes = [
@@ -105,25 +97,23 @@ def build_best_models_figure(project_root: Path) -> Figure:
             series_labels=SERIES_LABELS,
             value_fn=lambda series, lang, mi=metric_idx: data[series][lang][mi],
             ylabel=ylabel,
-            xlabel="Language pair",
             ylim_top=ylim_top,
             yticks=yticks,
             panel_title_fontsize=REPORT_SUPTITLE_FONTSIZE,
             show_values=False,
+            group_width=REPORT_GROUP_WIDTH,
+            bar_width_ratio=REPORT_BAR_WIDTH_RATIO,
         )
 
     legend_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=SERIES_LABELS[k])
         for k in SERIES_ORDER
     ]
-    place_side_legend(
-        legend_ax,
+    place_legend_row(
+        fig,
         legend_handles,
-        "Model",
-        fontsize=REPORT_SIDE_LEGEND_FONTSIZE,
-        title_fontsize=REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
-        labelspacing=REPORT_SIDE_LEGEND_LABELSPACING,
-        borderpad=REPORT_SIDE_LEGEND_BORDERPAD,
+        fontsize=REPORT_LEGEND_ROW_FONTSIZE,
+        ncol=REPORT_LEGEND_ROW_NCOL,
     )
     finalize_pair_layout(
         fig,

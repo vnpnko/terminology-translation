@@ -165,7 +165,7 @@ Figure~\ref{fig:by-language-pair} shows the same pattern visually, and also brea
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/fig_term_expansion_across_languages_gpt.pdf}
-  \caption{GPT-4o-mini BLEU and term accuracy by language pair: prompt modes (original term list) and term-list variants (\texttt{proper\_term}).}
+  \caption{GPT-4o-mini BLEU and term accuracy by language pair on dev\_v1: prompt modes (original term list) and term-list variants (\texttt{proper\_term}).}
   \label{fig:by-language-pair}
 \end{figure*}
 
@@ -280,7 +280,7 @@ Table~\ref{tab:epoch-ablation} and Figure~\ref{fig:epoch-ablation} show macro-av
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/fig_lora_epoch_ablation.pdf}
-  \caption{LoRA epoch ablation, zero-shot, dev\_v1, \texttt{proper\_term}, both Qwen2.5 sizes. Epoch 0 is the untrained zero-shot base.}
+  \caption{LoRA epoch ablation: trained on dev\_v2, evaluated on dev\_v1, zero-shot, \texttt{proper\_term}, both Qwen2.5 sizes. Epoch 0 is the untrained zero-shot base.}
   \label{fig:epoch-ablation}
 \end{figure*}
 
@@ -289,7 +289,7 @@ Table~\ref{tab:best-vs-gpt} and Figure~\ref{fig:best-vs-gpt} compare the best-pe
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/fig_lora_best_models.pdf}
-  \caption{Best open configuration (Qwen2.5-7B LoRA, 2 epochs, zero-shot) vs.\ GPT-4o-mini (few-shot), by language pair, \texttt{proper\_term}.}
+  \caption{Best open configuration (Qwen2.5-7B LoRA, 2 epochs, zero-shot, trained on dev\_v2) vs.\ GPT-4o-mini (few-shot), by language pair, evaluated on dev\_v1, \texttt{proper\_term}.}
   \label{fig:best-vs-gpt}
 \end{figure*}
 

@@ -20,7 +20,10 @@ COLOR_NO_TERM = "#CED4DA"
 COLOR_RANDOM_TERM = "#F8CBAD"
 COLOR_GPT_EXPAND = "#F4A261"
 COLOR_DICTIONARY = "#7209B7"
-COLOR_EXTERNAL_DICTIONARY = "#9D4EDD"
+# Was "#9D4EDD" (a second violet, too close to COLOR_DICTIONARY in hue/lightness
+# for reliable at-a-glance or colorblind-safe distinction) -- now a teal, a hue
+# not otherwise used among the term-list-variant series in EXPANSION_COLORS.
+COLOR_EXTERNAL_DICTIONARY = "#2A9D8F"
 COLOR_BLEU = "#457B9D"
 COLOR_CHRF = "#E9C46A"
 COLOR_TERM_ACC = "#2A9D8F"
@@ -81,12 +84,12 @@ def apply_report_style() -> None:
         {
             "font.family": "sans-serif",
             "font.sans-serif": ["DejaVu Sans", "Arial", "Helvetica"],
-            "font.size": 8,
-            "axes.titlesize": 8.5,
-            "axes.labelsize": 8,
-            "xtick.labelsize": 7,
-            "ytick.labelsize": 7,
-            "legend.fontsize": 6.5,
+            "font.size": 10,
+            "axes.titlesize": 10.5,
+            "axes.labelsize": 10,
+            "xtick.labelsize": 8.5,
+            "ytick.labelsize": 8.5,
+            "legend.fontsize": 8.5,
             "figure.facecolor": "white",
             "axes.facecolor": "white",
             "axes.edgecolor": "#333333",

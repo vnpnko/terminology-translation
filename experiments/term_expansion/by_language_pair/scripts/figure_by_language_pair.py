@@ -14,28 +14,26 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from shared.lib.analysis.grouped_bar_figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
-    REPORT_LEGEND_WIDTH_RATIO,
+    REPORT_BAR_WIDTH_RATIO,
+    REPORT_GROUP_WIDTH,
+    REPORT_LEGEND_ROW_FONTSIZE,
+    REPORT_LEGEND_ROW_NCOL,
     REPORT_PAIR_BOTTOM,
     REPORT_PAIR_FIG_SIZE,
     REPORT_PAIR_LEFT,
     REPORT_PAIR_RIGHT,
     REPORT_PAIR_TOP,
     REPORT_PAIR_WSPACE,
-    REPORT_SIDE_LEGEND_BORDERPAD,
-    REPORT_SIDE_LEGEND_FONTSIZE,
-    REPORT_SIDE_LEGEND_LABELSPACING,
-    REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
     REPORT_SUPTITLE_FONTSIZE,
     REPORT_VALUE_FONTSIZE,
     TERM_ACC_YLIM_TOP,
     create_pair_figure,
     finalize_pair_layout,
-    place_side_legend,
+    place_legend_row,
     plot_grouped_bars,
 )
 from shared.lib.analysis.metrics_loader import (
     BASELINE_DIRS,
-    BASELINE_LABELS,
     DEFAULT_MODE,
     LANG_LABELS,
     LANG_ORDER,
@@ -69,13 +67,6 @@ STRATEGY_LABELS = {
     "cleaned": "GPT-cleaned",
     "dictionary": "Dictionary",
 }
-
-
-def _title(baseline: str) -> str:
-    return (
-        "Terminology expansion by language pair\n"
-        f"(dev_v1; {BASELINE_LABELS[baseline]})"
-    )
 
 
 def _strategy_dir(results_root: Path, strategy: str) -> Path:
@@ -122,12 +113,11 @@ def build_by_language_pair_figure(results_root: Path, baseline: str) -> Figure:
     apply_report_style()
     data = _collect_data(results_root)[baseline]
 
-    fig, axes, legend_ax = create_pair_figure(
-        _title(baseline),
+    fig, axes, _ = create_pair_figure(
+        None,
         figsize=REPORT_PAIR_FIG_SIZE,
-        legend_width_ratio=REPORT_LEGEND_WIDTH_RATIO,
         wspace=REPORT_PAIR_WSPACE,
-        suptitle_fontsize=REPORT_SUPTITLE_FONTSIZE,
+        legend_position="bottom",
     )
 
     metric_axes = [
@@ -149,26 +139,24 @@ def build_by_language_pair_figure(results_root: Path, baseline: str) -> Figure:
             series_labels=STRATEGY_LABELS,
             value_fn=lambda strategy, lang, mk=metric_key: data[strategy][lang].get(mk),
             ylabel=ylabel,
-            xlabel="Language pair",
             ylim_top=ylim_top,
             yticks=yticks,
             value_fontsize=REPORT_VALUE_FONTSIZE,
             panel_title_fontsize=REPORT_SUPTITLE_FONTSIZE,
             show_values=False,
+            group_width=REPORT_GROUP_WIDTH,
+            bar_width_ratio=REPORT_BAR_WIDTH_RATIO,
         )
 
     legend_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=STRATEGY_LABELS[k])
         for k in SERIES_ORDER
     ]
-    place_side_legend(
-        legend_ax,
+    place_legend_row(
+        fig,
         legend_handles,
-        "Strategy",
-        fontsize=REPORT_SIDE_LEGEND_FONTSIZE,
-        title_fontsize=REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
-        labelspacing=REPORT_SIDE_LEGEND_LABELSPACING,
-        borderpad=REPORT_SIDE_LEGEND_BORDERPAD,
+        fontsize=REPORT_LEGEND_ROW_FONTSIZE,
+        ncol=REPORT_LEGEND_ROW_NCOL,
     )
     finalize_pair_layout(
         fig,

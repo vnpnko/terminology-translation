@@ -13,22 +13,18 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from shared.lib.analysis.grouped_bar_figure_common import (
     BLEU_YLIM_TOP,
-    REPORT_LEGEND_WIDTH_RATIO,
+    REPORT_LEGEND_ROW_FONTSIZE,
+    REPORT_LEGEND_ROW_NCOL,
     REPORT_PAIR_BOTTOM,
     REPORT_PAIR_FIG_SIZE,
     REPORT_PAIR_LEFT,
     REPORT_PAIR_RIGHT,
     REPORT_PAIR_TOP,
     REPORT_PAIR_WSPACE,
-    REPORT_SIDE_LEGEND_BORDERPAD,
-    REPORT_SIDE_LEGEND_FONTSIZE,
-    REPORT_SIDE_LEGEND_LABELSPACING,
-    REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
-    REPORT_SUPTITLE_FONTSIZE,
     TERM_ACC_YLIM_TOP,
     create_pair_figure,
     finalize_pair_layout,
-    place_side_legend,
+    place_legend_row,
 )
 from shared.lib.analysis.metrics_loader import (
     extract_proper_term_metrics,
@@ -56,12 +52,6 @@ MODEL_STYLES = {
     "Qwen2.5-3B": {"color": SIZE_COLORS["3B"], "marker": "s", "label": "Qwen 3B", "label_offset": -14},
 }
 
-TITLE = (
-    "Qwen: LoRA epochs 1–3\n"
-    "(train dev_v2; test dev_v1; proper_term; zero-shot)"
-)
-
-
 def _collect_epoch_series(project_root: Path, model_dir: str) -> list[tuple[int, float | None, float | None]]:
     zero_shot_summary = load_summary(project_root / ZERO_SHOT_PATHS[model_dir])
     zero_shot_macro = macro_average(extract_proper_term_metrics(zero_shot_summary))
@@ -88,12 +78,11 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
 
     series = {model_dir: _collect_epoch_series(project_root, model_dir) for model_dir in MODEL_STYLES}
 
-    fig, axes, legend_ax = create_pair_figure(
-        TITLE,
+    fig, axes, _ = create_pair_figure(
+        None,
         figsize=REPORT_PAIR_FIG_SIZE,
-        legend_width_ratio=REPORT_LEGEND_WIDTH_RATIO,
         wspace=REPORT_PAIR_WSPACE,
-        suptitle_fontsize=REPORT_SUPTITLE_FONTSIZE,
+        legend_position="bottom",
     )
 
     metric_axes = [
@@ -132,14 +121,11 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
         )
         for style in MODEL_STYLES.values()
     ]
-    place_side_legend(
-        legend_ax,
+    place_legend_row(
+        fig,
         legend_handles,
-        "Model size",
-        fontsize=REPORT_SIDE_LEGEND_FONTSIZE,
-        title_fontsize=REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
-        labelspacing=REPORT_SIDE_LEGEND_LABELSPACING,
-        borderpad=REPORT_SIDE_LEGEND_BORDERPAD,
+        fontsize=REPORT_LEGEND_ROW_FONTSIZE,
+        ncol=REPORT_LEGEND_ROW_NCOL,
     )
     finalize_pair_layout(
         fig,

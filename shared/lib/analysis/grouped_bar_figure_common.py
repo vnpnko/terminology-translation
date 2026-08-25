@@ -82,23 +82,33 @@ VALUE_FONTSIZE = 9
 # Report-sized (ACL two-column-spanning figure*) variants of the constants above,
 # used by report/acl_latex.tex's Experiments-section figures instead of the
 # poster-sized defaults. Pass these explicitly to create_pair_figure() /
-# finalize_pair_layout() / place_side_legend() -- the poster defaults above are
-# left untouched for every other figure script.
-REPORT_PAIR_FIG_SIZE = (6.8, 2.6)
+# finalize_pair_layout() / place_legend_row() -- the poster defaults above are
+# left untouched for every other figure script. These figures have no suptitle
+# (report/acl_latex.tex's LaTeX captions cover that); the legend is a
+# figure-level, titleless, borderless, single-row legend sitting at the top of
+# the figure, right above the panels.
+REPORT_PAIR_FIG_SIZE = (6.8, 2.75)
 REPORT_PAIR_TOP = 0.80
-REPORT_PAIR_BOTTOM = 0.22
+REPORT_PAIR_BOTTOM = 0.20
 REPORT_PAIR_LEFT = 0.08
 REPORT_PAIR_RIGHT = 0.98
 REPORT_PAIR_WSPACE = 0.32
-REPORT_LEGEND_WIDTH_RATIO = 0.26
-REPORT_SUPTITLE_FONTSIZE = 9
+REPORT_LEGEND_WIDTH_RATIO = 0.26  # only used if legend_position="side"
+REPORT_SUPTITLE_FONTSIZE = 11
 
-REPORT_SIDE_LEGEND_FONTSIZE = 6.5
-REPORT_SIDE_LEGEND_TITLE_FONTSIZE = 7
+REPORT_SIDE_LEGEND_FONTSIZE = 8.5
+REPORT_SIDE_LEGEND_TITLE_FONTSIZE = 9
 REPORT_SIDE_LEGEND_LABELSPACING = 0.6
 REPORT_SIDE_LEGEND_BORDERPAD = 0.5
 
+REPORT_LEGEND_ROW_FONTSIZE = 8.5
+REPORT_LEGEND_ROW_NCOL = 3
+REPORT_LEGEND_ROW_Y = 0.99  # bbox_to_anchor y: top of the figure (no title above it now)
+
 REPORT_VALUE_FONTSIZE = 5.5
+
+REPORT_GROUP_WIDTH = 0.92  # up from GROUP_WIDTH=0.86 -- wider bars, less gap between groups
+REPORT_BAR_WIDTH_RATIO = 0.98  # up from BAR_WIDTH_RATIO=0.96 -- less gap between bars in a group
 
 EXP1_VARIANTS = ("original", "expand", "cleaned")
 EXP23_STRATEGIES = ("original", "expand", "cleaned")
@@ -165,10 +175,12 @@ def plot_grouped_bars(
     value_fontsize: float = VALUE_FONTSIZE,
     panel_title_fontsize: float = 14,
     show_values: bool = True,
+    group_width: float = GROUP_WIDTH,
+    bar_width_ratio: float = BAR_WIDTH_RATIO,
 ) -> list[float | None]:
     n_series = len(series_keys)
     x = np.arange(len(group_keys))
-    bar_width = GROUP_WIDTH / n_series
+    bar_width = group_width / n_series
     all_values: list[float | None] = []
 
     if isinstance(group_labels, dict):
@@ -186,7 +198,7 @@ def plot_grouped_bars(
         bars = ax.bar(
             x + offset,
             plot_values,
-            bar_width * BAR_WIDTH_RATIO,
+            bar_width * bar_width_ratio,
             label=series_labels[series_key],
             color=EXPANSION_COLORS[series_key],
             edgecolor=BAR_EDGE,
@@ -222,19 +234,39 @@ def plot_grouped_bars(
 
 
 def create_pair_figure(
-    suptitle: str,
+    suptitle: str | None,
     *,
     figsize: tuple[float, float] = PAIR_FIG_SIZE,
     legend_width_ratio: float = LEGEND_WIDTH_RATIO,
     wspace: float = PAIR_WSPACE,
     suptitle_fontsize: float = 16,
-) -> tuple[Figure, np.ndarray, Axes]:
+    legend_position: str = "side",
+) -> tuple[Figure, np.ndarray, Axes | None]:
+    """``legend_position="side"`` (default, used by every poster figure script):
+    2-column layout, panels | narrow legend column; returns a legend Axes to
+    pass to place_side_legend().
+    ``legend_position="bottom"`` (used by the report/acl_latex.tex figures):
+    panels only; a figure-level legend is placed separately by
+    place_legend_row(fig, ...), typically at the top of the figure -- more
+    robust than a dedicated legend-row Axes, which doesn't reliably reserve
+    enough space for a multi-row legend. Returns ``None`` in place of a legend
+    Axes; the caller uses ``fig`` instead.
+    ``suptitle=None`` skips the title entirely (used by the report figures,
+    whose LaTeX captions already cover what the title would have said).
+    """
     fig = plt.figure(figsize=figsize)
-    gs = fig.add_gridspec(1, 2, width_ratios=[1, legend_width_ratio], wspace=0.08)
-    gs_axes = gs[0].subgridspec(1, 2, wspace=wspace)
-    axes = np.array([fig.add_subplot(gs_axes[0, 0]), fig.add_subplot(gs_axes[0, 1])])
-    legend_ax = fig.add_subplot(gs[1])
-    legend_ax.axis("off")
+    if legend_position == "bottom":
+        axes = fig.subplots(1, 2)
+        fig.subplots_adjust(wspace=wspace)
+        legend_ax = None
+    else:
+        gs = fig.add_gridspec(1, 2, width_ratios=[1, legend_width_ratio], wspace=0.08)
+        gs_axes = gs[0].subgridspec(1, 2, wspace=wspace)
+        axes = np.array([fig.add_subplot(gs_axes[0, 0]), fig.add_subplot(gs_axes[0, 1])])
+        legend_ax = fig.add_subplot(gs[1])
+        legend_ax.axis("off")
+    if suptitle is None:
+        return fig, axes, legend_ax
     fig.suptitle(suptitle, fontsize=suptitle_fontsize, fontweight="bold", color=POSTER_BLUE, y=0.98)
     return fig, axes, legend_ax
 
@@ -259,6 +291,33 @@ def place_side_legend(
         fontsize=fontsize,
         labelspacing=labelspacing,
         borderpad=borderpad,
+    )
+
+
+def place_legend_row(
+    fig: Figure,
+    handles: list[Artist],
+    *,
+    fontsize: float = REPORT_LEGEND_ROW_FONTSIZE,
+    ncol: int = REPORT_LEGEND_ROW_NCOL,
+    y: float = REPORT_LEGEND_ROW_Y,
+    loc: str = "upper center",
+) -> None:
+    """Figure-level, horizontal, titleless, borderless, possibly-multi-row
+    legend -- used with create_pair_figure(..., legend_position="bottom").
+    Default ``y``/``loc`` place it between the suptitle and the panels; a
+    figure-level legend (rather than a dedicated legend-row Axes) reliably
+    reserves its own space regardless of how many rows it wraps to."""
+    ncol = min(ncol, len(handles)) or 1
+    fig.legend(
+        handles=handles,
+        loc=loc,
+        bbox_to_anchor=(0.5, y),
+        ncol=ncol,
+        frameon=False,
+        fontsize=fontsize,
+        columnspacing=1.2,
+        handletextpad=0.5,
     )
 
 

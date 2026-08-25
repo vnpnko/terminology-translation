@@ -11,14 +11,32 @@ from matplotlib.lines import Line2D
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from shared.lib.analysis.grouped_bar_figure_common import BLEU_YLIM_TOP, TERM_ACC_YLIM_TOP, create_pair_figure, finalize_pair_layout, place_side_legend
+from shared.lib.analysis.grouped_bar_figure_common import (
+    BLEU_YLIM_TOP,
+    REPORT_LEGEND_WIDTH_RATIO,
+    REPORT_PAIR_BOTTOM,
+    REPORT_PAIR_FIG_SIZE,
+    REPORT_PAIR_LEFT,
+    REPORT_PAIR_RIGHT,
+    REPORT_PAIR_TOP,
+    REPORT_PAIR_WSPACE,
+    REPORT_SIDE_LEGEND_BORDERPAD,
+    REPORT_SIDE_LEGEND_FONTSIZE,
+    REPORT_SIDE_LEGEND_LABELSPACING,
+    REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
+    REPORT_SUPTITLE_FONTSIZE,
+    TERM_ACC_YLIM_TOP,
+    create_pair_figure,
+    finalize_pair_layout,
+    place_side_legend,
+)
 from shared.lib.analysis.metrics_loader import (
     extract_proper_term_metrics,
     load_summary,
     macro_average_lang_metrics as macro_average,
     require_paths,
 )
-from shared.lib.analysis.plot_style import SIZE_COLORS, apply_poster_style, fixed_top_ylim
+from shared.lib.analysis.plot_style import SIZE_COLORS, apply_report_style, fixed_top_ylim
 
 FINETUNING_RESULTS = PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "results"
 
@@ -58,7 +76,7 @@ def _collect_epoch_series(project_root: Path, model_dir: str) -> list[tuple[int,
 
 
 def build_epoch_ablation_figure(project_root: Path) -> Figure:
-    apply_poster_style()
+    apply_report_style()
 
     paths = [project_root / ZERO_SHOT_PATHS[model_dir] for model_dir in MODEL_STYLES]
     paths.extend(
@@ -70,11 +88,17 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
 
     series = {model_dir: _collect_epoch_series(project_root, model_dir) for model_dir in MODEL_STYLES}
 
-    fig, axes, legend_ax = create_pair_figure(TITLE)
+    fig, axes, legend_ax = create_pair_figure(
+        TITLE,
+        figsize=REPORT_PAIR_FIG_SIZE,
+        legend_width_ratio=REPORT_LEGEND_WIDTH_RATIO,
+        wspace=REPORT_PAIR_WSPACE,
+        suptitle_fontsize=REPORT_SUPTITLE_FONTSIZE,
+    )
 
     metric_axes = [
-        (axes[0], 1, "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
-        (axes[1], 2, "Term accuracy (%)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 20))),
+        (axes[0], 1, "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 20))),
+        (axes[1], 2, "Term accuracy (%)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 25))),
     ]
     for ax, value_idx, ylabel, ylim_top, yticks in metric_axes:
         for model_dir, style in MODEL_STYLES.items():
@@ -86,26 +110,13 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
                 ys,
                 marker=style["marker"],
                 color=style["color"],
-                linewidth=2.8,
-                markersize=9,
+                linewidth=1.4,
+                markersize=4,
                 label=style["label"],
             )
-            offset = style["label_offset"]
-            for x, y in zip(xs, ys):
-                if y is not None:
-                    ax.annotate(
-                        f"{y:.1f}",
-                        (x, y),
-                        textcoords="offset points",
-                        xytext=(0, offset),
-                        ha="center",
-                        va="bottom" if offset > 0 else "top",
-                        fontsize=10,
-                        fontweight="bold",
-                    )
         ax.set_xticks([0, 1, 2, 3])
-        ax.set_xlabel("Epochs", labelpad=12)
-        ax.set_ylabel(ylabel, labelpad=10)
+        ax.set_xlabel("Epochs", labelpad=6)
+        ax.set_ylabel(ylabel, labelpad=6)
         fixed_top_ylim(ax, ylim_top)
         ax.set_yticks(yticks)
 
@@ -115,12 +126,26 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
             [0],
             marker=style["marker"],
             color=style["color"],
-            linewidth=2.8,
-            markersize=9,
+            linewidth=1.4,
+            markersize=4,
             label=style["label"],
         )
         for style in MODEL_STYLES.values()
     ]
-    place_side_legend(legend_ax, legend_handles, "Model size")
-    finalize_pair_layout(fig)
+    place_side_legend(
+        legend_ax,
+        legend_handles,
+        "Model size",
+        fontsize=REPORT_SIDE_LEGEND_FONTSIZE,
+        title_fontsize=REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
+        labelspacing=REPORT_SIDE_LEGEND_LABELSPACING,
+        borderpad=REPORT_SIDE_LEGEND_BORDERPAD,
+    )
+    finalize_pair_layout(
+        fig,
+        top=REPORT_PAIR_TOP,
+        bottom=REPORT_PAIR_BOTTOM,
+        left=REPORT_PAIR_LEFT,
+        right=REPORT_PAIR_RIGHT,
+    )
     return fig

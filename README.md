@@ -2,6 +2,8 @@
 
 Experiments on terminology-constrained machine translation for WMT-style sentence-level data. Code and data supporting an ACL-style paper in progress — see [`report/`](report/README.md) for its outline and current status. An earlier [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) covers a subset of the same results.
 
+In enterprise software documentation, domain terms (UI labels, product names) frequently receive plausible-but-wrong translations from generic MT, breaking terminology consistency across screens and manuals. This project studies terminology-constrained EN→{DE, RU, ES} translation on SAP documentation data, in the spirit of the WMT25 Terminology Shared Task, comparing prompt-based term-list conditioning against LoRA fine-tuning of open Qwen2.5 models, evaluated against GPT-4o-mini.
+
 Licensed under [MIT](LICENSE).
 
 Each JSONL record has an English source sentence, a target-language reference, domain terminology, and random control terminology:
@@ -35,6 +37,8 @@ Generate all at once with `python shared/lib/analysis/generate_result_figures.py
 
 ## Experiments
 
+Every experiment starts from the same SAP `term_postedits`-derived data (`dev_v1`, `dev_v2`) and shares one metric suite (BLEU, chrF, term accuracy, macro/weighted consistency) across the same three models: GPT-4o-mini, Qwen2.5-3B-Instruct, and Qwen2.5-7B-Instruct. From there, two axes vary independently: which term list is injected into the prompt (`original`/`expand`/`cleaned`/`dictionary`, under `no_term`/`proper_term`/`random_term` modes — see `term_expansion/`), and whether the model is queried as-is or LoRA fine-tuned on `dev_v2` (see `lora_finetuning/`). `dataset_comparison/` sits alongside these as background context comparing `dev_v1` to `dev_v2` directly.
+
 `experiments/` groups experiments into three top-level directories: `dataset_comparison/`, `term_expansion/`, and `lora_finetuning/` (5 nested sub-experiments). Each experiment owns a `scripts/` folder with its table/figure-generating code (see their READMEs for exact reproduce commands); `lora_finetuning/` is a self-contained model-run experiment with its own `data/`/`results/`.
 
 | Experiment | Contents |
@@ -66,8 +70,8 @@ All analysis scripts require `pandas` and `openpyxl`.
 
 | Script | Purpose |
 | ------ | ------- |
-| `analysis/metrics_loader.py`, `analysis/grouped_bar_figure_common.py`, `analysis/plot_style.py` | Shared metrics-loading and plotting helpers used by every `figure_expN.py`. |
-| `analysis/generate_result_figures.py` | Orchestrator: builds all result figures (poster and report) by importing each experiment's `figure_expN.py`. |
+| `analysis/metrics_loader.py`, `analysis/grouped_bar_figure_common.py`, `analysis/plot_style.py` | Shared metrics-loading and plotting helpers used by every experiment's `figure_*.py`. |
+| `analysis/generate_result_figures.py` | Orchestrator: builds all result figures (poster and report) by importing each experiment's `figure_*.py`. |
 
 The table-comparison and figure-generating scripts themselves are experiment-specific; see each experiment's README:
 
@@ -106,5 +110,13 @@ All data lives in `shared/data/`, grouped by dataset (`dev_v1/`, `dev_v2/`) rath
 | `dev_v1/dev_v1_expand/` | Expanded version of `dev_v1_original/` with additional `proper_terms` (output of `expand_terms.py`). |
 | `dev_v1/dev_v1_cleaned/` | Cleaned version of `dev_v1_expand/` with terminology-poor `proper_terms` removed (output of `clean_poor_proper_terms.py`). |
 | `dev_v1/dev_v1_dictionary/` | dev_v1 enriched from an external term dictionary built from dev_v2. Regenerate via [`experiments/term_expansion/dictionary/`](experiments/term_expansion/dictionary/README.md)'s `build_term_dictionary.py`/`apply_dictionary_to_dev_v1.py`. |
-| `dev_v2/` | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus, used as a training-set proxy (see `report/README.md`). The post-removal, few-shot-trimmed training set derived from this lives at [`experiments/lora_finetuning/shared/data/training/`](experiments/lora_finetuning/README.md). |
+| `dev_v2/` | Dev set prepared from the [SAP term_postedits](https://github.com/SAP/software-documentation-data-set-for-machine-translation/tree/master/term_postedits/) corpus. Used as a training-set proxy for the WMT25 Terminology Shared Task's training data, which isn't publicly available — dev_v2 is not the original shared-task release, just the closest same-domain substitute (see `report/README.md`). The post-removal, few-shot-trimmed training set derived from this lives at [`experiments/lora_finetuning/shared/data/training/`](experiments/lora_finetuning/README.md). |
 | `shared_task/` | WMT2025 terminology shared-task materials: task docs (`shared_task_docs/`), track 1 (en→de/es/ru, `shared_task_track1/`), and track 2 (en↔zh, 2015–2024, `shared_task_track2/`). |
+
+## Authors
+
+A TUM course project, supervised by Dr. Marion Di Marco.
+
+- **Ivan Pylypenko** — led the Qwen2.5 baseline and LoRA fine-tuning study (training/eval runs, held-out splits, overlap filtering, Excel comparison exports); ran the GPT-4o-mini comparison baselines; contributed poster draft assets and chart updates.
+- **Robin Schukrafft** — built the GPT-proposed term pipeline, constructed the term dictionary and applied it to dev_v1, and ran GPT baselines on the dictionary setting; implemented the matplotlib analysis scripts and result figures.
+- **Ilnur Gayetov** — set up the data-preparation pipeline for SAP `term_postedits` (JSONL task format, term-pair collection, initial term-expansion script) and restructured the project; refactored shared evaluation into reusable modules and added evaluation runners for local Qwen and OpenRouter GPT-4o-mini.

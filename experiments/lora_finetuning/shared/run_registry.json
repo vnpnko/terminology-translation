@@ -1,0 +1,107 @@
+{
+  "gpt": {
+    "model_size": "gpt",
+    "runs": [
+      {
+        "run_id": "gpt_base",
+        "label": "GPT-4o-mini",
+        "folder": "gpt_base",
+        "use_few_shot": true,
+        "num_epochs": 0,
+        "is_baseline": true
+      }
+    ]
+  },
+  "3B": {
+    "model_size": "3B",
+    "model_dir": "Qwen2.5-3B",
+    "runs": [
+      {
+        "run_id": "base_few_shot",
+        "label": "Qwen2.5-3B base, few-shot",
+        "folder": "qwen_base",
+        "use_few_shot": true,
+        "num_epochs": 0,
+        "is_baseline": true
+      },
+      {
+        "run_id": "lora_1_epoch_few_shot",
+        "label": "LoRA 1 epoch, few-shot",
+        "folder": "qwen_lora",
+        "use_few_shot": true,
+        "num_epochs": 1,
+        "is_baseline": false
+      },
+      {
+        "run_id": "lora_1_epoch_zero_shot",
+        "label": "LoRA 1 epoch, zero-shot",
+        "folder": "qwen_lora_no_few_shots",
+        "use_few_shot": false,
+        "num_epochs": 1,
+        "is_baseline": false
+      },
+      {
+        "run_id": "lora_2_epoch_zero_shot",
+        "label": "LoRA 2 epochs, zero-shot",
+        "folder": "qwen_lora_no_few_shots_2_epochs",
+        "use_few_shot": false,
+        "num_epochs": 2,
+        "is_baseline": false
+      },
+      {
+        "run_id": "lora_3_epoch_zero_shot",
+        "label": "LoRA 3 epochs, zero-shot",
+        "folder": "qwen_lora_no_few_shots_3_epochs",
+        "use_few_shot": false,
+        "num_epochs": 3,
+        "is_baseline": false
+      }
+    ]
+  },
+  "7B": {
+    "model_size": "7B",
+    "model_dir": "Qwen2.5-7B",
+    "runs": [
+      {
+        "run_id": "base_few_shot",
+        "label": "Qwen2.5-7B base, few-shot",
+        "folder": "qwen_base",
+        "use_few_shot": true,
+        "num_epochs": 0,
+        "is_baseline": true
+      },
+      {
+        "run_id": "lora_1_epoch_few_shot",
+        "label": "LoRA 1 epoch, few-shot",
+        "folder": "qwen_lora",
+        "use_few_shot": true,
+        "num_epochs": 1,
+        "is_baseline": false
+      },
+      {
+        "run_id": "lora_1_epoch_zero_shot",
+        "label": "LoRA 1 epoch, zero-shot",
+        "folder": "qwen_lora_no_few_shots",
+        "use_few_shot": false,
+        "num_epochs": 1,
+        "is_baseline": false
+      },
+      {
+        "run_id": "lora_2_epoch_zero_shot",
+        "label": "LoRA 2 epochs, zero-shot",
+        "folder": "qwen_lora_no_few_shots_2_epochs",
+        "use_few_shot": false,
+        "num_epochs": 2,
+        "is_baseline": false
+      },
+      {
+        "run_id": "lora_3_epoch_zero_shot",
+        "label": "LoRA 3 epochs, zero-shot",
+        "folder": "qwen_lora_no_few_shots_3_epochs",
+        "use_few_shot": false,
+        "num_epochs": 3,
+        "is_baseline": false
+      }
+    ]
+  }
+}

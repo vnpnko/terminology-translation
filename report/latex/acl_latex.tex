@@ -1,0 +1,449 @@
+\documentclass[11pt]{article}
+
+% Change "review" to "final" to generate the final (sometimes called camera-ready) version.
+% Change to "preprint" to generate a non-anonymous version with page numbers.
+% This is a course report, not a blind-review submission, so "preprint" (named,
+% numbered pages) is used instead of the template's default "review" (anonymous).
+\usepackage[preprint]{acl}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+% Including images in your LaTeX document requires adding
+% additional package(s)
+\usepackage{graphicx}
+
+\title{Terminology-Constrained Machine Translation for SAP Documentation}
+
+\author{Ivan Pylypenko \and Robin Schukrafft \and Ilnur Gayetov \\
+  Technical University of Munich \\
+  \texttt{\{ivan.pylypenko, robin.schukrafft, ilnur.gayetov\}@tum.de}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Enterprise machine translation of SAP software documentation fails when domain terms receive plausible but wrong target forms, breaking terminology consistency across a product's screens and manuals. Prior terminology-constrained MT and LoRA adaptation work each address part of this problem, but neither compares \emph{how a term list is built} against \emph{fine-tuning} as routes to terminology correctness. We study terminology-constrained EN$\to$\{DE, RU, ES\} translation, comparing prompt conditioning with a term list against LoRA fine-tuning of open Qwen2.5 models, evaluated against GPT-4o-mini. Injecting the real term list substantially improves quality and term correctness; an unrelated-pairs control confirms the gain reflects correctness, not mere list-following. How the list is built matters: LLM-expanded or dictionary-mined lists favor fluency gains, while an LLM-cleaned, domain-filtered list favors term accuracy and consistency. LoRA fine-tuning closes most of the fluency gap to GPT-4o-mini and can surpass it on generic metrics, though GPT-4o-mini stays more reliable at term realization. Code and data: \url{https://github.com/vnpnko/terminology-translation}.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+
+Translating software documentation is rarely difficult at the level of grammar; the difficulty is choosing the right target-language form for a product-specific term. In SAP documentation, an English source word can have several plausible target-language candidates, only one of which matches the terminology that is actually approved and used consistently across a product's screens and manuals. Generic machine translation systems tend to pick a fluent alternative instead, which reads well in isolation but silently breaks terminology consistency across a large, interlinked body of documentation.
+
+We treat this as a terminology-constrained machine translation problem: each source sentence is paired with a set of source$\rightarrow$target term pairs that a translation system should respect. Our setup follows the sentence-level framing of the WMT25 Terminology Translation Task~\citep{semenov-etal-2025-wmt25}, but substitutes SAP post-edited documentation~\citep{sap2024termpostedits} as the concrete domain, since the shared task's own training data is not publicly available.
+
+We compare two complementary ways of injecting terminology knowledge into a translation system: conditioning a model at inference time via a prompted term list, and adapting an open model's weights via LoRA fine-tuning~\citep{hu2022lora}. Within prompt conditioning, we further vary how the term list itself is built -- from the human-annotated list shipped with the evaluation set, to lists expanded or cleaned by an LLM, to a list mined from a related but disjoint corpus.
+
+Concretely, we ask three questions:
+
+\begin{enumerate}
+    \item \textbf{Does terminology conditioning help?} Injecting a term list into the prompt should raise translation quality and, more directly, the rate at which required terms actually appear in the output -- but a model could just as well be responding to \emph{any} injected list rather than to term \emph{correctness} specifically. We test this with an unrelated-pairs control list evaluated alongside the real term list.
+    \item \textbf{Does how the term list is built matter?} We compare the original human-annotated term list against an LLM-expanded version, an LLM-cleaned (domain-filtered) version, and a list mined from a separate, related corpus, to see whether list \emph{size} and list \emph{precision} trade off against each other.
+    \item \textbf{Can LoRA fine-tuning close the gap to a closed frontier model?} We fine-tune open Qwen2.5 models~\citep{qwenteam2024qwen25} with LoRA on SAP documentation data and compare the result against GPT-4o-mini, with and without prompted terminology at inference.
+\end{enumerate}
+
+% TODO: once Section~\ref{sec:experiments}'s numbers are finalized and verified
+% against the current report tables, add a short results-preview sentence here
+% (headline BLEU/chrF/term-accuracy deltas) and mirror it in the abstract.
+
+This report makes the following contributions:
+\begin{itemize}
+    \item An evaluation harness that measures terminology-constrained translation with both generic (BLEU, chrF) and terminology-specific (term accuracy, macro/weighted consistency) metrics side by side, so the two families of metrics can be checked against each other rather than assumed to agree.
+    \item A controlled comparison of four term-list construction strategies (original, LLM-expanded, LLM-cleaned, dictionary-mined) under the same prompting setup and metric suite.
+    \item A LoRA fine-tuning study of open Qwen2.5 models against a closed frontier model on the same enterprise documentation domain, including an explicit train/test overlap honesty check to bound how much of any fine-tuning gain could be attributable to data leakage rather than genuine adaptation.
+\end{itemize}
+
+\section{Related Work}
+\label{sec:related-work}
+
+Terminology-aware machine translation covers a range of techniques, including constrained decoding, placeholder substitution, and glossary injection at inference time. The WMT25 Terminology Shared Task~\citep{semenov-etal-2025-wmt25} found that terminology conditioning is especially useful for already-strong systems, and that evaluation must look beyond generic n-gram overlap to determine whether required terms actually appear in the output. We take that as an evaluation requirement throughout this report: we report BLEU and chrF, but treat term accuracy and consistency as first-class metrics rather than secondary diagnostics.
+
+Prompt-based glossary injection conditions a model without changing its weights. \citet{he-etal-2023-exploring} take a related but distinct approach, having the LLM itself extract and translate keyword pairs to inject as prompt guidance rather than supplying an externally curated list; their ablation shows this self-generated guidance still helps translation quality, but their own analysis finds the generated keyword translations match the human reference term only about half the time, underscoring why -- as we investigate in RQ2 -- how a term list is built matters. LoRA fine-tuning~\citep{hu2022lora} is the complementary route when in-domain parallel data is available, adapting model weights directly instead of relying on inference-time conditioning. We compare both routes on the same SAP documentation data, under the same prompting setup and metric suite. Our focus is not a new decoding algorithm or adaptation method; it is a controlled empirical comparison of term-list construction strategies and adaptation strategies for one enterprise documentation domain.
+
+\section{Data and Task}
+\label{sec:data-and-task}
+
+\subsection{Corpora}
+\label{sec:corpora}
+
+We use two JSONL releases derived from SAP documentation, for three language pairs: EN$\rightarrow$DE, EN$\rightarrow$RU, and EN$\rightarrow$ES.
+
+\textbf{dev\_v1} is our main evaluation set: 500 sentences per language pair, held out as a test set throughout this report.
+
+\textbf{dev\_v2} is prepared from the SAP \texttt{term\_postedits} corpus~\citep{sap2024termpostedits} (2{,}000 lines per language). We use it as a training-set proxy for the WMT25 Terminology Shared Task's own training data, which is not publicly released; dev\_v2 is therefore \emph{not} the original shared-task release, only the closest available same-domain substitute. Section~\ref{sec:methods} describes the smaller training-set size actually used for fine-tuning, after overlap removal against dev\_v1 and few-shot example reservation.
+
+The official WMT2025 terminology shared-task materials (task documentation and two evaluation tracks) are also available in our released code, but are not themselves used as training data here, for the reason above.
+
+\subsection{Record Format}
+\label{sec:record-format}
+
+Each record contains an English source sentence, a target-language reference, a set of domain \texttt{proper\_terms} (source$\rightarrow$target term pairs the translation should respect), and a set of non-domain \texttt{random\_terms} used as a control condition (Section~\ref{sec:exp-language-pairs}):
+
+\begin{quote}
+\begin{verbatim}
+{
+  "en": "...",
+  "de": "...",
+  "proper_terms":
+    { "term": "translation" },
+  "random_terms":
+    { "word": "translation" }
+}
+\end{verbatim}
+\end{quote}
+
+\subsection{Metrics}
+\label{sec:metrics}
+
+We report four metrics, computed per language pair and averaged (macro average) across the three pairs for prose-level comparisons.
+
+\textbf{BLEU}~\citep{papineni-etal-2002-bleu} and \textbf{chrF}~\citep{popovic-2015-chrf} measure overall lexical similarity to the reference. Both react to general fluency and adequacy but are weak signals of whether a specific required term form was actually used.
+
+\textbf{Term accuracy (\%)} is the share of the provided \texttt{proper\_terms} whose required target-language form appears in the model's output, computed against the term inventory of the condition being evaluated (the inventory differs across term-list variants, Section~\ref{sec:methods}).
+
+\textbf{Macro consistency} is the mean, over all distinct terms seen in the corpus, of how consistently each term is translated the same way whenever it recurs. \textbf{Weighted consistency} is the same quantity, but weighted by how often each term actually occurs, so frequent terms contribute proportionally more.
+
+\section{Methods}
+\label{sec:methods}
+
+% TODO: pipeline-overview figure (compact, new -- not reused from any prior
+% draft). Sketch: SAP term_postedits -> dev_v1/dev_v2 -> term-list variants
+% -> {prompt injection, LoRA} -> {GPT-4o-mini, Qwen2.5-3B/7B} -> metrics.
+% Build with the existing shared/lib/analysis plotting infrastructure once the
+% Experiments sections' figures are being produced (report/PLAN.md \S5).
+
+\subsection{Prompt Conditioning}
+\label{sec:prompt-conditioning}
+
+At inference, we translate with a short instruction and an optional glossary block. Three modes isolate the effect of terminology conditioning: \texttt{no\_term} (translate without any terminology), \texttt{proper\_term} (inject the domain term pairs for that sentence), and \texttt{random\_term} (inject an unrelated, non-domain control list). Unless stated otherwise, runs use three few-shot examples per language. GPT-4o-mini is called through OpenRouter; Qwen models are run locally as instruction-tuned checkpoints.
+
+\subsection{Term-List Variants}
+\label{sec:term-list-variants}
+
+Starting from the original human-annotated \texttt{proper\_terms} shipped with dev\_v1, we build three additional variants that change the glossary content while keeping the underlying sentences fixed: an \textbf{expanded} list, where an LLM appends additional in-context term pairs to the original list; a \textbf{cleaned} list, where an LLM removes weak or overly generic entries from the expanded list; and a \textbf{dictionary} list, mined from dev\_v2 and matched back onto dev\_v1 sources via an external term dictionary. These variants change both the size and the precision of the constraints supplied to the model, letting us separate the effect of list coverage from list quality.
+
+\subsection{Models and Fine-Tuning}
+\label{sec:models-and-finetuning}
+
+We evaluate GPT-4o-mini and open Qwen2.5-3B/7B-Instruct. For fine-tuning, we train LoRA adapters on Qwen2.5-3B/7B using a dev\_v2-derived training set, held out from dev\_v1 by removing exact-overlap lines and reserving few-shot examples (1{,}497--1{,}498 lines per language, depending on language pair). We sweep 1--3 LoRA epochs, and evaluate both zero-shot and few-shot prompting at inference (with \texttt{proper\_term} conditioning throughout). All fine-tuning runs are evaluated on the held-out dev\_v1 test set.
+
+\section{Experiments}
+\label{sec:experiments}
+% TODO (see report/PLAN.md \S5): backbone is report/README.md \S3.1-\S3.4.2.
+% Fixed template per subsection: RQ -> setup -> table/figure -> findings.
+% Re-verify every number against current .xlsx output before writing prose.
+
+\subsection{Terminology Modes Across Language Pairs}
+\label{sec:exp-language-pairs}
+
+\textbf{RQ:} Does injecting explicit terminology constraints improve translation quality and term fidelity over no constraints, does an unrelated (random-term) constraint list act as a fair control, and does the benefit vary by language pair?
+
+Table~\ref{tab:modes-by-language} reports GPT-4o-mini under all three prompt modes (Section~\ref{sec:prompt-conditioning}) with the original term list, for all three language pairs. Injecting the real term list raises macro BLEU from 39.6 (\texttt{no\_term}) to 46.1 (\texttt{proper\_term}) and chrF from 65.2 to 72.0. The random-term control also raises BLEU, but only to 42.4 -- well below \texttt{proper\_term} -- even though the model still realizes a large share of the \emph{injected} random forms (86.4\% term accuracy on the control pairs). This shows that following an injected list is not by itself what drives the quality gain: the content of the list matters, not just its presence.
+
+The pattern is consistent inside each pair but not uniform: EN$\rightarrow$ES is strongest on both BLEU and term accuracy in every mode; EN$\rightarrow$DE beats EN$\rightarrow$RU on BLEU under \texttt{proper\_term}, while EN$\rightarrow$RU is essentially tied with EN$\rightarrow$DE on term accuracy (70.3\% vs.\ 60.5\%, RU actually higher) -- so a single macro average obscures which language pair benefits most from which effect.
+
+Figure~\ref{fig:by-language-pair} shows the same pattern visually, and also breaks out the term-list variants (Section~\ref{sec:term-list-variants}) by language pair for GPT-4o-mini; Qwen 3B/7B show the same qualitative pattern.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_term_expansion_across_languages_gpt.pdf}
+  \caption{GPT-4o-mini BLEU and term accuracy by language pair on dev\_v1: prompt modes (original term list) and term-list variants (\texttt{proper\_term}).}
+  \label{fig:by-language-pair}
+\end{figure*}
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \hline
+    \textbf{Mode / Pair} & \textbf{BLEU} & \textbf{chrF} & \textbf{Term Acc.\%} \\
+    \hline
+    \texttt{no\_term} \\
+    \quad EN$\to$DE & 42.2 & 66.9 & -- \\
+    \quad EN$\to$RU & 28.3 & 59.2 & -- \\
+    \quad EN$\to$ES & 48.3 & 69.4 & -- \\
+    \quad macro     & 39.6 & 65.2 & -- \\
+    \hline
+    \texttt{proper\_term} \\
+    \quad EN$\to$DE & 48.6 & 74.0 & 60.5 \\
+    \quad EN$\to$RU & 35.8 & 66.6 & 70.3 \\
+    \quad EN$\to$ES & \textbf{54.0} & \textbf{75.5} & \textbf{89.0} \\
+    \quad macro     & \textbf{46.1} & \textbf{72.0} & 73.3 \\
+    \hline
+    \texttt{random\_term} \\
+    \quad EN$\to$DE & 44.0 & 69.8 & 81.1$^\dagger$ \\
+    \quad EN$\to$RU & 31.6 & 62.9 & 81.3$^\dagger$ \\
+    \quad EN$\to$ES & 51.4 & 72.5 & 96.8$^\dagger$ \\
+    \quad macro     & 42.4 & 68.4 & 86.4$^\dagger$ \\
+    \hline
+  \end{tabular}
+  \caption{GPT-4o-mini prompt modes on dev\_v1, original term list. $^\dagger$Accuracy on the injected random control pairs, not on proper terms.}
+  \label{tab:modes-by-language}
+\end{table}
+
+\subsection{Terminology Modes Across Models}
+\label{sec:exp-models}
+
+\textbf{RQ:} How does a closed frontier model compare to open base models on terminology-constrained translation, and does the ranking between models hold across term-list construction strategies?
+
+Table~\ref{tab:models-by-variant} reports macro-averaged (over the three language pairs) BLEU and term accuracy for all three models under \texttt{proper\_term} prompting, across all four term-list variants (Section~\ref{sec:term-list-variants}). GPT-4o-mini leads both metrics in every variant, followed by Qwen2.5-7B, then Qwen2.5-3B -- the model ranking is stable regardless of how the term list was built. Expanding the term list narrows the BLEU gap between GPT-4o-mini and Qwen2.5-7B less than it narrows the term-accuracy gap: under \texttt{cleaned}, Qwen2.5-7B's term accuracy (80.8\%) approaches GPT-4o-mini's (85.2\%), while its BLEU (42.2) remains well below GPT-4o-mini's (50.5). This suggests the smaller open model benefits from a higher-precision term list disproportionately on term realization rather than on overall fluency/adequacy.
+
+Across variants, the same size-vs-precision trade-off observed for GPT-4o-mini in Section~\ref{sec:exp-language-pairs} holds for both Qwen sizes: \texttt{dictionary} and \texttt{expand} give the largest BLEU gains, \texttt{cleaned} gives the largest term-accuracy gains, for all three models.
+
+Figure~\ref{fig:by-model} shows this pattern visually.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_term_expansion_across_models.pdf}
+  \caption{Macro-averaged BLEU and term accuracy by model and term-list variant, \texttt{proper\_term}, dev\_v1.}
+  \label{fig:by-model}
+\end{figure*}
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \hline
+    \textbf{Term list} & \textbf{GPT} & \textbf{Qwen 3B} & \textbf{Qwen 7B} \\
+    \hline
+    \multicolumn{4}{l}{\emph{BLEU}} \\
+    original   & 46.1 & 28.2 & 38.1 \\
+    expand     & 53.9 & 37.6 & 46.4 \\
+    cleaned    & 50.5 & 34.0 & 42.2 \\
+    dictionary & \textbf{54.2} & 42.6 & 48.8 \\
+    \hline
+    \multicolumn{4}{l}{\emph{Term Accuracy \%}} \\
+    original   & 73.3 & 60.0 & 67.9 \\
+    expand     & 82.5 & 71.8 & 79.6 \\
+    cleaned    & \textbf{85.2} & 73.2 & 80.8 \\
+    dictionary & 79.1 & 71.4 & 75.9 \\
+    \hline
+  \end{tabular}
+  \caption{Macro-averaged BLEU and term accuracy by model and term-list variant, \texttt{proper\_term}, dev\_v1.}
+  \label{tab:models-by-variant}
+\end{table}
+
+\subsection{dev\_v1 vs. dev\_v2 Comparability}
+\label{sec:exp-dataset-comparison}
+
+This subsection is background context for Section~\ref{sec:exp-leakage}, not one of the three central research questions. \textbf{RQ:} How comparable is the dev\_v2 proxy training set to the dev\_v1 test set, for the same model?
+
+Table~\ref{tab:dev-comparison} compares GPT-4o-mini, macro-averaged over language pairs, on dev\_v1 and dev\_v2 under all three prompt modes. dev\_v2 scores consistently higher than dev\_v1 across every mode and metric. dev\_v2 (2{,}000 sentences/language) is four times larger than dev\_v1 (500 sentences/language) in this comparison; BLEU and chrF are corpus-level aggregates, so the size difference does not by itself bias either score, but dev\_v1's estimate carries more sampling noise than dev\_v2's. We do not compute confidence intervals or bootstrap resampling for any metric in this report (all results are single-run point estimates), so the gaps in Table~\ref{tab:dev-comparison} should be read as broadly consistent rather than as a precise, statistically validated difference.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \hline
+    \textbf{Mode} & \textbf{BLEU} & \textbf{chrF} & \textbf{Term Acc.\%} \\
+    \hline
+    \multicolumn{4}{l}{\emph{dev\_v1}} \\
+    no\_term     & 39.6 & 65.2 & -- \\
+    proper\_term & 46.1 & 72.0 & 73.3 \\
+    random\_term & 42.4 & 68.4 & 86.4$^\dagger$ \\
+    \hline
+    \multicolumn{4}{l}{\emph{dev\_v2}} \\
+    no\_term     & 42.2 & 67.0 & -- \\
+    proper\_term & \textbf{51.2} & \textbf{74.7} & \textbf{88.2} \\
+    random\_term & 45.6 & 70.7 & 87.7$^\dagger$ \\
+    \hline
+  \end{tabular}
+  \caption{GPT-4o-mini macro-averaged BLEU/chrF/term accuracy, dev\_v1 vs.\ dev\_v2, all three prompt modes. $^\dagger$Accuracy on injected random control pairs.}
+  \label{tab:dev-comparison}
+\end{table}
+
+\subsection{LoRA Fine-Tuning}
+\label{sec:exp-lora}
+
+\textbf{RQ:} Does LoRA fine-tuning on dev\_v2 close the gap between open Qwen2.5 models and GPT-4o-mini on terminology-constrained translation? All results in this subsection use \texttt{proper\_term} prompting, zero-shot at inference (Section~\ref{sec:models-and-finetuning}).
+
+Table~\ref{tab:epoch-ablation} and Figure~\ref{fig:epoch-ablation} show macro-averaged BLEU and term accuracy from the untrained zero-shot base through 1--3 LoRA epochs, for both model sizes. BLEU gains build steadily through training for both sizes (Qwen2.5-7B: 35.0 base $\to$ 51.4 at 2 epochs; Qwen2.5-3B: 16.6 base $\to$ 47.1 at 2 epochs) and largely plateau by the third epoch. Term accuracy moves far less than BLEU for Qwen2.5-7B (69.9\% base to 70.8\% at 3 epochs -- fine-tuning mainly improves fluency/adequacy, not term realization, which the base model already handles reasonably well). Qwen2.5-3B's term accuracy moves more (44.5\% base to 68.0\% at 2 epochs), since its untrained baseline starts substantially lower.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_lora_epoch_ablation.pdf}
+  \caption{LoRA epoch ablation: trained on dev\_v2, evaluated on dev\_v1, zero-shot, \texttt{proper\_term}, both Qwen2.5 sizes. Epoch 0 is the untrained zero-shot base.}
+  \label{fig:epoch-ablation}
+\end{figure*}
+
+Table~\ref{tab:best-vs-gpt} and Figure~\ref{fig:best-vs-gpt} compare the best-performing open configuration, Qwen2.5-7B LoRA at 2 epochs, against GPT-4o-mini. The tuned 7B model beats GPT-4o-mini on macro BLEU (51.4 vs.\ 47.5) and chrF (75.0 vs.\ 73.3), with the largest single-pair gain on EN$\to$RU (45.7 vs.\ 37.2 BLEU). GPT-4o-mini still leads on term accuracy (74.8\% vs.\ 69.8\%). We use the 2-epoch checkpoint as ``best'' because 3 epochs gives essentially the same BLEU/chrF for a small term-accuracy gain, and Section~\ref{sec:exp-leakage} and the Limitations section note evidence that this choice is not free of overfitting risk.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_lora_best_models.pdf}
+  \caption{Best open configuration (Qwen2.5-7B LoRA, 2 epochs, zero-shot, trained on dev\_v2) vs.\ GPT-4o-mini (few-shot), by language pair, evaluated on dev\_v1, \texttt{proper\_term}.}
+  \label{fig:best-vs-gpt}
+\end{figure*}
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lcccc}
+    \hline
+     & \textbf{base} & \textbf{1 ep} & \textbf{2 ep} & \textbf{3 ep} \\
+    \hline
+    \multicolumn{5}{l}{\emph{Qwen2.5-7B, macro BLEU}} \\
+    & 35.0 & 48.5 & \textbf{51.4} & 51.2 \\
+    \multicolumn{5}{l}{\emph{Qwen2.5-7B, macro Term Acc.\%}} \\
+    & 69.9 & 69.7 & 69.8 & \textbf{70.8} \\
+    \hline
+    \multicolumn{5}{l}{\emph{Qwen2.5-3B, macro BLEU}} \\
+    & 16.6 & 43.0 & 47.1 & \textbf{47.5} \\
+    \multicolumn{5}{l}{\emph{Qwen2.5-3B, macro Term Acc.\%}} \\
+    & 44.5 & 64.7 & \textbf{68.0} & 67.4 \\
+    \hline
+  \end{tabular}
+  \caption{LoRA epoch ablation, zero-shot, dev\_v1, \texttt{proper\_term}. ``base'' is the untrained zero-shot checkpoint.}
+  \label{tab:epoch-ablation}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lcc}
+    \hline
+    & \textbf{Qwen2.5-7B LoRA (2ep)} & \textbf{GPT-4o-mini} \\
+    \hline
+    BLEU & \textbf{51.4} & 47.5 \\
+    chrF & \textbf{75.0} & 73.3 \\
+    Term Acc.\% & 69.8 & \textbf{74.8} \\
+    \hline
+  \end{tabular}
+  \caption{Best open configuration vs.\ GPT-4o-mini, macro-averaged, dev\_v1, \texttt{proper\_term}, zero-shot.}
+  \label{tab:best-vs-gpt}
+\end{table}
+
+\subsubsection{Few-Shot Ablation}
+\label{sec:exp-few-shot}
+
+There are two distinct few-shot comparisons in our results, which we report separately since they answer different questions.
+
+\textbf{Baseline-level (no fine-tuning).} Comparing zero-shot vs.\ three-shot prompting for the untrained models (Table~\ref{tab:few-shot}, top): few-shot prompting helps the smaller model far more than the larger ones. Qwen2.5-3B's macro BLEU roughly doubles (16.6 $\to$ 33.7) and term accuracy jumps 20 points (44.5\% $\to$ 64.4\%) with few-shot examples. Qwen2.5-7B and GPT-4o-mini both gain BLEU from few-shot (35.0 $\to$ 38.4 and 41.9 $\to$ 47.5 respectively) but see a small term-accuracy \emph{drop} (69.9\% $\to$ 67.8\% and 75.8\% $\to$ 74.8\%) -- for already-capable models, the extra examples appear to trade a little term precision for overall fluency.
+
+\textbf{LoRA-level (fine-tuned, 1 epoch, zero-shot vs.\ few-shot at inference).} Holding epoch count fixed at 1 isolates whether few-shot prompting still contributes after fine-tuning, independent of training length (Table~\ref{tab:few-shot}, bottom). Here the effect is small in both directions: Qwen2.5-3B's term accuracy rises slightly with few-shot (64.7\% $\to$ 66.1\%) while BLEU dips slightly (43.0 $\to$ 42.2); Qwen2.5-7B is essentially flat on term accuracy (69.7\% $\to$ 70.0\%) with a similar small BLEU dip (48.5 $\to$ 47.1). Once a model has been fine-tuned on in-domain data, few-shot prompting no longer moves the needle the way it does for the untrained baseline -- fine-tuning and few-shot prompting appear to supply overlapping rather than additive signal.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lcccc}
+    \hline
+    & \multicolumn{2}{c}{\textbf{BLEU}} & \multicolumn{2}{c}{\textbf{Term Acc.\%}} \\
+    & zero & few & zero & few \\
+    \hline
+    \multicolumn{5}{l}{\emph{Baseline (untrained)}} \\
+    GPT        & 41.9 & \textbf{47.5} & \textbf{75.8} & 74.8 \\
+    Qwen 3B    & 16.6 & \textbf{33.7} & 44.5 & \textbf{64.4} \\
+    Qwen 7B    & 35.0 & \textbf{38.4} & \textbf{69.9} & 67.8 \\
+    \hline
+    \multicolumn{5}{l}{\emph{LoRA, 1 epoch}} \\
+    Qwen 3B    & \textbf{43.0} & 42.2 & 64.7 & \textbf{66.1} \\
+    Qwen 7B    & \textbf{48.5} & 47.1 & 69.7 & \textbf{70.0} \\
+    \hline
+  \end{tabular}
+  \caption{Few-shot ablation, macro-averaged, dev\_v1, \texttt{proper\_term}. Top: untrained baseline. Bottom: LoRA fine-tuned, held at 1 epoch.}
+  \label{tab:few-shot}
+\end{table}
+
+\subsubsection{Data-Leakage Honesty Check}
+\label{sec:exp-leakage}
+
+dev\_v2 is used as a training-set proxy (Section~\ref{sec:corpora}) because the real WMT25 shared-task training data is unavailable. Since dev\_v1 and dev\_v2 are drawn from overlapping SAP documentation, some dev\_v2 training lines are near-duplicates of dev\_v1 test lines even after exact-overlap deduplication -- fine-tuning on them could leak test signal and inflate LoRA's apparent gains.
+
+We split the dev\_v1 Qwen2.5-7B test set into an \texttt{overlap} subset (near-duplicate training sentence exists, $\geq$50\% token containment) and a \texttt{no\_overlap} subset (no such duplicate), balanced to 164 sentences per language, and evaluate the untrained base model, GPT-4o-mini (never exposed to dev\_v2), and the fine-tuned LoRA model on both. Table~\ref{tab:leakage} reports macro-averaged BLEU. All three models score higher on \texttt{overlap} than \texttt{no\_overlap}, and the gap grows with training exposure: negligible for the untrained base (+0.8), moderate for GPT-4o-mini (+3.2, despite never training on dev\_v2 -- an inherent difficulty difference between the subsets), and largest for the fine-tuned model (+9.3). On the leakage-free \texttt{no\_overlap} subset, LoRA's BLEU edge over GPT-4o-mini shrinks from +6.9 (on \texttt{overlap}) to +0.8.
+
+This should be read as leakage-inflation evidence \emph{on top of} a real difficulty confound, not instead of it: the \texttt{overlap} subset's sentences are also substantially shorter (roughly 30--49\% fewer words per sentence, depending on language pair) with a higher ratio of terms to words, while the total number of distinct terms per subset is nearly identical -- so \texttt{overlap} sentences are inherently easier for any model, which is exactly why even GPT-4o-mini (which never saw dev\_v2) shows a gap. The fine-tuned model's substantially larger gap is the leakage signal on top of that shared difficulty effect.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \hline
+    \textbf{Model} & \textbf{overlap} & \textbf{no\_overlap} & \textbf{gap} \\
+    \hline
+    Qwen base (untrained) & 38.8 & 38.1 & +0.8 \\
+    GPT-4o-mini (control) & 49.3 & 46.2 & +3.2 \\
+    Qwen LoRA (trained)   & 56.3 & 47.0 & +9.3 \\
+    \hline
+  \end{tabular}
+  \caption{Macro BLEU on lexically overlapping vs.\ non-overlapping dev\_v1 subsets (Qwen2.5-7B), balanced to 164 sentences/language/subset.}
+  \label{tab:leakage}
+\end{table}
+
+\section{Discussion}
+\label{sec:discussion}
+
+Two tensions run through the results in Section~\ref{sec:experiments}.
+
+First, generic and terminology-specific metrics disagree about what ``better'' means, and the disagreement is not noise -- it is systematic. The random-term control (Section~\ref{sec:exp-language-pairs}) shows a model will realize whatever list it is given regardless of correctness, so term accuracy alone cannot certify that terminology conditioning is working as intended; BLEU/chrF are needed to confirm the injected terms are actually correct ones. Conversely, among the real term-list variants (Section~\ref{sec:exp-models}), dictionary and expanded lists win on BLEU/chrF while the cleaned list wins on term accuracy and consistency, for every model we tested. If a deployment's priority is UI-label fidelity rather than general fluency, BLEU is the wrong metric to optimize against.
+
+Second, prompting and weight adaptation address different parts of the problem. LoRA fine-tuning (Section~\ref{sec:exp-lora}) recovers most of the fluency/adequacy gap to GPT-4o-mini for Qwen2.5-7B, and moves term accuracy only modestly -- the base model already realizes injected terms reasonably well; what fine-tuning mainly buys is domain style and reference overlap. All of our fine-tuning runs keep \texttt{proper\_term} prompting at inference, so we do not measure how much of the term-accuracy gap is inherent to the base model versus how much the glossary block itself is doing after adaptation; under that shared setup, the tuned model still trails GPT-4o-mini on term accuracy specifically.
+
+The overlap caveat (Section~\ref{sec:exp-leakage}) belongs here rather than only in Limitations: because some test sentences resemble dev\_v2 training text, and that resemblance is itself correlated with sentence difficulty, LoRA's BLEU gains over GPT-4o-mini should be read as an upper estimate for this data regime -- on the leakage-free subset the LoRA-vs-GPT-4o-mini edge nearly disappears -- not as a guarantee that would hold on fully disjoint documentation.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We studied terminology-constrained translation of SAP software documentation along three axes. Terminology conditioning helps, and the random-term control confirms the gain comes from term \emph{correctness}, not merely from following an injected list. How the term list is built matters as much as whether one is used at all: expanded and dictionary-mined lists raise BLEU/chrF most, while a cleaned, domain-filtered list raises term accuracy and consistency most, so list-construction strategy should be chosen according to the deployment's actual priority. LoRA fine-tuning closes much of the fluency gap between an open Qwen2.5-7B model and GPT-4o-mini, and can beat it on BLEU/chrF, but GPT-4o-mini remains the more reliable choice specifically for term realization, and part of the open model's apparent gain is attributable to train/test lexical overlap rather than pure adaptation.
+
+All of the prompt-conditioning experiments in this report assume an oracle or offline-constructed term list is available at inference time. A natural next step is to drop that assumption and have the model extract and propose its own terminology from the source sentence at inference time, then measure how much of the oracle-term-list advantage survives; we have preliminary, not-yet-validated infrastructure for exactly this comparison and leave a full treatment to future work.
+
+\section*{Limitations}
+
+Our evaluation is narrow in scope: three language pairs (EN$\to$DE/RU/ES) and a single enterprise documentation domain (SAP software documentation), so transfer to other products, domains, or language pairs is untested. The evaluation sets are also modest -- 500 test sentences per language on dev\_v1, roughly 1{,}500 training sentences per language on dev\_v2 after overlap removal -- which limits statistical power; all results in this report are single-run point estimates with no confidence intervals or bootstrap resampling, so small gaps between conditions should be read as indicative rather than statistically confirmed.
+
+Train/test lexical overlap is a concrete caveat, quantified in Section~\ref{sec:exp-leakage}: some dev\_v1 test sentences resemble dev\_v2 training sentences, and while the higher-overlap subset is also inherently easier (shorter, denser sentences) for every model we tested -- including one that never trained on dev\_v2 -- the fine-tuned model's overlap-vs-no-overlap gap is still substantially larger than the untrained baseline's, so some of LoRA's apparent BLEU advantage should be read as an upper bound rather than a number that would hold on fully disjoint documentation.
+
+Most of our prompt-conditioning experiments (Sections~\ref{sec:exp-language-pairs}--\ref{sec:exp-models}) assume an oracle or offline-constructed term list is available at inference time. This is useful for isolating the effect of terminology control, but it is not the deployment setting where terms must be extracted from the source sentence at inference time with no oracle access; we have not yet validated our own extract-and-propose pipeline for this closely enough to report it here (Section~\ref{sec:conclusion}).
+
+Finally, our term accuracy metric checks only surface-form presence of the required target term. It does not capture morphological agreement or whether a correctly-inflected term appears in the syntactically appropriate slot, so it can both over- and under-count correct terminology use in morphologically richer target languages (notably Russian).
+
+The ``best'' LoRA configuration we report (Qwen2.5-7B, 2 epochs, Section~\ref{sec:exp-lora}) is chosen because BLEU/chrF plateau by the third epoch for only a small further term-accuracy gain -- this is consistent with, but does not rule out, mild overfitting past 2 epochs on our specific training set size.
+
+\section*{Ethics Statement}
+
+This work uses the publicly released SAP \texttt{term\_postedits} software-documentation dataset~\citep{sap2024termpostedits}, which contains professional software-documentation text and terminology, not personal data. All experiments were carried out as a course project at the Technical University of Munich for research purposes; no models were deployed and no user-facing system was built.
+
+\section*{Acknowledgments}
+
+This work was carried out as a course project at the Technical University of Munich. We thank Dr.\ Marion Di Marco for supervision and feedback.
+
+\section*{Author Contributions}
+
+\textbf{Ivan Pylypenko} led the Qwen2.5 baseline and LoRA fine-tuning study: training and evaluation runs, held-out splits, overlap filtering, and Excel comparison exports. Also ran the GPT-4o-mini comparison baselines used alongside the fine-tuned models, and contributed poster draft assets and chart updates in the repository.
+
+\textbf{Robin Schukrafft} built the GPT-proposed term pipeline and ran those experiments, constructed the term dictionary and applied it to dev\_v1, and ran GPT baselines on the dictionary setting. Implemented the matplotlib analysis scripts and result figures used in the poster and report.
+
+\textbf{Ilnur Gayetov} set up the data-preparation pipeline for SAP \texttt{term\_postedits} (JSONL task format, term-pair collection, and the initial term-expansion script) and restructured the project. Refactored shared evaluation into reusable modules and added evaluation runners for local Qwen and OpenRouter GPT-4o-mini.
+
+% Requires custom.bib in the Overleaf project to contain the 7 entries below
+% (semenov-etal-2025-wmt25, sap2024termpostedits, hu2022lora, qwenteam2024qwen25,
+% papineni-etal-2002-bleu, popovic-2015-chrf, he-etal-2023-exploring) -- see the
+% BibTeX block provided alongside this file.
+%
+% @article{he-etal-2023-exploring,
+%   title={Exploring Human-Like Translation Strategy with Large Language Models},
+%   author={He, Zhiwei and Liang, Tian and Jiao, Wenxiang and Zhang, Zhuosheng and Yang, Yujiu and Wang, Rui and Tu, Zhaopeng and Shi, Shuming and Wang, Xing},
+%   journal={arXiv preprint arXiv:2305.04118},
+%   year={2023}
+% }
+\bibliography{custom}
+
+\end{document}

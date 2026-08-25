@@ -44,7 +44,7 @@ Every experiment starts from the same SAP `term_postedits`-derived data (`dev_v1
 | Experiment | Contents |
 | ---------- | -------- |
 | [`dataset_comparison/`](experiments/dataset_comparison/README.md) | `dev_v1` vs. `dev_v2` terminology dataset comparison, per model. |
-| [`term_expansion/`](experiments/term_expansion/README.md) | Proper-term expansion: original vs. GPT-expanded vs. GPT-cleaned (domain-filtered) vs. externally-sourced dictionary, both aggregated by model and broken out by language pair. |
+| [`term_expansion/`](experiments/term_expansion/README.md) | Proper-term expansion: original vs. GPT-expanded vs. GPT-cleaned (domain-filtered) vs. externally-sourced dictionary, both aggregated by model and broken out by language pair. Also includes a self-contained oracle-vs-self-proposed-terminology comparison ([`gpt_proposed_term_pipeline/`](experiments/term_expansion/gpt_proposed_term_pipeline/README.md)). |
 | [`lora_finetuning/`](experiments/lora_finetuning/README.md) | LoRA fine-tuning of Qwen2.5 (3B/7B) vs. GPT and Qwen base: 5 sub-experiments (`epoch_ablation/`, `best_models/`, `base_vs_lora/`, `few_shot_ablation/`, `leakage_check/`) sharing `shared/results/`, `shared/data/`, and `shared/run_registry.json`. |
 
 ## Scripts

@@ -7,6 +7,7 @@ Compares terminology-constrained translation across `no_term`, `random_term`, th
 | [`by_model/`](by_model/README.md) | Aggregated by model (macro avg over language pairs). Produces `fig_term_expansion_across_models`. |
 | [`by_language_pair/`](by_language_pair/README.md) | Broken out by language pair, one figure per model. Produces `fig_term_expansion_across_languages_{gpt,qwen_3b,qwen_7b}`. |
 | [`dictionary/`](dictionary/README.md) | Owns the `build_term_dictionary.py`/`apply_dictionary_to_dev_v1.py` scripts that (re)generate the externally-sourced dictionary term-list variant's data. No experiment-local results — its comparisons run through `shared/scripts/compare_by_model_and_language.py` like the other variants. |
+| [`gpt_proposed_term_pipeline/`](gpt_proposed_term_pipeline/README.md) | GPT-4o-mini's oracle `proper_term` mode vs. `gpt_proposed_term` mode (GPT extracts and proposes its own terminology, no oracle access), zero-shot, `dev_v1/original`. Self-contained results (own `results/`/`report/`, not the shared `dev_v1/` tree) — its output isn't a real term-list variant. Recently restored/ported; see its README for caveats before relying on the numbers. |
 
 This is a **thin wrapper**: there is no experiment-local data here, only `shared/`, `by_model/`, `by_language_pair/`, and `dictionary/` below. It is a specific comparison drawn from the shared, evolving `shared/data/` → `shared/results/` pipeline documented in the [root README](../../README.md#data), not a separate model run like [`lora_finetuning`](../lora_finetuning/README.md).
 

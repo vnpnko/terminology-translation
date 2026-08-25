@@ -15,13 +15,23 @@ sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "share
 from shared.lib.analysis.grouped_bar_figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
+    REPORT_BAR_WIDTH_RATIO,
+    REPORT_GROUP_WIDTH,
+    REPORT_LEGEND_ROW_FONTSIZE,
+    REPORT_LEGEND_ROW_NCOL,
+    REPORT_PAIR_BOTTOM,
+    REPORT_PAIR_FIG_SIZE,
+    REPORT_PAIR_LEFT,
+    REPORT_PAIR_RIGHT,
+    REPORT_PAIR_TOP,
+    REPORT_PAIR_WSPACE,
     TERM_ACC_YLIM_TOP,
     create_pair_figure,
     finalize_pair_layout,
-    place_side_legend,
+    place_legend_row,
     plot_grouped_bars,
 )
-from shared.lib.analysis.plot_style import apply_poster_style
+from shared.lib.analysis.plot_style import apply_report_style
 from compare_common import (  # noqa: E402
     RUN_GPT_BASE,
     RUN_LORA_2_EPOCH_ZERO_SHOT,
@@ -53,12 +63,6 @@ SUBSET_LABELS = {
 # extract_row's index into compare_common.METRICS: 0=bleu, 2=term_accuracy_pct
 BLEU_IDX = 0
 TERM_ACC_IDX = 2
-
-TITLE = (
-    "Data-leakage honesty check\n"
-    "(train dev_v2; test dev_v1; proper_term)"
-)
-
 
 def macro_row(rows: dict[str, list[float | None]]) -> list[float | None]:
     n_metrics = len(rows[LANG_ORDER[0]])
@@ -93,14 +97,19 @@ def _collect_data() -> dict[str, dict[str, list[float | None]]]:
 
 
 def build_leakage_check_figure(project_root: Path) -> Figure:
-    apply_poster_style()
+    apply_report_style()
     data = _collect_data()
 
-    fig, axes, legend_ax = create_pair_figure(TITLE)
+    fig, axes, _ = create_pair_figure(
+        None,
+        figsize=REPORT_PAIR_FIG_SIZE,
+        wspace=REPORT_PAIR_WSPACE,
+        legend_position="bottom",
+    )
 
     metric_axes = [
-        (axes[0], BLEU_IDX, "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
-        (axes[1], TERM_ACC_IDX, "Term accuracy (%)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 20))),
+        (axes[0], BLEU_IDX, "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 20))),
+        (axes[1], TERM_ACC_IDX, "Term accuracy (%)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 25))),
     ]
     for ax, metric_idx, ylabel, ylim_top, yticks in metric_axes:
         plot_grouped_bars(
@@ -111,15 +120,28 @@ def build_leakage_check_figure(project_root: Path) -> Figure:
             series_labels=SUBSET_LABELS,
             value_fn=lambda subset, model, mi=metric_idx: data[model][subset][mi],
             ylabel=ylabel,
-            xlabel="Model",
             ylim_top=ylim_top,
             yticks=yticks,
+            show_values=False,
+            group_width=REPORT_GROUP_WIDTH,
+            bar_width_ratio=REPORT_BAR_WIDTH_RATIO,
         )
 
     legend_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=SUBSET_LABELS[k])
         for k in SUBSET_ORDER
     ]
-    place_side_legend(legend_ax, legend_handles, "Test subset")
-    finalize_pair_layout(fig)
+    place_legend_row(
+        fig,
+        legend_handles,
+        fontsize=REPORT_LEGEND_ROW_FONTSIZE,
+        ncol=REPORT_LEGEND_ROW_NCOL,
+    )
+    finalize_pair_layout(
+        fig,
+        top=REPORT_PAIR_TOP,
+        bottom=REPORT_PAIR_BOTTOM,
+        left=REPORT_PAIR_LEFT,
+        right=REPORT_PAIR_RIGHT,
+    )
     return fig

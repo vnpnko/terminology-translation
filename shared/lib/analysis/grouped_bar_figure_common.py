@@ -110,6 +110,28 @@ REPORT_VALUE_FONTSIZE = 5.5
 REPORT_GROUP_WIDTH = 0.92  # up from GROUP_WIDTH=0.86 -- wider bars, less gap between groups
 REPORT_BAR_WIDTH_RATIO = 0.98  # up from BAR_WIDTH_RATIO=0.96 -- less gap between bars in a group
 
+# Single-panel report-style figure (e.g. figure_few_shot_ablation.py). Full
+# REPORT_PAIR_FIG_SIZE width, not half -- this panel has 5 two-line-wrapped
+# group labels (e.g. "Weighted\nCons (%)"), which need as much horizontal
+# room as a full pair figure to avoid neighboring labels colliding.
+REPORT_SINGLE_FIG_SIZE = (6.8, 2.75)
+REPORT_SINGLE_TOP = 0.80
+REPORT_SINGLE_BOTTOM = 0.20
+REPORT_SINGLE_LEFT = 0.08
+REPORT_SINGLE_RIGHT = 0.98
+
+# 2x2-grid report-style figure (e.g. figure_few_shot_ablation_qwen.py). Wider
+# than the pair figure -- each of its 4 panels independently needs the same
+# 5-two-line-label horizontal room as REPORT_SINGLE_FIG_SIZE above, so the
+# total width roughly doubles a single panel's.
+REPORT_GRID2X2_FIG_SIZE = (10.5, 6.5)
+REPORT_GRID2X2_TOP = 0.88
+REPORT_GRID2X2_BOTTOM = 0.10
+REPORT_GRID2X2_LEFT = 0.06
+REPORT_GRID2X2_RIGHT = 0.98
+REPORT_GRID2X2_WSPACE = 0.28
+REPORT_GRID2X2_HSPACE = 0.55
+
 EXP1_VARIANTS = ("original", "expand", "cleaned")
 EXP23_STRATEGIES = ("original", "expand", "cleaned")
 

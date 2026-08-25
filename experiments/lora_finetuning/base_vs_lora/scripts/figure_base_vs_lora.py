@@ -15,12 +15,21 @@ sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "share
 
 from shared.lib.analysis.grouped_bar_figure_common import (
     EXPANSION_COLORS,
+    REPORT_LEGEND_ROW_FONTSIZE,
+    REPORT_LEGEND_ROW_NCOL,
+    REPORT_PAIR_BOTTOM,
+    REPORT_PAIR_FIG_SIZE,
+    REPORT_PAIR_LEFT,
+    REPORT_PAIR_RIGHT,
+    REPORT_PAIR_TOP,
+    REPORT_PAIR_WSPACE,
+    REPORT_SUPTITLE_FONTSIZE,
     create_pair_figure,
     finalize_pair_layout,
-    place_side_legend,
+    place_legend_row,
     plot_grouped_bars,
 )
-from shared.lib.analysis.plot_style import apply_poster_style
+from shared.lib.analysis.plot_style import apply_report_style
 from compare_common import (  # noqa: E402
     RUN_LORA_1_EPOCH_ZERO_SHOT,
     extract_row,
@@ -55,8 +64,6 @@ METRIC_LABELS = {
     "macro_avg_consistency": "Macro\nCons (%)",
     "weighted_avg_consistency": "Weighted\nCons (%)",
 }
-
-TITLE = "Qwen: base vs. LoRA (1 epoch)\n(train dev_v2; test dev_v1; proper_term)"
 
 YLIM_TOP = 100
 
@@ -93,10 +100,15 @@ def _collect_data() -> dict[str, dict[str, dict[str, float | None]]]:
 
 
 def build_base_vs_lora_figure(project_root: Path) -> Figure:
-    apply_poster_style()
+    apply_report_style()
     data = _collect_data()
 
-    fig, axes, legend_ax = create_pair_figure(TITLE)
+    fig, axes, _ = create_pair_figure(
+        None,
+        figsize=REPORT_PAIR_FIG_SIZE,
+        wspace=REPORT_PAIR_WSPACE,
+        legend_position="bottom",
+    )
 
     for ax, model_key in zip(axes, MODEL_KEYS):
         model_data = data[model_key]
@@ -109,15 +121,27 @@ def build_base_vs_lora_figure(project_root: Path) -> Figure:
             value_fn=lambda series, metric, md=model_data: md[series][metric],
             ylabel="Score",
             panel_title=MODEL_LABELS[model_key],
+            panel_title_fontsize=REPORT_SUPTITLE_FONTSIZE,
             ylim_top=YLIM_TOP,
             yticks=list(range(0, YLIM_TOP + 1, 20)),
+            show_values=False,
         )
-        ax.tick_params(axis="x", labelsize=11)
 
     legend_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=SERIES_LABELS[k])
         for k in SERIES_ORDER
     ]
-    place_side_legend(legend_ax, legend_handles, "Model state")
-    finalize_pair_layout(fig)
+    place_legend_row(
+        fig,
+        legend_handles,
+        fontsize=REPORT_LEGEND_ROW_FONTSIZE,
+        ncol=REPORT_LEGEND_ROW_NCOL,
+    )
+    finalize_pair_layout(
+        fig,
+        top=REPORT_PAIR_TOP,
+        bottom=REPORT_PAIR_BOTTOM,
+        left=REPORT_PAIR_LEFT,
+        right=REPORT_PAIR_RIGHT,
+    )
     return fig

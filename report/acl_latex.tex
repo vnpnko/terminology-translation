@@ -113,7 +113,7 @@ Each record contains an English source sentence, a target-language reference, a 
 \subsection{Metrics}
 \label{sec:metrics}
 
-We report four metrics, computed per language pair and averaged (macro average) across the three pairs for prose-level comparisons; full per-language numbers are in Appendix~\ref{sec:appendix}.
+We report four metrics, computed per language pair and averaged (macro average) across the three pairs for prose-level comparisons.
 
 \textbf{BLEU}~\citep{papineni-etal-2002-bleu} and \textbf{chrF}~\citep{popovic-2015-chrf} measure overall lexical similarity to the reference. Both react to general fluency and adequacy but are weak signals of whether a specific required term form was actually used.
 
@@ -160,7 +160,7 @@ Table~\ref{tab:modes-by-language} reports GPT-4o-mini under all three prompt mod
 
 The pattern is consistent inside each pair but not uniform: EN$\rightarrow$ES is strongest on both BLEU and term accuracy in every mode; EN$\rightarrow$DE beats EN$\rightarrow$RU on BLEU under \texttt{proper\_term}, while EN$\rightarrow$RU is essentially tied with EN$\rightarrow$DE on term accuracy (70.3\% vs.\ 60.5\%, RU actually higher) -- so a single macro average obscures which language pair benefits most from which effect.
 
-Figure~\ref{fig:by-language-pair} shows the same pattern visually, and also breaks out the term-list variants (Section~\ref{sec:term-list-variants}) by language pair for GPT-4o-mini; Qwen 3B/7B show the same qualitative pattern (full per-model breakdown in Appendix~\ref{sec:appendix}).
+Figure~\ref{fig:by-language-pair} shows the same pattern visually, and also breaks out the term-list variants (Section~\ref{sec:term-list-variants}) by language pair for GPT-4o-mini; Qwen 3B/7B show the same qualitative pattern.
 
 \begin{figure*}[t]
   \centering
@@ -208,7 +208,7 @@ Table~\ref{tab:models-by-variant} reports macro-averaged (over the three languag
 
 Across variants, the same size-vs-precision trade-off observed for GPT-4o-mini in Section~\ref{sec:exp-language-pairs} holds for both Qwen sizes: \texttt{dictionary} and \texttt{expand} give the largest BLEU gains, \texttt{cleaned} gives the largest term-accuracy gains, for all three models.
 
-Figure~\ref{fig:by-model} shows this pattern visually (full per-language, per-model breakdown in Appendix~\ref{sec:appendix}).
+Figure~\ref{fig:by-model} shows this pattern visually.
 
 \begin{figure*}[t]
   \centering
@@ -438,147 +438,5 @@ This work was carried out as a course project at the Technical University of Mun
 % papineni-etal-2002-bleu, popovic-2015-chrf) -- see the BibTeX block provided
 % alongside this file.
 \bibliography{custom}
-
-\appendix
-
-\section{Full Per-Language Result Tables}
-\label{sec:appendix}
-
-Tables~\ref{tab:appendix-modes}--\ref{tab:appendix-fewshot} give the full per-language and per-model breakdown behind every macro-averaged table in Section~\ref{sec:experiments}.
-
-\begin{table*}[t]
-  \centering \small
-  \begin{tabular}{llccc ccc ccc}
-    \hline
-    & & \multicolumn{3}{c}{BLEU} & \multicolumn{3}{c}{chrF} & \multicolumn{3}{c}{Term Acc.\%} \\
-    \textbf{Mode} & \textbf{Model} & DE & RU & ES & DE & RU & ES & DE & RU & ES \\
-    \hline
-    \multicolumn{11}{l}{\texttt{no\_term}} \\
-    & GPT & 42.2 & 28.3 & 48.3 & 66.9 & 59.2 & 69.4 & -- & -- & -- \\
-    & Qwen 3B & 25.4 & 21.7 & 39.1 & 55.4 & 50.9 & 64.1 & -- & -- & -- \\
-    & Qwen 7B & 31.0 & 23.9 & 42.7 & 58.7 & 52.7 & 66.2 & -- & -- & -- \\
-    \multicolumn{11}{l}{\texttt{proper\_term}} \\
-    & GPT & 48.6 & 35.8 & 54.0 & 74.0 & 66.6 & 75.5 & 60.5 & 70.3 & 89.0 \\
-    & Qwen 3B & 30.3 & 14.7 & 39.7 & 61.3 & 36.5 & 65.2 & 43.8 & 53.8 & 82.4 \\
-    & Qwen 7B & 36.3 & 30.0 & 47.9 & 66.1 & 59.1 & 71.7 & 51.5 & 67.6 & 84.7 \\
-    \multicolumn{11}{l}{\texttt{random\_term}} \\
-    & GPT & 44.0 & 31.6 & 51.4 & 69.8 & 62.9 & 72.5 & 81.1 & 81.3 & 96.8 \\
-    & Qwen 3B & 28.4 & 21.5 & 40.9 & 59.3 & 50.5 & 65.8 & 69.9 & 65.3 & 87.2 \\
-    & Qwen 7B & 33.8 & 27.6 & 44.2 & 62.6 & 56.7 & 67.9 & 77.5 & 76.1 & 93.3 \\
-    \hline
-  \end{tabular}
-  \caption{Prompt modes by language pair and model, dev\_v1, original term list (full breakdown of Table~\ref{tab:modes-by-language} \& Table~\ref{tab:models-by-variant}).}
-  \label{tab:appendix-modes}
-\end{table*}
-
-\begin{table*}[t]
-  \centering \small
-  \begin{tabular}{llccc ccc ccc}
-    \hline
-    & & \multicolumn{3}{c}{BLEU} & \multicolumn{3}{c}{chrF} & \multicolumn{3}{c}{Term Acc.\%} \\
-    \textbf{Term list} & \textbf{Model} & DE & RU & ES & DE & RU & ES & DE & RU & ES \\
-    \hline
-    \multicolumn{11}{l}{\texttt{original}} \\
-    & GPT & 48.6 & 35.8 & 54.0 & 74.0 & 66.6 & 75.5 & 60.5 & 70.3 & 89.0 \\
-    & Qwen 3B & 30.3 & 14.7 & 39.7 & 61.3 & 36.5 & 65.2 & 43.8 & 53.8 & 82.4 \\
-    & Qwen 7B & 36.3 & 30.0 & 47.9 & 66.1 & 59.1 & 71.7 & 51.5 & 67.6 & 84.7 \\
-    \multicolumn{11}{l}{\texttt{expand}} \\
-    & GPT & 53.1 & 43.1 & 65.5 & 77.6 & 72.5 & 82.2 & 75.0 & 79.4 & 93.2 \\
-    & Qwen 3B & 35.4 & 24.5 & 53.0 & 67.5 & 51.4 & 74.2 & 67.4 & 63.3 & 84.6 \\
-    & Qwen 7B & 40.8 & 37.9 & 60.7 & 70.9 & 66.9 & 79.4 & 70.4 & 77.2 & 91.2 \\
-    \multicolumn{11}{l}{\texttt{cleaned}} \\
-    & GPT & 51.2 & 39.2 & 61.1 & 75.7 & 68.4 & 79.0 & 80.2 & 79.6 & 95.8 \\
-    & Qwen 3B & 32.3 & 22.2 & 47.6 & 64.3 & 48.7 & 70.0 & 72.8 & 62.6 & 84.1 \\
-    & Qwen 7B & 36.3 & 34.2 & 56.1 & 67.5 & 62.7 & 76.0 & 72.3 & 78.0 & 92.1 \\
-    \multicolumn{11}{l}{\texttt{dictionary}} \\
-    & GPT & 54.1 & 43.5 & 64.8 & 78.4 & 72.5 & 82.3 & 70.6 & 73.9 & 92.9 \\
-    & Qwen 3B & 36.2 & 34.5 & 57.1 & 68.6 & 65.0 & 78.5 & 59.8 & 66.2 & 88.3 \\
-    & Qwen 7B & 43.2 & 40.2 & 62.9 & 72.6 & 67.3 & 81.6 & 66.5 & 69.6 & 91.5 \\
-    \hline
-  \end{tabular}
-  \caption{Term-list variants by language pair and model, \texttt{proper\_term}, dev\_v1 (full breakdown of Table~\ref{tab:models-by-variant}).}
-  \label{tab:appendix-variants}
-\end{table*}
-
-\begin{table*}[t]
-  \centering \small
-  \begin{tabular}{llccc ccc ccc}
-    \hline
-    & & \multicolumn{3}{c}{1 epoch} & \multicolumn{3}{c}{2 epochs} & \multicolumn{3}{c}{3 epochs} \\
-    \textbf{Model} & \textbf{Metric} & DE & RU & ES & DE & RU & ES & DE & RU & ES \\
-    \hline
-    \multicolumn{11}{l}{\textbf{Qwen2.5-3B}} \\
-    & BLEU & 37.6 & 36.0 & 55.5 & 41.3 & 41.8 & 58.3 & 41.9 & 42.0 & 58.6 \\
-    & chrF & 66.8 & 65.5 & 77.6 & 69.4 & 69.3 & 79.1 & 69.2 & 69.6 & 79.5 \\
-    & Term Acc.\% & 51.7 & 59.7 & 82.7 & 54.3 & 65.1 & 84.7 & 54.3 & 63.5 & 84.4 \\
-    \multicolumn{11}{l}{\textbf{Qwen2.5-7B}} \\
-    & BLEU & 42.7 & 42.8 & 59.9 & 46.3 & 45.7 & 62.2 & 46.3 & 45.5 & 61.9 \\
-    & chrF & 70.5 & 69.8 & 79.9 & 72.2 & 71.6 & 81.3 & 72.1 & 71.9 & 81.0 \\
-    & Term Acc.\% & 57.3 & 67.8 & 83.8 & 55.6 & 67.8 & 86.1 & 55.6 & 68.9 & 87.9 \\
-    \hline
-  \end{tabular}
-  \caption{LoRA epoch ablation, full per-language breakdown, zero-shot, dev\_v1, \texttt{proper\_term} (full breakdown of Table~\ref{tab:epoch-ablation}).}
-  \label{tab:appendix-epochs}
-\end{table*}
-
-\begin{table}[t]
-  \centering \small
-  \begin{tabular}{llcc}
-    \hline
-    \textbf{Mode} & \textbf{Pair} & \textbf{dev\_v1} & \textbf{dev\_v2} \\
-    \hline
-    \texttt{no\_term} & ende & 42.2 & 45.4 \\
-    \texttt{no\_term} & enru & 28.3 & 30.9 \\
-    \texttt{no\_term} & enes & 48.3 & 50.2 \\
-    \texttt{proper\_term} & ende & 48.6 & 51.7 \\
-    \texttt{proper\_term} & enru & 35.8 & 41.2 \\
-    \texttt{proper\_term} & enes & 54.0 & 60.6 \\
-    \texttt{random\_term} & ende & 44.0 & 47.4 \\
-    \texttt{random\_term} & enru & 31.6 & 35.5 \\
-    \texttt{random\_term} & enes & 51.4 & 53.9 \\
-    \hline
-  \end{tabular}
-  \caption{GPT-4o-mini BLEU, dev\_v1 vs.\ dev\_v2, per language pair, all prompt modes (full breakdown of Table~\ref{tab:dev-comparison}).}
-  \label{tab:appendix-dataset-comparison}
-\end{table}
-
-\begin{table}[t]
-  \centering \small
-  \begin{tabular}{llcc}
-    \hline
-    \textbf{Model} & \textbf{Pair} & \textbf{overlap} & \textbf{no\_overlap} \\
-    \hline
-    \texttt{qwen\_base} & ende & 34.1 & 36.8 \\
-    \texttt{qwen\_base} & enes & 50.2 & 49.0 \\
-    \texttt{qwen\_base} & enru & 32.2 & 28.5 \\
-    \texttt{gpt} & ende & 47.4 & 48.3 \\
-    \texttt{gpt} & enes & 57.7 & 56.0 \\
-    \texttt{gpt} & enru & 42.9 & 34.2 \\
-    \texttt{qwen\_lora} & ende & 50.2 & 42.4 \\
-    \texttt{qwen\_lora} & enes & 68.9 & 57.5 \\
-    \texttt{qwen\_lora} & enru & 49.7 & 41.1 \\
-    \hline
-  \end{tabular}
-  \caption{Macro BLEU by language pair, overlap vs.\ no\_overlap subsets, Qwen2.5-7B (full breakdown of Table~\ref{tab:leakage}).}
-  \label{tab:appendix-leakage}
-\end{table}
-
-\begin{table*}[t]
-  \centering \small
-  \begin{tabular}{llcccccc}
-    \hline
-    & & \multicolumn{3}{c}{zero-shot BLEU} & \multicolumn{3}{c}{few-shot BLEU} \\
-    \textbf{Model} & \textbf{Group} & DE & RU & ES & DE & RU & ES \\
-    \hline
-    GPT & -- & 44.2 & 33.5 & 48.0 & 47.8 & 37.2 & 57.4 \\
-    Qwen2.5-3B & qwen\_base & 18.6 & 9.2 & 22.2 & 29.2 & 26.4 & 45.4 \\
-    Qwen2.5-3B & qwen\_lora & 37.6 & 36.0 & 55.5 & 35.7 & 35.9 & 55.0 \\
-    Qwen2.5-7B & qwen\_base & 33.9 & 27.3 & 43.9 & 35.5 & 31.0 & 48.6 \\
-    Qwen2.5-7B & qwen\_lora & 42.7 & 42.8 & 59.9 & 41.8 & 41.4 & 58.1 \\
-    \hline
-  \end{tabular}
-  \caption{Few-shot ablation, macro BLEU per language pair, \texttt{proper\_term}, dev\_v1 (full breakdown of Table~\ref{tab:few-shot}).}
-  \label{tab:appendix-fewshot}
-\end{table*}
 
 \end{document}

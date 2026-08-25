@@ -2,7 +2,9 @@
 
 % Change "review" to "final" to generate the final (sometimes called camera-ready) version.
 % Change to "preprint" to generate a non-anonymous version with page numbers.
-\usepackage[review]{acl}
+% This is a course report, not a blind-review submission, so "preprint" (named,
+% numbered pages) is used instead of the template's default "review" (anonymous).
+\usepackage[preprint]{acl}
 
 % Standard package includes
 \usepackage{times}
@@ -10,9 +12,6 @@
 
 % For proper rendering and hyphenation of words containing Latin characters (including in bib files)
 \usepackage[T1]{fontenc}
-% For Vietnamese characters
-% \usepackage[T5]{fontenc}
-% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
 
 % This assumes your files are encoded as UTF8
 \usepackage[utf8]{inputenc}
@@ -27,351 +26,551 @@
 % the typewriter font.
 \usepackage{inconsolata}
 
-%Including images in your LaTeX document requires adding
-%additional package(s)
+% Including images in your LaTeX document requires adding
+% additional package(s)
 \usepackage{graphicx}
 
-% If the title and author information does not fit in the area allocated, uncomment the following
-%
-%\setlength\titlebox{<dim>}
-%
-% and set <dim> to something 5cm or larger.
+\title{Prompting vs. LoRA Fine-Tuning for Terminology-Constrained Translation of SAP Software Documentation}
+% TODO: working title -- revisit once all sections are drafted.
 
-\title{Instructions for *ACL Proceedings}
-
-% Author information can be set in various styles:
-% For several authors from the same institution:
-% \author{Author 1 \and ... \and Author n \\
-%         Address line \\ ... \\ Address line}
-% if the names do not fit well on one line use
-%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
-% For authors from different institutions:
-% \author{Author 1 \\ Address line \\  ... \\ Address line
-%         \And  ... \And
-%         Author n \\ Address line \\ ... \\ Address line}
-% To start a separate ``row'' of authors use \AND, as in
-% \author{Author 1 \\ Address line \\  ... \\ Address line
-%         \AND
-%         Author 2 \\ Address line \\ ... \\ Address line \And
-%         Author 3 \\ Address line \\ ... \\ Address line}
-
-\author{First Author \\
-  Affiliation / Address line 1 \\
-  Affiliation / Address line 2 \\
-  Affiliation / Address line 3 \\
-  \texttt{email@domain} \\\And
-  Second Author \\
-  Affiliation / Address line 1 \\
-  Affiliation / Address line 2 \\
-  Affiliation / Address line 3 \\
-  \texttt{email@domain} \\}
-
-%\author{
-%  \textbf{First Author\textsuperscript{1}},
-%  \textbf{Second Author\textsuperscript{1,2}},
-%  \textbf{Third T. Author\textsuperscript{1}},
-%  \textbf{Fourth Author\textsuperscript{1}},
-%\\
-%  \textbf{Fifth Author\textsuperscript{1,2}},
-%  \textbf{Sixth Author\textsuperscript{1}},
-%  \textbf{Seventh Author\textsuperscript{1}},
-%  \textbf{Eighth Author \textsuperscript{1,2,3,4}},
-%\\
-%  \textbf{Ninth Author\textsuperscript{1}},
-%  \textbf{Tenth Author\textsuperscript{1}},
-%  \textbf{Eleventh E. Author\textsuperscript{1,2,3,4,5}},
-%  \textbf{Twelfth Author\textsuperscript{1}},
-%\\
-%  \textbf{Thirteenth Author\textsuperscript{3}},
-%  \textbf{Fourteenth F. Author\textsuperscript{2,4}},
-%  \textbf{Fifteenth Author\textsuperscript{1}},
-%  \textbf{Sixteenth Author\textsuperscript{1}},
-%\\
-%  \textbf{Seventeenth S. Author\textsuperscript{4,5}},
-%  \textbf{Eighteenth Author\textsuperscript{3,4}},
-%  \textbf{Nineteenth N. Author\textsuperscript{2,5}},
-%  \textbf{Twentieth Author\textsuperscript{1}}
-%\\
-%\\
-%  \textsuperscript{1}Affiliation 1,
-%  \textsuperscript{2}Affiliation 2,
-%  \textsuperscript{3}Affiliation 3,
-%  \textsuperscript{4}Affiliation 4,
-%  \textsuperscript{5}Affiliation 5
-%\\
-%  \small{
-%    \textbf{Correspondence:} \href{mailto:email@domain}{email@domain}
-%  }
-%}
+\author{Ivan Pylypenko \\
+  Technical University of Munich \\
+  \texttt{TODO@tum.de} \\\And
+  Robin Schukrafft \\
+  Technical University of Munich \\
+  \texttt{TODO@tum.de} \\\And
+  Ilnur Gayetov \\
+  Technical University of Munich \\
+  \texttt{TODO@tum.de}}
+% TODO: confirm exact TUM email addresses before final compile.
 
 \begin{document}
 \maketitle
+
 \begin{abstract}
-This document is a supplement to the general instructions for *ACL authors. It contains instructions for using the \LaTeX{} style files for ACL conferences.
-The document itself conforms to its own specifications, and is therefore an example of what your manuscript should look like.
-These instructions should be used both for papers submitted for review and for final versions of accepted papers.
+% TODO: write last, after Sections 1-9 are drafted and Section 5's numbers are
+% verified against the current report tables. Should state the problem, the
+% three research questions (see Section~\ref{sec:introduction}), their short
+% answers, and headline BLEU/chrF/term-accuracy numbers.
 \end{abstract}
 
 \section{Introduction}
+\label{sec:introduction}
 
-These instructions are for authors submitting papers to *ACL conferences using \LaTeX. They are not self-contained. All authors must follow the general instructions for *ACL proceedings,\footnote{\url{http://acl-org.github.io/ACLPUB/formatting.html}} and this document contains additional instructions for the \LaTeX{} style files.
+Translating software documentation is rarely difficult at the level of grammar; the difficulty is choosing the right target-language form for a product-specific term. In SAP documentation, an English source word can have several plausible target-language candidates, only one of which matches the terminology that is actually approved and used consistently across a product's screens and manuals. Generic machine translation systems tend to pick a fluent alternative instead, which reads well in isolation but silently breaks terminology consistency across a large, interlinked body of documentation.
 
-The templates include the \LaTeX{} source of this document (\texttt{acl\_latex.tex}),
-the \LaTeX{} style file used to format it (\texttt{acl.sty}),
-an ACL bibliography style (\texttt{acl\_natbib.bst}),
-an example bibliography (\texttt{custom.bib}),
-and the bibliography for the ACL Anthology (\texttt{anthology.bib}).
+We treat this as a terminology-constrained machine translation problem: each source sentence is paired with a set of source$\rightarrow$target term pairs that a translation system should respect. Our setup follows the sentence-level framing of the WMT25 Terminology Translation Task~\citep{TODO:semenov2025wmt25}, but substitutes SAP post-edited documentation~\citep{TODO:sap2024termpostedits} as the concrete domain, since the shared task's own training data is not publicly available.
 
-\section{Engines}
+We compare two complementary ways of injecting terminology knowledge into a translation system: conditioning a model at inference time via a prompted term list, and adapting an open model's weights via LoRA fine-tuning~\citep{TODO:hu2022lora}. Within prompt conditioning, we further vary how the term list itself is built -- from the human-annotated list shipped with the evaluation set, to lists expanded or cleaned by an LLM, to a list mined from a related but disjoint corpus.
 
-To produce a PDF file, pdf\LaTeX{} is strongly recommended (over original \LaTeX{} plus dvips+ps2pdf or dvipdf).
-The style file \texttt{acl.sty} can also be used with
-lua\LaTeX{} and
-Xe\LaTeX{}, which are especially suitable for text in non-Latin scripts.
-The file \texttt{acl\_lualatex.tex} in this repository provides
-an example of how to use \texttt{acl.sty} with either
-lua\LaTeX{} or
-Xe\LaTeX{}.
+Concretely, we ask three questions:
 
-\section{Preamble}
+\begin{enumerate}
+    \item \textbf{Does terminology conditioning help?} Injecting a term list into the prompt should raise translation quality and, more directly, the rate at which required terms actually appear in the output -- but a model could just as well be responding to \emph{any} injected list rather than to term \emph{correctness} specifically. We test this with an unrelated-pairs control list evaluated alongside the real term list.
+    \item \textbf{Does how the term list is built matter?} We compare the original human-annotated term list against an LLM-expanded version, an LLM-cleaned (domain-filtered) version, and a list mined from a separate, related corpus, to see whether list \emph{size} and list \emph{precision} trade off against each other.
+    \item \textbf{Can LoRA fine-tuning close the gap to a closed frontier model?} We fine-tune open Qwen2.5 models~\citep{TODO:qwen2024} with LoRA on SAP documentation data and compare the result against GPT-4o-mini, with and without prompted terminology at inference.
+\end{enumerate}
 
-The first line of the file must be
+% TODO: once Section~\ref{sec:experiments}'s numbers are finalized and verified
+% against the current report tables, add a short results-preview sentence here
+% (headline BLEU/chrF/term-accuracy deltas) and mirror it in the abstract.
+
+This report makes the following contributions:
+\begin{itemize}
+    \item An evaluation harness that measures terminology-constrained translation with both generic (BLEU, chrF) and terminology-specific (term accuracy, macro/weighted consistency) metrics side by side, so the two families of metrics can be checked against each other rather than assumed to agree.
+    \item A controlled comparison of four term-list construction strategies (original, LLM-expanded, LLM-cleaned, dictionary-mined) under the same prompting setup and metric suite.
+    \item A LoRA fine-tuning study of open Qwen2.5 models against a closed frontier model on the same enterprise documentation domain, including an explicit train/test overlap honesty check to bound how much of any fine-tuning gain could be attributable to data leakage rather than genuine adaptation.
+\end{itemize}
+
+\section{Related Work}
+\label{sec:related-work}
+
+Terminology-aware machine translation covers a range of techniques, including constrained decoding, placeholder substitution, and glossary injection at inference time. The WMT25 Terminology Shared Task~\citep{TODO:semenov2025wmt25} found that terminology conditioning is especially useful for already-strong systems, and that evaluation must look beyond generic n-gram overlap to determine whether required terms actually appear in the output. We take that as an evaluation requirement throughout this report: we report BLEU and chrF, but treat term accuracy and consistency as first-class metrics rather than secondary diagnostics.
+
+Prompt-based glossary injection conditions a model without changing its weights. LoRA fine-tuning~\citep{TODO:hu2022lora} is the complementary route when in-domain parallel data is available, adapting model weights directly instead of relying on inference-time conditioning. We compare both routes on the same SAP documentation data, under the same prompting setup and metric suite. Our focus is not a new decoding algorithm or adaptation method; it is a controlled empirical comparison of term-list construction strategies and adaptation strategies for one enterprise documentation domain.
+
+\section{Data and Task}
+\label{sec:data-and-task}
+
+\subsection{Corpora}
+\label{sec:corpora}
+
+We use two JSONL releases derived from SAP documentation, for three language pairs: EN$\rightarrow$DE, EN$\rightarrow$RU, and EN$\rightarrow$ES.
+
+\textbf{dev\_v1} is our main evaluation set: 500 sentences per language pair, held out as a test set throughout this report.
+
+\textbf{dev\_v2} is prepared from the SAP \texttt{term\_postedits} corpus~\citep{TODO:sap2024termpostedits} (2{,}000 lines per language). We use it as a training-set proxy for the WMT25 Terminology Shared Task's own training data, which is not publicly released; dev\_v2 is therefore \emph{not} the original shared-task release, only the closest available same-domain substitute. Section~\ref{sec:methods} describes the smaller training-set size actually used for fine-tuning, after overlap removal against dev\_v1 and few-shot example reservation.
+
+The official WMT2025 terminology shared-task materials (task documentation and two evaluation tracks) are also available in our released code, but are not themselves used as training data here, for the reason above.
+
+\subsection{Record Format}
+\label{sec:record-format}
+
+Each record contains an English source sentence, a target-language reference, a set of domain \texttt{proper\_terms} (source$\rightarrow$target term pairs the translation should respect), and a set of non-domain \texttt{random\_terms} used as a control condition (Section~\ref{sec:exp-language-pairs}):
+
 \begin{quote}
 \begin{verbatim}
-\documentclass[11pt]{article}
+{
+  "en": "...",
+  "de": "...",
+  "proper_terms":
+    { "term": "translation" },
+  "random_terms":
+    { "word": "translation" }
+}
 \end{verbatim}
 \end{quote}
 
-To load the style file in the review version:
-\begin{quote}
-\begin{verbatim}
-\usepackage[review]{acl}
-\end{verbatim}
-\end{quote}
-For the final version, omit the \verb|review| option:
-\begin{quote}
-\begin{verbatim}
-\usepackage{acl}
-\end{verbatim}
-\end{quote}
+\subsection{Metrics}
+\label{sec:metrics}
 
-To use Times Roman, put the following in the preamble:
-\begin{quote}
-\begin{verbatim}
-\usepackage{times}
-\end{verbatim}
-\end{quote}
-(Alternatives like txfonts or newtx are also acceptable.)
+We report four metrics, computed per language pair and averaged (macro average) across the three pairs for prose-level comparisons; full per-language numbers are in Appendix~\ref{sec:appendix}.
 
-Please see the \LaTeX{} source of this document for comments on other packages that may be useful.
+\textbf{BLEU}~\citep{TODO:papineni2002bleu} and \textbf{chrF}~\citep{TODO:popovic2015chrf} measure overall lexical similarity to the reference. Both react to general fluency and adequacy but are weak signals of whether a specific required term form was actually used.
 
-Set the title and author using \verb|\title| and \verb|\author|. Within the author list, format multiple authors using \verb|\and| and \verb|\And| and \verb|\AND|; please see the \LaTeX{} source for examples.
+\textbf{Term accuracy (\%)} is the share of the provided \texttt{proper\_terms} whose required target-language form appears in the model's output, computed against the term inventory of the condition being evaluated (the inventory differs across term-list variants, Section~\ref{sec:methods}).
 
-By default, the box containing the title and author names is set to the minimum of 5 cm. If you need more space, include the following in the preamble:
-\begin{quote}
-\begin{verbatim}
-\setlength\titlebox{<dim>}
-\end{verbatim}
-\end{quote}
-where \verb|<dim>| is replaced with a length. Do not set this length smaller than 5 cm.
+\textbf{Macro consistency} is the mean, over all distinct terms seen in the corpus, of how consistently each term is translated the same way whenever it recurs. \textbf{Weighted consistency} is the same quantity, but weighted by how often each term actually occurs, so frequent terms contribute proportionally more.
 
-\section{Document Body}
+\section{Methods}
+\label{sec:methods}
 
-\subsection{Footnotes}
+% TODO: pipeline-overview figure (compact, new -- not reused from any prior
+% draft). Sketch: SAP term_postedits -> dev_v1/dev_v2 -> term-list variants
+% -> {prompt injection, LoRA} -> {GPT-4o-mini, Qwen2.5-3B/7B} -> metrics.
+% Build with the existing shared/lib/analysis plotting infrastructure once the
+% Experiments sections' figures are being produced (report/PLAN.md \S5).
 
-Footnotes are inserted with the \verb|\footnote| command.\footnote{This is a footnote.}
+\subsection{Prompt Conditioning}
+\label{sec:prompt-conditioning}
 
-\subsection{Tables and figures}
+At inference, we translate with a short instruction and an optional glossary block. Three modes isolate the effect of terminology conditioning: \texttt{no\_term} (translate without any terminology), \texttt{proper\_term} (inject the domain term pairs for that sentence), and \texttt{random\_term} (inject an unrelated, non-domain control list). Unless stated otherwise, runs use three few-shot examples per language. GPT-4o-mini is called through OpenRouter; Qwen models are run locally as instruction-tuned checkpoints.
 
-See Table~\ref{tab:accents} for an example of a table and its caption.
-\textbf{Do not override the default caption sizes.}
+\subsection{Term-List Variants}
+\label{sec:term-list-variants}
 
-\begin{table}
+Starting from the original human-annotated \texttt{proper\_terms} shipped with dev\_v1, we build three additional variants that change the glossary content while keeping the underlying sentences fixed: an \textbf{expanded} list, where an LLM appends additional in-context term pairs to the original list; a \textbf{cleaned} list, where an LLM removes weak or overly generic entries from the expanded list; and a \textbf{dictionary} list, mined from dev\_v2 and matched back onto dev\_v1 sources via an external term dictionary. These variants change both the size and the precision of the constraints supplied to the model, letting us separate the effect of list coverage from list quality.
+
+\subsection{Models and Fine-Tuning}
+\label{sec:models-and-finetuning}
+
+We evaluate GPT-4o-mini and open Qwen2.5-3B/7B-Instruct. For fine-tuning, we train LoRA adapters on Qwen2.5-3B/7B using a dev\_v2-derived training set, held out from dev\_v1 by removing exact-overlap lines and reserving few-shot examples (1{,}497--1{,}498 lines per language, depending on language pair). We sweep 1--3 LoRA epochs, and evaluate both zero-shot and few-shot prompting at inference (with \texttt{proper\_term} conditioning throughout). All fine-tuning runs are evaluated on the held-out dev\_v1 test set.
+
+\section{Experiments}
+\label{sec:experiments}
+% TODO (see report/PLAN.md \S5): backbone is report/README.md \S3.1-\S3.4.2.
+% Fixed template per subsection: RQ -> setup -> table/figure -> findings.
+% Re-verify every number against current .xlsx output before writing prose.
+
+\subsection{Terminology Modes Across Language Pairs}
+\label{sec:exp-language-pairs}
+
+\textbf{RQ:} Does injecting explicit terminology constraints improve translation quality and term fidelity over no constraints, does an unrelated (random-term) constraint list act as a fair control, and does the benefit vary by language pair?
+
+Table~\ref{tab:modes-by-language} reports GPT-4o-mini under all three prompt modes (Section~\ref{sec:prompt-conditioning}) with the original term list, for all three language pairs. Injecting the real term list raises macro BLEU from 39.6 (\texttt{no\_term}) to 46.1 (\texttt{proper\_term}) and chrF from 65.2 to 72.0. The random-term control also raises BLEU, but only to 42.4 -- well below \texttt{proper\_term} -- even though the model still realizes a large share of the \emph{injected} random forms (86.4\% term accuracy on the control pairs). This shows that following an injected list is not by itself what drives the quality gain: the content of the list matters, not just its presence.
+
+The pattern is consistent inside each pair but not uniform: EN$\rightarrow$ES is strongest on both BLEU and term accuracy in every mode; EN$\rightarrow$DE beats EN$\rightarrow$RU on BLEU under \texttt{proper\_term}, while EN$\rightarrow$RU is essentially tied with EN$\rightarrow$DE on term accuracy (70.3\% vs.\ 60.5\%, RU actually higher) -- so a single macro average obscures which language pair benefits most from which effect.
+
+% TODO figure: column-width bar chart, GPT-4o-mini BLEU + term accuracy by
+% language pair under no_term/proper_term/random_term (builds on
+% shared/lib/analysis/grouped_bar_figure_common.py). Qwen 3B/7B show the same
+% qualitative pattern; full per-model breakdown in Appendix~\ref{sec:appendix}.
+
+\begin{table}[t]
   \centering
-  \begin{tabular}{lc}
+  \small
+  \begin{tabular}{lccc}
     \hline
-    \textbf{Command} & \textbf{Output} \\
+    \textbf{Mode / Pair} & \textbf{BLEU} & \textbf{chrF} & \textbf{Term Acc.\%} \\
     \hline
-    \verb|{\"a}|     & {\"a}           \\
-    \verb|{\^e}|     & {\^e}           \\
-    \verb|{\`i}|     & {\`i}           \\
-    \verb|{\.I}|     & {\.I}           \\
-    \verb|{\o}|      & {\o}            \\
-    \verb|{\'u}|     & {\'u}           \\
-    \verb|{\aa}|     & {\aa}           \\\hline
+    \texttt{no\_term} \\
+    \quad EN$\to$DE & 42.2 & 66.9 & -- \\
+    \quad EN$\to$RU & 28.3 & 59.2 & -- \\
+    \quad EN$\to$ES & 48.3 & 69.4 & -- \\
+    \quad macro     & 39.6 & 65.2 & -- \\
+    \hline
+    \texttt{proper\_term} \\
+    \quad EN$\to$DE & 48.6 & 74.0 & 60.5 \\
+    \quad EN$\to$RU & 35.8 & 66.6 & 70.3 \\
+    \quad EN$\to$ES & \textbf{54.0} & \textbf{75.5} & \textbf{89.0} \\
+    \quad macro     & \textbf{46.1} & \textbf{72.0} & 73.3 \\
+    \hline
+    \texttt{random\_term} \\
+    \quad EN$\to$DE & 44.0 & 69.8 & 81.1$^\dagger$ \\
+    \quad EN$\to$RU & 31.6 & 62.9 & 81.3$^\dagger$ \\
+    \quad EN$\to$ES & 51.4 & 72.5 & 96.8$^\dagger$ \\
+    \quad macro     & 42.4 & 68.4 & 86.4$^\dagger$ \\
+    \hline
   \end{tabular}
-  \begin{tabular}{lc}
-    \hline
-    \textbf{Command} & \textbf{Output} \\
-    \hline
-    \verb|{\c c}|    & {\c c}          \\
-    \verb|{\u g}|    & {\u g}          \\
-    \verb|{\l}|      & {\l}            \\
-    \verb|{\~n}|     & {\~n}           \\
-    \verb|{\H o}|    & {\H o}          \\
-    \verb|{\v r}|    & {\v r}          \\
-    \verb|{\ss}|     & {\ss}           \\
-    \hline
-  \end{tabular}
-  \caption{Example commands for accented characters, to be used in, \emph{e.g.}, Bib\TeX{} entries.}
-  \label{tab:accents}
+  \caption{GPT-4o-mini prompt modes on dev\_v1, original term list. $^\dagger$Accuracy on the injected random control pairs, not on proper terms.}
+  \label{tab:modes-by-language}
 \end{table}
 
-As much as possible, fonts in figures should conform
-to the document fonts. See Figure~\ref{fig:experiments} for an example of a figure and its caption.
+\subsection{Terminology Modes Across Models}
+\label{sec:exp-models}
 
-Using the \verb|graphicx| package graphics files can be included within figure
-environment at an appropriate point within the text.
-The \verb|graphicx| package supports various optional arguments to control the
-appearance of the figure.
-You must include it explicitly in the \LaTeX{} preamble (after the
-\verb|\documentclass| declaration and before \verb|\begin{document}|) using
-\verb|\usepackage{graphicx}|.
+\textbf{RQ:} How does a closed frontier model compare to open base models on terminology-constrained translation, and does the ranking between models hold across term-list construction strategies?
 
-\begin{figure}[t]
-  \includegraphics[width=\columnwidth]{example-image-golden}
-  \caption{A figure with a caption that runs for more than one line.
-    Example image is usually available through the \texttt{mwe} package
-    without even mentioning it in the preamble.}
-  \label{fig:experiments}
-\end{figure}
+Table~\ref{tab:models-by-variant} reports macro-averaged (over the three language pairs) BLEU and term accuracy for all three models under \texttt{proper\_term} prompting, across all four term-list variants (Section~\ref{sec:term-list-variants}). GPT-4o-mini leads both metrics in every variant, followed by Qwen2.5-7B, then Qwen2.5-3B -- the model ranking is stable regardless of how the term list was built. Expanding the term list narrows the BLEU gap between GPT-4o-mini and Qwen2.5-7B less than it narrows the term-accuracy gap: under \texttt{cleaned}, Qwen2.5-7B's term accuracy (80.8\%) approaches GPT-4o-mini's (85.2\%), while its BLEU (42.2) remains well below GPT-4o-mini's (50.5). This suggests the smaller open model benefits from a higher-precision term list disproportionately on term realization rather than on overall fluency/adequacy.
 
-\begin{figure*}[t]
-  \includegraphics[width=0.48\linewidth]{example-image-a} \hfill
-  \includegraphics[width=0.48\linewidth]{example-image-b}
-  \caption {A minimal working example to demonstrate how to place
-    two images side-by-side.}
-\end{figure*}
+Across variants, the same size-vs-precision trade-off observed for GPT-4o-mini in Section~\ref{sec:exp-language-pairs} holds for both Qwen sizes: \texttt{dictionary} and \texttt{expand} give the largest BLEU gains, \texttt{cleaned} gives the largest term-accuracy gains, for all three models.
 
-\subsection{Hyperlinks}
+% TODO figure: column-width bar chart, macro BLEU + term accuracy by model
+% under original/expand/cleaned/dictionary (builds on
+% shared/lib/analysis/grouped_bar_figure_common.py). Full per-language,
+% per-model breakdown in Appendix~\ref{sec:appendix}.
 
-Users of older versions of \LaTeX{} may encounter the following error during compilation:
-\begin{quote}
-\verb|\pdfendlink| ended up in different nesting level than \verb|\pdfstartlink|.
-\end{quote}
-This happens when pdf\LaTeX{} is used and a citation splits across a page boundary. The best way to fix this is to upgrade \LaTeX{} to 2018-12-01 or later.
-
-\subsection{Citations}
-
-\begin{table*}
+\begin{table}[t]
   \centering
-  \begin{tabular}{lll}
+  \small
+  \begin{tabular}{lccc}
     \hline
-    \textbf{Output}           & \textbf{natbib command} & \textbf{ACL only command} \\
+    \textbf{Term list} & \textbf{GPT} & \textbf{Qwen 3B} & \textbf{Qwen 7B} \\
     \hline
-    \citep{Gusfield:97}       & \verb|\citep|           &                           \\
-    \citealp{Gusfield:97}     & \verb|\citealp|         &                           \\
-    \citet{Gusfield:97}       & \verb|\citet|           &                           \\
-    \citeyearpar{Gusfield:97} & \verb|\citeyearpar|     &                           \\
-    \citeposs{Gusfield:97}    &                         & \verb|\citeposs|          \\
+    \multicolumn{4}{l}{\emph{BLEU}} \\
+    original   & 46.1 & 28.2 & 38.1 \\
+    expand     & 53.9 & 37.6 & 46.4 \\
+    cleaned    & 50.5 & 34.0 & 42.2 \\
+    dictionary & \textbf{54.2} & 42.6 & 48.8 \\
+    \hline
+    \multicolumn{4}{l}{\emph{Term Accuracy \%}} \\
+    original   & 73.3 & 60.0 & 67.9 \\
+    expand     & 82.5 & 71.8 & 79.6 \\
+    cleaned    & \textbf{85.2} & 73.2 & 80.8 \\
+    dictionary & 79.1 & 71.4 & 75.9 \\
     \hline
   \end{tabular}
-  \caption{\label{citation-guide}
-    Citation commands supported by the style file.
-    The style is based on the natbib package and supports all natbib citation commands.
-    It also supports commands defined in previous ACL style files for compatibility.
-  }
-\end{table*}
+  \caption{Macro-averaged BLEU and term accuracy by model and term-list variant, \texttt{proper\_term}, dev\_v1.}
+  \label{tab:models-by-variant}
+\end{table}
 
-Table~\ref{citation-guide} shows the syntax supported by the style files.
-We encourage you to use the natbib styles.
-You can use the command \verb|\citet| (cite in text) to get ``author (year)'' citations, like this citation to a paper by \citet{Gusfield:97}.
-You can use the command \verb|\citep| (cite in parentheses) to get ``(author, year)'' citations \citep{Gusfield:97}.
-You can use the command \verb|\citealp| (alternative cite without parentheses) to get ``author, year'' citations, which is useful for using citations within parentheses (e.g. \citealp{Gusfield:97}).
+\subsection{dev\_v1 vs. dev\_v2 Comparability}
+\label{sec:exp-dataset-comparison}
 
-A possessive citation can be made with the command \verb|\citeposs|.
-This is not a standard natbib command, so it is generally not compatible
-with other style files.
+This subsection is background context for Section~\ref{sec:exp-leakage}, not one of the three central research questions. \textbf{RQ:} How comparable is the dev\_v2 proxy training set to the dev\_v1 test set, for the same model?
 
-\subsection{References}
+Table~\ref{tab:dev-comparison} compares GPT-4o-mini, macro-averaged over language pairs, on dev\_v1 and dev\_v2 under all three prompt modes. dev\_v2 scores consistently higher than dev\_v1 across every mode and metric. dev\_v2 (2{,}000 sentences/language) is four times larger than dev\_v1 (500 sentences/language) in this comparison; BLEU and chrF are corpus-level aggregates, so the size difference does not by itself bias either score, but dev\_v1's estimate carries more sampling noise than dev\_v2's. We do not compute confidence intervals or bootstrap resampling for any metric in this report (all results are single-run point estimates), so the gaps in Table~\ref{tab:dev-comparison} should be read as broadly consistent rather than as a precise, statistically validated difference.
 
-\nocite{Ando2005,andrew2007scalable,rasooli-tetrault-2015}
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \hline
+    \textbf{Mode} & \textbf{BLEU} & \textbf{chrF} & \textbf{Term Acc.\%} \\
+    \hline
+    \multicolumn{4}{l}{\emph{dev\_v1}} \\
+    no\_term     & 39.6 & 65.2 & -- \\
+    proper\_term & 46.1 & 72.0 & 73.3 \\
+    random\_term & 42.4 & 68.4 & 86.4$^\dagger$ \\
+    \hline
+    \multicolumn{4}{l}{\emph{dev\_v2}} \\
+    no\_term     & 42.2 & 67.0 & -- \\
+    proper\_term & \textbf{51.2} & \textbf{74.7} & \textbf{88.2} \\
+    random\_term & 45.6 & 70.7 & 87.7$^\dagger$ \\
+    \hline
+  \end{tabular}
+  \caption{GPT-4o-mini macro-averaged BLEU/chrF/term accuracy, dev\_v1 vs.\ dev\_v2, all three prompt modes. $^\dagger$Accuracy on injected random control pairs.}
+  \label{tab:dev-comparison}
+\end{table}
 
-The \LaTeX{} and Bib\TeX{} style files provided roughly follow the American Psychological Association format.
-If your own bib file is named \texttt{custom.bib}, then placing the following before any appendices in your \LaTeX{} file will generate the references section for you:
-\begin{quote}
-\begin{verbatim}
-\bibliography{custom}
-\end{verbatim}
-\end{quote}
+\subsection{LoRA Fine-Tuning}
+\label{sec:exp-lora}
 
-You can obtain the complete ACL Anthology as a Bib\TeX{} file from \url{https://aclweb.org/anthology/anthology.bib.gz}.
-To include both the Anthology and your own .bib file, use the following instead of the above.
-\begin{quote}
-\begin{verbatim}
-\bibliography{anthology,custom}
-\end{verbatim}
-\end{quote}
+\textbf{RQ:} Does LoRA fine-tuning on dev\_v2 close the gap between open Qwen2.5 models and GPT-4o-mini on terminology-constrained translation? All results in this subsection use \texttt{proper\_term} prompting, zero-shot at inference (Section~\ref{sec:models-and-finetuning}).
 
-Please see Section~\ref{sec:bibtex} for information on preparing Bib\TeX{} files.
+Table~\ref{tab:epoch-ablation} shows macro-averaged BLEU and term accuracy from the untrained zero-shot base through 1--3 LoRA epochs, for both model sizes. BLEU gains build steadily through training for both sizes (Qwen2.5-7B: 35.0 base $\to$ 51.4 at 2 epochs; Qwen2.5-3B: 16.6 base $\to$ 47.1 at 2 epochs) and largely plateau by the third epoch. Term accuracy moves far less than BLEU for Qwen2.5-7B (69.9\% base to 70.8\% at 3 epochs -- fine-tuning mainly improves fluency/adequacy, not term realization, which the base model already handles reasonably well). Qwen2.5-3B's term accuracy moves more (44.5\% base to 68.0\% at 2 epochs), since its untrained baseline starts substantially lower.
 
-\subsection{Equations}
+Table~\ref{tab:best-vs-gpt} compares the best-performing open configuration, Qwen2.5-7B LoRA at 2 epochs, against GPT-4o-mini. The tuned 7B model beats GPT-4o-mini on macro BLEU (51.4 vs.\ 47.5) and chrF (75.0 vs.\ 73.3), with the largest single-pair gain on EN$\to$RU (45.7 vs.\ 37.2 BLEU). GPT-4o-mini still leads on term accuracy (74.8\% vs.\ 69.8\%). We use the 2-epoch checkpoint as ``best'' because 3 epochs gives essentially the same BLEU/chrF for a small term-accuracy gain, and Section~\ref{sec:exp-leakage} and the Limitations section note evidence that this choice is not free of overfitting risk.
 
-An example equation is shown below:
-\begin{equation}
-  \label{eq:example}
-  A = \pi r^2
-\end{equation}
+% TODO figure: epoch ablation line/bar chart (both model sizes) + best-config
+% by-language-pair comparison, mirroring
+% experiments/lora_finetuning/{epoch_ablation,best_models}/figures/ but
+% rebuilt at column width via shared/lib/analysis plotting code.
 
-Labels for equation numbers, sections, subsections, figures and tables
-are all defined with the \verb|\label{label}| command and cross references
-to them are made with the \verb|\ref{label}| command.
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lcccc}
+    \hline
+     & \textbf{base} & \textbf{1 ep} & \textbf{2 ep} & \textbf{3 ep} \\
+    \hline
+    \multicolumn{5}{l}{\emph{Qwen2.5-7B, macro BLEU}} \\
+    & 35.0 & 48.5 & \textbf{51.4} & 51.2 \\
+    \multicolumn{5}{l}{\emph{Qwen2.5-7B, macro Term Acc.\%}} \\
+    & 69.9 & 69.7 & 69.8 & \textbf{70.8} \\
+    \hline
+    \multicolumn{5}{l}{\emph{Qwen2.5-3B, macro BLEU}} \\
+    & 16.6 & 43.0 & 47.1 & \textbf{47.5} \\
+    \multicolumn{5}{l}{\emph{Qwen2.5-3B, macro Term Acc.\%}} \\
+    & 44.5 & 64.7 & \textbf{68.0} & 67.4 \\
+    \hline
+  \end{tabular}
+  \caption{LoRA epoch ablation, zero-shot, dev\_v1, \texttt{proper\_term}. ``base'' is the untrained zero-shot checkpoint.}
+  \label{tab:epoch-ablation}
+\end{table}
 
-This an example cross-reference to Equation~\ref{eq:example}.
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lcc}
+    \hline
+    & \textbf{Qwen2.5-7B LoRA (2ep)} & \textbf{GPT-4o-mini} \\
+    \hline
+    BLEU & \textbf{51.4} & 47.5 \\
+    chrF & \textbf{75.0} & 73.3 \\
+    Term Acc.\% & 69.8 & \textbf{74.8} \\
+    \hline
+  \end{tabular}
+  \caption{Best open configuration vs.\ GPT-4o-mini, macro-averaged, dev\_v1, \texttt{proper\_term}, zero-shot.}
+  \label{tab:best-vs-gpt}
+\end{table}
 
-\subsection{Appendices}
+\subsubsection{Few-Shot Ablation}
+\label{sec:exp-few-shot}
 
-Use \verb|\appendix| before any appendix section to switch the section numbering over to letters. See Appendix~\ref{sec:appendix} for an example.
+There are two distinct few-shot comparisons in our results, which we report separately since they answer different questions.
 
-\section{Bib\TeX{} Files}
-\label{sec:bibtex}
+\textbf{Baseline-level (no fine-tuning).} Comparing zero-shot vs.\ three-shot prompting for the untrained models (Table~\ref{tab:few-shot}, top): few-shot prompting helps the smaller model far more than the larger ones. Qwen2.5-3B's macro BLEU roughly doubles (16.6 $\to$ 33.7) and term accuracy jumps 20 points (44.5\% $\to$ 64.4\%) with few-shot examples. Qwen2.5-7B and GPT-4o-mini both gain BLEU from few-shot (35.0 $\to$ 38.4 and 41.9 $\to$ 47.5 respectively) but see a small term-accuracy \emph{drop} (69.9\% $\to$ 67.8\% and 75.8\% $\to$ 74.8\%) -- for already-capable models, the extra examples appear to trade a little term precision for overall fluency.
 
-Unicode cannot be used in Bib\TeX{} entries, and some ways of typing special characters can disrupt Bib\TeX's alphabetization. The recommended way of typing special characters is shown in Table~\ref{tab:accents}.
+\textbf{LoRA-level (fine-tuned, 1 epoch, zero-shot vs.\ few-shot at inference).} Holding epoch count fixed at 1 isolates whether few-shot prompting still contributes after fine-tuning, independent of training length (Table~\ref{tab:few-shot}, bottom). Here the effect is small in both directions: Qwen2.5-3B's term accuracy rises slightly with few-shot (64.7\% $\to$ 66.1\%) while BLEU dips slightly (43.0 $\to$ 42.2); Qwen2.5-7B is essentially flat on term accuracy (69.7\% $\to$ 70.0\%) with a similar small BLEU dip (48.5 $\to$ 47.1). Once a model has been fine-tuned on in-domain data, few-shot prompting no longer moves the needle the way it does for the untrained baseline -- fine-tuning and few-shot prompting appear to supply overlapping rather than additive signal.
 
-Please ensure that Bib\TeX{} records contain DOIs or URLs when possible, and for all the ACL materials that you reference.
-Use the \verb|doi| field for DOIs and the \verb|url| field for URLs.
-If a Bib\TeX{} entry has a URL or DOI field, the paper title in the references section will appear as a hyperlink to the paper, using the hyperref \LaTeX{} package.
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lcccc}
+    \hline
+    & \multicolumn{2}{c}{\textbf{BLEU}} & \multicolumn{2}{c}{\textbf{Term Acc.\%}} \\
+    & zero & few & zero & few \\
+    \hline
+    \multicolumn{5}{l}{\emph{Baseline (untrained)}} \\
+    GPT        & 41.9 & \textbf{47.5} & \textbf{75.8} & 74.8 \\
+    Qwen 3B    & 16.6 & \textbf{33.7} & 44.5 & \textbf{64.4} \\
+    Qwen 7B    & 35.0 & \textbf{38.4} & \textbf{69.9} & 67.8 \\
+    \hline
+    \multicolumn{5}{l}{\emph{LoRA, 1 epoch}} \\
+    Qwen 3B    & \textbf{43.0} & 42.2 & 64.7 & \textbf{66.1} \\
+    Qwen 7B    & \textbf{48.5} & 47.1 & 69.7 & \textbf{70.0} \\
+    \hline
+  \end{tabular}
+  \caption{Few-shot ablation, macro-averaged, dev\_v1, \texttt{proper\_term}. Top: untrained baseline. Bottom: LoRA fine-tuned, held at 1 epoch.}
+  \label{tab:few-shot}
+\end{table}
+
+\subsubsection{Data-Leakage Honesty Check}
+\label{sec:exp-leakage}
+
+dev\_v2 is used as a training-set proxy (Section~\ref{sec:corpora}) because the real WMT25 shared-task training data is unavailable. Since dev\_v1 and dev\_v2 are drawn from overlapping SAP documentation, some dev\_v2 training lines are near-duplicates of dev\_v1 test lines even after exact-overlap deduplication -- fine-tuning on them could leak test signal and inflate LoRA's apparent gains.
+
+We split the dev\_v1 Qwen2.5-7B test set into an \texttt{overlap} subset (near-duplicate training sentence exists, $\geq$50\% token containment) and a \texttt{no\_overlap} subset (no such duplicate), balanced to 164 sentences per language, and evaluate the untrained base model, GPT-4o-mini (never exposed to dev\_v2), and the fine-tuned LoRA model on both. Table~\ref{tab:leakage} reports macro-averaged BLEU. All three models score higher on \texttt{overlap} than \texttt{no\_overlap}, and the gap grows with training exposure: negligible for the untrained base (+0.8), moderate for GPT-4o-mini (+3.2, despite never training on dev\_v2 -- an inherent difficulty difference between the subsets), and largest for the fine-tuned model (+9.3). On the leakage-free \texttt{no\_overlap} subset, LoRA's BLEU edge over GPT-4o-mini shrinks from +6.9 (on \texttt{overlap}) to +0.8.
+
+This should be read as leakage-inflation evidence \emph{on top of} a real difficulty confound, not instead of it: the \texttt{overlap} subset's sentences are also substantially shorter (roughly 30--49\% fewer words per sentence, depending on language pair) with a higher ratio of terms to words, while the total number of distinct terms per subset is nearly identical -- so \texttt{overlap} sentences are inherently easier for any model, which is exactly why even GPT-4o-mini (which never saw dev\_v2) shows a gap. The fine-tuned model's substantially larger gap is the leakage signal on top of that shared difficulty effect.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \hline
+    \textbf{Model} & \textbf{overlap} & \textbf{no\_overlap} & \textbf{gap} \\
+    \hline
+    Qwen base (untrained) & 38.8 & 38.1 & +0.8 \\
+    GPT-4o-mini (control) & 49.3 & 46.2 & +3.2 \\
+    Qwen LoRA (trained)   & 56.3 & 47.0 & +9.3 \\
+    \hline
+  \end{tabular}
+  \caption{Macro BLEU on lexically overlapping vs.\ non-overlapping dev\_v1 subsets (Qwen2.5-7B), balanced to 164 sentences/language/subset.}
+  \label{tab:leakage}
+\end{table}
+
+\section{Discussion}
+\label{sec:discussion}
+
+Two tensions run through the results in Section~\ref{sec:experiments}.
+
+First, generic and terminology-specific metrics disagree about what ``better'' means, and the disagreement is not noise -- it is systematic. The random-term control (Section~\ref{sec:exp-language-pairs}) shows a model will realize whatever list it is given regardless of correctness, so term accuracy alone cannot certify that terminology conditioning is working as intended; BLEU/chrF are needed to confirm the injected terms are actually correct ones. Conversely, among the real term-list variants (Section~\ref{sec:exp-models}), dictionary and expanded lists win on BLEU/chrF while the cleaned list wins on term accuracy and consistency, for every model we tested. If a deployment's priority is UI-label fidelity rather than general fluency, BLEU is the wrong metric to optimize against.
+
+Second, prompting and weight adaptation address different parts of the problem. LoRA fine-tuning (Section~\ref{sec:exp-lora}) recovers most of the fluency/adequacy gap to GPT-4o-mini for Qwen2.5-7B, and moves term accuracy only modestly -- the base model already realizes injected terms reasonably well; what fine-tuning mainly buys is domain style and reference overlap. All of our fine-tuning runs keep \texttt{proper\_term} prompting at inference, so we do not measure how much of the term-accuracy gap is inherent to the base model versus how much the glossary block itself is doing after adaptation; under that shared setup, the tuned model still trails GPT-4o-mini on term accuracy specifically.
+
+The overlap caveat (Section~\ref{sec:exp-leakage}) belongs here rather than only in Limitations: because some test sentences resemble dev\_v2 training text, and that resemblance is itself correlated with sentence difficulty, LoRA's BLEU gains over GPT-4o-mini should be read as an upper estimate for this data regime -- on the leakage-free subset the LoRA-vs-GPT-4o-mini edge nearly disappears -- not as a guarantee that would hold on fully disjoint documentation.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We studied terminology-constrained translation of SAP software documentation along three axes. Terminology conditioning helps, and the random-term control confirms the gain comes from term \emph{correctness}, not merely from following an injected list. How the term list is built matters as much as whether one is used at all: expanded and dictionary-mined lists raise BLEU/chrF most, while a cleaned, domain-filtered list raises term accuracy and consistency most, so list-construction strategy should be chosen according to the deployment's actual priority. LoRA fine-tuning closes much of the fluency gap between an open Qwen2.5-7B model and GPT-4o-mini, and can beat it on BLEU/chrF, but GPT-4o-mini remains the more reliable choice specifically for term realization, and part of the open model's apparent gain is attributable to train/test lexical overlap rather than pure adaptation.
+
+All of the prompt-conditioning experiments in this report assume an oracle or offline-constructed term list is available at inference time. A natural next step is to drop that assumption and have the model extract and propose its own terminology from the source sentence at inference time, then measure how much of the oracle-term-list advantage survives; we have preliminary, not-yet-validated infrastructure for exactly this comparison and leave a full treatment to future work.
 
 \section*{Limitations}
 
-This document does not cover the content requirements for ACL or any
-other specific venue.  Check the author instructions for
-information on
-maximum page lengths, the required ``Limitations'' section,
-and so on.
+Our evaluation is narrow in scope: three language pairs (EN$\to$DE/RU/ES) and a single enterprise documentation domain (SAP software documentation), so transfer to other products, domains, or language pairs is untested. The evaluation sets are also modest -- 500 test sentences per language on dev\_v1, roughly 1{,}500 training sentences per language on dev\_v2 after overlap removal -- which limits statistical power; all results in this report are single-run point estimates with no confidence intervals or bootstrap resampling, so small gaps between conditions should be read as indicative rather than statistically confirmed.
+
+Train/test lexical overlap is a concrete caveat, quantified in Section~\ref{sec:exp-leakage}: some dev\_v1 test sentences resemble dev\_v2 training sentences, and while the higher-overlap subset is also inherently easier (shorter, denser sentences) for every model we tested -- including one that never trained on dev\_v2 -- the fine-tuned model's overlap-vs-no-overlap gap is still substantially larger than the untrained baseline's, so some of LoRA's apparent BLEU advantage should be read as an upper bound rather than a number that would hold on fully disjoint documentation.
+
+Most of our prompt-conditioning experiments (Sections~\ref{sec:exp-language-pairs}--\ref{sec:exp-models}) assume an oracle or offline-constructed term list is available at inference time. This is useful for isolating the effect of terminology control, but it is not the deployment setting where terms must be extracted from the source sentence at inference time with no oracle access; we have not yet validated our own extract-and-propose pipeline for this closely enough to report it here (Section~\ref{sec:conclusion}).
+
+Finally, our term accuracy metric checks only surface-form presence of the required target term. It does not capture morphological agreement or whether a correctly-inflected term appears in the syntactically appropriate slot, so it can both over- and under-count correct terminology use in morphologically richer target languages (notably Russian).
+
+The ``best'' LoRA configuration we report (Qwen2.5-7B, 2 epochs, Section~\ref{sec:exp-lora}) is chosen because BLEU/chrF plateau by the third epoch for only a small further term-accuracy gain -- this is consistent with, but does not rule out, mild overfitting past 2 epochs on our specific training set size.
+
+\section*{Ethics Statement}
+
+This work uses the publicly released SAP \texttt{term\_postedits} software-documentation dataset~\citep{TODO:sap2024termpostedits}, which contains professional software-documentation text and terminology, not personal data. All experiments were carried out as a course project at the Technical University of Munich for research purposes; no models were deployed and no user-facing system was built.
 
 \section*{Acknowledgments}
 
-This document has been adapted
-by Steven Bethard, Ryan Cotterell and Rui Yan
-from the instructions for earlier ACL and NAACL proceedings, including those for
-ACL 2019 by Douwe Kiela and Ivan Vuli\'{c},
-NAACL 2019 by Stephanie Lukin and Alla Roskovskaya,
-ACL 2018 by Shay Cohen, Kevin Gimpel, and Wei Lu,
-NAACL 2018 by Margaret Mitchell and Stephanie Lukin,
-Bib\TeX{} suggestions for (NA)ACL 2017/2018 from Jason Eisner,
-ACL 2017 by Dan Gildea and Min-Yen Kan,
-NAACL 2017 by Margaret Mitchell,
-ACL 2012 by Maggie Li and Michael White,
-ACL 2010 by Jing-Shin Chang and Philipp Koehn,
-ACL 2008 by Johanna D. Moore, Simone Teufel, James Allan, and Sadaoki Furui,
-ACL 2005 by Hwee Tou Ng and Kemal Oflazer,
-ACL 2002 by Eugene Charniak and Dekang Lin,
-and earlier ACL and EACL formats written by several people, including
-John Chen, Henry S. Thompson and Donald Walker.
-Additional elements were taken from the formatting instructions of the \emph{International Joint Conference on Artificial Intelligence} and the \emph{Conference on Computer Vision and Pattern Recognition}.
+This work was carried out as a course project at the Technical University of Munich. We thank Dr.\ Marion Di Marco for supervision and feedback.
 
-% Bibliography entries for the entire Anthology, followed by custom entries
-%\bibliography{custom,anthology-overleaf-1,anthology-overleaf-2}
+\section*{Author Contributions}
 
-% Custom bibliography entries only
+\textbf{Ivan Pylypenko} led the Qwen2.5 baseline and LoRA fine-tuning study: training and evaluation runs, held-out splits, overlap filtering, and Excel comparison exports. Also ran the GPT-4o-mini comparison baselines used alongside the fine-tuned models, and contributed poster draft assets and chart updates in the repository.
+
+\textbf{Robin Schukrafft} built the GPT-proposed term pipeline and ran those experiments, constructed the term dictionary and applied it to dev\_v1, and ran GPT baselines on the dictionary setting. Implemented the matplotlib analysis scripts and result figures used in the poster and report.
+
+\textbf{Ilnur Gayetov} set up the data-preparation pipeline for SAP \texttt{term\_postedits} (JSONL task format, term-pair collection, and the initial term-expansion script) and restructured the project. Refactored shared evaluation into reusable modules and added evaluation runners for local Qwen and OpenRouter GPT-4o-mini.
+
+% TODO: create/attach custom.bib with verified entries (WMT25 shared task,
+% Hu et al. 2022 LoRA, Papineni et al. 2002 BLEU, Popovic 2015 chrF,
+% Qwen2.5 technical report, SAP term_postedits dataset) before this compiles
+% cleanly -- do not fabricate entries.
 \bibliography{custom}
 
 \appendix
 
-\section{Example Appendix}
+\section{Full Per-Language Result Tables}
 \label{sec:appendix}
 
-This is an appendix.
+\begin{table*}[t]
+  \centering \small
+  \begin{tabular}{llccc ccc ccc}
+    \hline
+    & & \multicolumn{3}{c}{BLEU} & \multicolumn{3}{c}{chrF} & \multicolumn{3}{c}{Term Acc.\%} \\
+    \textbf{Mode} & \textbf{Model} & DE & RU & ES & DE & RU & ES & DE & RU & ES \\
+    \hline
+    \multicolumn{11}{l}{\texttt{no\_term}} \\
+    & GPT & 42.2 & 28.3 & 48.3 & 66.9 & 59.2 & 69.4 & -- & -- & -- \\
+    & Qwen 3B & 25.4 & 21.7 & 39.1 & 55.4 & 50.9 & 64.1 & -- & -- & -- \\
+    & Qwen 7B & 31.0 & 23.9 & 42.7 & 58.7 & 52.7 & 66.2 & -- & -- & -- \\
+    \multicolumn{11}{l}{\texttt{proper\_term}} \\
+    & GPT & 48.6 & 35.8 & 54.0 & 74.0 & 66.6 & 75.5 & 60.5 & 70.3 & 89.0 \\
+    & Qwen 3B & 30.3 & 14.7 & 39.7 & 61.3 & 36.5 & 65.2 & 43.8 & 53.8 & 82.4 \\
+    & Qwen 7B & 36.3 & 30.0 & 47.9 & 66.1 & 59.1 & 71.7 & 51.5 & 67.6 & 84.7 \\
+    \multicolumn{11}{l}{\texttt{random\_term}} \\
+    & GPT & 44.0 & 31.6 & 51.4 & 69.8 & 62.9 & 72.5 & 81.1 & 81.3 & 96.8 \\
+    & Qwen 3B & 28.4 & 21.5 & 40.9 & 59.3 & 50.5 & 65.8 & 69.9 & 65.3 & 87.2 \\
+    & Qwen 7B & 33.8 & 27.6 & 44.2 & 62.6 & 56.7 & 67.9 & 77.5 & 76.1 & 93.3 \\
+    \hline
+  \end{tabular}
+  \caption{Prompt modes by language pair and model, dev\_v1, original term list (full breakdown of Table~\ref{tab:modes-by-language} \& Table~\ref{tab:models-by-variant}).}
+  \label{tab:appendix-modes}
+\end{table*}
+
+\begin{table*}[t]
+  \centering \small
+  \begin{tabular}{llccc ccc ccc}
+    \hline
+    & & \multicolumn{3}{c}{BLEU} & \multicolumn{3}{c}{chrF} & \multicolumn{3}{c}{Term Acc.\%} \\
+    \textbf{Term list} & \textbf{Model} & DE & RU & ES & DE & RU & ES & DE & RU & ES \\
+    \hline
+    \multicolumn{11}{l}{\texttt{original}} \\
+    & GPT & 48.6 & 35.8 & 54.0 & 74.0 & 66.6 & 75.5 & 60.5 & 70.3 & 89.0 \\
+    & Qwen 3B & 30.3 & 14.7 & 39.7 & 61.3 & 36.5 & 65.2 & 43.8 & 53.8 & 82.4 \\
+    & Qwen 7B & 36.3 & 30.0 & 47.9 & 66.1 & 59.1 & 71.7 & 51.5 & 67.6 & 84.7 \\
+    \multicolumn{11}{l}{\texttt{expand}} \\
+    & GPT & 53.1 & 43.1 & 65.5 & 77.6 & 72.5 & 82.2 & 75.0 & 79.4 & 93.2 \\
+    & Qwen 3B & 35.4 & 24.5 & 53.0 & 67.5 & 51.4 & 74.2 & 67.4 & 63.3 & 84.6 \\
+    & Qwen 7B & 40.8 & 37.9 & 60.7 & 70.9 & 66.9 & 79.4 & 70.4 & 77.2 & 91.2 \\
+    \multicolumn{11}{l}{\texttt{cleaned}} \\
+    & GPT & 51.2 & 39.2 & 61.1 & 75.7 & 68.4 & 79.0 & 80.2 & 79.6 & 95.8 \\
+    & Qwen 3B & 32.3 & 22.2 & 47.6 & 64.3 & 48.7 & 70.0 & 72.8 & 62.6 & 84.1 \\
+    & Qwen 7B & 36.3 & 34.2 & 56.1 & 67.5 & 62.7 & 76.0 & 72.3 & 78.0 & 92.1 \\
+    \multicolumn{11}{l}{\texttt{dictionary}} \\
+    & GPT & 54.1 & 43.5 & 64.8 & 78.4 & 72.5 & 82.3 & 70.6 & 73.9 & 92.9 \\
+    & Qwen 3B & 36.2 & 34.5 & 57.1 & 68.6 & 65.0 & 78.5 & 59.8 & 66.2 & 88.3 \\
+    & Qwen 7B & 43.2 & 40.2 & 62.9 & 72.6 & 67.3 & 81.6 & 66.5 & 69.6 & 91.5 \\
+    \hline
+  \end{tabular}
+  \caption{Term-list variants by language pair and model, \texttt{proper\_term}, dev\_v1 (full breakdown of Table~\ref{tab:models-by-variant}).}
+  \label{tab:appendix-variants}
+\end{table*}
+
+\begin{table*}[t]
+  \centering \small
+  \begin{tabular}{llccc ccc ccc}
+    \hline
+    & & \multicolumn{3}{c}{1 epoch} & \multicolumn{3}{c}{2 epochs} & \multicolumn{3}{c}{3 epochs} \\
+    \textbf{Model} & \textbf{Metric} & DE & RU & ES & DE & RU & ES & DE & RU & ES \\
+    \hline
+    \multicolumn{11}{l}{\textbf{Qwen2.5-3B}} \\
+    & BLEU & 37.6 & 36.0 & 55.5 & 41.3 & 41.8 & 58.3 & 41.9 & 42.0 & 58.6 \\
+    & chrF & 66.8 & 65.5 & 77.6 & 69.4 & 69.3 & 79.1 & 69.2 & 69.6 & 79.5 \\
+    & Term Acc.\% & 51.7 & 59.7 & 82.7 & 54.3 & 65.1 & 84.7 & 54.3 & 63.5 & 84.4 \\
+    \multicolumn{11}{l}{\textbf{Qwen2.5-7B}} \\
+    & BLEU & 42.7 & 42.8 & 59.9 & 46.3 & 45.7 & 62.2 & 46.3 & 45.5 & 61.9 \\
+    & chrF & 70.5 & 69.8 & 79.9 & 72.2 & 71.6 & 81.3 & 72.1 & 71.9 & 81.0 \\
+    & Term Acc.\% & 57.3 & 67.8 & 83.8 & 55.6 & 67.8 & 86.1 & 55.6 & 68.9 & 87.9 \\
+    \hline
+  \end{tabular}
+  \caption{LoRA epoch ablation, full per-language breakdown, zero-shot, dev\_v1, \texttt{proper\_term} (full breakdown of Table~\ref{tab:epoch-ablation}).}
+  \label{tab:appendix-epochs}
+\end{table*}
+
+\begin{table}[t]
+  \centering \small
+  \begin{tabular}{llcc}
+    \hline
+    \textbf{Mode} & \textbf{Pair} & \textbf{dev\_v1} & \textbf{dev\_v2} \\
+    \hline
+    \texttt{no\_term} & ende & 42.2 & 45.4 \\
+    \texttt{no\_term} & enru & 28.3 & 30.9 \\
+    \texttt{no\_term} & enes & 48.3 & 50.2 \\
+    \texttt{proper\_term} & ende & 48.6 & 51.7 \\
+    \texttt{proper\_term} & enru & 35.8 & 41.2 \\
+    \texttt{proper\_term} & enes & 54.0 & 60.6 \\
+    \texttt{random\_term} & ende & 44.0 & 47.4 \\
+    \texttt{random\_term} & enru & 31.6 & 35.5 \\
+    \texttt{random\_term} & enes & 51.4 & 53.9 \\
+    \hline
+  \end{tabular}
+  \caption{GPT-4o-mini BLEU, dev\_v1 vs.\ dev\_v2, per language pair, all prompt modes (full breakdown of Table~\ref{tab:dev-comparison}).}
+  \label{tab:appendix-dataset-comparison}
+\end{table}
+
+\begin{table}[t]
+  \centering \small
+  \begin{tabular}{llcc}
+    \hline
+    \textbf{Model} & \textbf{Pair} & \textbf{overlap} & \textbf{no\_overlap} \\
+    \hline
+    \texttt{qwen\_base} & ende & 34.1 & 36.8 \\
+    \texttt{qwen\_base} & enes & 50.2 & 49.0 \\
+    \texttt{qwen\_base} & enru & 32.2 & 28.5 \\
+    \texttt{gpt} & ende & 47.4 & 48.3 \\
+    \texttt{gpt} & enes & 57.7 & 56.0 \\
+    \texttt{gpt} & enru & 42.9 & 34.2 \\
+    \texttt{qwen\_lora} & ende & 50.2 & 42.4 \\
+    \texttt{qwen\_lora} & enes & 68.9 & 57.5 \\
+    \texttt{qwen\_lora} & enru & 49.7 & 41.1 \\
+    \hline
+  \end{tabular}
+  \caption{Macro BLEU by language pair, overlap vs.\ no\_overlap subsets, Qwen2.5-7B (full breakdown of Table~\ref{tab:leakage}).}
+  \label{tab:appendix-leakage}
+\end{table}
+
+\begin{table*}[t]
+  \centering \small
+  \begin{tabular}{llcccccc}
+    \hline
+    & & \multicolumn{3}{c}{zero-shot BLEU} & \multicolumn{3}{c}{few-shot BLEU} \\
+    \textbf{Model} & \textbf{Group} & DE & RU & ES & DE & RU & ES \\
+    \hline
+    GPT & -- & 44.2 & 33.5 & 48.0 & 47.8 & 37.2 & 57.4 \\
+    Qwen2.5-3B & qwen\_base & 18.6 & 9.2 & 22.2 & 29.2 & 26.4 & 45.4 \\
+    Qwen2.5-3B & qwen\_lora & 37.6 & 36.0 & 55.5 & 35.7 & 35.9 & 55.0 \\
+    Qwen2.5-7B & qwen\_base & 33.9 & 27.3 & 43.9 & 35.5 & 31.0 & 48.6 \\
+    Qwen2.5-7B & qwen\_lora & 42.7 & 42.8 & 59.9 & 41.8 & 41.4 & 58.1 \\
+    \hline
+  \end{tabular}
+  \caption{Few-shot ablation, macro BLEU per language pair, \texttt{proper\_term}, dev\_v1 (full breakdown of Table~\ref{tab:few-shot}).}
+  \label{tab:appendix-fewshot}
+\end{table*}
 
 \end{document}

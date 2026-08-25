@@ -15,8 +15,22 @@ PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "scripts"))
 
-from shared.lib.analysis.grouped_bar_figure_common import EXPANSION_COLORS, plot_grouped_bars
-from shared.lib.analysis.plot_style import POSTER_BLUE, apply_poster_style
+from shared.lib.analysis.grouped_bar_figure_common import (
+    EXPANSION_COLORS,
+    REPORT_GRID2X2_BOTTOM,
+    REPORT_GRID2X2_FIG_SIZE,
+    REPORT_GRID2X2_HSPACE,
+    REPORT_GRID2X2_LEFT,
+    REPORT_GRID2X2_RIGHT,
+    REPORT_GRID2X2_TOP,
+    REPORT_GRID2X2_WSPACE,
+    REPORT_LEGEND_ROW_FONTSIZE,
+    REPORT_LEGEND_ROW_NCOL,
+    REPORT_SUPTITLE_FONTSIZE,
+    place_legend_row,
+    plot_grouped_bars,
+)
+from shared.lib.analysis.plot_style import apply_report_style
 from compare_common import (  # noqa: E402
     RUN_LORA_1_EPOCH_FEW_SHOT,
     RUN_LORA_1_EPOCH_ZERO_SHOT,
@@ -57,9 +71,6 @@ METRIC_LABELS = {
     "weighted_avg_consistency": "Weighted\nCons (%)",
 }
 
-TITLE = "Qwen (base & LoRA): zero-shot vs. few-shot\n(train dev_v2; test dev_v1; proper_term)"
-
-FIG_SIZE = (17, 12)
 YLIM_TOP = 100
 
 
@@ -111,18 +122,14 @@ def _collect_data() -> dict[str, dict[str, dict[str, dict[str, float | None]]]]:
 
 
 def build_few_shot_ablation_qwen_figure(project_root: Path) -> Figure:
-    apply_poster_style()
+    apply_report_style()
     data = _collect_data()
 
-    fig = plt.figure(figsize=FIG_SIZE)
-    gs = fig.add_gridspec(1, 2, width_ratios=[1, 0.16], wspace=0.06)
-    gs_charts = gs[0].subgridspec(2, 2, wspace=0.2, hspace=0.55)
+    fig = plt.figure(figsize=REPORT_GRID2X2_FIG_SIZE)
+    gs = fig.add_gridspec(2, 2, wspace=REPORT_GRID2X2_WSPACE, hspace=REPORT_GRID2X2_HSPACE)
     axes = np.array(
-        [[fig.add_subplot(gs_charts[r, c]) for c in range(2)] for r in range(2)]
+        [[fig.add_subplot(gs[r, c]) for c in range(2)] for r in range(2)]
     )
-    legend_ax = fig.add_subplot(gs[1])
-    legend_ax.axis("off")
-    fig.suptitle(TITLE, fontsize=16, fontweight="bold", color=POSTER_BLUE, y=0.98)
 
     for r, model_key in enumerate(MODEL_KEYS):
         for c, block in enumerate(BLOCK_ORDER):
@@ -137,26 +144,26 @@ def build_few_shot_ablation_qwen_figure(project_root: Path) -> Figure:
                 value_fn=lambda shot, metric, bd=block_data: bd[shot][metric],
                 ylabel="Score",
                 panel_title=f"{MODEL_LABELS[model_key]} — {BLOCK_TITLES[block]}",
+                panel_title_fontsize=REPORT_SUPTITLE_FONTSIZE,
                 ylim_top=YLIM_TOP,
                 yticks=list(range(0, YLIM_TOP + 1, 20)),
+                show_values=False,
             )
-            ax.tick_params(axis="x", labelsize=11)
 
     legend_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=SHOT_LABELS[k])
         for k in SHOT_ORDER
     ]
-    legend_ax.legend(
-        handles=legend_handles,
-        loc="center",
-        ncol=1,
-        framealpha=0.95,
-        title="Prompting",
-        title_fontsize=14,
-        fontsize=12,
-        labelspacing=0.9,
-        borderpad=0.8,
+    place_legend_row(
+        fig,
+        legend_handles,
+        fontsize=REPORT_LEGEND_ROW_FONTSIZE,
+        ncol=REPORT_LEGEND_ROW_NCOL,
     )
-
-    fig.subplots_adjust(top=0.90, bottom=0.06, left=0.06, right=0.98)
+    fig.subplots_adjust(
+        top=REPORT_GRID2X2_TOP,
+        bottom=REPORT_GRID2X2_BOTTOM,
+        left=REPORT_GRID2X2_LEFT,
+        right=REPORT_GRID2X2_RIGHT,
+    )
     return fig

@@ -7,13 +7,25 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
+from matplotlib.patches import Patch
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from shared.lib.analysis.grouped_bar_figure_common import plot_grouped_bars
+from shared.lib.analysis.grouped_bar_figure_common import (
+    EXPANSION_COLORS,
+    REPORT_LEGEND_ROW_FONTSIZE,
+    REPORT_LEGEND_ROW_NCOL,
+    REPORT_SINGLE_BOTTOM,
+    REPORT_SINGLE_FIG_SIZE,
+    REPORT_SINGLE_LEFT,
+    REPORT_SINGLE_RIGHT,
+    REPORT_SINGLE_TOP,
+    place_legend_row,
+    plot_grouped_bars,
+)
 from shared.lib.analysis.metrics_loader import load_summary, macro_average
-from shared.lib.analysis.plot_style import POSTER_BLUE, apply_poster_style
+from shared.lib.analysis.plot_style import apply_report_style
 
 ZERO_SHOT_SUMMARY = PROJECT_ROOT / "shared" / "results" / "dev_v1" / "original" / "zero_shot" / "gpt" / "metrics_summary.json"
 FEW_SHOT_SUMMARY = PROJECT_ROOT / "experiments" / "lora_finetuning" / "shared" / "results" / "gpt_base" / "metrics_summary.json"
@@ -39,9 +51,6 @@ SERIES_LABELS = {
     FEW_SHOT_KEY: "Few-shot",
 }
 
-TITLE = "GPT: zero-shot vs. few-shot\n(train dev_v2; test dev_v1; proper_term)"
-
-FIG_SIZE = (13, 6.5)
 YLIM_TOP = 100
 
 
@@ -58,11 +67,10 @@ def _collect_data() -> dict[str, dict[str, float | None]]:
 
 
 def build_few_shot_ablation_figure(project_root: Path) -> Figure:
-    apply_poster_style()
+    apply_report_style()
     data = _collect_data()
 
-    fig, ax = plt.subplots(figsize=FIG_SIZE)
-    fig.suptitle(TITLE, fontsize=16, fontweight="bold", color=POSTER_BLUE, y=0.98)
+    fig, ax = plt.subplots(figsize=REPORT_SINGLE_FIG_SIZE)
 
     plot_grouped_bars(
         ax,
@@ -73,9 +81,24 @@ def build_few_shot_ablation_figure(project_root: Path) -> Figure:
         value_fn=lambda series, metric: data[series][metric],
         ylabel="Score",
         ylim_top=YLIM_TOP,
-        yticks=list(range(0, YLIM_TOP + 1, 10)),
+        yticks=list(range(0, YLIM_TOP + 1, 20)),
+        show_values=False,
     )
 
-    ax.legend(title="Prompting", loc="upper right", framealpha=0.95)
-    fig.subplots_adjust(top=0.84, bottom=0.12, left=0.08, right=0.97)
+    legend_handles = [
+        Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=SERIES_LABELS[k])
+        for k in SERIES_ORDER
+    ]
+    place_legend_row(
+        fig,
+        legend_handles,
+        fontsize=REPORT_LEGEND_ROW_FONTSIZE,
+        ncol=REPORT_LEGEND_ROW_NCOL,
+    )
+    fig.subplots_adjust(
+        top=REPORT_SINGLE_TOP,
+        bottom=REPORT_SINGLE_BOTTOM,
+        left=REPORT_SINGLE_LEFT,
+        right=REPORT_SINGLE_RIGHT,
+    )
     return fig

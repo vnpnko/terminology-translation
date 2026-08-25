@@ -30,7 +30,9 @@ COLOR_TERM_ACC = "#2A9D8F"
 COLOR_WEIGHTED_CONS = "#9B2226"
 COLOR_LORA = "#E76F51"
 COLOR_OVERLAP_DATA = "#BC4749"
-COLOR_NO_OVERLAP_DATA = "#588157"
+# Was "#588157" (green) -- red/green is a classic colorblind-confusion pair,
+# so use blue instead, keeping red as the intentional "leakage risk" signal.
+COLOR_NO_OVERLAP_DATA = "#457B9D"
 
 METRIC_COLORS = {
     "BLEU": COLOR_BLEU,

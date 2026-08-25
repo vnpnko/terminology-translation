@@ -74,6 +74,32 @@ def apply_poster_style() -> None:
     )
 
 
+def apply_report_style() -> None:
+    """Smaller-font variant of apply_poster_style(), sized for an ACL paper figure
+    rather than an A0 poster (report/acl_latex.tex's Experiments-section figures)."""
+    plt.rcParams.update(
+        {
+            "font.family": "sans-serif",
+            "font.sans-serif": ["DejaVu Sans", "Arial", "Helvetica"],
+            "font.size": 8,
+            "axes.titlesize": 8.5,
+            "axes.labelsize": 8,
+            "xtick.labelsize": 7,
+            "ytick.labelsize": 7,
+            "legend.fontsize": 6.5,
+            "figure.facecolor": "white",
+            "axes.facecolor": "white",
+            "axes.edgecolor": "#333333",
+            "axes.labelcolor": "#222222",
+            "axes.grid": True,
+            "grid.alpha": 0.3,
+            "grid.color": "#cccccc",
+            "axes.spines.top": False,
+            "axes.spines.right": False,
+        }
+    )
+
+
 def headroom_ylim(ax, values: list[float | None], pad_ratio: float = 0.14) -> None:
     present = [v for v in values if v is not None]
     if not present:

@@ -41,7 +41,7 @@ EXPANSION_COLORS = {
     "random_term": COLOR_RANDOM_TERM,
     "original": COLOR_ORIGINAL,
     "expand": COLOR_GPT_EXPAND,
-    "dictionary": COLOR_DICTIONARY,
+    "dictionary": COLOR_EXTERNAL_DICTIONARY,
     "cleaned": COLOR_DICTIONARY,
     "external_dictionary": COLOR_EXTERNAL_DICTIONARY,
     "dev_v1": COLOR_ORIGINAL,
@@ -78,6 +78,27 @@ BAR_EDGE = "#333333"
 BAR_LW = 0.6
 BAR_WIDTH_RATIO = 0.96
 VALUE_FONTSIZE = 9
+
+# Report-sized (ACL two-column-spanning figure*) variants of the constants above,
+# used by report/acl_latex.tex's Experiments-section figures instead of the
+# poster-sized defaults. Pass these explicitly to create_pair_figure() /
+# finalize_pair_layout() / place_side_legend() -- the poster defaults above are
+# left untouched for every other figure script.
+REPORT_PAIR_FIG_SIZE = (6.8, 2.6)
+REPORT_PAIR_TOP = 0.80
+REPORT_PAIR_BOTTOM = 0.22
+REPORT_PAIR_LEFT = 0.08
+REPORT_PAIR_RIGHT = 0.98
+REPORT_PAIR_WSPACE = 0.32
+REPORT_LEGEND_WIDTH_RATIO = 0.26
+REPORT_SUPTITLE_FONTSIZE = 9
+
+REPORT_SIDE_LEGEND_FONTSIZE = 6.5
+REPORT_SIDE_LEGEND_TITLE_FONTSIZE = 7
+REPORT_SIDE_LEGEND_LABELSPACING = 0.6
+REPORT_SIDE_LEGEND_BORDERPAD = 0.5
+
+REPORT_VALUE_FONTSIZE = 5.5
 
 EXP1_VARIANTS = ("original", "expand", "cleaned")
 EXP23_STRATEGIES = ("original", "expand", "cleaned")
@@ -141,6 +162,9 @@ def plot_grouped_bars(
     xlabel: str | None = None,
     ylim_top: float | None = None,
     yticks: list[float] | np.ndarray | None = None,
+    value_fontsize: float = VALUE_FONTSIZE,
+    panel_title_fontsize: float = 14,
+    show_values: bool = True,
 ) -> list[float | None]:
     n_series = len(series_keys)
     x = np.arange(len(group_keys))
@@ -168,20 +192,21 @@ def plot_grouped_bars(
             edgecolor=BAR_EDGE,
             linewidth=BAR_LW,
         )
-        for bar, val in zip(bars, values):
-            if val is not None:
-                ax.text(
-                    bar.get_x() + bar.get_width() / 2,
-                    val,
-                    f"{val:.1f}",
-                    ha="center",
-                    va="bottom",
-                    fontsize=VALUE_FONTSIZE,
-                    fontweight="bold",
-                )
+        if show_values:
+            for bar, val in zip(bars, values):
+                if val is not None:
+                    ax.text(
+                        bar.get_x() + bar.get_width() / 2,
+                        val,
+                        f"{val:.1f}",
+                        ha="center",
+                        va="bottom",
+                        fontsize=value_fontsize,
+                        fontweight="bold",
+                    )
 
     if panel_title:
-        ax.set_title(panel_title, loc="left", fontsize=14, color=POSTER_BLUE, pad=12)
+        ax.set_title(panel_title, loc="left", fontsize=panel_title_fontsize, color=POSTER_BLUE, pad=12)
     ax.set_xticks(x)
     ax.set_xticklabels(tick_labels)
     ax.set_ylabel(ylabel, labelpad=10)
@@ -196,14 +221,21 @@ def plot_grouped_bars(
     return all_values
 
 
-def create_pair_figure(suptitle: str) -> tuple[Figure, np.ndarray, Axes]:
-    fig = plt.figure(figsize=PAIR_FIG_SIZE)
-    gs = fig.add_gridspec(1, 2, width_ratios=[1, LEGEND_WIDTH_RATIO], wspace=0.08)
-    gs_axes = gs[0].subgridspec(1, 2, wspace=PAIR_WSPACE)
+def create_pair_figure(
+    suptitle: str,
+    *,
+    figsize: tuple[float, float] = PAIR_FIG_SIZE,
+    legend_width_ratio: float = LEGEND_WIDTH_RATIO,
+    wspace: float = PAIR_WSPACE,
+    suptitle_fontsize: float = 16,
+) -> tuple[Figure, np.ndarray, Axes]:
+    fig = plt.figure(figsize=figsize)
+    gs = fig.add_gridspec(1, 2, width_ratios=[1, legend_width_ratio], wspace=0.08)
+    gs_axes = gs[0].subgridspec(1, 2, wspace=wspace)
     axes = np.array([fig.add_subplot(gs_axes[0, 0]), fig.add_subplot(gs_axes[0, 1])])
     legend_ax = fig.add_subplot(gs[1])
     legend_ax.axis("off")
-    fig.suptitle(suptitle, fontsize=16, fontweight="bold", color=POSTER_BLUE, y=0.98)
+    fig.suptitle(suptitle, fontsize=suptitle_fontsize, fontweight="bold", color=POSTER_BLUE, y=0.98)
     return fig, axes, legend_ax
 
 
@@ -211,6 +243,11 @@ def place_side_legend(
     legend_ax: Axes,
     handles: list[Artist],
     title: str,
+    *,
+    fontsize: float = SIDE_LEGEND_FONTSIZE,
+    title_fontsize: float = SIDE_LEGEND_TITLE_FONTSIZE,
+    labelspacing: float = SIDE_LEGEND_LABELSPACING,
+    borderpad: float = SIDE_LEGEND_BORDERPAD,
 ) -> None:
     legend_ax.legend(
         handles=handles,
@@ -218,10 +255,10 @@ def place_side_legend(
         ncol=1,
         framealpha=0.95,
         title=title,
-        title_fontsize=SIDE_LEGEND_TITLE_FONTSIZE,
-        fontsize=SIDE_LEGEND_FONTSIZE,
-        labelspacing=SIDE_LEGEND_LABELSPACING,
-        borderpad=SIDE_LEGEND_BORDERPAD,
+        title_fontsize=title_fontsize,
+        fontsize=fontsize,
+        labelspacing=labelspacing,
+        borderpad=borderpad,
     )
 
 
@@ -237,10 +274,12 @@ def place_figure_caption(fig: Figure, text: str) -> None:
     )
 
 
-def finalize_pair_layout(fig: Figure) -> None:
-    fig.subplots_adjust(
-        top=PAIR_TOP,
-        bottom=PAIR_BOTTOM,
-        left=PAIR_LEFT,
-        right=PAIR_RIGHT,
-    )
+def finalize_pair_layout(
+    fig: Figure,
+    *,
+    top: float = PAIR_TOP,
+    bottom: float = PAIR_BOTTOM,
+    left: float = PAIR_LEFT,
+    right: float = PAIR_RIGHT,
+) -> None:
+    fig.subplots_adjust(top=top, bottom=bottom, left=left, right=right)

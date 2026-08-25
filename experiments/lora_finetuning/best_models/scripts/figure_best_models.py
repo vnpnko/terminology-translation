@@ -15,6 +15,18 @@ sys.path.insert(0, str(PROJECT_ROOT / "experiments" / "lora_finetuning" / "share
 from shared.lib.analysis.grouped_bar_figure_common import (
     BLEU_YLIM_TOP,
     EXPANSION_COLORS,
+    REPORT_LEGEND_WIDTH_RATIO,
+    REPORT_PAIR_BOTTOM,
+    REPORT_PAIR_FIG_SIZE,
+    REPORT_PAIR_LEFT,
+    REPORT_PAIR_RIGHT,
+    REPORT_PAIR_TOP,
+    REPORT_PAIR_WSPACE,
+    REPORT_SIDE_LEGEND_BORDERPAD,
+    REPORT_SIDE_LEGEND_FONTSIZE,
+    REPORT_SIDE_LEGEND_LABELSPACING,
+    REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
+    REPORT_SUPTITLE_FONTSIZE,
     TERM_ACC_YLIM_TOP,
     create_pair_figure,
     finalize_pair_layout,
@@ -22,7 +34,7 @@ from shared.lib.analysis.grouped_bar_figure_common import (
     plot_grouped_bars,
 )
 from shared.lib.analysis.metrics_loader import LANG_LABELS, LANG_ORDER
-from shared.lib.analysis.plot_style import apply_poster_style
+from shared.lib.analysis.plot_style import apply_report_style
 from compare_common import (  # noqa: E402
     RUN_GPT_BASE,
     RUN_LORA_2_EPOCH_ZERO_SHOT,
@@ -69,14 +81,20 @@ def _collect_data() -> dict[str, dict[str, list[float | None]]]:
 
 
 def build_best_models_figure(project_root: Path) -> Figure:
-    apply_poster_style()
+    apply_report_style()
     data = _collect_data()
 
-    fig, axes, legend_ax = create_pair_figure(TITLE)
+    fig, axes, legend_ax = create_pair_figure(
+        TITLE,
+        figsize=REPORT_PAIR_FIG_SIZE,
+        legend_width_ratio=REPORT_LEGEND_WIDTH_RATIO,
+        wspace=REPORT_PAIR_WSPACE,
+        suptitle_fontsize=REPORT_SUPTITLE_FONTSIZE,
+    )
 
     metric_axes = [
-        (axes[0], BLEU_IDX, "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 10))),
-        (axes[1], TERM_ACC_IDX, "Term accuracy (%)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 20))),
+        (axes[0], BLEU_IDX, "BLEU", BLEU_YLIM_TOP, list(range(0, BLEU_YLIM_TOP + 1, 20))),
+        (axes[1], TERM_ACC_IDX, "Term accuracy (%)", TERM_ACC_YLIM_TOP, list(range(0, TERM_ACC_YLIM_TOP + 1, 25))),
     ]
     for ax, metric_idx, ylabel, ylim_top, yticks in metric_axes:
         plot_grouped_bars(
@@ -90,12 +108,28 @@ def build_best_models_figure(project_root: Path) -> Figure:
             xlabel="Language pair",
             ylim_top=ylim_top,
             yticks=yticks,
+            panel_title_fontsize=REPORT_SUPTITLE_FONTSIZE,
+            show_values=False,
         )
 
     legend_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=SERIES_LABELS[k])
         for k in SERIES_ORDER
     ]
-    place_side_legend(legend_ax, legend_handles, "Model")
-    finalize_pair_layout(fig)
+    place_side_legend(
+        legend_ax,
+        legend_handles,
+        "Model",
+        fontsize=REPORT_SIDE_LEGEND_FONTSIZE,
+        title_fontsize=REPORT_SIDE_LEGEND_TITLE_FONTSIZE,
+        labelspacing=REPORT_SIDE_LEGEND_LABELSPACING,
+        borderpad=REPORT_SIDE_LEGEND_BORDERPAD,
+    )
+    finalize_pair_layout(
+        fig,
+        top=REPORT_PAIR_TOP,
+        bottom=REPORT_PAIR_BOTTOM,
+        left=REPORT_PAIR_LEFT,
+        right=REPORT_PAIR_RIGHT,
+    )
     return fig

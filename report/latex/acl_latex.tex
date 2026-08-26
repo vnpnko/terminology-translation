@@ -32,9 +32,9 @@
 
 \title{Terminology-Constrained Machine Translation for SAP Documentation}
 
-\author{Ivan Pylypenko \and Robin Schukrafft \and Ilnur Gayetov \\
+\author{Ivan Pylypenko \quad Robin Schukrafft \quad Ilnur Gayetov \\
   Technical University of Munich \\
-  \texttt{\{ivan.pylypenko, robin.schukrafft, ilnur.gayetov\}@tum.de}}
+  \texttt{\{ivan.pylypenko,robin.schukrafft,ilnur.gayetov\}@tum.de}}
 
 \begin{document}
 \maketitle
@@ -115,7 +115,7 @@ Each record contains an English source sentence, a target-language reference, a 
 
 We report four metrics, computed per language pair and averaged (macro average) across the three pairs for prose-level comparisons.
 
-\textbf{BLEU}~\citep{papineni-etal-2002-bleu} and \textbf{chrF}~\citep{popovic-2015-chrf} measure overall lexical similarity to the reference. Both react to general fluency and adequacy but are weak signals of whether a specific required term form was actually used.
+\textbf{BLEU}~\citep{papineni-etal-2002-bleu} and \textbf{chrF}~\citep{popovic-2015-chrf} measure overall lexical similarity to the reference. Both react to general fluency and adequacy but are weak signals of whether a specific required term form was actually used. We do not report COMET: although the WMT25 task description listed it as an optional overall-quality metric, the shared task's own findings paper ultimately relied on BLEU and chrF2++ instead, citing evidence that learned metrics like COMET can be less robust in domains underrepresented in their training data~\citep{semenov-etal-2025-wmt25}.
 
 \textbf{Term accuracy (\%)} is the share of the provided \texttt{proper\_terms} whose required target-language form appears in the model's output, computed against the term inventory of the condition being evaluated (the inventory differs across term-list variants, Section~\ref{sec:methods}).
 

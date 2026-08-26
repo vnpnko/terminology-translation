@@ -76,7 +76,7 @@ This report makes the following contributions:
 
 Terminology-aware machine translation covers a range of techniques, including constrained decoding, placeholder substitution, and glossary injection at inference time. The WMT25 Terminology Shared Task~\citep{semenov-etal-2025-wmt25} found that terminology conditioning is especially useful for already-strong systems, and that evaluation must look beyond generic n-gram overlap to determine whether required terms actually appear in the output. We take that as an evaluation requirement throughout this report: we report BLEU and chrF, but treat term accuracy and consistency as first-class metrics rather than secondary diagnostics.
 
-Prompt-based glossary injection conditions a model without changing its weights. \citet{he-etal-2023-exploring} take a related but distinct approach, having the LLM itself extract and translate keyword pairs to inject as prompt guidance rather than supplying an externally curated list; their ablation shows this self-generated guidance still helps translation quality, but their own analysis finds the generated keyword translations match the human reference term only about half the time, underscoring why -- as we investigate in RQ2 -- how a term list is built matters. LoRA fine-tuning~\citep{hu2022lora} is the complementary route when in-domain parallel data is available, adapting model weights directly instead of relying on inference-time conditioning. We compare both routes on the same SAP documentation data, under the same prompting setup and metric suite. Our focus is not a new decoding algorithm or adaptation method; it is a controlled empirical comparison of term-list construction strategies and adaptation strategies for one enterprise documentation domain.
+Prompt-based glossary injection conditions a model without changing its weights. \citet{he-etal-2024-exploring} take a related but distinct approach, having the LLM itself extract and translate keyword pairs to inject as prompt guidance rather than supplying an externally curated list; their ablation shows this self-generated guidance still helps translation quality, but their own analysis finds the generated keyword translations match the human reference term only about half the time, underscoring why -- as we investigate in RQ2 -- how a term list is built matters. LoRA fine-tuning~\citep{hu2022lora} is the complementary route when in-domain parallel data is available, adapting model weights directly instead of relying on inference-time conditioning. We compare both routes on the same SAP documentation data, under the same prompting setup and metric suite. Our focus is not a new decoding algorithm or adaptation method; it is a controlled empirical comparison of term-list construction strategies and adaptation strategies for one enterprise documentation domain.
 
 \section{Data and Task}
 \label{sec:data-and-task}
@@ -450,17 +450,9 @@ This work was carried out as a course project at the Technical University of Mun
 
 \textbf{Ilnur Gayetov} set up the data-preparation pipeline for SAP \texttt{term\_postedits} (JSONL task format, term-pair collection, and the initial term-expansion script) and restructured the project. Refactored shared evaluation into reusable modules and added evaluation runners for local Qwen and OpenRouter GPT-4o-mini.
 
-% Requires custom.bib in the Overleaf project to contain the 7 entries below
+% Requires custom.bib to contain the 7 entries cited above
 % (semenov-etal-2025-wmt25, sap2024termpostedits, hu2022lora, qwenteam2024qwen25,
-% papineni-etal-2002-bleu, popovic-2015-chrf, he-etal-2023-exploring) -- see the
-% BibTeX block provided alongside this file.
-%
-% @article{he-etal-2023-exploring,
-%   title={Exploring Human-Like Translation Strategy with Large Language Models},
-%   author={He, Zhiwei and Liang, Tian and Jiao, Wenxiang and Zhang, Zhuosheng and Yang, Yujiu and Wang, Rui and Tu, Zhaopeng and Shi, Shuming and Wang, Xing},
-%   journal={arXiv preprint arXiv:2305.04118},
-%   year={2023}
-% }
+% papineni-etal-2002-bleu, popovic-2015-chrf, he-etal-2024-exploring) -- all present.
 \bibliography{custom}
 
 \end{document}

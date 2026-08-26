@@ -47,9 +47,9 @@ Supports two modes via ``--mode``:
 
 Usage::
 
-    python experiments/term_expansion/shared/scripts/compare_by_model_and_language.py
-    python experiments/term_expansion/shared/scripts/compare_by_model_and_language.py --mode proper_term
-    python experiments/term_expansion/shared/scripts/compare_by_model_and_language.py --mode proper_term --original shared/results/dev_v1/original/zero_shot
+    python experiments/term_expansion/by_language_pair/shared/scripts/compare_by_model_and_language.py
+    python experiments/term_expansion/by_language_pair/shared/scripts/compare_by_model_and_language.py --mode proper_term
+    python experiments/term_expansion/by_language_pair/shared/scripts/compare_by_model_and_language.py --mode proper_term --original shared/results/dev_v1/original/zero_shot
 """
 
 from __future__ import annotations
@@ -63,7 +63,7 @@ import pandas as pd
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 
-PROJECT_ROOT = Path(__file__).resolve().parents[4]
+PROJECT_ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from shared.lib.analysis.excel_style import (  # noqa: E402

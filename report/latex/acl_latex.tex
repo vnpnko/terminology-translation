@@ -95,20 +95,7 @@ The official WMT2025 terminology shared-task materials (task documentation and t
 \subsection{Record Format}
 \label{sec:record-format}
 
-Each record contains an English source sentence, a target-language reference, a set of domain \texttt{proper\_terms} (source$\rightarrow$target term pairs the translation should respect), and a set of non-domain \texttt{random\_terms} used as a control condition (Section~\ref{sec:exp-language-pairs}):
-
-\begin{quote}
-\begin{verbatim}
-{
-  "en": "...",
-  "de": "...",
-  "proper_terms":
-    { "term": "translation" },
-  "random_terms":
-    { "word": "translation" }
-}
-\end{verbatim}
-\end{quote}
+Each record contains an English source sentence, a target-language reference, a set of domain \texttt{proper\_terms} (source$\rightarrow$target term pairs the translation should respect), and a set of non-domain \texttt{random\_terms} used as a control condition (Section~\ref{sec:exp-language-pairs}); Figure~\ref{fig:prompt-conditioning-example} shows a real example record.
 
 \subsection{Metrics}
 \label{sec:metrics}
@@ -135,6 +122,13 @@ We report four metrics, computed per language pair and averaged (macro average) 
 
 At inference, we translate with a short instruction and an optional glossary block. Three modes isolate the effect of terminology conditioning: \texttt{no\_term} (translate without any terminology), \texttt{proper\_term} (inject the domain term pairs for that sentence), and \texttt{random\_term} (inject an unrelated, non-domain control list). Unless stated otherwise, runs use three few-shot examples per language. GPT-4o-mini is called through OpenRouter; Qwen models are run locally as instruction-tuned checkpoints.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/prompt_conditioning_diagram.png}
+  \caption{Effect of prompt conditioning on a single EN\textrightarrow{}DE example (dev\_v1 index 440): \texttt{no\_term} and \texttt{random\_term} both mistranslate ``request'' as the generic \emph{Anfrage}; only \texttt{proper\_term} produces the reference term \emph{Antrag}.}
+  \label{fig:prompt-conditioning-example}
+\end{figure}
+
 \subsection{Term-List Variants}
 \label{sec:term-list-variants}
 
@@ -156,6 +150,13 @@ Starting from the original human-annotated \texttt{proper\_terms} shipped with d
   \caption{Term counts per variant, summed across all three language pairs. $^\dagger$Dictionary is additive: it adds new matches from a dev\_v2-built term dictionary on top of the 1{,}590 Original terms, rather than replacing them. $^\ddagger$Cleaned applies a precision-oriented filter to the \emph{Expanded} list (not to Original), which is why its count falls below Original's, not just below Expanded's.}
   \label{tab:term-list-variants}
 \end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/term_expansion_diagram.png}
+  \caption{Construction of the four term-list variants: \textbf{Expanded} and \textbf{Cleaned} are derived from \textbf{Original} via an LLM expand-then-filter pipeline; \textbf{Dictionary} merges \textbf{Original} with terms mined from a related corpus.}
+  \label{fig:term-list-construction}
+\end{figure}
 
 \subsection{Models and Fine-Tuning}
 \label{sec:models-and-finetuning}

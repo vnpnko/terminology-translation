@@ -138,7 +138,24 @@ At inference, we translate with a short instruction and an optional glossary blo
 \subsection{Term-List Variants}
 \label{sec:term-list-variants}
 
-Starting from the original human-annotated \texttt{proper\_terms} shipped with dev\_v1, we build three additional variants that change the glossary content while keeping the underlying sentences fixed: an \textbf{expanded} list, where an LLM appends additional in-context term pairs to the original list; a \textbf{cleaned} list, where an LLM removes weak or overly generic entries from the expanded list; and a \textbf{dictionary} list, mined from dev\_v2 and matched back onto dev\_v1 sources via an external term dictionary. These variants change both the size and the precision of the constraints supplied to the model, letting us separate the effect of list coverage from list quality.
+Starting from the original human-annotated \texttt{proper\_terms} shipped with dev\_v1, we build three additional variants that change the glossary content while keeping the underlying sentences fixed: an \textbf{expanded} list, where an LLM appends additional in-context term pairs to the original list; a \textbf{cleaned} list, where an LLM removes weak or overly generic entries from the expanded list; and a \textbf{dictionary} list, mined from dev\_v2 and matched back onto dev\_v1 sources via an external term dictionary. These variants change both the size and the precision of the constraints supplied to the model, letting us separate the effect of list coverage from list quality. Table~\ref{tab:term-list-variants} reports the resulting term counts.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{lrl}
+    \hline
+    \textbf{Variant} & \textbf{Terms} & \textbf{Construction} \\
+    \hline
+    Original   & 1{,}590 & human-annotated (dev\_v1) \\
+    Expanded   & 2{,}573 & LLM appends to Original \\
+    Cleaned    & 1{,}223 & LLM filters Expanded$^\ddagger$ \\
+    Dictionary & 3{,}732 & Original + dev\_v2 matches$^\dagger$ \\
+    \hline
+  \end{tabular}
+  \caption{Term counts per variant, summed across all three language pairs. $^\dagger$Dictionary is additive: it adds new matches from a dev\_v2-built term dictionary on top of the 1{,}590 Original terms, rather than replacing them. $^\ddagger$Cleaned applies a precision-oriented filter to the \emph{Expanded} list (not to Original), which is why its count falls below Original's, not just below Expanded's.}
+  \label{tab:term-list-variants}
+\end{table}
 
 \subsection{Models and Fine-Tuning}
 \label{sec:models-and-finetuning}

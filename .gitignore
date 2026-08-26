@@ -3,3 +3,30 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+
+# Compiled report PDF -- regenerate locally, not the tracked figure PDFs elsewhere in the repo
+report/latex/*.pdf
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*~
+*.swp

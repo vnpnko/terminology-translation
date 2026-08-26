@@ -27,12 +27,14 @@ For the `dev_v1`-vs-`dev_v2` dataset comparability check (a different axis — n
 
 Both axes read `metrics_summary.json` under `shared/results/dev_v1/` for all 3 models (GPT, Qwen 3B, Qwen 7B) across:
 
-| Variant | Source data | Results path |
-| ------- | ------------ | ------------ |
-| `original` | `shared/data/dev_v1/dev_v1_original/` | `shared/results/dev_v1/original/few_shot/` |
-| `expand` | `shared/data/dev_v1/dev_v1_expand/` | `shared/results/dev_v1/expand/` |
-| `cleaned` | `shared/data/dev_v1/dev_v1_cleaned/` | `shared/results/dev_v1/cleaned/` |
-| external dictionary | `shared/data/dev_v1/dev_v1_dictionary/` | `shared/results/dev_v1/dictionary/` |
+| Variant | Terms | Source data | Results path |
+| ------- | ----: | ------------ | ------------ |
+| `original` | 1,590 | `shared/data/dev_v1/dev_v1_original/` | `shared/results/dev_v1/original/few_shot/` |
+| `expand` | 2,573 | `shared/data/dev_v1/dev_v1_expand/` | `shared/results/dev_v1/expand/` |
+| `cleaned` | 1,223 | `shared/data/dev_v1/dev_v1_cleaned/` | `shared/results/dev_v1/cleaned/` |
+| external dictionary | 3,732 | `shared/data/dev_v1/dev_v1_dictionary/` | `shared/results/dev_v1/dictionary/` |
+
+Term counts are `proper_terms` entries summed across all three language pairs (see [`dictionary/README.md`](dictionary/README.md#term-count) for the recount command). `cleaned` filters `expand`'s list for domain-specificity, so it falls below even `original`'s count, not just below `expand`'s. `external dictionary` is additive on top of `original` (1,590 + 2,142 net new matches from a dev_v2-built dictionary), not a from-scratch count.
 
 Plus the `no_term` and `random_term` baseline modes — only from `shared/results/dev_v1/original/few_shot/`. These two modes don't depend on the term-list variant, so `expand`/`cleaned`/`dictionary` and `zero_shot` each have only a `proper_term` entry per language in `metrics_summary.json`. `few_shot` is the only `dev_v1/original` variant with all 3 modes, which is why both axes source `original` from there (not `zero_shot`).
 

@@ -6,6 +6,21 @@ This is a **thin wrapper**: no experiment-local results, only `scripts/` (and `d
 
 `data/dev_v2_dictionary/` (the term dictionary `build_term_dictionary.py` builds from dev_v2, then `apply_dictionary_to_dev_v1.py` applies to dev_v1) lives here rather than in the shared `shared/data/` tree since this experiment is its only consumer. It doesn't exist on disk by default — `shared/data/dev_v1/dev_v1_dictionary/` (its already-applied output) does, so the report tables that use it work today without regenerating anything. Regenerating `data/dev_v2_dictionary/` is only needed if you want to rebuild `shared/data/dev_v1/dev_v1_dictionary/` from scratch (e.g. if it were lost) or extend the dictionary to a new language pair.
 
+## Term count
+
+`shared/data/dev_v1/dev_v1_dictionary/` totals **3,732** `proper_terms` entries across all three language pairs (ende 1,351 + enes 1,295 + enru 1,086). This is **additive**, not the dictionary's own size: `apply_dictionary_to_dev_v1.py` merges dictionary matches on top of each sentence's existing `proper_terms` (never replacing them), so 3,732 = the 1,590-term `dev_v1_original` baseline + 2,142 net new matches contributed by the dev_v2-built dictionary. The standalone dictionary itself (`data/dev_v2_dictionary/`) is typically larger still, since not every dictionary entry finds an unambiguous match in a `dev_v1` sentence — but it doesn't exist in this checkout by default (see above), so its own size isn't tracked here.
+
+Recount from the applied output with:
+
+```python
+import json, glob
+total = sum(
+    len(json.loads(line).get("proper_terms", {}))
+    for f in glob.glob("shared/data/dev_v1/dev_v1_dictionary/*.jsonl")
+    for line in open(f, encoding="utf-8") if line.strip()
+)
+```
+
 ## Reproduce
 
 ```

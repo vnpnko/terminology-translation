@@ -44,7 +44,10 @@ for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
     sys.path.insert(0, str(_scripts_dir))
 
 from figure_by_model import build_by_model_figure
-from figure_by_language_pair import build_by_language_pair_figures
+from figure_by_language_pair import (
+    build_by_language_pair_figures,
+    build_qwen_size_stacked_figure,
+)
 from figure_dataset_comparison import build_dataset_comparison_figures
 from figure_epoch_ablation import build_epoch_ablation_figure
 from figure_best_models import build_best_models_figure
@@ -63,6 +66,11 @@ FIGURE_BUILDERS = {
     "by_language_pair": (
         "fig_term_expansion_across_languages",
         lambda root: build_by_language_pair_figures(root / "shared" / "results"),
+        Path("experiments/term_expansion/by_language_pair/figures"),
+    ),
+    "qwen_size_stacked": (
+        "fig_term_expansion_qwen_size_stacked",
+        lambda root: build_qwen_size_stacked_figure(root / "shared" / "results"),
         Path("experiments/term_expansion/by_language_pair/figures"),
     ),
     "dataset_comparison": (

@@ -455,4 +455,20 @@ This work was carried out as a course project at the Technical University of Mun
 % papineni-etal-2002-bleu, popovic-2015-chrf, he-etal-2024-exploring) -- all present.
 \bibliography{custom}
 
+\appendix
+
+\section{Term-List Variants by Language Pair: Qwen2.5-3B/7B}
+\label{sec:appendix-qwen-by-language}
+
+Section~\ref{sec:exp-models} reports that the model ranking (GPT-4o-mini $>$ Qwen2.5-7B $>$ Qwen2.5-3B) and the size-vs-precision trade-off between term-list variants hold across models, but only shows this macro-averaged over the three language pairs. Figure~\ref{fig:qwen-size-stacked} breaks the same comparison down by language pair for both Qwen sizes at once, mirroring Figure~\ref{fig:by-language-pair}'s GPT-4o-mini view (Section~\ref{sec:exp-language-pairs}). Each bar is stacked: the solid segment is Qwen2.5-3B's score, and the lighter segment on top is the additional increment needed to reach Qwen2.5-7B's score -- a valid stacking since 7B's score is at or above 3B's in every condition and language pair but one (see below), so total bar height equals 7B's score and the two segments are both real, interpretable quantities rather than an arbitrary sum.
+
+Two patterns stand out beyond what the macro averages show. First, EN$\rightarrow$RU sees the largest \emph{proportional} BLEU gain from terminology conditioning across all three models -- roughly a 50--65\% relative rise from \texttt{no\_term} to the best-performing variant, versus 30--47\% for EN$\rightarrow$DE/ES -- and unlike DE/ES, this relative gain does not shrink much as model strength increases, suggesting Russian's morphological richness makes a good term list disproportionately valuable regardless of base model capability. Second, on Qwen2.5-3B specifically, the small human-curated \texttt{original} list \emph{underperforms} both \texttt{no\_term} and \texttt{random\_term} on EN$\rightarrow$RU BLEU -- injecting the real but small glossary makes the smallest model's output worse than translating freely, an effect absent at 7B and for GPT-4o-mini, consistent with a model-capacity limitation on making good use of a small set of forced substitutions in a harder target language. One cell is a near-tie rather than a true 7B advantage: for the \texttt{cleaned} variant on EN$\rightarrow$DE term accuracy, Qwen2.5-7B (72.3\%) and Qwen2.5-3B (72.8\%) are effectively indistinguishable ($\sim$0.5 points apart).
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_term_expansion_qwen_size_stacked.pdf}
+  \caption{BLEU and term accuracy by language pair and term-list variant, both Qwen sizes: solid segment = Qwen2.5-3B, lighter segment = increment to reach Qwen2.5-7B, dev\_v1.}
+  \label{fig:qwen-size-stacked}
+\end{figure*}
+
 \end{document}

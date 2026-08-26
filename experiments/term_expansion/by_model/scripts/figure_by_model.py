@@ -68,8 +68,9 @@ def _variant_dir(results_root: Path, variant: str) -> Path:
 
 def _collect_data(
     results_root: Path,
-) -> dict[str, dict[str, Any]]:
+) -> tuple[dict[str, dict[str, Any]], dict[str, int]]:
     summaries: dict[str, dict[str, dict[str, Any]]] = {}
+    term_counts: dict[str, int] = {}
 
     paths = [
         _variant_dir(results_root, variant) / baseline / "metrics_summary.json"
@@ -84,13 +85,23 @@ def _collect_data(
             path = _variant_dir(results_root, variant) / baseline / "metrics_summary.json"
             summary = load_metrics_path(path)
             summaries[variant][baseline] = macro_average(summary, DEFAULT_MODE)
+            if baseline == "gpt":
+                total = summaries[variant][baseline].get("total_terms")
+                if total is not None:
+                    term_counts[variant] = int(total)
 
-    return summaries
+    return summaries, term_counts
+
+
+def _series_legend_label(series: str, term_counts: dict[str, int]) -> str:
+    base = VARIANT_LABELS[series]
+    count = term_counts.get(series)
+    return f"{base} ({count} terms)" if count is not None else base
 
 
 def build_by_model_figure(results_root: Path) -> Figure:
     apply_report_style()
-    summaries = _collect_data(results_root)
+    summaries, term_counts = _collect_data(results_root)
 
     def value_for(series: str, baseline: str, metric_key: str) -> float | None:
         return summaries[series][baseline].get(metric_key)
@@ -118,7 +129,9 @@ def build_by_model_figure(results_root: Path) -> Figure:
             group_keys=BASELINE_DIRS,
             group_labels=BASELINE_LABELS,
             series_keys=SERIES_ORDER,
-            series_labels=VARIANT_LABELS,
+            series_labels={
+                k: _series_legend_label(k, term_counts) for k in SERIES_ORDER
+            },
             value_fn=lambda series, baseline, mk=metric_key: value_for(series, baseline, mk),
             ylabel=ylabel,
             ylim_top=ylim_top,
@@ -133,7 +146,7 @@ def build_by_model_figure(results_root: Path) -> Figure:
         Patch(
             facecolor=EXPANSION_COLORS[v],
             edgecolor="#333333",
-            label=VARIANT_LABELS[v],
+            label=_series_legend_label(v, term_counts),
         )
         for v in SERIES_ORDER
     ]
@@ -141,7 +154,7 @@ def build_by_model_figure(results_root: Path) -> Figure:
         fig,
         legend_handles,
         fontsize=REPORT_LEGEND_ROW_FONTSIZE,
-        ncol=len(SERIES_ORDER),  # all 4 variant names on one line, now that they're short (no term counts)
+        ncol=REPORT_LEGEND_ROW_NCOL,
     )
     finalize_pair_layout(
         fig,

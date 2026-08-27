@@ -120,6 +120,17 @@ REPORT_SINGLE_BOTTOM = 0.20
 REPORT_SINGLE_LEFT = 0.08
 REPORT_SINGLE_RIGHT = 0.98
 
+# Vertically-stacked, single-column report-style figure (e.g.
+# figure_qwen_size_comparison.py): two panels stacked top/bottom instead of
+# side by side, sized to fit an ACL single-column width rather than the
+# two-column-spanning REPORT_PAIR_FIG_SIZE.
+REPORT_STACK_FIG_SIZE = (3.3, 5.4)
+REPORT_STACK_TOP = 0.90
+REPORT_STACK_BOTTOM = 0.11
+REPORT_STACK_LEFT = 0.16
+REPORT_STACK_RIGHT = 0.97
+REPORT_STACK_HSPACE = 0.15
+
 # 2x2-grid report-style figure (e.g. figure_few_shot_ablation_qwen.py). Wider
 # than the pair figure -- each of its 4 panels independently needs the same
 # 5-two-line-label horizontal room as REPORT_SINGLE_FIG_SIZE above, so the
@@ -261,8 +272,10 @@ def create_pair_figure(
     figsize: tuple[float, float] = PAIR_FIG_SIZE,
     legend_width_ratio: float = LEGEND_WIDTH_RATIO,
     wspace: float = PAIR_WSPACE,
+    hspace: float | None = None,
     suptitle_fontsize: float = 16,
     legend_position: str = "side",
+    stacked: bool = False,
 ) -> tuple[Figure, np.ndarray, Axes | None]:
     """``legend_position="side"`` (default, used by every poster figure script):
     2-column layout, panels | narrow legend column; returns a legend Axes to
@@ -273,13 +286,22 @@ def create_pair_figure(
     robust than a dedicated legend-row Axes, which doesn't reliably reserve
     enough space for a multi-row legend. Returns ``None`` in place of a legend
     Axes; the caller uses ``fig`` instead.
+    ``stacked=True`` (used by the report/acl_latex.tex figures, single-column
+    width): the two panels are arranged 2x1 (top/bottom) instead of 1x2
+    (side by side), spaced by ``hspace`` instead of ``wspace``. Only valid
+    with ``legend_position="bottom"``.
     ``suptitle=None`` skips the title entirely (used by the report figures,
     whose LaTeX captions already cover what the title would have said).
     """
     fig = plt.figure(figsize=figsize)
     if legend_position == "bottom":
-        axes = fig.subplots(1, 2)
-        fig.subplots_adjust(wspace=wspace)
+        if stacked:
+            axes = fig.subplots(2, 1)
+            if hspace is not None:
+                fig.subplots_adjust(hspace=hspace)
+        else:
+            axes = fig.subplots(1, 2)
+            fig.subplots_adjust(wspace=wspace)
         legend_ax = None
     else:
         gs = fig.add_gridspec(1, 2, width_ratios=[1, legend_width_ratio], wspace=0.08)
@@ -364,3 +386,15 @@ def finalize_pair_layout(
     right: float = PAIR_RIGHT,
 ) -> None:
     fig.subplots_adjust(top=top, bottom=bottom, left=left, right=right)
+
+
+def finalize_stack_layout(
+    fig: Figure,
+    *,
+    top: float = REPORT_STACK_TOP,
+    bottom: float = REPORT_STACK_BOTTOM,
+    left: float = REPORT_STACK_LEFT,
+    right: float = REPORT_STACK_RIGHT,
+    hspace: float = REPORT_STACK_HSPACE,
+) -> None:
+    fig.subplots_adjust(top=top, bottom=bottom, left=left, right=right, hspace=hspace)

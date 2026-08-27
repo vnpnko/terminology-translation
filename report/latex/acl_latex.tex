@@ -180,12 +180,12 @@ The pattern is consistent inside each pair but not uniform: EN$\rightarrow$ES is
 
 Figure~\ref{fig:by-language-pair} shows the same pattern visually, and also breaks out the term-list variants (Section~\ref{sec:term-list-variants}) by language pair for GPT-4o-mini; Qwen 3B/7B show the same qualitative pattern.
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_term_expansion_across_languages_gpt.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig_term_expansion_across_languages_gpt.pdf}
   \caption{GPT-4o-mini BLEU and term accuracy by language pair on dev\_v1: prompt modes (original term list) and term-list variants (\texttt{proper\_term}).}
   \label{fig:by-language-pair}
-\end{figure*}
+\end{figure}
 
 \begin{table}[t]
   \centering
@@ -228,12 +228,12 @@ Across variants, the same size-vs-precision trade-off observed for GPT-4o-mini i
 
 Figure~\ref{fig:by-model} shows this pattern visually.
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_term_expansion_across_models.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig_term_expansion_across_models.pdf}
   \caption{Macro-averaged BLEU and term accuracy by model and term-list variant, \texttt{proper\_term}, dev\_v1.}
   \label{fig:by-model}
-\end{figure*}
+\end{figure}
 
 \begin{table}[t]
   \centering
@@ -295,21 +295,21 @@ Table~\ref{tab:dev-comparison} compares GPT-4o-mini, macro-averaged over languag
 
 Table~\ref{tab:epoch-ablation} and Figure~\ref{fig:epoch-ablation} show macro-averaged BLEU and term accuracy from the untrained zero-shot base through 1--3 LoRA epochs, for both model sizes. BLEU gains build steadily through training for both sizes (Qwen2.5-7B: 35.0 base $\to$ 51.4 at 2 epochs; Qwen2.5-3B: 16.6 base $\to$ 47.1 at 2 epochs) and largely plateau by the third epoch. Term accuracy moves far less than BLEU for Qwen2.5-7B (69.9\% base to 70.8\% at 3 epochs -- fine-tuning mainly improves fluency/adequacy, not term realization, which the base model already handles reasonably well). Qwen2.5-3B's term accuracy moves more (44.5\% base to 68.0\% at 2 epochs), since its untrained baseline starts substantially lower.
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_lora_epoch_ablation.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig_lora_epoch_ablation.pdf}
   \caption{LoRA epoch ablation: trained on dev\_v2, evaluated on dev\_v1, zero-shot, \texttt{proper\_term}, both Qwen2.5 sizes. Epoch 0 is the untrained zero-shot base.}
   \label{fig:epoch-ablation}
-\end{figure*}
+\end{figure}
 
 Table~\ref{tab:best-vs-gpt} and Figure~\ref{fig:best-vs-gpt} compare the best-performing open configuration, Qwen2.5-7B LoRA at 2 epochs, against GPT-4o-mini. The tuned 7B model beats GPT-4o-mini on macro BLEU (51.4 vs.\ 47.5) and chrF (75.0 vs.\ 73.3), with the largest single-pair gain on EN$\to$RU (45.7 vs.\ 37.2 BLEU). GPT-4o-mini still leads on term accuracy (74.8\% vs.\ 69.8\%). We use the 2-epoch checkpoint as ``best'' because 3 epochs gives essentially the same BLEU/chrF for a small term-accuracy gain, and Section~\ref{sec:exp-leakage} and the Limitations section note evidence that this choice is not free of overfitting risk.
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_lora_best_models.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig_lora_best_models.pdf}
   \caption{Best open configuration (Qwen2.5-7B LoRA, 2 epochs, zero-shot, trained on dev\_v2) vs.\ GPT-4o-mini (few-shot), by language pair, evaluated on dev\_v1, \texttt{proper\_term}.}
   \label{fig:best-vs-gpt}
-\end{figure*}
+\end{figure}
 
 \begin{table}[t]
   \centering
@@ -465,11 +465,11 @@ Section~\ref{sec:exp-models} reports that the model ranking (GPT-4o-mini $>$ Qwe
 
 Two patterns stand out beyond what the macro averages show. First, EN$\rightarrow$RU sees the largest \emph{proportional} BLEU gain from terminology conditioning across all three models -- roughly a 50--65\% relative rise from \texttt{no\_term} to the best-performing variant, versus 30--47\% for EN$\rightarrow$DE/ES -- and unlike DE/ES, this relative gain does not shrink much as model strength increases, suggesting Russian's morphological richness makes a good term list disproportionately valuable regardless of base model capability. Second, on Qwen2.5-3B specifically, the small human-curated \texttt{original} list \emph{underperforms} both \texttt{no\_term} and \texttt{random\_term} on EN$\rightarrow$RU BLEU -- injecting the real but small glossary makes the smallest model's output worse than translating freely, an effect absent at 7B and for GPT-4o-mini, consistent with a model-capacity limitation on making good use of a small set of forced substitutions in a harder target language. 
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_term_expansion_qwen_size_stacked.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig_term_expansion_qwen_size_stacked.pdf}
   \caption{BLEU and term accuracy by language pair and term-list variant, both Qwen sizes: solid segment = Qwen2.5-3B, lighter segment = increment to reach Qwen2.5-7B, dev\_v1.}
   \label{fig:qwen-size-stacked}
-\end{figure*}
+\end{figure}
 
 \end{document}

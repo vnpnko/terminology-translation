@@ -29,14 +29,9 @@ from shared.lib.analysis.grouped_bar_figure_common import (
     REPORT_GROUP_WIDTH,
     REPORT_LEGEND_ROW_FONTSIZE,
     REPORT_LEGEND_ROW_NCOL,
-    REPORT_PAIR_BOTTOM,
-    REPORT_PAIR_FIG_SIZE,
-    REPORT_PAIR_LEFT,
-    REPORT_PAIR_RIGHT,
-    REPORT_PAIR_TOP,
-    REPORT_PAIR_WSPACE,
+    REPORT_STACK_FIG_SIZE,
     TERM_ACC_YLIM_TOP,
-    finalize_pair_layout,
+    finalize_stack_layout,
     fixed_top_ylim,
     place_legend_row,
 )
@@ -64,8 +59,7 @@ def build_qwen_size_stacked_figure(results_root: Path) -> Figure:
     data = collect_data(results_root)
     d3, d7 = data["qwen_3b"], data["qwen_7b"]
 
-    fig, axes = plt.subplots(1, 2, figsize=REPORT_PAIR_FIG_SIZE)
-    fig.subplots_adjust(wspace=REPORT_PAIR_WSPACE)
+    fig, axes = plt.subplots(2, 1, figsize=REPORT_STACK_FIG_SIZE)
 
     n_series = len(SERIES_ORDER)
     bar_width = REPORT_GROUP_WIDTH / n_series
@@ -114,6 +108,8 @@ def build_qwen_size_stacked_figure(results_root: Path) -> Figure:
         fixed_top_ylim(ax, ylim_top)
         ax.set_yticks(yticks)
 
+    axes[0].tick_params(labelbottom=False)
+
     condition_handles = [
         Patch(facecolor=EXPANSION_COLORS[k], edgecolor="#333333", label=STRATEGY_LABELS[k])
         for k in SERIES_ORDER
@@ -124,11 +120,5 @@ def build_qwen_size_stacked_figure(results_root: Path) -> Figure:
         fontsize=REPORT_LEGEND_ROW_FONTSIZE,
         ncol=REPORT_LEGEND_ROW_NCOL,
     )
-    finalize_pair_layout(
-        fig,
-        top=REPORT_PAIR_TOP - 0.06,
-        bottom=REPORT_PAIR_BOTTOM,
-        left=REPORT_PAIR_LEFT,
-        right=REPORT_PAIR_RIGHT,
-    )
+    finalize_stack_layout(fig)
     return fig

@@ -15,15 +15,11 @@ from shared.lib.analysis.grouped_bar_figure_common import (
     BLEU_YLIM_TOP,
     REPORT_LEGEND_ROW_FONTSIZE,
     REPORT_LEGEND_ROW_NCOL,
-    REPORT_PAIR_BOTTOM,
-    REPORT_PAIR_FIG_SIZE,
-    REPORT_PAIR_LEFT,
-    REPORT_PAIR_RIGHT,
-    REPORT_PAIR_TOP,
-    REPORT_PAIR_WSPACE,
+    REPORT_STACK_FIG_SIZE,
+    REPORT_STACK_HSPACE,
     TERM_ACC_YLIM_TOP,
     create_pair_figure,
-    finalize_pair_layout,
+    finalize_stack_layout,
     place_legend_row,
 )
 from shared.lib.analysis.metrics_loader import (
@@ -80,9 +76,10 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
 
     fig, axes, _ = create_pair_figure(
         None,
-        figsize=REPORT_PAIR_FIG_SIZE,
-        wspace=REPORT_PAIR_WSPACE,
+        figsize=REPORT_STACK_FIG_SIZE,
+        hspace=REPORT_STACK_HSPACE,
         legend_position="bottom",
+        stacked=True,
     )
 
     metric_axes = [
@@ -104,10 +101,12 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
                 label=style["label"],
             )
         ax.set_xticks([0, 1, 2, 3])
-        ax.set_xlabel("Epochs", labelpad=6)
         ax.set_ylabel(ylabel, labelpad=6)
         fixed_top_ylim(ax, ylim_top)
         ax.set_yticks(yticks)
+
+    axes[0].tick_params(labelbottom=False)
+    axes[1].set_xlabel("Epochs", labelpad=6)
 
     legend_handles = [
         Line2D(
@@ -127,11 +126,5 @@ def build_epoch_ablation_figure(project_root: Path) -> Figure:
         fontsize=REPORT_LEGEND_ROW_FONTSIZE,
         ncol=REPORT_LEGEND_ROW_NCOL,
     )
-    finalize_pair_layout(
-        fig,
-        top=REPORT_PAIR_TOP,
-        bottom=REPORT_PAIR_BOTTOM,
-        left=REPORT_PAIR_LEFT,
-        right=REPORT_PAIR_RIGHT,
-    )
+    finalize_stack_layout(fig)
     return fig

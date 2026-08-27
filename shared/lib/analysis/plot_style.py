@@ -84,6 +84,11 @@ def apply_report_style() -> None:
     rather than an A0 poster (report/acl_latex.tex's Experiments-section figures)."""
     plt.rcParams.update(
         {
+            # Type 42 (TrueType) embeds a correct, complete Unicode cmap, unlike
+            # matplotlib's default Type 3 PDF fonts -- without this, non-ASCII
+            # glyphs (e.g. the "->" arrow in "EN->DE" axis labels) render fine but
+            # silently drop out of the PDF's text layer (copy-paste, search, a11y).
+            "pdf.fonttype": 42,
             "font.family": "sans-serif",
             "font.sans-serif": ["DejaVu Sans", "Arial", "Helvetica"],
             "font.size": 10,

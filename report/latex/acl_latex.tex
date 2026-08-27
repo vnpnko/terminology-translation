@@ -84,7 +84,7 @@ We use two JSONL releases derived from SAP documentation, for three language pai
 
 \textbf{dev\_v1} is our main evaluation set: 500 sentences per language pair, held out as a test set throughout this report.
 
-\textbf{dev\_v2} is prepared from the SAP \texttt{term\_postedits} corpus~\citep{sap2024termpostedits} (2{,}000 lines per language). We use it as a training-set proxy for the WMT25 Terminology Shared Task's own training data, which is not publicly released; dev\_v2 is therefore \emph{not} the original shared-task release, only the closest available same-domain substitute. Section~\ref{sec:methods} describes the smaller training-set size actually used for fine-tuning, after overlap removal against dev\_v1 and few-shot example reservation.
+\textbf{dev\_v2} is prepared from the SAP \texttt{term\_postedits} corpus~\citep{sap2024termpostedits} (2{,}000 lines per language). We use it as a training-set proxy for the WMT25 Terminology Shared Task's own training data, which is not publicly released; dev\_v2 is therefore \emph{not} the original shared-task release, only the closest available same-domain substitute. Section~\ref{sec:models-and-finetuning} describes the smaller training-set size actually used for fine-tuning, after overlap removal against dev\_v1 and few-shot example reservation.
 
 The official WMT2025 terminology shared-task materials (task documentation and two evaluation tracks) are also available in our released code, but are not themselves used as training data here, for the reason above.
 
@@ -100,7 +100,7 @@ We define four metrics, computed per language pair and averaged (macro average) 
 
 \textbf{BLEU}~\citep{papineni-etal-2002-bleu} and \textbf{chrF}~\citep{popovic-2015-chrf} measure overall lexical similarity to the reference. Both react to general fluency and adequacy but are weak signals of whether a specific required term form was actually used. We do not report COMET: although the WMT25 task description listed it as an optional overall-quality metric, the shared task's own findings paper ultimately relied on BLEU and chrF2++ instead, citing evidence that learned metrics like COMET can be less robust in domains underrepresented in their training data~\citep{semenov-etal-2025-wmt25}.
 
-\textbf{Term accuracy (\%)} is the share of the provided \texttt{proper\_terms} whose required target-language form appears in the model's output, computed against the term inventory of the condition being evaluated (the inventory differs across term-list variants, Section~\ref{sec:methods}).
+\textbf{Term accuracy (\%)} is the share of the provided \texttt{proper\_terms} whose required target-language form appears in the model's output, computed against the term inventory of the condition being evaluated (the inventory differs across term-list variants, Section~\ref{sec:term-list-variants}).
 
 \textbf{Macro consistency} is the mean, over all distinct terms seen in the corpus, of how consistently each term is translated the same way whenever it recurs. \textbf{Weighted consistency} is the same quantity, but weighted by how often each term actually occurs, so frequent terms contribute proportionally more.
 

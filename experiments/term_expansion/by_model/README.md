@@ -1,6 +1,6 @@
 # Term expansion by model
 
-Aggregated by model (GPT / Qwen 3B / Qwen 7B), macro avg over language pairs. Reuses the parent [`term_expansion/`](../README.md)'s shared `shared/data/` → `shared/results/` pipeline and its `../shared/scripts/` compare scripts — see that README for the Inputs table.
+Aggregated by model (GPT / Qwen 3B / Qwen 7B), macro avg over language pairs. Reuses the parent [`term_expansion/`](../README.md)'s shared `shared/data/` → `shared/results/` pipeline and its [`../by_language_pair/shared/scripts/`](../by_language_pair/shared/scripts/) compare scripts — see that README for the Inputs table.
 
 ## Reproduce
 
@@ -18,7 +18,7 @@ Generating script: [`scripts/figure_by_model.py`](scripts/figure_by_model.py) (`
 
 | File | Regenerate |
 | ---- | ---------- |
-| `report/model_comparison.xlsx` (sheets: `dev_v1`, `dev_v2`; rows grouped by mode then language, columns per model) | `python experiments/term_expansion/shared/scripts/compare_by_model_and_language.py` (also writes the sibling `by_language_pair/report/language_comparison.xlsx` in the same run) |
-| `report/proper_term_across_models.xlsx` (rows: 4 term-list variants × language, columns per model) | `python experiments/term_expansion/shared/scripts/compare_by_model_and_language.py --mode proper_term` (also writes the sibling `by_language_pair/report/proper_term_across_languages.xlsx` in the same run) |
+| `report/model_comparison.xlsx` (sheets: `dev_v1`, `dev_v2`; rows grouped by mode then language, columns per model) | `python experiments/term_expansion/by_language_pair/shared/scripts/compare_by_model_and_language.py` (also writes the sibling `../by_language_pair/report/language_comparison.xlsx` in the same run) |
+| `report/proper_term_across_models.xlsx` (rows: 4 term-list variants × language, columns per model) | `python experiments/term_expansion/by_language_pair/shared/scripts/compare_by_model_and_language.py --mode proper_term` (also writes the sibling `../by_language_pair/report/proper_term_across_languages.xlsx` in the same run) |
 
 `model_comparison.xlsx` does not include `dev_v1_expand`/`dev_v1_cleaned`/`dev_v1_dictionary` sheets, since those variants only have `proper_term` data, which already appears in `proper_term_across_models.xlsx`.

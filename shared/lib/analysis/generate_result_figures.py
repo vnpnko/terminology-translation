@@ -32,7 +32,9 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 EXPERIMENT_SCRIPTS_DIRS = [
     PROJECT_ROOT / "experiments" / "term_expansion" / "by_model" / "scripts",
-    PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "gpt" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "qwen" / "scripts",
+    PROJECT_ROOT / "experiments" / "term_expansion" / "by_language_pair" / "shared" / "scripts",
     PROJECT_ROOT / "experiments" / "dataset_comparison" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "epoch_ablation" / "scripts",
     PROJECT_ROOT / "experiments" / "lora_finetuning" / "best_models" / "scripts",
@@ -44,7 +46,8 @@ for _scripts_dir in EXPERIMENT_SCRIPTS_DIRS:
     sys.path.insert(0, str(_scripts_dir))
 
 from figure_by_model import build_by_model_figure
-from figure_by_language_pair import build_by_language_pair_figures
+from figure_by_language_pair_gpt import build_by_language_pair_gpt_figure
+from figure_qwen_size_comparison import build_qwen_size_stacked_figure
 from figure_dataset_comparison import build_dataset_comparison_figures
 from figure_epoch_ablation import build_epoch_ablation_figure
 from figure_best_models import build_best_models_figure
@@ -60,10 +63,15 @@ FIGURE_BUILDERS = {
         lambda root: build_by_model_figure(root / "shared" / "results"),
         Path("experiments/term_expansion/by_model/figures"),
     ),
-    "by_language_pair": (
-        "fig_term_expansion_across_languages",
-        lambda root: build_by_language_pair_figures(root / "shared" / "results"),
-        Path("experiments/term_expansion/by_language_pair/figures"),
+    "by_language_pair_gpt": (
+        "fig_term_expansion_across_languages_gpt",
+        lambda root: build_by_language_pair_gpt_figure(root / "shared" / "results"),
+        Path("experiments/term_expansion/by_language_pair/gpt/figures"),
+    ),
+    "by_language_pair_qwen": (
+        "fig_term_expansion_qwen_size_stacked",
+        lambda root: build_qwen_size_stacked_figure(root / "shared" / "results"),
+        Path("experiments/term_expansion/by_language_pair/qwen/figures"),
     ),
     "dataset_comparison": (
         "fig_dev_v1_vs_dev_v2",

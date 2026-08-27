@@ -46,26 +46,19 @@ Enterprise machine translation of SAP software documentation fails when domain t
 \section{Introduction}
 \label{sec:introduction}
 
-Translating software documentation is rarely difficult at the level of grammar; the difficulty is choosing the right target-language form for a product-specific term. In SAP documentation, an English source word can have several plausible target-language candidates, only one of which matches the terminology that is actually approved and used consistently across a product's screens and manuals. Generic machine translation systems tend to pick a fluent alternative instead, which reads well in isolation but silently breaks terminology consistency across a large, interlinked body of documentation.
+Translating software documentation is rarely difficult at the level of grammar. The difficulty is choosing the right target-language form for a product-specific term. An English source word often has several plausible translations, but in SAP documentation only one matches the terminology that is actually approved and used consistently across a product's screens and manuals. Generic machine translation systems tend to pick a fluent alternative instead. It reads well in isolation, but it silently breaks terminology consistency across a large, interlinked body of documentation.
 
-We treat this as a terminology-constrained machine translation problem: each source sentence is paired with a set of source$\rightarrow$target term pairs that a translation system should respect. Our setup follows the sentence-level framing of the WMT25 Terminology Translation Task~\citep{semenov-etal-2025-wmt25}, but substitutes SAP post-edited documentation~\citep{sap2024termpostedits} as the concrete domain, since the shared task's own training data is not publicly available.
+We treat this as a terminology-constrained machine translation problem: each source sentence is paired with a set of source$\rightarrow$target term pairs that the translation should respect. Our setup follows the sentence-level framing of the WMT25 Terminology Translation Task~\citep{semenov-etal-2025-wmt25}. We substitute SAP post-edited documentation~\citep{sap2024termpostedits} for the shared task's own domain, since the shared task's training data is not publicly available.
 
-We compare two complementary ways of injecting terminology knowledge into a translation system: conditioning a model at inference time via a prompted term list, and adapting an open model's weights via LoRA fine-tuning~\citep{hu2022lora}. Within prompt conditioning, we further vary how the term list itself is built -- from the human-annotated list shipped with the evaluation set, to lists expanded or cleaned by an LLM, to a list mined from a related but disjoint corpus.
+We compare two complementary ways to inject terminology knowledge into a translation system: conditioning a model at inference time on a prompted term list, and adapting an open model's weights via LoRA fine-tuning~\citep{hu2022lora}. Within prompt conditioning, we also vary how the term list itself is built: from the human-annotated list shipped with the evaluation set, to versions expanded or cleaned by an LLM, to a list mined from a separate, related corpus.
 
-Concretely, we ask three questions:
+We ask three questions:
 
 \begin{enumerate}
-    \item \textbf{Does terminology conditioning help?} Injecting a term list into the prompt should raise translation quality and, more directly, the rate at which required terms actually appear in the output -- but a model could just as well be responding to \emph{any} injected list rather than to term \emph{correctness} specifically. We test this with an unrelated-pairs control list evaluated alongside the real term list.
-    \item \textbf{Does how the term list is built matter?} We compare the original human-annotated term list against an LLM-expanded version, an LLM-cleaned (domain-filtered) version, and a list mined from a separate, related corpus, to see whether list \emph{size} and list \emph{precision} trade off against each other.
-    \item \textbf{Can LoRA fine-tuning close the gap to a closed frontier model?} We fine-tune open Qwen2.5 models~\citep{qwenteam2024qwen25} with LoRA on SAP documentation data and compare the result against GPT-4o-mini, with and without prompted terminology at inference.
+    \item \textbf{Does terminology conditioning help?} Injecting a term list into the prompt should raise translation quality and, more directly, the rate at which required terms appear in the output. But the model could simply be responding to \emph{any} injected list, not to term \emph{correctness} specifically. We test this with a control: an unrelated-pairs list evaluated alongside the real term list.
+    \item \textbf{Does how the term list is built matter?} We compare the original human-annotated list against an LLM-expanded version, an LLM-cleaned (domain-filtered) version, and a list mined from a separate, related corpus, to see whether list \emph{size} and list \emph{precision} trade off against each other.
+    \item \textbf{Can LoRA fine-tuning close the gap to a closed frontier model?} We fine-tune open Qwen2.5 models~\citep{qwenteam2024qwen25} with LoRA on SAP documentation data and compare against GPT-4o-mini, with and without prompted terminology at inference.
 \end{enumerate}
-
-This report makes the following contributions:
-\begin{itemize}
-    \item An evaluation harness that measures terminology-constrained translation with both generic (BLEU, chrF) and terminology-specific (term accuracy, macro/weighted consistency) metrics side by side, so the two families of metrics can be checked against each other rather than assumed to agree.
-    \item A controlled comparison of four term-list construction strategies (original, LLM-expanded, LLM-cleaned, dictionary-mined) under the same prompting setup and metric suite.
-    \item A LoRA fine-tuning study of open Qwen2.5 models against a closed frontier model on the same enterprise documentation domain, including an explicit train/test overlap honesty check to bound how much of any fine-tuning gain could be attributable to data leakage rather than genuine adaptation.
-\end{itemize}
 
 \section{Related Work}
 \label{sec:related-work}

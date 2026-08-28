@@ -278,6 +278,14 @@ The ``best'' LoRA configuration we report (Qwen2.5-7B, 2 epochs) is chosen for t
 
 This work was carried out as a course project at the Technical University of Munich. We thank Dr.\ Marion Di Marco for supervision and feedback.
 
+\section*{Author Contributions}
+
+\textbf{Ivan Pylypenko}: Implemented the LoRA fine-tuning pipeline for Qwen2.5-3B/7B using PyTorch and Hugging Face PEFT, and ran the epoch ablation, data-leakage honesty check, and few-shot ablation experiments, comparing the best configuration against GPT-4o-mini.
+
+\textbf{Robin Schukrafft}: Built the GPT-proposed term pipeline and ran those experiments. Constructed the term dictionary and applied it to dev\_v1. Ran GPT baselines on the dictionary setting. Implemented the matplotlib analysis scripts and result figures used in the poster and report.
+
+\textbf{Ilnur Gayetov}: Set up the data-preparation pipeline for SAP \texttt{term\_postedits} (JSONL task format, term-pair collection, initial term-expansion script) and restructured the project. Transformed shared evaluation into reusable modules and added evaluation runners for local Qwen and OpenRouter GPT-4o-mini.
+
 % Requires custom.bib to contain the 9 entries cited above
 % (semenov-etal-2025-wmt25, sap2024termpostedits, hu2022lora, qwenteam2024qwen25,
 % papineni-etal-2002-bleu, popovic-2015-chrf, he-etal-2024-exploring,

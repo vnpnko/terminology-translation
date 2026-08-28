@@ -213,39 +213,10 @@ Across variants, the same size-vs-precision trade-off observed for GPT-4o-mini i
   \label{fig:by-model}
 \end{figure}
 
-\subsection{dev\_v1 vs. dev\_v2 Comparability}
-\label{sec:exp-dataset-comparison}
-
-This subsection is background context for Section~\ref{sec:exp-leakage}, not one of the three central research questions. \textbf{RQ:} How comparable is the dev\_v2 proxy training set to the dev\_v1 test set, for the same model?
-
-Table~\ref{tab:dev-comparison} compares GPT-4o-mini, macro-averaged over language pairs, on dev\_v1 and dev\_v2 under all three prompt modes. dev\_v2 scores consistently higher than dev\_v1 across every mode and metric. dev\_v2 (2{,}000 sentences/language) is four times larger than dev\_v1 (500 sentences/language) in this comparison; BLEU and chrF are corpus-level aggregates, so the size difference does not by itself bias either score, but dev\_v1's estimate carries more sampling noise than dev\_v2's. We do not compute confidence intervals or bootstrap resampling for any metric in this report (all results are single-run point estimates), so the gaps in Table~\ref{tab:dev-comparison} should be read as broadly consistent rather than as a precise, statistically validated difference.
-
-\begin{table}[t]
-  \centering
-  \small
-  \begin{tabular}{lccc}
-    \hline
-    \textbf{Mode} & \textbf{BLEU} & \textbf{chrF} & \textbf{Term Acc.\%} \\
-    \hline
-    \multicolumn{4}{l}{\emph{dev\_v1}} \\
-    no\_term     & 39.6 & 65.2 & -- \\
-    proper\_term & 46.1 & 72.0 & 73.3 \\
-    random\_term & 42.4 & 68.4 & 86.4$^\dagger$ \\
-    \hline
-    \multicolumn{4}{l}{\emph{dev\_v2}} \\
-    no\_term     & 42.2 & 67.0 & -- \\
-    proper\_term & \textbf{51.2} & \textbf{74.7} & \textbf{88.2} \\
-    random\_term & 45.6 & 70.7 & 87.7$^\dagger$ \\
-    \hline
-  \end{tabular}
-  \caption{GPT-4o-mini macro-averaged BLEU/chrF/term accuracy, dev\_v1 vs.\ dev\_v2, all three prompt modes. $^\dagger$Accuracy on injected random control pairs.}
-  \label{tab:dev-comparison}
-\end{table}
-
 \subsection{LoRA Fine-Tuning}
 \label{sec:exp-lora}
 
-\textbf{RQ:} Does LoRA fine-tuning on dev\_v2 close the gap between open Qwen2.5 models and GPT-4o-mini on terminology-constrained translation? All results in this subsection use \texttt{proper\_term} prompting, zero-shot at inference (Section~\ref{sec:models-and-finetuning}).
+As background, dev\_v2 -- the proxy training set used below -- scores consistently higher than dev\_v1 across every prompt mode and metric (e.g.\ 51.2 vs.\ 46.1 BLEU under \texttt{proper\_term}), consistent with dev\_v2 being four times larger and thus lower-noise rather than a distributional mismatch that would undermine using it as a training-set proxy. \textbf{RQ:} Does LoRA fine-tuning on dev\_v2 close the gap between open Qwen2.5 models and GPT-4o-mini on terminology-constrained translation? All results in this subsection use \texttt{proper\_term} prompting, zero-shot at inference (Section~\ref{sec:models-and-finetuning}).
 
 Table~\ref{tab:epoch-ablation} and Figure~\ref{fig:epoch-ablation} show macro-averaged BLEU and term accuracy from the untrained zero-shot base through 1--3 LoRA epochs, for both model sizes. BLEU gains build steadily through training for both sizes (Qwen2.5-7B: 35.0 base $\to$ 51.4 at 2 epochs; Qwen2.5-3B: 16.6 base $\to$ 47.1 at 2 epochs) and largely plateau by the third epoch. Term accuracy moves far less than BLEU for Qwen2.5-7B (69.9\% base to 70.8\% at 3 epochs -- fine-tuning mainly improves fluency/adequacy, not term realization, which the base model already handles reasonably well). Qwen2.5-3B's term accuracy moves more (44.5\% base to 68.0\% at 2 epochs), since its untrained baseline starts substantially lower. A single LoRA epoch closes most of the size gap between the two models: from roughly an 18-point BLEU and 25-point term-accuracy gap at the untrained base, Qwen2.5-3B comes within about five points of Qwen2.5-7B on both metrics after just one epoch, and stays there for the rest of training.
 

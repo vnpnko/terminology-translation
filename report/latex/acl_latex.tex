@@ -63,9 +63,9 @@ We ask three questions:
 \section{Related Work}
 \label{sec:related-work}
 
-Terminology-aware machine translation covers a range of techniques, including constrained decoding, placeholder substitution, and glossary injection at inference time. The WMT25 Terminology Shared Task~\citep{semenov-etal-2025-wmt25} found that terminology conditioning is especially useful for already-strong systems, and that evaluation must look beyond generic n-gram overlap to determine whether required terms actually appear in the output -- we adopt that as a requirement throughout this report, treating term accuracy as a first-class metric alongside BLEU and chrF.
+Terminology-aware machine translation covers a range of techniques, including constraint-aware training~\citep{dinu-etal-2019-training}, placeholder substitution, and glossary injection at inference time. The WMT25 Terminology Shared Task~\citep{semenov-etal-2025-wmt25} found that terminology conditioning is especially useful for already-strong systems, and that evaluation must look beyond generic n-gram overlap to determine whether required terms actually appear in the output -- we adopt that as a requirement throughout this report, treating term accuracy as a first-class metric alongside BLEU and chrF.
 
-Prompt-based glossary injection conditions a model without changing its weights. \citet{he-etal-2024-exploring} instead have the LLM itself extract and translate keyword pairs to inject as prompt guidance; their ablation shows this self-generated guidance still helps, but their own analysis finds the generated translations match the human reference term only about half the time -- underscoring why, as we investigate in RQ2, how a term list is built matters. LoRA fine-tuning~\citep{hu2022lora} is the complementary route when in-domain parallel data is available, adapting model weights directly instead of relying on inference-time conditioning. We compare both routes on the same SAP documentation data under the same prompting setup and metric suite, focusing not on a new decoding or adaptation method but on a controlled comparison of term-list construction and adaptation strategies for one enterprise domain.
+Prompt-based glossary injection conditions a model without changing its weights, in the same spirit as broader in-context learning with LLMs. \citet{he-etal-2024-exploring} instead have the LLM itself extract and translate keyword pairs to inject as prompt guidance; their ablation shows this self-generated guidance still helps, but their own analysis finds the generated translations match the human reference term only about half the time -- underscoring why, as we investigate in RQ2, how a term list is built matters. LoRA fine-tuning~\citep{hu2022lora} is the complementary route when in-domain parallel data is available, adapting model weights directly instead of relying on inference-time conditioning. On the same SAP post-edit data we use, \citet{berger-etal-2025-learning} instead combine supervised fine-tuning with preference optimization over post-edits. Prior terminology-constrained MT and LoRA fine-tuning work each address part of this problem individually, but neither compares how the term list is \emph{built} against fine-tuning the model itself. We compare both routes on the same SAP documentation data under the same prompting setup and metric suite, focusing not on a new decoding or adaptation method but on a controlled comparison of term-list construction and adaptation strategies for one enterprise domain.
 
 \section{Data and Task}
 \label{sec:data-and-task}
@@ -276,9 +276,10 @@ The ``best'' LoRA configuration we report (Qwen2.5-7B, 2 epochs) is chosen becau
 
 This work was carried out as a course project at the Technical University of Munich. We thank Dr.\ Marion Di Marco for supervision and feedback.
 
-% Requires custom.bib to contain the 7 entries cited above
+% Requires custom.bib to contain the 9 entries cited above
 % (semenov-etal-2025-wmt25, sap2024termpostedits, hu2022lora, qwenteam2024qwen25,
-% papineni-etal-2002-bleu, popovic-2015-chrf, he-etal-2024-exploring) -- all present.
+% papineni-etal-2002-bleu, popovic-2015-chrf, he-etal-2024-exploring,
+% dinu-etal-2019-training, berger-etal-2025-learning) -- all present.
 \bibliography{custom}
 
 \appendix

@@ -2,6 +2,8 @@
 
 This directory will hold the ACL-style paper for the project (template: [ACL conference LaTeX template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj)). Before writing prose, this doc plans the **Experiments section only** — which experiments exist, where their data/results live, and how documented each one currently is. The rest of the ACL skeleton (Related Work, Ethics Statement, Limitations, Appendix, etc.) is deferred to a later pass.
 
+Final report: [PDF](Terminology-Constrained%20Machine%20Translation%20for%20Enterprise%20Software%20Documentation.pdf), source in [`latex/acl_latex.tex`](latex/acl_latex.tex).
+
 Companion doc: [`ISSUES.md`](ISSUES.md) — every messy/undocumented/broken thing found while building this plan, with suggested fixes or open questions.
 
 ## Canonical vocabulary

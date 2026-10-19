@@ -1,6 +1,6 @@
 # Terminology Translation
 
-Experiments on terminology-constrained machine translation for WMT-style sentence-level data. Code and data supporting an ACL-style paper in progress — see [`report/`](report/README.md) for its outline and current status. An earlier [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) covers a subset of the same results.
+Experiments on terminology-constrained machine translation for WMT-style sentence-level data. Code and data supporting an ACL-style paper ([PDF](report/Terminology-Constrained%20Machine%20Translation%20for%20Enterprise%20Software%20Documentation.pdf)) — see [`report/`](report/README.md) for its outline and current status. An earlier [`poster/terminology_translation.pdf`](poster/terminology_translation.pdf) covers a subset of the same results.
 
 In enterprise software documentation, domain terms (UI labels, product names) frequently receive plausible-but-wrong translations from generic MT, breaking terminology consistency across screens and manuals. This project studies terminology-constrained EN→{DE, RU, ES} translation on SAP documentation data, in the spirit of the WMT25 Terminology Shared Task, comparing prompt-based term-list conditioning against LoRA fine-tuning of open Qwen2.5 models, evaluated against GPT-4o-mini.
 

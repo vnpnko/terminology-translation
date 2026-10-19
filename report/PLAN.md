@@ -1,5 +1,7 @@
 # Report writing plan
 
+Final report: [PDF](Terminology-Constrained%20Machine%20Translation%20for%20Enterprise%20Software%20Documentation.pdf).
+
 Companion to [`README.md`](README.md) (Experiments-section source of truth) and [`ISSUES.md`](ISSUES.md) (open gaps). This doc plans the **full ACL-style paper**, to be drafted section-by-section directly into the Overleaf project (`acl_latex.tex`, ACL conference template), reviewed one section at a time rather than generated in one shot.
 
 ## Confirmed scope decisions
